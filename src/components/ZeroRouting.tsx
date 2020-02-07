@@ -4,8 +4,7 @@ import { Home } from "./../views/Home";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 export function ZeroRouting() {
