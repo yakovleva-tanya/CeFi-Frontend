@@ -1,7 +1,14 @@
 import * as React from "react";
 
-interface AppContextState {
-  loggedIn: boolean;
+interface ErrorModal {
+  show: boolean;
+  message: string | null;
+  title: string | null;
+}
+
+export interface AppContextState {
+  plaidLoggedIn: boolean;
+  errorModal: ErrorModal;
 }
 
 interface AppContextInterface {
@@ -10,7 +17,14 @@ interface AppContextInterface {
 }
 
 export const AppContextDefault = {
-  state: { loggedIn: false },
+  state: {
+    plaidLoggedIn: false,
+    errorModal: {
+      show: false,
+      message: null,
+      title: null,
+    } as ErrorModal
+  },
   updateAppState: () => {}
 };
 
