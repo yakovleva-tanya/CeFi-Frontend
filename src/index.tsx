@@ -1,11 +1,21 @@
-
-
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Hello } from "./components/Hello";
+import { ZeroRouting } from "./components/ZeroRouting";
+import { AppContext, AppContextDefault } from './context/app';
+
+function App() {
+
+  const [state, updateAppState] = React.useState(AppContextDefault.state);
+
+  return (
+    <AppContext.Provider value={{state, updateAppState}}>
+      <ZeroRouting />
+    </AppContext.Provider>
+  );
+}
 
 ReactDOM.render(
-    <Hello compiler="TypeScript" framework="React" />,
-    document.getElementById("example")
+    <App />,
+    document.getElementById("zero-collateral-cefi")
 );

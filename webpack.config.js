@@ -1,5 +1,10 @@
 const path = require('path');
 module.exports = {
+    entry: './src/index.tsx',
+    output: {
+        filename: 'main.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
     mode: "production",
 
     // Enable sourcemaps for debugging webpack's output.
@@ -7,6 +12,13 @@ module.exports = {
 
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
+    },
+
+    devServer: {
+        contentBase: path.resolve(__dirname, 'dist'),
+        compress: false,
+        port: 8080,
+        hot: true
     },
 
     module: {
@@ -17,10 +29,13 @@ module.exports = {
                 use: [
                     {
                         loader: "ts-loader"
-                    }
+                    },
                 ]
             },
-            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            {
+              test: /\.css$/i,
+              use: ['style-loader', 'css-loader'],
+            },
             {
                 enforce: "pre",
                 test: /\.js$/,
