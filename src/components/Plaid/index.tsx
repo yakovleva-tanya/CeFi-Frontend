@@ -10,23 +10,21 @@ import { AppContext, AppContextState } from "./../../context/app";
 export const PlaidConnector = () => {
   const { state, updateAppState } = React.useContext(AppContext);
 
-  const plaidHandler = new Plaid(
-    () => {
-
-    },
-    () => {
+  const plaidHandler = new Plaid({
+    onLoad: (): any => null,
+    onSuccess: (public_token: any, metadata: any) => {
       updateAppState((st: AppContextState) => {
         st.plaidLoggedIn = true;
         return st;
       });
     },
-    () => {
+    onExit: (): any => null,
+    onEvent: (): any => null
+  });
 
-    },
-    () => {
-
-    }
-  );
+  const loadPlaid = () => {
+    plaidHandler.load();
+  }
 
   return (
     <div className="plaid-connector">
@@ -45,7 +43,7 @@ export const PlaidConnector = () => {
           </Col>
         </Row>
         <Row>
-          <Button onClick={() => (plaidHandler as any).handler.open() } variant="outline-primary" block>Connect your Bank Account</Button>
+          <Button onClick={ () => loadPlaid() } variant="outline-primary" block>Connect your Bank Account</Button>
         </Row>
       </Container>
     </div>
