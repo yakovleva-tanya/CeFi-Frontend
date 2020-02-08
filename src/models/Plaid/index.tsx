@@ -1,5 +1,6 @@
 import merge from 'ramda/src/merge';
 import Either from './../../util/Either';
+import axios from 'axios';
 
 declare const window: any;
 const Plaid = window.Plaid;
@@ -41,7 +42,13 @@ export default class PlaidModel {
   /**
    * Get handler getTransactions.
    */
-  getTransactions(): void {
-
+  static async getTransactions(public_token: string): Promise<Array<any>> {
+    return axios.post('http://127.0.0.1:8080/plaid_exchange', {
+      public_token
+    })
+    .then(function (response) {
+      console.log(response);
+      return response.data.transactions as Array<string>;
+    });
   }
 }

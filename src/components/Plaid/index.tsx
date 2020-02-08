@@ -12,10 +12,9 @@ export const PlaidConnector = () => {
 
   const plaidHandler = new Plaid({
     onLoad: (): any => null,
-    onSuccess: (public_token: any, metadata: any) => {
+    onSuccess: (public_token: string, metadata: any) => {
       updateAppState((st: AppContextState) => {
-        st.plaidLoggedIn = true;
-        return st;
+        return { ...st, plaidLoggedIn: { publicKey: public_token, metadata} };
       });
     },
     onExit: (): any => null,
@@ -24,7 +23,7 @@ export const PlaidConnector = () => {
 
   const loadPlaid = () => {
     plaidHandler.load();
-  }
+  };
 
   return (
     <div className="plaid-connector">

@@ -6,19 +6,24 @@ interface ErrorModal {
   title: string | null;
 }
 
+interface PlaidInterface {
+  publicKey: string;
+  metadata: any;
+}
+
 export interface AppContextState {
-  plaidLoggedIn: boolean;
+  plaidLoggedIn: PlaidInterface | null;
   errorModal: ErrorModal;
 }
 
-interface AppContextInterface {
+export interface AppContextInterface {
   state: AppContextState;
   updateAppState: Function;
 }
 
 export const AppContextDefault = {
   state: {
-    plaidLoggedIn: false,
+    plaidLoggedIn: null as null,
     errorModal: {
       show: false,
       message: null,
