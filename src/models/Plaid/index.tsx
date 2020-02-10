@@ -1,4 +1,3 @@
-import merge from 'ramda/src/merge';
 import Either from './../../util/Either';
 import axios from 'axios';
 
@@ -10,6 +9,23 @@ interface PlaidModelInterface {
   onSuccess: Function;
   onExit: Function;
   onEvent: Function;
+}
+
+export interface PlaidTransaction {
+  name: string;
+  date: string;
+  amount: Number;
+}
+
+function transformResponse(transaction: any): Either<PlaidTransaction, Error> {
+  if (transaction.amount && transaction.date && transaction.name) {
+    return Either.right({
+      amount: transaction.amount,
+      date: transaction.date,
+      name: transaction.name
+    });
+  }
+  return Either.left(Error("Could not parse transaction."));
 }
 
 export default class PlaidModel {
@@ -42,13 +58,13 @@ export default class PlaidModel {
   /**
    * Get handler getTransactions.
    */
-  static async getTransactions(public_token: string): Promise<Array<any>> {
-    return axios.post('http://127.0.0.1:8080/plaid_exchange', {
+  static async getTransactions(public_token: string): Promise<Array<Either<PlaidTransaction, Error>>> {
+    return axios.post('http://127.0.0.1:8000/plaid_exchange', {
       public_token
     })
     .then(function (response) {
       console.log(response);
-      return response.data.transactions as Array<string>;
+      return response.data.transactions.transactions.map(transformResponse);
     });
   }
 }

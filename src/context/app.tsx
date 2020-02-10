@@ -1,4 +1,5 @@
 import * as React from "react";
+import Plaid, { PlaidTransaction } from './../models/Plaid';
 
 interface ErrorModal {
   show: boolean;
@@ -13,6 +14,7 @@ interface PlaidInterface {
 
 export interface AppContextState {
   plaidLoggedIn: PlaidInterface | null;
+  userTransactions: Array<PlaidTransaction> | null;
   errorModal: ErrorModal;
 }
 
@@ -24,6 +26,7 @@ export interface AppContextInterface {
 export const AppContextDefault = {
   state: {
     plaidLoggedIn: null as null,
+    userTransactions: null as null,
     errorModal: {
       show: false,
       message: null,
