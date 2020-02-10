@@ -64,7 +64,7 @@ export const PlaidConnector = () => {
                 <th>#</th>
                 <th>Name</th>
                 <th>Date</th>
-                <th>Ammount</th>
+                <th>Amount</th>
               </tr>
             </thead>
             <tbody>
