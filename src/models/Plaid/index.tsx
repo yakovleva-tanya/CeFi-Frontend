@@ -59,7 +59,7 @@ export default class PlaidModel {
    * Get handler getTransactions.
    */
   static async getTransactions(public_token: string): Promise<Array<Either<PlaidTransaction, Error>>> {
-    return axios.post('http://127.0.0.1:8000/plaid_exchange', {
+    return axios.post('/plaid_exchange', {
       public_token
     })
     .then(function (response) {
