@@ -5,10 +5,27 @@ module.exports = {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
     },
-    mode: "production",
+    mode: "development",
+
+    // Enable sourcemaps for debugging webpack's output.
+    devtool: "source-map",
 
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
+    },
+
+    devServer: {
+        contentBase: path.resolve(__dirname, 'dist'),
+        compress: false,
+        port: 8080,
+        hot: true,
+        historyApiFallback: true,
+        watchOptions: { aggregateTimeout: 300, poll: 1000 },
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+          "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+        }
     },
 
     module: {

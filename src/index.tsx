@@ -2,14 +2,13 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import { ZeroRouting } from "./components/ZeroRouting";
-import { AppContext, AppContextDefault } from './context/app';
+import { AppContext, AppContextInterface } from './context/app';
+import useAppContext from './hooks/AppContext';
 
 function App() {
-
-  const [state, updateAppState] = React.useState(AppContextDefault.state);
-
+  const [state, updateAppState] = useAppContext();
   return (
-    <AppContext.Provider value={{state, updateAppState}}>
+    <AppContext.Provider value={{state, updateAppState} as AppContextInterface}>
       <ZeroRouting />
     </AppContext.Provider>
   );
