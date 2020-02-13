@@ -1,3 +1,12 @@
+/**
+ * Implements the component interface for the general application.
+ *
+ * This component uses the composition pattern. It's expected to be the main entrypoint
+ * into application pages that connect to the Router.
+ * @namespace ViewComponent
+ * @category ReactComponents
+ */
+
 import * as React from "react";
 import Navbar from 'react-bootstrap/Navbar';
 
@@ -5,6 +14,11 @@ interface ViewProps {
   children: React.ReactNode;
 }
 
+/**
+ * Pure component implementing the ViewComponent
+ * @function ViewWrapper
+ * @memberof ViewComponent
+ */
 export const ViewWrapper = (props: ViewProps) => {
   return (
     <div className='view'>

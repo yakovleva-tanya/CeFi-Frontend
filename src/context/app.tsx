@@ -12,9 +12,14 @@ interface PlaidInterface {
   metadata: any;
 }
 
-export interface AppContextState {
-  plaidLoggedIn: PlaidInterface | null;
+export interface PlaidState {
+  loggedIn: PlaidInterface | null;
   userTransactions: Array<PlaidTransaction> | null;
+  income: number | null;
+}
+
+export interface AppContextState {
+  plaid: PlaidState;
   errorModal: ErrorModal;
 }
 
@@ -25,8 +30,11 @@ export interface AppContextInterface {
 
 export const AppContextDefault = {
   state: {
-    plaidLoggedIn: null as null,
-    userTransactions: null as null,
+    plaid: {
+      loggedIn: null as null,
+      userTransactions: null as null,
+      income: null as null
+    } as PlaidState,
     errorModal: {
       show: false,
       message: null,

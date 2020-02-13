@@ -1,7 +1,14 @@
+/**
+ * @namespace PlaidModel
+ * @category ReactModels
+ */
+
 import Either from './../../util/Either';
+import Constants from './../../util/constants';
 import axios from 'axios';
 
 declare const window: any;
+const serverURL = Constants.serverURL;
 const Plaid = window.Plaid;
 
 interface PlaidModelInterface {
@@ -28,6 +35,12 @@ function transformResponse(transaction: any): Either<PlaidTransaction, Error> {
   return Either.left(Error("Could not parse transaction."));
 }
 
+/**
+ * Wrapper class for the Plaid API.
+ * @class
+ * @name PlaidModelClass
+ * @memberof PlaidModel
+ */
 export default class PlaidModel {
   handler: any;
   plaidOptions: PlaidModelInterface;
@@ -57,14 +70,33 @@ export default class PlaidModel {
 
   /**
    * Get handler getTransactions.
+   * @static
+   * @memberof PlaidModel
    */
   static async getTransactions(public_token: string): Promise<Array<Either<PlaidTransaction, Error>>> {
-    return axios.post('/plaid_exchange', {
+    return axios.post(serverURL + '/plaid/transactions', {
       public_token
     })
     .then(function (response) {
-      console.log(response);
       return response.data.transactions.transactions.map(transformResponse);
+    });
+  }
+
+  /**
+   * Get handler for user income using plaid's projected yearly income.
+   * @static
+   * @memberof PlaidModel
+   */
+  static async getIncome(public_token: string): Promise<number | null> {
+    return axios.post(serverURL + '/plaid/income', {
+      public_token
+    })
+    .then(function(response) {
+      const data = response.data?.transactions?.income?.projected_yearly_income;
+      if (data) {
+        return data as number;
+      }
+      return null;
     });
   }
 }
