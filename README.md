@@ -18,7 +18,8 @@ Start the UI in development mode with:
 
 Start the server with:
 
-```PLAID_CLIENT_ID=5ec44b05f35e35031238d348 PLAID_SECRET=asdfwefg233dffsf \
+```bash
+PLAID_CLIENT_ID=5ec44b05f35e35031238d348 PLAID_SECRET=asdfwefg233dffsf \
 PLAID_PUBLIC_KEY=8f8e5a63107fc2027a5768a1571988 PLAID_PRODUCTS=transactions \
 PLAID_COUNTRY_CODES=US,CA,GB,FR,ES,IE PLAID_ENV=sandbox \
 npm start
