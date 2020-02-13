@@ -30,7 +30,7 @@ export default function PlaidLending () {
   return <div className='plaid-lending'>
     <Col>
       <Row>
-        <h2>Your Available Lending: {income}</h2>
+        <h2>Your Available Lending: ${income} USD</h2>
       </Row>
       <Row>
         <p className="text-secondary">You can borrow up to ${income} USD in token value.</p>
