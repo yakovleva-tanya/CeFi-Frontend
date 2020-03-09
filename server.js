@@ -7,6 +7,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const plaidRouter = require('./api/plaid');
+const oracleRouter = require('./api/oracle');
 
 app.use(cors());
 
@@ -24,6 +25,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use('/plaid', plaidRouter.router);
+
+app.use('/oracle', oracleRouter.router);
 
 app.listen(port, () => {
   console.log(`Listening on port ${ port }`);

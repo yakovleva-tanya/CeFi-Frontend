@@ -1,0 +1,1086 @@
+{
+  "fileName": "ZCMonthlyIncomeOracle.sol",
+  "contractName": "ZCMonthlyIncomeOracle",
+  "source": "pragma solidity ^0.5.15;\n\nimport \"@openzeppelin/contracts-ethereum-package/contracts/ownership/Ownable.sol\";\n\ncontract ZCMonthlyIncomeOracle is Ownable {\n\n    struct IncomeData {\n        uint date;\n        uint amount;\n    }\n\n    mapping (address => IncomeData) public monthlyIncome;\n\n    event MonthlyIncomeUpdated(address _address, uint _amount);\n\n    function setMonthlyIncome(address _address, uint _amount) public onlyOwner {\n        monthlyIncome[_address] = IncomeData(now, _amount);\n        emit MonthlyIncomeUpdated(_address, _amount);\n    }\n\n    function getMonthlyIncome(address _address) public view returns (uint income) {\n        return monthlyIncome[_address].amount;\n    }\n\n    function getLastUpdate(address _address) public view returns (uint lastUpdate) {\n        return monthlyIncome[_address].date;\n    }\n}\n",
+  "sourcePath": "contracts/ZCMonthlyIncomeOracle.sol",
+  "sourceMap": "110:717:3:-;;;;;;;;;",
+  "deployedSourceMap": "110:717:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;110:717:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;556:132;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;556:132:3;-1:-1:-1;;;;;556:132:3;;:::i;:::-;;;;;;;;;;;;;;;;230:52;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;230:52:3;-1:-1:-1;;;;;230:52:3;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;354:196;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;354:196:3;;;;;;;;:::i;:::-;;694:131;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;694:131:3;-1:-1:-1;;;;;694:131:3;;:::i;1746:137:1:-;;;:::i;959:77::-;;;:::i;:::-;;;;-1:-1:-1;;;;;959:77:1;;;;;;;;;;;;;;1310:92;;;:::i;:::-;;;;;;;;;;;;;;;;;;741:142;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;741:142:1;-1:-1:-1;;;;;741:142:1;;:::i;2032:107::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2032:107:1;-1:-1:-1;;;;;2032:107:1;;:::i;556:132:3:-;-1:-1:-1;;;;;651:23:3;621:11;651:23;;;:13;:23;;;;;:30;;;;556:132::o;230:52::-;;;;;;;;;;;;;;;;;;;:::o;354:196::-;1163:9:1;:7;:9::i;:::-;1155:54;;;;;-1:-1:-1;;;1155:54:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;465:24:3;;;;;;;;476:3;465:24;;;;;;;;;-1:-1:-1;;;;;439:23:3;;-1:-1:-1;439:23:3;;;:13;:23;;;;;:50;;;;;;;;;;;;;;504:39;;;;;;;;;;;;;;;;;;;;;;;354:196;;:::o;694:131::-;-1:-1:-1;;;;;790:23:3;756:15;790:23;;;:13;:23;;;;;:28;;694:131::o;1746:137:1:-;1163:9;:7;:9::i;:::-;1155:54;;;;;-1:-1:-1;;;1155:54:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1828:6;;1807:40;;1844:1;;-1:-1:-1;;;;;1828:6:1;;1807:40;;1844:1;;1807:40;1857:6;:19;;-1:-1:-1;;;;;;1857:19:1;;;1746:137::o;959:77::-;1023:6;;-1:-1:-1;;;;;1023:6:1;959:77;:::o;1310:92::-;1389:6;;1350:4;;-1:-1:-1;;;;;1389:6:1;1373:12;:10;:12::i;:::-;-1:-1:-1;;;;;1373:22:1;;1366:29;;1310:92;:::o;741:142::-;1024:12:2;;;;;;;;:31;;;1040:15;:13;:15::i;:::-;1024:47;;;-1:-1:-1;1060:11:2;;;;1059:12;1024:47;1016:106;;;;-1:-1:-1;;;1016:106:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1129:19;1152:12;;;;;;1151:13;1170:80;;;;1198:12;:19;;-1:-1:-1;;;;1198:19:2;;;;;1225:18;1213:4;1225:18;;;1170:80;806:6:1;:15;;-1:-1:-1;;;;;;806:15:1;-1:-1:-1;;;;;806:15:1;;;;;;;;;;;836:40;;869:6;;;-1:-1:-1;;836:40:1;;-1:-1:-1;;836:40:1;1268:14:2;1264:55;;;1307:5;1292:20;;-1:-1:-1;;1292:20:2;;;1264:55;741:142:1;;:::o;2032:107::-;1163:9;:7;:9::i;:::-;1155:54;;;;;-1:-1:-1;;;1155:54:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2104:28;2123:8;2104:18;:28::i;:::-;2032:107;:::o;867:96:0:-;946:10;867:96;:::o;1409:498:2:-;1820:4;1864:17;1895:7;1409:498;:::o;2240:225:1:-;-1:-1:-1;;;;;2313:22:1;;2305:73;;;;-1:-1:-1;;;2305:73:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2414:6;;2393:38;;-1:-1:-1;;;;;2393:38:1;;;;2414:6;;2393:38;;2414:6;;2393:38;2441:6;:17;;-1:-1:-1;;;;;;2441:17:1;-1:-1:-1;;;;;2441:17:1;;;;;;;;;;2240:225::o",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "MonthlyIncomeUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "getLastUpdate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "lastUpdate",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "getMonthlyIncome",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "income",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isOwner",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "monthlyIncome",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "date",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMonthlyIncome",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "ast": {
+    "absolutePath": "contracts/ZCMonthlyIncomeOracle.sol",
+    "exportedSymbols": {
+      "ZCMonthlyIncomeOracle": [
+        293
+      ]
+    },
+    "id": 294,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 224,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".15"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:3"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-ethereum-package/contracts/ownership/Ownable.sol",
+        "file": "@openzeppelin/contracts-ethereum-package/contracts/ownership/Ownable.sol",
+        "id": 225,
+        "nodeType": "ImportDirective",
+        "scope": 294,
+        "sourceUnit": 154,
+        "src": "26:82:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 226,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 153,
+              "src": "144:7:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$153",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 227,
+            "nodeType": "InheritanceSpecifier",
+            "src": "144:7:3"
+          }
+        ],
+        "contractDependencies": [
+          29,
+          153,
+          222
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 293,
+        "linearizedBaseContracts": [
+          293,
+          153,
+          29,
+          222
+        ],
+        "name": "ZCMonthlyIncomeOracle",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ZCMonthlyIncomeOracle.IncomeData",
+            "id": 232,
+            "members": [
+              {
+                "constant": false,
+                "id": 229,
+                "name": "date",
+                "nodeType": "VariableDeclaration",
+                "scope": 232,
+                "src": "187:9:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 228,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "187:4:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 231,
+                "name": "amount",
+                "nodeType": "VariableDeclaration",
+                "scope": 232,
+                "src": "206:11:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 230,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "206:4:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "IncomeData",
+            "nodeType": "StructDefinition",
+            "scope": 293,
+            "src": "159:65:3",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 236,
+            "name": "monthlyIncome",
+            "nodeType": "VariableDeclaration",
+            "scope": 293,
+            "src": "230:52:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_IncomeData_$232_storage_$",
+              "typeString": "mapping(address => struct ZCMonthlyIncomeOracle.IncomeData)"
+            },
+            "typeName": {
+              "id": 235,
+              "keyType": {
+                "id": 233,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "239:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "230:31:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_IncomeData_$232_storage_$",
+                "typeString": "mapping(address => struct ZCMonthlyIncomeOracle.IncomeData)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 234,
+                "name": "IncomeData",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 232,
+                "src": "250:10:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_IncomeData_$232_storage_ptr",
+                  "typeString": "struct ZCMonthlyIncomeOracle.IncomeData"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 242,
+            "name": "MonthlyIncomeUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 241,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 238,
+                  "indexed": false,
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 242,
+                  "src": "316:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 237,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "316:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 240,
+                  "indexed": false,
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 242,
+                  "src": "334:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 239,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "334:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "315:32:3"
+            },
+            "src": "289:59:3"
+          },
+          {
+            "body": {
+              "id": 265,
+              "nodeType": "Block",
+              "src": "429:121:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 258,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 251,
+                        "name": "monthlyIncome",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 236,
+                        "src": "439:13:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_IncomeData_$232_storage_$",
+                          "typeString": "mapping(address => struct ZCMonthlyIncomeOracle.IncomeData storage ref)"
+                        }
+                      },
+                      "id": 253,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 252,
+                        "name": "_address",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 244,
+                        "src": "453:8:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "439:23:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_IncomeData_$232_storage",
+                        "typeString": "struct ZCMonthlyIncomeOracle.IncomeData storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 255,
+                          "name": "now",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 310,
+                          "src": "476:3:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 256,
+                          "name": "_amount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 246,
+                          "src": "481:7:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        ],
+                        "id": 254,
+                        "name": "IncomeData",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 232,
+                        "src": "465:10:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_IncomeData_$232_storage_ptr_$",
+                          "typeString": "type(struct ZCMonthlyIncomeOracle.IncomeData storage pointer)"
+                        }
+                      },
+                      "id": 257,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "465:24:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_IncomeData_$232_memory",
+                        "typeString": "struct ZCMonthlyIncomeOracle.IncomeData memory"
+                      }
+                    },
+                    "src": "439:50:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_IncomeData_$232_storage",
+                      "typeString": "struct ZCMonthlyIncomeOracle.IncomeData storage ref"
+                    }
+                  },
+                  "id": 259,
+                  "nodeType": "ExpressionStatement",
+                  "src": "439:50:3"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 261,
+                        "name": "_address",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 244,
+                        "src": "525:8:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 262,
+                        "name": "_amount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 246,
+                        "src": "535:7:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 260,
+                      "name": "MonthlyIncomeUpdated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 242,
+                      "src": "504:20:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256)"
+                      }
+                    },
+                    "id": 263,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "504:39:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 264,
+                  "nodeType": "EmitStatement",
+                  "src": "499:44:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 266,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 249,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 248,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 82,
+                  "src": "419:9:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "419:9:3"
+              }
+            ],
+            "name": "setMonthlyIncome",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 247,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 244,
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 266,
+                  "src": "380:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 243,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "380:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 246,
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 266,
+                  "src": "398:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 245,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "398:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "379:32:3"
+            },
+            "returnParameters": {
+              "id": 250,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "429:0:3"
+            },
+            "scope": 293,
+            "src": "354:196:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 278,
+              "nodeType": "Block",
+              "src": "634:54:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 273,
+                        "name": "monthlyIncome",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 236,
+                        "src": "651:13:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_IncomeData_$232_storage_$",
+                          "typeString": "mapping(address => struct ZCMonthlyIncomeOracle.IncomeData storage ref)"
+                        }
+                      },
+                      "id": 275,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 274,
+                        "name": "_address",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 268,
+                        "src": "665:8:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "651:23:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_IncomeData_$232_storage",
+                        "typeString": "struct ZCMonthlyIncomeOracle.IncomeData storage ref"
+                      }
+                    },
+                    "id": 276,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "amount",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 231,
+                    "src": "651:30:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 272,
+                  "id": 277,
+                  "nodeType": "Return",
+                  "src": "644:37:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 279,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getMonthlyIncome",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 269,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 268,
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 279,
+                  "src": "582:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 267,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "582:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "581:18:3"
+            },
+            "returnParameters": {
+              "id": 272,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 271,
+                  "name": "income",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 279,
+                  "src": "621:11:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 270,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "621:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "620:13:3"
+            },
+            "scope": 293,
+            "src": "556:132:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 291,
+              "nodeType": "Block",
+              "src": "773:52:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 286,
+                        "name": "monthlyIncome",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 236,
+                        "src": "790:13:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_IncomeData_$232_storage_$",
+                          "typeString": "mapping(address => struct ZCMonthlyIncomeOracle.IncomeData storage ref)"
+                        }
+                      },
+                      "id": 288,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 287,
+                        "name": "_address",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 281,
+                        "src": "804:8:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "790:23:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_IncomeData_$232_storage",
+                        "typeString": "struct ZCMonthlyIncomeOracle.IncomeData storage ref"
+                      }
+                    },
+                    "id": 289,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "date",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 229,
+                    "src": "790:28:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 285,
+                  "id": 290,
+                  "nodeType": "Return",
+                  "src": "783:35:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 292,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getLastUpdate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 282,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 281,
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 292,
+                  "src": "717:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 280,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "717:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "716:18:3"
+            },
+            "returnParameters": {
+              "id": 285,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 284,
+                  "name": "lastUpdate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 292,
+                  "src": "756:15:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 283,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "756:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "755:17:3"
+            },
+            "scope": 293,
+            "src": "694:131:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 294,
+        "src": "110:717:3"
+      }
+    ],
+    "src": "0:828:3"
+  },
+  "bytecode": "0x6080604052610679806100136000396000f3fe608060405234801561001057600080fd5b50600436106100935760003560e01c8063715018a611610066578063715018a6146101635780638da5cb5b1461016b5780638f32d59b1461018f578063c4d66de8146101ab578063f2fde38b146101d157610093565b806310bdf94a14610098578063117fd1eb146100d057806344f6b9fa1461010f5780635a7e19891461013d575b600080fd5b6100be600480360360208110156100ae57600080fd5b50356001600160a01b03166101f7565b60408051918252519081900360200190f35b6100f6600480360360208110156100e657600080fd5b50356001600160a01b0316610215565b6040805192835260208301919091528051918290030190f35b61013b6004803603604081101561012557600080fd5b506001600160a01b03813516906020013561022e565b005b6100be6004803603602081101561015357600080fd5b50356001600160a01b03166102fb565b61013b610316565b6101736103b9565b604080516001600160a01b039092168252519081900360200190f35b6101976103c8565b604080519115158252519081900360200190f35b61013b600480360360208110156101c157600080fd5b50356001600160a01b03166103ee565b61013b600480360360208110156101e757600080fd5b50356001600160a01b03166104e0565b6001600160a01b031660009081526066602052604090206001015490565b6066602052600090815260409020805460019091015482565b6102366103c8565b610287576040805162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b60408051808201825242815260208082018481526001600160a01b0386166000818152606684528590209351845590516001909301929092558251918252810183905281517f142079d5af1c9c4fbb51b54c7600b3680574d0c280c399157b9a2ef29b8e1d13929181900390910190a15050565b6001600160a01b031660009081526066602052604090205490565b61031e6103c8565b61036f576040805162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b6033546040516000916001600160a01b0316907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a3603380546001600160a01b0319169055565b6033546001600160a01b031690565b6033546000906001600160a01b03166103df610545565b6001600160a01b031614905090565b600054610100900460ff16806104075750610407610549565b80610415575060005460ff16155b6104505760405162461bcd60e51b815260040180806020018281038252602e815260200180610617602e913960400191505060405180910390fd5b600054610100900460ff1615801561047b576000805460ff1961ff0019909116610100171660011790555b603380546001600160a01b0319166001600160a01b0384811691909117918290556040519116906000907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908290a380156104dc576000805461ff00191690555b5050565b6104e86103c8565b610539576040805162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b6105428161054f565b50565b3390565b303b1590565b6001600160a01b0381166105945760405162461bcd60e51b81526004018080602001828103825260268152602001806105f16026913960400191505060405180910390fd5b6033546040516001600160a01b038084169216907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e090600090a3603380546001600160a01b0319166001600160a01b039290921691909117905556fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f2061646472657373436f6e747261637420696e7374616e63652068617320616c7265616479206265656e20696e697469616c697a6564a265627a7a723158204974377365fd90d2b505682d4ba3cd15745375af86d5ec752d8b592ffdf5f98d64736f6c634300050f0032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100935760003560e01c8063715018a611610066578063715018a6146101635780638da5cb5b1461016b5780638f32d59b1461018f578063c4d66de8146101ab578063f2fde38b146101d157610093565b806310bdf94a14610098578063117fd1eb146100d057806344f6b9fa1461010f5780635a7e19891461013d575b600080fd5b6100be600480360360208110156100ae57600080fd5b50356001600160a01b03166101f7565b60408051918252519081900360200190f35b6100f6600480360360208110156100e657600080fd5b50356001600160a01b0316610215565b6040805192835260208301919091528051918290030190f35b61013b6004803603604081101561012557600080fd5b506001600160a01b03813516906020013561022e565b005b6100be6004803603602081101561015357600080fd5b50356001600160a01b03166102fb565b61013b610316565b6101736103b9565b604080516001600160a01b039092168252519081900360200190f35b6101976103c8565b604080519115158252519081900360200190f35b61013b600480360360208110156101c157600080fd5b50356001600160a01b03166103ee565b61013b600480360360208110156101e757600080fd5b50356001600160a01b03166104e0565b6001600160a01b031660009081526066602052604090206001015490565b6066602052600090815260409020805460019091015482565b6102366103c8565b610287576040805162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b60408051808201825242815260208082018481526001600160a01b0386166000818152606684528590209351845590516001909301929092558251918252810183905281517f142079d5af1c9c4fbb51b54c7600b3680574d0c280c399157b9a2ef29b8e1d13929181900390910190a15050565b6001600160a01b031660009081526066602052604090205490565b61031e6103c8565b61036f576040805162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b6033546040516000916001600160a01b0316907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a3603380546001600160a01b0319169055565b6033546001600160a01b031690565b6033546000906001600160a01b03166103df610545565b6001600160a01b031614905090565b600054610100900460ff16806104075750610407610549565b80610415575060005460ff16155b6104505760405162461bcd60e51b815260040180806020018281038252602e815260200180610617602e913960400191505060405180910390fd5b600054610100900460ff1615801561047b576000805460ff1961ff0019909116610100171660011790555b603380546001600160a01b0319166001600160a01b0384811691909117918290556040519116906000907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908290a380156104dc576000805461ff00191690555b5050565b6104e86103c8565b610539576040805162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b6105428161054f565b50565b3390565b303b1590565b6001600160a01b0381166105945760405162461bcd60e51b81526004018080602001828103825260268152602001806105f16026913960400191505060405180910390fd5b6033546040516001600160a01b038084169216907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e090600090a3603380546001600160a01b0319166001600160a01b039290921691909117905556fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f2061646472657373436f6e747261637420696e7374616e63652068617320616c7265616479206265656e20696e697469616c697a6564a265627a7a723158204974377365fd90d2b505682d4ba3cd15745375af86d5ec752d8b592ffdf5f98d64736f6c634300050f0032",
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.15+commit.6a57276f.Emscripten.clang",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "petersburg"
+  },
+  "networks": {
+    "3": {
+      "links": {},
+      "events": {},
+      "address": "0xC81Caa7C0B0F86836Ccc761C4Ce1cc9bF8F4ddeb",
+      "updated_at": 1583365438334
+    }
+  }
+}

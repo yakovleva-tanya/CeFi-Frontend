@@ -7,11 +7,23 @@ const express = require('express');
 const plaid = require('plaid');
 const process = require('process');
 const moment = require('moment');
+const Web3 = require('web3');
+const Transaction = require('ethereumjs-tx').Transaction;
+
+const ZCMonthlyIncomeOracle = require('./abi/ZCMonthlyIncomeOracle.json');
+
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
+const RPC_URL = process.env.RPC_URL;
 
 const PLAID_CLIENT_ID = process.env.PLAID_CLIENT_ID;
 const PLAID_PUBLIC_KEY = process.env.PLAID_PUBLIC_KEY;
 const PLAID_SECRET = process.env.PLAID_SECRET;
 const PLAID_ENV = process.env.PLAID_ENV;
+
+const pKey = Buffer.from(PRIVATE_KEY, 'hex');
+
+const web3 = new Web3(RPC_URL);
 
 const plaidClient = new plaid.Client(
   PLAID_CLIENT_ID,
@@ -30,6 +42,31 @@ const router = express.Router();
 
 // TODO: expose a database storage and remove this. It's a memory leak.
 const store = {};
+
+async function oracleSetMonthlyIncome(oracle, lenderAddress, value) {
+  const txCount = await web3.eth.getTransactionCount(lenderAddress);
+  const txObject = {
+    nonce: web3.utils.toHex(txCount),
+    gasLimit: web3.utils.toHex(800000),
+    gasPrice: web3.utils.toHex(web3.utils.toWei('30', 'gwei')),
+    to: CONTRACT_ADDRESS,
+    data: oracle.methods.setMonthlyIncome(lenderAddress, value).encodeABI()
+  };
+
+  const tx = new Transaction(txObject, {'chain':'ropsten'});
+  tx.sign(pKey);
+
+  var serializedTx = tx.serialize();
+
+  const receipt = await web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex'));
+  return receipt;
+}
+
+async function setIncomeOracle(lenderAddress, value) {
+  const oracle = new web3.eth.Contract(ZCMonthlyIncomeOracle.abi, CONTRACT_ADDRESS);
+  const transaction = await oracleSetMonthlyIncome(oracle, lenderAddress, value);
+  return JSON.stringify(transaction);
+}
 
 /**
  * Handles the plaid errors from the Plaid API.
@@ -126,22 +163,38 @@ function getTransactions(request, response) {
   );
 }
 
+function fetchPlaidIncome(access_token) {
+  return new Promise(function(resolve, reject) {
+    plaidClient.getIncome(
+      access_token,
+      (err, res) => {
+        if (err) {
+          return reject(err);
+        }
+        return resolve({ transactions: res })
+      }
+    );
+  });
+}
+
+async function processIncome(access_token, id) {
+  const transactionData = await fetchPlaidIncome(access_token);
+  const income = transactionData.income.projected_yearly_income;
+  const transaction = await setIncomeOracle(id, income);
+  return transactionData;
+}
+
 /**
  * Gets user's income. Requires ```access_token``` as a request param.
- * @function getTransactions
+ * @function getIncome
  * @memberof PlaidAPI
  */
 function getIncome(request, response) {
   const access_token = request.access_token;
-  plaidClient.getIncome(
-    access_token,
-    (err, res) => {
-      if (err) {
-        return plaidErrorHandler(err, response);
-      }
-      response.json({ transactions: res })
-    }
-  );
+  const lenderAddress = request.lenderAddress;
+  processIncome(access_token, lenderAddress)
+    .then(res => response.json({ transactions: res }))
+    .catch(err => plaidErrorHandler(err, response));
 }
 
 router.post('/transactions', plaidAuthenticator, getTransactions);
