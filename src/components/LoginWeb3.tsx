@@ -103,7 +103,6 @@ export const Web3Connector = () => {
 
   return (
     <div className="web3-connector">
-      Hello
       { loggedIn ? <LoggedIn /> : <LoggedOut selectProvider={selectProvider} /> }
     </div>
   )
