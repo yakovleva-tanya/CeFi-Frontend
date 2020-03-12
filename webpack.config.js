@@ -60,6 +60,7 @@ module.exports = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM",
-        "plaid-files": "Plaid"
+        "plaid-files": "Plaid",
+        "fortmatic": "Fortmatic"
     }
 };

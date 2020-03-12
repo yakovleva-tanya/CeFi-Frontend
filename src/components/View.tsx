@@ -9,6 +9,7 @@
 
 import * as React from "react";
 import Navbar from 'react-bootstrap/Navbar';
+import { Web3Connector } from './LoginWeb3';
 
 interface ViewProps {
   children: React.ReactNode;
@@ -29,6 +30,7 @@ export const ViewWrapper = (props: ViewProps) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
       </Navbar>
       <div className='view-content'>
+        <Web3Connector />
         { props.children }
       </div>
     </div>

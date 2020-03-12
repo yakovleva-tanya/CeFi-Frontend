@@ -26,12 +26,13 @@ export enum Web3Type {
 export interface Web3State {
   web3: any;
   type: Web3Type | null;
+  address: string;
 }
 
 export interface AppContextState {
   plaid: PlaidState;
   errorModal: ErrorModal;
-  web3: Web3State;
+  web3State: Web3State;
 }
 
 export interface AppContextInterface {
@@ -42,6 +43,7 @@ export interface AppContextInterface {
 export const AppContextDefault = {
   state: {
     web3State: {
+      address: null as null,
       web3: null as null,
       type: null as null
     },
