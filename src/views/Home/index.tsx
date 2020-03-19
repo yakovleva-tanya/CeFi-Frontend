@@ -2,39 +2,51 @@ import * as React from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Alert from 'react-bootstrap/Alert';
+import Pagination from 'react-bootstrap/Pagination';
 import { ViewWrapper } from "./../../components/View";
 import { PlaidConnector } from "./../../components/Plaid";
+import { LendingSection } from "./../../components/Lending";
 
 import './index.scss';
 
-const AlphaWarning = (props: { setAlphaShow: Function }) => {
-  return <div className='alpha-warning'>
-    <Alert variant="danger" onClose={() => props.setAlphaShow(false)} dismissible>
-      <Alert.Heading className="text-center">This project is in Alpha!</Alert.Heading>
-      <p>
-        This project is currently in testing phase. Please use at your own risk. Your funds may be lost.
-      </p>
-    </Alert>
-  </div>;
+enum AppSection {
+  Lending,
+  Borrowing
 }
 
+interface AppPaginationProps {
+  current: AppSection;
+  select: Function;
+}
+
+const AppPagination = ({ current, select } : AppPaginationProps) => {
+  return <Pagination className="w-100 mb-5">
+    <Pagination.Item className="w-50 text-center" onClick={() => select(AppSection.Lending)} active={current === AppSection.Lending}>
+      <div className="px-5">Lending</div>
+    </Pagination.Item>
+    <Pagination.Item className="w-50 text-center" onClick={() => select(AppSection.Borrowing)} active={current === AppSection.Borrowing}>
+      <div className="px-5">Borrowing</div>
+    </Pagination.Item>
+  </Pagination>;
+};
+
+const BorrowingSection = () => <PlaidConnector />;
+
 export const Home = () => {
-  const [showAlphaAlert, setAlphaShow] = React.useState(true);
+  const [currentSection, updateSection] = React.useState(AppSection.Lending);
   return (<div className='home-view'>
     <ViewWrapper>
       <div className="callout-main mt-5">
-        <Container>
-          <Row className="justify-content-md-center">
-            <h1 className="text-center">Borrow and Lend on Ethereum. As Little as Zero Collateral.</h1>
+        <Container fluid className="px-5">
+          <Row>
+            <AppPagination current={currentSection} select={updateSection} />
           </Row>
-          <Row className="justify-content-md-center">
-            <h3 className="text-center text-secondary">With each paidback borrow, collateral needed decreases.</h3>
-          </Row>
-          <Row className="justify-content-md-center">
-            { showAlphaAlert ? <AlphaWarning setAlphaShow={setAlphaShow} /> : ''}
+          <Row>
+            {currentSection === AppSection.Borrowing ? <BorrowingSection /> : ''}
+            {currentSection === AppSection.Lending ? <LendingSection /> : ''}
           </Row>
         </Container>
-        <PlaidConnector />
+        
       </div>
     </ViewWrapper>
   </div>);

@@ -51,13 +51,12 @@ export const ViewWrapper = (props: ViewProps) => {
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="#home">
           <img src="https://pbs.twimg.com/profile_images/1224378875385266176/bKM_ZZKb_400x400.jpg" width="35px;" />&nbsp;&nbsp;Zero Collateral
-          </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Nav className="justify-content-end">
+        </Navbar.Brand>
+        <Navbar.Collapse className="justify-content-end">
           <Nav.Item>
             <Nav.Link><Web3Login loggedIn={loggedIn} toggleModal={toggleLoginModal} /></Nav.Link>
           </Nav.Item>
-        </Nav>
+        </Navbar.Collapse>
       </Navbar>
       <div className='view-content'>
         { props.children }
