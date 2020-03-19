@@ -4,15 +4,17 @@
  * @category ReactComponents
  */
 
-import * as React from "react";
+import React, { useState, useContext } from "react";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import Plaid, { PlaidTransaction } from './../../models/Plaid';
 import PlaidLending from './../PlaidLending';
+import { FICOConnector } from './../FICOConnector';
 import { AppContext, AppContextState } from "./../../context/app";
 
 function plaidRow(transaction: PlaidTransaction, index: number) {
@@ -24,14 +26,18 @@ function plaidRow(transaction: PlaidTransaction, index: number) {
   </tr>
 }
 
+function loadFICO(): null {
+  return null;
+}
+
 /**
  * Returns a compnent used to generate UI for the Plaid interface.
  * @function PlaidConnector
  * @memberof PlaidComponent
  */
 export const PlaidConnector = () => {
-  const { state, updateAppState } = React.useContext(AppContext);
-
+  const { state, updateAppState } = useContext(AppContext);
+  const [showFicoModal, toggleFicoModal] = useState(false);
   const transactions = state.plaid?.userTransactions;
   const plaidHandler = new Plaid({
     onLoad: (): any => null,
@@ -60,7 +66,10 @@ export const PlaidConnector = () => {
           </Col>
         </Row>
         <Row>
-          <Button onClick={ () => loadPlaid() } variant="outline-primary" block>Connect your Bank Account</Button>
+          <Button className="mb-2" onClick={ () => loadPlaid() } variant="outline-primary" block>Connect your Bank Account</Button>
+        </Row>
+        <Row>
+          <Button onClick={ () => toggleFicoModal(true) } variant="outline-primary" block>Connect your FICO score</Button>
         </Row>
         <Row>
         {
@@ -81,6 +90,14 @@ export const PlaidConnector = () => {
         }
         </Row>
       </Container>
+      <Modal show={showFicoModal} onHide={() => toggleFicoModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Connect your FICO Score</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <FICOConnector done={() => toggleFicoModal(false)} />
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

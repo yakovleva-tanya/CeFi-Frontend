@@ -18,9 +18,26 @@ export interface PlaidState {
   income: number | null;
 }
 
+export enum Web3Type {
+  Fortmatic,
+  Metamask
+}
+
+export interface Web3State {
+  web3: any;
+  type: Web3Type | null;
+  address: string;
+}
+
+export interface FicoState {
+  score: number | null;
+}
+
 export interface AppContextState {
   plaid: PlaidState;
+  fico: FicoState;
   errorModal: ErrorModal;
+  web3State: Web3State;
 }
 
 export interface AppContextInterface {
@@ -30,6 +47,14 @@ export interface AppContextInterface {
 
 export const AppContextDefault = {
   state: {
+    fico: {
+      score: null as null,
+    },
+    web3State: {
+      address: null as null,
+      web3: null as null,
+      type: null as null
+    },
     plaid: {
       loggedIn: null as null,
       userTransactions: null as null,

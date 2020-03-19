@@ -17,9 +17,11 @@ module.exports = {
     },
 
     devServer: {
+        host: '0.0.0.0',
+        disableHostCheck: true,
         contentBase: path.resolve(__dirname, 'dist'),
         compress: false,
-        port: 8080,
+        port: 3000,
         hot: true,
         historyApiFallback: true,
         watchOptions: { aggregateTimeout: 300, poll: 1000 },
@@ -77,6 +79,7 @@ module.exports = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM",
-        "plaid-files": "Plaid"
+        "plaid-files": "Plaid",
+        "fortmatic": "Fortmatic"
     }
 };

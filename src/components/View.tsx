@@ -7,8 +7,30 @@
  * @category ReactComponents
  */
 
-import * as React from "react";
+import React, { useState, useContext } from "react";
 import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Nav from 'react-bootstrap/Nav';
+import { Web3Connector } from './LoginWeb3';
+import { AppContext } from "./../context/app";
+
+interface Web3LoginButtonProps {
+  loggedIn: string | null;
+  toggleModal: Function;
+}
+
+function Web3Login (props: Web3LoginButtonProps) {
+    const { loggedIn, toggleModal } = props;
+    return <span>
+        { !loggedIn ?
+            <Button onClick={() => toggleModal(true)}>
+                Connect Web3
+            </Button> :
+            <p>{ loggedIn } </p>
+        }
+    </span>;
+}
 
 interface ViewProps {
   children: React.ReactNode;
@@ -20,6 +42,10 @@ interface ViewProps {
  * @memberof ViewComponent
  */
 export const ViewWrapper = (props: ViewProps) => {
+  const [showLoginModal, toggleLoginModal] = useState(false);
+  const { state } = useContext(AppContext);
+  const loggedIn = state.web3State.address;
+
   return (
     <div className='view'>
       <Navbar bg="light" expand="lg">
@@ -27,10 +53,23 @@ export const ViewWrapper = (props: ViewProps) => {
           <img src="https://pbs.twimg.com/profile_images/1224378875385266176/bKM_ZZKb_400x400.jpg" width="35px;" />&nbsp;&nbsp;Zero Collateral
           </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Nav className="justify-content-end">
+          <Nav.Item>
+            <Nav.Link><Web3Login loggedIn={loggedIn} toggleModal={toggleLoginModal} /></Nav.Link>
+          </Nav.Item>
+        </Nav>
       </Navbar>
       <div className='view-content'>
         { props.children }
       </div>
+      <Modal show={showLoginModal} onHide={() => toggleLoginModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Login with an Ethereum account</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <Web3Connector />
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
