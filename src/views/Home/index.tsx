@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Alert from 'react-bootstrap/Alert';
 import Pagination from 'react-bootstrap/Pagination';
 import { ViewWrapper } from "./../../components/View";
-import { PlaidConnector } from "./../../components/Plaid";
-import { LendingSection } from "./../../components/Lending";
+import { LendingSection } from "./../../components/LendingSection";
+import { BorrowingSection } from "./../../components/BorrowingSection";
 
 import './index.scss';
 
@@ -29,8 +29,6 @@ const AppPagination = ({ current, select } : AppPaginationProps) => {
     </Pagination.Item>
   </Pagination>;
 };
-
-const BorrowingSection = () => <PlaidConnector />;
 
 export const Home = () => {
   const [currentSection, updateSection] = React.useState(AppSection.Lending);
