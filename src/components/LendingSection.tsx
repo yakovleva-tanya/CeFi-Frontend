@@ -4,20 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
-interface DetailCardProps {
-  callout: string;
-  detail: string;
-}
-
-const DetailCard = ({ callout, detail }: DetailCardProps) => {
-  return <Card className="px-5 w-100">
-    <Card.Body>
-      <div className="text-center"><h1>{callout}</h1></div>
-      <div className="text-center"><h4>{detail}</h4></div>
-    </Card.Body>
-  </Card>;
-}
+import DetailCard from './DetailCard';
 
 const LendingCard = () => {
   return <Card className="px-5 w-100 mt-5">
