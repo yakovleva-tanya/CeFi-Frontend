@@ -74,12 +74,14 @@ export default class PlaidModel {
    * @memberof PlaidModel
    */
   static async getTransactions(public_token: string): Promise<Array<Either<PlaidTransaction, Error>>> {
-    return axios.post(serverURL + '/plaid/transactions', {
-      public_token
-    })
-    .then(function (response) {
-      return response.data.transactions.transactions.map(transformResponse);
+    const response = axios.post('http://localhost:3003', {
+      jsonrpc: '2.0',
+      method: 'getPlaidTransactions',
+      id: '1',
+      params: { publicToken: public_token }
     });
+
+    return response.result.transactions.map(transformResponse);
   }
 
   /**
