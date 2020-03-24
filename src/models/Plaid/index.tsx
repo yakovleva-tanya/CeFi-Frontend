@@ -74,7 +74,7 @@ export default class PlaidModel {
    * @memberof PlaidModel
    */
   static async getTransactions(public_token: string): Promise<Array<Either<PlaidTransaction, Error>>> {
-    const response = axios.post('http://localhost:3003', {
+    const response:any = axios.post('http://localhost:3003', {
       jsonrpc: '2.0',
       method: 'getPlaidTransactions',
       id: '1',
