@@ -50,6 +50,11 @@ module.exports = {
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': '"production"',
+        'process.env.SERVER_URL': JSON.stringify(process.env.SERVER_URL),
+        'process.env.FORTMATIC_API_KEY': JSON.stringify(process.env.FORTMATIC_API_KEY),
+        'process.env.FORTMATIC_NETWORK': JSON.stringify(process.env.FORTMATIC_NETWORK),
+        'process.env.PLAID_ENV': JSON.stringify(process.env.PLAID_ENV),
+        'process.env.PLAID_KEY': JSON.stringify(process.env.PLAID_KEY),
       }),
     ],
 

@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const dev_environment = require('./.dev_environment.json')
+
 module.exports = {
     entry: './src/index.tsx',
     output: {
@@ -67,9 +69,7 @@ module.exports = {
     },
 
     plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': '"development"',
-      }),
+      new webpack.DefinePlugin(dev_environment),
     ],
 
     // When importing a module whose path matches one of the following, just
