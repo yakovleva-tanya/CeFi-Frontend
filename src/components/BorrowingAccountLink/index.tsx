@@ -1,16 +1,32 @@
 import React, { useState, useContext } from "react";
-import { AppContext, AppContextState } from "./../context/app";
+import { AppContext, AppContextState } from "./../../context/app";
 import Container from 'react-bootstrap/Container';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Plaid from './../models/Plaid';
+import Plaid from './../../models/Plaid';
+
+import * as boa from './../../../dist/assets/boa-icon.jpg';
+
+import './index.scss';
+
+function renderAccountHelpTooltip(props: any) {
+  return (
+    <Tooltip id="account-help-tooltip" {...props}>
+      Add your account to receive a better interest rate and collateral percent.
+    </Tooltip>
+  );
+}
 
 export default () => {
   const [showModal, toggleModal] = useState(false);
   const { state, updateAppState } = useContext(AppContext);
+
+  const plaidLoggedIn = state.plaid.loggedIn;
 
   const plaidHandler = new Plaid({
     onLoad: (): any => null,
@@ -20,6 +36,7 @@ export default () => {
         plaid.loggedIn = { publicKey: public_token, metadata };
         return { ...st, plaid  };
       });
+      toggleModal(false);
     },
     onExit: (): any => null,
     onEvent: (): any => null
@@ -29,23 +46,23 @@ export default () => {
     plaidHandler.load();
   };
 
-  return <Card className="mt-5 px-5 w-100">
+  return <Card className="borrowing-account-link mt-5 px-5 w-100">
     <Card.Body>
       <Container fluid>
         <Row>
-          <Col xs={10}>
-            <h6 className="d-inline-block">Accounts</h6>
-            <h6 className="d-inline-block float-right">06/01/2020</h6>
-          </Col>
+          <OverlayTrigger
+            placement="top"
+            delay={{ show: 250, hide: 400 }}
+            overlay={renderAccountHelpTooltip}
+          >
+            <Button variant="outline-primary" onClick={ () => toggleModal(true) } block>Add Bank Account</Button>
+          </OverlayTrigger>
         </Row>
-        <Row>
-          <Col xs={10}>
-            <h6 className="d-inline-block">Accounts</h6>
-          </Col>
-          <Col xs={2}>
-            <Button variant="success" onClick={ () => toggleModal(true) }>Add Account</Button>
-          </Col>
-        </Row>
+        { plaidLoggedIn ?
+          (<Card className="bank-loggedin-card">
+            <Card.Img variant="top" src={boa.default} alt="Bank Of America Icon" />
+          </Card>) : ""
+        }
       </Container>
     </Card.Body>
     <Modal show={showModal} onHide={() => toggleModal(false)}>

@@ -34,6 +34,7 @@ module.exports = {
 
     module: {
         rules: [
+
             {
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
@@ -42,6 +43,12 @@ module.exports = {
                         loader: "ts-loader"
                     },
                 ]
+            },
+            {
+              test: /\.(png|svg|jpg|gif)$/,
+              use: [
+               'file-loader',
+              ],
             },
             {
               test: /\.css$/i,

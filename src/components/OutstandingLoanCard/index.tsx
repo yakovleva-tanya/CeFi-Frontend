@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 
 export default () => {
-  return <Card className="mt-5 w-100">
+  return <Card className="outstanding-loan-card mt-5 w-100 mb-5">
     <Card.Body>
       <Container fluid>
         <Row>
@@ -15,7 +15,7 @@ export default () => {
             <tbody>
               <tr>
                 <td><p className="font-weight-bold">Loan #23</p></td>
-                <td><p className="font-weight-bold float-right">2 Dai</p></td>
+                <td><p className="font-weight-bold float-right">◈ 2</p></td>
               </tr>
               <tr>
                 <td>Due Date</td>
@@ -27,7 +27,7 @@ export default () => {
               </tr>
               <tr>
                 <td>Owed</td>
-                <td><p className="float-right">1 Dai</p></td>
+                <td><p className="float-right">◈ 1</p></td>
               </tr>
             </tbody>
           </Table>

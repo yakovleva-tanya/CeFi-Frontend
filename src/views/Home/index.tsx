@@ -1,6 +1,7 @@
 import * as React from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
 import Pagination from 'react-bootstrap/Pagination';
 import { ViewWrapper } from "./../../components/View";
@@ -20,7 +21,7 @@ interface AppPaginationProps {
 }
 
 const AppPagination = ({ current, select } : AppPaginationProps) => {
-  return <Pagination className="w-100 mb-5">
+  return <Pagination className="w-100 mb-5 shadow">
     <Pagination.Item className="w-50 text-center" onClick={() => select(AppSection.Lending)} active={current === AppSection.Lending}>
       <div className="px-5">Lending</div>
     </Pagination.Item>
@@ -36,15 +37,17 @@ export const Home = () => {
     <ViewWrapper>
       <div className="callout-main mt-5">
         <Container fluid className="px-5">
-          <Row>
-            <AppPagination current={currentSection} select={updateSection} />
-          </Row>
-          <Row>
-            {currentSection === AppSection.Borrowing ? <BorrowingSection /> : ''}
-            {currentSection === AppSection.Lending ? <LendingSection /> : ''}
-          </Row>
+          <Col xs={{ span: 8, offset: 2 }}>
+            <Row>
+              <AppPagination current={currentSection} select={updateSection} />
+            </Row>
+            <Row>
+              {currentSection === AppSection.Borrowing ? <BorrowingSection /> : ''}
+              {currentSection === AppSection.Lending ? <LendingSection /> : ''}
+            </Row>
+          </Col>
         </Container>
-        
+
       </div>
     </ViewWrapper>
   </div>);

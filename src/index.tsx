@@ -5,6 +5,9 @@ import { ZeroRouting } from "./components/ZeroRouting";
 import { AppContext, AppContextInterface } from './context/app';
 import useAppContext from './hooks/AppContext';
 
+
+import './index.d';
+
 function App() {
   const [state, updateAppState] = useAppContext();
   return (
