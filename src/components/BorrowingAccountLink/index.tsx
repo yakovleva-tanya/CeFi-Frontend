@@ -11,6 +11,8 @@ import Card from 'react-bootstrap/Card';
 import Plaid from './../../models/Plaid';
 
 import * as boa from './../../../dist/assets/boa-icon.jpg';
+import * as plaid from './../../../dist/assets/plaid.svg';
+import * as fico from './../../../dist/assets/fico-logo-blue-large.png';
 
 import './index.scss';
 
@@ -63,12 +65,43 @@ export default () => {
         }
       </Container>
     </Card.Body>
-    <Modal show={showModal} onHide={() => toggleModal(false)}>
+    <Modal show={showModal} onHide={() => toggleModal(false)} size={'lg'}>
       <Modal.Header closeButton>
         <Modal.Title>Connect a new Account</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Button className="mb-2" onClick={ () => loadPlaid() } variant="outline-primary" block>Plaid</Button>
+        <Container fluid>
+          <Row>
+            <Col md={6} sm={12}>
+              <Card className="p-2 m-2" style={{ width: '100%' }}>
+                <Card.Img variant="top" src={plaid.default} style={{ height: '5rem' }} />
+                <Card.Body>
+                  <Card.Title></Card.Title>
+                  <Card.Text>
+                    Connect your bank account with Plaid.
+                  </Card.Text>
+                  <Button className="mb-2" onClick={ () => loadPlaid() } variant="outline-primary" block>
+                    Connect
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={6} sm={12}>
+              <Card className="p-2 m-2" style={{ width: '100%' }}>
+                <Card.Img variant="top" src={fico.default} style={{ height: '5rem', width: '14rem', marginLeft: '4rem' }} />
+                <Card.Body>
+                  <Card.Title></Card.Title>
+                  <Card.Text>
+                    Connect your FICO score. (Coming soon!)
+                  </Card.Text>
+                  <Button className="mb-2" disabled variant="outline-secondary" block>
+                    Connect
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
       </Modal.Body>
     </Modal>
   </Card>;

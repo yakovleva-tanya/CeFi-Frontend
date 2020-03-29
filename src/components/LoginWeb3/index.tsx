@@ -9,10 +9,14 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Web3 from 'web3';
 
-import { fortmaticOptions } from './../util/constants';
-import { AppContext, AppContextState, Web3Type, Web3State } from "./../context/app";
+import { fortmaticOptions } from './../../util/constants';
+import { AppContext, AppContextState, Web3Type, Web3State } from "./../../context/app";
+
+import * as fortmatic from './../../../dist/assets/fortmatic-icon.png';
+import * as eth from './../../../dist/assets/eth-diamond.color.png';
 
 declare const window: any;
 const Fortmatic = window.Fortmatic;
@@ -42,31 +46,38 @@ interface LoggedOutProps {
 }
 
 function LoggedOut({ selectProvider, close }: LoggedOutProps) {
-  return <Card>
-    <Card.Body>
-      <Card.Title>Choose a login option below:</Card.Title>
-      <Button onClick={() => selectProvider(Web3Type.Fortmatic, close)} block>
-        <Container>
-          <Row>
-            <h3 className="text-dark">Fortmatic</h3>
-          </Row>
-          <Row>
-            <p className="text-left">Login with Phone Number or Email. No downloads required.</p>
-          </Row>
-        </Container>
-      </Button>
-      <Button onClick={() => selectProvider(Web3Type.Metamask, close)} block>
-        <Container>
-          <Row>
-            <h3 className="text-dark">Metamask</h3>
-          </Row>
-          <Row>
-            <p className="text-left">Login with Metamask or installed Web3 provider.</p>
-          </Row>
-        </Container>
-      </Button>
-    </Card.Body>
-  </Card>;
+  return <Container fluid>
+    <Row>
+      <Col md={6} sm={12}>
+        <Card className="p-2 m-2" style={{ width: '100%' }}>
+          <Card.Img variant="top" src={eth.default} style={{ height: '5rem',  width: '3.5rem', marginLeft: '4rem' }} />
+          <Card.Body>
+            <Card.Title></Card.Title>
+            <Card.Text>
+              Connect with your Web3 provider.
+            </Card.Text>
+            <Button className="mb-2" onClick={ () => selectProvider(Web3Type.Metamask, close) } variant="outline-primary" block>
+              Connect
+            </Button>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col md={6} sm={12}>
+        <Card className="p-2 m-2" style={{ width: '100%' }}>
+          <Card.Img variant="top" src={fortmatic.default} style={{ height: '5rem', width: '5rem', marginLeft: '3.5rem' }} />
+          <Card.Body>
+            <Card.Title></Card.Title>
+            <Card.Text>
+              Connect to your Fortmatic Account.
+            </Card.Text>
+            <Button className="mb-2" onClick={ () => selectProvider(Web3Type.Fortmatic, close) } variant="outline-primary" block>
+              Connect
+            </Button>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+  </Container>;
 }
 
 function LoggedIn() {
