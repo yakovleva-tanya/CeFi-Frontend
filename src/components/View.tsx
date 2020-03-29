@@ -10,6 +10,7 @@
 import React, { useState, useContext } from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
 import { Web3Connector } from './LoginWeb3';
@@ -20,6 +21,14 @@ interface Web3LoginButtonProps {
   toggleModal: Function;
 }
 
+function truncate(n: number, useWordBoundary: boolean){
+    if (this.length <= n) { return this; }
+    var subString = this.substr(0, n-1);
+    return (useWordBoundary
+       ? subString.substr(0, subString.lastIndexOf(' '))
+       : subString) + "...";
+}
+
 function Web3Login (props: Web3LoginButtonProps) {
     const { loggedIn, toggleModal } = props;
     return <span>
@@ -27,7 +36,7 @@ function Web3Login (props: Web3LoginButtonProps) {
             <Button onClick={() => toggleModal(true)}>
                 Connect Web3
             </Button> :
-            <p>{ loggedIn } </p>
+            <Badge variant="primary" className="p-2 font-weight-bold">{ truncate.apply(loggedIn, [10]) } </Badge>
         }
     </span>;
 }
@@ -66,7 +75,7 @@ export const ViewWrapper = (props: ViewProps) => {
           <Modal.Title>Login with an Ethereum account</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Web3Connector />
+            <Web3Connector close={toggleLoginModal} />
         </Modal.Body>
       </Modal>
     </div>

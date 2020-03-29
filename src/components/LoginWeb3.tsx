@@ -9,7 +9,6 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Web3 from 'web3';
 
 import { fortmaticOptions } from './../util/constants';
@@ -19,11 +18,12 @@ declare const window: any;
 const Fortmatic = window.Fortmatic;
 const ethereum = window.ethereum;
 
-async function web3FromProvider(x: Web3Type) {
+async function web3FromProvider(x: Web3Type, close: Function) {
   if (x == Web3Type.Fortmatic) {
     const fm = new Fortmatic(fortmaticOptions.apiKey, fortmaticOptions.network);
     const web3 = new Web3(fm.getProvider());
     const accounts = await web3.eth.getAccounts();
+    close(false);
     return { type: Web3Type.Fortmatic, address: accounts[0], web3 } as Web3State;
   }
 
@@ -31,19 +31,21 @@ async function web3FromProvider(x: Web3Type) {
     const web3 = new Web3(ethereum);
     await window.ethereum.enable();
     const accounts = await web3.eth.getAccounts();
+    close(false);
     return { type: Web3Type.Metamask, address: accounts[0], web3 } as Web3State;
   }
 }
 
 interface LoggedOutProps {
   selectProvider: Function;
+  close: Function;
 }
 
-function LoggedOut({ selectProvider }: LoggedOutProps) {
+function LoggedOut({ selectProvider, close }: LoggedOutProps) {
   return <Card>
     <Card.Body>
       <Card.Title>Choose a login option below:</Card.Title>
-      <Button onClick={() => selectProvider(Web3Type.Fortmatic)} block>
+      <Button onClick={() => selectProvider(Web3Type.Fortmatic, close)} block>
         <Container>
           <Row>
             <h3 className="text-dark">Fortmatic</h3>
@@ -53,7 +55,7 @@ function LoggedOut({ selectProvider }: LoggedOutProps) {
           </Row>
         </Container>
       </Button>
-      <Button onClick={() => selectProvider(Web3Type.Metamask)} block>
+      <Button onClick={() => selectProvider(Web3Type.Metamask, close)} block>
         <Container>
           <Row>
             <h3 className="text-dark">Metamask</h3>
@@ -68,7 +70,11 @@ function LoggedOut({ selectProvider }: LoggedOutProps) {
 }
 
 function LoggedIn() {
-  return <div> Ok </div>
+  return <div></div>
+}
+
+interface Web3Props {
+  close: Function;
 }
 
 /**
@@ -76,19 +82,20 @@ function LoggedIn() {
  * @function Web3Connector
  * @memberof LoginComponent
  */
-export const Web3Connector = () => {
+export const Web3Connector = ({ close }: Web3Props) => {
   const { state, updateAppState } = React.useContext(AppContext);
 
-  async function selectProvider(provider: Web3Type) {
-    const web3State = await web3FromProvider(provider);
+  async function selectProvider(provider: Web3Type, close: Function) {
+    const web3State = await web3FromProvider(provider, close);
     updateAppState((st: AppContextState) => ({ ...st, web3State }));
   }
 
   const loggedIn = state.web3State.type;
+  const address = state.web3State.address;
 
   return (
     <div className="login-web3">
-      { loggedIn ? <LoggedIn /> : <LoggedOut selectProvider={selectProvider} /> }
+      { loggedIn ? <LoggedIn /> : <LoggedOut close={close} selectProvider={selectProvider} /> }
     </div>
   )
 }

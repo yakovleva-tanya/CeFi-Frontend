@@ -14,19 +14,17 @@ import * as boa from './../../../dist/assets/boa-icon.jpg';
 
 import './index.scss';
 
-function renderAccountHelpTooltip(props: any) {
-  return (
-    <Tooltip id="account-help-tooltip" {...props}>
-      Add your account to receive a better interest rate and collateral percent.
-    </Tooltip>
-  );
-}
-
 export default () => {
   const [showModal, toggleModal] = useState(false);
   const { state, updateAppState } = useContext(AppContext);
 
   const plaidLoggedIn = state.plaid.loggedIn;
+
+  const renderAccountHelpTooltip = (props: any) => (
+    <Tooltip id="account-help-tooltip" {...props}>
+      Add your account to receive a better interest rate and collateral percent.
+    </Tooltip>
+  );
 
   const plaidHandler = new Plaid({
     onLoad: (): any => null,
