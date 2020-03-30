@@ -35,6 +35,7 @@ export interface ZeroCollateralState {
   address: string;
   daiAddress: string;
   balance: number | null;
+  borrowed: boolean;
 }
 
 export interface FicoState {
@@ -69,7 +70,8 @@ export const AppContextDefault = {
       contract: null as null,
       daiContract: null as null,
       daiAddress: "0x69cc1445e2737f980ea7ac32147db3b2c3136a5e",
-      balance: null as null
+      balance: null as null,
+      borrowed: false
     },
     plaid: {
       loggedIn: null as null,

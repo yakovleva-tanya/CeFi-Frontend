@@ -35,11 +35,10 @@ const completeBorrowForm = (state: any, updateAppState: Function) => async (valu
   const contract = state.zeroCollateral.contract;
 
   await borrowDai(contract, primaryAddress, amount);
-  const balance = await contract.methods.balanceOf(primaryAddress).call();
   setSubmitting(false);
   updateAppState((st: AppContextState) => {
     const zeroCollateral = st.zeroCollateral;
-    zeroCollateral.balance = balance;
+    zeroCollateral.borrowed = true;
     return { ...st, zeroCollateral };
   });
 };
@@ -54,7 +53,9 @@ export default function LoanCreateCard() {
   const initialBorrowValues = { amount: 100 };
   const hasWeb3 = state.web3State?.web3;
 
-  return <Card className="loan-create-card mt-5 w-100 shadow">
+  const plaidLoggedIn = state.plaid.loggedIn;
+
+  return <Card className="loan-create-card mt-5 mb-5 w-100 shadow">
     <Card.Header>
       <Row className="justify-content-center">
           <h1>2 ETH</h1>
@@ -118,7 +119,7 @@ export default function LoanCreateCard() {
               </tr>
               <tr>
                 <td>Interest Rate</td>
-                <td><p className="float-right">14.43% APY</p></td>
+                <td><p className="float-right">{plaidLoggedIn ? "18%" : "24%"}</p></td>
               </tr>
             </tbody>
           </Table>

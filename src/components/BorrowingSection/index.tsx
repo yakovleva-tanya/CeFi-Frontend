@@ -21,6 +21,8 @@ export const BorrowingSection = () => {
 
   const web3LoggedIn = state.web3State.type;
 
+  const previousBorrow = state.zeroCollateral.borrowed;
+
   return <Container fluid className="borrowing-section px-0">
     <Row>
       <Col xs={12} md={4}>
@@ -56,8 +58,9 @@ export const BorrowingSection = () => {
     </Row>
     <Row>
       <Col xs={12}>
-
-        <OutstandingLoanCard />
+        {
+          previousBorrow ? <OutstandingLoanCard /> : ""
+        }
       </Col>
     </Row>
   </Container>
