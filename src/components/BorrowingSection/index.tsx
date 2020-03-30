@@ -15,7 +15,10 @@ import './index.scss';
 
 export const BorrowingSection = () => {
 
-  const { state} = useContext(AppContext);
+  const { state } = useContext(AppContext);
+
+  const plaidLoggedIn = state.plaid.loggedIn;
+
   const web3LoggedIn = state.web3State.type;
 
   return <Container fluid className="borrowing-section px-0">
@@ -24,10 +27,10 @@ export const BorrowingSection = () => {
         <DetailCard callout={"◈ 1000"} detail={"Max. Loan"} />
       </Col>
       <Col xs={12} md={4}>
-        <DetailCard callout={"18.45%"} detail={"APY"} />
+        <DetailCard callout={plaidLoggedIn ? "18%" : "24%"} detail={"APY"} />
       </Col>
       <Col xs={12} md={4}>
-        <DetailCard callout={"75%"} detail={"Collateral Percent"} />
+        <DetailCard callout={plaidLoggedIn ? "70%" : "130%"} detail={"Collateral Percent"} />
       </Col>
     </Row>
     {
@@ -35,7 +38,7 @@ export const BorrowingSection = () => {
         <Col xs={12}>
           <BorrowingAccountLink />
         </Col>
-      </Row> : <Alert variant="success">
+      </Row> : <Alert variant="warning">
         <Alert.Heading>Connect your Ethereum account to get started.</Alert.Heading>
         <p>
           Connect your Web3 account in the top right to create a colleralized loan.

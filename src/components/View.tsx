@@ -53,7 +53,7 @@ interface ViewProps {
 export const ViewWrapper = (props: ViewProps) => {
   const [showLoginModal, toggleLoginModal] = useState(false);
   const { state } = useContext(AppContext);
-  const loggedIn = state.web3State.address;
+  const loggedIn = state.web3State?.address || "";
 
   return (
     <div className='view'>

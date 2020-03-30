@@ -10,7 +10,10 @@ export const fortmaticOptions = {
   network: process.env.FORTMATIC_NETWORK || "ropsten",
 };
 
+export const globalDecimals = 1000000000000000000;
+
 export default {
   serverURL,
   fortmaticOptions,
+  globalDecimals
 };

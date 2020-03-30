@@ -26,7 +26,15 @@ export enum Web3Type {
 export interface Web3State {
   web3: any;
   type: Web3Type | null;
+  address: string | null;
+}
+
+export interface ZeroCollateralState {
+  contract: any | null;
+  daiContract: any | null;
   address: string;
+  daiAddress: string;
+  balance: number | null;
 }
 
 export interface FicoState {
@@ -38,6 +46,7 @@ export interface AppContextState {
   fico: FicoState;
   errorModal: ErrorModal;
   web3State: Web3State;
+  zeroCollateral: ZeroCollateralState;
 }
 
 export interface AppContextInterface {
@@ -54,6 +63,13 @@ export const AppContextDefault = {
       address: null as null,
       web3: null as null,
       type: null as null
+    },
+    zeroCollateral: {
+      address: "0x497f344243db7b5c3d825428a3c4991b04a6c469",
+      contract: null as null,
+      daiContract: null as null,
+      daiAddress: "0x69cc1445e2737f980ea7ac32147db3b2c3136a5e",
+      balance: null as null
     },
     plaid: {
       loggedIn: null as null,

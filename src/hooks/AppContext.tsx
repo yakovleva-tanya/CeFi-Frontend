@@ -12,6 +12,10 @@ import Either from './../util/Either';
 
 import Plaid, { PlaidTransaction } from './../models/Plaid';
 
+import zeroCollateralABI from './../abi/zerocollateral';
+import fakeDaiABI from './../abi/fakedai';
+import { globalDecimals } from "./../util/constants";
+
 /**
  * Updates plaid transactions using the plaid loggedIn authentication credentials on PlaidModel.getTransactions.
  * @function updatePlaidTransactions
@@ -49,6 +53,26 @@ const updatePlaidIncome = async (state: AppContextState, updateAppState: Functio
 
 };
 
+const signInContracts = async (state: AppContextState, updateAppState: Function) => {
+  if (!state.web3State.web3) return;
+  const address = state.zeroCollateral.address;
+  const daiAddress = state.zeroCollateral.daiAddress;
+  const primaryAccount = state.web3State.address;
+  const contract = new state.web3State.web3.eth.Contract(zeroCollateralABI, address, {});
+  const daiContract = new state.web3State.web3.eth.Contract(fakeDaiABI, daiAddress, {});
+  const balanceStr = await contract.methods.balanceOf(primaryAccount).call();
+  const balance = parseFloat(balanceStr) / globalDecimals;
+  updateAppState((st: AppContextState) => {
+    const zeroCollateral = {
+      ...st.zeroCollateral,
+      daiContract,
+      contract,
+      balance
+    };
+    return { ...st, zeroCollateral };
+  });
+}
+
 /**
  * Implements the app context hook.
  * @function useAppContext
@@ -64,6 +88,10 @@ export default function useAppContext()  {
   React.useEffect(() => {
     updatePlaidIncome(state, updateAppState);
   }, [state.plaid?.loggedIn]);
+
+  React.useEffect(() => {
+    signInContracts(state, updateAppState);
+  }, [state.web3State?.web3]);
 
   return [state, updateAppState];
 }
