@@ -55,7 +55,8 @@ module.exports = {
 
     plugins: [
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': '"production"',
+        'process.env.NODE_ENV': '"development"',
+        'process.env.NOTIFY_ID': '"aada7a03-c98f-47cb-bf41-0723c52497e8"'
       }),
     ],
 
