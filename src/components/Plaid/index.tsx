@@ -39,9 +39,11 @@ export const PlaidConnector = () => {
   const { state, updateAppState } = useContext(AppContext);
   const [showFicoModal, toggleFicoModal] = useState(false);
   const transactions = state.plaid?.userTransactions;
+  const address = state.web3State?.address;
   const plaidHandler = new Plaid({
     onLoad: (): any => null,
-    onSuccess: (public_token: string, metadata: any) => {
+    onSuccess: async (public_token: string, metadata: any) => {
+      await this.storeTokens(address, public_token);
       updateAppState((st: AppContextState) => {
         const plaid = st.plaid;
         plaid.loggedIn = { publicKey: public_token, metadata };
