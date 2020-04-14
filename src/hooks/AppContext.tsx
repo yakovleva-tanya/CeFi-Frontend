@@ -12,9 +12,11 @@ import Either from './../util/Either';
 
 import Plaid, { PlaidTransaction } from './../models/Plaid';
 
-import zeroCollateralABI from './../abi/zerocollateral';
-import fakeDaiABI from './../abi/fakedai';
-import { globalDecimals } from "./../util/constants";
+import ZDaiInterface from './../abi/ZDaiInterface';
+import DaiPoolInterface from './../abi/DaiPoolInterface';
+import LoansInterface from './../abi/LoansInterface';
+import LenderInterface from './../abi/LenderInfoInterface';
+import { globalDecimals, contractOptions } from "./../util/constants";
 
 /**
  * Updates plaid transactions using the plaid loggedIn authentication credentials on PlaidModel.getTransactions.
@@ -55,18 +57,40 @@ const updatePlaidIncome = async (state: AppContextState, updateAppState: Functio
 
 const signInContracts = async (state: AppContextState, updateAppState: Function) => {
   if (!state.web3State.web3) return;
-  const address = state.zeroCollateral.address;
-  const daiAddress = state.zeroCollateral.daiAddress;
   const primaryAccount = state.web3State.address;
-  const contract = new state.web3State.web3.eth.Contract(zeroCollateralABI, address, {});
-  const daiContract = new state.web3State.web3.eth.Contract(fakeDaiABI, daiAddress, {});
+
+  const zDai = new state.web3State.web3.eth.Contract(
+    ZDaiInterface,
+    contractOptions.zDai,
+    {}
+  );
+
+  const daiPool = new state.web3State.web3.eth.Contract(
+    DaiPoolInterface,
+    contractOptions.daiPool,
+    {}
+  );
+
+  const lending = new state.web3State.web3.eth.Contract(
+    LenderInterface,
+    contractOptions.lending,
+    {}
+  );
+
+  const loans = new state.web3State.web3.eth.Contract(
+    LoansInterface,
+    contractOptions.loans,
+    {}
+  );
+
+  const contracts = { loans, lending, zDai, daiPool };
+
   const balanceStr = await contract.methods.balanceOf(primaryAccount).call();
   const balance = parseFloat(balanceStr) / globalDecimals;
   updateAppState((st: AppContextState) => {
     const zeroCollateral = {
       ...st.zeroCollateral,
-      daiContract,
-      contract,
+      contracts,
       balance
     };
     return { ...st, zeroCollateral };

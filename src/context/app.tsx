@@ -29,11 +29,15 @@ export interface Web3State {
   address: string | null;
 }
 
+export interface ZeroCollateralContracts {
+  zDai: any | null;
+  lending: any | null;
+  loans: any | null;
+  daiPool: any | null;
+}
+
 export interface ZeroCollateralState {
-  contract: any | null;
-  daiContract: any | null;
-  address: string;
-  daiAddress: string;
+  contracts: ZeroCollateralContracts;
   balance: number | null;
   borrowed: boolean;
 }
@@ -66,12 +70,14 @@ export const AppContextDefault = {
       type: null as null
     },
     zeroCollateral: {
-      address: "0x497f344243db7b5c3d825428a3c4991b04a6c469",
-      contract: null as null,
-      daiContract: null as null,
-      daiAddress: "0x69cc1445e2737f980ea7ac32147db3b2c3136a5e",
       balance: null as null,
-      borrowed: false
+      borrowed: false,
+      contracts: {
+        zDai: null as null,
+        lending: null as null,
+        loans: null as null,
+        daiPool: null as null,
+      }
     },
     plaid: {
       loggedIn: null as null,
