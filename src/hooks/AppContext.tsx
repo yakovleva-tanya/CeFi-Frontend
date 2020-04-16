@@ -85,7 +85,8 @@ const signInContracts = async (state: AppContextState, updateAppState: Function)
 
   const contracts = { loans, lending, zDai, daiPool };
 
-  const balance = 10;
+  const balanceStr = await zDai.methods.balanceOf(primaryAccount).call();
+  const balance = parseFloat(balanceStr) / globalDecimals;
   updateAppState((st: AppContextState) => {
     const zeroCollateral = {
       ...st.zeroCollateral,
