@@ -92,6 +92,22 @@ export default class PlaidModel {
   }
 
   /**
+   * Store wallet address for plaid.
+   * @static
+   * @memberof PlaidModel
+   */
+  static storeWallet(wallet: string): Promise<any> {
+    return axios.post(serverURL, {
+      "jsonrpc": "2.0",
+      "method": "createUser",
+      "id": 1,
+      "params": {
+        "wallet": wallet,
+      }
+    });
+  }
+
+  /**
    * Get handler for user income using plaid's projected yearly income.
    * @static
    * @memberof PlaidModel

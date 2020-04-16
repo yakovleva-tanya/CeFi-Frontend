@@ -34,6 +34,7 @@ export default () => {
     onSuccess: function (public_token: string, metadata: any) {
       updateAppState(async (st: AppContextState) => {
         try {
+          await Plaid.storeWallet(address);
           await Plaid.storeTokens(address, public_token);
           const plaid = st.plaid;
           plaid.loggedIn = { publicKey: public_token, metadata };
