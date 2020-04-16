@@ -71,7 +71,7 @@ export default class PlaidModel {
       }
     });
 
-    return response.result?.transactions || Promise.reject("Failed to get transactions property from response.");
+    return response.data.result?.transactions || Promise.reject("Failed to get transactions property from response.");
   }
 
   /**
@@ -105,7 +105,7 @@ export default class PlaidModel {
         "publicToken": public_token
       }
     });
-    const data = response.data?.income?.amount;
+    const data = response.data.response?.income?.amount;
     return data || Promise.reject("Failed to get income property from response.");
   }
 }

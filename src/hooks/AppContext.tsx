@@ -12,10 +12,10 @@ import Either from './../util/Either';
 
 import Plaid, { PlaidTransaction } from './../models/Plaid';
 
-import ZDaiInterface from './../abi/ZDaiInterface';
-import DaiPoolInterface from './../abi/DaiPoolInterface';
-import LoansInterface from './../abi/LoansInterface';
-import LenderInterface from './../abi/LenderInfoInterface';
+import ZDaiInterface = require('./../abi/ZDaiInterface.json');
+import DaiPoolInterface = require('./../abi/DaiPoolInterface.json');
+import LoansInterface = require('./../abi/LoansInterface.json');
+import LenderInterface = require('./../abi/LenderInfoInterface.json');
 import { globalDecimals, contractOptions } from "./../util/constants";
 
 /**
