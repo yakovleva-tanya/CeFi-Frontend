@@ -12,11 +12,7 @@ import Either from './../util/Either';
 
 import Plaid, { PlaidTransaction } from './../models/Plaid';
 
-import ZDaiInterface = require('./../abi/ZDaiInterface.json');
-import DaiPoolInterface = require('./../abi/DaiPoolInterface.json');
-import LoansInterface = require('./../abi/LoansInterface.json');
-import LenderInterface = require('./../abi/LenderInfoInterface.json');
-import { globalDecimals, contractOptions } from "./../util/constants";
+import signInContracts from './../actions/signInContracts';
 
 /**
  * Updates plaid transactions using the plaid loggedIn authentication credentials on PlaidModel.getTransactions.
@@ -55,47 +51,24 @@ const updatePlaidIncome = async (state: AppContextState, updateAppState: Functio
 
 };
 
-const signInContracts = async (state: AppContextState, updateAppState: Function) => {
-  if (!state.web3State.web3) return;
-  const primaryAccount = state.web3State.address;
-
-  const zDai = new state.web3State.web3.eth.Contract(
-    ZDaiInterface,
-    contractOptions.zDai,
-    {}
-  );
-
-  const daiPool = new state.web3State.web3.eth.Contract(
-    DaiPoolInterface,
-    contractOptions.daiPool,
-    {}
-  );
-
-  const lending = new state.web3State.web3.eth.Contract(
-    LenderInterface,
-    contractOptions.lending,
-    {}
-  );
-
-  const loans = new state.web3State.web3.eth.Contract(
-    LoansInterface,
-    contractOptions.loans,
-    {}
-  );
-
-  const contracts = { loans, lending, zDai, daiPool };
-
-  const balanceStr = await zDai.methods.balanceOf(primaryAccount).call();
-  const balance = parseFloat(balanceStr) / globalDecimals;
-  updateAppState((st: AppContextState) => {
-    const zeroCollateral = {
-      ...st.zeroCollateral,
-      contracts,
-      balance
-    };
-    return { ...st, zeroCollateral };
-  });
-}
+const mergeSignInContracts = async (state: AppContextState, updateAppState: Function) => {
+  try {
+    const zeroCollateral = await signInContracts(state.web3State, state.zeroCollateral);
+    updateAppState((st: AppContextState) => ({
+      ...st,
+      zeroCollateral
+    }));
+  } catch (e) {
+    updateAppState((st: AppContextState) => {
+      const errorModal = {
+        show: true,
+        message: "An error occurred connecting your account. Please try again.",
+        title: "Error"
+      };
+      return { ...st, errorModal };
+    });
+  }
+};
 
 /**
  * Implements the app context hook.
@@ -114,7 +87,8 @@ export default function useAppContext()  {
   }, [state.plaid?.loggedIn]);
 
   React.useEffect(() => {
-    signInContracts(state, updateAppState);
+    if (!state.web3State.web3) return;
+    mergeSignInContracts(state, updateAppState);
   }, [state.web3State?.web3]);
 
   return [state, updateAppState];
