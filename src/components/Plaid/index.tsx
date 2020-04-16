@@ -43,7 +43,6 @@ export const PlaidConnector = () => {
   const plaidHandler = new Plaid({
     onLoad: (): any => null,
     onSuccess: async function (public_token: string, metadata: any) {
-      await (this as any).storeTokens(address, public_token);
       updateAppState((st: AppContextState) => {
         const plaid = st.plaid;
         plaid.loggedIn = { publicKey: public_token, metadata };

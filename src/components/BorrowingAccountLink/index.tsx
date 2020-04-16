@@ -19,6 +19,7 @@ import './index.scss';
 export default () => {
   const [showModal, toggleModal] = useState(false);
   const { state, updateAppState } = useContext(AppContext);
+  const address = state.web3State?.address;
 
   const plaidLoggedIn = state.plaid.loggedIn;
 
@@ -30,11 +31,22 @@ export default () => {
 
   const plaidHandler = new Plaid({
     onLoad: (): any => null,
-    onSuccess: (public_token: string, metadata: any) => {
-      updateAppState((st: AppContextState) => {
-        const plaid = st.plaid;
-        plaid.loggedIn = { publicKey: public_token, metadata };
-        return { ...st, plaid  };
+    onSuccess: function (public_token: string, metadata: any) {
+      updateAppState(async (st: AppContextState) => {
+        try {
+          await Plaid.storeTokens(address, public_token);
+          const plaid = st.plaid;
+          plaid.loggedIn = { publicKey: public_token, metadata };
+          return { ...st, plaid  };
+        } catch (e) {
+          const errorModal = {
+            show: true,
+            message: "An error occurred connecting your account. Please try again.",
+            title: "Error"
+          };
+          return { ...st, errorModal };
+        }
+
       });
       toggleModal(false);
     },
