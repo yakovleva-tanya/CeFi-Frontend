@@ -42,8 +42,8 @@ export const PlaidConnector = () => {
   const address = state.web3State?.address;
   const plaidHandler = new Plaid({
     onLoad: (): any => null,
-    onSuccess: async (public_token: string, metadata: any) => {
-      await this.storeTokens(address, public_token);
+    onSuccess: async function (public_token: string, metadata: any) {
+      await (this as any).storeTokens(address, public_token);
       updateAppState((st: AppContextState) => {
         const plaid = st.plaid;
         plaid.loggedIn = { publicKey: public_token, metadata };

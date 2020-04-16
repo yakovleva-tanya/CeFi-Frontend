@@ -12,10 +12,10 @@ import Either from './../util/Either';
 
 import Plaid, { PlaidTransaction } from './../models/Plaid';
 
-import ZDaiInterface from './../abi/ZDaiInterface';
-import DaiPoolInterface from './../abi/DaiPoolInterface';
-import LoansInterface from './../abi/LoansInterface';
-import LenderInterface from './../abi/LenderInfoInterface';
+import ZDaiInterface = require('./../abi/ZDaiInterface.json');
+import DaiPoolInterface = require('./../abi/DaiPoolInterface.json');
+import LoansInterface = require('./../abi/LoansInterface.json');
+import LenderInterface = require('./../abi/LenderInfoInterface.json');
 import { globalDecimals, contractOptions } from "./../util/constants";
 
 /**
@@ -85,8 +85,7 @@ const signInContracts = async (state: AppContextState, updateAppState: Function)
 
   const contracts = { loans, lending, zDai, daiPool };
 
-  const balanceStr = await contract.methods.balanceOf(primaryAccount).call();
-  const balance = parseFloat(balanceStr) / globalDecimals;
+  const balance = 10;
   updateAppState((st: AppContextState) => {
     const zeroCollateral = {
       ...st.zeroCollateral,

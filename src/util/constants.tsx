@@ -2,7 +2,7 @@ var serverURL: string;
 if (process.env.NODE_ENV === 'production') {
   serverURL = '';
 } else {
-  serverURL = 'http://localhost:3000';
+  serverURL = 'http://web2-elb-ntwrk-94efa0b9d1e72695.elb.us-west-2.amazonaws.com/';
 }
 
 export const fortmaticOptions = {
@@ -18,7 +18,7 @@ export const contractOptions = {
   zDai: '0x14E582420E423E0e96964dF91bD9ffc49A5f4631',
   EtherUsdAggregator: '0xe65D7D58d1A217ab14C82F2CFbC9655e404357e8',
   daiPool: '0xb96aD08bA5D4dF1A3D122A30E55CbD9909C10B57',
-  lender: '0x400049a1D97eC2A58f18ce09CE1868dEa3478C1c',
+  lending: '0x400049a1D97eC2A58f18ce09CE1868dEa3478C1c',
   loans: '0x1b6B0145C1c1580674Ac24b718340a5EDa609539',
 };
 
