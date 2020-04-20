@@ -14,43 +14,6 @@ import Plaid, { PlaidTransaction } from './../models/Plaid';
 
 import signInContracts from './../actions/signInContracts';
 
-/**
- * Updates plaid transactions using the plaid loggedIn authentication credentials on PlaidModel.getTransactions.
- * @function updatePlaidTransactions
- * @memberof AppContextHook
- * @param {AppContextState}
- * @param {AppStateUpdater}
- */
-const updatePlaidTransactions = async (state: AppContextState, updateAppState: Function) => {
-  if (!state.plaid?.loggedIn) return;
-  const response: Array<Either<PlaidTransaction, Error>> = await Plaid.getTransactions(state.plaid?.loggedIn.publicKey);
-
-  updateAppState((st: AppContextState) => {
-    const plaid = st.plaid;
-    plaid.userTransactions = response.map(e => e.get(() => null)).filter(e => e);
-    return { ...st, plaid };
-  });
-
-};
-
-/**
- * Updates user income using the plaid loggedIn authentication credentials on PlaidModel.getTransactions.
- * @function updatePlaidIncome
- * @memberof AppContextHook
- * @param {AppContextState}
- * @param {AppStateUpdater}
- */
-const updatePlaidIncome = async (state: AppContextState, updateAppState: Function) => {
-  if (!state.plaid?.loggedIn) return;
-  const response = await Plaid.getIncome(state.plaid?.loggedIn.publicKey);
-  updateAppState((st: AppContextState) => {
-    const plaid = st.plaid;
-    plaid.income = response;
-    return { ...st, plaid };
-  });
-
-};
-
 const mergeSignInContracts = async (state: AppContextState, updateAppState: Function) => {
   try {
     const zeroCollateral = await signInContracts(state.web3State, state.zeroCollateral);
@@ -77,14 +40,6 @@ const mergeSignInContracts = async (state: AppContextState, updateAppState: Func
  */
 export default function useAppContext()  {
   const [state, updateAppState] = React.useState(AppContextDefault.state);
-
-  React.useEffect(() => {
-    updatePlaidTransactions(state, updateAppState);
-  }, [state.plaid?.loggedIn]);
-
-  React.useEffect(() => {
-    updatePlaidIncome(state, updateAppState);
-  }, [state.plaid?.loggedIn]);
 
   React.useEffect(() => {
     if (!state.web3State.web3) return;

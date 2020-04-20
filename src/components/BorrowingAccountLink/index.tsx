@@ -31,11 +31,12 @@ export default () => {
 
   const plaidHandler = new Plaid({
     onLoad: (): any => null,
-    onSuccess: function (public_token: string, metadata: any) {
-      updateAppState(async (st: AppContextState) => {
-        try {
-          await Plaid.storeWallet(address);
-          await Plaid.storeTokens(address, public_token);
+    onSuccess: async function (public_token: string, metadata: any) {
+      await Plaid.storeWallet(address);
+      await Plaid.storeTokens(address, public_token);
+
+      updateAppState((st: AppContextState) => {
+        try {    
           const plaid = st.plaid;
           plaid.loggedIn = { publicKey: public_token, metadata };
           return { ...st, plaid  };
