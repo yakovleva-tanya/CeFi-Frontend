@@ -31,9 +31,7 @@ export interface Web3State {
 
 export interface ZeroCollateralContracts {
   zDai: any | null;
-  lending: any | null;
-  loans: any | null;
-  daiPool: any | null;
+  lendingPool: any | null;
 }
 
 export interface ZeroCollateralState {
@@ -74,9 +72,7 @@ export const AppContextDefault = {
       borrowed: false,
       contracts: {
         zDai: null as null,
-        lending: null as null,
-        loans: null as null,
-        daiPool: null as null,
+        lendingPool: null as null,
       }
     },
     plaid: {

@@ -7,60 +7,42 @@ import Card from 'react-bootstrap/Card';
 import { Formik } from 'formik';
 import Button from 'react-bootstrap/Button';
 import DetailCard from './../DetailCard';
-import Notify from "./../../models/Web3Notify";
 import { AppContext, AppContextState } from "./../../context/app";
 import Alert from 'react-bootstrap/Alert';
-import { globalDecimals } from "./../../util/constants";
+
+import lendDai from "./../../actions/lendDai";
 
 import './index.scss';
 
 import * as dai from './../../../dist/assets/dai.png';
 
-const supployFormValidation = (values: any) => {
+const supplyFormValidation = () => {
     const errors = {};
     return errors;
 };
 
-function approveContract(contract: any, zeroCollateralAddress: string, primaryAddress: string, amount: number) {
-  return new Promise((resolve, reject) => contract.methods
-    .approve(
-      zeroCollateralAddress,
-      (globalDecimals*amount).toLocaleString('fullwide', { useGrouping:false })
-    )
-    .send({ from: primaryAddress })
-    .on('transactionHash', Notify.hash)
-    .on('receipt', resolve)
-    .on('error', reject)
-  );
-}
-
-function mintZDai(contract: any, primaryAddress: string, amount: number) {
-  return new Promise((resolve, reject) => contract.methods.mintZDAI(
-      (globalDecimals*amount).toLocaleString('fullwide', { useGrouping:false })
-    )
-    .send({ from: primaryAddress })
-    .on('transactionHash', Notify.hash)
-    .on('receipt', resolve)
-    .on('error', reject)
-  );
-}
-
 const completeLendingForm = (state: any, updateAppState: Function) => async (values: any, { setSubmitting }: any) => {
   const amount = values.amount;
   const primaryAddress = state.web3State.address;
-  const contract = state.zeroCollateral.contract;
-  const daiContract = state.zeroCollateral.daiContract;
-  const zeroCollateralAddress = state.zeroCollateral.address;
-
-  await approveContract(daiContract, zeroCollateralAddress, primaryAddress, amount);
-  await mintZDai(contract, primaryAddress, amount);
-  const balance = await contract.methods.balanceOf(primaryAddress).call();
-  setSubmitting(false);
-  updateAppState((st: AppContextState) => {
-    const zeroCollateral = st.zeroCollateral;
-    zeroCollateral.balance = balance;
-    return { ...st, zeroCollateral };
-  });
+  const { lendingPool, zDai } = state.zeroCollateral.contracts;
+  try {
+    const balance = await lendDai(amount, primaryAddress, lendingPool, zDai, state.web3State);
+    setSubmitting(false);
+    updateAppState((st: AppContextState) => {
+      const zeroCollateral = st.zeroCollateral;
+      zeroCollateral.balance = balance;
+      return { ...st, zeroCollateral };
+    });
+  } catch (error) {
+    updateAppState((st: AppContextState) => {
+      const errorModal = {
+        show: true,
+        message: "An error occurred during the lending process. Please try again.",
+        title: "Error"
+      };
+      return { ...st, errorModal };
+    });
+  }
 };
 
 const LendingCard = () => {
@@ -81,7 +63,7 @@ const LendingCard = () => {
           <Col xs={{span: 4, offset: 0 }}>
             <Formik
               initialValues={initialSupplyValues}
-              validate={supployFormValidation}
+              validate={supplyFormValidation}
               onSubmit={completeLendingForm(state, updateAppState)}
             >
                 {({

@@ -7,10 +7,11 @@
 import * as React from "react";
 import { Web3State, ZeroCollateralState } from './../context/app';
 
-import ZDaiInterface = require('./../abi/ZDaiInterface.json');
+import ZDaiInterface = require('./../abi/contracts/ZDai.json');
 import DaiPoolInterface = require('./../abi/DaiPoolInterface.json');
-import LoansInterface = require('./../abi/LoansInterface.json');
-import LenderInterface = require('./../abi/LenderInfoInterface.json');
+import LoansInterface = require('./../abi/contracts/Loans.json');
+import LenderInterface = require('./../abi/contracts/Lenders.json');
+import LendingPoolInterface = require('./../abi/contracts/LendingPool.json');
 import { globalDecimals, contractOptions } from "./../util/constants";
 
 /**
@@ -24,32 +25,21 @@ import { globalDecimals, contractOptions } from "./../util/constants";
 export default async (web3State: Web3State, zeroCollateral: ZeroCollateralState): Promise<ZeroCollateralState> => {
   if (!web3State.web3) return zeroCollateral;
 
+  const lendingPool = new web3State.web3.eth.Contract(
+    LendingPoolInterface.abi,
+    contractOptions.lendingPool,
+    {}
+  );
+  const zDaiAddress = await lendingPool.methods.zToken().call();
+
   const primaryAccount = web3State.address;
   const zDai = new web3State.web3.eth.Contract(
     ZDaiInterface.abi,
-    contractOptions.zDai,
+    zDaiAddress,
     {}
   );
 
-  const daiPool = new web3State.web3.eth.Contract(
-    DaiPoolInterface.abi,
-    contractOptions.daiPool,
-    {}
-  );
-
-  const lending = new web3State.web3.eth.Contract(
-    LenderInterface.abi,
-    contractOptions.lending,
-    {}
-  );
-
-  const loans = new web3State.web3.eth.Contract(
-    LoansInterface.abi,
-    contractOptions.loans,
-    {}
-  );
-
-  const contracts = { loans, lending, zDai, daiPool };
+  const contracts = { zDai, lendingPool };
   const balanceStr = await zDai.methods.balanceOf(primaryAccount).call();
   const balance = parseFloat(balanceStr) / globalDecimals;
 
