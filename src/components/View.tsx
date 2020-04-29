@@ -14,7 +14,7 @@ import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
 import { Web3Connector } from './LoginWeb3';
-import { AppContext } from "./../context/app";
+import { AppContext, AppContextState } from "./../context/app";
 
 interface Web3LoginButtonProps {
   loggedIn: string | null;
@@ -52,8 +52,12 @@ interface ViewProps {
  */
 export const ViewWrapper = (props: ViewProps) => {
   const [showLoginModal, toggleLoginModal] = useState(false);
-  const { state } = useContext(AppContext);
+
+  const { state, updateAppState } = useContext(AppContext);
   const loggedIn = state.web3State?.address || "";
+  const errors = state.errorModal;
+
+  const toggleErrorModal = (show: boolean) => updateAppState((st: AppContextState) => ({ ...st, errorModal: { show } }));
 
   return (
     <div className='view'>
@@ -76,6 +80,14 @@ export const ViewWrapper = (props: ViewProps) => {
         </Modal.Header>
         <Modal.Body>
             <Web3Connector close={toggleLoginModal} />
+        </Modal.Body>
+      </Modal>
+      <Modal centered={true} show={errors.show} onHide={() => toggleErrorModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{errors.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            { errors.message }
         </Modal.Body>
       </Modal>
     </div>

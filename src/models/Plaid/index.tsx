@@ -3,7 +3,6 @@
  * @category ReactModels
  */
 
-import Either from './../../util/Either';
 import Constants from './../../util/constants';
 import axios from 'axios';
 
@@ -24,17 +23,6 @@ export interface PlaidTransaction {
   amount: Number;
 }
 
-function transformResponse(transaction: any): Either<PlaidTransaction, Error> {
-  if (transaction.amount && transaction.date && transaction.name) {
-    return Either.right({
-      amount: transaction.amount,
-      date: transaction.date,
-      name: transaction.name
-    });
-  }
-  return Either.left(Error("Could not parse transaction."));
-}
-
 /**
  * Wrapper class for the Plaid API.
  * @class
@@ -48,7 +36,7 @@ export default class PlaidModel {
     this.plaidOptions = options;
   }
 
-  load (): Either<string, Error> {
+  load(): Promise<any> {
     try {
       this.handler = Plaid.create({
         clientName: 'Plaid Quickstart',
@@ -62,9 +50,9 @@ export default class PlaidModel {
         onEvent: this.plaidOptions.onEvent
       });
       this.handler.open();
-      return Either.right<string, Error>("Ok");
+      return Promise.resolve("Ok");
     } catch (e) {
-      return Either.left<string, Error>(Error("Failed to load Plaid create."));
+      return Promise.reject(e);
     }
   }
 
@@ -73,15 +61,50 @@ export default class PlaidModel {
    * @static
    * @memberof PlaidModel
    */
-  static async getTransactions(public_token: string): Promise<Array<Either<PlaidTransaction, Error>>> {
-    const response:any = axios.post('http://localhost:3003', {
-      jsonrpc: '2.0',
-      method: 'getPlaidTransactions',
-      id: '1',
-      params: { publicToken: public_token }
+  static async getTransactions(wallet: string): Promise<any> {
+    const response = await axios.post(serverURL, {
+      "jsonrpc": "2.0",
+      "method": "getPlaidTransactions",
+      "id": 1,
+      "params": {
+        "wallet": wallet
+      }
     });
 
-    return response.result.transactions.map(transformResponse);
+    return response.data.result?.transactions || Promise.reject("Failed to get transactions property from response.");
+  }
+
+  /**
+   * Store plaid login access token.
+   * @static
+   * @memberof PlaidModel
+   */
+  static storeTokens(wallet: string, publicToken: string,): Promise<any> {
+    return axios.post(serverURL, {
+      "jsonrpc": "2.0",
+      "method": "savePlaidAccessToken",
+      "id": 1,
+      "params": {
+        "wallet": wallet,
+        "publicToken": publicToken
+      }
+    });
+  }
+
+  /**
+   * Store wallet address for plaid.
+   * @static
+   * @memberof PlaidModel
+   */
+  static storeWallet(wallet: string): Promise<any> {
+    return axios.post(serverURL, {
+      "jsonrpc": "2.0",
+      "method": "createUser",
+      "id": 1,
+      "params": {
+        "wallet": wallet,
+      }
+    });
   }
 
   /**
@@ -89,16 +112,16 @@ export default class PlaidModel {
    * @static
    * @memberof PlaidModel
    */
-  static async getIncome(public_token: string): Promise<number | null> {
-    return axios.post(serverURL + '/plaid/income', {
-      public_token
-    })
-    .then(function(response) {
-      const data = response.data?.transactions?.income?.projected_yearly_income;
-      if (data) {
-        return data as number;
+  static async getIncome(public_token: string): Promise<any> {
+    const response = await axios.post(serverURL, {
+      "jsonrpc": "2.0",
+      "method": "getPlaidIncome",
+      "id": 1,
+      "params":{
+        "publicToken": public_token
       }
-      return null;
     });
+    const data = response.data.response?.income?.amount;
+    return data || Promise.reject("Failed to get income property from response.");
   }
 }
