@@ -7,6 +7,21 @@ async function getLendingToken(lendingPool: any, web3State: any) {
 }
 
 /**
+ * Redeeem zDai.
+ */
+export async function redeemZDai(amount: string, primaryAddress: string, lendingPool: any) {
+  return new Promise((resolve, reject) => lendingPool.methods
+    .withdraw(
+      (parseFloat(amount)).toLocaleString('fullwide', { useGrouping:false })
+    )
+    .send({ from: primaryAddress })
+    .on('transactionHash', Notify.hash)
+    .on('receipt', resolve)
+    .on('error', reject)
+  );
+}
+
+/**
  * Approves spending of dai for zeroCollateral contracts.
  */
 export async function approveDai(lendingPool: any, web3State: any, primaryAddress: string, amount: number) {

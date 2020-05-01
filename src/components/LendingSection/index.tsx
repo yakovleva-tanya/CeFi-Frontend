@@ -11,6 +11,7 @@ import { AppContext, AppContextState } from "./../../context/app";
 import Alert from 'react-bootstrap/Alert';
 
 import lendDai from "./../../actions/lendDai";
+import redeemZDai from "./../../actions/redeemZDai";
 
 import './index.scss';
 
@@ -38,6 +39,30 @@ const completeLendingForm = (state: any, updateAppState: Function) => async (val
       const errorModal = {
         show: true,
         message: "An error occurred during the lending process. Please try again.",
+        title: "Error"
+      };
+      return { ...st, errorModal };
+    });
+  }
+};
+
+const completeRedeemZDai = (state: any, updateAppState: Function) => async () => {
+  const primaryAddress = state.web3State.address;
+  const { lendingPool, zDai } = state.zeroCollateral.contracts;
+  try {
+    const balance = await redeemZDai(primaryAddress, lendingPool, zDai);
+    updateAppState((st: AppContextState) => {
+      const zeroCollateral = st.zeroCollateral;
+      zeroCollateral.balance = balance;
+      return { ...st, zeroCollateral };
+    });
+  } catch (error) {
+    error
+    debugger
+    updateAppState((st: AppContextState) => {
+      const errorModal = {
+        show: true,
+        message: "An error occurred redeeming your zDai. Please try again.",
         title: "Error"
       };
       return { ...st, errorModal };
@@ -102,17 +127,19 @@ const LendingCard = () => {
 
 
 const RewardsSection = () => {
+  const { state, updateAppState } = useContext(AppContext);
+  const balance = state.web3State?.type ? state.zeroCollateral?.balance : "-";
   return <Row className="rewards-section">
     <Col className="mt-5" xs={12} md={10}>
       <Card className="rewards-card w-100">
         <Card.Body>
           <h6 className="d-inline-block">Earned</h6>
-          <h6 className="d-inline-block float-right">◈ 6<img className="dai" src={dai.default} /></h6>
+          <h6 className="d-inline-block float-right">◈ {balance}<img className="dai" src={dai.default} /></h6>
         </Card.Body>
       </Card>
     </Col>
     <Col className="mt-5" xs={12} md={2}>
-      <Button className="rewards-button w-100 h-100" variant="outline-success">Claim</Button>
+      <Button onClick={completeRedeemZDai(state, updateAppState)} className="rewards-button w-100 h-100" variant="outline-success">Claim</Button>
     </Col>
   </Row>
   return ;
@@ -121,7 +148,7 @@ const RewardsSection = () => {
 export const LendingSection = () => {
   const { state } = useContext(AppContext);
   const web3LoggedIn = state.web3State.type;
-  const amount = web3LoggedIn ? state.zeroCollateral?.balance : "-";
+  const amount = state.zeroCollateral?.balance ? state.zeroCollateral?.balance : "-";
   return <Container fluid className="px-0">
     <Row>
       <Col sm={12} md={6}>
