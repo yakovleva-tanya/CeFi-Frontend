@@ -34,7 +34,8 @@ const completeBorrowForm = (state: any, updateAppState: Function) => async (valu
   const primaryAddress = state.web3State.address;
   const contract = state.zeroCollateral.contract;
 
-  await borrowDai(contract, primaryAddress, amount);
+  debugger
+  // await borrowDai(contract, primaryAddress, amount);
   setSubmitting(false);
   updateAppState((st: AppContextState) => {
     const zeroCollateral = st.zeroCollateral;
@@ -58,8 +59,11 @@ export default function LoanCreateCard() {
   return <Card className="loan-create-card mt-5 mb-5 w-100 shadow">
     <Card.Header>
       <Row className="justify-content-center">
-          <h1>2 ETH</h1>
-          <img className="eth" src={eth.default} />
+        <h1>2 ETH</h1>
+        <img className="eth" src={eth.default} />
+      </Row>
+      <Row className="justify-content-center">
+        <h5 className="text-muted">Collateral Balance</h5>
       </Row>
     </Card.Header>
     <Card.Body>
@@ -71,7 +75,7 @@ export default function LoanCreateCard() {
           </Col>
         </Row>
         <Row className="justify-content-center mt-5">
-          <Col xs={{span: 4, offset: 0 }}>
+          <Col xs={{span: 4 }}>
             <Formik
               initialValues={initialBorrowValues}
               validate={borrowFormValidation}
@@ -88,9 +92,9 @@ export default function LoanCreateCard() {
                     /* and other goodies */
                 }) => (
                   <Form noValidate onSubmit={handleSubmit}>
-                    <Form.Group as={Row}>
-                      <Form.Label column sm={2}><img className="dai" src={dai.default} /></Form.Label>
-                      <Col>
+                    <Col>
+                      <Form.Group as={Row}>
+                        <Form.Label column sm={2}><img className="dai" src={dai.default} /></Form.Label>
                         <Form.Control
                           type="number"
                           name="amount"
@@ -98,35 +102,32 @@ export default function LoanCreateCard() {
                           onChange={handleChange}
                           value={values.amount}
                         />
-                      </Col>
-                    </Form.Group>
-                    <Button type="submit" disabled={isSubmitting || !hasWeb3} className="supply-button mb-3" variant="outline-primary" block>Borrow</Button>
+                      </Form.Group>
+                      <Row>
+                        <Table hover>
+                          <tbody>
+                            <tr>
+                              <td>Owed</td>
+                              <td><p className="float-right">◈ 110</p></td>
+                            </tr>
+                            <tr>
+                              <td>Due Date</td>
+                              <td><p className="float-right">08/02/2020</p></td>
+                            </tr>
+                            <tr>
+                              <td>Interest Rate</td>
+                              <td><p className="float-right">{plaidLoggedIn ? "18%" : "24%"}</p></td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                      </Row>
+                      <Row>
+                        <Button type="submit" disabled={isSubmitting || !hasWeb3} className="supply-button mb-3" variant="outline-primary" block>Borrow</Button>
+                      </Row>
+                    </Col>
                   </Form>
                 )}
             </Formik>
-          </Col>
-        </Row>
-        <Row className="justify-content-center">
-          <Table hover>
-            <tbody>
-              <tr>
-                <td>Owed</td>
-                <td><p className="float-right">◈ 110</p></td>
-              </tr>
-              <tr>
-                <td>Due Date</td>
-                <td><p className="float-right">08/02/2020</p></td>
-              </tr>
-              <tr>
-                <td>Interest Rate</td>
-                <td><p className="float-right">{plaidLoggedIn ? "18%" : "24%"}</p></td>
-              </tr>
-            </tbody>
-          </Table>
-        </Row>
-        <Row>
-          <Col xs={{ span: 12 }}>
-            <Button variant="outline-primary" block>Borrow</Button>
           </Col>
         </Row>
       </Container>

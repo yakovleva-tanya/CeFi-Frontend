@@ -8,7 +8,11 @@ import Table from 'react-bootstrap/Table';
 
 export default () => {
   return <Card className="outstanding-loan-card w-100 mb-5">
-    <Card.Title>Outstanding Loan</Card.Title>
+    <Card.Title>
+      <Row className="justify-content-center mt-5">
+        <h5 className="text-muted">Outstanding Loan</h5>
+      </Row>
+    </Card.Title>
     <Card.Body>
       <Container fluid>
         <Row>
