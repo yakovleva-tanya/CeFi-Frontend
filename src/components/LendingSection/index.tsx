@@ -134,7 +134,7 @@ const RewardsSection = () => {
       <Card className="rewards-card w-100">
         <Card.Body>
           <h6 className="d-inline-block">Earned</h6>
-          <h6 className="d-inline-block float-right">◈ {balance}<img className="dai" src={dai.default} /></h6>
+          <h6 className="d-inline-block float-right">{balance} DAI<img className="dai" src={dai.default} /></h6>
         </Card.Body>
       </Card>
     </Col>
@@ -152,7 +152,7 @@ export const LendingSection = () => {
   return <Container fluid className="px-0">
     <Row>
       <Col sm={12} md={6}>
-        <DetailCard callout={"◈ " + amount} detail={"Balance"} />
+        <DetailCard callout={`${amount} DAI`} detail={"Balance"} />
       </Col>
       <Col sm={12} md={6}>
         <DetailCard callout={"7.43%"} detail={"APY"} />

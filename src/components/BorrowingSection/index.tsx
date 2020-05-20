@@ -26,7 +26,7 @@ export const BorrowingSection = () => {
   return <Container fluid className="borrowing-section px-0">
     <Row>
       <Col xs={12} md={4}>
-        <DetailCard callout={"◈ 1000"} detail={"Max. Loan"} />
+        <DetailCard callout={"1000 DAI"} detail={"Max. Loan"} />
       </Col>
       <Col xs={12} md={4}>
         <DetailCard callout={plaidLoggedIn ? "18%" : "24%"} detail={"APY"} />

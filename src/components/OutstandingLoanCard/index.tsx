@@ -20,7 +20,7 @@ export default () => {
             <tbody>
               <tr>
                 <td><p className="font-weight-bold">Loan #23</p></td>
-                <td><p className="font-weight-bold float-right">◈ 10</p></td>
+                <td><p className="font-weight-bold float-right">10 DAI</p></td>
               </tr>
               <tr>
                 <td>Due Date</td>
@@ -32,7 +32,7 @@ export default () => {
               </tr>
               <tr>
                 <td>Owed</td>
-                <td><p className="float-right">◈ 1</p></td>
+                <td><p className="float-right">1 DAI</p></td>
               </tr>
             </tbody>
           </Table>

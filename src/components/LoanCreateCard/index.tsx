@@ -96,6 +96,7 @@ export default function LoanCreateCard() {
                       <Form.Group as={Row}>
                         <Form.Label column sm={2}><img className="dai" src={dai.default} /></Form.Label>
                         <Form.Control
+                          className="amount"
                           type="number"
                           name="amount"
                           onBlur={handleBlur}
@@ -108,7 +109,7 @@ export default function LoanCreateCard() {
                           <tbody>
                             <tr>
                               <td>Owed</td>
-                              <td><p className="float-right">◈ 110</p></td>
+                              <td><p className="float-right">110 DAI</p></td>
                             </tr>
                             <tr>
                               <td>Due Date</td>
