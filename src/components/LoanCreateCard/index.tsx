@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
-import Modal from 'react-bootstrap/Modal';
+import { BorrowTOSModal, IConfirm, defaultIConfirm }  from './../../components/BorrowTOSModal';
+import { CollateralAdjustModal, defaultICollateral, ICollateralAdjust, CollateralAdjustType }  from './../../components/CollateralAdjustModal';
 import Notify from "./../../models/Web3Notify";
 import { AppContext, AppContextState } from "./../../context/app";
 import { Formik } from 'formik';
@@ -29,7 +30,6 @@ function borrowDai(contract: any, primaryAddress: string, amount: number) {
     .on('error', reject)
   );
 }
-
 
 interface CompleteBorrowFormProps {
   state: any;
@@ -66,65 +66,25 @@ const borrowFormValidation = (values: any) => {
   return errors;
 };
 
-interface IConfirm {
-  open: boolean;
-  run: Function;
-}
-
-interface BorrowTOSModalProps {
-  showModal: IConfirm;
-  toggleModal: Function;
-}
-
-const BorrowTOSModal = ({ showModal, toggleModal }: BorrowTOSModalProps) => {
-
-  function reject () {
-    return (showModal.run) && showModal.run(Promise.reject()) && toggleModal({ open: false, run: () => 1 });
-  }
-  function confirm () {
-    return (showModal.run) && showModal.run(Promise.resolve()) && toggleModal({ open: false, run: () => 1 });
-  }
-  return (<Modal show={showModal.open} onHide={reject} size={'lg'}>
-    <Modal.Header closeButton>
-      <Modal.Title>Confirm Borrowing Terms</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <Container>
-        <Card className="p-2 m-2" style={{ width: '100%' }}>
-          <Card.Body>
-            <Card.Text>
-              Confirm to the borrowing terms below
-              <Table hover>
-                <tbody>
-                  <tr>
-                    <td>Owed</td>
-                    <td><p className="float-right">110 DAI</p></td>
-                  </tr>
-                  <tr>
-                    <td>Due Date</td>
-                    <td><p className="float-right">08/02/2020</p></td>
-                  </tr>
-                  <tr>
-                    <td>Interest Rate</td>
-                    <td><p className="float-right">{"24%"}</p></td>
-                  </tr>
-                </tbody>
-              </Table>
-              
-            </Card.Text>
-            <Button className="mb-2" variant="outline-secondary" block onClick={confirm}>
-              Confirm
-            </Button>
-          </Card.Body>
-        </Card>
-      </Container>
-    </Modal.Body>
-  </Modal>);
-};
-
 export default function LoanCreateCard() {
   const { state, updateAppState } = useContext(AppContext);
-  const [showModal, toggleModal] = useState<any>({ });
+
+  const [showModal, toggleModal] = useState<IConfirm>(defaultIConfirm);
+  const  [adjustCollateralModal, adjustCollateralToggleModal] = useState<ICollateralAdjust>(defaultICollateral);
+
+  const showDepositCollateral = () => adjustCollateralToggleModal({
+    open: true,
+    current: 0,
+    type: CollateralAdjustType.Deposit,
+    run: () => 1,
+  });
+  const showWithdrawCollateral = () => adjustCollateralToggleModal({
+    open: true, 
+    current: 0,
+    type: CollateralAdjustType.Withdraw,
+    run: () => 1,
+  });
+
   const initialBorrowValues = { amount: 100 };
   const hasWeb3 = state.web3State?.web3;
 
@@ -138,6 +98,8 @@ export default function LoanCreateCard() {
       </Row>
       <Row className="justify-content-center">
         <h5 className="text-muted">Collateral Balance</h5>
+        <Button type="submit" disabled={!hasWeb3} className="mb-3" variant="outline-primary" onClick={showDepositCollateral} block>Withdraw</Button>
+        <Button type="submit" disabled={!hasWeb3} className="mb-3" variant="outline-primary" onClick={showWithdrawCollateral} block>Deposit</Button>
       </Row>
     </Card.Header>
     <Card.Body>
@@ -208,5 +170,6 @@ export default function LoanCreateCard() {
       </Container>
     </Card.Body>
     <BorrowTOSModal showModal={showModal} toggleModal={toggleModal} />
+    <CollateralAdjustModal showModal={adjustCollateralModal} toggleModal={adjustCollateralToggleModal} />
   </Card>;
 }
