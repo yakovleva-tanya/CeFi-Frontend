@@ -15,6 +15,8 @@ import { globalDecimals } from "./../../util/constants";
 
 import * as eth from './../../../dist/assets/eth-diamond-glyph.black.png';
 import * as dai from './../../../dist/assets/dai.png';
+import * as plus from './../../../dist/assets/plus.svg';
+import * as minus from './../../../dist/assets/minus.svg';
 
 import './index.scss';
 
@@ -92,14 +94,26 @@ export default function LoanCreateCard() {
 
   return <Card className="loan-create-card mt-5 mb-5 w-100 shadow">
     <Card.Header>
-      <Row className="justify-content-center">
-        <h1>2 ETH</h1>
-        <img className="eth" src={eth.default} />
-      </Row>
-      <Row className="justify-content-center">
-        <h5 className="text-muted">Collateral Balance</h5>
-        <Button type="submit" disabled={!hasWeb3} className="mb-3" variant="outline-primary" onClick={showDepositCollateral} block>Withdraw</Button>
-        <Button type="submit" disabled={!hasWeb3} className="mb-3" variant="outline-primary" onClick={showWithdrawCollateral} block>Deposit</Button>
+      <Row>
+        <Col>
+          <Button className="collateral-btn" type="submit" disabled={!hasWeb3} variant="outline-light" onClick={showWithdrawCollateral} block>
+            <img className="minus" src={minus.default} />
+          </Button>
+        </Col>
+        <Col>
+          <Row className="justify-content-center">
+            <h1>2 ETH</h1>
+            <img className="eth" src={eth.default} />
+          </Row>
+          <Row className="justify-content-center">
+            <h5 className="text-muted">Collateral Balance</h5>
+          </Row>
+        </Col>
+        <Col>
+          <Button className="float-right collateral-btn" type="submit" disabled={!hasWeb3} variant="outline-light" onClick={showDepositCollateral} block>
+            <img className="plus" src={plus.default} />
+          </Button>
+        </Col>
       </Row>
     </Card.Header>
     <Card.Body>
