@@ -139,7 +139,7 @@ const RewardsSection = () => {
       </Card>
     </Col>
     <Col className="mt-5" xs={12} md={2}>
-      <Button onClick={completeRedeemZDai(state, updateAppState)} className="rewards-button w-100 h-100" variant="outline-success">Claim</Button>
+      <Button onClick={completeRedeemZDai(state, updateAppState)} className="rewards-button w-100 h-100" variant="outline-success">Withdraw</Button>
     </Col>
   </Row>
   return ;
