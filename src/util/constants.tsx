@@ -2,7 +2,7 @@ var serverURL: string;
 if (process.env.NODE_ENV === 'production') {
   serverURL = '';
 } else {
-  serverURL = 'http://web2-elb-ntwrk-94efa0b9d1e72695.elb.us-west-2.amazonaws.com/';
+  serverURL = 'ec2-54-212-133-240.us-west-2.compute.amazonaws.com';
 }
 
 export const fortmaticOptions = {
