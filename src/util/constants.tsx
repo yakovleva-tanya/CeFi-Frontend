@@ -2,8 +2,9 @@ var serverURL: string;
 if (process.env.NODE_ENV === 'production') {
   serverURL = '';
 } else {
-  serverURL = 'ec2-54-212-133-240.us-west-2.compute.amazonaws.com';
+  serverURL = 'http://ec2-54-212-133-240.us-west-2.compute.amazonaws.com';
 }
+
 
 export const fortmaticOptions = {
   apiKey: process.env.FORTMATIC_API_KEY || "pk_test_DE7A33DFF78D95FD",
