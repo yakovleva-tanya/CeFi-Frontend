@@ -2,12 +2,12 @@ var serverURL: string;
 if (process.env.NODE_ENV === 'production') {
   serverURL = '';
 } else {
-  serverURL = 'http://web2-elb-ntwrk-94efa0b9d1e72695.elb.us-west-2.amazonaws.com/';
+  serverURL = 'http://ec2-54-212-133-240.us-west-2.compute.amazonaws.com';
 }
 
-export const fortmaticOptions = {
-  apiKey: process.env.FORTMATIC_API_KEY || "pk_test_DE7A33DFF78D95FD",
-  network: process.env.FORTMATIC_NETWORK || "ropsten",
+export const BlockNativeOptions = {
+  dappId: process.env.BLOCKNATIVE_API_KEY || '7671ae60-0b76-4b97-bfe4-1622dec024ed',
+  networkId: process.env.BLOCKNATIVE_NETWORK || 3,
 };
 
 export const globalDecimals = 1000000000000000000;
@@ -26,7 +26,7 @@ export const contractOptions = {
 
 export default {
   serverURL,
-  fortmaticOptions,
+  BlockNativeOptions,
   globalDecimals,
   contractOptions,
 };

@@ -2,6 +2,11 @@
 
 Zero Collateral frontend integration with CeFi infrastructure.
 
+## Environment
+
+Secrets are held in `.development-secrets.json` see src/util/constants.tsx for
+required environment variables.
+
 ## Building
 
 To build the production code, run ```npm build```.
