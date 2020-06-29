@@ -20,7 +20,8 @@ export interface PlaidState {
 
 export enum Web3Type {
   Fortmatic,
-  Metamask
+  Metamask,
+  BlockNative
 }
 
 export interface Web3State {
