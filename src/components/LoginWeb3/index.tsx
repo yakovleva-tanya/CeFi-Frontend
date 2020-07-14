@@ -18,7 +18,7 @@ import { AppContext, AppContextState, Web3Type, Web3State } from "./../../contex
 
 import * as eth from './../../../dist/assets/eth-diamond.color.png';
 
-async function web3FromProvider(x: Web3Type, close: Function, updateAppState: Function) {
+export async function web3FromProvider(x: Web3Type, close: Function, updateAppState: Function) {
   close(false);
   const onboard = Onboard({
     ...BlockNativeOptions,
