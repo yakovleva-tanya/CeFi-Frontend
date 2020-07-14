@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import Wyre from 'wyre';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -57,8 +58,6 @@ const completeRedeemZDai = (state: any, updateAppState: Function) => async () =>
       return { ...st, zeroCollateral };
     });
   } catch (error) {
-    error
-    debugger
     updateAppState((st: AppContextState) => {
       const errorModal = {
         show: true,
@@ -70,10 +69,27 @@ const completeRedeemZDai = (state: any, updateAppState: Function) => async () =>
   }
 };
 
+const wyrePopup = amount => new Wyre({
+    env: 'test',
+    operation: {
+        type: 'debitcard-hosted-dialog',
+        dest: "ethereum:0x98B031783d0efb1E65C4072C6576BaCa0736A912",
+        destCurrency: "ETH",
+        sourceAmount: amount,
+        paymentMethod: 'debit-card'
+    }
+});
+
 const LendingCard = () => {
   const { state, updateAppState } = useContext(AppContext);
   const initialSupplyValues = { amount: 100 };
   const hasWeb3 = state.web3State?.web3;
+
+
+  const openDebit = () => {
+    const wyre = wyrePopup(100);
+    wyre.open();
+  };
 
   return <Card className="lending-card px-5 w-100 shadow">
     <Card.Body>
@@ -118,6 +134,11 @@ const LendingCard = () => {
                   </Form>
                 )}
             </Formik>
+          </Col>
+        </Row>
+        <Row className="justify-content-center mt-2">
+          <Col xs={{span: 4, offset: 0 }}>
+            <Button onClick={openDebit} disabled={!hasWeb3} className="supply-debit-button" variant="success" block>Supply with Debit Card</Button>
           </Col>
         </Row>
       </Container>

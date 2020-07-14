@@ -86,6 +86,7 @@ module.exports = {
         "react": "React",
         "react-dom": "ReactDOM",
         "plaid-files": "Plaid",
-        "fortmatic": "Fortmatic"
+        "fortmatic": "Fortmatic",
+        "wyre": "Wyre"
     }
 };
