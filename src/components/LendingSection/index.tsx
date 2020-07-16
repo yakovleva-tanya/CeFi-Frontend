@@ -69,7 +69,7 @@ const completeRedeemZDai = (state: any, updateAppState: Function) => async () =>
   }
 };
 
-const wyrePopup = amount => new Wyre({
+const wyrePopup = (amount: number) => new Wyre({
     env: 'test',
     operation: {
         type: 'debitcard-hosted-dialog',

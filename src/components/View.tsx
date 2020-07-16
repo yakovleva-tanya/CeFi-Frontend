@@ -13,13 +13,9 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
-import { Web3Connector } from './LoginWeb3';
-import { AppContext, AppContextState } from "./../context/app";
+import { web3FromProvider } from './LoginWeb3';
+import { AppContext, AppContextState, Web3Type } from "./../context/app";
 
-interface Web3LoginButtonProps {
-  loggedIn: string | null;
-  toggleModal: Function;
-}
 
 function truncate(n: number, useWordBoundary: boolean){
     if (this.length <= n) { return this; }
@@ -29,12 +25,21 @@ function truncate(n: number, useWordBoundary: boolean){
        : subString) + "...";
 }
 
+interface Web3LoginButtonProps {
+  loggedIn: string | null;
+  updateAppState: Function;
+}
+
 function Web3Login (props: Web3LoginButtonProps) {
-    const { loggedIn, toggleModal } = props;
+    const { loggedIn, updateAppState } = props;
+    const noop = () => 1;
     return <span>
         { !loggedIn ?
-            <Button onClick={() => toggleModal(true)}>
-                Connect Web3
+            <Button className="mb-2"
+              onClick={ () => web3FromProvider(Web3Type.BlockNative, noop, updateAppState) }
+              variant="outline-primary" block
+            >
+              Connect
             </Button> :
             <Badge variant="primary" className="p-2 font-weight-bold">{ truncate.apply(loggedIn, [10]) } </Badge>
         }
@@ -67,21 +72,13 @@ export const ViewWrapper = (props: ViewProps) => {
         </Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
           <Nav.Item>
-            <Nav.Link><Web3Login loggedIn={loggedIn} toggleModal={toggleLoginModal} /></Nav.Link>
+            <Nav.Link><Web3Login loggedIn={loggedIn} updateAppState={updateAppState} /></Nav.Link>
           </Nav.Item>
         </Navbar.Collapse>
       </Navbar>
       <div className='view-content'>
         { props.children }
       </div>
-      <Modal show={showLoginModal} onHide={() => toggleLoginModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Login with an Ethereum account</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <Web3Connector close={toggleLoginModal} />
-        </Modal.Body>
-      </Modal>
       <Modal centered={true} show={errors.show} onHide={() => toggleErrorModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>{errors.title}</Modal.Title>
