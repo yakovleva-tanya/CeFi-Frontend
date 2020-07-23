@@ -13,8 +13,15 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
-import { Web3Connector } from './LoginWeb3';
-import { AppContext, AppContextState } from "./../context/app";
+import { Web3Connector } from './../LoginWeb3';
+import { AppContext, AppContextState } from "./../../context/app";
+
+import "./index.scss";
+
+export enum AppSection {
+  Lending,
+  Borrowing
+}
 
 interface Web3LoginButtonProps {
   loggedIn: string | null;
@@ -33,7 +40,7 @@ function Web3Login (props: Web3LoginButtonProps) {
     const { loggedIn, toggleModal } = props;
     return <span>
         { !loggedIn ?
-            <Button onClick={() => toggleModal(true)}>
+            <Button variant="outline-primary" onClick={() => toggleModal(true)}>
                 Connect Web3
             </Button> :
             <Badge variant="primary" className="p-2 font-weight-bold">{ truncate.apply(loggedIn, [10]) } </Badge>
@@ -43,6 +50,8 @@ function Web3Login (props: Web3LoginButtonProps) {
 
 interface ViewProps {
   children: React.ReactNode;
+  updateSection: Function;
+  currentSection: AppSection;
 }
 
 /**
@@ -51,6 +60,7 @@ interface ViewProps {
  * @memberof ViewComponent
  */
 export const ViewWrapper = (props: ViewProps) => {
+  const { children, updateSection, currentSection } = props;
   const [showLoginModal, toggleLoginModal] = useState(false);
 
   const { state, updateAppState } = useContext(AppContext);
@@ -58,6 +68,9 @@ export const ViewWrapper = (props: ViewProps) => {
   const errors = state.errorModal;
 
   const toggleErrorModal = (show: boolean) => updateAppState((st: AppContextState) => ({ ...st, errorModal: { show } }));
+
+  const lendingVariant = currentSection === AppSection.Lending? 'outline-primary' : 'light';
+  const borrowingVariant = currentSection === AppSection.Borrowing ? 'outline-primary' : 'light';
 
   return (
     <div className='view'>
@@ -67,13 +80,18 @@ export const ViewWrapper = (props: ViewProps) => {
         </Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
           <Nav.Item>
-            <Button className="bg-transparent red" variant="light">
+            <Button className="bg-transparent menu-button" variant={lendingVariant} onClick={() => updateSection(AppSection.Lending) }>
               Lend
             </Button>
           </Nav.Item>
           <Nav.Item>
-            <Button className="ml-1 bg-transparent" variant="light">
+            <Button className="ml-1 bg-transparent menu-button" variant={borrowingVariant} onClick={() => updateSection(AppSection.Borrowing) }>
               Borrow
+            </Button>
+          </Nav.Item>
+          <Nav.Item>
+            <Button className="ml-1 bg-transparent menu-button" variant="light" onClick={() => updateSection(AppSection.Borrowing) }>
+              Dashboard
             </Button>
           </Nav.Item>
           <Nav.Item>
@@ -82,7 +100,7 @@ export const ViewWrapper = (props: ViewProps) => {
         </Navbar.Collapse>
       </Navbar>
       <div className='view-content'>
-        { props.children }
+        { children }
       </div>
       <Modal show={showLoginModal} onHide={() => toggleLoginModal(false)}>
         <Modal.Header closeButton>
