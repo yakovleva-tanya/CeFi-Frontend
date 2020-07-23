@@ -130,7 +130,7 @@ const LendingCard = () => {
                         />
                       </Col>
                     </Form.Group>
-                    <Button type="submit" disabled={isSubmitting || !hasWeb3} className="supply-button" variant="outline-primary" block>Supply</Button>
+                    <Button type="submit" disabled={isSubmitting || !hasWeb3} className="supply-button" variant="primary" block>Supply</Button>
                   </Form>
                 )}
             </Formik>
@@ -138,7 +138,7 @@ const LendingCard = () => {
         </Row>
         <Row className="justify-content-center mt-2">
           <Col xs={{span: 4, offset: 0 }}>
-            <Button onClick={openDebit} disabled={!hasWeb3} className="supply-debit-button" variant="success" block>Supply with Debit Card</Button>
+            <Button onClick={openDebit} disabled={!hasWeb3} className="supply-debit-button" variant="outline-primary" block>Supply with Debit Card</Button>
           </Col>
         </Row>
       </Container>

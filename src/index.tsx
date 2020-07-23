@@ -6,6 +6,7 @@ import { AppContext, AppContextInterface } from './context/app';
 import useAppContext from './hooks/AppContext';
 
 import './index.d';
+import './index.scss';
 
 function App() {
   const [state, updateAppState] = useAppContext();

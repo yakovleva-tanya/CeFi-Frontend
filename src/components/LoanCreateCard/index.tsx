@@ -173,7 +173,7 @@ export default function LoanCreateCard() {
                         </Table>
                       </Row>
                       <Row>
-                        <Button type="submit" disabled={isSubmitting || !hasWeb3} className="supply-button mb-3" variant="outline-primary" block>Borrow</Button>
+                        <Button type="submit" disabled={isSubmitting || !hasWeb3} className="supply-button mb-3" variant="primary" block>Borrow</Button>
                       </Row>
                     </Col>
                   </Form>
