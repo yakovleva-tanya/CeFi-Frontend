@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
-import { BorrowTOSModal, IConfirm, defaultIConfirm }  from './../../components/BorrowTOSModal';
+import { BorrowDetailsModal, IConfirm, defaultIConfirm }  from './../../components/BorrowDetailsModal';
 import { CollateralAdjustModal, defaultICollateral, ICollateralAdjust, CollateralAdjustType }  from './../../components/CollateralAdjustModal';
 import Notify from "./../../models/Web3Notify";
 import { AppContext, AppContextState } from "./../../context/app";
@@ -183,7 +183,7 @@ export default function LoanCreateCard() {
         </Row>
       </Container>
     </Card.Body>
-    <BorrowTOSModal showModal={showModal} toggleModal={toggleModal} />
+    <BorrowDetailsModal showModal={showModal} toggleModal={toggleModal} />
     <CollateralAdjustModal showModal={adjustCollateralModal} toggleModal={adjustCollateralToggleModal} />
   </Card>;
 }
