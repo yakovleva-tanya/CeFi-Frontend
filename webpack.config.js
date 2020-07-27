@@ -7,7 +7,7 @@ module.exports = {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
     },
-    mode: "production",
+    mode: "development",
 
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
@@ -54,7 +54,16 @@ module.exports = {
     },
 
     plugins: [
-      new webpack.DefinePlugin(),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
+        'process.env.NOTIFY_ID': `'${process.env.NOTIFY_ID}'`,
+        'process.env.BLOCKNATIVE_API_KEY': `'${process.env.BLOCKNATIVE_API_KEY}'`,
+        'process.env.BLOCKNATIVE_NETWORK': `'${process.env.BLOCKNATIVE_NETWORK}'`,
+        'process.env.FORTMATIC_API_KEY': `'${process.env.FORTMATIC_API_KEY}'`,
+        'process.env.FORTMATIC_NETWORK': `'${process.env.FORTMATIC_NETWORK}'`,
+        'process.env.PLAID_ENV': `'${process.env.PLAID_ENV}'`,
+        'process.env.PLAID_KEY': `'${process.env.PLAID_KEY}'`
+      }),
     ],
 
     // When importing a module whose path matches one of the following, just
@@ -65,6 +74,7 @@ module.exports = {
         "react": "React",
         "react-dom": "ReactDOM",
         "plaid-files": "Plaid",
-        "fortmatic": "Fortmatic"
+        "fortmatic": "Fortmatic",
+        "wyre": "Wyre"
     }
 };
