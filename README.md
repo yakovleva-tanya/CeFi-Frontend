@@ -33,4 +33,26 @@ npm start
 ## Documentation
 
 This app uses JSDocs. To generate documentation in the docs folder, run:
-```npm run docs```
+```npm run build:docs```
+
+## Architecture
+
+### Connecting to Ethereum
+
+Install Metamask and connect to the test network currently used on the server.
+
+### Code
+
+#### Application State
+
+Application State can be found in `src/context/app.tsx`.
+
+#### Routing
+
+Routing is stored in the `src/components/Routing.tsx` file.
+
+#### Views
+
+Top level views shown by the Router are stored in the `src/componenvs/views folder.
+
+

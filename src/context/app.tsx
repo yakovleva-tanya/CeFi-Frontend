@@ -58,6 +58,9 @@ export interface AppContextInterface {
   updateAppState: Function;
 }
 
+/**
+ * Initial state that will be loaded when the application starts.
+ */
 export const AppContextDefault = {
   state: {
     fico: {
@@ -75,6 +78,9 @@ export const AppContextDefault = {
         zDai: null as null,
         lendingPool: null as null,
       }
+    },
+    myState: {
+      someproperty: null as null,
     },
     plaid: {
       loggedIn: null as null,

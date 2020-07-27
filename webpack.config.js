@@ -54,10 +54,7 @@ module.exports = {
     },
 
     plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': '"development"',
-        'process.env.NOTIFY_ID': '"aada7a03-c98f-47cb-bf41-0723c52497e8"'
-      }),
+      new webpack.DefinePlugin(),
     ],
 
     // When importing a module whose path matches one of the following, just

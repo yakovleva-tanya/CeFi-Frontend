@@ -3,11 +3,10 @@
  * @category ReactModels
  */
 
-import Constants from './../../util/constants';
+import { serverURL, plaidSettings } from './../../util/constants';
 import axios from 'axios';
 
 declare const window: any;
-const serverURL = Constants.serverURL;
 const Plaid = window.Plaid;
 
 interface PlaidModelInterface {
@@ -42,12 +41,11 @@ export default class PlaidModel {
         clientName: 'Plaid Quickstart',
         countryCodes: ['US'],
         product: ['transactions'],
-        env: 'sandbox',
-        key: '8f8e5a63107fc2027a5768a1571988',
         onLoad: this.plaidOptions.onLoad,
         onSuccess: this.plaidOptions.onSuccess,
         onExit: this.plaidOptions.onExit,
-        onEvent: this.plaidOptions.onEvent
+        onEvent: this.plaidOptions.onEvent,
+        ...plaidSettings
       });
       this.handler.open();
       return Promise.resolve("Ok");

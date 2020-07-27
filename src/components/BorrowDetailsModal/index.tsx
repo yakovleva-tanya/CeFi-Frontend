@@ -1,4 +1,11 @@
-import React from "react";
+/**
+ * Implements borrow details modal that will confirm to the user their borrowing information.
+ *
+ * @namespace BorrowDetailsModal
+ * @category ReactComponents
+ */
+
+import React, { useContext } from "react";
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -8,7 +15,10 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import { Formik  } from 'formik';
+import { AppContext } from "./../../context/app";
+
 import * as info from './../../../dist/assets/info.svg';
+import ConnectPlaid from './../../actions/ConnectPlaid';
 
 import './index.scss';
 
@@ -29,6 +39,9 @@ const useTooltip = (<Tooltip id="popover-basic">
 </Tooltip>);
 
 export const BorrowDetailsModal = ({ showModal, toggleModal }: BorrowTOSModalProps) => {
+  const { state, updateAppState } = useContext(AppContext);
+
+  const plaidConnected = state?.plaid?.loggedIn;
 
   function reject () {
     return (showModal.run) && showModal.run(Promise.reject()) && toggleModal(defaultIConfirm);
@@ -134,9 +147,12 @@ export const BorrowDetailsModal = ({ showModal, toggleModal }: BorrowTOSModalPro
                         </Col>
                       </Form.Row>
                     </Form.Group>
-                    <Button className="mb-2" variant="secondary" block>
-                      Connect Bank
-                    </Button>
+                    { !plaidConnected ?
+                        <Button className="mb-2" variant="secondary" block
+                         onClick={ConnectPlaid(updateAppState)}
+                        >
+                          Connect Bank
+                        </Button> : "" }
                     <Button type="submit" className="mb-2" variant="primary" block>
                       Confirm
                     </Button>

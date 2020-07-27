@@ -1,4 +1,5 @@
-var serverURL: string;
+export var serverURL: string;
+
 if (process.env.NODE_ENV === 'production') {
   serverURL = '';
 } else {
@@ -6,11 +7,16 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export const BlockNativeOptions = {
-  dappId: process.env.BLOCKNATIVE_API_KEY || '7671ae60-0b76-4b97-bfe4-1622dec024ed',
-  networkId: process.env.BLOCKNATIVE_NETWORK || 3,
+  dappId: process.env.BLOCKNATIVE_API_KEY,
+  networkId: process.env.BLOCKNATIVE_NETWORK,
 };
 
 export const globalDecimals = 1000000000000000000;
+
+export const plaidSettings = {
+  env: process.env.PLAID_ENV,
+  key: process.env.PLAID_KEY
+};
 
 export const contractOptions = {
   AddressLib: '0x63e462658B2d2756d64EA1dba6B4bC2142d7Fd49',
@@ -29,4 +35,5 @@ export default {
   BlockNativeOptions,
   globalDecimals,
   contractOptions,
+  plaidSettings
 };
