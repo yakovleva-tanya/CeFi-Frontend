@@ -58,7 +58,7 @@ const completeBorrowForm = ({ state, updateAppState, toggleModal }: CompleteBorr
       toggleModal({ open: false, run: () => 1 });
     }
   };
-  
+
   toggleModal({ run:defer, open: true });
 
 };
@@ -81,7 +81,7 @@ export default function LoanCreateCard() {
     run: () => 1,
   });
   const showWithdrawCollateral = () => adjustCollateralToggleModal({
-    open: true, 
+    open: true,
     current: 0,
     type: CollateralAdjustType.Withdraw,
     run: () => 1,
