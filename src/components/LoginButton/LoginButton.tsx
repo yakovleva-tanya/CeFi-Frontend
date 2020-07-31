@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { AppContext, AppContextState } from "../../context/app";
 
 function truncate(n: number) {
@@ -6,13 +6,14 @@ function truncate(n: number) {
   if (length <= n) {
     return this;
   }
-  return `${this.substr(0, n - 1)}...${this.substr(length - 4, length)}`
+  return `${this.substr(0, n - 1)}...${this.substr(length - 4, length)}`;
 }
 
 const LoginButton = () => {
   const { state, updateAppState } = useContext(AppContext);
   const loggedIn = state.web3State?.address || "";
-  const toggleModal = (show: boolean) => updateAppState((st: AppContextState) => ({ ...st, loginModal: { show } }));
+  const toggleModal = (show: boolean) =>
+    updateAppState((st: AppContextState) => ({ ...st, loginModal: { show } }));
 
   return (
     <span>
@@ -24,14 +25,12 @@ const LoginButton = () => {
           Connect Wallet
         </a>
       ) : (
-          <div
-            className="menu-button login-button text-lg py-3 px-4"
-          >
-            {truncate.apply(loggedIn, [6])}
-          </div>
-        )}
+        <div className="menu-button login-button text-lg py-3 px-4">
+          {truncate.apply(loggedIn, [6])}
+        </div>
+      )}
     </span>
   );
-}
+};
 
 export default LoginButton;
