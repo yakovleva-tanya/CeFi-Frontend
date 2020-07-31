@@ -1,10 +1,4 @@
-export var serverURL: string;
-
-if (process.env.NODE_ENV === 'production') {
-  serverURL = '';
-} else {
-  serverURL = 'http://ec2-54-212-133-240.us-west-2.compute.amazonaws.com';
-}
+export const serverURL = process.env.SERVER_URL || '';
 
 export const BlockNativeOptions = {
   dappId: process.env.BLOCKNATIVE_API_KEY,
@@ -30,10 +24,15 @@ export const contractOptions = {
   loans: '0x1b6B0145C1c1580674Ac24b718340a5EDa609539',
 };
 
+export const dataProvidersURLs = {
+  bankInfo: process.env.DATA_PROVIDERS_URLS_BANK_INFO || '',
+};
+
 export default {
   serverURL,
   BlockNativeOptions,
   globalDecimals,
   contractOptions,
-  plaidSettings
+  plaidSettings,
+  dataProvidersURLs
 };
