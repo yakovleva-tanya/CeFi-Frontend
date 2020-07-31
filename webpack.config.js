@@ -58,7 +58,7 @@ module.exports = {
         'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
         'process.env.NOTIFY_ID': `'${process.env.NOTIFY_ID}'`,
         'process.env.BLOCKNATIVE_API_KEY': `'${process.env.BLOCKNATIVE_API_KEY}'`,
-        'process.env.BLOCKNATIVE_NETWORK': `'${process.env.BLOCKNATIVE_NETWORK}'`,
+        'process.env.BLOCKNATIVE_NETWORK': `${process.env.BLOCKNATIVE_NETWORK}`,
         'process.env.FORTMATIC_API_KEY': `'${process.env.FORTMATIC_API_KEY}'`,
         'process.env.FORTMATIC_NETWORK': `'${process.env.FORTMATIC_NETWORK}'`,
         'process.env.PLAID_ENV': `'${process.env.PLAID_ENV}'`,
