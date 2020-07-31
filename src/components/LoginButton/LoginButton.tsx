@@ -1,16 +1,12 @@
 import React, {useContext} from "react";
 import { AppContext, AppContextState } from "../../context/app";
 
-function truncate(n: number, useWordBoundary: boolean) {
-  if (this.length <= n) {
+function truncate(n: number) {
+  const length = this.length;
+  if (length <= n) {
     return this;
   }
-  const subString = this.substr(0, n - 1);
-  return (
-    (useWordBoundary
-      ? subString.substr(0, subString.lastIndexOf(" "))
-      : subString) + "..."
-  );
+  return `${this.substr(0, n - 1)}...${this.substr(length - 4, length)}`
 }
 
 const LoginButton = () => {
@@ -31,7 +27,7 @@ const LoginButton = () => {
           <div
             className="menu-button login-button text-lg py-3 px-4"
           >
-            {truncate.apply(loggedIn, [10])}
+            {truncate.apply(loggedIn, [6])}
           </div>
         )}
     </span>

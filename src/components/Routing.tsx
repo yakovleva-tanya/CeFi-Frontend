@@ -1,12 +1,9 @@
-import  React from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-// import { LendingSection } from "./../components/LendingSection";
-// import { BorrowingSection } from "./../components/BorrowingSection";
-// import { Home } from "./../views/Home";
 import Lend from './../components/Lend/Lend';
 import Borrow from './../components/Borrow/Borrow';
 import Dashboard from './../components/Dashboard/Dashboard';
@@ -32,7 +29,7 @@ export default function Routing() {
             <Lend />
           </Route>
         </Switch>
-        <LoginModals/>
+        <LoginModals />
       </Router>
     </div>
   );
