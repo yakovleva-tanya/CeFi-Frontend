@@ -1,10 +1,24 @@
 import * as React from "react";
 import Plaid, { PlaidTransaction } from './../models/Plaid';
+import { AssetReport } from 'plaid';
 
 interface ErrorModal {
   show: boolean;
   message: string | null;
   title: string | null;
+}
+
+export interface BankInfoResponseInterface {
+  assetReport: AssetReport;
+  signature: string;
+}
+
+interface DataProviderResponseInterface {
+  bankInfo: BankInfoResponseInterface | null;
+}
+
+interface LoginModal {
+  show: boolean;
 }
 
 interface PlaidInterface {
@@ -49,8 +63,10 @@ export interface AppContextState {
   plaid: PlaidState;
   fico: FicoState;
   errorModal: ErrorModal;
+  loginModal: LoginModal;
   web3State: Web3State;
   zeroCollateral: ZeroCollateralState;
+  dataProviderResponse: DataProviderResponseInterface;
 }
 
 export interface AppContextInterface {
@@ -63,6 +79,9 @@ export interface AppContextInterface {
  */
 export const AppContextDefault = {
   state: {
+    dataProviderResponse: {
+      bankInfo: null as null
+    },
     fico: {
       score: null as null,
     },
@@ -91,7 +110,10 @@ export const AppContextDefault = {
       show: false,
       message: null,
       title: null,
-    } as ErrorModal
+    } as ErrorModal,
+    loginModal: {
+      show: false
+    } as LoginModal,
   },
   updateAppState: () => {}
 };
