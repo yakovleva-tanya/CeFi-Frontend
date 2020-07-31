@@ -5,10 +5,11 @@ import AssetChangeWarningModal from "../AssetChangeWarningModal/AssetChangeWarni
 type DropdownType = {
   currency: string;
   setCurrency: Function,
-  tokensApproved: boolean
+  tokensApproved: boolean,
+  setTokensApproved: Function
 };
 
-const CurrencyDropdown = ({ currency, setCurrency, tokensApproved}: DropdownType) => {
+const CurrencyDropdown = ({ currency, setCurrency, tokensApproved, setTokensApproved}: DropdownType) => {
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [newCurrency, setNewCurrency] = useState('');
 
@@ -30,6 +31,7 @@ const CurrencyDropdown = ({ currency, setCurrency, tokensApproved}: DropdownType
   const proceedWithChange = () => {
     setShowWarningModal(false);
     setCurrency(newCurrency);
+    setTokensApproved(false);
   };
 
   return (

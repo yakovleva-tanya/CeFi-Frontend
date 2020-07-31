@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Formik } from "formik";
 import { AppContext, AppContextState } from "../../context/app";
 import supplyDai from "../../actions/lendDai";
+import Container from "react-bootstrap/Container";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -73,7 +74,7 @@ const supplyFormValidation = () => {
 const Lend = () => {
   const [currency, setCurrency] = useState("DAI");
   const [amount, setAmount] = useState(10);
-  const [transactionHash, setTransactionHash] = useState(""); // should be assigned once lending processed
+  const [transactionHash, setTransactionHash] = useState("");
   const [tokensApproved, setTokensApproved] = useState(false);
   const { state, updateAppState } = useContext(AppContext);
 
@@ -86,7 +87,7 @@ const Lend = () => {
     updateAppState((st: AppContextState) => ({ ...st, loginModal: { show } }));
 
   return (
-    <div>
+    <Container>
       {!transactionHash ? (
         <div className="cards-container">
           <Card className="flex-2 text-center align-items-center" title="Lend">
@@ -132,6 +133,7 @@ const Lend = () => {
                         currency={currency}
                         setCurrency={setCurrency}
                         tokensApproved={tokensApproved}
+                        setTokensApproved={setTokensApproved}
                       />
                     </TableRow>
                     <BR />
@@ -178,7 +180,7 @@ const Lend = () => {
       ) : (
         <SuccessScreen link={transactionHash} />
       )}
-    </div>
+    </Container>
   );
 };
 

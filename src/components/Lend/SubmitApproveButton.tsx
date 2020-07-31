@@ -44,7 +44,7 @@ const SubmitApproveButton = ({
     <div className="d-flex flex-row align-items-center">
       <div
         className={`py-1 px-3 border-thin  ${
-          !loggedIn || approving ? "disabled" : "pointer"
+          !loggedIn || approving ? "disabled text-lightest-gray" : "pointer text-black"
         }`}
         onClick={() => {
           if (loggedIn) {

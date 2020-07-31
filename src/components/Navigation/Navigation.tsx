@@ -34,6 +34,7 @@ const Navigation = () => {
             className="d-inline-block align-top"
           />
         </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
           <NavigationLink to="lend" name="Lend" />
           <NavigationLink to="borrow" name="Borrow" />
