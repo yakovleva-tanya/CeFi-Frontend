@@ -62,7 +62,9 @@ module.exports = {
         'process.env.FORTMATIC_API_KEY': `'${process.env.FORTMATIC_API_KEY}'`,
         'process.env.FORTMATIC_NETWORK': `'${process.env.FORTMATIC_NETWORK}'`,
         'process.env.PLAID_ENV': `'${process.env.PLAID_ENV}'`,
-        'process.env.PLAID_KEY': `'${process.env.PLAID_KEY}'`
+        'process.env.PLAID_KEY': `'${process.env.PLAID_KEY}'`,
+        'process.env.SERVER_URL': `'${process.env.SERVER_URL}'`,
+        'process.env.DATA_PROVIDERS_URLS_BANK_INFO': `'${process.env.DATA_PROVIDERS_URLS_BANK_INFO}'`
       }),
     ],
 
