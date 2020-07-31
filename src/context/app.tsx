@@ -7,6 +7,10 @@ interface ErrorModal {
   title: string | null;
 }
 
+interface LoginModal {
+  show: boolean;
+}
+
 interface PlaidInterface {
   publicKey: string;
   metadata: any;
@@ -49,6 +53,7 @@ export interface AppContextState {
   plaid: PlaidState;
   fico: FicoState;
   errorModal: ErrorModal;
+  loginModal: LoginModal;
   web3State: Web3State;
   zeroCollateral: ZeroCollateralState;
 }
@@ -91,7 +96,10 @@ export const AppContextDefault = {
       show: false,
       message: null,
       title: null,
-    } as ErrorModal
+    } as ErrorModal,
+    loginModal: {
+      show: false
+    } as LoginModal,
   },
   updateAppState: () => {}
 };
