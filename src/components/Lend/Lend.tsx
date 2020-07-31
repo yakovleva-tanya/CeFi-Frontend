@@ -148,7 +148,7 @@ const Lend = () => {
                   </div>
                   {!loggedIn ? (
                     <Button
-                      className="py-3 px-4 mt-2 text-lg "
+                      className="py-3 px-4 my-3 text-lg "
                       variant="primary"
                       onClick={() => toggleLoginModal(true)}
                     >
@@ -158,7 +158,7 @@ const Lend = () => {
                     <Button
                       type="submit"
                       disabled={isSubmitting || !loggedIn || !tokensApproved}
-                      className={`py-3 px-4 mt-2 text-lg  ${
+                      className={`py-3 px-4 my-3 text-lg  ${
                         loggedIn && tokensApproved ? "pointer" : "disabled"
                       }`}
                       variant="primary"
