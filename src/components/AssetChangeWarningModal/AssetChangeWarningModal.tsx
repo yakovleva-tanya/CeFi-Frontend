@@ -19,7 +19,7 @@ const AssetChangeWarningModal = ({
       show={show}
       centered
       style={{ backgroundColor: "rgba(22, 88, 124, 0.36)" }}
-      className = "warning-modal"
+      className="warning-modal"
     >
       <Modal.Header className="d-flex flex-row justify-content-center py-4">
         <div className="text-2xl font-medium text-center">Hold Up</div>
