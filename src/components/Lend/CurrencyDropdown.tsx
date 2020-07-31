@@ -5,10 +5,10 @@ import AssetChangeWarningModal from "../AssetChangeWarningModal/AssetChangeWarni
 type DropdownType = {
   currency: string;
   setCurrency: Function,
-  tokensSubmitted: boolean
+  tokensApproved: boolean
 };
 
-const CurrencyDropdown = ({ currency, setCurrency, tokensSubmitted}: DropdownType) => {
+const CurrencyDropdown = ({ currency, setCurrency, tokensApproved}: DropdownType) => {
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [newCurrency, setNewCurrency] = useState('');
 
@@ -16,7 +16,7 @@ const CurrencyDropdown = ({ currency, setCurrency, tokensSubmitted}: DropdownTyp
     eventKey: any,
     e?: React.SyntheticEvent<{}>
   ) => {
-    if (tokensSubmitted) {
+    if (tokensApproved) {
       setNewCurrency(eventKey)
       setShowWarningModal(true);
     } else {

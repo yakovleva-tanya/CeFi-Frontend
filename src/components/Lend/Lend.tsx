@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Formik } from "formik";
 import { AppContext, AppContextState } from "../../context/app";
-import lendDai from "../../actions/lendDai";
+import supplyDai from "../../actions/lendDai";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -29,28 +29,30 @@ const exchangeRates: RatesType = {
 const convertCurrency = (currency: number, amount: number) =>
   (amount / currency).toFixed(2);
 
-const completeLendingForm = (state: any, updateAppState: Function) => async (
-  values: any,
-  { setSubmitting }: any
-) => {
+const completeSupply = (
+  state: any,
+  updateAppState: Function,
+  setTransactionHash: Function
+) => async (values: any) => {
   const amount = values.amount;
   const primaryAddress = state.web3State.address;
   const { lendingPool, zDai } = state.zeroCollateral.contracts;
   try {
-    const balance = await lendDai(
+    const { balance, transactionHash } = await supplyDai(
       amount,
       primaryAddress,
       lendingPool,
       zDai,
       state.web3State
     );
-    setSubmitting(false);
+    setTransactionHash(transactionHash);
     updateAppState((st: AppContextState) => {
       const zeroCollateral = st.zeroCollateral;
       zeroCollateral.balance = balance;
       return { ...st, zeroCollateral };
     });
   } catch (error) {
+    console.log(error);
     updateAppState((st: AppContextState) => {
       const errorModal = {
         show: true,
@@ -71,9 +73,8 @@ const supplyFormValidation = () => {
 const Lend = () => {
   const [currency, setCurrency] = useState("DAI");
   const [amount, setAmount] = useState(10);
-  const [trackingLink, setTrackingLink] = useState(""); // should be assigned once lending processed
-  const [tokensSubmitted, setTokensSubmitted] = useState(false);
-
+  const [transactionHash, setTransactionHash] = useState(""); // should be assigned once lending processed
+  const [tokensApproved, setTokensApproved] = useState(false);
   const { state, updateAppState } = useContext(AppContext);
 
   const loggedIn = state.web3State?.address || "";
@@ -86,13 +87,17 @@ const Lend = () => {
 
   return (
     <div>
-      {!trackingLink ? (
+      {!transactionHash ? (
         <div className="cards-container">
           <Card className="flex-2 text-center align-items-center" title="Lend">
             <Formik
               initialValues={initialSupplyValues}
               validate={supplyFormValidation}
-              onSubmit={completeLendingForm(state, updateAppState)}
+              onSubmit={completeSupply(
+                state,
+                updateAppState,
+                setTransactionHash
+              )}
             >
               {({
                 values,
@@ -126,15 +131,16 @@ const Lend = () => {
                       <CurrencyDropdown
                         currency={currency}
                         setCurrency={setCurrency}
-                        tokensSubmitted={tokensSubmitted}
+                        tokensApproved={tokensApproved}
                       />
                     </TableRow>
                     <BR />
                     <TableRow title="Approve">
                       <SubmitApproveButton
+                        amount={amount}
                         loggedIn={loggedIn}
-                        tokensSubmitted={tokensSubmitted}
-                        setTokensSubmitted={setTokensSubmitted}
+                        tokensApproved={tokensApproved}
+                        setTokensApproved={setTokensApproved}
                       />
                     </TableRow>
                   </div>
@@ -149,9 +155,9 @@ const Lend = () => {
                   ) : (
                     <Button
                       type="submit"
-                      disabled={isSubmitting || !loggedIn}
+                      disabled={isSubmitting || !loggedIn || !tokensApproved}
                       className={`py-3 px-4 mt-2 text-lg  ${
-                        loggedIn ? " pointer" : "disabled"
+                        loggedIn && tokensApproved ? "pointer" : "disabled"
                       }`}
                       variant="primary"
                       block
@@ -170,7 +176,7 @@ const Lend = () => {
           />
         </div>
       ) : (
-        <SuccessScreen link={trackingLink} />
+        <SuccessScreen link={transactionHash} />
       )}
     </div>
   );
