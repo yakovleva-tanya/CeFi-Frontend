@@ -25,7 +25,7 @@ const NavigationLink = ({ to, name }: NavProps) => {
 const Navigation = () => {
   return (
     <div>
-      <Navbar bg="transparent" expand="lg" className="m-4 navBar">
+      <Navbar bg="transparent" expand="lg" className="p-4 navBar">
         <Navbar.Brand>
           <img
             alt=""
