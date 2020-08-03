@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
+import Lottie from "react-lottie";
 import { Check } from "react-bootstrap-icons";
 import { approveDai } from "../../models/Contracts";
 import { AppContext, AppContextState } from "../../context/app";
+import * as animationData from "../../../dist/assets/loading_animation.json";
 
 type SubmitApproveType = {
   amount: number;
@@ -44,7 +46,9 @@ const SubmitApproveButton = ({
     <div className="d-flex flex-row align-items-center">
       <div
         className={`py-1 px-3 border-thin  ${
-          !loggedIn || approving ? "disabled text-lightest-gray" : "pointer text-black"
+          !loggedIn || approving
+            ? "disabled text-lightest-gray"
+            : "pointer text-black"
         }`}
         onClick={() => {
           if (loggedIn) {
@@ -56,7 +60,7 @@ const SubmitApproveButton = ({
         Submit
       </div>
       {approving ? (
-        <div>approving</div>
+        <LoadingAnimation isStopped={!approving} />
       ) : (
         <Check
           className={`${
@@ -70,3 +74,27 @@ const SubmitApproveButton = ({
 };
 
 export default SubmitApproveButton;
+
+interface animationProps {
+  isStopped: boolean;
+}
+
+const LoadingAnimation = ({ isStopped }: animationProps) => {
+  return (
+    <div>
+      <Lottie
+        options={{
+          loop: true,
+          autoplay: true,
+          animationData: animationData,
+          rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice",
+          },
+        }}
+        height={24}
+        width={24}
+        isStopped={isStopped}
+      />
+    </div>
+  );
+};
