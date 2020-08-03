@@ -25,17 +25,17 @@ const NavigationLink = ({ to, name }: NavProps) => {
 const Navigation = () => {
   return (
     <div>
-      <Navbar bg="transparent" expand="lg" className="navBar">
+      <Navbar bg="transparent" expand="lg" className="p-4 navBar">
         <Navbar.Brand>
           <img
             alt=""
             src={teller_logo}
-            height="41"
-            className="d-inline-block align-top"
+            height="42"
+            className="d-inline-block align-top p-1"
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse className="justify-content-end">
+        <Navbar.Collapse className="justify-content-end navbar-links">
           <NavigationLink to="lend" name="Lend" />
           <NavigationLink to="borrow" name="Borrow" />
           <NavigationLink to="dashboard" name="Dashboard" />
