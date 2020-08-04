@@ -55,14 +55,14 @@ const Borrow = () => {
   };
 
   return (
-    <div>
+    <Container>
       {success ? (
         <SuccessScreen type="borrow" link="link" />
       ) : (
         <div className="borrow">
           <div className="cards-container">
             <Card className="main-card text-center" title="Borrow">
-              <div className="progress-bar-bg">
+              <div className="progress-bar-bg mt-5">
                 <div
                   className="progress-bar-blue"
                   style={{
@@ -97,7 +97,7 @@ const Borrow = () => {
               {stage === 2 && <SecondStageTable />}
               {stage === 3 && <ThirdStageTable />}
               <Button
-                className="py-3 px-4 mt-2"
+                className="py-3 px-4 mt-2 mb-5"
                 variant="primary"
                 onClick={() => {
                   if (stage === 3) {
@@ -121,7 +121,7 @@ const Borrow = () => {
           </Container>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 export default Borrow;
