@@ -3,11 +3,44 @@ import "./success-screen.scss";
 import Button from "react-bootstrap/Button";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-type Props = {
+type successProps = {
   link: string;
+  type: string;
 };
 
-const SuccessScreen = ({ link }: Props) => {
+type messageProps = {
+  url: string;
+  type: string;
+};
+
+const Message = ({ type, url }: messageProps) => {
+  if (type === "lend")
+    return (
+      <div>
+        <div>
+          You've supplied your loan. You can check{" "}
+          <a target="_blank" rel="noreferrer" href={url}>
+            here
+          </a>
+        </div>
+        <div>Find out what you can do with your TToken </div>
+      </div>
+    );
+  if (type === "borrow")
+    return (
+      <div>
+        <div>
+          You'll be receiving your loan shortly. You can check the status{" "}
+          <a target="_blank" rel="noreferrer" href={url}>
+            here.
+          </a>
+        </div>
+        <div>Find out what you can do with your loan </div>
+      </div>
+    );
+};
+
+const SuccessScreen = ({ link, type }: successProps) => {
   const url = "https://ropsten.etherscan.io/tx/" + link; //link to ropsten
   // const url = "https://etherscan.io/tx/" + link; //link to etherscan
 
@@ -18,13 +51,7 @@ const SuccessScreen = ({ link }: Props) => {
       </div>
       <div className="text-5xl">Hooray!!</div>
       <div className="text-gray m-3">
-        <div>
-          You've supplied your loan. You can check{" "}
-          <a target="_blank" rel="noreferrer" href={url}>
-            here
-          </a>
-        </div>
-        <div>Find out what you can do with your TToken </div>
+        <Message url={url} type={type} />
       </div>
       <Link to="/dashboard">
         <Button className="py-3 px-4 mt-2 text-lg" variant="primary" block>

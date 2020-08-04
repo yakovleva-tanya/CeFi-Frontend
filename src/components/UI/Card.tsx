@@ -14,7 +14,9 @@ const Card = ({ title, children, className }: CardProps) => {
         <p className="p-3 m-0 font-medium text-2xl">{title}</p>
       </div>
       <BR />
-      <div className="p-4 d-flex flex-column">{children}</div>
+      <div className="p-4 d-flex justify-content-center">
+        <div style={{ maxWidth: "344px", width: "100%" }}>{children}</div>
+      </div>
     </div>
   );
 };
