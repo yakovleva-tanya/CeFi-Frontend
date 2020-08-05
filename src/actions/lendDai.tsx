@@ -1,3 +1,4 @@
+import { AppContextState } from "./../context/app";
 import { mintZDai } from "./../models/Contracts";
 import { globalDecimals } from "./../util/constants";
 
@@ -22,4 +23,40 @@ const supplyDai = async (
   return result;
 };
 
-export default supplyDai;
+const completeSupply = (
+  state: any,
+  updateAppState: Function,
+  setTransactionHash: Function
+) => async (values: any) => {
+  const amount = values.amount;
+  const primaryAddress = state.web3State.address;
+  const { lendingPool, zDai } = state.zeroCollateral.contracts;
+  try {
+    const { balance, transactionHash } = await supplyDai(
+      amount,
+      primaryAddress,
+      lendingPool,
+      zDai,
+      state.web3State
+    );
+    setTransactionHash(transactionHash);
+    updateAppState((st: AppContextState) => {
+      const zeroCollateral = st.zeroCollateral;
+      zeroCollateral.balance = balance;
+      return { ...st, zeroCollateral };
+    });
+  } catch (error) {
+    console.log(error);
+    updateAppState((st: AppContextState) => {
+      const errorModal = {
+        show: true,
+        message:
+          "An error occurred during the lending process. Please try again.",
+        title: "Error",
+      };
+      return { ...st, errorModal };
+    });
+  }
+};
+
+export default completeSupply;

@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../context/app";
 import Metric from "../UI/Metric";
 import Card from "../UI/Card";
 
-type LendMetricsType = {
-  currency: string;
-  price: number;
-  walletBalance: string;
-};
+const LendMetrics = () => {
+  const { state, updateAppState } = useContext(AppContext);
+  const { selectedCurrency, supplyAPY } = state.lendPage;
+  const exchangeRates = state.exchangeRates;
+  const price = exchangeRates[selectedCurrency];
+  const walletBalance = state.zeroCollateral?.balance
+    ? `${state.zeroCollateral?.balance} ${selectedCurrency}`
+    : "-";
 
-const LendMetrics = ({ currency, price, walletBalance }: LendMetricsType) => {
   return (
     <Card className="metrics-card" title="Metrics">
-      <Metric title="Supply APY" value="8.40%" />
-      <Metric title={`Price - ${currency}`} value={`$ ${price}`} />
-      <Metric title="Wallet" value={walletBalance} />
+      <Metric title="Supply APY" value={`${supplyAPY}%`} />
+      <Metric title={`Price - ${selectedCurrency}`} value={`$ ${price}`} />
+      <Metric title="Wallet" value={`${walletBalance}`} />
     </Card>
   );
 };

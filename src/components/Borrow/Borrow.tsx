@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import SuccessScreen from "../SuccessScreen/SuccessScreen";
 import Card from "../UI/Card";
@@ -9,6 +8,7 @@ import FirstStageTable from "./FirstStageTable";
 import SecondStageTable from "./SecondStageTable";
 import ThirdStageTable from "./ThirdStageTable";
 import BorrowMetrics from "./BorrowMetrics";
+import PrimaryButton from "../UI/PrimaryButton";
 
 type stageTypes = {
   number: number;
@@ -93,26 +93,39 @@ const Borrow = () => {
                   stage={stage}
                 />
               </div>
-              {stage === 1 && <FirstStageTable />}
-              {stage === 2 && <SecondStageTable />}
-              {stage === 3 && <ThirdStageTable />}
-              <Button
-                className="py-3 px-4 mt-2 mb-5"
-                variant="primary"
-                onClick={() => {
-                  if (stage === 3) {
-                    setSuccess(true);
-                  } else {
-                    updateProgress(stage + 1);
-                  }
-                }}
-              >
-                {stage === 1
-                  ? `Get Loan Terms`
-                  : stage === 2
-                  ? `Accept Loan Terms`
-                  : `Request Loan`}
-              </Button>
+              {stage === 1 && (
+                <div>
+                  <FirstStageTable />
+                  <PrimaryButton
+                    text="Get Loan Terms"
+                    onClick={() => {
+                      updateProgress(stage + 1);
+                    }}
+                  />
+                </div>
+              )}
+              {stage === 2 && (
+                <div>
+                  <SecondStageTable />
+                  <PrimaryButton
+                    text="Accept Loan Terms"
+                    onClick={() => {
+                      updateProgress(stage + 1);
+                    }}
+                  />
+                </div>
+              )}
+              {stage === 3 && (
+                <div>
+                  <ThirdStageTable />
+                  <PrimaryButton
+                    text="Request Loan"
+                    onClick={() => {
+                      setSuccess(true);
+                    }}
+                  />
+                </div>
+              )}
             </Card>
             <BorrowMetrics />
           </div>

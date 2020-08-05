@@ -1,70 +1,23 @@
 import React, { useState, useContext } from "react";
-import { Formik } from "formik";
 import { AppContext, AppContextState } from "../../context/app";
-import supplyDai from "../../actions/lendDai";
-import Container from "react-bootstrap/Container";
+import { Formik } from "formik";
+import completeSupply from "../../actions/lendDai";
 
-import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 
 import SuccessScreen from "../SuccessScreen/SuccessScreen";
 import CurrencyDropdown from "./CurrencyDropdown";
 import SubmitApproveButton from "./SubmitApproveButton";
 import LendMetrics from "./LendMetrics";
+import LendAmountInput from "./LendAmountInput";
+
 import Card from "../UI/Card";
 import BR from "../UI/BR";
 import TableRow from "../UI/TableRow";
+import PrimaryButton from "../UI/PrimaryButton";
 
 import "./lend.scss";
-
-type RatesType = {
-  [key: string]: number;
-};
-
-const exchangeRates: RatesType = {
-  USDT: 0.998,
-  DAI: 1.033,
-  USDC: 1.001,
-};
-
-const convertCurrency = (currency: number, amount: number) =>
-  (amount / currency).toFixed(2);
-
-const completeSupply = (
-  state: any,
-  updateAppState: Function,
-  setTransactionHash: Function
-) => async (values: any) => {
-  const amount = values.amount;
-  const primaryAddress = state.web3State.address;
-  const { lendingPool, zDai } = state.zeroCollateral.contracts;
-  try {
-    const { balance, transactionHash } = await supplyDai(
-      amount,
-      primaryAddress,
-      lendingPool,
-      zDai,
-      state.web3State
-    );
-    setTransactionHash(transactionHash);
-    updateAppState((st: AppContextState) => {
-      const zeroCollateral = st.zeroCollateral;
-      zeroCollateral.balance = balance;
-      return { ...st, zeroCollateral };
-    });
-  } catch (error) {
-    console.log(error);
-    updateAppState((st: AppContextState) => {
-      const errorModal = {
-        show: true,
-        message:
-          "An error occurred during the lending process. Please try again.",
-        title: "Error",
-      };
-      return { ...st, errorModal };
-    });
-  }
-};
 
 const supplyFormValidation = () => {
   const errors = {};
@@ -72,18 +25,13 @@ const supplyFormValidation = () => {
 };
 
 const Lend = () => {
-  const currencies = ["DAI", "USDT", "USDC"];
-  const [currency, setCurrency] = useState(currencies[0]);
-  const [amount, setAmount] = useState(0.0);
-  const [transactionHash, setTransactionHash] = useState("");
-  const [tokensApproved, setTokensApproved] = useState(false);
   const { state, updateAppState } = useContext(AppContext);
+  const [transactionHash, setTransactionHash] = useState("");
 
+  const { tokensApproved, selectedAmount } = state.lendPage;
   const loggedIn = state.web3State?.address || "";
-  const walletBalance = state.zeroCollateral?.balance
-    ? state.zeroCollateral?.balance
-    : "-";
-  const initialSupplyValues = { amount };
+
+  const initialSupplyValues = { amount: selectedAmount };
   const toggleLoginModal = (show: boolean) =>
     updateAppState((st: AppContextState) => ({ ...st, loginModal: { show } }));
 
@@ -112,76 +60,36 @@ const Lend = () => {
                 /* and other goodies */
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
-                  <div className="mt-5">
-                    <input
-                      className="input text-5xl font-medium text-black"
-                      value={`$${values.amount}`}
-                      name="amount"
-                      onChange={(e) => {
-                        e.target.value = e.target.value.replace(/[^0-9.]/g, "");
-                        handleChange(e);
-                        setAmount(parseFloat(e.target.value));
-                      }}
-                      onKeyPress={(e) => {
-                        e.key === "Enter" && e.preventDefault();
-                      }}
-                    />
-                    <div className="text-lightest-gray text-lg">
-                      {`${convertCurrency(
-                        exchangeRates[currency],
-                        amount
-                      )} ${currency}`}
-                    </div>
-                  </div>
+                  <LendAmountInput
+                    amount={values.amount}
+                    handleChange={handleChange}
+                  />
                   <div className="table border-thin my-5">
                     <TableRow title="Lend With">
-                      <CurrencyDropdown
-                        currencies={currencies}
-                        currency={currency}
-                        setCurrency={setCurrency}
-                        tokensApproved={tokensApproved}
-                        setTokensApproved={setTokensApproved}
-                      />
+                      <CurrencyDropdown />
                     </TableRow>
                     <BR />
                     <TableRow title="Approve">
-                      <SubmitApproveButton
-                        amount={amount}
-                        loggedIn={loggedIn}
-                        tokensApproved={tokensApproved}
-                        setTokensApproved={setTokensApproved}
-                      />
+                      <SubmitApproveButton />
                     </TableRow>
                   </div>
-                  {!loggedIn ? (
-                    <Button
-                      className="py-3 px-4 mb-5 mt-4 text-lg "
-                      variant="primary"
-                      onClick={() => toggleLoginModal(true)}
-                    >
-                      Connect Wallet
-                    </Button>
-                  ) : (
-                    <Button
+                  {loggedIn ? (
+                    <PrimaryButton
+                      text="Supply"
                       type="submit"
-                      disabled={isSubmitting || !loggedIn || !tokensApproved}
-                      className={`py-3 px-4 text-lg mb-5 mt-4 ${
-                        loggedIn && tokensApproved ? "pointer" : "disabled"
-                      }`}
-                      variant="primary"
-                    >
-                      Supply
-                    </Button>
+                      disabled={isSubmitting || !tokensApproved}
+                    />
+                  ) : (
+                    <PrimaryButton
+                      text="Connect Wallet"
+                      onClick={() => toggleLoginModal(true)}
+                    />
                   )}
                 </Form>
               )}
             </Formik>
           </Card>
-          <LendMetrics
-            currency={currency}
-            price={exchangeRates[currency]}
-            walletBalance={walletBalance.toString()}
-          />
+          <LendMetrics />
         </div>
       ) : (
         <SuccessScreen type="lend" link={transactionHash} />
