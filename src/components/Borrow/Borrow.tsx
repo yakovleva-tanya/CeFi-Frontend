@@ -3,7 +3,6 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import SuccessScreen from "../SuccessScreen/SuccessScreen";
 import Card from "../UI/Card";
-import { BorrowingSection } from "./../BorrowingSection";
 import "./borrow.scss";
 import FirstStageTable from "./FirstStageTable";
 import SecondStageTable from "./SecondStageTable";
@@ -116,9 +115,6 @@ const Borrow = () => {
             </Card>
             <BorrowMetrics />
           </div>
-          <Container>
-            <BorrowingSection />
-          </Container>
         </div>
       )}
     </Container>

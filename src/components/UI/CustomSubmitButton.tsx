@@ -4,8 +4,8 @@ import LoadingAnimation from "../UI/LoadingAnimation";
 
 type customSubmitProps = {
   onClickAction: Function;
-  disabled: boolean;
-  loading: boolean;
+  disabled?: boolean;
+  loading?: boolean;
   approved: boolean;
   text: string;
 };
@@ -44,6 +44,7 @@ export const CustomSubmitButton = ({
 type mockSubmitType = {
   text: string;
 };
+
 export const MockSubmitButton = ({ text }: mockSubmitType) => {
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -74,3 +75,4 @@ export const MockSubmitButton = ({ text }: mockSubmitType) => {
     />
   );
 };
+

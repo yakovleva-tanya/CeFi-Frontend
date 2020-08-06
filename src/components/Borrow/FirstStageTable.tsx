@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import TableRow from "../UI/TableRow";
 import BR from "../UI/BR";
 import { MockDropdown } from "../UI/CustomDropdown";
-import { MockSubmitButton } from "../UI/CustomSubmitButton";
+import ConnectPlaid from './../../actions/ConnectPlaid';
+import { AppContext } from "./../../context/app";
+import { CustomSubmitButton } from "../UI/CustomSubmitButton";
 import SubmenuCard from "../UI/SubmenuCard";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
 
 const FirstStageTable = () => {
+  const { state, updateAppState } = useContext(AppContext);
+  const plaidConnected = state?.plaid?.loggedIn;
+  const bankInfo = state?.dataProviderResponse?.bankInfo;
+  const address = state?.web3State?.address;
   const [submenu, setSubmenu] = useState("");
   return (
     <div>
@@ -52,7 +58,11 @@ const FirstStageTable = () => {
           </TableRow>
           <BR />
           <TableRow title="Bank (optional)">
-            <MockSubmitButton text="Connect" />
+            <CustomSubmitButton
+              onClickAction={ConnectPlaid(updateAppState, address)}
+              approved={!!plaidConnected}
+              text="Connect"
+            />
           </TableRow>
         </div>
       ) : (
