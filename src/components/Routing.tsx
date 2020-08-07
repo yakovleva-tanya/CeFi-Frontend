@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import Lend from './../components/Lend';
-import Borrow from './../components/Borrow/Borrow';
+import Borrow from './../components/Borrow';
 import Dashboard from './../components/Dashboard/Dashboard';
 import LoginModals from './../components/LoginModals/LoginModals'
 import Navigation from './Navigation/Navigation';

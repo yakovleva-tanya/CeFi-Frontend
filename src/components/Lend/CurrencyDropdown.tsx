@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import AssetChangeWarningModal from "../AssetChangeWarningModal/AssetChangeWarningModal";
 import { CustomDropdown } from "../UI/CustomDropdown";
-import { LendPageContext } from "../../context/LendContext";
+import { LendPageContext } from "../../context/lendContext";
 
 const CurrencyDropdown = () => {
   const {

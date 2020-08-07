@@ -5,9 +5,9 @@ import { ChevronLeft } from "react-bootstrap-icons";
 interface CardProps {
   title: string;
   children: React.ReactNode;
-  onClickAction: Function;
+  onCloseAction: Function;
 }
-const SubmenuCard = ({ title, children, onClickAction }: CardProps) => {
+const SubmenuCard = ({ title, children, onCloseAction }: CardProps) => {
   return (
     <div className="ui-card border-thin d-flex flex-column my-5">
       <div className="d-flex justify-content-center flex-row flex-1">
@@ -15,7 +15,7 @@ const SubmenuCard = ({ title, children, onClickAction }: CardProps) => {
           className="pointer font-medium text-black m-3"
           size={24}
           onClick={() => {
-            onClickAction();
+            onCloseAction();
           }}
         />
         <p className="p-3 m-0">{title}</p>

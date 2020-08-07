@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AppContext, AppContextState } from "../../context/app";
 import { approveDai } from "../../models/Contracts";
 import { CustomSubmitButton } from "../UI/CustomSubmitButton";
-import { LendPageContext } from "../../context/LendContext";
+import { LendPageContext } from "../../context/lendContext";
 
 const SubmitApproveButton = () => {
   const {

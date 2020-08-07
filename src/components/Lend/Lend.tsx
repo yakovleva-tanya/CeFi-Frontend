@@ -17,7 +17,7 @@ import Card from "../UI/Card";
 import BR from "../UI/BR";
 import TableRow from "../UI/TableRow";
 import PrimaryButton from "../UI/PrimaryButton";
-import  LendPageContextProvider, {LendPageContext}  from "../../context/LendContext";
+import  LendPageContextProvider, {LendPageContext}  from "../../context/lendContext";
 
 import "./lend.scss";
 
@@ -37,7 +37,6 @@ const Lend = () => {
     updateAppState((st: AppContextState) => ({ ...st, loginModal: { show } }));
 
   return (
-    <LendPageContextProvider>
       <Container>
         {!transactionHash ? (
           <div className="cards-container">
@@ -97,8 +96,16 @@ const Lend = () => {
           <SuccessScreen type="lend" link={transactionHash} />
         )}
       </Container>
-    </LendPageContextProvider>
   );
 };
 
-export default Lend;
+
+const LendPageContextWrapper = () => {
+  return(
+    <LendPageContextProvider>
+      <Lend/>
+   </LendPageContextProvider>
+  )
+}
+
+export default LendPageContextWrapper;

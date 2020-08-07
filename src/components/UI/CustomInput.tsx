@@ -3,10 +3,12 @@ import React, { useState } from "react";
 type customInputProps = {
   value: string;
   onChangeFunction: Function;
+  type?: string
 };
-const CustomInput = ({ value, onChangeFunction }: customInputProps) => {
+const CustomInput = ({ value, onChangeFunction, type }: customInputProps) => {
   return (
     <input
+      type={type}
       className="input text-5xl font-medium text-black"
       value={value}
       name="amount"

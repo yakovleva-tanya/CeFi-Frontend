@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../../context/app";
 import Metric from "../UI/Metric";
 import Card from "../UI/Card";
-import { LendPageContext } from "../../context/LendContext";
+import { LendPageContext } from "../../context/lendContext";
 
 const LendMetrics = () => {
   const {

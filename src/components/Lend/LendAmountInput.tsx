@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import CustomInput from "../UI/CustomInput";
-import { LendPageContext } from "../../context/LendContext";
+import { LendPageContext } from "../../context/lendContext";
 
 const convertCurrency = (currency: number, amount: number) =>
   (amount / currency).toFixed(2);
