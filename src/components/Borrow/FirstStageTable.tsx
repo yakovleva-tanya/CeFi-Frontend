@@ -6,15 +6,13 @@ import ConnectPlaid from "./../../actions/ConnectPlaid";
 import { AppContext } from "./../../context/app";
 import { CustomSubmitButton } from "../UI/CustomSubmitButton";
 import { BorrowPageContext } from "../../context/borrowContext";
-// import { CollateralAdjustModal } from "../CollateralAdjustModal";
-import LoanTermSelection from './LoanTermSelection';
+//import { CollateralAdjustModal } from "../CollateralAdjustModal";
+import LoanTermSelection from "./LoanTermSelection";
 import CollateralPercentSelection from "./CollateralPercentSelection";
 import LoanSizeSelection from "./LoanSizeSelection";
 
 const FirstStageTable = () => {
-  const { borrowRequest, setBorrowRequest } = useContext(
-    BorrowPageContext
-  );
+  const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
 
   return (
     <div>
@@ -68,7 +66,7 @@ const FirstStageTable = () => {
         </TableRow>
         <BR />
         <TableRow title="Bank (optional)">
-          <ConnectPlaidButton/>
+          <ConnectPlaidButton />
         </TableRow>
       </div>
     </div>
@@ -77,24 +75,24 @@ const FirstStageTable = () => {
 
 export default FirstStageTable;
 
-
 const ConnectPlaidButton = () => {
   const { state, updateAppState } = useContext(AppContext);
   const plaidConnected = state?.plaid?.loggedIn;
   // const bankInfo = state?.dataProviderResponse?.bankInfo;
   const address = state?.web3State?.address;
-  const [loading, setLoading] = useState (false)
-  const onClickAction = async() => {
+  const [loading, setLoading] = useState(false);
+  const onClickAction = async () => {
     setLoading(true);
-    await ConnectPlaid(updateAppState, address)
-    setLoading(false)
-  }
+    await ConnectPlaid(updateAppState, address)();
+    setLoading(false);
+  };
+
   return (
     <CustomSubmitButton
-      loading = { loading }
+      loading={loading}
       onClickAction={onClickAction}
       approved={!!plaidConnected}
       text="Connect"
     />
   );
-}
+};
