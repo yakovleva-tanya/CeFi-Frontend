@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import TableRow from "../UI/TableRow";
 import BR from "../UI/BR";
 import { CustomDropdown } from "../UI/CustomDropdown";
@@ -16,72 +16,85 @@ const FirstStageTable = () => {
     BorrowPageContext
   );
 
-  const { state, updateAppState } = useContext(AppContext);
-  const plaidConnected = state?.plaid?.loggedIn;
-  // const bankInfo = state?.dataProviderResponse?.bankInfo;
-  const address = state?.web3State?.address;
-
   return (
     <div>
-        <div className="table border-thin my-5">
-          <TableRow title="Lend With">
-            <CustomDropdown
-              options={["DAI", "USDC", "USDT"]}
-              selected={borrowRequest.lendWith}
-              handleSelect={(eventKey: any) => {
-                setBorrowRequest({
-                  ...borrowRequest,
-                  lendWith: eventKey,
-                });
-              }}
-            />
-          </TableRow>
-          <BR />
-          <TableRow title="Loan Size">
-            <LoanSizeSelection/>
-          </TableRow>
-          <BR />
-          <TableRow title="Loan Term">
-            <LoanTermSelection/>
-          </TableRow>
-          <BR />
-          <TableRow title="Collateral With">
-            <CustomDropdown
-              options={["ETH", "BTC", "USDC", "DAI"]}
-              selected={borrowRequest.collateralWith}
-              handleSelect={(eventKey: any) => {
-                setBorrowRequest({
-                  ...borrowRequest,
-                  collateralWith: eventKey,
-                });
-              }}
-            />
-          </TableRow>
-          <BR />
-          <TableRow title="Collateral Percent">
-            <CollateralPercentSelection/>
-          </TableRow>
-          <BR />
-          <TableRow title="Loan Type">
-            <CustomDropdown
-              options={["Fixed", "Variable"]}
-              selected={borrowRequest.loanType}
-              handleSelect={(eventKey: any) => {
-                setBorrowRequest({ ...borrowRequest, loanType: eventKey });
-              }}
-            />
-          </TableRow>
-          <BR />
-          <TableRow title="Bank (optional)">
-            <CustomSubmitButton
-              onClickAction={ConnectPlaid(updateAppState, address)}
-              approved={!!plaidConnected}
-              text="Connect"
-            />
-          </TableRow>
-        </div>
+      <div className="table border-thin my-5">
+        <TableRow title="Lend With">
+          <CustomDropdown
+            options={["DAI", "USDC", "USDT"]}
+            selected={borrowRequest.lendWith}
+            handleSelect={(eventKey: any) => {
+              setBorrowRequest({
+                ...borrowRequest,
+                lendWith: eventKey,
+              });
+            }}
+          />
+        </TableRow>
+        <BR />
+        <TableRow title="Loan Size">
+          <LoanSizeSelection />
+        </TableRow>
+        <BR />
+        <TableRow title="Loan Term">
+          <LoanTermSelection />
+        </TableRow>
+        <BR />
+        <TableRow title="Collateral With">
+          <CustomDropdown
+            options={["ETH", "BTC", "USDC", "DAI"]}
+            selected={borrowRequest.collateralWith}
+            handleSelect={(eventKey: any) => {
+              setBorrowRequest({
+                ...borrowRequest,
+                collateralWith: eventKey,
+              });
+            }}
+          />
+        </TableRow>
+        <BR />
+        <TableRow title="Collateral Percent">
+          <CollateralPercentSelection />
+        </TableRow>
+        <BR />
+        <TableRow title="Loan Type">
+          <CustomDropdown
+            options={["Fixed", "Variable"]}
+            selected={borrowRequest.loanType}
+            handleSelect={(eventKey: any) => {
+              setBorrowRequest({ ...borrowRequest, loanType: eventKey });
+            }}
+          />
+        </TableRow>
+        <BR />
+        <TableRow title="Bank (optional)">
+          <ConnectPlaidButton/>
+        </TableRow>
+      </div>
     </div>
   );
 };
 
 export default FirstStageTable;
+
+
+const ConnectPlaidButton = () => {
+  const { state, updateAppState } = useContext(AppContext);
+  const plaidConnected = state?.plaid?.loggedIn;
+  // const bankInfo = state?.dataProviderResponse?.bankInfo;
+  const address = state?.web3State?.address;
+  const [loading, setLoading] = useState (false)
+  const onClickAction = async() => {
+    setLoading(true);
+    await ConnectPlaid(updateAppState, address)
+    setLoading(false)
+  }
+  return (
+    <CustomSubmitButton
+      loading = { loading }
+      onClickAction={onClickAction}
+      approved={!!plaidConnected}
+      text="Connect"
+    />
+  );
+}

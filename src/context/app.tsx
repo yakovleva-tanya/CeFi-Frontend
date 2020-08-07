@@ -55,38 +55,8 @@ export interface ZeroCollateralState {
   balance: number | null;
   borrowed: boolean;
 }
-
 export interface FicoState {
   score: number | null;
-}
-
-export interface LendPageState {
-  selectedCurrency: string;
-  selectedAmount: number;
-  tokensApproved: boolean;
-  supplyAPY: number;
-}
-export interface LoanRequestValues {
-  selectedCurrency: string;
-  loanSize: number;
-  loanTerm: number;
-  collateralWith: string;
-  collateralPercent: number;
-  loanType: string;
-  bankConnected: boolean;
-}
-export interface LoanTerms {
-  interestRate: number;
-  minCollateralNeeded: number;
-  loanSize: number;
-}
-export interface BorrowPageState {
-  stage: number;
-  requestValues: LoanRequestValues;
-  loanTerms: LoanTerms;
-}
-export interface ExchangeRates {
-  [key: string]: number;
 }
 export interface AppContextState {
   plaid: PlaidState;
