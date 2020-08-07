@@ -66,6 +66,9 @@ module.exports = {
         'process.env.SERVER_URL': `'${process.env.SERVER_URL}'`,
         'process.env.DATA_PROVIDERS_URLS_BANK_INFO': `'${process.env.DATA_PROVIDERS_URLS_BANK_INFO}'`
       }),
+      new HtmlWebpackPlugin({
+        favicon: 'dist/assets/favicon.ico'
+      })
     ],
 
     // When importing a module whose path matches one of the following, just
