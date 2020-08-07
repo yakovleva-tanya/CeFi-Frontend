@@ -17,7 +17,7 @@ export const Home = () => {
           <Col xs={{ span: 8, offset: 2 }}>
             <Row>
               {currentSection === AppSection.Borrowing ? <BorrowingSection /> : ''}
-              {currentSection === AppSection.Lending ? <LendingSection /> : ''}
+              {/* {currentSection === AppSection.Lending ? <LendingSection /> : ''} */}
             </Row>
           </Col>
         </Container>

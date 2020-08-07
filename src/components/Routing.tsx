@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Lend from './../components/Lend/Lend';
+import Lend from './../components/Lend';
 import Borrow from './../components/Borrow/Borrow';
 import Dashboard from './../components/Dashboard/Dashboard';
 import LoginModals from './../components/LoginModals/LoginModals'

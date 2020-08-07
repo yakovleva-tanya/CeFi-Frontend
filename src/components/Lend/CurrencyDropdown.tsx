@@ -1,28 +1,17 @@
 import React, { useState, useContext } from "react";
-import { AppContext, AppContextState } from "../../context/app";
 import AssetChangeWarningModal from "../AssetChangeWarningModal/AssetChangeWarningModal";
 import { CustomDropdown } from "../UI/CustomDropdown";
+import { LendPageContext } from "../../context/LendContext";
 
 const CurrencyDropdown = () => {
+  const {
+    selectedCurrency,
+    tokensApproved,
+    setTokensApproved,
+    setSelectedCurrency,
+  } = useContext(LendPageContext);
+
   const currencies = ["DAI", "USDT", "USDC"];
-  const { state, updateAppState } = useContext(AppContext);
-  const { selectedCurrency, tokensApproved } = state.lendPage;
-
-  const setTokensApproved = (tokensApproved: boolean) => {
-    updateAppState((st: AppContextState) => {
-      const lendPage = st.lendPage;
-      lendPage.tokensApproved = tokensApproved;
-      return { ...st, lendPage };
-    });
-  };
-
-  const setCurrency = (selectedCurrency: string) => {
-    updateAppState((st: AppContextState) => {
-      const lendPage = st.lendPage;
-      lendPage.selectedCurrency = selectedCurrency;
-      return { ...st, lendPage };
-    });
-  };
 
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [newCurrency, setNewCurrency] = useState("");
@@ -32,7 +21,7 @@ const CurrencyDropdown = () => {
       setNewCurrency(eventKey);
       setShowWarningModal(true);
     } else {
-      setCurrency(eventKey);
+      setSelectedCurrency(eventKey);
     }
   };
 
@@ -41,7 +30,7 @@ const CurrencyDropdown = () => {
   };
   const proceedWithChange = () => {
     setShowWarningModal(false);
-    setCurrency(newCurrency);
+    setSelectedCurrency(newCurrency);
     setTokensApproved(false);
   };
 

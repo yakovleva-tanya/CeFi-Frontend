@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { AppContext, AppContextState } from "../../context/app";
 import CustomInput from "../UI/CustomInput";
+import { LendPageContext } from "../../context/LendContext";
 
 const convertCurrency = (currency: number, amount: number) =>
   (amount / currency).toFixed(2);
@@ -11,17 +11,12 @@ type lendAmountProps = {
 };
 
 const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
-  const { state, updateAppState } = useContext(AppContext);
-  const { selectedAmount, selectedCurrency } = state.lendPage;
-  const exchangeRates = state.exchangeRates;
-
-  const setAmount = (selectedAmount: number) => {
-    updateAppState((st: AppContextState) => {
-      const lendPage = st.lendPage;
-      lendPage.selectedAmount = selectedAmount;
-      return { ...st, lendPage };
-    });
-  };
+  const {
+    selectedCurrency,
+    selectedAmount,
+    setSelectedAmount,
+    exchangeRates,
+  } = useContext(LendPageContext);
 
   return (
     <div className="mt-5">
@@ -29,7 +24,7 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
         onChangeFunction={(e:any) => {
           e.target.value = e.target.value.replace(/[^0-9.]/g, "");
           handleChange(e);
-          setAmount(parseFloat(e.target.value) || 0);
+          setSelectedAmount(parseFloat(e.target.value) || 0);
         }}
         value={`$${amount}`}
       />

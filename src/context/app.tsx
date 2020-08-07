@@ -96,9 +96,6 @@ export interface AppContextState {
   web3State: Web3State;
   zeroCollateral: ZeroCollateralState;
   dataProviderResponse: DataProviderResponseInterface;
-  borrowPage: BorrowPageState;
-  lendPage: LendPageState;
-  exchangeRates: ExchangeRates;
 }
 
 export interface AppContextInterface {
@@ -146,18 +143,6 @@ export const AppContextDefault = {
     loginModal: {
       show: false,
     } as LoginModal,
-    borrowPage: {} as BorrowPageState,
-    lendPage: {
-      selectedCurrency: "DAI",
-      selectedAmount: 0,
-      tokensApproved: false,
-      supplyAPY: 8.4,
-    } as LendPageState,
-    exchangeRates: {
-      USDT: 0.998,
-      DAI: 1.033,
-      USDC: 1.001,
-    } as ExchangeRates,
   },
   updateAppState: () => {},
 };
