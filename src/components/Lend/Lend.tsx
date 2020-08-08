@@ -71,8 +71,9 @@ const supplyFormValidation = () => {
   return errors;
 };
 
-const Lend = () => {
-  const [currency, setCurrency] = useState("DAI");
+export default () => {
+  const currencies = ["DAI", "USDT", "USDC"];
+  const [currency, setCurrency] = useState(currencies[0]);
   const [amount, setAmount] = useState(0.0);
   const [transactionHash, setTransactionHash] = useState("");
   const [tokensApproved, setTokensApproved] = useState(false);
@@ -83,8 +84,6 @@ const Lend = () => {
     ? state.zeroCollateral?.balance
     : "-";
   const initialSupplyValues = { amount };
-  const toggleLoginModal = (show: boolean) =>
-    updateAppState((st: AppContextState) => ({ ...st, loginModal: { show } }));
 
   return (
     <Container>
@@ -110,68 +109,60 @@ const Lend = () => {
                 isSubmitting,
                 /* and other goodies */
               }) => (
-                  <Form noValidate onSubmit={handleSubmit}>
-                    <div className="mt-5">
-                      <input
-                        className="input text-5xl font-medium text-black"
-                        value={`$${values.amount}`}
-                        name="amount"
-                        onChange={(e) => {
-                          e.target.value = e.target.value.replace(/[^0-9.]/g, "");
-                          handleChange(e);
-                          setAmount(parseFloat(e.target.value));
-                        }}
-                        onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
+                <Form noValidate onSubmit={handleSubmit}>
+                  <div className="mt-5">
+                    <input
+                      className="input text-5xl font-medium text-black"
+                      value={`$${values.amount}`}
+                      name="amount"
+                      onChange={(e) => {
+                        e.target.value = e.target.value.replace(/[^0-9.]/g, "");
+                        handleChange(e);
+                        setAmount(parseFloat(e.target.value));
+                      }}
+                      onKeyPress={(e) => {
+                        e.key === "Enter" && e.preventDefault();
+                      }}
+                    />
+                    <div className="text-lightest-gray text-lg">
+                      {`${convertCurrency(
+                        exchangeRates[currency],
+                        amount
+                      )} ${currency}`}
+                    </div>
+                  </div>
+                  <div className="table border-thin my-5">
+                    <TableRow title="Lend With">
+                      <CurrencyDropdown
+                        currencies={currencies}
+                        currency={currency}
+                        setCurrency={setCurrency}
+                        tokensApproved={tokensApproved}
+                        setTokensApproved={setTokensApproved}
                       />
-                      <div className="text-lightest-gray text-lg">
-                        {`${convertCurrency(
-                          exchangeRates[currency],
-                          amount
-                        )} ${currency}`}
-                      </div>
-                    </div>
-                    <div className="table border-thin my-5">
-                      <TableRow title="Lend With">
-                        <CurrencyDropdown
-                          currency={currency}
-                          setCurrency={setCurrency}
-                          tokensApproved={tokensApproved}
-                          setTokensApproved={setTokensApproved}
-                        />
-                      </TableRow>
-                      <BR />
-                      <TableRow title="Approve">
-                        <SubmitApproveButton
-                          amount={amount}
-                          loggedIn={loggedIn}
-                          tokensApproved={tokensApproved}
-                          setTokensApproved={setTokensApproved}
-                        />
-                      </TableRow>
-                    </div>
-                    {!loggedIn ? (
-                      <Button
-                        className="py-3 px-4 mb-5 mt-4 text-lg "
-                        variant="primary"
-                        onClick={() => toggleLoginModal(true)}
-                      >
-                        Connect Wallet
-                      </Button>
-                    ) : (
-                        <Button
-                          type="submit"
-                          disabled={isSubmitting || !loggedIn || !tokensApproved}
-                          className={`py-3 px-4 text-lg mb-5 mt-4 ${
-                            loggedIn && tokensApproved ? "pointer" : "disabled"
-                            }`}
-                          variant="primary"
-                          block
-                        >
-                          Supply
-                        </Button>
-                      )}
-                  </Form>
-                )}
+                    </TableRow>
+                    <BR />
+                    <TableRow title="Approve">
+                      <SubmitApproveButton
+                        amount={amount}
+                        loggedIn={loggedIn}
+                        tokensApproved={tokensApproved}
+                        setTokensApproved={setTokensApproved}
+                      />
+                    </TableRow>
+                  </div>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting || !loggedIn || !tokensApproved}
+                    className={`py-3 px-4 text-lg mb-5 mt-4 ${
+                      loggedIn && tokensApproved ? "pointer" : "disabled"
+                    }`}
+                    variant="primary"
+                  >
+                    Supply
+                  </Button>
+                </Form>
+              )}
             </Formik>
           </Card>
           <LendMetrics
@@ -181,10 +172,9 @@ const Lend = () => {
           />
         </div>
       ) : (
-          <SuccessScreen link={transactionHash} />
-        )}
+        <SuccessScreen type="lend" link={transactionHash} />
+      )}
     </Container>
   );
 };
 
-export default Lend;

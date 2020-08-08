@@ -13,6 +13,18 @@ export interface BankInfoResponseInterface {
 
 export const getBankInfo = (bankInfo: BankInfoInterface) => axios({
   method: 'post',
-  url: dataProvidersURLs.bankInfo,
+  url: dataProvidersURLs.bankInfo + '/bank-info',
   data: bankInfo
+}); 
+
+export interface CreateLinkTokenResponse {
+  data: {
+    linkToken: string
+  }
+}
+
+export const createPlaidLinkToken = (address: string) => axios({
+  method: 'post',
+  url: dataProvidersURLs.bankInfo + '/create-link-token',
+  data: { address }
 }); 

@@ -28,7 +28,12 @@ export const dataProvidersURLs = {
   bankInfo: process.env.DATA_PROVIDERS_URLS_BANK_INFO || '',
 };
 
+export const craURLs = {
+  arrowhead: process.env.CRA_URLS_ARROWHEAD || '',
+};
+
 export default {
+  craURLs, 
   serverURL,
   BlockNativeOptions,
   globalDecimals,
