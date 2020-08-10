@@ -43,6 +43,7 @@ export interface Web3State {
   web3: any;
   type: Web3Type | null;
   address: string | null;
+  onboard: any | null;
 }
 
 export interface ZeroCollateralContracts {
@@ -88,6 +89,7 @@ export const AppContextDefault = {
       address: null as null,
       web3: null as null,
       type: null as null,
+      onboard: null as null
     },
     zeroCollateral: {
       balance: null as null,

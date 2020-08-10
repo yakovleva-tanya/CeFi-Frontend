@@ -12,19 +12,15 @@ import BorrowPageContextProvider, {
   BorrowPageContext,
 } from "../../context/borrowContext";
 import StageBar from "./StageBar";
+import LoginButton from "../LoginButton/LoginButton";
 import { AppContext, AppContextState } from "../../context/app";
-
 
 const Borrow = () => {
   const [success, setSuccess] = useState(false);
   const { stage, setStage, submenu } = useContext(BorrowPageContext);
-
   const { state, updateAppState } = useContext(AppContext);
 
   const loggedIn = state.web3State?.address || "";
-  const toggleLoginModal = (show: boolean) =>
-    updateAppState((st: AppContextState) => ({ ...st, loginModal: { show } }));
-
 
   return (
     <Container>
@@ -51,10 +47,7 @@ const Borrow = () => {
                           }}
                         />
                       ) : (
-                        <PrimaryButton
-                          text="Connect Wallet"
-                          onClick={() => toggleLoginModal(true)}
-                        />
+                        <LoginButton />
                       )}
                     </div>
                   )}
