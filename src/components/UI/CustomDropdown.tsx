@@ -3,6 +3,9 @@ import Dropdown from "react-bootstrap/Dropdown";
 import dai from "../../../dist/assets/dai-logo.png";
 import usdc from "../../../dist/assets/usdc-logo.png";
 import usdt from "../../../dist/assets/usdt-logo.png";
+import eth from "../../../dist/assets/eth-logo.png";
+import link from "../../../dist/assets/link-logo.png";
+
 import "./custom-dropdown.scss";
 import dropdown from "../../../dist/assets/arrow-down.png";
 
@@ -28,6 +31,8 @@ export const CustomDropdown = ({
         {selected === "DAI" && <img src={dai} height="20" />}
         {selected === "USDT" && <img src={usdt} height="20" />}
         {selected === "USDC" && <img src={usdc} height="20" />}
+        {selected === "ETH" && <img src={eth} height="20" />}
+        {selected === "LINK" && <img src={link} height="20" />}
       </Dropdown.Toggle>
       <Dropdown.Menu className="dropdown-menu">
         {options.map((option: string) => {
@@ -47,6 +52,8 @@ export const CustomDropdown = ({
                 {option === "DAI" && <img src={dai} height="20" />}
                 {option === "USDT" && <img src={usdt} height="20" />}
                 {option === "USDC" && <img src={usdc} height="20" />}
+                {option === "ETH" && <img src={eth} height="20" />}
+                {option === "LINK" && <img src={link} height="20" />}
               </Dropdown.Item>
             );
           }
@@ -73,17 +80,26 @@ export const MockDropdown = ({ options }: customDropdownProps) => {
   );
 };
 
-const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-  <a
-    href=""
-    ref={ref}
-    onClick={(e) => {
-      e.preventDefault();
-      onClick(e);
-    }}
-    className="dropdown font-medium p-1 text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
-  >
-    {children}
-    <img height={8} src={dropdown} className="ml-3" />
-  </a>
-));
+type toggleProps = {
+  children: React.ReactNode;
+  onClick: Function;
+};
+const CustomToggle = React.forwardRef<HTMLAnchorElement, toggleProps>(
+  ({ children, onClick }, ref) => {
+    return (
+      <a
+        href=""
+        ref={ref}
+        onClick={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+        className="dropdown font-medium p-1 text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
+      >
+        {children}
+        <img height={8} src={dropdown} className="ml-3" />
+      </a>
+    );
+  }
+);
+CustomToggle.displayName = "CustomToggle";
