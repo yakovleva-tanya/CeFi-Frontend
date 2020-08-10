@@ -15,7 +15,7 @@ const CustomSubmenuLink = ({
       onClick={() => {
         onClickAction();
       }}
-      className="d-flex flex-row"
+      className="d-flex flex-row pointer"
     >
       <div className="pr-2">{title}</div>
       <ChevronRight className="font-medium text-black p-1" size={24} />

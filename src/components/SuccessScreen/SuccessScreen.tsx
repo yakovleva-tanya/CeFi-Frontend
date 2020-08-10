@@ -1,12 +1,7 @@
 import React from "react";
 import "./success-screen.scss";
-import Button from "react-bootstrap/Button";
+import PrimaryButton from "../UI/PrimaryButton";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
-type successProps = {
-  link: string;
-  type: string;
-};
 
 type messageProps = {
   url: string;
@@ -40,6 +35,11 @@ const Message = ({ type, url }: messageProps) => {
     );
 };
 
+type successProps = {
+  link: string;
+  type: string;
+};
+
 const SuccessScreen = ({ link, type }: successProps) => {
   const url = "https://ropsten.etherscan.io/tx/" + link; //link to ropsten
   // const url = "https://etherscan.io/tx/" + link; //link to etherscan
@@ -54,9 +54,7 @@ const SuccessScreen = ({ link, type }: successProps) => {
         <Message url={url} type={type} />
       </div>
       <Link to="/dashboard">
-        <Button className="py-3 px-4 mt-2 text-lg" variant="primary" block>
-          Explore Dashboard
-        </Button>
+        <PrimaryButton text="Explore Dashboard" />
       </Link>
     </div>
   );

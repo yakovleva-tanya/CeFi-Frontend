@@ -1,9 +1,14 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import "./navigation.scss";
-import teller_logo from "../../../dist/assets/teller_logo.svg"
-import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
-import LoginButton from './../LoginButton/LoginButton';
+import teller_logo from "../../../dist/assets/teller_logo.svg";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
+import { NavLoginButton } from "./../LoginButton/LoginButton";
 
 type NavProps = {
   to: string;
@@ -39,7 +44,7 @@ const Navigation = () => {
           <NavigationLink to="lend" name="Lend" />
           <NavigationLink to="borrow" name="Borrow" />
           <NavigationLink to="dashboard" name="Dashboard" />
-          <LoginButton />
+          <NavLoginButton />
         </Navbar.Collapse>
       </Navbar>
     </div>

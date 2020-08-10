@@ -1,8 +1,14 @@
 import React, { useContext } from "react";
-import { AppContext, AppContextState, Web3Type, Web3State } from "./../../context/app";
-import Web3 from 'web3';
-import Onboard from 'bnc-onboard';
-import { BlockNativeOptions } from './../../util/constants';
+import {
+  AppContext,
+  AppContextState,
+  Web3Type,
+  Web3State,
+} from "./../../context/app";
+import Web3 from "web3";
+import Onboard from "bnc-onboard";
+import { BlockNativeOptions } from "./../../util/constants";
+import PrimaryButton from "../UI/PrimaryButton";
 
 function truncate(n: number) {
   const length = this.length;
@@ -21,19 +27,19 @@ export async function web3FromProvider(updateAppState: Function) {
         const web3State = {
           type: Web3Type.BlockNative,
           web3,
-          onboard
+          onboard,
         } as Web3State;
         updateAppState((st: AppContextState) => {
-          return { ...st, web3State }
+          return { ...st, web3State };
         });
-      }
-    }
+      },
+    },
   });
   await onboard.walletSelect();
   await onboard.walletCheck();
 }
 
-const LoginButton = () => {
+export const NavLoginButton = () => {
   const { state, updateAppState } = useContext(AppContext);
   const loggedIn = state.web3State?.address || "";
 
@@ -55,4 +61,14 @@ const LoginButton = () => {
   );
 };
 
+const LoginButton = () => {
+  const { state, updateAppState } = useContext(AppContext);
+
+  return (
+    <PrimaryButton
+      onClick={() => web3FromProvider(updateAppState)}
+      text="Connect Wallet"
+    />
+  );
+};
 export default LoginButton;
