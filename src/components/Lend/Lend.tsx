@@ -71,7 +71,7 @@ const supplyFormValidation = () => {
   return errors;
 };
 
-const Lend = () => {
+export default () => {
   const currencies = ["DAI", "USDT", "USDC"];
   const [currency, setCurrency] = useState(currencies[0]);
   const [amount, setAmount] = useState(0.0);
@@ -84,8 +84,6 @@ const Lend = () => {
     ? state.zeroCollateral?.balance
     : "-";
   const initialSupplyValues = { amount };
-  const toggleLoginModal = (show: boolean) =>
-    updateAppState((st: AppContextState) => ({ ...st, loginModal: { show } }));
 
   return (
     <Container>
@@ -153,26 +151,16 @@ const Lend = () => {
                       />
                     </TableRow>
                   </div>
-                  {!loggedIn ? (
-                    <Button
-                      className="py-3 px-4 mb-5 mt-4 text-lg "
-                      variant="primary"
-                      onClick={() => toggleLoginModal(true)}
-                    >
-                      Connect Wallet
-                    </Button>
-                  ) : (
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting || !loggedIn || !tokensApproved}
-                      className={`py-3 px-4 text-lg mb-5 mt-4 ${
-                        loggedIn && tokensApproved ? "pointer" : "disabled"
-                      }`}
-                      variant="primary"
-                    >
-                      Supply
-                    </Button>
-                  )}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting || !loggedIn || !tokensApproved}
+                    className={`py-3 px-4 text-lg mb-5 mt-4 ${
+                      loggedIn && tokensApproved ? "pointer" : "disabled"
+                    }`}
+                    variant="primary"
+                  >
+                    Supply
+                  </Button>
                 </Form>
               )}
             </Formik>
@@ -190,4 +178,3 @@ const Lend = () => {
   );
 };
 
-export default Lend;
