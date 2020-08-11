@@ -34,7 +34,7 @@ export async function approveDai(lendingPool: any, web3State: any, primaryAddres
   return new Promise((resolve, reject) => dai.methods
     .approve(
       lendingPool._address,
-      (Math.pow(2, 256)-1).toLocaleString('fullwide', { useGrouping:false })
+      (amount*tokenDecimals).toLocaleString('fullwide', { useGrouping:false })
     )
     .send({ from: primaryAddress })
     .on('transactionHash', Notify.hash)
