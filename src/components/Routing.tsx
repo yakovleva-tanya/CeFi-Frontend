@@ -13,15 +13,14 @@ export default function Routing() {
   const toggleErrorModal = (show: boolean) =>
     updateAppState((st: AppContextState) => ({ ...st, errorModal: { show } }));
   const network = state.web3State.network;
-
   return (
     <div>
       <Router>
-        {network === "ropsten" && (
+        {network&&network.toString() === '3' && (
           <TopWarning
             text={`Note: You are currently connected to Ropsten Testnet`}
           />
-        )}
+         )}
         <Navigation />
         <Switch>
           <Route path="/lend">
