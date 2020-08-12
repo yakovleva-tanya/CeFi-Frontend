@@ -29,13 +29,12 @@ const supplyFormValidation = () => {
 };
 
 const Lend = () => {
-  const { tokensApproved, selectedAmount } = useContext(LendPageContext);
+  const { tokensApproved } = useContext(LendPageContext);
   const { state, updateAppState } = useContext(AppContext);
   const [transactionHash, setTransactionHash] = useState("");
 
   const loggedIn = state.web3State?.address || "";
-  const initialSupplyValues = { amount: selectedAmount };
-
+  const initialSupplyValues = { amount: "0.00" };
   return (
     <Container>
       {!transactionHash ? (
