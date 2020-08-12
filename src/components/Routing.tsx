@@ -6,15 +6,22 @@ import Borrow from "./../components/Borrow/Borrow";
 import Dashboard from "./../components/Dashboard/Dashboard";
 import Navigation from "./Navigation/Navigation";
 import { AppContext, AppContextState } from "../context/app";
-
+import TopWarning from "./UI/TopWarning";
 export default function Routing() {
   const { state, updateAppState } = useContext(AppContext);
   const errors = state.errorModal;
   const toggleErrorModal = (show: boolean) =>
     updateAppState((st: AppContextState) => ({ ...st, errorModal: { show } }));
+  const network = state.web3State.network;
+
   return (
-    <div className="mx-2">
+    <div>
       <Router>
+        {network === "ropsten" && (
+          <TopWarning
+            text={`Note: You are currently connected to Ropsten Testnet`}
+          />
+        )}
         <Navigation />
         <Switch>
           <Route path="/lend">

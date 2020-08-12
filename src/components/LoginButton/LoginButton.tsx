@@ -24,10 +24,12 @@ export async function web3FromProvider(updateAppState: Function) {
     subscriptions: {
       wallet: async (wallet: any) => {
         const web3 = new Web3(wallet.provider);
+        const network = await web3.eth.net.getNetworkType();
         const web3State = {
           type: Web3Type.BlockNative,
           web3,
           onboard,
+          network,
         } as Web3State;
         updateAppState((st: AppContextState) => {
           return { ...st, web3State };
