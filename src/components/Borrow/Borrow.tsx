@@ -25,7 +25,7 @@ const Borrow = () => {
   return (
     <Container>
       {success ? (
-        <SuccessScreen type="borrow" link="link" />
+        <SuccessScreen version="borrow" link="link" />
       ) : (
         <div className="borrow">
           <div className="cards-container">

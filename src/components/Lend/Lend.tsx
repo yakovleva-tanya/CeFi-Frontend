@@ -22,6 +22,7 @@ import LendPageContextProvider, {
 } from "../../context/lendContext";
 import LoginButton from "../LoginButton/LoginButton";
 import "./lend.scss";
+import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
 
 const supplyFormValidation = () => {
   const errors = {};
@@ -32,12 +33,12 @@ const Lend = () => {
   const { tokensApproved } = useContext(LendPageContext);
   const { state, updateAppState } = useContext(AppContext);
   const [transactionHash, setTransactionHash] = useState("");
-
+  const [processing, setProcessing] = useState("");
   const loggedIn = state.web3State?.address || "";
   const initialSupplyValues = { amount: "0.00" };
   return (
     <Container>
-      {!transactionHash ? (
+      {!processing && !transactionHash && (
         <div className="cards-container">
           <Card
             className="main-card text-center align-items-center"
@@ -49,7 +50,8 @@ const Lend = () => {
               onSubmit={completeSupply(
                 state,
                 updateAppState,
-                setTransactionHash
+                setTransactionHash,
+                setProcessing
               )}
             >
               {({
@@ -88,8 +90,16 @@ const Lend = () => {
           </Card>
           <LendMetrics />
         </div>
-      ) : (
-        <SuccessScreen type="lend" link={transactionHash} />
+      )}
+      {processing && <ProcessingScreen link={processing} />}
+      {transactionHash && (
+        <SuccessScreen
+          version="lend"
+          link={transactionHash}
+          onButtonClick={() => {
+            setTransactionHash("");
+          }}
+        />
       )}
     </Container>
   );
