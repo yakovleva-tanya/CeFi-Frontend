@@ -5,7 +5,6 @@ import TopWarning from "../UI/TopWarning";
 const NetworkBar = () => {
   const { state } = useContext(AppContext);
   const network = state.web3State.network;
-
   interface networkNamesType {
     [key: string]: string;
   }
@@ -14,14 +13,14 @@ const NetworkBar = () => {
     3: "Note: You are currently connected to Ropsten Testnet",
     4: "Note: You are currently connected to Rinkeby Testnet",
     5: "Note: Goerli Testnet is not supported",
+    unknown: "Note: You are currently on an unsupported network",
   };
   return (
     <div>
       {network && network.toString() !== "1" && (
         <TopWarning
           text={
-            network_names[network] ||
-            "Note: You are currently on an unsupported network"
+            network_names[network]
           }
         />
       )}
