@@ -22,6 +22,12 @@ export async function web3FromProvider(updateAppState: Function) {
   const onboard = Onboard({
     ...BlockNativeOptions,
     subscriptions: {
+      network: async (network:any)=>{
+        updateAppState((st: AppContextState) => {
+          const web3State = { ...st.web3State, network };
+          return { ...st, web3State };
+        });
+      },
       wallet: async (wallet: any) => {
         const web3 = new Web3(wallet.provider);
         const web3State = {
