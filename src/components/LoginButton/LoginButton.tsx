@@ -23,6 +23,10 @@ export async function web3FromProvider(updateAppState: Function) {
     ...BlockNativeOptions,
     subscriptions: {
       network: async (network:any)=>{
+        network =
+          typeof network === "number" && !Number.isNaN(network)
+            ? network.toString()
+            : "unknown";
         updateAppState((st: AppContextState) => {
           const web3State = { ...st.web3State, network };
           return { ...st, web3State };
@@ -53,13 +57,13 @@ export const NavLoginButton = () => {
     <span>
       {!loggedIn ? (
         <a
-          className="menu-button login-button text-lg py-3 px-4"
+          className="menu-button login-button text-lg py-3 px-4 mr-0"
           onClick={() => web3FromProvider(updateAppState)}
         >
           Connect Wallet
         </a>
       ) : (
-        <div className="menu-button login-button text-lg py-3 px-4">
+        <div className="menu-button login-button text-lg py-3 px-4 mr-0">
           {truncate.apply(loggedIn, [6])}
         </div>
       )}
