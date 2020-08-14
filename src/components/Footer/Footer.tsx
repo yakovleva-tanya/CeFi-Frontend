@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "./../../context/app";
 import "./footer.scss";
 
 type linkProps = {
@@ -19,7 +20,8 @@ const FooterLink = ({ name, url }: linkProps) => {
 };
 
 const Footer = () => {
-  const latestBlock = 12312345;
+  const { state } = useContext(AppContext);
+  const latestBlock = state.web3State.blockNumber;
   const footerLinks = [
     {
       name: "Privacy",
@@ -40,10 +42,14 @@ const Footer = () => {
   return (
     <div className="footer mt-4 px-4 d-flex align-items-center">
       <div className="container-wrapper text-lightest-gray text-sm d-flex justify-content-between flex-1">
-        <div className="d-flex flex-row align-items-center">
-          <div className="status-circle mr-2 success"></div>
-          <div> Latest block: {latestBlock} </div>
-        </div>
+        {latestBlock ? (
+          <div className="d-flex flex-row align-items-center">
+            <div className="status-circle mr-2 success"></div>
+            <div> Latest block: {latestBlock} </div>
+          </div>
+        ) : (
+          <div>{``}</div>
+        )}
         <div className="d-flex flex-row">
           {footerLinks.map((link) => {
             return (
