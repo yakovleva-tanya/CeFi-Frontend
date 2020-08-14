@@ -57,13 +57,13 @@ export const NavLoginButton = () => {
     <span>
       {!loggedIn ? (
         <a
-          className="menu-button login-button text-lg py-3 px-4"
+          className="menu-button login-button text-lg py-3 px-4 mr-0"
           onClick={() => web3FromProvider(updateAppState)}
         >
           Connect Wallet
         </a>
       ) : (
-        <div className="menu-button login-button text-lg py-3 px-4">
+        <div className="menu-button login-button text-lg py-3 px-4 mr-0">
           {truncate.apply(loggedIn, [6])}
         </div>
       )}
