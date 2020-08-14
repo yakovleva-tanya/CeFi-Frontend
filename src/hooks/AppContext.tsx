@@ -25,6 +25,7 @@ const setAddress = async (state: AppContextState, updateAppState: Function) => {
 
 const setBlockNumber = async (state: AppContextState, updateAppState: Function) => {
   const { web3State } = state;
+  if (web3State.network === 'unknown') return;
   const blockNumber = await web3State.web3.eth.getBlockNumber();
   web3State.blockNumber = blockNumber;
   updateAppState((st: AppContextState) => {
