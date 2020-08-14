@@ -25,7 +25,7 @@ export async function web3FromProvider(updateAppState: Function) {
       network: async (network:any)=>{
         network =
           typeof network === "number" && !Number.isNaN(network)
-            ? network
+            ? network.toString()
             : "unknown";
         updateAppState((st: AppContextState) => {
           const web3State = { ...st.web3State, network };
