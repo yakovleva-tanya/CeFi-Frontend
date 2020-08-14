@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import dai from "../../../dist/assets/dai-logo.png";
-import usdc from "../../../dist/assets/usdc-logo.png";
-import usdt from "../../../dist/assets/usdt-logo.png";
-import eth from "../../../dist/assets/eth-logo.png";
+import dai from "../../../dist/assets/dai-logo.svg";
+import usdc from "../../../dist/assets/usdc-logo.svg";
+import usdt from "../../../dist/assets/usdt-logo.svg";
+import eth from "../../../dist/assets/eth-logo.svg";
 import link from "../../../dist/assets/link-logo.png";
 
 import "./custom-dropdown.scss";
-import dropdown from "../../../dist/assets/arrow-down.png";
+import dropdown from "../../../dist/assets/arrow-down.svg";
 
 type dropdownProps = {
   selected: string;
@@ -97,7 +97,7 @@ const CustomToggle = React.forwardRef<HTMLAnchorElement, toggleProps>(
         className="dropdown font-medium p-1 text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
       >
         {children}
-        <img height={8} src={dropdown} className="ml-3" />
+        <img height={14} src={dropdown} className="ml-3" />
       </a>
     );
   }
