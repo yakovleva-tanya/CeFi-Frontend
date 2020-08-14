@@ -28,7 +28,7 @@ const completeSupply = (
   updateAppState: Function,
   setTransactionHash: Function
 ) => async (values: any) => {
-  const amount = values.amount;
+  const amount = parseFloat(values.amount);
   const primaryAddress = state.web3State.address;
   const { lendingPool, zDai } = state.zeroCollateral.contracts;
   try {
