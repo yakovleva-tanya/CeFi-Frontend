@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 type messageProps = {
   url: string;
-  type: string;
+  version: string;
 };
 
-const Message = ({ type, url }: messageProps) => {
-  if (type === "lend")
+const Message = ({ version, url }: messageProps) => {
+  if (version === "lend")
     return (
       <div>
         <div>
@@ -21,7 +21,7 @@ const Message = ({ type, url }: messageProps) => {
         <div>Find out what you can do with your TToken </div>
       </div>
     );
-  if (type === "borrow")
+  if (version === "borrow")
     return (
       <div>
         <div>
@@ -37,10 +37,11 @@ const Message = ({ type, url }: messageProps) => {
 
 type successProps = {
   link: string;
-  type: string;
+  version: string;
+  onButtonClick?: Function;
 };
 
-const SuccessScreen = ({ link, type }: successProps) => {
+const SuccessScreen = ({ link, version, onButtonClick}: successProps) => {
   const url = "https://ropsten.etherscan.io/tx/" + link; //link to ropsten
   // const url = "https://etherscan.io/tx/" + link; //link to etherscan
 
@@ -51,10 +52,10 @@ const SuccessScreen = ({ link, type }: successProps) => {
       </div>
       <div className="text-5xl">Hooray!!</div>
       <div className="text-gray m-3">
-        <Message url={url} type={type} />
+        <Message url={url} version={version} />
       </div>
-      <Link to="/dashboard">
-        <PrimaryButton text="Explore Dashboard" />
+      <Link to="/">
+        <PrimaryButton onClick = {onButtonClick} text="Lend Again" />
       </Link>
     </div>
   );

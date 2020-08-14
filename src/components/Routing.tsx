@@ -6,30 +6,37 @@ import Borrow from "./../components/Borrow/Borrow";
 import Dashboard from "./../components/Dashboard/Dashboard";
 import Navigation from "./Navigation/Navigation";
 import { AppContext, AppContextState } from "../context/app";
+import NetworkBar from "../components/NetworkBar/NetworkBar";
+import Footer from "./Footer/Footer";
 
 export default function Routing() {
   const { state, updateAppState } = useContext(AppContext);
   const errors = state.errorModal;
   const toggleErrorModal = (show: boolean) =>
     updateAppState((st: AppContextState) => ({ ...st, errorModal: { show } }));
+
   return (
-    <div className="mx-2">
+    <div className="app">
       <Router>
+        <NetworkBar />
         <Navigation />
-        <Switch>
-          <Route path="/lend">
-            <Lend />
-          </Route>
-          <Route path="/borrow">
-            <Borrow />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/">
-            <Lend />
-          </Route>
-        </Switch>
+        <div className="main-content d-flex justify-content-center align-items-center">
+          <Switch>
+            <Route path="/lend">
+              <Lend />
+            </Route>
+            <Route path="/borrow">
+              <Borrow />
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard />
+            </Route>
+            <Route path="/">
+              <Lend />
+            </Route>
+          </Switch>
+        </div>
+        <Footer />
       </Router>
       <Modal
         centered={true}

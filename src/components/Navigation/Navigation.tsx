@@ -7,12 +7,8 @@ import { NavLoginButton } from "./../LoginButton/LoginButton";
 
 const Navigation = () => {
   return (
-    <Container>
-      <Navbar
-        bg="transparent"
-        expand="lg"
-        className="navBar justify-content-between px-0 m-2"
-      >
+    <div>
+      <Navbar bg="transparent" expand="lg" className="p-4 nav-bar justify-content-between container-wrapper">
         <Navbar.Brand>
           <img
             alt=""
@@ -25,7 +21,7 @@ const Navigation = () => {
           <NavLoginButton />
         </div>
       </Navbar>
-    </Container>
+    </div>
   );
 };
 

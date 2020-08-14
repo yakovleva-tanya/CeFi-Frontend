@@ -40,7 +40,7 @@ const FirstStageTable = () => {
         <BR />
         <TableRow title="Collateral With">
           <CustomDropdown
-            options={["ETH", "BTC", "USDC", "DAI"]}
+            options={["ETH", "LINK"]}
             selected={borrowRequest.collateralWith}
             handleSelect={(eventKey: any) => {
               setBorrowRequest({
