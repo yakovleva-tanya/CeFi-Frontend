@@ -1,6 +1,5 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
 import "./navigation.scss";
 import teller_logo from "../../../dist/assets/teller_logo.svg";
 import { NavLoginButton } from "./../LoginButton/LoginButton";
