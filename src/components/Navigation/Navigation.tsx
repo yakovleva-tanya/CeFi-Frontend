@@ -30,7 +30,7 @@ const NavigationLink = ({ to, name }: NavProps) => {
 const Navigation = () => {
   return (
     <div>
-      <Navbar bg="transparent" expand="lg" className="p-4 navBar">
+      <Navbar bg="transparent" expand="lg" className="p-4 nav-bar container-wrapper">
         <Navbar.Brand>
           <img
             alt=""

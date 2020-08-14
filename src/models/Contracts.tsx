@@ -22,7 +22,7 @@ export async function redeemZDai(amount: string, primaryAddress: string, lending
 }
 
 /**
- * Approves spending of dai for zeroCollateral contracts.
+ * Approves 10x spending of dai for zeroCollateral contracts.
  */
 export async function approveDai(lendingPool: any, web3State: any, primaryAddress: string, amount: number) {
   const dai = await getLendingToken(lendingPool, web3State);
@@ -34,7 +34,7 @@ export async function approveDai(lendingPool: any, web3State: any, primaryAddres
   return new Promise((resolve, reject) => dai.methods
     .approve(
       lendingPool._address,
-      (amount*tokenDecimals).toLocaleString('fullwide', { useGrouping:false })
+      (10*amount*tokenDecimals).toLocaleString('fullwide', { useGrouping:false })
     )
     .send({ from: primaryAddress })
     .on('transactionHash', Notify.hash)

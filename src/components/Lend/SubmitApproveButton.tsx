@@ -23,7 +23,7 @@ const SubmitApproveButton = () => {
         lendingPool,
         state.web3State,
         primaryAddress,
-        100*selectedAmount
+        selectedAmount
       );
       setApproving(false);
       setTokensApproved(true);
