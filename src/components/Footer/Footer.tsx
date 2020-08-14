@@ -40,7 +40,10 @@ const Footer = () => {
   return (
     <div className="footer mt-4 px-4 d-flex align-items-center">
       <div className="container-wrapper text-lightest-gray text-sm d-flex justify-content-between flex-1">
-        <div> Latest block: {latestBlock} </div>
+        <div className="d-flex flex-row align-items-center">
+          <div className="status-circle mr-2 success"></div>
+          <div> Latest block: {latestBlock} </div>
+        </div>
         <div className="d-flex flex-row">
           {footerLinks.map((link) => {
             return (
