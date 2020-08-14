@@ -6,7 +6,7 @@ import Borrow from "./../components/Borrow/Borrow";
 import Dashboard from "./../components/Dashboard/Dashboard";
 import Navigation from "./Navigation/Navigation";
 import { AppContext, AppContextState } from "../context/app";
-import TopWarning from "./UI/TopWarning";
+import NetworkBar from "../components/NetworkBar/NetworkBar";
 import Footer from "./Footer/Footer";
 
 export default function Routing() {
@@ -14,15 +14,11 @@ export default function Routing() {
   const errors = state.errorModal;
   const toggleErrorModal = (show: boolean) =>
     updateAppState((st: AppContextState) => ({ ...st, errorModal: { show } }));
-  const network = state.web3State.network;
+
   return (
     <div className="app">
       <Router>
-        {network && network.toString() === "3" && (
-          <TopWarning
-            text={`Note: You are currently connected to Ropsten Testnet`}
-          />
-        )}
+        <NetworkBar />
         <Navigation />
         <div className="main-content d-flex justify-content-center align-items-center">
           <Switch>
@@ -40,7 +36,6 @@ export default function Routing() {
             </Route>
           </Switch>
         </div>
-
         <Footer />
       </Router>
       <Modal

@@ -34,7 +34,7 @@ const Lend = () => {
   const { state, updateAppState } = useContext(AppContext);
   const [transactionHash, setTransactionHash] = useState("");
   const [processing, setProcessing] = useState("");
-  const loggedIn = state.web3State?.address || "";
+  const loggedIn = state.web3State?.web3 || "";
   const initialSupplyValues = { amount: "0.00" };
   return (
     <Container>
