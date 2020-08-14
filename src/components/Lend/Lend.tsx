@@ -28,14 +28,21 @@ const supplyFormValidation = () => {
   const errors = {};
   return errors;
 };
+const getEtherscanLink = (hash: string, network: string) =>{
+  if(network == '4') return `https://rinkeby.etherscan.io/tx/${hash}`;
+  else if(network == '3') return `https://ropsten.etherscan.io/tx/${hash}`;
+  else return `https://etherscan.io/tx/${hash}`;
+}
 
 const Lend = () => {
   const { tokensApproved } = useContext(LendPageContext);
   const { state, updateAppState } = useContext(AppContext);
   const [transactionHash, setTransactionHash] = useState("");
   const [processing, setProcessing] = useState("");
-  const loggedIn = state.web3State?.web3 || "";
+  const loggedIn = state.web3State?.address || "";
+  const network = state.web3State?.network || "";
   const initialSupplyValues = { amount: "0.00" };
+
   return (
     <Container>
       {!processing && !transactionHash && (
@@ -91,11 +98,13 @@ const Lend = () => {
           <LendMetrics />
         </div>
       )}
-      {processing && <ProcessingScreen link={processing} />}
+      {processing && (
+        <ProcessingScreen link={getEtherscanLink(processing, network)} />
+      )}
       {transactionHash && (
         <SuccessScreen
           version="lend"
-          link={transactionHash}
+          link={getEtherscanLink(transactionHash, network)}
           onButtonClick={() => {
             setTransactionHash("");
           }}

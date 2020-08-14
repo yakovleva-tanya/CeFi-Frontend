@@ -42,9 +42,6 @@ type successProps = {
 };
 
 const SuccessScreen = ({ link, version, onButtonClick}: successProps) => {
-  const url = "https://ropsten.etherscan.io/tx/" + link; //link to ropsten
-  // const url = "https://etherscan.io/tx/" + link; //link to etherscan
-
   return (
     <div className="success-screen d-flex align-items-center justify-content-center flex-column">
       <div className="text-5xl">
@@ -52,7 +49,7 @@ const SuccessScreen = ({ link, version, onButtonClick}: successProps) => {
       </div>
       <div className="text-5xl">Hooray!!</div>
       <div className="text-gray m-3">
-        <Message url={url} version={version} />
+        <Message url={link} version={version} />
       </div>
       <Link to="/">
         <PrimaryButton onClick = {onButtonClick} text="Lend Again" />
