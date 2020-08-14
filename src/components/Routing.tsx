@@ -7,20 +7,17 @@ import Dashboard from "./../components/Dashboard/Dashboard";
 import Navigation from "./Navigation/Navigation";
 import { AppContext, AppContextState } from "../context/app";
 import TopWarning from "./UI/TopWarning";
+
 export default function Routing() {
   const { state, updateAppState } = useContext(AppContext);
   const errors = state.errorModal;
   const toggleErrorModal = (show: boolean) =>
     updateAppState((st: AppContextState) => ({ ...st, errorModal: { show } }));
-  const network = state.web3State.network;
+
   return (
     <div>
       <Router>
-        {network&&network.toString() === '3' && (
-          <TopWarning
-            text={`Note: You are currently connected to Ropsten Testnet`}
-          />
-         )}
+        <NetworkBar />
         <Navigation />
         <Switch>
           <Route path="/lend">
@@ -50,3 +47,30 @@ export default function Routing() {
     </div>
   );
 }
+
+const NetworkBar = () => {
+  const { state } = useContext(AppContext);
+  const network = state.web3State.network;
+
+  interface networkNamesType {
+    [key: string]: string;
+  }
+  const network_names: networkNamesType = {
+    42: "Note: Kovan Testnet is not supported",
+    3: "Note: You are currently connected to Ropsten Testnet",
+    4: "Note: You are currently connected to Rinkeby Testnet",
+    5: "Note: Goerli Testnet is not supported",
+  };
+  return (
+    <div>
+      {network && network.toString() !== "1" && (
+        <TopWarning
+          text={
+            network_names[network] ||
+            "Note: You are currently on an unsupported network"
+          }
+        />
+      )}
+    </div>
+  );
+};
