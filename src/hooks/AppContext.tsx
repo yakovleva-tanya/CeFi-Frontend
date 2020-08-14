@@ -23,6 +23,16 @@ const setAddress = async (state: AppContextState, updateAppState: Function) => {
   });
 };
 
+const setBlockNumber = async (state: AppContextState, updateAppState: Function) => {
+  const { web3State } = state;
+  if (web3State.network === 'unknown') return;
+  const blockNumber = await web3State.web3.eth.getBlockNumber();
+  web3State.blockNumber = blockNumber;
+  updateAppState((st: AppContextState) => {
+    return { ...st, web3State };
+  });
+};
+
 const mergeSignInContracts = async (state: AppContextState, updateAppState: Function) => {
   const networkId = await state.web3State.web3.eth.getChainId();
   if (networkId !== BlockNativeOptions.networkId) return;
@@ -61,6 +71,13 @@ export default function useAppContext()  {
     if (!state.web3State?.web3) return;
     setAddress(state, updateAppState);
   }, [state.web3State?.web3]);
+
+  React.useEffect(() => {
+    if (!state.web3State.web3) return;
+    if(!state.web3State.network) return;
+    setAddress(state, updateAppState);
+    setBlockNumber(state, updateAppState);
+  }, [state.web3State.network]);
 
   return [state, updateAppState];
 }

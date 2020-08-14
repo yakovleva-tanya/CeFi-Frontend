@@ -22,22 +22,30 @@ import LendPageContextProvider, {
 } from "../../context/lendContext";
 import LoginButton from "../LoginButton/LoginButton";
 import "./lend.scss";
+import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
 
 const supplyFormValidation = () => {
   const errors = {};
   return errors;
 };
+const getEtherscanLink = (hash: string, network: string) =>{
+  if(network == '4') return `https://rinkeby.etherscan.io/tx/${hash}`;
+  else if(network == '3') return `https://ropsten.etherscan.io/tx/${hash}`;
+  else return `https://etherscan.io/tx/${hash}`;
+}
 
 const Lend = () => {
   const { tokensApproved } = useContext(LendPageContext);
   const { state, updateAppState } = useContext(AppContext);
   const [transactionHash, setTransactionHash] = useState("");
-
+  const [processing, setProcessing] = useState("");
   const loggedIn = state.web3State?.address || "";
+  const network = state.web3State?.network || "";
   const initialSupplyValues = { amount: "0.00" };
+
   return (
     <Container>
-      {!transactionHash ? (
+      {!processing && !transactionHash && (
         <div className="cards-container">
           <Card
             className="main-card text-center align-items-center"
@@ -49,7 +57,8 @@ const Lend = () => {
               onSubmit={completeSupply(
                 state,
                 updateAppState,
-                setTransactionHash
+                setTransactionHash,
+                setProcessing
               )}
             >
               {({
@@ -88,8 +97,18 @@ const Lend = () => {
           </Card>
           <LendMetrics />
         </div>
-      ) : (
-        <SuccessScreen type="lend" link={transactionHash} />
+      )}
+      {processing && (
+        <ProcessingScreen link={getEtherscanLink(processing, network)} />
+      )}
+      {transactionHash && (
+        <SuccessScreen
+          version="lend"
+          link={getEtherscanLink(transactionHash, network)}
+          onButtonClick={() => {
+            setTransactionHash("");
+          }}
+        />
       )}
     </Container>
   );

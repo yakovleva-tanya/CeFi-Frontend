@@ -43,15 +43,19 @@ export async function approveDai(lendingPool: any, web3State: any, primaryAddres
   );
 }
 
-export async function mintZDai(contract: any, web3State: any, primaryAddress: string, amount: number) {
+export async function mintZDai( setProcessing: any, contract: any, web3State: any, primaryAddress: string, amount: number) {
   const dai = await getLendingToken(contract, web3State);
   const decimals = await dai.methods.decimals().call();
   const tokenDecimals = 10**parseFloat(decimals);
+  const onTransactionHash = (e: any) => {
+    setProcessing(e);
+    Notify.hash(e);
+  };
   return new Promise((resolve, reject) => contract.methods.deposit(
       (tokenDecimals*amount).toLocaleString('fullwide', { useGrouping:false })
     )
     .send({ from: primaryAddress })
-    .on('transactionHash', Notify.hash)
+    .on('transactionHash', onTransactionHash)
     .on('receipt', resolve)
     .on('error', reject)
   );
