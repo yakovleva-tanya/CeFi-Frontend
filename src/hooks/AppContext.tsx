@@ -7,25 +7,29 @@
  */
 
 import * as React from "react";
-import { AppContextDefault, AppContextState } from './../context/app';
+import { AppContextDefault, AppContextState } from "./../context/app";
 
-import Either from './../util/Either';
-import Plaid, { PlaidTransaction } from './../models/Plaid';
-import { BlockNativeOptions } from './../util/constants';
-import signInContracts from './../actions/signInContracts';
+import Either from "./../util/Either";
+import Plaid, { PlaidTransaction } from "./../models/Plaid";
+import { BlockNativeOptions } from "./../util/constants";
+import signInContracts from "./../actions/signInContracts";
+import FetchTokenData from "../models/FetchTokenData";
 
 const setAddress = async (state: AppContextState, updateAppState: Function) => {
   const { web3State } = state;
   const accounts = await web3State.web3.eth.getAccounts();
   web3State.address = accounts[0];
   updateAppState((st: AppContextState) => {
-    return { ...st, web3State }
+    return { ...st, web3State };
   });
 };
 
-const setBlockNumber = async (state: AppContextState, updateAppState: Function) => {
+const setBlockNumber = async (
+  state: AppContextState,
+  updateAppState: Function
+) => {
   const { web3State } = state;
-  if (web3State.network === 'unknown') return;
+  if (web3State.network === "unknown") return;
   const blockNumber = await web3State.web3.eth.getBlockNumber();
   web3State.blockNumber = blockNumber;
   updateAppState((st: AppContextState) => {
@@ -33,24 +37,46 @@ const setBlockNumber = async (state: AppContextState, updateAppState: Function) 
   });
 };
 
-const mergeSignInContracts = async (state: AppContextState, updateAppState: Function) => {
+const mergeSignInContracts = async (
+  state: AppContextState,
+  updateAppState: Function
+) => {
   const networkId = await state.web3State.web3.eth.getChainId();
   if (networkId !== BlockNativeOptions.networkId) return;
   try {
-    const zeroCollateral = await signInContracts(state.web3State, state.zeroCollateral);
+    const zeroCollateral = await signInContracts(
+      state.web3State,
+      state.zeroCollateral
+    );
     updateAppState((st: AppContextState) => ({
       ...st,
-      zeroCollateral
+      zeroCollateral,
     }));
   } catch (e) {
     updateAppState((st: AppContextState) => {
       const errorModal = {
         show: true,
-        message: "An error occurred connecting to Teller contracts. Please try again.",
-        title: "Error"
+        message:
+          "An error occurred connecting to Teller contracts. Please try again.",
+        title: "Error",
       };
       return { ...st, errorModal };
     });
+  }
+};
+
+const getTokenData = async (
+  state: AppContextState,
+  updateAppState: Function
+) => {
+  try {
+    if (state.tokenData !== null) return;
+    const tokenData = await FetchTokenData();
+    updateAppState((st: AppContextState) => {
+      return { ...st, tokenData };
+    });
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -59,7 +85,7 @@ const mergeSignInContracts = async (state: AppContextState, updateAppState: Func
  * @function useAppContext
  * @memberof AppContextHook
  */
-export default function useAppContext()  {
+export default function useAppContext() {
   const [state, updateAppState] = React.useState(AppContextDefault.state);
 
   React.useEffect(() => {
@@ -74,10 +100,15 @@ export default function useAppContext()  {
 
   React.useEffect(() => {
     if (!state.web3State.web3) return;
-    if(!state.web3State.network) return;
+    if (!state.web3State.network) return;
     setAddress(state, updateAppState);
     setBlockNumber(state, updateAppState);
+    getTokenData(state, updateAppState);
   }, [state.web3State.network]);
+
+  React.useEffect(() => {
+    getTokenData(state, updateAppState);
+  }, []);
 
   return [state, updateAppState];
 }
