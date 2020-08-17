@@ -22,7 +22,7 @@ export async function redeemZDai(amount: string, primaryAddress: string, lending
 }
 
 /**
- * Approves spending of dai for zeroCollateral contracts.
+ * Approves 10x spending of dai for zeroCollateral contracts.
  */
 export async function approveDai(lendingPool: any, web3State: any, primaryAddress: string, amount: number) {
   const dai = await getLendingToken(lendingPool, web3State);
@@ -34,7 +34,7 @@ export async function approveDai(lendingPool: any, web3State: any, primaryAddres
   return new Promise((resolve, reject) => dai.methods
     .approve(
       lendingPool._address,
-      (Math.pow(2, 256)-1).toLocaleString('fullwide', { useGrouping:false })
+      (10*amount*tokenDecimals).toLocaleString('fullwide', { useGrouping:false })
     )
     .send({ from: primaryAddress })
     .on('transactionHash', Notify.hash)
@@ -43,15 +43,19 @@ export async function approveDai(lendingPool: any, web3State: any, primaryAddres
   );
 }
 
-export async function mintZDai(contract: any, web3State: any, primaryAddress: string, amount: number) {
+export async function mintZDai( setProcessing: any, contract: any, web3State: any, primaryAddress: string, amount: number) {
   const dai = await getLendingToken(contract, web3State);
   const decimals = await dai.methods.decimals().call();
   const tokenDecimals = 10**parseFloat(decimals);
+  const onTransactionHash = (e: any) => {
+    setProcessing(e);
+    Notify.hash(e);
+  };
   return new Promise((resolve, reject) => contract.methods.deposit(
       (tokenDecimals*amount).toLocaleString('fullwide', { useGrouping:false })
     )
     .send({ from: primaryAddress })
-    .on('transactionHash', Notify.hash)
+    .on('transactionHash', onTransactionHash)
     .on('receipt', resolve)
     .on('error', reject)
   );

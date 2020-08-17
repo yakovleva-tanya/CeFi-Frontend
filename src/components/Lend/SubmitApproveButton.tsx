@@ -1,28 +1,30 @@
 import React, { useState, useContext } from "react";
-import { approveDai } from "../../models/Contracts";
 import { AppContext, AppContextState } from "../../context/app";
+import { approveDai } from "../../models/Contracts";
 import { CustomSubmitButton } from "../UI/CustomSubmitButton";
+import { LendPageContext } from "../../context/lendContext";
 
-type SubmitApproveType = {
-  amount: number;
-  loggedIn: string;
-  tokensApproved: boolean;
-  setTokensApproved: Function;
-};
+const SubmitApproveButton = () => {
+  const {
+    selectedAmount,
+    tokensApproved,
+    setTokensApproved,
+  } = useContext(LendPageContext);
 
-const SubmitApproveButton = ({
-  amount,
-  loggedIn,
-  tokensApproved,
-  setTokensApproved,
-}: SubmitApproveType) => {
-  const [approving, setApproving] = useState(false);
   const { state, updateAppState } = useContext(AppContext);
+  const [approving, setApproving] = useState(false);
+  const loggedIn = state.web3State?.address || "";
+
   const approve = async () => {
     const primaryAddress = state.web3State.address;
     const { lendingPool } = state.zeroCollateral.contracts;
     try {
-      await approveDai(lendingPool, state.web3State, primaryAddress, amount);
+      await approveDai(
+        lendingPool,
+        state.web3State,
+        primaryAddress,
+        selectedAmount
+      );
       setApproving(false);
       setTokensApproved(true);
     } catch (error) {

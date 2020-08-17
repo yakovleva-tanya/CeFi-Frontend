@@ -1,93 +1,51 @@
 import React, { useState, useContext } from "react";
-import { Formik } from "formik";
 import { AppContext, AppContextState } from "../../context/app";
-import supplyDai from "../../actions/lendDai";
-import Container from "react-bootstrap/Container";
 
-import Button from "react-bootstrap/Button";
+import { Formik } from "formik";
+import completeSupply from "../../actions/lendDai";
+
+import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 
 import SuccessScreen from "../SuccessScreen/SuccessScreen";
 import CurrencyDropdown from "./CurrencyDropdown";
 import SubmitApproveButton from "./SubmitApproveButton";
 import LendMetrics from "./LendMetrics";
+import LendAmountInput from "./LendAmountInput";
+
 import Card from "../UI/Card";
 import BR from "../UI/BR";
 import TableRow from "../UI/TableRow";
-
+import PrimaryButton from "../UI/PrimaryButton";
+import LendPageContextProvider, {
+  LendPageContext,
+} from "../../context/lendContext";
+import LoginButton from "../LoginButton/LoginButton";
 import "./lend.scss";
-
-type RatesType = {
-  [key: string]: number;
-};
-
-const exchangeRates: RatesType = {
-  USDT: 0.998,
-  DAI: 1.033,
-  USDC: 1.001,
-};
-
-const convertCurrency = (currency: number, amount: number) =>
-  (amount / currency).toFixed(2);
-
-const completeSupply = (
-  state: any,
-  updateAppState: Function,
-  setTransactionHash: Function
-) => async (values: any) => {
-  const amount = values.amount;
-  const primaryAddress = state.web3State.address;
-  const { lendingPool, zDai } = state.zeroCollateral.contracts;
-  try {
-    const { balance, transactionHash } = await supplyDai(
-      amount,
-      primaryAddress,
-      lendingPool,
-      zDai,
-      state.web3State
-    );
-    setTransactionHash(transactionHash);
-    updateAppState((st: AppContextState) => {
-      const zeroCollateral = st.zeroCollateral;
-      zeroCollateral.balance = balance;
-      return { ...st, zeroCollateral };
-    });
-  } catch (error) {
-    console.log(error);
-    updateAppState((st: AppContextState) => {
-      const errorModal = {
-        show: true,
-        message:
-          "An error occurred during the lending process. Please try again.",
-        title: "Error",
-      };
-      return { ...st, errorModal };
-    });
-  }
-};
+import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
 
 const supplyFormValidation = () => {
   const errors = {};
   return errors;
 };
+const getEtherscanLink = (hash: string, network: string) =>{
+  if(network == '4') return `https://rinkeby.etherscan.io/tx/${hash}`;
+  else if(network == '3') return `https://ropsten.etherscan.io/tx/${hash}`;
+  else return `https://etherscan.io/tx/${hash}`;
+}
 
-export default () => {
-  const currencies = ["DAI", "USDT", "USDC"];
-  const [currency, setCurrency] = useState(currencies[0]);
-  const [amount, setAmount] = useState(0.0);
-  const [transactionHash, setTransactionHash] = useState("");
-  const [tokensApproved, setTokensApproved] = useState(false);
+const Lend = () => {
+  const { tokensApproved } = useContext(LendPageContext);
   const { state, updateAppState } = useContext(AppContext);
-
+  const [transactionHash, setTransactionHash] = useState("");
+  const [processing, setProcessing] = useState("");
   const loggedIn = state.web3State?.address || "";
-  const walletBalance = state.zeroCollateral?.balance
-    ? state.zeroCollateral?.balance
-    : "-";
-  const initialSupplyValues = { amount };
+  const network = state.web3State?.network || "";
+  const initialSupplyValues = { amount: "0.00" };
 
   return (
     <Container>
-      {!transactionHash ? (
+      {!processing && !transactionHash && (
         <div className="cards-container">
           <Card
             className="main-card text-center align-items-center"
@@ -99,7 +57,8 @@ export default () => {
               onSubmit={completeSupply(
                 state,
                 updateAppState,
-                setTransactionHash
+                setTransactionHash,
+                setProcessing
               )}
             >
               {({
@@ -110,71 +69,57 @@ export default () => {
                 /* and other goodies */
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
-                  <div className="mt-5">
-                    <input
-                      className="input text-5xl font-medium text-black"
-                      value={`$${values.amount}`}
-                      name="amount"
-                      onChange={(e) => {
-                        e.target.value = e.target.value.replace(/[^0-9.]/g, "");
-                        handleChange(e);
-                        setAmount(parseFloat(e.target.value));
-                      }}
-                      onKeyPress={(e) => {
-                        e.key === "Enter" && e.preventDefault();
-                      }}
-                    />
-                    <div className="text-lightest-gray text-lg">
-                      {`${convertCurrency(
-                        exchangeRates[currency],
-                        amount
-                      )} ${currency}`}
-                    </div>
-                  </div>
+                  <LendAmountInput
+                    amount={values.amount}
+                    handleChange={handleChange}
+                  />
                   <div className="table border-thin my-5">
                     <TableRow title="Lend With">
-                      <CurrencyDropdown
-                        currencies={currencies}
-                        currency={currency}
-                        setCurrency={setCurrency}
-                        tokensApproved={tokensApproved}
-                        setTokensApproved={setTokensApproved}
-                      />
+                      <CurrencyDropdown />
                     </TableRow>
                     <BR />
                     <TableRow title="Approve">
-                      <SubmitApproveButton
-                        amount={amount}
-                        loggedIn={loggedIn}
-                        tokensApproved={tokensApproved}
-                        setTokensApproved={setTokensApproved}
-                      />
+                      <SubmitApproveButton />
                     </TableRow>
                   </div>
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting || !loggedIn || !tokensApproved}
-                    className={`py-3 px-4 text-lg mb-5 mt-4 ${
-                      loggedIn && tokensApproved ? "pointer" : "disabled"
-                    }`}
-                    variant="primary"
-                  >
-                    Supply
-                  </Button>
+                  {loggedIn ? (
+                    <PrimaryButton
+                      text="Supply"
+                      type="submit"
+                      disabled={isSubmitting || !tokensApproved}
+                    />
+                  ) : (
+                    <LoginButton />
+                  )}
                 </Form>
               )}
             </Formik>
           </Card>
-          <LendMetrics
-            currency={currency}
-            price={exchangeRates[currency]}
-            walletBalance={walletBalance.toString()}
-          />
+          <LendMetrics />
         </div>
-      ) : (
-        <SuccessScreen type="lend" link={transactionHash} />
+      )}
+      {processing && (
+        <ProcessingScreen link={getEtherscanLink(processing, network)} />
+      )}
+      {transactionHash && (
+        <SuccessScreen
+          version="lend"
+          link={getEtherscanLink(transactionHash, network)}
+          onButtonClick={() => {
+            setTransactionHash("");
+          }}
+        />
       )}
     </Container>
   );
 };
 
+const LendPageContextWrapper = () => {
+  return (
+    <LendPageContextProvider>
+      <Lend />
+    </LendPageContextProvider>
+  );
+};
+
+export default LendPageContextWrapper;

@@ -1,6 +1,7 @@
 import * as React from "react";
-import Plaid, { PlaidTransaction } from './../models/Plaid';
-import { AssetReport } from 'plaid';
+import Plaid, { PlaidTransaction } from "./../models/Plaid";
+import { AssetReport } from "plaid";
+import { CollateralAdjustType } from "../components/CollateralAdjustModal";
 
 interface ErrorModal {
   show: boolean;
@@ -35,7 +36,7 @@ export interface PlaidState {
 export enum Web3Type {
   Fortmatic,
   Metamask,
-  BlockNative
+  BlockNative,
 }
 
 export interface Web3State {
@@ -43,6 +44,8 @@ export interface Web3State {
   type: Web3Type | null;
   address: string | null;
   onboard: any | null;
+  network: string | null;
+  blockNumber: string | null;
 }
 
 export interface ZeroCollateralContracts {
@@ -55,11 +58,9 @@ export interface ZeroCollateralState {
   balance: number | null;
   borrowed: boolean;
 }
-
 export interface FicoState {
   score: number | null;
 }
-
 export interface AppContextState {
   plaid: PlaidState;
   fico: FicoState;
@@ -81,7 +82,7 @@ export interface AppContextInterface {
 export const AppContextDefault = {
   state: {
     dataProviderResponse: {
-      bankInfo: null as null
+      bankInfo: null as null,
     },
     fico: {
       score: null as null,
@@ -90,7 +91,9 @@ export const AppContextDefault = {
       address: null as null,
       web3: null as null,
       type: null as null,
-      onboard: null as null
+      onboard: null as null,
+      network: null as null,
+      blockNumber: null as null
     },
     zeroCollateral: {
       balance: null as null,
@@ -98,7 +101,7 @@ export const AppContextDefault = {
       contracts: {
         zDai: null as null,
         lendingPool: null as null,
-      }
+      },
     },
     myState: {
       someproperty: null as null,
@@ -106,7 +109,7 @@ export const AppContextDefault = {
     plaid: {
       loggedIn: null as null,
       userTransactions: null as null,
-      income: null as null
+      income: null as null,
     } as PlaidState,
     errorModal: {
       show: false,
@@ -114,10 +117,12 @@ export const AppContextDefault = {
       title: null,
     } as ErrorModal,
     loginModal: {
-      show: false
+      show: false,
     } as LoginModal,
   },
-  updateAppState: () => {}
+  updateAppState: () => {},
 };
 
-export const AppContext = React.createContext<AppContextInterface>(AppContextDefault);
+export const AppContext = React.createContext<AppContextInterface>(
+  AppContextDefault
+);

@@ -1,22 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AssetChangeWarningModal from "../AssetChangeWarningModal/AssetChangeWarningModal";
 import { CustomDropdown } from "../UI/CustomDropdown";
+import { LendPageContext } from "../../context/lendContext";
 
-type DropdownType = {
-  currencies: Array<string>;
-  currency: string;
-  setCurrency: Function;
-  tokensApproved: boolean;
-  setTokensApproved: Function;
-};
+const CurrencyDropdown = () => {
+  const {
+    selectedCurrency,
+    tokensApproved,
+    setTokensApproved,
+    setSelectedCurrency,
+  } = useContext(LendPageContext);
 
-const CurrencyDropdown = ({
-  currencies,
-  currency,
-  setCurrency,
-  tokensApproved,
-  setTokensApproved,
-}: DropdownType) => {
+  const currencies = ["DAI", "USDT", "USDC"];
+
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [newCurrency, setNewCurrency] = useState("");
 
@@ -25,7 +21,7 @@ const CurrencyDropdown = ({
       setNewCurrency(eventKey);
       setShowWarningModal(true);
     } else {
-      setCurrency(eventKey);
+      setSelectedCurrency(eventKey);
     }
   };
 
@@ -34,7 +30,7 @@ const CurrencyDropdown = ({
   };
   const proceedWithChange = () => {
     setShowWarningModal(false);
-    setCurrency(newCurrency);
+    setSelectedCurrency(newCurrency);
     setTokensApproved(false);
   };
 
@@ -46,7 +42,7 @@ const CurrencyDropdown = ({
         cancel={cancelChange}
       />
       <CustomDropdown
-        selected={currency}
+        selected={selectedCurrency}
         handleSelect={handleSelect}
         options={currencies}
       />
