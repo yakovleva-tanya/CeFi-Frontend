@@ -28,7 +28,8 @@ export async function web3FromProvider(updateAppState: Function) {
             ? network.toString()
             : "unknown";
         updateAppState((st: AppContextState) => {
-          const web3State = { ...st.web3State, network };
+          const web3State = st.web3State;
+          web3State.network = network;
           return { ...st, web3State };
         });
       },
