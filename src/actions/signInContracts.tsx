@@ -54,7 +54,7 @@ async function setupTellerContracts(
     cTokenAddress,
     cToken,
     userCollateralBalance,
-    userBorrowedBalance, 
+    userBorrowedBalance,
   };
 
 }
@@ -74,7 +74,7 @@ export default async (
   try {
     if (!web3State.web3) return teller;
 
-    const { 
+    const {
       ETH_LendingPool_tDAI,
       ETH_LendingPool_tUSDC,
     } = contractAddresses;
@@ -107,7 +107,6 @@ export default async (
         userCollateralBalance: null as null,
       },
     };
-
     return {
       ...teller,
       contracts,

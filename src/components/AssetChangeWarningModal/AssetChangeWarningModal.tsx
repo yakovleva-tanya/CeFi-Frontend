@@ -26,9 +26,9 @@ const AssetChangeWarningModal = ({
       </Modal.Header>
       <Modal.Body className="modal-body text-center py-5 m-auto">
         <div className="mb-5 opacity-80">
-          You’re about to change your lending asset. If you do so, you will have
-          to submit another Approve Transaction resulting in another gas fee.
-          Are you sure you want to proceed?
+          You're about to change your supply asset, doing so will submit another
+          transaction approval and cost additional gas fees. Are you sure you
+          want to proceed?
         </div>
         <div className="d-flex flex-row justify-content-center">
           <Button
@@ -39,7 +39,7 @@ const AssetChangeWarningModal = ({
             className="modal-button py-2 mx-3 text-lg"
             variant="danger"
           >
-            Exit
+            Cancel
           </Button>
           <Button
             onClick={() => {

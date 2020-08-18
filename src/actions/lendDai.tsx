@@ -36,7 +36,7 @@ const completeSupply = (
 ) => async (values: any) => {
   const amount = parseFloat(values.amount);
   const primaryAddress = state.web3State.address;
-  const { lendingPool, zDai } = state.zeroCollateral.contracts;
+  const { lendingPool, zDai } = state.teller.contracts.daiETH;
   try {
     const { balance, transactionHash } = await supplyDai(
       setProcessing,

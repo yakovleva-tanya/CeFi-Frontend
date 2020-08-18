@@ -13,6 +13,7 @@ import Either from "./../util/Either";
 import Plaid, { PlaidTransaction } from "./../models/Plaid";
 import { BlockNativeOptions } from "./../util/constants";
 import signInContracts from "./../actions/signInContracts";
+import FetchTokenData from "../models/FetchTokenData";
 
 const setAddress = async (state: AppContextState, updateAppState: Function) => {
   const { web3State } = state;
@@ -41,6 +42,7 @@ const mergeSignInContracts = async (
   updateAppState: Function
 ) => {
   const networkId = await state.web3State.web3.eth.getChainId();
+
   if (networkId !== BlockNativeOptions.networkId) {
     const teller = AppContextDefault.state.teller;
     updateAppState((st: AppContextState) => ({
@@ -71,6 +73,20 @@ const mergeSignInContracts = async (
   }
 };
 
+const getTokenData = async (
+  state: AppContextState,
+  updateAppState: Function
+) => {
+  try {
+    if (state.tokenData !== null) return;
+    const tokenData = await FetchTokenData();
+    updateAppState((st: AppContextState) => {
+      return { ...st, tokenData };
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 const setUpdates = async (state: AppContextState, updateAppState: Function) => {
   await setAddress(state, updateAppState);
   await mergeSignInContracts(state, updateAppState);
@@ -85,10 +101,13 @@ export default function useAppContext() {
   const [state, updateAppState] = React.useState(AppContextDefault.state);
 
   React.useEffect(() => {
-    if (!state.web3State.web3) return;
     if (!state.web3State.network) return;
     setUpdates(state, updateAppState);
   }, [state.web3State?.network]);
+
+  React.useEffect(() => {
+    getTokenData(state, updateAppState);
+  }, []);
 
   return [state, updateAppState];
 }

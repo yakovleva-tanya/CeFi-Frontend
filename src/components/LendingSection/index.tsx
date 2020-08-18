@@ -49,9 +49,9 @@ const completeLendingForm = (state: any, updateAppState: Function) => async (val
 
 const completeRedeemZDai = (state: any, updateAppState: Function) => async () => {
   const primaryAddress = state.web3State.address;
-  const { lendingPool, zDai } = state.zeroCollateral.contracts;
+  const { lendingPool, tToken } = state.teller.contracts.daiETH;
   try {
-    const balance = await redeemZDai(primaryAddress, lendingPool, zDai);
+    //const balance = await redeemZDai(primaryAddress, lendingPool, tToken);
     updateAppState((st: AppContextState) => {
       const teller = st.teller;
       // TODO: this should update the user's balance based on the selected ATM type.

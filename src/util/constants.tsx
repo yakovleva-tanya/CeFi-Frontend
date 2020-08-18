@@ -122,6 +122,14 @@ export const contractOptions = {
     LINK_LoanTermsConsensus_tUSDC_Proxy: '0xEA786499f00AF3Fa7fDEB974Df8815B068B03e9C',
     LINK_Loans_tUSDC: '0xd49165870FdE7A359B3816ECd223E4A16De7ED31',
     LINK_Loans_tUSDC_Proxy: '0xd4ebaA493564f6F1acAA754D2898B6879dB624B7',
+    tokens: {
+      // See https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f
+      DAI: '0x6b175474e89094c44da98b954eedeac495271d0f',
+      // See https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+      USDC: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+      // See https://etherscan.io/token/0x514910771af9ca656af840dff83e8264ecf986ca
+      LINK: '0x514910771af9ca656af840dff83e8264ecf986ca',
+    }
   }
 };
 
