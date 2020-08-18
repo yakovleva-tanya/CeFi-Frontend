@@ -17,7 +17,8 @@ const SubmitApproveButton = () => {
 
   const approve = async () => {
     const primaryAddress = state.web3State.address;
-    const { lendingPool } = state.zeroCollateral.contracts;
+    const { lendingPool } = state.teller.contracts.daiETH;
+    // TODO: this should update based on the selected ATM type.
     try {
       await approveDai(
         lendingPool,

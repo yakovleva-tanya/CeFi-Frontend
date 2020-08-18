@@ -25,6 +25,9 @@ const supplyDai = async (
   return result;
 };
 
+/**
+ * Supplies new tokens to the ATM.
+ */
 const completeSupply = (
   state: any,
   updateAppState: Function,
@@ -46,9 +49,9 @@ const completeSupply = (
     setProcessing('');
     setTransactionHash(transactionHash);
     updateAppState((st: AppContextState) => {
-      const zeroCollateral = st.zeroCollateral;
-      zeroCollateral.balance = balance;
-      return { ...st, zeroCollateral };
+      const teller = st.teller;
+  // TODO: this should update based on the selected ATM type.
+      return { ...st, teller };
     });
   } catch (error) {
     console.log(error);

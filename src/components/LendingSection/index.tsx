@@ -53,9 +53,9 @@ const completeRedeemZDai = (state: any, updateAppState: Function) => async () =>
   try {
     const balance = await redeemZDai(primaryAddress, lendingPool, zDai);
     updateAppState((st: AppContextState) => {
-      const zeroCollateral = st.zeroCollateral;
-      zeroCollateral.balance = balance;
-      return { ...st, zeroCollateral };
+      const teller = st.teller;
+      // TODO: this should update the user's balance based on the selected ATM type.
+      return { ...st, teller };
     });
   } catch (error) {
     updateAppState((st: AppContextState) => {
@@ -149,7 +149,8 @@ const LendingCard = () => {
 
 const RewardsSection = () => {
   const { state, updateAppState } = useContext(AppContext);
-  const balance = state.web3State?.type ? state.zeroCollateral?.balance : "-";
+  const balance = "-";
+  // TODO: this should update based on the selected ATM type.
   return <Row className="rewards-section">
     <Col className="mt-5" xs={12} md={10}>
       <Card className="rewards-card w-100">
@@ -169,7 +170,8 @@ const RewardsSection = () => {
 export const LendingSection = () => {
   const { state } = useContext(AppContext);
   const web3LoggedIn = state.web3State.type;
-  const amount = state.zeroCollateral?.balance ? state.zeroCollateral?.balance : "-";
+  const amount = "-";
+  // TODO: this should update based on the selected ATM type.
   return <Container fluid className="px-0">
     <Row>
       <Col sm={12} md={6}>
