@@ -49,7 +49,7 @@ const Lend = () => {
         <div className="cards-container">
           <Card
             className="main-card text-center align-items-center"
-            title="Lend"
+            title="Supply"
           >
             <Formik
               initialValues={initialSupplyValues}
@@ -74,7 +74,7 @@ const Lend = () => {
                     handleChange={handleChange}
                   />
                   <div className="table border-thin my-5">
-                    <TableRow title="Lend With">
+                    <TableRow title="Supply With">
                       <CurrencyDropdown />
                     </TableRow>
                     <BR />
