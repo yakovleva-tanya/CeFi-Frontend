@@ -42,26 +42,34 @@ const mergeSignInContracts = async (
   updateAppState: Function
 ) => {
   const networkId = await state.web3State.web3.eth.getChainId();
-  if (networkId !== BlockNativeOptions.networkId) return;
-  try {
-    const zeroCollateral = await signInContracts(
-      state.web3State,
-      state.zeroCollateral
-    );
+
+  if (networkId !== BlockNativeOptions.networkId) {
+    const zeroCollateral = AppContextDefault.state.zeroCollateral;
     updateAppState((st: AppContextState) => ({
       ...st,
       zeroCollateral,
     }));
-  } catch (e) {
-    updateAppState((st: AppContextState) => {
-      const errorModal = {
-        show: true,
-        message:
-          "An error occurred connecting to Teller contracts. Please try again.",
-        title: "Error",
-      };
-      return { ...st, errorModal };
-    });
+  } else {
+    try {
+      const zeroCollateral = await signInContracts(
+        state.web3State,
+        state.zeroCollateral
+      );
+      updateAppState((st: AppContextState) => ({
+        ...st,
+        zeroCollateral,
+      }));
+    } catch (e) {
+      updateAppState((st: AppContextState) => {
+        const errorModal = {
+          show: true,
+          message:
+            "An error occurred connecting to Teller contracts. Please try again.",
+          title: "Error",
+        };
+        return { ...st, errorModal };
+      });
+    }
   }
 };
 
@@ -79,7 +87,11 @@ const getTokenData = async (
     console.log(err);
   }
 };
-
+const setUpdates = async (state: AppContextState, updateAppState: Function) => {
+  await setAddress(state, updateAppState);
+  await mergeSignInContracts(state, updateAppState);
+  await setBlockNumber(state, updateAppState);
+};
 /**
  * Implements the app context hook.
  * @function useAppContext
@@ -89,22 +101,10 @@ export default function useAppContext() {
   const [state, updateAppState] = React.useState(AppContextDefault.state);
 
   React.useEffect(() => {
-    if (!state.web3State.web3) return;
-    mergeSignInContracts(state, updateAppState);
-  }, [state.web3State?.web3]);
-
-  React.useEffect(() => {
-    if (!state.web3State?.web3) return;
-    setAddress(state, updateAppState);
-  }, [state.web3State?.web3]);
-
-  React.useEffect(() => {
-    if (!state.web3State.web3) return;
     if (!state.web3State.network) return;
-    setAddress(state, updateAppState);
-    setBlockNumber(state, updateAppState);
+    setUpdates(state, updateAppState);
     getTokenData(state, updateAppState);
-  }, [state.web3State.network]);
+  }, [state.web3State?.network]);
 
   React.useEffect(() => {
     getTokenData(state, updateAppState);

@@ -14,16 +14,17 @@ const LendMetrics = () => {
   const supplyAPY = tokenData
     ? `${Math.round(tokenData[selectedCurrency].supplyAPY * 10000) / 100}%`
     : "-";
-  const walletBalance = "-"; // TODO:  fetch the user's balanceOf() from web3
   const balanceSupplied = state.zeroCollateral?.balance
-    ? `${state.zeroCollateral?.balance} ${selectedCurrency}`
+    ? `${state.zeroCollateral?.balance} DAI`
     : "-";
-
+  const walletBalance = state.zeroCollateral?.balance
+    ? `${state.zeroCollateral?.daiBalance} DAI`
+    : "-";
   return (
     <Card className="metrics-card" title="Metrics">
       <Metric title="Supply APY" value={supplyAPY} />
       <Metric title={`Price - ${selectedCurrency}`} value={price} />
-      <Metric title="Wallet" value={`${walletBalance}`} />
+      <Metric title="Wallet" value={walletBalance} />
       <Metric title="Balance Supplied" value={`${balanceSupplied}`} />
     </Card>
   );
