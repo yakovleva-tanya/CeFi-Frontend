@@ -11,11 +11,12 @@ const LendMetrics = () => {
 
   const { state, updateAppState } = useContext(AppContext);
   const price = exchangeRates[selectedCurrency];
-  const walletBalance = "-"; // TODO:  fetch the user's balanceOf() from web3
   const balanceSupplied = state.zeroCollateral?.balance
-    ? `${state.zeroCollateral?.balance} ${selectedCurrency}`
+    ? `${state.zeroCollateral?.balance} DAI`
     : "-";
-
+  const walletBalance = state.zeroCollateral?.balance
+    ? `${state.zeroCollateral?.daiBalance} DAI`
+    : "-";
   return (
     <Card className="metrics-card" title="Metrics">
       <Metric title="Supply APY" value={`${supplyAPY}%`} />
