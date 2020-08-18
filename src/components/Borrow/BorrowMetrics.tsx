@@ -8,9 +8,11 @@ const BorrowMetrics = () => {
   const { borrowRequest } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
 
-  const walletBalance = state.zeroCollateral?.balance
-    ? `${state.zeroCollateral?.balance} ${borrowRequest.lendWith}`
-    : "-";
+  const walletBalance = '-';
+    // TODO: this should update based on the selected ATM type.
+    // const walletBalance = state.teller.contracts.daiETH.userBalance
+    // ? `${state.zeroCollateral?.balance} ${borrowRequest.lendWith}`
+    // : "-";
 
   return (
     <Card className="metrics-card" title="Metrics">

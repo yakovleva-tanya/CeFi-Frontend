@@ -11,12 +11,16 @@ const LendMetrics = () => {
 
   const { state, updateAppState } = useContext(AppContext);
   const price = exchangeRates[selectedCurrency];
-  const balanceSupplied = state.zeroCollateral?.balance
-    ? `${state.zeroCollateral?.balance} DAI`
-    : "-";
-  const walletBalance = state.zeroCollateral?.balance
-    ? `${state.zeroCollateral?.daiBalance} DAI`
-    : "-";
+  const balanceSupplied = "0 DAI";
+  const walletBalance = "0 DAI";
+  // TODO: this should update based on the selected ATM type.
+  
+//  const balanceSupplied = state.teller?.balance
+//    ? `${state.zeroCollateral?.balance} DAI`
+//    : "-";
+//  const walletBalance = state.zeroCollateral?.balance
+//    ? `${state.zeroCollateral?.daiBalance} DAI`
+//    : "-";
   return (
     <Card className="metrics-card" title="Metrics">
       <Metric title="Supply APY" value={`${supplyAPY}%`} />

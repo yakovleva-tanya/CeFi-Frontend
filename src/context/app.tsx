@@ -48,17 +48,28 @@ export interface Web3State {
   blockNumber: string | null;
 }
 
-export interface ZeroCollateralContracts {
-  zDai: any | null;
+/**
+ * Data for User ATM information.
+ */
+export interface ATMData {
   lendingPool: any | null;
-  dai: any | null;
+  lendingPoolAddress: any | null;
+  tToken: any | null; // Token used for borrowing 
+  tTokenAddress: string | null;
+  userBorrowedBalance: number | null;
+  cToken: any | null; // Token used for lending
+  cTokenAddress: string | null;
+  userCollateralBalance: number | null;
 }
 
-export interface ZeroCollateralState {
-  contracts: ZeroCollateralContracts;
-  balance: number | null;
-  daiBalance: number | null;
-  borrowed: boolean;
+export interface TellerContracts {
+  daiETH: ATMData,
+  usdcETH: ATMData,
+  usdtETH: ATMData
+}
+
+export interface TellerState {
+  contracts: TellerContracts;
 }
 export interface FicoState {
   score: number | null;
@@ -69,7 +80,7 @@ export interface AppContextState {
   errorModal: ErrorModal;
   loginModal: LoginModal;
   web3State: Web3State;
-  zeroCollateral: ZeroCollateralState;
+  teller: TellerState;
   dataProviderResponse: DataProviderResponseInterface;
 }
 
@@ -97,18 +108,39 @@ export const AppContextDefault = {
       network: null as null,
       blockNumber: null as null
     },
-    zeroCollateral: {
-      balance: null as null,
-      borrowed: false,
-      daiBalance: null as null,
+    teller: {
       contracts: {
-        zDai: null as null,
-        lendingPool: null as null,
-        dai: null as null,
+        usdtETH: {
+          lendingPool: null as null,
+          lendingPoolAddress: null as null,
+          tToken: null as null,
+          tTokenAddress: null as null,
+          userBorrowedBalance: null as null,
+          cToken: null as null,
+          cTokenAddress: null as null,
+          userCollateralBalance: null as null,
+        },
+        usdcETH: {
+          lendingPool: null as null,
+          lendingPoolAddress: null as null,
+          tToken: null as null,
+          tTokenAddress: null as null,
+          userBorrowedBalance: null as null,
+          cToken: null as null,
+          cTokenAddress: null as null,
+          userCollateralBalance: null as null,
+        },
+        daiETH: {
+          lendingPool: null as null,
+          lendingPoolAddress: null as null,
+          tToken: null as null,
+          tTokenAddress: null as null,
+          userBorrowedBalance: null as null,
+          cToken: null as null,
+          cTokenAddress: null as null,
+          userCollateralBalance: null as null,
+        },
       },
-    },
-    myState: {
-      someproperty: null as null,
     },
     plaid: {
       loggedIn: null as null,
