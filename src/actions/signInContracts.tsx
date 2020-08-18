@@ -54,17 +54,6 @@ export default async (
     const daiBalanceStr = await dai.methods.balanceOf(primaryAccount).call();
     const daiBalance = parseFloat(daiBalanceStr) / globalDecimals;
 
-    const usdc = new web3State.web3.eth.Contract(
-      ERC20Interface.abi,
-      contractOptions.usdc,
-      {}
-    );
-    const usdcBalanceStr = await usdc.methods
-      .balanceOf(primaryAccount)
-      .call();
-    const usdcBalance = parseFloat(usdcBalanceStr) / globalDecimals;
-    console.log(usdcBalance);
-
     const contracts = { zDai, lendingPool, dai };
 
     return {

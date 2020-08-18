@@ -63,6 +63,9 @@ export interface ZeroCollateralState {
 export interface FicoState {
   score: number | null;
 }
+export interface TokenDataInterface {
+  [key: string]: string;
+}
 export interface AppContextState {
   plaid: PlaidState;
   fico: FicoState;
@@ -71,6 +74,7 @@ export interface AppContextState {
   web3State: Web3State;
   zeroCollateral: ZeroCollateralState;
   dataProviderResponse: DataProviderResponseInterface;
+  tokenData: any;
 }
 
 export interface AppContextInterface {
@@ -95,7 +99,7 @@ export const AppContextDefault = {
       type: null as null,
       onboard: null as null,
       network: null as null,
-      blockNumber: null as null
+      blockNumber: null as null,
     },
     zeroCollateral: {
       balance: null as null,
@@ -123,6 +127,7 @@ export const AppContextDefault = {
     loginModal: {
       show: false,
     } as LoginModal,
+    tokenData: null as null,
   },
   updateAppState: () => {},
 };
