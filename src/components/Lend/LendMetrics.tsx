@@ -21,7 +21,7 @@ const LendMetrics = () => {
     ? `${state.zeroCollateral?.daiBalance} DAI`
     : "-";
   return (
-    <Card className="metrics-card" title="Metrics">
+    <Card className="metrics-card" title="Summary">
       <Metric title="Supply APY" value={supplyAPY} />
       <Metric title={`Price - ${selectedCurrency}`} value={price} />
       <Metric title="Wallet Balance" value={walletBalance} />
