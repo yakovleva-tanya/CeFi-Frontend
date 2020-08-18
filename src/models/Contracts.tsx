@@ -1,7 +1,8 @@
 import Notify from "./Web3Notify";
 import ERC20 = require('./../abi/contracts/ERC20Detailed.json');
+import { Web3State } from './../context/app';
 
-async function getLendingToken(lendingPool: any, web3State: any) {
+async function getLendingToken(lendingPool: any, web3State: Web3State) {
   const lendingTokenAddress = await lendingPool.methods.lendingToken().call();
   return new web3State.web3.eth.Contract(ERC20.abi, lendingTokenAddress, {});
 }
@@ -22,12 +23,21 @@ export async function redeemZDai(amount: string, primaryAddress: string, lending
 }
 
 /**
- * Approves 10x spending of dai for zeroCollateral contracts.
+ * Gets specified lending pool's token decimal lengths. This must be used to interact with Ethereum
+ * contract values.
  */
-export async function approveDai(lendingPool: any, web3State: any, primaryAddress: string, amount: number) {
+export async function getLendingPoolDecimals(lendingPool: any, web3State: Web3State) {
   const dai = await getLendingToken(lendingPool, web3State);
   const decimals = await dai.methods.decimals().call();
-  const tokenDecimals = 10**parseFloat(decimals);
+  return 10**parseFloat(decimals);
+}
+
+/**
+ * Approves 10x spending of dai for zeroCollateral contracts.
+ */
+export async function approveDai(lendingPool: any, web3State: Web3State, primaryAddress: string, amount: number) {
+  const dai = await getLendingToken(lendingPool, web3State);
+  const tokenDecimals = await getLendingPoolDecimals(lendingPool, web3State);
   const allowance = await dai.methods.allowance(primaryAddress, lendingPool._address).call();
   const approved = (amount*tokenDecimals) < parseFloat(allowance);
   if (approved) return;
@@ -43,7 +53,7 @@ export async function approveDai(lendingPool: any, web3State: any, primaryAddres
   );
 }
 
-export async function mintZDai( setProcessing: any, contract: any, web3State: any, primaryAddress: string, amount: number) {
+export async function mintZDai( setProcessing: any, contract: any, web3State: Web3State, primaryAddress: string, amount: number) {
   const dai = await getLendingToken(contract, web3State);
   const decimals = await dai.methods.decimals().call();
   const tokenDecimals = 10**parseFloat(decimals);

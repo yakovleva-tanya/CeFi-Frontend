@@ -22,7 +22,7 @@ module.exports = {
         disableHostCheck: true,
         contentBase: path.resolve(__dirname, 'dist'),
         compress: false,
-        port: 3000,
+        port: 8080,
         hot: true,
         historyApiFallback: true,
         watchOptions: { aggregateTimeout: 300, poll: 1000 },

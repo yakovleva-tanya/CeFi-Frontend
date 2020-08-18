@@ -10,8 +10,8 @@ interface ErrorModal {
 }
 
 export interface BankInfoResponseInterface {
-  assetReport: AssetReport;
-  signature: string;
+  assetReportStringified: string;
+  assetReportSignature: string;
 }
 
 interface DataProviderResponseInterface {
