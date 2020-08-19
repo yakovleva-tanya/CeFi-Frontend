@@ -48,17 +48,30 @@ export interface Web3State {
   blockNumber: string | null;
 }
 
-export interface ZeroCollateralContracts {
-  zDai: any | null;
+/**
+ * Data for User ATM information.
+ */
+export interface ATMData {
   lendingPool: any | null;
-  dai: any | null;
+  lendingPoolAddress: any | null;
+  tToken: any | null; // Token used for borrowing
+  tTokenAddress: string | null;
+  userBorrowedBalance: number | null;
+  suppliedBalance: number | null;
+  cToken: any | null; // Token used for lending
+  cTokenAddress: string | null;
+  userCollateralBalance: number | null;
 }
 
-export interface ZeroCollateralState {
-  contracts: ZeroCollateralContracts;
-  balance: number | null;
-  daiBalance: number | null;
-  borrowed: boolean;
+export interface TellerContracts {
+  [key: string]: ATMData;
+}
+export interface TellerContractsCat {
+  [key: string]: TellerContracts;
+}
+export interface TellerState {
+  contracts: TellerContractsCat;
+  userWalletBalance: null | UserWalletBalanceInterface;
 }
 export interface FicoState {
   score: number | null;
@@ -66,13 +79,16 @@ export interface FicoState {
 export interface TokenDataInterface {
   [key: string]: string;
 }
+export interface UserWalletBalanceInterface {
+  [key: string]: number | null;
+}
 export interface AppContextState {
   plaid: PlaidState;
   fico: FicoState;
   errorModal: ErrorModal;
   loginModal: LoginModal;
   web3State: Web3State;
-  zeroCollateral: ZeroCollateralState;
+  teller: TellerState;
   dataProviderResponse: DataProviderResponseInterface;
   tokenData: any;
 }
@@ -99,20 +115,47 @@ export const AppContextDefault = {
       type: null as null,
       onboard: null as null,
       network: null as null,
-      blockNumber: null as null
+      blockNumber: null as null,
     },
-    zeroCollateral: {
-      balance: null as null,
-      borrowed: false,
-      daiBalance: null as null,
+    teller: {
+      userWalletBalance: null as null,
       contracts: {
-        zDai: null as null,
-        lendingPool: null as null,
-        dai: null as null,
+        ETH: {
+          USDT: {
+            lendingPool: null as null,
+            lendingPoolAddress: null as null,
+            tToken: null as null,
+            tTokenAddress: null as null,
+            userBorrowedBalance: null as null,
+            suppliedBalance: null as null,
+            cToken: null as null,
+            cTokenAddress: null as null,
+            userCollateralBalance: null as null,
+          },
+          USDC: {
+            lendingPool: null as null,
+            lendingPoolAddress: null as null,
+            tToken: null as null,
+            tTokenAddress: null as null,
+            userBorrowedBalance: null as null,
+            suppliedBalance: null as null,
+            cToken: null as null,
+            cTokenAddress: null as null,
+            userCollateralBalance: null as null,
+          },
+          DAI: {
+            lendingPool: null as null,
+            lendingPoolAddress: null as null,
+            tToken: null as null,
+            tTokenAddress: null as null,
+            userBorrowedBalance: null as null,
+            suppliedBalance: null as null,
+            cToken: null as null,
+            cTokenAddress: null as null,
+            userCollateralBalance: null as null,
+          },
+        },
       },
-    },
-    myState: {
-      someproperty: null as null,
     },
     plaid: {
       loggedIn: null as null,
@@ -128,6 +171,9 @@ export const AppContextDefault = {
       show: false,
     } as LoginModal,
     tokenData: null as null,
+    myState: {
+      someproperty: null as null,
+    },
   },
   updateAppState: () => {},
 };
