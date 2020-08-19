@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 const sslRedirect = () => {
   return (req, res, next) => {
     req.headers["x-forwarded-proto"] !== "https"
-      ? res.redirect(status, "https://" + req.hostname + req.originalUrl)
+      ? res.redirect(301, "https://" + req.hostname + req.originalUrl)
       : next();
   };
 };
