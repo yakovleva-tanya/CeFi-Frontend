@@ -23,8 +23,9 @@ export async function redeemZDai(amount: string, primaryAddress: string, lending
 }
 
 /**
- * Gets specified lending pool's token decimal lengths. This must be used to interact with Ethereum
- * contract values.
+
+ * Approves 10x spending of dai for zeroCollateral contracts.
+
  */
 export async function getLendingPoolDecimals(lendingPool: any, web3State: Web3State) {
   const dai = await getLendingToken(lendingPool, web3State);

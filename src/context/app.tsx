@@ -99,7 +99,7 @@ export const AppContextDefault = {
       type: null as null,
       onboard: null as null,
       network: null as null,
-      blockNumber: null as null,
+      blockNumber: null as null
     },
     zeroCollateral: {
       balance: null as null,

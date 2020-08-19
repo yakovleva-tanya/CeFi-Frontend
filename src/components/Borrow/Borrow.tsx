@@ -29,12 +29,12 @@ const Borrow = () => {
     const { dataProviderResponse, web3State } = state;
     const { lendingPool } = state.zeroCollateral.contracts;
     try {
-      const tokenDecimals = await getLendingPoolDecimals(lendingPool, web3State); 
+      const tokenDecimals = await getLendingPoolDecimals(lendingPool, web3State);
       const nonceDataResponse = await getNonce();
       const lendingApplication = LendingApplicationMap(
         borrowRequest,
         dataProviderResponse.bankInfo,
-        nonceDataResponse, 
+        nonceDataResponse,
         tokenDecimals,
         web3State
       );

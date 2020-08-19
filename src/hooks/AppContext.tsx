@@ -109,5 +109,12 @@ export default function useAppContext() {
     getTokenData(state, updateAppState);
   }, []);
 
+  React.useEffect(() => {
+    if (!state.web3State.web3) return;
+    if(!state.web3State.network) return;
+    setAddress(state, updateAppState);
+    setBlockNumber(state, updateAppState);
+  }, [state.web3State.network]);
+
   return [state, updateAppState];
 }
