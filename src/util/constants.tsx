@@ -1,8 +1,9 @@
 export const serverURL = process.env.SERVER_URL || '';
 
+const networkId = process.env.NODE_ENV === "development" ? 3 : 1;
 export const BlockNativeOptions = {
   dappId: process.env.BLOCKNATIVE_API_KEY,
-  networkId: process.env.BLOCKNATIVE_NETWORK,
+  networkId,
 };
 
 export const globalDecimals = 1000000000000000000;

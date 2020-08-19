@@ -32,18 +32,18 @@ const completeSupply = (
   state: any,
   updateAppState: Function,
   setTransactionHash: Function,
-  setProcessing: Function
+  setProcessing: Function,
 ) => async (values: any) => {
   const amount = parseFloat(values.amount);
   const primaryAddress = state.web3State.address;
-  const { lendingPool, zDai } = state.teller.contracts.daiETH;
+  const { lendingPool, tToken } = state.teller.contracts.ETH.DAI;
   try {
     const { balance, transactionHash } = await supplyDai(
       setProcessing,
       amount,
       primaryAddress,
       lendingPool,
-      zDai,
+      tToken,
       state.web3State
     );
     setProcessing('');
@@ -51,6 +51,7 @@ const completeSupply = (
     updateAppState((st: AppContextState) => {
       const teller = st.teller;
   // TODO: this should update based on the selected ATM type.
+      teller.contracts.ETH.DAI.suppliedBalance = balance;
       return { ...st, teller };
     });
   } catch (error) {
