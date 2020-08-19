@@ -57,4 +57,3 @@ const LendPageContextProvider = ({ children }: LendPageContextProps) => {
   );
 };
 export default LendPageContextProvider;
-

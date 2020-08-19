@@ -15,9 +15,12 @@ export interface LendingApplication {
   requestedLoanSize: number;
   loanTermLength: number;
   collateralPercentEntered: number;
-  assetReportStringified: string;
-  assetReportSignature: string;
-  ethereumWallet: string;
+  loanUse: string;
+  assetReportStringified?: string;
+  assetReportSignature?: string; 
+  ethereumWallet?: string;
+  nonce: string;
+  nonceSignature: string;
 };
 
 /**
@@ -26,5 +29,10 @@ export interface LendingApplication {
 export const sendLendingApplication = (lendingApplication: LendingApplication) => axios({
   method: 'post',
   url: craURLs.arrowhead,
-  data: lendingApplication
+  data: {
+    id: 1,
+    jsonrpc: '2.0',
+    method: 'arrowheadCRA',
+    params: lendingApplication
+  }
 }); 

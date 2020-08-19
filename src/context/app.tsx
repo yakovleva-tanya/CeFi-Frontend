@@ -10,8 +10,8 @@ interface ErrorModal {
 }
 
 export interface BankInfoResponseInterface {
-  assetReport: AssetReport;
-  signature: string;
+  assetReportStringified: string;
+  assetReportSignature: string;
 }
 
 interface DataProviderResponseInterface {
@@ -51,15 +51,20 @@ export interface Web3State {
 export interface ZeroCollateralContracts {
   zDai: any | null;
   lendingPool: any | null;
+  dai: any | null;
 }
 
 export interface ZeroCollateralState {
   contracts: ZeroCollateralContracts;
   balance: number | null;
+  daiBalance: number | null;
   borrowed: boolean;
 }
 export interface FicoState {
   score: number | null;
+}
+export interface TokenDataInterface {
+  [key: string]: string;
 }
 export interface AppContextState {
   plaid: PlaidState;
@@ -69,6 +74,7 @@ export interface AppContextState {
   web3State: Web3State;
   zeroCollateral: ZeroCollateralState;
   dataProviderResponse: DataProviderResponseInterface;
+  tokenData: any;
 }
 
 export interface AppContextInterface {
@@ -98,9 +104,11 @@ export const AppContextDefault = {
     zeroCollateral: {
       balance: null as null,
       borrowed: false,
+      daiBalance: null as null,
       contracts: {
         zDai: null as null,
         lendingPool: null as null,
+        dai: null as null,
       },
     },
     myState: {
@@ -119,6 +127,7 @@ export const AppContextDefault = {
     loginModal: {
       show: false,
     } as LoginModal,
+    tokenData: null as null,
   },
   updateAppState: () => {},
 };

@@ -12,11 +12,11 @@ const ProcessingScreen = ({ link }: props) => {
       <div className="text-5xl">
         <ProcessingAnimation />
       </div>
-      <div className="text-5xl processing-text">Processing</div>
+      <div className="text-5xl processing-text">Almost there</div>
       <div className="text-gray m-3">
-        Your transaction is currently being verified onchain -{" "}
+        Your transaction is being verified -{" "}
         <a className="text-gray" href={link} target="_blank" rel="noreferrer">
-          <u>check its status</u>
+          <u>view status</u>
         </a>
         .
       </div>
