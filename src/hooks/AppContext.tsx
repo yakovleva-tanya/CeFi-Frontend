@@ -43,7 +43,7 @@ const mergeSignInContracts = async (
 ) => {
   const networkId = await state.web3State.web3.eth.getChainId();
 
-  if (networkId !== BlockNativeOptions.networkId) {
+  if (networkId !== 1 && networkId !== 3) {
     const teller = AppContextDefault.state.teller;
     updateAppState((st: AppContextState) => ({
       ...st,
@@ -51,10 +51,7 @@ const mergeSignInContracts = async (
     }));
   } else {
     try {
-      const teller = await signInContracts(
-        state.web3State,
-        state.teller
-      );
+      const teller = await signInContracts(state.web3State, state.teller);
       updateAppState((st: AppContextState) => ({
         ...st,
         teller,

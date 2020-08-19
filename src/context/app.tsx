@@ -54,28 +54,33 @@ export interface Web3State {
 export interface ATMData {
   lendingPool: any | null;
   lendingPoolAddress: any | null;
-  tToken: any | null; // Token used for borrowing 
+  tToken: any | null; // Token used for borrowing
   tTokenAddress: string | null;
   userBorrowedBalance: number | null;
+  suppliedBalance: number | null;
   cToken: any | null; // Token used for lending
   cTokenAddress: string | null;
   userCollateralBalance: number | null;
 }
 
 export interface TellerContracts {
-  daiETH: ATMData,
-  usdcETH: ATMData,
-  usdtETH: ATMData
+  [key: string]: ATMData;
 }
-
+export interface TellerContractsCat {
+  [key: string]: TellerContracts;
+}
 export interface TellerState {
-  contracts: TellerContracts;
+  contracts: TellerContractsCat;
+  userWalletBalance: null | UserWalletBalanceInterface;
 }
 export interface FicoState {
   score: number | null;
 }
 export interface TokenDataInterface {
   [key: string]: string;
+}
+export interface UserWalletBalanceInterface {
+  [key: string]: number | null;
 }
 export interface AppContextState {
   plaid: PlaidState;
@@ -97,72 +102,78 @@ export interface AppContextInterface {
  * Initial state that will be loaded when the application starts.
  */
 export const AppContextDefault = {
-  state: {
-    dataProviderResponse: {
-      bankInfo: null as null,
-    },
-    fico: {
-      score: null as null,
-    },
-    web3State: {
-      address: null as null,
-      web3: null as null,
-      type: null as null,
-      onboard: null as null,
-      network: null as null,
-      blockNumber: null as null,
-    },
-    teller: {
-      contracts: {
-        usdtETH: {
-          lendingPool: null as null,
-          lendingPoolAddress: null as null,
-          tToken: null as null,
-          tTokenAddress: null as null,
-          userBorrowedBalance: null as null,
-          cToken: null as null,
-          cTokenAddress: null as null,
-          userCollateralBalance: null as null,
-        },
-        usdcETH: {
-          lendingPool: null as null,
-          lendingPoolAddress: null as null,
-          tToken: null as null,
-          tTokenAddress: null as null,
-          userBorrowedBalance: null as null,
-          cToken: null as null,
-          cTokenAddress: null as null,
-          userCollateralBalance: null as null,
-        },
-        daiETH: {
-          lendingPool: null as null,
-          lendingPoolAddress: null as null,
-          tToken: null as null,
-          tTokenAddress: null as null,
-          userBorrowedBalance: null as null,
-          cToken: null as null,
-          cTokenAddress: null as null,
-          userCollateralBalance: null as null,
-        },
-      },
-    },
-    plaid: {
-      loggedIn: null as null,
-      userTransactions: null as null,
-      income: null as null,
-    } as PlaidState,
-    errorModal: {
-      show: false,
-      message: null,
-      title: null,
-    } as ErrorModal,
-    loginModal: {
-      show: false,
-    } as LoginModal,
-    tokenData: null as null,
-  },
-  updateAppState: () => {},
-};
+         state: {
+           dataProviderResponse: {
+             bankInfo: null as null,
+           },
+           fico: {
+             score: null as null,
+           },
+           web3State: {
+             address: null as null,
+             web3: null as null,
+             type: null as null,
+             onboard: null as null,
+             network: null as null,
+             blockNumber: null as null,
+           },
+           teller: {
+             userWalletBalance: null as null,
+             contracts: {
+               ETH: {
+                 USDT: {
+                   lendingPool: null as null,
+                   lendingPoolAddress: null as null,
+                   tToken: null as null,
+                   tTokenAddress: null as null,
+                   userBorrowedBalance: null as null,
+                   suppliedBalance: null as null,
+                   cToken: null as null,
+                   cTokenAddress: null as null,
+                   userCollateralBalance: null as null,
+                 },
+                 USDC: {
+                   lendingPool: null as null,
+                   lendingPoolAddress: null as null,
+                   tToken: null as null,
+                   tTokenAddress: null as null,
+                   userBorrowedBalance: null as null,
+                   suppliedBalance: null as null,
+                   cToken: null as null,
+                   cTokenAddress: null as null,
+                   userCollateralBalance: null as null,
+                 },
+                 DAI: {
+                   lendingPool: null as null,
+                   lendingPoolAddress: null as null,
+                   tToken: null as null,
+                   tTokenAddress: null as null,
+                   userBorrowedBalance: null as null,
+                   suppliedBalance: null as null,
+                   cToken: null as null,
+                   cTokenAddress: null as null,
+                   userCollateralBalance: null as null,
+                 },
+               },
+             },
+           },
+           plaid: {
+             loggedIn: null as null,
+             userTransactions: null as null,
+             income: null as null,
+           } as PlaidState,
+           errorModal: {
+             show: false,
+             message: null,
+             title: null,
+           } as ErrorModal,
+           loginModal: {
+             show: false,
+           } as LoginModal,
+           tokenData: null as null,
+         },
+         updateAppState: () => {},
+       };
 
 export const AppContext = React.createContext<AppContextInterface>(
   AppContextDefault

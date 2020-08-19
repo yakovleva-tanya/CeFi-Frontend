@@ -12,7 +12,8 @@ export const plaidSettings = {
   key: process.env.PLAID_KEY,
 };
 
-export const contractOptions = {
+
+export const allContractAddresses = {
   ropsten: {
     TDAI: '0xa66Ae84490e51A9575b9D7Cc229600c98AE9289c',
     TUSDC: '0x19Fdd5306025cde3dED48eD525f68DAa9321E7D0',
@@ -67,6 +68,14 @@ export const contractOptions = {
     LINK_LoanTermsConsensus_tUSDC_Proxy: '0x6E47BA13d4dDfbb0fa97f4B4Bd996c093f574680',
     LINK_Loans_tUSDC: '0x7824E9C34FEad631D696dD7b528ebbDC9e4790D5',
     LINK_Loans_tUSDC_Proxy: '0x0E940E1A9FfB90851D52c8ea6f826483480F307e',
+    tokens: {
+    // DAI used by Compound.finance
+      DAI: '0xc2118d4d90b274016cB7a54c03EF52E6c537D957',
+      // USDC used by Compound.finance
+      USDC: '0x0D9C8723B343A8368BebE0B5E89273fF8D712e3C',
+      // LINK Faucet: https://ropsten.chain.link/
+      LINK: '0x20fE562d797A42Dcb3399062AE9546cd06f63280',
+    }
   },
   mainnet: {
     TDAI: '0xa53b393258F91a1f2a53F8838fB773f3638eDC50',
@@ -133,9 +142,6 @@ export const contractOptions = {
   }
 };
 
-const network = process.env.NODE_ENV === "development" ? 'ropsten' : 'mainnet';
-export const contractAddresses = contractOptions[network];
-
 export const dataProvidersURLs = {
   bankInfo: process.env.DATA_PROVIDERS_URLS_BANK_INFO || '',
 };
@@ -149,7 +155,7 @@ export default {
   serverURL,
   BlockNativeOptions,
   globalDecimals,
-  contractOptions,
+  allContractAddresses,
   plaidSettings,
   dataProvidersURLs,
 };

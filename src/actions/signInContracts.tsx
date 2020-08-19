@@ -5,7 +5,12 @@
  */
 
 import * as React from "react";
-import { Web3State, TellerState, ATMData } from "./../context/app";
+import {
+  Web3State,
+  TellerState,
+  ATMData,
+  AppContextDefault,
+} from "./../context/app";
 
 import ZDaiInterface = require("./../abi/contracts/ZDai.json");
 import DaiPoolInterface = require("./../abi/DaiPoolInterface.json");
@@ -13,7 +18,7 @@ import LoansInterface = require("./../abi/contracts/Loans.json");
 import ERC20Interface = require("./../abi/contracts/ERC20.json");
 import LenderInterface = require("./../abi/contracts/Lenders.json");
 import LendingPoolInterface = require("./../abi/contracts/LendingPool.json");
-import { globalDecimals, contractAddresses } from "./../util/constants";
+import { globalDecimals, allContractAddresses } from "./../util/constants";
 
 async function setupTellerContracts(
   web3State: Web3State,
@@ -40,10 +45,19 @@ async function setupTellerContracts(
     cTokenAddress,
     {}
   );
-  const collateralBalanceStr = await cToken.methods.balanceOf(primaryAccount).call();
-  const userCollateralBalance = parseFloat(collateralBalanceStr) / globalDecimals;
+  const suppliedBalanceStr = await tToken.methods
+    .balanceOf(primaryAccount)
+    .call();
+  const suppliedBalance = parseFloat(suppliedBalanceStr) / globalDecimals;
+  const collateralBalanceStr = await cToken.methods
+    .balanceOf(primaryAccount)
+    .call();
+  const userCollateralBalance =
+    parseFloat(collateralBalanceStr) / globalDecimals;
 
-  const borrowedBalanceStr = await cToken.methods.balanceOf(primaryAccount).call();
+  const borrowedBalanceStr = await cToken.methods
+    .balanceOf(primaryAccount)
+    .call();
   const userBorrowedBalance = parseFloat(borrowedBalanceStr) / globalDecimals;
 
   return {
@@ -53,12 +67,39 @@ async function setupTellerContracts(
     tToken,
     cTokenAddress,
     cToken,
+    suppliedBalance,
     userCollateralBalance,
     userBorrowedBalance,
   };
-
 }
 
+async function getWalletBalance(
+  web3State: Web3State,
+  primaryAccount: string,
+  contractAddress: any
+): Promise<any> {
+  const usdc = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    contractAddress.tokens.USDC,
+    {}
+  );
+  const usdcBalanceStr = await usdc.methods.balanceOf(primaryAccount).call();
+  const USDC = parseFloat(usdcBalanceStr) / globalDecimals;
+
+  const dai = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    contractAddress.tokens.DAI,
+    {}
+  );
+  const daiBalanceStr = await dai.methods.balanceOf(primaryAccount).call();
+  const DAI = parseFloat(daiBalanceStr) / globalDecimals;
+
+  return {
+    DAI,
+    USDC,
+    USDT: null as null,
+  };
+}
 /**
  * Updates the Web3 state with Web3 contracts using the given updateAppState function.
  *
@@ -73,45 +114,36 @@ export default async (
 ): Promise<TellerState> => {
   try {
     if (!web3State.web3) return teller;
-
-    const {
-      ETH_LendingPool_tDAI,
-      ETH_LendingPool_tUSDC,
-    } = contractAddresses;
-
     const primaryAccount = web3State.address;
+    const network = web3State.network.toString();
+    const contractAddresses = network === "1" ? allContractAddresses.mainnet : allContractAddresses.ropsten;
 
-    const daiETH = await setupTellerContracts(
+    const daiProxy = contractAddresses.ETH_LendingPool_tDAI_Proxy;
+    const DAI = await setupTellerContracts(
       web3State,
-      ETH_LendingPool_tDAI,
-      primaryAccount,
+      daiProxy,
+      primaryAccount
     );
 
-    const usdcETH = await setupTellerContracts(
+    const userWalletBalance = await getWalletBalance(
       web3State,
-      ETH_LendingPool_tUSDC,
       primaryAccount,
+      contractAddresses
     );
 
     const contracts = {
-      daiETH,
-      usdcETH,
-      usdtETH: {
-        lendingPool: null as null,
-        lendingPoolAddress: null as null,
-        tToken: null as null,
-        tTokenAddress: null as null,
-        userBorrowedBalance: null as null,
-        cToken: null as null,
-        cTokenAddress: null as null,
-        userCollateralBalance: null as null,
+      ETH: {
+        ...teller.contracts.ETH,
+        DAI,
       },
     };
     return {
       ...teller,
       contracts,
+      userWalletBalance,
     };
   } catch (err) {
     console.log(err);
   }
 };
+

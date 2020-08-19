@@ -7,27 +7,33 @@ import { LendPageContext } from "../../context/lendContext";
 const LendMetrics = () => {
   const { selectedCurrency } = useContext(LendPageContext);
   const { state } = useContext(AppContext);
-  const tokenData = state.tokenData;
+  const { tokenData, teller } = state;
+
   const price = tokenData
     ? `$ ${Math.round(tokenData[selectedCurrency].price * 10000) / 10000}`
     : "-";
-
   // TODO: this should update based on the selected ATM type.
   const supplyAPY = tokenData
     ? `${Math.round(tokenData[selectedCurrency].supplyAPY * 10000) / 100}%`
     : "-";
-  const balanceSupplied = state.teller?.contracts
-    ? `${state.teller?.contracts.daiETH.tToken} DAI`
+
+  const walletBalance = teller?.userWalletBalance&&(
+    teller?.userWalletBalance[selectedCurrency] !== null
+  )
+    ? `${teller.userWalletBalance[selectedCurrency]} ${selectedCurrency}`
     : "-";
-  const walletBalance = state.teller?.contracts
-    ? `${state.teller?.contracts.daiETH.tToken} DAI`
-    : "-";
+
+  const suppliedBalance =
+    teller?.contracts.ETH[selectedCurrency].suppliedBalance !== null
+      ? `${teller?.contracts.ETH[selectedCurrency].suppliedBalance} ${selectedCurrency}`
+      : "-";
+
   return (
     <Card className="metrics-card" title="Summary">
       <Metric title="Supply APY" value={supplyAPY} />
       <Metric title={`Price - ${selectedCurrency}`} value={price} />
       <Metric title="Wallet Balance" value={walletBalance} />
-      <Metric title="Balance Supplied" value={`${balanceSupplied}`} />
+      <Metric title="Balance Supplied" value={suppliedBalance} />
     </Card>
   );
 };
