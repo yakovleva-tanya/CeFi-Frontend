@@ -31,9 +31,6 @@ const FetchTokenData = async () => {
       if (token.id === "0x39aa39c021dfbae8fac545936693ac917d5e7563") {
         id = "USDC";
       }
-      if (token.id === "0xf650c3d88d12db855b8bf7d11be6c55a4e07dcc9") {
-        id = "USDT";
-      }
       tokens[id] = {
         supplyAPY: token.supplyRate,
         price: token.underlyingPriceUSD,

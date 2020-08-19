@@ -19,8 +19,7 @@ export default (updateAppState: Function, address: string | null) => async () =>
   if (address === null) return;
   try {
     const plaidTokenResponse = (await createPlaidLinkToken(address)) as CreateLinkTokenResponse;
-    var token = plaidTokenResponse.data?.linkToken as string;
-    token = plaidTokenResponse.data?.linkToken as string;
+    const token = plaidTokenResponse.data?.linkToken as string;
     const plaidHandler = new Plaid({
       token,
       onLoad: (): any => null,
@@ -28,7 +27,7 @@ export default (updateAppState: Function, address: string | null) => async () =>
         try {
           const bankInfo = { publicTokens: [plaid_token] } as BankInfoInterface;
           const bankInfoResponse = await getBankInfo(bankInfo);
-          if (bankInfoResponse.data?.error) throw new Error("Bank Info response failed."); 
+          if (bankInfoResponse.data?.error) throw new Error("Bank Info response failed.");
           const bankInfoData = bankInfoResponse.data as BankInfoResponseInterface;
           updateAppState((st: AppContextState) => {
             const plaid = st.plaid;
@@ -54,6 +53,6 @@ export default (updateAppState: Function, address: string | null) => async () =>
 
     plaidHandler.load();
   } catch (err) {
-
+    console.log(err)
   }
 };

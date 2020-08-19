@@ -11,7 +11,7 @@ const CurrencyDropdown = () => {
     setSelectedCurrency,
   } = useContext(LendPageContext);
 
-  const currencies = ["DAI", "USDT", "USDC"];
+  const currencies = ["DAI", "USDC"];
 
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [newCurrency, setNewCurrency] = useState("");

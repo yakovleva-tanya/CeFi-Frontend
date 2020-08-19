@@ -19,7 +19,7 @@ const FirstStageTable = () => {
       <div className="table border-thin my-5">
         <TableRow title="Lend With">
           <CustomDropdown
-            options={["DAI", "USDC", "USDT"]}
+            options={["DAI", "USDC"]}
             selected={borrowRequest.lendWith}
             handleSelect={(eventKey: any) => {
               setBorrowRequest({
@@ -51,6 +51,10 @@ const FirstStageTable = () => {
           />
         </TableRow>
         <BR />
+        <TableRow title="Bank (optional)">
+          <ConnectPlaidButton />
+        </TableRow>
+        <BR />
         <TableRow title="Collateral Percent">
           <CollateralPercentSelection />
         </TableRow>
@@ -63,10 +67,6 @@ const FirstStageTable = () => {
               setBorrowRequest({ ...borrowRequest, loanType: eventKey });
             }}
           />
-        </TableRow>
-        <BR />
-        <TableRow title="Bank (optional)">
-          <ConnectPlaidButton />
         </TableRow>
       </div>
     </div>

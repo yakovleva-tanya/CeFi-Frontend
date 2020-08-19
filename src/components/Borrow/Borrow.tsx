@@ -28,7 +28,7 @@ const Borrow = () => {
   const requestLoan = async () => {
     const { dataProviderResponse, web3State } = state;
     //TODO: this should update based on the selected ATM type.
-    const { lendingPool } = state.teller.contracts.ETH.DAI;
+    const { lendingPool } = state.teller.contracts.LINK.USDC;
     try {
       const tokenDecimals = await getLendingPoolDecimals(lendingPool, web3State);
       const nonceDataResponse = await getNonce();

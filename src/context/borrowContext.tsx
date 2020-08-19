@@ -58,10 +58,10 @@ export const LendingApplicationMap = (
 };
 
 const defaultBorrowRequest = {
-  loanSize: 1,
-  loanTerm: 5,
+  loanSize: 100,
+  loanTerm: 1,
   collateralWith: "ETH",
-  collateralPercent: 50,
+  collateralPercent: 150,
   loanType: "Fixed",
   bankConnected: false,
   lendWith: "DAI",

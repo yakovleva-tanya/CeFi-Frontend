@@ -10,8 +10,6 @@ export interface LendPageContextInterface {
   setSelectedAmount: Function;
   tokensApproved: boolean;
   setTokensApproved: Function;
-  supplyAPY: number;
-  exchangeRates: ExchangeRates;
 }
 
 export const LendPageContext = createContext<LendPageContextInterface>({
@@ -21,8 +19,6 @@ export const LendPageContext = createContext<LendPageContextInterface>({
   setSelectedAmount: () => {},
   tokensApproved: false,
   setTokensApproved: () => {},
-  supplyAPY: 8.4,
-  exchangeRates: {},
 });
 
 type LendPageContextProps = {
@@ -33,12 +29,7 @@ const LendPageContextProvider = ({ children }: LendPageContextProps) => {
   const [selectedCurrency, setSelectedCurrency] = useState("DAI");
   const [selectedAmount, setSelectedAmount] = useState(0.00);
   const [tokensApproved, setTokensApproved] = useState(false);
-  const supplyAPY = 8.4;
-  const exchangeRates = {
-    USDT: 0.998,
-    DAI: 1.033,
-    USDC: 1.001,
-  };
+
   return (
     <LendPageContext.Provider
       value={{
@@ -48,8 +39,6 @@ const LendPageContextProvider = ({ children }: LendPageContextProps) => {
         setSelectedAmount,
         tokensApproved,
         setTokensApproved,
-        supplyAPY,
-        exchangeRates,
       }}
     >
       {children}
