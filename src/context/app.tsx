@@ -121,7 +121,7 @@ export const AppContextDefault = {
       userWalletBalance: null as null,
       contracts: {
         ETH: {
-          USDT: {
+          USDC: {
             lendingPool: null as null,
             lendingPoolAddress: null as null,
             tToken: null as null,
@@ -132,6 +132,19 @@ export const AppContextDefault = {
             cTokenAddress: null as null,
             userCollateralBalance: null as null,
           },
+          DAI: {
+            lendingPool: null as null,
+            lendingPoolAddress: null as null,
+            tToken: null as null,
+            tTokenAddress: null as null,
+            userBorrowedBalance: null as null,
+            suppliedBalance: null as null,
+            cToken: null as null,
+            cTokenAddress: null as null,
+            userCollateralBalance: null as null,
+          },
+        },
+        LINK: {
           USDC: {
             lendingPool: null as null,
             lendingPoolAddress: null as null,

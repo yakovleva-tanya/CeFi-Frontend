@@ -97,7 +97,6 @@ async function getWalletBalance(
   return {
     DAI,
     USDC,
-    USDT: null as null,
   };
 }
 /**
@@ -117,10 +116,18 @@ export default async (
     const primaryAccount = web3State.address;
     const network = web3State.network.toString();
     const contractAddresses = network === "1" ? allContractAddresses.mainnet : allContractAddresses.ropsten;
-    const daiProxy = contractAddresses.ETH_LendingPool_tDAI_Proxy;
-    const DAI = await setupTellerContracts(
+
+    const ethDaiProxy = contractAddresses.ETH_LendingPool_tDAI_Proxy;
+    const ETH_DAI = await setupTellerContracts(
       web3State,
-      daiProxy,
+      ethDaiProxy,
+      primaryAccount
+    );
+
+    const linkUsdcProxy = contractAddresses.LINK_LendingPool_tUSDC_Proxy;
+    const LINK_USDC = await setupTellerContracts(
+      web3State,
+      linkUsdcProxy,
       primaryAccount
     );
 
@@ -130,12 +137,10 @@ export default async (
       contractAddresses
     );
 
-    const contracts = {
-      ETH: {
-        ...teller.contracts.ETH,
-        DAI,
-      },
-    };
+    const contracts = teller.contracts;
+    contracts.ETH.DAI = ETH_DAI;
+    contracts.LINK.USDC = LINK_USDC;
+
     return {
       ...teller,
       contracts,
