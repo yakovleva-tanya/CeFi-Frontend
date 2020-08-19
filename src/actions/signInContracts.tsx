@@ -117,7 +117,6 @@ export default async (
     const primaryAccount = web3State.address;
     const network = web3State.network.toString();
     const contractAddresses = network === "1" ? allContractAddresses.mainnet : allContractAddresses.ropsten;
-
     const daiProxy = contractAddresses.ETH_LendingPool_tDAI_Proxy;
     const DAI = await setupTellerContracts(
       web3State,

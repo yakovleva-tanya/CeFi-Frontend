@@ -36,6 +36,7 @@ const completeSupply = (
 ) => async (values: any) => {
   const amount = parseFloat(values.amount);
   const primaryAddress = state.web3State.address;
+  //TODO: this should update based on the selected ATM type.
   const { lendingPool, tToken } = state.teller.contracts.ETH.DAI;
   try {
     const { balance, transactionHash } = await supplyDai(
