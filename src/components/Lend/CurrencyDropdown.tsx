@@ -1,27 +1,27 @@
-import React, {useState} from "react";
-import Dropdown from "react-bootstrap/Dropdown";
+import React, { useState, useContext } from "react";
 import AssetChangeWarningModal from "../AssetChangeWarningModal/AssetChangeWarningModal";
+import { CustomDropdown } from "../UI/CustomDropdown";
+import { LendPageContext } from "../../context/lendContext";
 
-type DropdownType = {
-  currency: string;
-  setCurrency: Function,
-  tokensApproved: boolean,
-  setTokensApproved: Function
-};
+const CurrencyDropdown = () => {
+  const {
+    selectedCurrency,
+    tokensApproved,
+    setTokensApproved,
+    setSelectedCurrency,
+  } = useContext(LendPageContext);
 
-const CurrencyDropdown = ({ currency, setCurrency, tokensApproved, setTokensApproved}: DropdownType) => {
+  const currencies = ["DAI", "USDT", "USDC"];
+
   const [showWarningModal, setShowWarningModal] = useState(false);
-  const [newCurrency, setNewCurrency] = useState('');
+  const [newCurrency, setNewCurrency] = useState("");
 
-  const handleSelect = (
-    eventKey: any,
-    e?: React.SyntheticEvent<{}>
-  ) => {
+  const handleSelect = (eventKey: any, e?: React.SyntheticEvent<{}>) => {
     if (tokensApproved) {
-      setNewCurrency(eventKey)
+      setNewCurrency(eventKey);
       setShowWarningModal(true);
     } else {
-      setCurrency(eventKey);
+      setSelectedCurrency(eventKey);
     }
   };
 
@@ -30,37 +30,23 @@ const CurrencyDropdown = ({ currency, setCurrency, tokensApproved, setTokensAppr
   };
   const proceedWithChange = () => {
     setShowWarningModal(false);
-    setCurrency(newCurrency);
+    setSelectedCurrency(newCurrency);
     setTokensApproved(false);
   };
 
   return (
-      <div>
+    <div>
       <AssetChangeWarningModal
         show={showWarningModal}
         proceed={proceedWithChange}
         cancel={cancelChange}
       />
-        <Dropdown>
-        <Dropdown.Toggle
-          variant="link"
-          id="toggle"
-          className="dropdown font-medium p-1 text-gray"
-        >
-          {`${currency}   `}
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item eventKey="DAI" onSelect={handleSelect}>
-            DAI
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="USDT" onSelect={handleSelect}>
-            USDT
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="USDC" onSelect={handleSelect}>
-            USDC
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown></div>
+      <CustomDropdown
+        selected={selectedCurrency}
+        handleSelect={handleSelect}
+        options={currencies}
+      />
+    </div>
   );
 };
 export default CurrencyDropdown;

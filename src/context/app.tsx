@@ -1,6 +1,7 @@
 import * as React from "react";
-import Plaid, { PlaidTransaction } from './../models/Plaid';
-import { AssetReport } from 'plaid';
+import Plaid, { PlaidTransaction } from "./../models/Plaid";
+import { AssetReport } from "plaid";
+import { CollateralAdjustType } from "../components/CollateralAdjustModal";
 
 interface ErrorModal {
   show: boolean;
@@ -9,8 +10,8 @@ interface ErrorModal {
 }
 
 export interface BankInfoResponseInterface {
-  assetReport: AssetReport;
-  signature: string;
+  assetReportStringified: string;
+  assetReportSignature: string;
 }
 
 interface DataProviderResponseInterface {
@@ -35,30 +36,36 @@ export interface PlaidState {
 export enum Web3Type {
   Fortmatic,
   Metamask,
-  BlockNative
+  BlockNative,
 }
 
 export interface Web3State {
   web3: any;
   type: Web3Type | null;
   address: string | null;
+  onboard: any | null;
+  network: string | null;
+  blockNumber: string | null;
 }
 
 export interface ZeroCollateralContracts {
   zDai: any | null;
   lendingPool: any | null;
+  dai: any | null;
 }
 
 export interface ZeroCollateralState {
   contracts: ZeroCollateralContracts;
   balance: number | null;
+  daiBalance: number | null;
   borrowed: boolean;
 }
-
 export interface FicoState {
   score: number | null;
 }
-
+export interface TokenDataInterface {
+  [key: string]: string;
+}
 export interface AppContextState {
   plaid: PlaidState;
   fico: FicoState;
@@ -67,6 +74,7 @@ export interface AppContextState {
   web3State: Web3State;
   zeroCollateral: ZeroCollateralState;
   dataProviderResponse: DataProviderResponseInterface;
+  tokenData: any;
 }
 
 export interface AppContextInterface {
@@ -80,7 +88,7 @@ export interface AppContextInterface {
 export const AppContextDefault = {
   state: {
     dataProviderResponse: {
-      bankInfo: null as null
+      bankInfo: null as null,
     },
     fico: {
       score: null as null,
@@ -88,15 +96,20 @@ export const AppContextDefault = {
     web3State: {
       address: null as null,
       web3: null as null,
-      type: null as null
+      type: null as null,
+      onboard: null as null,
+      network: null as null,
+      blockNumber: null as null
     },
     zeroCollateral: {
       balance: null as null,
       borrowed: false,
+      daiBalance: null as null,
       contracts: {
         zDai: null as null,
         lendingPool: null as null,
-      }
+        dai: null as null,
+      },
     },
     myState: {
       someproperty: null as null,
@@ -104,7 +117,7 @@ export const AppContextDefault = {
     plaid: {
       loggedIn: null as null,
       userTransactions: null as null,
-      income: null as null
+      income: null as null,
     } as PlaidState,
     errorModal: {
       show: false,
@@ -112,10 +125,13 @@ export const AppContextDefault = {
       title: null,
     } as ErrorModal,
     loginModal: {
-      show: false
+      show: false,
     } as LoginModal,
+    tokenData: null as null,
   },
-  updateAppState: () => {}
+  updateAppState: () => {},
 };
 
-export const AppContext = React.createContext<AppContextInterface>(AppContextDefault);
+export const AppContext = React.createContext<AppContextInterface>(
+  AppContextDefault
+);

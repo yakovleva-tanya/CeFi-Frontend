@@ -24,17 +24,17 @@ const supplyFormValidation = () => {
 };
 
 const completeLendingForm = (state: any, updateAppState: Function) => async (values: any, { setSubmitting }: any) => {
-  const amount = values.amount;
-  const primaryAddress = state.web3State.address;
-  const { lendingPool, zDai } = state.zeroCollateral.contracts;
+  // const amount = values.amount;
+  // const primaryAddress = state.web3State.address;
+  // const { lendingPool, zDai } = state.zeroCollateral.contracts;
   try {
-    const balance = await lendDai(amount, primaryAddress, lendingPool, zDai, state.web3State);
-    setSubmitting(false);
-    updateAppState((st: AppContextState) => {
-      const zeroCollateral = st.zeroCollateral;
-      zeroCollateral.balance = balance;
-      return { ...st, zeroCollateral };
-    });
+    // const balance = await lendDai(amount, primaryAddress, lendingPool, zDai, state.web3State);
+    // setSubmitting(false);
+    // updateAppState((st: AppContextState) => {
+    //   const zeroCollateral = st.zeroCollateral;
+    //   zeroCollateral.balance = balance;
+    //   return { ...st, zeroCollateral };
+    // });
   } catch (error) {
     updateAppState((st: AppContextState) => {
       const errorModal = {

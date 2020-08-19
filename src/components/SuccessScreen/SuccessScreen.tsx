@@ -1,35 +1,58 @@
 import React from "react";
 import "./success-screen.scss";
-import Button from "react-bootstrap/Button";
+import PrimaryButton from "../UI/PrimaryButton";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-type Props = {
-  link: string;
+type messageProps = {
+  url: string;
+  version: string;
 };
 
-const SuccessScreen = ({ link }: Props) => {
-  const url = "https://ropsten.etherscan.io/tx/" + link; //link to ropsten
-  // const url = "https://etherscan.io/tx/" + link; //link to etherscan
+const Message = ({ version, url }: messageProps) => {
+  if (version === "lend")
+    return (
+      <div>
+        <div>
+          Click{" "}
+          <a target="_blank" rel="noreferrer" href={url}>
+            here
+          </a>{" "}
+          to view your supply balance.{" "}
+        </div>
+      </div>
+    );
+  if (version === "borrow")
+    return (
+      <div>
+        <div>
+          You'll be receiving your loan shortly. You can check the status{" "}
+          <a target="_blank" rel="noreferrer" href={url}>
+            here.
+          </a>
+        </div>
+        <div>Find out what you can do with your loan </div>
+      </div>
+    );
+};
 
+type successProps = {
+  link: string;
+  version: string;
+  onButtonClick?: Function;
+};
+
+const SuccessScreen = ({ link, version, onButtonClick}: successProps) => {
   return (
     <div className="success-screen d-flex align-items-center justify-content-center flex-column">
       <div className="text-5xl">
         <span>🎉</span>
       </div>
-      <div className="text-5xl">Hooray!!</div>
+      <div className="text-5xl">You're set!</div>
       <div className="text-gray m-3">
-        <div>
-          You've supplied your loan. You can check{" "}
-          <a target="_blank" rel="noreferrer" href={url}>
-            here
-          </a>
-        </div>
-        <div>Find out what you can do with your TToken </div>
+        <Message url={link} version={version} />
       </div>
-      <Link to="/dashboard">
-        <Button className="py-3 px-4 mt-2 text-lg" variant="primary" block>
-          Explore Dashboard
-        </Button>
+      <Link to="/">
+        <PrimaryButton onClick={onButtonClick} text="Lend Again" />
       </Link>
     </div>
   );

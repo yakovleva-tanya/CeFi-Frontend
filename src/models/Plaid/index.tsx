@@ -10,6 +10,7 @@ declare const window: any;
 const Plaid = window.Plaid;
 
 interface PlaidModelInterface {
+  token: string;
   onLoad: Function;
   onSuccess: Function;
   onExit: Function;
@@ -41,10 +42,7 @@ export default class PlaidModel {
         clientName: 'Plaid Quickstart',
         countryCodes: ['US'],
         product: ['transactions'],
-        onLoad: this.plaidOptions.onLoad,
-        onSuccess: this.plaidOptions.onSuccess,
-        onExit: this.plaidOptions.onExit,
-        onEvent: this.plaidOptions.onEvent,
+        ...this.plaidOptions,
         ...plaidSettings
       });
       this.handler.open();
