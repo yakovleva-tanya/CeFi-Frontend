@@ -28,3 +28,10 @@ export const createPlaidLinkToken = (address: string) => axios({
   url: dataProvidersURLs.bankInfo + '/create-link-token',
   data: { address }
 }); 
+
+export const getNonce = () => axios({
+  method: 'post',
+  url: dataProvidersURLs.bankInfo + '/nonce'
+}); 
+
+

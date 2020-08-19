@@ -52,7 +52,7 @@ const SuccessScreen = ({ link, version, onButtonClick}: successProps) => {
         <Message url={link} version={version} />
       </div>
       <Link to="/">
-        <PrimaryButton onClick={onButtonClick} text="Supply Again" />
+        <PrimaryButton onClick={onButtonClick} text="Lend Again" />
       </Link>
     </div>
   );

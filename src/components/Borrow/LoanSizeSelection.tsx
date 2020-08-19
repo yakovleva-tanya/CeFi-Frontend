@@ -8,7 +8,7 @@ const LoanSizeSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
     BorrowPageContext
   );
-  const [value, setValue] = useState(borrowRequest.loanTerm);
+  const [value, setValue] = useState(borrowRequest.loanSize);
 
   return (
     <SubmenuCard
