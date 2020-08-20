@@ -38,7 +38,15 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
     <div className="">
       <CustomInput
         onChangeFunction={(e: any) => {
+          e.target.value = e.target.value.replace(/[^0-9.]/g, "");
           handleChange(e);
+
+          if (e.target.value.length < 1) {
+            e.target.value = 0;
+          }
+
+          e.target.value = parseFloat(e.target.value).toFixed(2);
+          setSelectedAmount(e.target.value);
         }}
         value={value}
         onBlur={onBlur}
