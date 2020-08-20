@@ -23,34 +23,31 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
         selectedAmount
       )} ${selectedCurrency}`
     : "-";
-  const onBlur = (e: any) => {
-    e.target.value = e.target.value.replace(/[^0-9.]/g, "");
-    if (e.target.value.length < 1) {
-      e.target.value = 0;
+
+  const convertInputAmount = (value: any) => {
+    value = value.replace(/[^0-9.]/g, "");
+    value = parseFloat(value).toFixed(2);
+    if (isNaN(value)) {
+      value = "0.00";
     }
-    e.target.value = parseFloat(e.target.value).toFixed(2);
-    setSelectedAmount(e.target.value);
-    handleChange(e);
+    return value;
   };
+  const onBlur = (e: any) => {
+    e.target.value = convertInputAmount(e.target.value);
+    handleChange(e);
+    setSelectedAmount(e.target.value);
+  };
+  const onChange = (e: any) => {
+    handleChange(e);
+    const value = convertInputAmount(e.target.value);
+    setSelectedAmount(value);
+  };
+
   const value = `$${amount.toString().replace(/[^0-9.]/g, "")}`;
 
   return (
     <div className="">
-      <CustomInput
-        onChangeFunction={(e: any) => {
-          e.target.value = e.target.value.replace(/[^0-9.]/g, "");
-          handleChange(e);
-
-          if (e.target.value.length < 1) {
-            e.target.value = 0;
-          }
-
-          e.target.value = parseFloat(e.target.value).toFixed(2);
-          setSelectedAmount(e.target.value);
-        }}
-        value={value}
-        onBlur={onBlur}
-      />
+      <CustomInput onChangeFunction={onChange} value={value} onBlur={onBlur} />
       <div className="text-lightest-gray text-lg">{convertedAmount}</div>
     </div>
   );
