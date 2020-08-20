@@ -35,7 +35,7 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
   const value = `$${amount.toString().replace(/[^0-9.]/g, "")}`;
 
   return (
-    <div className="mt-5">
+    <div className="">
       <CustomInput
         onChangeFunction={(e: any) => {
           handleChange(e);

@@ -25,7 +25,7 @@ export const CustomDropdown = ({
         as={CustomToggle}
         variant="link"
         id="toggle"
-        className="dropdown font-medium p-1 text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
+        className="dropdown font-medium text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
       >
         <div className="mr-2">{`${selected}   `}</div>
         {selected === "DAI" && <img src={dai} height="20" />}
@@ -94,7 +94,7 @@ const CustomToggle = React.forwardRef<HTMLAnchorElement, toggleProps>(
           e.preventDefault();
           onClick(e);
         }}
-        className="dropdown font-medium p-1 text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
+        className="dropdown font-medium text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
       >
         {children}
         <img height={14} src={dropdown} className="ml-3" />

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Card from "../UI/Card";
 import Metric from "../UI/Metric";
 import BR from "../UI/BR";
-
+import './borrow.scss';
 import { BorrowPageContext } from "../../context/borrowContext";
 import { AppContext } from "../../context/app";
 
@@ -29,14 +29,14 @@ const BorrowMetrics = () => {
 
   return (
     <Card className="metrics-card" title="Summary">
-      <Metric title={`Price - ${lendWith}`} value={assetPrice} />
+      <Metric title={`${lendWith} Price`} value={assetPrice} />
       <Metric title="Utilization" value={utilization} />
       <Metric title="Wallet Balance" value={walletBalance} />
       <Metric title="Collateral total" value={collateralTotal} />
       {/* TODO: check if plaid is connected */}
       {stage === 1 && (
         <div>
-          <div className="mt-5 mb-3">
+          <div className="metrics-div">
             <BR />
           </div>
           <Metric

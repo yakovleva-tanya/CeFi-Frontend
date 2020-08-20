@@ -31,7 +31,7 @@ const LendMetrics = () => {
   return (
     <Card className="metrics-card" title="Summary">
       <Metric title="Supply APY" value={supplyAPY} />
-      <Metric title={`Price - ${selectedCurrency}`} value={price} />
+      <Metric title={`${selectedCurrency} Price`} value={price} />
       <Metric title="Wallet Balance" value={walletBalance} />
       <Metric title="Balance Supplied" value={suppliedBalance} />
     </Card>

@@ -11,11 +11,11 @@ const Card = ({ title, children, className }: CardProps) => {
   return (
     <div className={`ui-card border-thin d-flex flex-column m-2 ${className}`}>
       <div className="mx-auto">
-        <p className="p-3 m-0 font-medium text-2xl">{title}</p>
+        <p className="pt-4 pb-3 m-0 font-medium text-2xl">{title}</p>
       </div>
       <BR />
-      <div className="p-4 d-flex justify-content-center">
-        <div style={{ maxWidth: "344px", width: "100%" }}>{children}</div>
+      <div className="px-2 d-flex justify-content-center">
+        <div style={{ maxWidth: "344px", width: "100%" }} className = 'm-4 p-2'>{children}</div>
       </div>
     </div>
   );

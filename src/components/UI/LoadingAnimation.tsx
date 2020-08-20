@@ -8,7 +8,7 @@ interface animationProps {
 
 const LoadingAnimation = ({ isStopped }: animationProps) => {
   return (
-    <div>
+    <div style = {{margin: '-8px -8px -8px -14px'}}>
       <Lottie
         options={{
           loop: true,
@@ -18,8 +18,8 @@ const LoadingAnimation = ({ isStopped }: animationProps) => {
             preserveAspectRatio: "xMidYMid slice",
           },
         }}
-        height={30}
-        width={30}
+        height={36}
+        width={36}
         isStopped={isStopped}
       />
     </div>

@@ -65,7 +65,7 @@ const Borrow = () => {
         <div className="borrow">
           <div className="cards-container">
             <Card className="main-card text-center" title="Borrow">
-              <StageBar />
+              <div className = "my-4 py-4"><StageBar />
               {submenu ? (
                 submenu
               ) : (
@@ -109,6 +109,7 @@ const Borrow = () => {
                   )}
                 </div>
               )}
+</div>
             </Card>
             <BorrowMetrics />
           </div>
