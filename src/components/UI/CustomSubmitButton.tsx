@@ -21,7 +21,7 @@ export const CustomSubmitButton = ({
   return (
     <div className="d-flex flex-row align-items-center">
       <div
-        className={`py-1 px-3 mr-4 -my-2 border-thin  ${
+        className={`py-1 px-3 mr-3 -my-2 border-thin  ${
           disabled ? "disabled text-lightest-gray" : "pointer text-black"
         }`}
         onClick={() => onClickAction()}
@@ -31,10 +31,7 @@ export const CustomSubmitButton = ({
       {loading ? (
         <LoadingAnimation isStopped={!loading} />
       ) : (
-        <img
-          src={approved?greenCheck: grayCheck}
-          height={14}
-        />
+        <img src={approved ? greenCheck : grayCheck} height={14} />
       )}
     </div>
   );
@@ -74,4 +71,3 @@ export const MockSubmitButton = ({ text }: mockSubmitType) => {
     />
   );
 };
-

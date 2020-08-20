@@ -8,7 +8,7 @@ interface animationProps {
 
 const LoadingAnimation = ({ isStopped }: animationProps) => {
   return (
-    <div style = {{margin: '-8px -8px -8px -14px'}}>
+    <div style={{ margin: "-8px" }}>
       <Lottie
         options={{
           loop: true,

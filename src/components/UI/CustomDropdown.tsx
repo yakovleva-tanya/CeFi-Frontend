@@ -27,12 +27,12 @@ export const CustomDropdown = ({
         id="toggle"
         className="dropdown font-medium text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
       >
-        <div className="mr-2">{`${selected}   `}</div>
-        {selected === "DAI" && <img src={dai} height="20" />}
-        {selected === "USDT" && <img src={usdt} height="20" />}
-        {selected === "USDC" && <img src={usdc} height="20" />}
-        {selected === "ETH" && <img src={eth} height="20" />}
-        {selected === "LINK" && <img src={link} height="20" />}
+        <div className="mr-3">{`${selected}   `}</div>
+        {selected === "DAI" && <img className="mr-3" src={dai} height="20" />}
+        {selected === "USDT" && <img className="mr-3" src={usdt} height="20" />}
+        {selected === "USDC" && <img className="mr-3" src={usdc} height="20" />}
+        {selected === "ETH" && <img className="mr-3" src={eth} height="20" />}
+        {selected === "LINK" && <img className="mr-3" src={link} height="20" />}
       </Dropdown.Toggle>
       <Dropdown.Menu className="dropdown-menu">
         {options.map((option: string) => {
@@ -48,12 +48,24 @@ export const CustomDropdown = ({
                 }}
                 className="dropdown-title d-flex flex-row align-items-center"
               >
-                <div className="mr-2">{option}</div>
-                {option === "DAI" && <img src={dai} height="20" />}
-                {option === "USDT" && <img src={usdt} height="20" />}
-                {option === "USDC" && <img src={usdc} height="20" />}
-                {option === "ETH" && <img src={eth} height="20" />}
-                {option === "LINK" && <img src={link} height="20" />}
+                <div className="mr-3">
+                  {option}
+                  {option === "DAI" && (
+                    <img className="mr-3" src={dai} height="20" />
+                  )}
+                  {option === "USDT" && (
+                    <img className="mr-3" src={usdt} height="20" />
+                  )}
+                  {option === "USDC" && (
+                    <img className="mr-3" src={usdc} height="20" />
+                  )}
+                  {option === "ETH" && (
+                    <img className="mr-3" src={eth} height="20" />
+                  )}
+                  {option === "LINK" && (
+                    <img className="mr-3" src={link} height="20" />
+                  )}
+                </div>
               </Dropdown.Item>
             );
           }
@@ -97,7 +109,7 @@ const CustomToggle = React.forwardRef<HTMLAnchorElement, toggleProps>(
         className="dropdown font-medium text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
       >
         {children}
-        <img height={14} src={dropdown} className="ml-3" />
+        <img height={14} src={dropdown} />
       </a>
     );
   }

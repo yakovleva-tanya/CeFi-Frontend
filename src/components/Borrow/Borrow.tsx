@@ -11,7 +11,7 @@ import BorrowMetrics from "./BorrowMetrics";
 import PrimaryButton from "../UI/PrimaryButton";
 import BorrowPageContextProvider, {
   BorrowPageContext,
-  LendingApplicationMap
+  LendingApplicationMap,
 } from "../../context/borrowContext";
 import StageBar from "./StageBar";
 import LoginButton from "../LoginButton/LoginButton";
@@ -22,7 +22,9 @@ import { getNonce } from "../../models/DataProviders";
 
 const Borrow = () => {
   const [success, setSuccess] = useState(false);
-  const { stage, setStage, submenu, borrowRequest } = useContext(BorrowPageContext);
+  const { stage, setStage, submenu, borrowRequest } = useContext(
+    BorrowPageContext
+  );
   const { state, updateAppState } = useContext(AppContext);
 
   const requestLoan = async () => {
@@ -30,7 +32,10 @@ const Borrow = () => {
     //TODO: this should update based on the selected ATM type.
     const { lendingPool } = state.teller.contracts.LINK.USDC;
     try {
-      const tokenDecimals = await getLendingPoolDecimals(lendingPool, web3State);
+      const tokenDecimals = await getLendingPoolDecimals(
+        lendingPool,
+        web3State
+      );
       const nonceDataResponse = await getNonce();
       const lendingApplication = LendingApplicationMap(
         borrowRequest,
@@ -40,7 +45,7 @@ const Borrow = () => {
         web3State
       );
       const response = await sendLendingApplication(lendingApplication);
-      console.log(response.data)
+      console.log(response.data);
       setSuccess(true);
     } catch (err) {
       updateAppState((st: AppContextState) => {
@@ -65,51 +70,52 @@ const Borrow = () => {
         <div className="borrow">
           <div className="cards-container">
             <Card className="main-card text-center" title="Borrow">
-              <div className = "my-4 py-4"><StageBar />
-              {submenu ? (
-                submenu
-              ) : (
-                <div>
-                  {stage === 1 && (
-                    <div>
-                      <FirstStageTable />
-                      {loggedIn ? (
+              <div className="my-4 py-4">
+                <StageBar />
+                {submenu ? (
+                  submenu
+                ) : (
+                  <div>
+                    {stage === 1 && (
+                      <div>
+                        <FirstStageTable />
+                        {loggedIn ? (
+                          <PrimaryButton
+                            text="Get Loan Terms"
+                            onClick={() => {
+                              //Get LoanTerms
+                              setStage(stage + 1);
+                            }}
+                          />
+                        ) : (
+                          <LoginButton />
+                        )}
+                      </div>
+                    )}
+                    {stage === 2 && (
+                      <div>
+                        <SecondStageTable />
                         <PrimaryButton
-                          text="Get Loan Terms"
+                          text="Accept Loan Terms"
                           onClick={() => {
-                            //Get LoanTerms
+                            //Accept loan terms
                             setStage(stage + 1);
                           }}
                         />
-                      ) : (
-                        <LoginButton />
-                      )}
-                    </div>
-                  )}
-                  {stage === 2 && (
-                    <div>
-                      <SecondStageTable />
-                      <PrimaryButton
-                        text="Accept Loan Terms"
-                        onClick={() => {
-                          //Accept loan terms
-                          setStage(stage + 1);
-                        }}
-                      />
-                    </div>
-                  )}
-                  {stage === 3 && (
-                    <div>
-                      <ThirdStageTable />
-                      <PrimaryButton
-                        text="Request Loan"
-                        onClick={requestLoan}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
-</div>
+                      </div>
+                    )}
+                    {stage === 3 && (
+                      <div>
+                        <ThirdStageTable />
+                        <PrimaryButton
+                          text="Request Loan"
+                          onClick={requestLoan}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </Card>
             <BorrowMetrics />
           </div>
