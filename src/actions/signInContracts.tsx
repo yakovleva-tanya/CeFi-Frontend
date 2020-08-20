@@ -10,6 +10,8 @@ import {
   TellerState,
   ATMData,
   AppContextDefault,
+  TellerTokens,
+  BaseTokens
 } from "./../context/app";
 
 import ZDaiInterface = require("./../abi/contracts/ZDai.json");
@@ -20,6 +22,10 @@ import LenderInterface = require("./../abi/contracts/Lenders.json");
 import LendingPoolInterface = require("./../abi/contracts/LendingPool.json");
 import { globalDecimals, allContractAddresses } from "./../util/constants";
 
+
+/**
+ * Sets up ATM data for a given lendingPoolAddress.
+ */
 async function setupTellerContracts(
   web3State: Web3State,
   lendingPoolAddress: string,
@@ -124,13 +130,6 @@ export default async (
       primaryAccount
     );
 
-    const linkUsdcProxy = contractAddresses.LINK_LendingPool_tUSDC_Proxy;
-    const LINK_USDC = await setupTellerContracts(
-      web3State,
-      linkUsdcProxy,
-      primaryAccount
-    );
-
     const userWalletBalance = await getWalletBalance(
       web3State,
       primaryAccount,
@@ -138,8 +137,7 @@ export default async (
     );
 
     const contracts = teller.contracts;
-    contracts.ETH.DAI = ETH_DAI;
-    contracts.LINK.USDC = LINK_USDC;
+    contracts[BaseTokens.ETH][TellerTokens.tDAI] = ETH_DAI;
 
     return {
       ...teller,
@@ -150,4 +148,3 @@ export default async (
     console.log(err);
   }
 };
-

@@ -1,15 +1,20 @@
 import React, { createContext, useState } from "react";
 import { LendingApplication } from "../models/ArrowheadCRA";
-import { Web3State, BankInfoResponseInterface } from "../context/app";
+import {
+  Web3State,
+  BankInfoResponseInterface,
+  TellerTokens,
+  BaseTokens
+} from "../context/app";
 
 interface BorrowRequest {
   loanSize: number;
   loanTerm: number;
-  collateralWith: string;
+  collateralWith: BaseTokens;
   collateralPercent: number;
   loanType: string;
   bankConnected: boolean;
-  lendWith: string;
+  lendWith: TellerTokens;
   collateralAmount: number;
 }
 
@@ -60,11 +65,11 @@ export const LendingApplicationMap = (
 const defaultBorrowRequest = {
   loanSize: 100,
   loanTerm: 1,
-  collateralWith: "ETH",
+  collateralWith: BaseTokens.ETH,
   collateralPercent: 150,
   loanType: "Fixed",
   bankConnected: false,
-  lendWith: "DAI",
+  lendWith: TellerTokens.tDAI,
   collateralAmount: 1
 };
 const mockLoanTerms = {

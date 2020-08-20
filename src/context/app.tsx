@@ -39,6 +39,18 @@ export enum Web3Type {
   BlockNative,
 }
 
+export enum TellerTokens {
+  tDAI = 'tDAI',
+  tUSDC = 'tUSDC'
+}
+
+export enum BaseTokens {
+  ETH = 'ETH',
+}
+
+export type TokenTypes = TellerTokens | BaseTokens;
+
+
 export interface Web3State {
   web3: any;
   type: Web3Type | null;
@@ -63,14 +75,15 @@ export interface ATMData {
   userCollateralBalance: number | null;
 }
 
-export interface TellerContracts {
-  [key: string]: ATMData;
+export type TellerContractsLendingATM = {
+  [key in TellerTokens]: ATMData
 }
-export interface TellerContractsCat {
-  [key: string]: TellerContracts;
+
+export type TellerContractsBorrowingATM = {
+  [key in BaseTokens]: TellerContractsLendingATM
 }
 export interface TellerState {
-  contracts: TellerContractsCat;
+  contracts: TellerContractsBorrowingATM;
   userWalletBalance: null | UserWalletBalanceInterface;
 }
 export interface FicoState {
@@ -121,7 +134,7 @@ export const AppContextDefault = {
       userWalletBalance: null as null,
       contracts: {
         ETH: {
-          USDC: {
+          tUSDC: {
             lendingPool: null as null,
             lendingPoolAddress: null as null,
             tToken: null as null,
@@ -132,31 +145,7 @@ export const AppContextDefault = {
             cTokenAddress: null as null,
             userCollateralBalance: null as null,
           },
-          DAI: {
-            lendingPool: null as null,
-            lendingPoolAddress: null as null,
-            tToken: null as null,
-            tTokenAddress: null as null,
-            userBorrowedBalance: null as null,
-            suppliedBalance: null as null,
-            cToken: null as null,
-            cTokenAddress: null as null,
-            userCollateralBalance: null as null,
-          },
-        },
-        LINK: {
-          USDC: {
-            lendingPool: null as null,
-            lendingPoolAddress: null as null,
-            tToken: null as null,
-            tTokenAddress: null as null,
-            userBorrowedBalance: null as null,
-            suppliedBalance: null as null,
-            cToken: null as null,
-            cTokenAddress: null as null,
-            userCollateralBalance: null as null,
-          },
-          DAI: {
+          tDAI: {
             lendingPool: null as null,
             lendingPoolAddress: null as null,
             tToken: null as null,

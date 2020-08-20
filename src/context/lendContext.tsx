@@ -1,10 +1,13 @@
 import React, { createContext, useState } from "react";
+import {
+  TellerTokens
+} from "../context/app";
 
 export interface ExchangeRates {
   [key: string]: number;
 }
 export interface LendPageContextInterface {
-  selectedCurrency: string;
+  selectedCurrency: TellerTokens;
   setSelectedCurrency: Function;
   selectedAmount: number;
   setSelectedAmount: Function;
@@ -13,7 +16,7 @@ export interface LendPageContextInterface {
 }
 
 export const LendPageContext = createContext<LendPageContextInterface>({
-  selectedCurrency: "",
+  selectedCurrency: TellerTokens.tDAI,
   setSelectedCurrency: () => {},
   selectedAmount: 0.00,
   setSelectedAmount: () => {},
@@ -26,7 +29,7 @@ type LendPageContextProps = {
 };
 
 const LendPageContextProvider = ({ children }: LendPageContextProps) => {
-  const [selectedCurrency, setSelectedCurrency] = useState("DAI");
+  const [selectedCurrency, setSelectedCurrency] = useState(TellerTokens.tDAI);
   const [selectedAmount, setSelectedAmount] = useState(0.00);
   const [tokensApproved, setTokensApproved] = useState(false);
 

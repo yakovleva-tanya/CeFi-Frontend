@@ -1,5 +1,9 @@
 import React, { useContext } from "react";
-import { AppContext } from "../../context/app";
+import {
+  AppContext,
+  TellerTokens,
+  BaseTokens
+} from "../../context/app";
 import Metric from "../UI/Metric";
 import Card from "../UI/Card";
 import { LendPageContext } from "../../context/lendContext";
@@ -24,8 +28,8 @@ const LendMetrics = () => {
     : "-";
 
   const suppliedBalance =
-    teller?.contracts.ETH[selectedCurrency].suppliedBalance !== null
-      ? `${teller?.contracts.ETH[selectedCurrency].suppliedBalance} ${selectedCurrency}`
+    teller?.contracts[BaseTokens.ETH][selectedCurrency].suppliedBalance !== null
+      ? `${teller?.contracts[BaseTokens.ETH][selectedCurrency].suppliedBalance} ${selectedCurrency}`
       : "-";
 
   return (

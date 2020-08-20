@@ -1,4 +1,8 @@
-import { AppContextState } from "./../context/app";
+import {
+  AppContextState,
+  TellerTokens,
+  BaseTokens
+} from "./../context/app";
 import { mintZDai } from "./../models/Contracts";
 import { globalDecimals } from "./../util/constants";
 
@@ -36,8 +40,7 @@ const completeSupply = (
 ) => async (values: any) => {
   const amount = parseFloat(values.amount);
   const primaryAddress = state.web3State.address;
-  //TODO: this should update based on the selected ATM type.
-  const { lendingPool, tToken } = state.teller.contracts.ETH.DAI;
+  const { lendingPool, tToken } = state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI];
   try {
     const { balance, transactionHash } = await supplyDai(
       setProcessing,
@@ -52,7 +55,7 @@ const completeSupply = (
     updateAppState((st: AppContextState) => {
       const teller = st.teller;
   // TODO: this should update based on the selected ATM type.
-      teller.contracts.ETH.DAI.suppliedBalance = balance;
+      teller.contracts[BaseTokens.ETH][TellerTokens.tDAI].suppliedBalance = balance;
       return { ...st, teller };
     });
   } catch (error) {
