@@ -36,7 +36,7 @@ const StageBar = () => {
 
   return (
     <div>
-      <div className="progress-bar-bg mt-5">
+      <div className="progress-bar-bg">
         <div
           className="progress-bar-blue"
           style={{

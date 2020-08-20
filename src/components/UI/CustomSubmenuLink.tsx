@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ChevronRight } from "react-bootstrap-icons";
+import Arrow from "../UI/Arrow";
 
 type customSubmenuLinkProps = {
   title: string;
@@ -15,10 +15,10 @@ const CustomSubmenuLink = ({
       onClick={() => {
         onClickAction();
       }}
-      className="d-flex flex-row pointer"
+      className="d-flex flex-row align-items-center pointer"
     >
-      <div className="pr-2">{title}</div>
-      <ChevronRight className="font-medium text-black p-1" size={24} />
+      <div className="mr-3">{title}</div>
+      <Arrow direction='right'/>
     </div>
   );
 };

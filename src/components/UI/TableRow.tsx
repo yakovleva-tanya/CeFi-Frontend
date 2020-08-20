@@ -6,8 +6,8 @@ interface RowProps {
 }
 const TableRow = ({ title, children }: RowProps) => {
   return (
-    <div className="d-flex flex-row justify-content-between p-3 m-x-auto">
-      <div className="p-1">{title}</div>
+    <div className="d-flex flex-row justify-content-between p-4 m-x-auto align-middle">
+      <div className="">{title}</div>
       {children}
     </div>
   )
