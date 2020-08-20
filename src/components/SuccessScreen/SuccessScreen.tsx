@@ -25,10 +25,12 @@ const Message = ({ version, url }: messageProps) => {
     return (
       <div>
         <div>
-          You'll be receiving your loan shortly. You can check the status{" "}
+          Click{" "}
           <a target="_blank" rel="noreferrer" href={url}>
             here.
-          </a>
+          </a>{" "}
+          to view your borrow balance status. Get started using your loan by
+          exploring our dashboard.
         </div>
         <div>Find out what you can do with your loan </div>
       </div>
@@ -41,7 +43,7 @@ type successProps = {
   onButtonClick?: Function;
 };
 
-const SuccessScreen = ({ link, version, onButtonClick}: successProps) => {
+const SuccessScreen = ({ link, version, onButtonClick }: successProps) => {
   return (
     <div className="success-screen d-flex align-items-center justify-content-center flex-column">
       <div className="text-5xl">
