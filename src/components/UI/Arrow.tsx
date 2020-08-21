@@ -9,7 +9,7 @@ interface arrowProps  {
 const Arrow = ({direction, onClick}: arrowProps) => {
   return (
     <img
-      className={` ${direction}`}
+      className={`pointer ${direction}`}
       height={14}
       src={dropdown}
       onClick = {()=>onClick()}
