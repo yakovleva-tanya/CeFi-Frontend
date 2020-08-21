@@ -11,7 +11,7 @@ import DetailCard from './../DetailCard';
 import { AppContext, AppContextState } from "./../../context/app";
 import Alert from 'react-bootstrap/Alert';
 
-import lendDai from "./../../actions/lendDai";
+import lendTokens from "./../../actions/lendTokens";
 import redeemZDai from "./../../actions/redeemZDai";
 
 import './index.scss';
@@ -28,7 +28,7 @@ const completeLendingForm = (state: any, updateAppState: Function) => async (val
   // const primaryAddress = state.web3State.address;
   // const { lendingPool, zDai } = state.zeroCollateral.contracts;
   try {
-    // const balance = await lendDai(amount, primaryAddress, lendingPool, zDai, state.web3State);
+    // const balance = await lendTokens(amount, primaryAddress, lendingPool, zDai, state.web3State);
     // setSubmitting(false);
     // updateAppState((st: AppContextState) => {
     //   const zeroCollateral = st.zeroCollateral;

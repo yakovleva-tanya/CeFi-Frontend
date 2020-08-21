@@ -1,5 +1,11 @@
 import React, { useState, useContext } from "react";
-import { AppContext, AppContextState } from "../../context/app";
+import {
+  AppContext,
+  AppContextState,
+  TellerTokens,
+  BaseTokens,
+  mapLendingTokensToTellerTokens
+} from "../../context/app";
 import { approveDai } from "../../models/Contracts";
 import { CustomSubmitButton } from "../UI/CustomSubmitButton";
 import { LendPageContext } from "../../context/lendContext";
@@ -9,6 +15,7 @@ const SubmitApproveButton = () => {
     selectedAmount,
     tokensApproved,
     setTokensApproved,
+    selectedCurrency
   } = useContext(LendPageContext);
 
   const { state, updateAppState } = useContext(AppContext);
@@ -16,8 +23,9 @@ const SubmitApproveButton = () => {
   const loggedIn = state.web3State?.address || "";
 
   const approve = async () => {
+    const tellerTokens = mapLendingTokensToTellerTokens(selectedCurrency);
     const primaryAddress = state.web3State.address;
-    const { lendingPool } = state.teller.contracts.ETH.DAI;
+    const { lendingPool } = state.teller.contracts[BaseTokens.ETH][tellerTokens];
     // TODO: this should update based on the selected ATM type.
     try {
       await approveDai(

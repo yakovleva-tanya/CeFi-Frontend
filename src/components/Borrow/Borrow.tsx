@@ -4,6 +4,12 @@ import Axios from "axios";
 import SuccessScreen from "../SuccessScreen/SuccessScreen";
 import Card from "../UI/Card";
 import "./borrow.scss";
+import {
+  AppContext,
+  AppContextState,
+  TellerTokens,
+  BaseTokens
+} from "../../context/app";
 import FirstStageTable from "./FirstStageTable";
 import SecondStageTable from "./SecondStageTable";
 import ThirdStageTable from "./ThirdStageTable";
@@ -15,7 +21,6 @@ import BorrowPageContextProvider, {
 } from "../../context/borrowContext";
 import StageBar from "./StageBar";
 import LoginButton from "../LoginButton/LoginButton";
-import { AppContext, AppContextState } from "../../context/app";
 import { sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
 import { getNonce } from "../../models/DataProviders";
@@ -30,7 +35,7 @@ const Borrow = () => {
   const requestLoan = async () => {
     const { dataProviderResponse, web3State } = state;
     //TODO: this should update based on the selected ATM type.
-    const { lendingPool } = state.teller.contracts.LINK.USDC;
+    const { lendingPool } = state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI];
     try {
       const tokenDecimals = await getLendingPoolDecimals(
         lendingPool,

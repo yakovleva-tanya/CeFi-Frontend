@@ -23,9 +23,7 @@ export async function redeemZDai(amount: string, primaryAddress: string, lending
 }
 
 /**
-
  * Approves 10x spending of dai for zeroCollateral contracts.
-
  */
 export async function getLendingPoolDecimals(lendingPool: any, web3State: Web3State) {
   const dai = await getLendingToken(lendingPool, web3State);
