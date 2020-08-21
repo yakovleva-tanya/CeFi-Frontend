@@ -10,7 +10,7 @@ interface BorrowRequest {
   loanType: string;
   bankConnected: boolean;
   lendWith: string;
-  collateralAmount: number;
+  collateralAmount: null | number;
 }
 
 interface LoanTerms {
@@ -65,7 +65,7 @@ const defaultBorrowRequest = {
   loanType: "Fixed",
   bankConnected: false,
   lendWith: "DAI",
-  collateralAmount: 1
+  collateralAmount: null as null
 };
 const mockLoanTerms = {
   interestRate: 20,

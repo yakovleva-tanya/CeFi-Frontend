@@ -10,7 +10,7 @@ type CardProps = {
 const SubmenuCard = ({ title, children, onCloseAction }: CardProps) => {
   return (
     <div className="ui-card border-thin d-flex flex-column my-5">
-      <div className="d-flex justify-content-between align-items-center flex-row flex-1 pt-4 pb-3 px-4">
+      <div className="d-flex justify-content-between align-items-center flex-row flex-1 m-4">
         <Arrow
           onClick={() => {
             onCloseAction();

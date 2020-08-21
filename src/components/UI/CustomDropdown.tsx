@@ -49,7 +49,7 @@ export const CustomDropdown = ({
                 className="dropdown-title d-flex flex-row align-items-center"
               >
                 <div className="mr-3">
-                  {option}
+                  {option}</div>
                   {option === "DAI" && (
                     <img className="mr-3" src={dai} height="20" />
                   )}
@@ -65,7 +65,7 @@ export const CustomDropdown = ({
                   {option === "LINK" && (
                     <img className="mr-3" src={link} height="20" />
                   )}
-                </div>
+
               </Dropdown.Item>
             );
           }
