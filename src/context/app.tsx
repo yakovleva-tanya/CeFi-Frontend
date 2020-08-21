@@ -66,12 +66,12 @@ export interface Web3State {
 export interface ATMData {
   lendingPool: any | null;
   lendingPoolAddress: any | null;
-  tToken: any | null; // Token used for borrowing
+  tToken: any | null; // Our Token used for accruing lending
   tTokenAddress: string | null;
+  collateralToken: any | null; // Token used for lending
+  collateralTokenAddress: string | null;
   userBorrowedBalance: number | null;
   suppliedBalance: number | null;
-  cToken: any | null; // Token used for lending
-  cTokenAddress: string | null;
   userCollateralBalance: number | null;
 }
 
@@ -141,8 +141,8 @@ export const AppContextDefault = {
             tTokenAddress: null as null,
             userBorrowedBalance: null as null,
             suppliedBalance: null as null,
-            cToken: null as null,
-            cTokenAddress: null as null,
+            collateralToken: null as null,
+            collateralTokenAddress: null as null,
             userCollateralBalance: null as null,
           },
           tDAI: {
@@ -152,8 +152,8 @@ export const AppContextDefault = {
             tTokenAddress: null as null,
             userBorrowedBalance: null as null,
             suppliedBalance: null as null,
-            cToken: null as null,
-            cTokenAddress: null as null,
+            collateralToken: null as null,
+            collateralTokenAddress: null as null,
             userCollateralBalance: null as null,
           },
         },

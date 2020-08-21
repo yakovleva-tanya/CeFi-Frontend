@@ -1,10 +1,7 @@
 import React, { useState, useContext } from "react";
-import {
-  TellerTokens,
-} from "../../context/app";
 import AssetChangeWarningModal from "../AssetChangeWarningModal/AssetChangeWarningModal";
 import { CustomDropdown } from "../UI/CustomDropdown";
-import { LendPageContext } from "../../context/lendContext";
+import { LendPageContext, AvailableTokens } from "../../context/lendContext";
 
 const CurrencyDropdown = () => {
   const {
@@ -14,12 +11,7 @@ const CurrencyDropdown = () => {
     setSelectedCurrency,
   } = useContext(LendPageContext);
 
-  const currencies = ["DAI", "USDC"];
-  // Maps human readable currencies to backend teller token types.
-  const tellerMap: { [key in string] : TellerTokens } = {
-    "DAI": TellerTokens.tDAI,
-    "USDC": TellerTokens.tUSDC
-  };
+  const currencies: Array<AvailableTokens> = [AvailableTokens.DAI, AvailableTokens.USDC];
 
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [newCurrency, setNewCurrency] = useState("");
@@ -29,7 +21,7 @@ const CurrencyDropdown = () => {
       setNewCurrency(eventKey);
       setShowWarningModal(true);
     } else {
-      setSelectedCurrency(tellerMap[eventKey]);
+      setSelectedCurrency(eventKey);
     }
   };
 

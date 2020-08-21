@@ -19,7 +19,7 @@ import DaiPoolInterface = require("./../abi/DaiPoolInterface.json");
 import LoansInterface = require("./../abi/contracts/Loans.json");
 import ERC20Interface = require("./../abi/contracts/ERC20.json");
 import LenderInterface = require("./../abi/contracts/Lenders.json");
-import LendingPoolInterface = require("./../abi/contracts/LendingPool.json");
+import LendingPoolInterface = require("./../abi/contracts/LendingPoolInterface.json");
 import { globalDecimals, allContractAddresses } from "./../util/constants";
 
 
@@ -29,7 +29,9 @@ import { globalDecimals, allContractAddresses } from "./../util/constants";
 async function setupTellerContracts(
   web3State: Web3State,
   lendingPoolAddress: string,
-  primaryAccount: string
+  primaryAccount: string,
+  collateralAddress: string,
+  tTokenAddress: string,
 ): Promise<ATMData> {
 
   const lendingPool = new web3State.web3.eth.Contract(
@@ -38,30 +40,29 @@ async function setupTellerContracts(
     {}
   );
 
-  const tTokenAddress = await lendingPool.methods.tToken().call();
   const tToken = new web3State.web3.eth.Contract(
-    ZDaiInterface.abi,
+    ERC20Interface.abi,
     tTokenAddress,
     {}
   );
 
-  const cTokenAddress = await lendingPool.methods.cToken().call();
-  const cToken = new web3State.web3.eth.Contract(
-    ZDaiInterface.abi,
-    cTokenAddress,
+  const collateralTokenAddress = collateralAddress;
+  const collateralToken = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    collateralAddress,
     {}
   );
   const suppliedBalanceStr = await tToken.methods
     .balanceOf(primaryAccount)
     .call();
   const suppliedBalance = parseFloat(suppliedBalanceStr) / globalDecimals;
-  const collateralBalanceStr = await cToken.methods
+  const collateralBalanceStr = await collateralToken.methods
     .balanceOf(primaryAccount)
     .call();
   const userCollateralBalance =
     parseFloat(collateralBalanceStr) / globalDecimals;
 
-  const borrowedBalanceStr = await cToken.methods
+  const borrowedBalanceStr = await collateralToken.methods
     .balanceOf(primaryAccount)
     .call();
   const userBorrowedBalance = parseFloat(borrowedBalanceStr) / globalDecimals;
@@ -71,8 +72,8 @@ async function setupTellerContracts(
     lendingPoolAddress,
     tTokenAddress,
     tToken,
-    cTokenAddress,
-    cToken,
+    collateralTokenAddress,
+    collateralToken,
     suppliedBalance,
     userCollateralBalance,
     userBorrowedBalance,
@@ -123,11 +124,12 @@ export default async (
     const network = web3State.network.toString();
     const contractAddresses = network === "1" ? allContractAddresses.mainnet : allContractAddresses.ropsten;
 
-    const ethDaiProxy = contractAddresses.ETH_LendingPool_tDAI_Proxy;
     const ETH_DAI = await setupTellerContracts(
       web3State,
-      ethDaiProxy,
-      primaryAccount
+      contractAddresses.ETH_LendingPool_tDAI_Proxy,
+      primaryAccount,
+      contractAddresses.tokens.DAI,
+      contractAddresses.TDAI
     );
 
     const userWalletBalance = await getWalletBalance(

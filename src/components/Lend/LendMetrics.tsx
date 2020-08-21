@@ -6,7 +6,7 @@ import {
 } from "../../context/app";
 import Metric from "../UI/Metric";
 import Card from "../UI/Card";
-import { LendPageContext } from "../../context/lendContext";
+import { LendPageContext, AvailableTokens } from "../../context/lendContext";
 
 const LendMetrics = () => {
   const { selectedCurrency } = useContext(LendPageContext);
@@ -27,9 +27,16 @@ const LendMetrics = () => {
     ? `${teller.userWalletBalance[selectedCurrency]} ${selectedCurrency}`
     : "-";
 
+  const mapToTeller = (x: AvailableTokens): TellerTokens => {
+    if (x === AvailableTokens.DAI) return TellerTokens.tDAI;
+    if (x === AvailableTokens.USDC) return TellerTokens.tUSDC;
+  };
+
+  const convertedCurrency = mapToTeller(selectedCurrency);
+
   const suppliedBalance =
-    teller?.contracts[BaseTokens.ETH][selectedCurrency].suppliedBalance !== null
-      ? `${teller?.contracts[BaseTokens.ETH][selectedCurrency].suppliedBalance} ${selectedCurrency}`
+    teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance !== null
+      ? `${teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance} ${selectedCurrency}`
       : "-";
 
   return (

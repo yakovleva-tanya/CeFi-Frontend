@@ -7,7 +7,7 @@ export interface ExchangeRates {
   [key: string]: number;
 }
 export interface LendPageContextInterface {
-  selectedCurrency: TellerTokens;
+  selectedCurrency: AvailableTokens;
   setSelectedCurrency: Function;
   selectedAmount: number;
   setSelectedAmount: Function;
@@ -15,8 +15,13 @@ export interface LendPageContextInterface {
   setTokensApproved: Function;
 }
 
+export enum AvailableTokens {
+  DAI = 'DAI',
+  USDC = 'USDC'
+}
+
 export const LendPageContext = createContext<LendPageContextInterface>({
-  selectedCurrency: TellerTokens.tDAI,
+  selectedCurrency: AvailableTokens.DAI,
   setSelectedCurrency: () => {},
   selectedAmount: 0.00,
   setSelectedAmount: () => {},
@@ -29,7 +34,7 @@ type LendPageContextProps = {
 };
 
 const LendPageContextProvider = ({ children }: LendPageContextProps) => {
-  const [selectedCurrency, setSelectedCurrency] = useState(TellerTokens.tDAI);
+  const [selectedCurrency, setSelectedCurrency] = useState(AvailableTokens.DAI);
   const [selectedAmount, setSelectedAmount] = useState(0.00);
   const [tokensApproved, setTokensApproved] = useState(false);
 
