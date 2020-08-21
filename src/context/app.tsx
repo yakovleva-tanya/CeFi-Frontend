@@ -48,6 +48,17 @@ export enum BaseTokens {
   ETH = 'ETH',
 }
 
+
+export enum AvailableLendingTokens {
+  DAI = 'DAI',
+  USDC = 'USDC'
+}
+
+export const mapLendingTokensToTellerTokens = (x: AvailableLendingTokens): TellerTokens => {
+  if (x === AvailableLendingTokens.DAI) return TellerTokens.tDAI;
+  if (x === AvailableLendingTokens.USDC) return TellerTokens.tUSDC;
+};
+
 export type TokenTypes = TellerTokens | BaseTokens;
 
 

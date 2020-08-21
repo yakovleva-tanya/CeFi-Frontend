@@ -3,7 +3,7 @@ import { LendingApplication } from "../models/ArrowheadCRA";
 import {
   Web3State,
   BankInfoResponseInterface,
-  TellerTokens,
+  AvailableLendingTokens,
   BaseTokens
 } from "../context/app";
 
@@ -14,7 +14,7 @@ interface BorrowRequest {
   collateralPercent: number;
   loanType: string;
   bankConnected: boolean;
-  lendWith: TellerTokens;
+  lendWith: AvailableLendingTokens;
   collateralAmount: number;
 }
 
@@ -69,7 +69,7 @@ const defaultBorrowRequest = {
   collateralPercent: 150,
   loanType: "Fixed",
   bankConnected: false,
-  lendWith: TellerTokens.tDAI,
+  lendWith: AvailableLendingTokens.DAI,
   collateralAmount: 1
 };
 const mockLoanTerms = {

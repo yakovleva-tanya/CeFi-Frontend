@@ -1,7 +1,10 @@
 import React, { useState, useContext } from "react";
 import AssetChangeWarningModal from "../AssetChangeWarningModal/AssetChangeWarningModal";
 import { CustomDropdown } from "../UI/CustomDropdown";
-import { LendPageContext, AvailableTokens } from "../../context/lendContext";
+import { LendPageContext } from "../../context/lendContext";
+import {
+  AvailableLendingTokens,
+} from "../../context/app";
 
 const CurrencyDropdown = () => {
   const {
@@ -11,7 +14,7 @@ const CurrencyDropdown = () => {
     setSelectedCurrency,
   } = useContext(LendPageContext);
 
-  const currencies: Array<AvailableTokens> = [AvailableTokens.DAI, AvailableTokens.USDC];
+  const currencies: Array<AvailableLendingTokens> = [AvailableLendingTokens.DAI, AvailableLendingTokens.USDC];
 
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [newCurrency, setNewCurrency] = useState("");
