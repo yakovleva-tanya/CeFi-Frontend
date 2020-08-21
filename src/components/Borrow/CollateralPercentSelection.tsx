@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import { BorrowPageContext } from "../../context/borrowContext";
 import SubmenuCard from "../UI/SubmenuCard";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
-import Form from "react-bootstrap/Form";
 import FormValidationWarning from "../UI/FormValidationWarning";
+import CustomSlider from '../UI/CustomSlider';
 
 const CollateralPercentSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
@@ -21,9 +21,9 @@ const CollateralPercentSubmenu = () => {
   const onChange = (e: any) => {
     let value = e.target.value;
     value = value.replace(/[^0-9.]/g, "");
-    const split = value.split('.');
-    if(split[1]&&split[1].length > 2){
-      value = `${split[0]}.${split[1].substring(0,2)}`
+    const split = value.split(".");
+    if (split[1] && split[1].length > 2) {
+      value = `${split[0]}.${split[1].substring(0, 2)}`;
     }
     if (isNaN(value)) {
       value = "0.00";
@@ -64,11 +64,7 @@ const CollateralPercentSubmenu = () => {
       }}
     >
       <div className="-my-2 d-flex flex-column px-4">
-        {warning ? (
-          <FormValidationWarning message={warning} />
-        ) : (
-          <div style={{ height: "18px" }}>{""}</div>
-        )}
+        <FormValidationWarning message={warning} />
         <input
           className="input text-5xl font-medium text-black text-center"
           value={value}
@@ -82,20 +78,12 @@ const CollateralPercentSubmenu = () => {
           onBlur={onBlur}
           onFocus={onFocus}
         />
-        <Form>
-          <Form.Group controlId="formBasicRangeCustom" className="mb-0 mt-4">
-            <Form.Control
-              type="range"
-              custom
-              onChange={onSliderChange}
-              value={parseFloat(value) / 1.5}
-            />
-          </Form.Group>
-        </Form>
-        <div className="text-xs text-gray d-flex justify-content-between mb-2">
-          <div>0%</div>
-          <div>150%</div>
-        </div>
+        <CustomSlider
+          min="0%"
+          max="150%"
+          onChange={onSliderChange}
+          value={parseFloat(value) / 1.5}
+        />
         <div
           className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"
           onClick={onSubmit}
