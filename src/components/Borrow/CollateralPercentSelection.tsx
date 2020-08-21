@@ -2,41 +2,60 @@ import React, { useState, useContext } from "react";
 import { BorrowPageContext } from "../../context/borrowContext";
 import SubmenuCard from "../UI/SubmenuCard";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
-import infoTriangle from "../../../dist/assets/info-triangle.svg";
 import Form from "react-bootstrap/Form";
+import FormValidationWarning from "../UI/FormValidationWarning";
 
 const CollateralPercentSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
     BorrowPageContext
   );
-  const [value, setValue] = useState(borrowRequest.collateralPercent);
+  const [value, setValue] = useState(`${borrowRequest.collateralPercent}%`);
   const [warning, setWarning] = useState("");
+
+  const onBlur = () => {
+    setValue(`${value || 0}%`);
+  };
+  const onFocus = () => {
+    setValue(`${value.replace(/[^0-9.]/g, "")}`);
+  };
   const onChange = (e: any) => {
     let value = e.target.value;
     value = value.replace(/[^0-9.]/g, "");
-    value = Math.trunc(100 * parseFloat(value)) / 100;
+    const split = value.split('.');
+    if(split[1]&&split[1].length > 2){
+      value = `${split[0]}.${split[1].substring(0,2)}`
+    }
     if (isNaN(value)) {
       value = "0.00";
     }
-    e.target.value = value;
     if (value > 150 || value < 0) {
       setWarning("Please enter a number between 0-150");
     } else {
       setWarning("");
     }
-    setValue(e.target.value);
+    setValue(value);
   };
   const onSubmit = () => {
-    if (value > 150) {
-      setValue(150);
+    let valueNum = parseFloat(value.replace(/[^0-9.]/g, ""));
+    if (valueNum > 150) {
+      valueNum = 150;
     }
-    setValue(value);
     setBorrowRequest({
       ...borrowRequest,
-      collateralPercent: value,
+      collateralPercent: valueNum,
     });
     setSubmenu(null);
   };
+  const onSliderChange = (e: any) => {
+    const sliderValue = e.target.value;
+    if (sliderValue > 150 || sliderValue < 0) {
+      setWarning("Please enter a number between 0-150");
+    } else {
+      setWarning("");
+    }
+    setValue((Math.trunc(100 * sliderValue * 1.5) / 100).toString());
+  };
+
   return (
     <SubmenuCard
       title="Collateral Percent"
@@ -60,16 +79,16 @@ const CollateralPercentSubmenu = () => {
               e.preventDefault();
             }
           }}
+          onBlur={onBlur}
+          onFocus={onFocus}
         />
         <Form>
           <Form.Group controlId="formBasicRangeCustom" className="mb-0 mt-4">
             <Form.Control
               type="range"
               custom
-              onChange={(e: any) =>
-                setValue(Math.trunc(100 * e.target.value * 1.5) / 100)
-              }
-              value={value / 1.5}
+              onChange={onSliderChange}
+              value={parseFloat(value) / 1.5}
             />
           </Form.Group>
         </Form>
@@ -87,6 +106,7 @@ const CollateralPercentSubmenu = () => {
     </SubmenuCard>
   );
 };
+
 const CollateralPercentSelection = () => {
   const { borrowRequest, setSubmenu } = useContext(BorrowPageContext);
 
@@ -100,16 +120,3 @@ const CollateralPercentSelection = () => {
   );
 };
 export default CollateralPercentSelection;
-
-type validationProps = {
-  message: string;
-};
-
-const FormValidationWarning = ({ message }: validationProps) => {
-  return (
-    <div className="d-flex align-items-center justify-content-center">
-      <img className="mr-1" src={infoTriangle} height={14} />
-      <div className="text-xs text-gray">{message}</div>
-    </div>
-  );
-};
