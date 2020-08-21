@@ -12,7 +12,7 @@ const CollateralPercentSubmenu = () => {
     borrowRequest.collateralAmount || borrowRequest.loanSize
   );
 
-  const percents = (value / borrowRequest.loanSize) * 100;
+  const percents = Math.round((value / borrowRequest.loanSize) * 100);
 
   return (
     <SubmenuCard
@@ -48,11 +48,9 @@ const CollateralPercentSubmenu = () => {
 };
 const CollateralAmountSelection = () => {
   const { borrowRequest, setSubmenu } = useContext(BorrowPageContext);
-  const { collateralAmount, loanSize } = borrowRequest;
+  const { collateralAmount, loanSize, collateralWith } = borrowRequest;
   console.log(collateralAmount, loanSize);
-  const title = `${
-    collateralAmount ? Math.ceil((collateralAmount / loanSize) * 100) : 100
-  }%`;
+  const title = `${collateralAmount} ${collateralWith}`;
   return (
     <CustomSubmenuLink
       title={title}

@@ -31,20 +31,21 @@ const LoanTermSubmenu = () => {
     setValue(value);
   };
   const onSubmit = () => {
+    let newValue = value;
     if (value > max) {
-      setValue(max);
+      newValue = max;
     }
     if (value < min) {
-      setValue(min);
+      newValue = min;
     }
     setBorrowRequest({
       ...borrowRequest,
-      loanTerm: value,
+      loanTerm: newValue,
     });
     setSubmenu(null);
   };
   const onSliderChange = (e: any) => {
-    const value = Math.floor((e.target.value * max / 100)) + min;
+    const value = Math.floor((e.target.value * max) / 100) + min;
     if (value > max || value < min) {
       setWarning(errorMessage);
     } else {
@@ -95,7 +96,9 @@ const LoanTermSelection = () => {
 
   return (
     <CustomSubmenuLink
-      title={`${borrowRequest.loanTerm} DAYS`}
+      title={`${borrowRequest.loanTerm} ${
+        borrowRequest.loanTerm % 10 == 1 ? "DAY" : "DAYS"
+      }`}
       onClickAction={() => {
         setSubmenu(<LoanTermSubmenu />);
       }}

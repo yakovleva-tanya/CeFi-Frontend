@@ -3,7 +3,7 @@ import { BorrowPageContext } from "../../context/borrowContext";
 import SubmenuCard from "../UI/SubmenuCard";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
 import FormValidationWarning from "../UI/FormValidationWarning";
-import CustomSlider from '../UI/CustomSlider';
+import CustomSlider from "../UI/CustomSlider";
 
 const CollateralPercentSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
@@ -53,7 +53,7 @@ const CollateralPercentSubmenu = () => {
     } else {
       setWarning("");
     }
-    setValue((Math.trunc(100 * sliderValue * 1.5) / 100).toString());
+    setValue(`${(Math.trunc(100 * sliderValue * 1.5) / 100).toString()}%`);
   };
 
   return (
