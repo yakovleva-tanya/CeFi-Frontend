@@ -29,6 +29,7 @@ const CollateralPercentSubmenu = () => {
           value={value.toString()}
           type="number"
         />
+        <div className="mb-3">{borrowRequest.collateralWith}</div>
         <div className="text-lightest-gray text-lg ">{percents}%</div>
         <div
           className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"

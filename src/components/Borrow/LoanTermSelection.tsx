@@ -56,7 +56,7 @@ const LoanTermSubmenu = () => {
 
   return (
     <SubmenuCard
-      title="Collateral Percent"
+      title="Loan Term"
       onCloseAction={() => {
         setSubmenu(null);
       }}
@@ -74,6 +74,9 @@ const LoanTermSubmenu = () => {
             }
           }}
         />
+        <div className="text-lg text-gray">
+          {value % 10 === 1 ? "DAY" : "DAYS"}
+        </div>
         <CustomSlider
           min={`${min} day`}
           max={`${max} days`}
