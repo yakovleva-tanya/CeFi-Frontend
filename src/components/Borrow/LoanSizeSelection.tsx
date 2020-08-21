@@ -8,7 +8,7 @@ const LoanSizeSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
     BorrowPageContext
   );
-  const [value, setValue] = useState(borrowRequest.loanSize);
+  const [value, setValue] = useState(borrowRequest.loanSize.toFixed(2));
 
   return (
     <SubmenuCard
@@ -17,13 +17,17 @@ const LoanSizeSubmenu = () => {
         setSubmenu(null);
       }}
     >
-      <div className="mt-4 d-flex flex-column">
+      <div className="d-flex flex-column">
         <CustomInput
           onChangeFunction={(e: any) => {
-            setValue(parseFloat(e.target.value) || 0);
+            e.target.value = e.target.value.replace(/[^0-9.]/g, "");
+            setValue(e.target.value || 0);
           }}
           value={value.toString()}
-          type="number"
+          type="string"
+          onBlur={() => {
+            setValue(parseFloat(value).toFixed(2));
+          }}
         />
         <div className="text-lightest-gray text-lg ">
           {borrowRequest.lendWith}
@@ -31,7 +35,10 @@ const LoanSizeSubmenu = () => {
         <div
           className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"
           onClick={() => {
-            setBorrowRequest({ ...borrowRequest, loanSize: value });
+            setBorrowRequest({
+              ...borrowRequest,
+              loanSize: parseFloat(value),
+            });
             setSubmenu(null);
           }}
         >
@@ -43,17 +50,13 @@ const LoanSizeSubmenu = () => {
 };
 
 const LoanSizeSelection = () => {
-  const { borrowRequest, setSubmenu } = useContext(
-    BorrowPageContext
-  );
+  const { borrowRequest, setSubmenu } = useContext(BorrowPageContext);
 
   return (
     <CustomSubmenuLink
       title={`${borrowRequest.loanSize} ${borrowRequest.lendWith}`}
       onClickAction={() => {
-        setSubmenu(
-          <LoanSizeSubmenu/>
-        );
+        setSubmenu(<LoanSizeSubmenu />);
       }}
     />
   );

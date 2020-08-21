@@ -88,9 +88,10 @@ const Lend = () => {
                       text="Supply"
                       type="submit"
                       disabled={isSubmitting || !tokensApproved}
-                    />
-                  ) : (
-                    <LoginButton />
+
+                      />
+                    ) : (
+                      <LoginButton />
                   )}
                 </Form>
               )}

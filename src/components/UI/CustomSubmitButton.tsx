@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Check } from "react-bootstrap-icons";
 import LoadingAnimation from "../UI/LoadingAnimation";
+import greenCheck from "../../../dist/assets/check-green.svg";
+import grayCheck from "../../../dist/assets/check-gray.svg";
 
 type customSubmitProps = {
   onClickAction: Function;
@@ -20,7 +21,7 @@ export const CustomSubmitButton = ({
   return (
     <div className="d-flex flex-row align-items-center">
       <div
-        className={`py-1 px-3 border-thin  ${
+        className={`py-1 px-3 mr-3 -my-2 border-thin  ${
           disabled ? "disabled text-lightest-gray" : "pointer text-black"
         }`}
         onClick={() => onClickAction()}
@@ -30,12 +31,7 @@ export const CustomSubmitButton = ({
       {loading ? (
         <LoadingAnimation isStopped={!loading} />
       ) : (
-        <Check
-          className={`${
-            approved ? `text-green` : `text-lightest-gray`
-          } text-lg ml-2`}
-          size={24}
-        />
+        <img src={approved ? greenCheck : grayCheck} height={14} />
       )}
     </div>
   );
@@ -75,4 +71,3 @@ export const MockSubmitButton = ({ text }: mockSubmitType) => {
     />
   );
 };
-

@@ -35,7 +35,7 @@ const HiddenNavbar = () => {
           alt=""
           src={teller_logo}
           height="42"
-          className="d-inline-block align-top p-1 mb-4"
+          className="d-inline-block align-top p-1"
         />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
