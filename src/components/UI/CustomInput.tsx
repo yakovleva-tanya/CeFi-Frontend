@@ -10,7 +10,7 @@ const CustomInput = ({
   value,
   onChangeFunction,
   type,
-  onBlur,
+  onBlur = () => {},
 }: customInputProps) => {
   return (
     <input

@@ -22,11 +22,14 @@ const ThirdStageTable = () => {
         </TableRow>
         <BR />
         <TableRow title="Loan Size">
-          <div className="font-medium"> {loanSize} {lendWith} </div>
+          <div className="font-medium">
+            {" "}
+            {loanSize} {lendWith}{" "}
+          </div>
         </TableRow>
         <BR />
         <TableRow title="Loan Term">
-          <div className="font-medium"> {loanTerm} days </div>
+          <div className="font-medium"> {loanTerm} {loanTerm% 10 == 1?'day':'days'} </div>
         </TableRow>
         <BR />
         <TableRow title="Loan Type">
@@ -35,7 +38,7 @@ const ThirdStageTable = () => {
       </div>
       <div className="table border-thin my-5">
         <TableRow title="Collateral Amount">
-          <CollateralAmountSelection/>
+          <CollateralAmountSelection />
         </TableRow>
         <BR />
         <TableRow title="Collateral Approval">

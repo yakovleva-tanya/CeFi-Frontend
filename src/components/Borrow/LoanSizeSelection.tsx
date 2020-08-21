@@ -20,13 +20,24 @@ const LoanSizeSubmenu = () => {
       <div className="d-flex flex-column">
         <CustomInput
           onChangeFunction={(e: any) => {
-            e.target.value = e.target.value.replace(/[^0-9.]/g, "");
-            setValue(e.target.value || 0);
+            let value = e.target.value.replace(/[^0-9.]/g, "");
+            const split = value.split(".");
+            if (split[1] && split[1].length > 2) {
+              value = `${split[0]}.${split[1].substring(0, 2)}`;
+            }
+            if (isNaN(value)) {
+              value = "0.00";
+            }
+            setValue(value);
           }}
           value={value.toString()}
           type="string"
-          onBlur={() => {
-            setValue(parseFloat(value).toFixed(2));
+          onBlur={(e: any) => {
+            let value = parseFloat(e.target.value);
+            if (isNaN(value)) {
+              value = 0;
+            }
+            setValue(value.toFixed(2));
           }}
         />
         <div className="text-lightest-gray text-lg ">
