@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AppContext, AppContextState } from "../../context/app";
 
 import { Formik } from "formik";
-import completeSupply from "../../actions/lendDai";
+import completeSupply from "../../actions/lendTokens";
 
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -18,7 +18,7 @@ import BR from "../UI/BR";
 import TableRow from "../UI/TableRow";
 import PrimaryButton from "../UI/PrimaryButton";
 import LendPageContextProvider, {
-  LendPageContext,
+  LendPageContext
 } from "../../context/lendContext";
 import LoginButton from "../LoginButton/LoginButton";
 import "./lend.scss";
@@ -35,7 +35,7 @@ const getEtherscanLink = (hash: string, network: string) =>{
 }
 
 const Lend = () => {
-  const { tokensApproved } = useContext(LendPageContext);
+  const { tokensApproved, selectedCurrency } = useContext(LendPageContext);
   const { state, updateAppState } = useContext(AppContext);
   const [transactionHash, setTransactionHash] = useState("");
   const [processing, setProcessing] = useState("");
@@ -51,51 +51,51 @@ const Lend = () => {
             className="main-card text-center align-items-center"
             title="Supply"
           >
-            <div className = "my-2 py-4">
-              <Formik
-                initialValues={initialSupplyValues}
-                validate={supplyFormValidation}
-                onSubmit={completeSupply(
-                  state,
-                  updateAppState,
-                  setTransactionHash,
-                  setProcessing
-                )}
-              >
-                {({
-                  values,
-                  handleChange,
-                  handleSubmit,
-                  isSubmitting,
-                  /* and other goodies */
-                }) => (
-                  <Form noValidate onSubmit={handleSubmit}>
-                    <LendAmountInput
-                      amount={values.amount}
-                      handleChange={handleChange}
-                    />
-                    <div className="table border-thin my-5">
-                      <TableRow title="Supply With">
-                        <CurrencyDropdown />
-                      </TableRow>
-                      <BR />
-                      <TableRow title="Approve">
-                        <SubmitApproveButton />
-                      </TableRow>
-                    </div>
-                    {loggedIn ? (
-                      <PrimaryButton
-                        text="Supply"
-                        type="submit"
-                        disabled={isSubmitting || !tokensApproved}
+            <Formik
+              initialValues={initialSupplyValues}
+              validate={supplyFormValidation}
+              onSubmit={completeSupply(
+                state,
+                updateAppState,
+                setTransactionHash,
+                setProcessing,
+                selectedCurrency
+              )}
+            >
+              {({
+                values,
+                handleChange,
+                handleSubmit,
+                isSubmitting,
+                /* and other goodies */
+              }) => (
+                <Form noValidate onSubmit={handleSubmit}>
+                  <LendAmountInput
+                    amount={values.amount}
+                    handleChange={handleChange}
+                  />
+                  <div className="table border-thin my-5">
+                    <TableRow title="Supply With">
+                      <CurrencyDropdown />
+                    </TableRow>
+                    <BR />
+                    <TableRow title="Approve">
+                      <SubmitApproveButton />
+                    </TableRow>
+                  </div>
+                  {loggedIn ? (
+                    <PrimaryButton
+                      text="Supply"
+                      type="submit"
+                      disabled={isSubmitting || !tokensApproved}
+
                       />
                     ) : (
                       <LoginButton />
-                    )}
-                  </Form>
-                )}
-              </Formik>
-            </div>
+                  )}
+                </Form>
+              )}
+            </Formik>
           </Card>
           <LendMetrics />
         </div>
