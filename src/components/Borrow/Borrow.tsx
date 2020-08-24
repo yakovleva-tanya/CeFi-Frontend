@@ -19,9 +19,13 @@ import { AppContext, AppContextState } from "../../context/app";
 import { sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
 import { getNonce } from "../../models/DataProviders";
+import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
 
 const Borrow = () => {
   const [success, setSuccess] = useState(false);
+  const [isSubmitting, setSubmitting] = useState(false);
+  const [isRequesting, setRequesting] = useState(false);
+
   const { stage, setStage, submenu, borrowRequest } = useContext(
     BorrowPageContext
   );
@@ -64,9 +68,10 @@ const Borrow = () => {
 
   return (
     <Container>
-      {success ? (
-        <SuccessScreen version="borrow" link="link" />
-      ) : (
+      {isSubmitting && <ProcessingScreen link = "" version="borrow-submitting" />}
+      {isRequesting && <ProcessingScreen link = "" version="borrow-requesting" />}
+      {success && <SuccessScreen version="borrow" link="link" />}
+      {!isSubmitting && !isRequesting && !success && (
         <div className="borrow">
           <div className="cards-container">
             <Card className="main-card text-center" title="Borrow">
