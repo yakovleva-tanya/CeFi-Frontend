@@ -8,7 +8,7 @@ const dashboardMap: any = {
     Deposit: "Borrow-Deposit",
     Withdraw: "Borrow-Withdraw",
   },
-  USE: { "Compound Finance": "Use-Compound", Uniswap: "Use-Uniswap" },
+  USE: { "Compound Finance": "Use-Compound Finance", Uniswap: "Use-Uniswap" },
 };
 
 const DashboardNav = () => {
