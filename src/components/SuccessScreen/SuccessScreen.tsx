@@ -17,7 +17,7 @@ const Message = ({ version, url }: messageProps) => {
           <a target="_blank" rel="noreferrer" href={url}>
             here
           </a>{" "}
-          to view your supply balance.{" "}
+          to view your supply balance. Get started by exploring our dashboard.
         </div>
       </div>
     );
