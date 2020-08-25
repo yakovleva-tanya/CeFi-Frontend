@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { BorrowPageContext } from "../../context/borrowContext";
+import { AppContext } from "../../context/app";
 
 type stageTypes = {
   number: number;
@@ -24,8 +25,11 @@ const StageNumber = ({ number, onClickAction, stage }: stageTypes) => {
 };
 
 const StageBar = () => {
+  const { state } = useContext(AppContext);
+
   const [progress, setProgress] = useState(0);
   const { stage, setStage } = useContext(BorrowPageContext);
+  const loggedIn = state.web3State?.address || "";
 
   useEffect(() => {
     const newProgress = 50 * (stage - 1);
@@ -44,17 +48,20 @@ const StageBar = () => {
           }}
         ></div>
       </div>
-      <div className="d-flex flex-row justify-content-between">
+      <div className={`d-flex flex-row justify-content-between`}>
         {stages.map((s) => {
           return (
-            <StageNumber
-              key={s}
-              number={s}
-              onClickAction={() => {
-                setStage(s);
-              }}
-              stage={stage}
-            />
+            <div key={s} className={` ${loggedIn ? "pointer" : "disabled"}`}>
+              <StageNumber
+                number={s}
+                onClickAction={() => {
+                  if (loggedIn) {
+                    setStage(s);
+                  }
+                }}
+                stage={stage}
+              />
+            </div>
           );
         })}
       </div>

@@ -89,6 +89,7 @@ const ConnectPlaidButton = () => {
 
   return (
     <CustomSubmitButton
+      disabled = {!address}
       loading={loading}
       onClickAction={onClickAction}
       approved={!!plaidConnected}

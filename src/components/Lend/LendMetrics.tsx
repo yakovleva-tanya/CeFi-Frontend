@@ -33,13 +33,16 @@ const LendMetrics = () => {
     teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance !== null
       ? `${teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance} ${selectedCurrency}`
       : "-";
-
+  //TODO: Get real values
+  const ATM = '74.4223';
+  const COMP = '45.4311';
   return (
     <Card className="metrics-card" title="Summary">
       <Metric title="Supply APY" value={supplyAPY} />
       <Metric title={`${selectedCurrency} Price`} value={price} />
       <Metric title="Wallet Balance" value={walletBalance} />
       <Metric title="Balance Supplied" value={suppliedBalance} />
+      <Metric title="Earned Balance" values={[`${ATM} ATM`, `${COMP} COMP`]}/>
     </Card>
   );
 };

@@ -3,20 +3,37 @@ import { BorrowPageContext } from "../../context/borrowContext";
 import CustomInput from "../UI/CustomInput";
 import SubmenuCard from "../UI/SubmenuCard";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
+import FormValidationWarning from "../UI/FormValidationWarning";
+import WarningModal from "../UI/WarningModal";
 
 const CollateralPercentSubmenu = () => {
-  const { borrowRequest, setBorrowRequest, setSubmenu , loanTerms} = useContext(
+  const { borrowRequest, setBorrowRequest, setSubmenu, loanTerms } = useContext(
     BorrowPageContext
   );
-  const {
-    loanSize,
-    collateralAmount,
-    collateralWith,
-  } = borrowRequest;
+  const { loanSize, collateralAmount, collateralWith } = borrowRequest;
   const minCollateralAmount = (loanSize * loanTerms.minCollateralNeeded) / 100;
   const [value, setValue] = useState(collateralAmount || minCollateralAmount);
+  const [warning, setWarning] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
-  const percents = Math.round((value / loanSize))*100;
+  const percents = Math.round(value / loanSize) * 100;
+  const ModalText = borrowRequest.transferred
+    ? "Changing your collateral amount will result in having to resubmit your collateral approval and transfer collateral, costing additional gas fees. Are you sure you want to proceed? "
+    : "Changing your collateral amount will result in having to resubmit your collateral approval and cost additional gas fees. Are you sure you want to proceed?";
+
+  const submitNewValue = () => {
+    if (value < minCollateralAmount) {
+      setValue(minCollateralAmount);
+    }
+    setBorrowRequest({
+      ...borrowRequest,
+      collateralAmount: value,
+      approved: false,
+      transferred: false,
+    });
+    setSubmenu(null);
+  };
+
   return (
     <SubmenuCard
       title="Collateral Amount"
@@ -25,11 +42,22 @@ const CollateralPercentSubmenu = () => {
       }}
     >
       <div className="mt-4 d-flex flex-column">
+        <WarningModal
+          show={showModal}
+          proceed={submitNewValue}
+          cancel={() => {
+            setSubmenu(null);
+          }}
+          text={ModalText}
+        />
+        <FormValidationWarning message={warning} />
         <CustomInput
           onChangeFunction={(e: any) => {
             if (e.target.value < minCollateralAmount) {
-              e.target.value = minCollateralAmount;
-            }
+              setWarning(
+                `Please input a collateral amount greater than ${minCollateralAmount}`
+              );
+            } else setWarning("");
             setValue(parseInt(e.target.value) || 0);
           }}
           value={value.toString()}
@@ -40,11 +68,11 @@ const CollateralPercentSubmenu = () => {
         <div
           className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"
           onClick={() => {
-            setBorrowRequest({
-              ...borrowRequest,
-              collateralAmount: value,
-            });
-            setSubmenu(null);
+            if (borrowRequest.approved) {
+              setShowModal(true);
+            } else {
+              submitNewValue();
+            }
           }}
         >
           Submit
@@ -54,13 +82,12 @@ const CollateralPercentSubmenu = () => {
   );
 };
 const CollateralAmountSelection = () => {
-  const { borrowRequest, setSubmenu, loanTerms } = useContext(BorrowPageContext);
+  const { borrowRequest, setSubmenu, loanTerms } = useContext(
+    BorrowPageContext
+  );
   const { collateralAmount, loanSize, collateralWith } = borrowRequest;
-  console.log(collateralAmount, loanSize);
-  const minCollateralAmount =
-    (loanSize * loanTerms.minCollateralNeeded) / 100;
-
-  const title = `${collateralAmount | minCollateralAmount} ${collateralWith}`;
+  const minCollateralAmount = (loanSize * loanTerms.minCollateralNeeded) / 100;
+  const title = `${collateralAmount || minCollateralAmount} ${collateralWith}`;
   return (
     <CustomSubmenuLink
       title={title}
