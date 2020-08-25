@@ -34,31 +34,49 @@ const Message = ({ version, url }: messageProps) => {
         <div>Get started using your loan by exploring our dashboard.</div>
       </div>
     );
+  if (version === "claim")
+    return (
+      <div>
+        <div>
+          View your{" "}
+          <a target="_blank" rel="noreferrer" href={url}>
+            claim transaction.
+          </a>
+        </div>
+      </div>
+    );
 };
 
 type successProps = {
   link: string;
   version: string;
   onButtonClick?: Function;
+  fullScreen?: boolean;
 };
 
-const SuccessScreen = ({ link, version, onButtonClick }: successProps) => {
+const SuccessScreen = ({
+  link,
+  version,
+  onButtonClick,
+  fullScreen = true,
+}: successProps) => {
   return (
-    <div className="cards-container">
-      <div className="success-screen d-flex align-items-center justify-content-center flex-column">
+    <div className={`${fullScreen ? "cards-container success-screen" : ""} `}>
+      <div className="d-flex align-items-center justify-content-center flex-column">
         <div className="text-5xl">
           <span>🎉</span>
         </div>
-        <div className="text-5xl">You're set!</div>
+        <div className="text-5xl">
+          {version == "claim" ? "Interest Collected!" : "You're set!"}
+        </div>
         <div className="text-gray m-3">
           <Message url={link} version={version} />
         </div>
-        <Link to="/dashboard">
-          <PrimaryButton
-            onClick={onButtonClick}
-            text={"Explore Dashboard"}
-          />
-        </Link>
+        {version !== "claim" && (
+          <Link to="/dashboard">
+            <PrimaryButton onClick={onButtonClick} text={"Explore Dashboard"} />
+          </Link>
+        )}
       </div>
     </div>
   );
