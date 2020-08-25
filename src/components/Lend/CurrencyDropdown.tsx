@@ -1,10 +1,8 @@
 import React, { useState, useContext } from "react";
-import AssetChangeWarningModal from "../AssetChangeWarningModal/AssetChangeWarningModal";
+import WarningModal from "../UI/WarningModal";
 import { CustomDropdown } from "../UI/CustomDropdown";
 import { LendPageContext } from "../../context/lendContext";
-import {
-  AvailableLendingTokens,
-} from "../../context/app";
+import { AvailableLendingTokens } from "../../context/app";
 
 const CurrencyDropdown = () => {
   const {
@@ -14,7 +12,10 @@ const CurrencyDropdown = () => {
     setSelectedCurrency,
   } = useContext(LendPageContext);
 
-  const currencies: Array<AvailableLendingTokens> = [AvailableLendingTokens.DAI, AvailableLendingTokens.USDC];
+  const currencies: Array<AvailableLendingTokens> = [
+    AvailableLendingTokens.DAI,
+    AvailableLendingTokens.USDC,
+  ];
 
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [newCurrency, setNewCurrency] = useState("");
@@ -39,10 +40,13 @@ const CurrencyDropdown = () => {
 
   return (
     <div>
-      <AssetChangeWarningModal
+      <WarningModal
         show={showWarningModal}
         proceed={proceedWithChange}
         cancel={cancelChange}
+        text="You're about to change your supply asset, doing so will submit another
+          transaction approval and cost additional gas fees. Are you sure you
+          want to proceed?"
       />
       <CustomDropdown
         selected={selectedCurrency}

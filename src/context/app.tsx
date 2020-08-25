@@ -40,27 +40,28 @@ export enum Web3Type {
 }
 
 export enum TellerTokens {
-  tDAI = 'tDAI',
-  tUSDC = 'tUSDC'
+  tDAI = "tDAI",
+  tUSDC = "tUSDC",
 }
 
 export enum BaseTokens {
-  ETH = 'ETH',
+  ETH = "ETH",
+  LINK = "LINK",
 }
-
 
 export enum AvailableLendingTokens {
-  DAI = 'DAI',
-  USDC = 'USDC'
+  DAI = "DAI",
+  USDC = "USDC",
 }
 
-export const mapLendingTokensToTellerTokens = (x: AvailableLendingTokens): TellerTokens => {
+export const mapLendingTokensToTellerTokens = (
+  x: AvailableLendingTokens
+): TellerTokens => {
   if (x === AvailableLendingTokens.DAI) return TellerTokens.tDAI;
   if (x === AvailableLendingTokens.USDC) return TellerTokens.tUSDC;
 };
 
 export type TokenTypes = TellerTokens | BaseTokens;
-
 
 export interface Web3State {
   web3: any;
@@ -87,12 +88,12 @@ export interface ATMData {
 }
 
 export type TellerContractsLendingATM = {
-  [key in TellerTokens]: ATMData
-}
+  [key in TellerTokens]: ATMData;
+};
 
 export type TellerContractsBorrowingATM = {
-  [key in BaseTokens]: TellerContractsLendingATM
-}
+  [key in BaseTokens]: TellerContractsLendingATM;
+};
 export interface TellerState {
   contracts: TellerContractsBorrowingATM;
   userWalletBalance: null | UserWalletBalanceInterface;
@@ -145,6 +146,30 @@ export const AppContextDefault = {
       userWalletBalance: null as null,
       contracts: {
         ETH: {
+          tUSDC: {
+            lendingPool: null as null,
+            lendingPoolAddress: null as null,
+            tToken: null as null,
+            tTokenAddress: null as null,
+            userBorrowedBalance: null as null,
+            suppliedBalance: null as null,
+            collateralToken: null as null,
+            collateralTokenAddress: null as null,
+            userCollateralBalance: null as null,
+          },
+          tDAI: {
+            lendingPool: null as null,
+            lendingPoolAddress: null as null,
+            tToken: null as null,
+            tTokenAddress: null as null,
+            userBorrowedBalance: null as null,
+            suppliedBalance: null as null,
+            collateralToken: null as null,
+            collateralTokenAddress: null as null,
+            userCollateralBalance: null as null,
+          },
+        },
+        LINK: {
           tUSDC: {
             lendingPool: null as null,
             lendingPoolAddress: null as null,

@@ -22,16 +22,15 @@ const BorrowMetrics = () => {
     : "-";
 
   const tellerToken = mapLendingTokensToTellerTokens(lendWith);
+  //TODO: Update ETH to [CollateralWith]
   const collateralTotal =
-    teller?.contracts[collateralWith][tellerToken].userCollateralBalance !== null
-      ? `${teller?.contracts[collateralWith][tellerToken].userCollateralBalance} ${collateralWith}`
+    teller?.contracts.ETH[tellerToken].userCollateralBalance !== null
+      ? `${teller?.contracts.ETH[tellerToken].userCollateralBalance} ${collateralWith}`
       : "-";
-  const utilization = '31%';
 
   return (
     <Card className="metrics-card" title="Summary">
       <Metric title={`${lendWith} Price`} value={assetPrice} />
-      <Metric title="Utilization" value={utilization} />
       <Metric title="Wallet Balance" value={walletBalance} />
       <Metric title="Collateral total" value={collateralTotal} />
       {/* TODO: check if plaid is connected */}
