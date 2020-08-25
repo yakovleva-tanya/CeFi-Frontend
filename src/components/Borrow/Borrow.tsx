@@ -132,7 +132,7 @@ const Borrow = () => {
                       <div>
                         <ThirdStageTable />
                         <PrimaryButton
-                          disabled = {!borrowRequest.transfered}
+                          disabled = {!borrowRequest.transferred}
                           text="Request Loan"
                           onClick={onRequestLoan}
                         />

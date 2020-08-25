@@ -17,7 +17,7 @@ interface BorrowRequest {
   lendWith: AvailableLendingTokens;
   collateralAmount: null | number;
   approved: boolean;
-  transfered: boolean;
+  transferred: boolean;
 }
 
 interface LoanTerms {
@@ -76,7 +76,7 @@ const defaultBorrowRequest = {
   lendWith: AvailableLendingTokens.DAI,
   collateralAmount: null as null,
   approved: false,
-  transfered: false,
+  transferred: false,
 };
 const mockLoanTerms = {
   interestRate: 20,

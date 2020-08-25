@@ -6,14 +6,9 @@ import { BorrowPageContext } from "../../context/borrowContext";
 import CollateralAmountSelection from "./CollateralAmountSelection";
 
 const ThirdStageTable = () => {
-  const { borrowRequest, setBorrowRequest, loanTerms } = useContext(
-    BorrowPageContext
-  );
+  const { borrowRequest, loanTerms } = useContext(BorrowPageContext);
   const { loanSize, loanTerm, loanType, lendWith } = borrowRequest;
   const { interestRate, minCollateralNeeded } = loanTerms;
-  const [approveLoading, setApproveLoading] = useState(false);
-  const [transferLoading, setTransferLoading] = useState(false);
-
   return (
     <div>
       <div className="table border-thin my-5">
@@ -49,39 +44,11 @@ const ThirdStageTable = () => {
         </TableRow>
         <BR />
         <TableRow title="Collateral Approval">
-          <CustomSubmitButton
-            onClickAction={async() => {
-              setApproveLoading(true);
-              await new Promise((resolve) => setTimeout(resolve, 1000));
-              setBorrowRequest({
-                ...borrowRequest,
-                approved: true,
-              });
-              setApproveLoading(false);
-            }}
-            disabled={false}
-            loading={approveLoading}
-            approved={borrowRequest.approved}
-            text="Submit"
-          />
+          <CollateralApproveButton />
         </TableRow>
         <BR />
         <TableRow title="Transfer Collateral">
-          <CustomSubmitButton
-            onClickAction={async () => {
-              setTransferLoading(true);
-              await new Promise((resolve) => setTimeout(resolve, 1000));
-              setBorrowRequest({
-                ...borrowRequest,
-                transfered: true,
-              });
-              setTransferLoading(false);
-            }}
-            disabled={!borrowRequest.approved}
-            loading={transferLoading}
-            approved={borrowRequest.transfered}
-            text="Submit"
-          />
+          <CollateralTransferButton />
         </TableRow>
       </div>
     </div>
@@ -89,3 +56,47 @@ const ThirdStageTable = () => {
 };
 
 export default ThirdStageTable;
+
+const CollateralApproveButton = () => {
+  const [approveLoading, setApproveLoading] = useState(false);
+  const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
+  return (
+    <CustomSubmitButton
+      onClickAction={async () => {
+        setApproveLoading(true);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        setBorrowRequest({
+          ...borrowRequest,
+          approved: true,
+        });
+        setApproveLoading(false);
+      }}
+      disabled={false}
+      loading={approveLoading}
+      approved={borrowRequest.approved}
+      text="Submit"
+    />
+  );
+};
+
+const CollateralTransferButton = () => {
+  const [transferLoading, setTransferLoading] = useState(false);
+  const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
+  return (
+    <CustomSubmitButton
+      onClickAction={async () => {
+        setTransferLoading(true);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        setBorrowRequest({
+          ...borrowRequest,
+          transferred: true,
+        });
+        setTransferLoading(false);
+      }}
+      disabled={!borrowRequest.approved}
+      loading={transferLoading}
+      approved={borrowRequest.transferred}
+      text="Submit"
+    />
+  );
+};
