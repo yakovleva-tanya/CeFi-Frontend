@@ -7,7 +7,7 @@ module.exports = {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
     },
-    mode: "development",
+    mode: `${process.env.NODE_ENV}`,
 
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
@@ -55,6 +55,7 @@ module.exports = {
 
     plugins: [
       new webpack.DefinePlugin({
+        'process.env.CRA_URLS_ARROWHEAD': `'${process.env.CRA_URLS_ARROWHEAD}'`,
         'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
         'process.env.NOTIFY_ID': `'${process.env.NOTIFY_ID}'`,
         'process.env.BLOCKNATIVE_API_KEY': `'${process.env.BLOCKNATIVE_API_KEY}'`,
