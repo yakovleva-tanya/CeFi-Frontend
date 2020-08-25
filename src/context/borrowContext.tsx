@@ -4,7 +4,7 @@ import {
   Web3State,
   BankInfoResponseInterface,
   AvailableLendingTokens,
-  BaseTokens
+  BaseTokens,
 } from "../context/app";
 
 interface BorrowRequest {
@@ -16,6 +16,8 @@ interface BorrowRequest {
   bankConnected: boolean;
   lendWith: AvailableLendingTokens;
   collateralAmount: null | number;
+  approved: boolean;
+  transfered: boolean;
 }
 
 interface LoanTerms {
@@ -43,7 +45,6 @@ export const LendingApplicationMap = (
   tokenDecimals: number,
   web3State: Web3State
 ): LendingApplication => {
-
   const nonce = nonceDataResponse.data?.nonce;
   const nonceSignature = nonceDataResponse.data?.nonceSignature;
   const lendingApplication = {
@@ -54,8 +55,11 @@ export const LendingApplicationMap = (
     collateralPercentEntered: borrowRequest.collateralPercent / 100,
     loanUse: borrowRequest.loanType.toUpperCase(),
     ethereumWallet: web3State.address,
-    assetReportStringified: bankInfoResponse && JSON.stringify(bankInfoResponse.assetReportStringified),
-    assetReportSignature: bankInfoResponse && bankInfoResponse.assetReportSignature,
+    assetReportStringified:
+      bankInfoResponse &&
+      JSON.stringify(bankInfoResponse.assetReportStringified),
+    assetReportSignature:
+      bankInfoResponse && bankInfoResponse.assetReportSignature,
     nonce,
     nonceSignature,
   };
@@ -70,7 +74,9 @@ const defaultBorrowRequest = {
   loanType: "Fixed",
   bankConnected: false,
   lendWith: AvailableLendingTokens.DAI,
-  collateralAmount: null as null
+  collateralAmount: null as null,
+  approved: false,
+  transfered: false,
 };
 const mockLoanTerms = {
   interestRate: 20,
@@ -97,7 +103,6 @@ const BorrowPageContextProvider = ({ children }: BorrowPageContextProps) => {
   const [submenu, setSubmenu] = useState(null);
   const [borrowRequest, setBorrowRequest] = useState(defaultBorrowRequest);
   const [loanTerms, setLoanTerms] = useState(mockLoanTerms);
-
   return (
     <BorrowPageContext.Provider
       value={{

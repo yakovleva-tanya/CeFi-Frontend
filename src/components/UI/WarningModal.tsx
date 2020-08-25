@@ -1,18 +1,20 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import "./assetChangeWarningModal.scss";
+import "./WarningModal.scss";
 
 type WarningModalProps = {
   show: boolean;
   proceed: Function;
   cancel: Function;
+  text: string
 };
 
-const AssetChangeWarningModal = ({
+const WarningModal = ({
   show,
   proceed,
   cancel,
+  text
 }: WarningModalProps) => {
   return (
     <Modal
@@ -26,9 +28,7 @@ const AssetChangeWarningModal = ({
       </Modal.Header>
       <Modal.Body className="modal-body text-center py-5 m-auto">
         <div className="mb-5 opacity-80">
-          You're about to change your supply asset, doing so will submit another
-          transaction approval and cost additional gas fees. Are you sure you
-          want to proceed?
+          {text}
         </div>
         <div className="d-flex flex-row justify-content-center">
           <Button
@@ -57,4 +57,4 @@ const AssetChangeWarningModal = ({
   );
 };
 
-export default AssetChangeWarningModal;
+export default WarningModal;

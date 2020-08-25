@@ -53,10 +53,10 @@ const SuccessScreen = ({ link, version, onButtonClick }: successProps) => {
         <div className="text-gray m-3">
           <Message url={link} version={version} />
         </div>
-        <Link to="/">
+        <Link to="/dashboard">
           <PrimaryButton
             onClick={onButtonClick}
-            text={version === "lend" ? "Lend again" : "Explore Dashboard"}
+            text={"Explore Dashboard"}
           />
         </Link>
       </div>

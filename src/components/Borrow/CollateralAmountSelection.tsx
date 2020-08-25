@@ -3,6 +3,7 @@ import { BorrowPageContext } from "../../context/borrowContext";
 import CustomInput from "../UI/CustomInput";
 import SubmenuCard from "../UI/SubmenuCard";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
+import FormValidationWarning from "../UI/FormValidationWarning";
 
 const CollateralPercentSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu , loanTerms} = useContext(
@@ -15,8 +16,9 @@ const CollateralPercentSubmenu = () => {
   } = borrowRequest;
   const minCollateralAmount = (loanSize * loanTerms.minCollateralNeeded) / 100;
   const [value, setValue] = useState(collateralAmount || minCollateralAmount);
-
+  const [warning, setWarning] = useState('');
   const percents = Math.round((value / loanSize))*100;
+
   return (
     <SubmenuCard
       title="Collateral Amount"
@@ -25,11 +27,16 @@ const CollateralPercentSubmenu = () => {
       }}
     >
       <div className="mt-4 d-flex flex-column">
+        <FormValidationWarning message={warning} />
+
         <CustomInput
           onChangeFunction={(e: any) => {
             if (e.target.value < minCollateralAmount) {
-              e.target.value = minCollateralAmount;
+              setWarning(
+                `Please input a collateral amount greater than ${minCollateralAmount}`
+              );
             }
+            else setWarning('');
             setValue(parseInt(e.target.value) || 0);
           }}
           value={value.toString()}
@@ -40,6 +47,9 @@ const CollateralPercentSubmenu = () => {
         <div
           className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"
           onClick={() => {
+            if (value < minCollateralAmount) {
+              setValue(minCollateralAmount)
+            }
             setBorrowRequest({
               ...borrowRequest,
               collateralAmount: value,
@@ -56,7 +66,6 @@ const CollateralPercentSubmenu = () => {
 const CollateralAmountSelection = () => {
   const { borrowRequest, setSubmenu, loanTerms } = useContext(BorrowPageContext);
   const { collateralAmount, loanSize, collateralWith } = borrowRequest;
-  console.log(collateralAmount, loanSize);
   const minCollateralAmount =
     (loanSize * loanTerms.minCollateralNeeded) / 100;
 
