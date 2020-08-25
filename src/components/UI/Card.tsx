@@ -10,7 +10,7 @@ interface CardProps {
 const Card = ({ title, children, className }: CardProps) => {
   return (
     <div
-      className={`ui-card border-thin d-flex flex-column mx-2 my-4 ${className}`}
+      className={`border-thin d-flex flex-column mx-2 my-4 ${className}`}
     >
       <div className="mx-auto">
         <p className="pt-4 pb-4 m-0 font-medium text-2xl">{title}</p>

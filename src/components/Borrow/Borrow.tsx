@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import Container from "react-bootstrap/Container";
-import Axios from "axios";
 import SuccessScreen from "../SuccessScreen/SuccessScreen";
 import Card from "../UI/Card";
 import "./borrow.scss";

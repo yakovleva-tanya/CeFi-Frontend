@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Card from "../UI/Card";
 import PrimaryButton from "../UI/PrimaryButton";
 import TableRow from "../UI/TableRow";
 import BR from "../UI/BR";
-import Metric from "../UI/Metric";
+import DashboardContextProvider, {
+  DashboardContext,
+} from "../../context/dashboardContext";
+import DashboardNav from "./DashboardNav";
 
 const Dashboard = () => {
+  const { onPage } = useContext(DashboardContext);
+  const sectionTitle = onPage.split("-")[1];
+
   return (
     <Container>
       <div className="cards-container">
-        <Card className="metrics-card" title="">
-          <Metric title="LEND" />
-          <Metric title="Claim" />
-          <Metric title="Withdraw" />
-        </Card>
-        <Card className="main-card text-center" title="Claim">
+        <DashboardNav />
+        <Card className="main-card text-center" title={sectionTitle}>
           <div className="table border-thin my-5">
             <TableRow title="100 DAI - $100">
               <div></div>
@@ -35,4 +37,12 @@ const Dashboard = () => {
     </Container>
   );
 };
-export default Dashboard;
+
+const DashboardContextWrapper = () => {
+  return (
+    <DashboardContextProvider>
+      <Dashboard />
+    </DashboardContextProvider>
+  );
+};
+export default DashboardContextWrapper;
