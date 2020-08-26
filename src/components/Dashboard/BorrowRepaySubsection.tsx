@@ -3,6 +3,11 @@ import TableRow from "../UI/TableRow";
 import BR from "../UI/BR";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
 import PrimaryButton from "../UI/PrimaryButton";
+import { repayLoan } from "../../actions/DashboardBorrowActions";
+import SuccessScreen from "../SuccessScreen/SuccessScreen";
+import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
+import FormValidationWarning from "../UI/FormValidationWarning";
+
 //TODO: get real values
 const LOANS = [
   {
@@ -85,20 +90,45 @@ const BorrowRepaySubsection = () => {
   const repaidLoans: any = [];
   const currentTime = Date.now();
   const [selectedLoan, setSelectedLoan] = useState(null);
+  const [isRepaying, setRepaying] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   LOANS.map((loan) => {
     if (loan.amountOwed === 0) {
+      loan.status = "Repaid";
       repaidLoans.push(loan);
     } else if (currentTime > loan.due) {
+      loan.status = "Overdue";
       overdueLoans.push(loan);
     } else {
+      loan.status = "Outstanding";
       outstandingLoans.push(loan);
     }
   });
 
+  const onRepayLoan = async (id: string) => {
+    setRepaying(true);
+    setSelectedLoan(null);
+    const res = await repayLoan(id);
+    setRepaying(false);
+    setSuccess(res);
+  };
   return (
     <div>
-      {!selectedLoan && (
+      {success && (
+        <SuccessScreen
+          link=""
+          version="repay"
+          fullScreen={false}
+          onButtonClick={() => {
+            setSuccess(false);
+          }}
+        />
+      )}
+      {isRepaying && (
+        <ProcessingScreen link="" title="Repaying" fullScreen={false} />
+      )}
+      {!selectedLoan && !success && !isRepaying && (
         <div>
           {outstandingLoans.length > 0 && (
             <div className="mb-4">
@@ -197,9 +227,60 @@ const BorrowRepaySubsection = () => {
               </div>
             </TableRow>
             <BR />
+            <TableRow title="Loan term">
+              <div className="font-medium">{selectedLoan.loanTerm} Days</div>
+            </TableRow>
+            <BR />
+            <TableRow title="Loan type">
+              <div className="font-medium">{selectedLoan.loanType}</div>
+            </TableRow>
+            <BR />
+            <TableRow title="Liquidation %">
+              <div className="font-medium">{selectedLoan.liquidation}%</div>
+            </TableRow>
+            <BR />
+            <TableRow title="Collateral %">
+              <div className="font-medium">
+                {selectedLoan.collateralPercent}%
+              </div>
+            </TableRow>
+            <BR />
+            <TableRow title="Collateral amount">
+              <div className="font-medium">
+                {selectedLoan.collateralAmount} {selectedLoan.collateralWith}
+              </div>
+            </TableRow>
+            <BR />
           </div>
 
           <div className="table border-thin mb-4 mt-3">
+            <TableRow title="Status">
+              <div className="font-medium">{selectedLoan.status}</div>
+            </TableRow>
+            <BR />
+            {selectedLoan.status !== "Repaid" && (
+              <div>
+                <TableRow title="Time remaining">
+                  {selectedLoan.status === "Overdue" && (
+                    <div className="font-medium">
+                      {Math.round(
+                        (currentTime - selectedLoan.due) / (60 * 60 * 24 * 1000)
+                      )}{" "}
+                      days overdue
+                    </div>
+                  )}
+                  {selectedLoan.status === "Outstanding" && (
+                    <div className="font-medium">
+                      {Math.round(
+                        (selectedLoan.due - currentTime) / (60 * 60 * 24 * 1000)
+                      )}{" "}
+                      days remaining
+                    </div>
+                  )}
+                </TableRow>
+                <BR />
+              </div>
+            )}
             <TableRow title="Amount owed">
               <div className="font-medium">
                 {selectedLoan.amountOwed} {selectedLoan.lendWith}
@@ -207,8 +288,18 @@ const BorrowRepaySubsection = () => {
             </TableRow>
             <BR />
           </div>
-
-          <PrimaryButton text="Repay Loan" onClick={() => {}} />
+          <div className="text-right mb-5">
+            <u>View contract</u>
+          </div>
+          {selectedLoan.status !== "Repaid" && (
+            <div>
+              <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." />
+              <PrimaryButton
+                text="Repay Loan"
+                onClick={() => onRepayLoan(selectedLoan.id)}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>

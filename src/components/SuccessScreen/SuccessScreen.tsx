@@ -56,6 +56,12 @@ const Message = ({ version, url }: messageProps) => {
         </div>
       </div>
     );
+  if (version === "repay")
+    return (
+      <div>
+        <div>You’ve repaid your loan!</div>
+      </div>
+    );
 };
 
 type successProps = {
@@ -80,7 +86,8 @@ const SuccessScreen = ({
         <div className="text-5xl">
           {version == "claim" && "Interest Collected!"}
           {version == "withdraw" && "Withdraw Completed!"}
-          {(version == "lend" || version == "borrow") && "You're set!"}
+          {(version == "lend" || version == "borrow" || version == "repay") &&
+            "You're set!"}
         </div>
         <div className="text-gray m-3">
           <Message url={link} version={version} />
