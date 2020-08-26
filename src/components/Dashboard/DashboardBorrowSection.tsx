@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Card from "../UI/Card";
 import { DashboardContext } from "../../context/dashboardContext";
+import BorrowRepaySubsection from './BorrowRepaySubsection';
 
 const DashboardBorrowSection = () => {
   const { onPage } = useContext(DashboardContext);
@@ -9,13 +10,7 @@ const DashboardBorrowSection = () => {
   return (
     <Card className="main-card text-center" title={subSection}>
       <div className="my-5">
-        {subSection == "Repay" && (
-          <div>
-            <div>Outstanding loans</div>
-            <div>Overdue loans</div>
-            <div>Repaid loans</div>
-          </div>
-        )}
+        {subSection == "Repay" && <BorrowRepaySubsection />}
         {subSection == "Deposit" && (
           <div className="text-gray">
             Select the loan you want to deposit into
@@ -32,3 +27,5 @@ const DashboardBorrowSection = () => {
 };
 
 export default DashboardBorrowSection;
+
+
