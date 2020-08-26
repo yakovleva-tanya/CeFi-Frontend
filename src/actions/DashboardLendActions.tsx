@@ -1,9 +1,9 @@
-export const claimInterest = async (currency:string) =>{
+export const claimInterest = async (currency: string) => {
   //TODO Send Claim Interest transaction
   await new Promise((resolve) => setTimeout(resolve, 1000));
   console.log("claimed ", currency);
   return true;
-}
+};
 
 export const collectInterest = async (currency: string) => {
   //TODO Send collect Interest transaction
@@ -12,4 +12,11 @@ export const collectInterest = async (currency: string) => {
   return true;
 };
 
-export default { claimInterest, collectInterest};
+export const withdraw = async (currency: string, amount: number) => {
+  //TODO Send withdraw transaction
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  console.log("withdrawn ", amount, currency);
+  return true;
+};
+
+export default { claimInterest, collectInterest, withdraw };

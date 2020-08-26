@@ -101,7 +101,7 @@ const Lend = () => {
         </div>
       )}
       {processing && (
-        <ProcessingScreen link={getEtherscanLink(processing, network)} version = "lend" />
+        <ProcessingScreen link={getEtherscanLink(processing, network)} title = "Almost there" />
       )}
       {transactionHash && (
         <SuccessScreen

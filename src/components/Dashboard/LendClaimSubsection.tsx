@@ -53,9 +53,22 @@ const LendClaimSubsection = () => {
   return (
     <div>
       {isCollecting && (
-        <ProcessingScreen version="claim" link="" fullScreen={false} />
+        <ProcessingScreen
+          title="Collecting Interest"
+          link=""
+          fullScreen={false}
+        />
       )}
-      {success && <SuccessScreen version="claim" link="" fullScreen={false} />}
+      {success && (
+        <SuccessScreen
+          version="claim"
+          link=""
+          fullScreen={false}
+          onButtonClick={() => {
+            setSuccess(false);
+          }}
+        />
+      )}
       {!isCollecting && !success && (
         <div>
           <div className="text-gray mb-2">

@@ -5,9 +5,6 @@ import {
   mapLendingTokensToTellerTokens
 } from "../context/app";
 
-export interface ExchangeRates {
-  [key: string]: number;
-}
 export interface LendPageContextInterface {
   selectedCurrency: AvailableLendingTokens;
   setSelectedCurrency: Function;

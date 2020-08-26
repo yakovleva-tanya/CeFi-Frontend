@@ -45,6 +45,23 @@ const Message = ({ version, url }: messageProps) => {
         </div>
       </div>
     );
+  if (version === "withdraw")
+    return (
+      <div>
+        <div>
+          View your{" "}
+          <a target="_blank" rel="noreferrer" href={url}>
+            withdraw transaction.
+          </a>
+        </div>
+      </div>
+    );
+  if (version === "repay")
+    return (
+      <div>
+        <div>You’ve repaid your loan!</div>
+      </div>
+    );
 };
 
 type successProps = {
@@ -67,16 +84,17 @@ const SuccessScreen = ({
           <span>🎉</span>
         </div>
         <div className="text-5xl">
-          {version == "claim" ? "Interest Collected!" : "You're set!"}
+          {version == "claim" && "Interest Collected!"}
+          {version == "withdraw" && "Withdraw Completed!"}
+          {(version == "lend" || version == "borrow" || version == "repay") &&
+            "You're set!"}
         </div>
         <div className="text-gray m-3">
           <Message url={link} version={version} />
         </div>
-        {version !== "claim" && (
-          <Link to="/dashboard">
-            <PrimaryButton onClick={onButtonClick} text={"Explore Dashboard"} />
-          </Link>
-        )}
+        <Link to="/dashboard">
+          <PrimaryButton onClick={onButtonClick} text={"Explore Dashboard"} />
+        </Link>
       </div>
     </div>
   );
