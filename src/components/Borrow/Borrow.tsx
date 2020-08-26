@@ -89,8 +89,10 @@ const Borrow = () => {
   };
   return (
     <Container>
-      {isSubmitting && <ProcessingScreen link="" version="borrow-submitting" />}
-      {isRequesting && <ProcessingScreen link="" version="borrow-requesting" />}
+      {isSubmitting && (
+        <ProcessingScreen link="" title="Submitting loan terms" />
+      )}
+      {isRequesting && <ProcessingScreen link="" title="Requesting Loan" />}
       {success && <SuccessScreen version="borrow" link="link" />}
       {!isSubmitting && !isRequesting && !success && (
         <div className="borrow">
@@ -131,7 +133,7 @@ const Borrow = () => {
                       <div>
                         <ThirdStageTable />
                         <PrimaryButton
-                          disabled = {!borrowRequest.transferred}
+                          disabled={!borrowRequest.transferred}
                           text="Request Loan"
                           onClick={onRequestLoan}
                         />

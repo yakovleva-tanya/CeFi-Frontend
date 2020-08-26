@@ -4,25 +4,22 @@ import ProcessingAnimation from "../UI/ProcessingAnimation";
 
 type props = {
   link: string;
-  version: string;
+  title: string;
   fullScreen?: boolean;
 };
 
-const ProcessingScreen = ({ link, version, fullScreen = true }: props) => {
+const ProcessingScreen = ({ link, title, fullScreen = true }: props) => {
   return (
     <div
       className={`${
-        fullScreen ? "processing-screen" : ""
+        fullScreen ? "processing-screen" : "-my-2"
       }  d-flex align-items-center justify-content-center flex-column`}
     >
-      <div className="text-5xl">
+      <div className={`text-5xl ${fullScreen ? "" : "-my-2"}`}>
         <ProcessingAnimation />
       </div>
       <div className="text-5xl processing-text">
-        {version === "loan" && "Almost there"}
-        {version === "borrow-submitting" && "Submitting loan terms"}
-        {version === "borrow-requesting" && "Requesting Loan"}
-        {version === "claim" && "Collecting Interest"}
+        {title}
       </div>
       <div className="text-gray m-3">
         Your transaction is being verified -{" "}

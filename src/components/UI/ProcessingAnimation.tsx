@@ -4,7 +4,7 @@ import Lottie from "react-lottie";
 
 const ProcessingAnimation = () => {
   return (
-    <div>
+    <div className = "-my-2">
       <Lottie
         options={{
           loop: true,
