@@ -24,7 +24,16 @@ interface LoanTerms {
   interestRate: number;
   minCollateralNeeded: number;
 }
-
+interface BorrowProcessInterface {
+  success: boolean;
+  setSuccess: Function;
+  isSubmitting: boolean;
+  setSubmitting: Function;
+  isRequesting: boolean;
+  setRequesting: Function;
+  stageChangeWarning: boolean;
+  setStageChangeWarning: Function;
+}
 interface BorrowPageContextInterface {
   stage: number;
   setStage: Function;
@@ -34,6 +43,7 @@ interface BorrowPageContextInterface {
   setBorrowRequest: Function;
   loanTerms: LoanTerms;
   setLoanTerms: Function;
+  borrowProcessState: null | BorrowProcessInterface;
 }
 
 const DAYS = 86400; // Seconds per day
@@ -92,6 +102,7 @@ export const BorrowPageContext = createContext<BorrowPageContextInterface>({
   setBorrowRequest: () => {},
   loanTerms: mockLoanTerms,
   setLoanTerms: () => {},
+  borrowProcessState: null,
 });
 
 type BorrowPageContextProps = {
@@ -103,6 +114,23 @@ const BorrowPageContextProvider = ({ children }: BorrowPageContextProps) => {
   const [submenu, setSubmenu] = useState(null);
   const [borrowRequest, setBorrowRequest] = useState(defaultBorrowRequest);
   const [loanTerms, setLoanTerms] = useState(mockLoanTerms);
+
+  const [success, setSuccess] = useState(false);
+  const [isSubmitting, setSubmitting] = useState(false);
+  const [isRequesting, setRequesting] = useState(false);
+  const [stageChangeWarning, setStageChangeWarning] = useState(false);
+
+  const borrowProcessState = {
+    success,
+    setSuccess,
+    isSubmitting,
+    setSubmitting,
+    isRequesting,
+    setRequesting,
+    stageChangeWarning,
+    setStageChangeWarning,
+  };
+
   return (
     <BorrowPageContext.Provider
       value={{
@@ -114,6 +142,7 @@ const BorrowPageContextProvider = ({ children }: BorrowPageContextProps) => {
         setBorrowRequest,
         loanTerms,
         setLoanTerms,
+        borrowProcessState,
       }}
     >
       {children}
