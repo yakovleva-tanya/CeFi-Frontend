@@ -27,7 +27,7 @@ export const CustomDropdown = ({
         id="toggle"
         className="dropdown font-medium text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
       >
-        <div className="mr-3">{`${selected}   `}</div>
+        <div className="mr-3 text-black">{`${selected}   `}</div>
         {selected === "DAI" && <img className="mr-3" src={dai} height="20" />}
         {selected === "USDT" && <img className="mr-3" src={usdt} height="20" />}
         {selected === "USDC" && <img className="mr-3" src={usdc} height="20" />}
@@ -48,7 +48,7 @@ export const CustomDropdown = ({
                 }}
                 className="dropdown-title d-flex flex-row align-items-center"
               >
-                <div className="mr-3">
+                <div className="text-black mr-3">
                   {option}</div>
                   {option === "DAI" && (
                     <img className="mr-3" src={dai} height="20" />

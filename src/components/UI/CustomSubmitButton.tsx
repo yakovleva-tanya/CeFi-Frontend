@@ -19,9 +19,9 @@ export const CustomSubmitButton = ({
   text,
 }: customSubmitProps) => {
   return (
-    <div className="d-flex flex-row align-items-center">
+    <div className="d-flex flex-row align-items-center font-medium">
       <div
-        className={`py-1 px-3 mr-3 -my-2 border-thin  ${
+        className={`py-1 px-3 mr-3 -my-2 border-thin font-medium ${
           disabled ? "disabled text-lightest-gray" : "pointer text-black"
         }`}
         onClick={() => onClickAction()}

@@ -48,7 +48,7 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
   return (
     <div className="">
       <CustomInput onChangeFunction={onChange} value={value} onBlur={onBlur} />
-      <div className="text-lightest-gray text-lg">{convertedAmount}</div>
+      <div className="text-lightest-gray text-lg font-medium">{convertedAmount}</div>
     </div>
   );
 };

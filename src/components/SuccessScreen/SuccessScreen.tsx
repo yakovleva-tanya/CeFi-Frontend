@@ -83,7 +83,7 @@ const SuccessScreen = ({
         <div className="text-5xl">
           <span>🎉</span>
         </div>
-        <div className="text-5xl">
+        <div className="text-5xl font-medium">
           {version == "claim" && "Interest Collected!"}
           {version == "withdraw" && "Withdraw Completed!"}
           {(version == "lend" || version == "borrow" || version == "repay") &&

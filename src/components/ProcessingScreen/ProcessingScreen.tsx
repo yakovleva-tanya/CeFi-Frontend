@@ -18,7 +18,7 @@ const ProcessingScreen = ({ link, title, fullScreen = true }: props) => {
       <div className={`text-5xl ${fullScreen ? "" : "-my-2"}`}>
         <ProcessingAnimation />
       </div>
-      <div className="text-5xl processing-text">
+      <div className="text-5xl processing-text font-medium">
         {title}
       </div>
       <div className="text-gray m-3">
