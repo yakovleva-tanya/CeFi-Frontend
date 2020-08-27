@@ -51,7 +51,7 @@ const Lend = () => {
             className="main-card text-center align-items-center"
             title="Supply"
           >
-            <div className = "my-3">
+            <div className="my-3">
               <Formik
                 initialValues={initialSupplyValues}
                 validate={supplyFormValidation}
@@ -109,11 +109,24 @@ const Lend = () => {
       )}
       {transactionHash && (
         <SuccessScreen
-          version="lend"
-          link={getEtherscanLink(transactionHash, network)}
           onButtonClick={() => {
             setTransactionHash("");
           }}
+          title="You're set!"
+          message={
+            <div>
+              Click{" "}
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={getEtherscanLink(transactionHash, network)}
+              >
+                here
+              </a>{" "}
+              to view your supply balance. Get started by exploring our
+              dashboard.
+            </div>
+          }
         />
       )}
     </Container>

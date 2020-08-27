@@ -5,7 +5,7 @@ import { DashboardContext } from "../../context/dashboardContext";
 import SuccessScreen from "../SuccessScreen/SuccessScreen";
 import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
 import RepayMainSection from "./RepayMainSection";
-import RepaySelectedLoan from "./RepaySelectedLoan";
+import SelectedLoan from "./SelectedLoan";
 
 const BorrowRepaySubsection = () => {
   const { repayProcessState } = useContext(DashboardContext);
@@ -21,8 +21,8 @@ const BorrowRepaySubsection = () => {
     <div>
       {repaySuccess && (
         <SuccessScreen
-          link=""
-          version="repay"
+          title="You're set!"
+          message={<div>You’ve repaid your loan!</div>}
           fullScreen={false}
           onButtonClick={() => {
             setRepaySuccess(false);
@@ -33,7 +33,7 @@ const BorrowRepaySubsection = () => {
         <ProcessingScreen link="" title="Repaying" fullScreen={false} />
       )}
       {!selectedLoan && !repaySuccess && !isRepaying && <RepayMainSection />}
-      {selectedLoan && <RepaySelectedLoan />}
+      {selectedLoan && <SelectedLoan />}
     </div>
   );
 };

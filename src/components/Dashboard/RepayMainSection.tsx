@@ -5,27 +5,20 @@ import CustomSubmenuLink from "../UI/CustomSubmenuLink";
 import { DashboardContext } from "../../context/dashboardContext";
 
 const RepayMainSection = () => {
+  const { loans, repayProcessState } = useContext(DashboardContext);
   const currentTime = Date.now();
 
-  const overdueLoans: any = [];
-  const outstandingLoans: any = [];
-  const repaidLoans: any = [];
-
-  const { loans, repayProcessState } = useContext(DashboardContext);
-  const { setSelectedLoan } = repayProcessState;
-
-  loans.map((loan) => {
-    if (loan.amountOwed === 0) {
-      loan.status = "Repaid";
-      repaidLoans.push(loan);
-    } else if (currentTime > loan.due) {
-      loan.status = "Overdue";
-      overdueLoans.push(loan);
-    } else {
-      loan.status = "Outstanding";
-      outstandingLoans.push(loan);
-    }
+  const overdueLoans = loans.filter((loan) => {
+    return loan.status === "Overdue";
   });
+  const outstandingLoans = loans.filter((loan) => {
+    return loan.status === "Outstanding";
+  });
+  const repaidLoans = loans.filter((loan) => {
+    return loan.status === "Repaid";
+  });
+
+  const { setSelectedLoan } = repayProcessState;
 
   return (
     <div>

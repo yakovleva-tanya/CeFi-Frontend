@@ -59,8 +59,9 @@ interface loansInterface {
   amountOwed: number;
   id: string;
   status?: string;
+  percentFromLiquidation: number,
 }
-const loans: Array<loansInterface> = [
+const default_loans: Array<loansInterface> = [
   {
     interestRate: 50,
     loanSize: 109,
@@ -74,6 +75,7 @@ const loans: Array<loansInterface> = [
     due: 1599951940049,
     amountOwed: 10,
     id: "1243",
+    percentFromLiquidation: 1,
   },
   {
     interestRate: 50,
@@ -88,6 +90,7 @@ const loans: Array<loansInterface> = [
     due: 1598159140049,
     amountOwed: 0,
     id: "2343",
+    percentFromLiquidation: -2,
   },
   {
     interestRate: 50,
@@ -102,6 +105,7 @@ const loans: Array<loansInterface> = [
     due: 1598553990049,
     amountOwed: 100,
     id: "4643",
+    percentFromLiquidation: 240,
   },
   {
     interestRate: 50,
@@ -117,6 +121,7 @@ const loans: Array<loansInterface> = [
     due: 1598252890049,
     amountOwed: 10,
     id: "473",
+    percentFromLiquidation: 20,
   },
   {
     interestRate: 20,
@@ -124,7 +129,7 @@ const loans: Array<loansInterface> = [
     lendWith: "DAI",
     loanTerm: 5,
     loanType: "Fixed",
-    liquidation: 10,
+    liquidation: 90,
     collateralWith: "ETH",
     collateralAmount: 130,
     collateralPercent: 250,
@@ -132,6 +137,7 @@ const loans: Array<loansInterface> = [
     due: 1598252990049,
     amountOwed: 0,
     id: "876",
+    percentFromLiquidation: -10,
   },
 ];
 
@@ -139,7 +145,7 @@ export const DashboardContext = createContext<DashboardContextInterface>({
   onPage: pageTypes["Lend-Claim"],
   setOnPage: () => {},
   navigationMap: navigationMap,
-  loans: loans,
+  loans: default_loans,
   repayProcessState: null,
 });
 
@@ -149,6 +155,19 @@ const DashboardContextProvider = ({ children }: DashboardContextProps) => {
   const [selectedLoan, setSelectedLoan] = useState(null);
   const [isRepaying, setRepaying] = useState(false);
   const [repaySuccess, setRepaySuccess] = useState(false);
+
+  const currentTime = Date.now();
+
+  const loans = default_loans.map((loan) => {
+    if (loan.amountOwed === 0) {
+      loan.status = "Repaid";
+    } else if (currentTime > loan.due) {
+      loan.status = "Overdue";
+    } else {
+      loan.status = "Outstanding";
+    }
+    return loan;
+  });
 
   const repayProcessState: RepayProcessInterface = {
     isRepaying,

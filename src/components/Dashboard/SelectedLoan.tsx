@@ -6,7 +6,7 @@ import { repayLoan } from "../../actions/DashboardBorrowActions";
 import FormValidationWarning from "../UI/FormValidationWarning";
 import { DashboardContext } from "../../context/dashboardContext";
 
-const RepaySelectedLoan = () => {
+const SelectedLoan = () => {
   const currentTime = Date.now();
 
   const { repayProcessState } = useContext(DashboardContext);
@@ -58,7 +58,6 @@ const RepaySelectedLoan = () => {
             {selectedLoan.collateralAmount} {selectedLoan.collateralWith}
           </div>
         </TableRow>
-        <BR />
       </div>
       <div className="table border-thin mb-4 mt-3">
         <TableRow title="Status">
@@ -85,7 +84,6 @@ const RepaySelectedLoan = () => {
                 </div>
               )}
             </TableRow>
-            <BR />
           </div>
         )}
         <TableRow title="Amount owed">
@@ -93,7 +91,6 @@ const RepaySelectedLoan = () => {
             {selectedLoan.amountOwed} {selectedLoan.lendWith}
           </div>
         </TableRow>
-        <BR />
       </div>
       <div className="text-right mb-5">
         <u>View contract</u>
@@ -111,4 +108,4 @@ const RepaySelectedLoan = () => {
   );
 };
 
-export default RepaySelectedLoan;
+export default SelectedLoan;

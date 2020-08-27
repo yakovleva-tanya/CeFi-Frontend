@@ -40,7 +40,23 @@ const Borrow = () => {
         <ProcessingScreen link="" title="Submitting loan terms" />
       )}
       {isRequesting && <ProcessingScreen link="" title="Requesting Loan" />}
-      {success && <SuccessScreen version="borrow" link="link" />}
+      {success && (
+        <SuccessScreen
+          title="You're set!"
+          message={
+            <div>
+              <div>
+                Click{" "}
+                <a target="_blank" rel="noreferrer" href="">
+                  here.
+                </a>{" "}
+                to view your borrow balance status.
+              </div>
+              <div>Get started using your loan by exploring our dashboard.</div>
+            </div>
+          }
+        />
+      )}
       {!isSubmitting && !isRequesting && !success && <BorrowMainSection />}
     </Container>
   );
