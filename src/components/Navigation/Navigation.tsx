@@ -51,7 +51,7 @@ const HiddenNavbar = () => {
 
 const ProdNavbar = () => {
   return (
-    <Navbar bg="transparent" expand="lg" className="p-4 nav-bar justify-content-between container-wrapper">
+    <Navbar bg="transparent" expand="lg" className="font-medium p-4 nav-bar justify-content-between container-wrapper">
       <Navbar.Brand>
         <img
           alt=""

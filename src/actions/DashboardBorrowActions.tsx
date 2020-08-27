@@ -1,5 +1,3 @@
-
-
 export const repayLoan = async (id: string) => {
   //TODO Repay loan transaction
   await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -7,4 +5,19 @@ export const repayLoan = async (id: string) => {
   return true;
 };
 
-export default { repayLoan };
+export const loanDeposit = async () => {
+  //TODO send deposit transaction
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  console.log("deposited ");
+  return true;
+};
+
+export const loanWithdraw = async () => {
+  //TODO send deposit transaction
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  console.log("withdrawn ");
+  return true;
+};
+
+
+export default { repayLoan, loanDeposit, loanWithdraw };

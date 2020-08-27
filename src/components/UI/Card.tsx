@@ -24,7 +24,7 @@ const Card = ({ title, children, className, goBack }: CardProps) => {
         </div>
       )}
       <BR />
-      <div className="px-2 d-flex justify-content-center">
+      <div className="px-2 py-4 d-flex justify-content-center">
         <div style={{ maxWidth: "344px", width: "100%" }} className="m-4">
           {children}
         </div>

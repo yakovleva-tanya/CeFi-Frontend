@@ -43,12 +43,19 @@ const LendWithdrawSubsection = () => {
     <div>
       {success && (
         <SuccessScreen
-          link=""
-          version="withdraw"
           fullScreen={false}
           onButtonClick={() => {
             setSuccess(false);
           }}
+          title="You're set!"
+          message={
+            <div>
+              View your{" "}
+              <a target="_blank" rel="noreferrer" href="">
+                withdraw transaction.
+              </a>
+            </div>
+          }
         />
       )}
       {isWithdrawing && (

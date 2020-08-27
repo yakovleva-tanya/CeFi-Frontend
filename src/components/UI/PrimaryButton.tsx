@@ -21,7 +21,7 @@ const PrimaryButton = ({
         onClick();
       }}
       disabled={disabled}
-      className={`py-3 px-4 text-lg mt-4 ${
+      className={`py-3 px-4 text-lg mt-4 font-medium ${
         disabled ? "disabled" : "pointer"
       }`}
     >

@@ -61,8 +61,15 @@ const LendClaimSubsection = () => {
       )}
       {success && (
         <SuccessScreen
-          version="claim"
-          link=""
+          title="Interest Collected!"
+          message={
+            <div>
+              View your{" "}
+              <a target="_blank" rel="noreferrer" href="">
+                claim transaction.
+              </a>
+            </div>
+          }
           fullScreen={false}
           onButtonClick={() => {
             setSuccess(false);

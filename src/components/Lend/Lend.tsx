@@ -18,7 +18,7 @@ import BR from "../UI/BR";
 import TableRow from "../UI/TableRow";
 import PrimaryButton from "../UI/PrimaryButton";
 import LendPageContextProvider, {
-  LendPageContext
+  LendPageContext,
 } from "../../context/lendContext";
 import LoginButton from "../LoginButton/LoginButton";
 import "./lend.scss";
@@ -28,11 +28,11 @@ const supplyFormValidation = () => {
   const errors = {};
   return errors;
 };
-const getEtherscanLink = (hash: string, network: string) =>{
-  if(network == '4') return `https://rinkeby.etherscan.io/tx/${hash}`;
-  else if(network == '3') return `https://ropsten.etherscan.io/tx/${hash}`;
+const getEtherscanLink = (hash: string, network: string) => {
+  if (network == "4") return `https://rinkeby.etherscan.io/tx/${hash}`;
+  else if (network == "3") return `https://ropsten.etherscan.io/tx/${hash}`;
   else return `https://etherscan.io/tx/${hash}`;
-}
+};
 
 const Lend = () => {
   const { tokensApproved, selectedCurrency } = useContext(LendPageContext);
@@ -51,65 +51,82 @@ const Lend = () => {
             className="main-card text-center align-items-center"
             title="Supply"
           >
-            <Formik
-              initialValues={initialSupplyValues}
-              validate={supplyFormValidation}
-              onSubmit={completeSupply(
-                state,
-                updateAppState,
-                setTransactionHash,
-                setProcessing,
-                selectedCurrency
-              )}
-            >
-              {({
-                values,
-                handleChange,
-                handleSubmit,
-                isSubmitting,
-                /* and other goodies */
-              }) => (
-                <Form noValidate onSubmit={handleSubmit}>
-                  <LendAmountInput
-                    amount={values.amount}
-                    handleChange={handleChange}
-                  />
-                  <div className="table border-thin my-5">
-                    <TableRow title="Supply With">
-                      <CurrencyDropdown />
-                    </TableRow>
-                    <BR />
-                    <TableRow title="Approve">
-                      <SubmitApproveButton />
-                    </TableRow>
-                  </div>
-                  {loggedIn ? (
-                    <PrimaryButton
-                      text="Supply"
-                      type="submit"
-                      disabled={isSubmitting || !tokensApproved}
-
+            <div className="my-3">
+              <Formik
+                initialValues={initialSupplyValues}
+                validate={supplyFormValidation}
+                onSubmit={completeSupply(
+                  state,
+                  updateAppState,
+                  setTransactionHash,
+                  setProcessing,
+                  selectedCurrency
+                )}
+              >
+                {({
+                  values,
+                  handleChange,
+                  handleSubmit,
+                  isSubmitting,
+                  /* and other goodies */
+                }) => (
+                  <Form noValidate onSubmit={handleSubmit}>
+                    <LendAmountInput
+                      amount={values.amount}
+                      handleChange={handleChange}
+                    />
+                    <div className="table border-thin my-5">
+                      <TableRow title="Supply With">
+                        <CurrencyDropdown />
+                      </TableRow>
+                      <BR />
+                      <TableRow title="Approve">
+                        <SubmitApproveButton />
+                      </TableRow>
+                    </div>
+                    {loggedIn ? (
+                      <PrimaryButton
+                        text="Supply"
+                        type="submit"
+                        disabled={isSubmitting || !tokensApproved}
                       />
                     ) : (
                       <LoginButton />
-                  )}
-                </Form>
-              )}
-            </Formik>
+                    )}
+                  </Form>
+                )}
+              </Formik>
+            </div>
           </Card>
           <LendMetrics />
         </div>
       )}
       {processing && (
-        <ProcessingScreen link={getEtherscanLink(processing, network)} title = "Almost there" />
+        <ProcessingScreen
+          link={getEtherscanLink(processing, network)}
+          title="Almost there"
+        />
       )}
       {transactionHash && (
         <SuccessScreen
-          version="lend"
-          link={getEtherscanLink(transactionHash, network)}
           onButtonClick={() => {
             setTransactionHash("");
           }}
+          title="You're set!"
+          message={
+            <div>
+              Click{" "}
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={getEtherscanLink(transactionHash, network)}
+              >
+                here
+              </a>{" "}
+              to view your supply balance. Get started by exploring our
+              dashboard.
+            </div>
+          }
         />
       )}
     </Container>

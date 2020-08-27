@@ -17,7 +17,7 @@ const CustomSubmenuLink = ({
       }}
       className="d-flex flex-row align-items-center pointer"
     >
-      <div className="mr-3">{title}</div>
+      <div className="mr-3 font-medium">{title}</div>
       <Arrow direction='right'/>
     </div>
   );

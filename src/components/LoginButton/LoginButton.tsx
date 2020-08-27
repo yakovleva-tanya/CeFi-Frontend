@@ -22,7 +22,7 @@ export async function web3FromProvider(updateAppState: Function) {
   const onboard = Onboard({
     ...BlockNativeOptions,
     subscriptions: {
-      network: async (network:any)=>{
+      network: async (network: any) => {
         network =
           typeof network === "number" && !Number.isNaN(network)
             ? network.toString()
@@ -55,7 +55,7 @@ export const NavLoginButton = () => {
   const loggedIn = state.web3State?.address || "";
 
   return (
-    <span>
+    <span className="font-medium">
       {!loggedIn ? (
         <a
           className="menu-button login-button text-lg py-3 px-4 mr-0"
