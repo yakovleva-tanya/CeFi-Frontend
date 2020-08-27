@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 
 export interface DashboardContextInterface {
-  onPage: string;
+  onPage: pageTypes;
   setOnPage: Function;
   navigationMap: navigationInterface;
 }
@@ -15,7 +15,15 @@ export interface navigationInterface {
 export interface subNavInterface {
   [key: string]: string;
 }
-
+export enum pageTypes {
+  "Lend-Claim" = "Lend-Claim",
+  "Lend-Withdraw" = "Lend-Withdraw",
+  "Borrow-Repay" = "Borrow-Repay",
+  "Borrow-Deposit" = "Borrow-Deposit",
+  "Borrow-Withdraw" = "Borrow-Withdraw",
+  "Use-Compound Finance" = "Use-Compound Finance",
+  "Use-Uniswap" = "Use-Uniswap",
+}
 const navigationMap: navigationInterface = {
   LEND: { Claim: "Lend-Claim", Withdraw: "Lend-Withdraw" },
   BORROW: {
@@ -27,13 +35,13 @@ const navigationMap: navigationInterface = {
 };
 
 export const DashboardContext = createContext<DashboardContextInterface>({
-  onPage: "Lend-Claim",
+  onPage: pageTypes["Lend-Claim"],
   setOnPage: () => {},
   navigationMap: navigationMap,
 });
 
 const DashboardContextProvider = ({ children }: DashboardContextProps) => {
-  const [onPage, setOnPage] = useState("Lend-Claim");
+  const [onPage, setOnPage] = useState<pageTypes>(pageTypes["Lend-Claim"]);
 
   return (
     <DashboardContext.Provider

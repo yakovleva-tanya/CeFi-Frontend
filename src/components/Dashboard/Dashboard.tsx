@@ -4,7 +4,7 @@ import DashboardContextProvider, {
   DashboardContext,
 } from "../../context/dashboardContext";
 import DashboardNav from "./DashboardNav";
-import DashboardLendSection from './DashboardLendSection'
+import DashboardLendSection from "./DashboardLendSection";
 import DashboardBorrowSection from "./DashboardBorrowSection";
 import DashboardUseSection from "./DashboardUseSection";
 
@@ -32,5 +32,3 @@ const DashboardContextWrapper = () => {
   );
 };
 export default DashboardContextWrapper;
-
-
