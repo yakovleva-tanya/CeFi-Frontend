@@ -33,7 +33,7 @@ export const DashboardContext = createContext<DashboardContextInterface>({
 });
 
 const DashboardContextProvider = ({ children }: DashboardContextProps) => {
-  const [onPage, setOnPage] = useState("Borrow-Repay");
+  const [onPage, setOnPage] = useState("Lend-Claim");
 
   return (
     <DashboardContext.Provider

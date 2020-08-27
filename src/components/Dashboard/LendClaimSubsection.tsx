@@ -93,7 +93,7 @@ const LendClaimSubsection = () => {
                       setAssetChangeWarning("");
                     }}
                   />
-                  <TableRow title={title}>
+                  <TableRow title={title} currency={currency}>
                     <CustomSubmitButton
                       text="Claim"
                       onClickAction={() => onAssetClaim(currency)}
