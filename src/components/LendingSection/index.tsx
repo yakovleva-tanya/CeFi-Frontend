@@ -12,7 +12,6 @@ import { AppContext, AppContextState } from "./../../context/app";
 import Alert from 'react-bootstrap/Alert';
 
 import lendTokens from "./../../actions/lendTokens";
-import redeemZDai from "./../../actions/redeemZDai";
 
 import './index.scss';
 
@@ -51,7 +50,6 @@ const completeRedeemZDai = (state: any, updateAppState: Function) => async () =>
   const primaryAddress = state.web3State.address;
   const { lendingPool, tToken } = state.teller.contracts.daiETH;
   try {
-    //const balance = await redeemZDai(primaryAddress, lendingPool, tToken);
     updateAppState((st: AppContextState) => {
       const teller = st.teller;
       // TODO: this should update the user's balance based on the selected ATM type.
