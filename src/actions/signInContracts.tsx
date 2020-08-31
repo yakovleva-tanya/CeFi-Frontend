@@ -110,7 +110,6 @@ async function getWalletBalance(
   const ethBalanceStr = await web3State.web3.eth.getBalance(primaryAccount);
   const ETH = parseFloat(ethBalanceStr) / globalDecimals;
 
-  console.log(DAI, USDC, ETH, LINK);
   return {
     DAI,
     USDC,
