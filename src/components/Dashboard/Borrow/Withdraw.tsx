@@ -8,7 +8,10 @@ import CustomSubmenuLink from "../../UI/CustomSubmenuLink";
 import BR from "../../UI/BR";
 import TableRow from "../../UI/TableRow";
 import PrimaryButton from "../../UI/PrimaryButton";
-import { loanWithdraw } from "../../../actions/DashboardBorrowActions";
+import {
+  loanWithdraw,
+  loanDeposit,
+} from "../../../actions/DashboardBorrowActions";
 import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 
@@ -110,18 +113,24 @@ const Withdraw = () => {
                     </div>
                   </TableRow>
                 </div>
-                <div className="table border-thin mb-4 mt-3">
-                  <TableRow title="Add collateral">
-                    <CustomSubmenuLink
-                      title={`${withdrawAmount} ${selectedLoan.collateralWith}`}
-                      onClickAction={() => {setWithdrawCollateralSubmenu(true)}}
-                    />
-                  </TableRow>
-                  <BR />
-                  <TableRow title="New collateral %">
-                    <div className="font-medium">-</div>
-                  </TableRow>
-                </div>
+
+                {selectedLoan.status !== "Repaid" && (
+                  <div className="table border-thin mb-4 mt-3">
+                    <TableRow title="Add collateral">
+                      <CustomSubmenuLink
+                        title={`${withdrawAmount} ${selectedLoan.collateralWith}`}
+                        onClickAction={() => {
+                          setWithdrawCollateralSubmenu(true);
+                        }}
+                      />
+                    </TableRow>
+                    <BR />
+                    <TableRow title="New collateral %">
+                      <div className="font-medium">-</div>
+                    </TableRow>
+                  </div>
+                )}
+
                 <div className="text-right mb-5">
                   <u>View contract</u>
                 </div>
@@ -137,11 +146,30 @@ const Withdraw = () => {
               </div>
               <div className="table border-thin mb-4 mt-3">
                 {loans.map((loan: any) => {
+                  if (loan.status !== "Repaid") {
+                    return;
+                  }
                   return (
                     <div key={loan.id}>
-                      <TableRow
-                        title={loan.status == "Repaid" ? "Repaid" : "Open"}
-                      >
+                      <TableRow title="Repaid">
+                        <CustomSubmenuLink
+                          title={`${loan.collateralAmount} ${loan.collateralWith}`}
+                          onClickAction={() => {
+                            setSelectedLoan(loan);
+                          }}
+                        />
+                      </TableRow>
+                      <BR />
+                    </div>
+                  );
+                })}
+                {loans.map((loan: any) => {
+                  if (loan.status === "Repaid") {
+                    return;
+                  }
+                  return (
+                    <div key={loan.id}>
+                      <TableRow title="Open">
                         <CustomSubmenuLink
                           title={`${loan.collateralAmount} ${loan.collateralWith}`}
                           onClickAction={() => {

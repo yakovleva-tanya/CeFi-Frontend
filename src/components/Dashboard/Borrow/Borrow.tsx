@@ -10,7 +10,17 @@ const Borrow = () => {
   const subSection = onPage.split("-")[1];
   let goBack: null | Function = null;
   const { selectedLoan, setSelectedLoan } = repayProcessState;
-
+  let pageTitle = subSection;
+  if (subSection === "Withdraw") {
+    pageTitle = "Withdraw Collateral";
+  }
+  if (onPage === "Borrow-Repay") {
+    if (selectedLoan) {
+      goBack = () => {
+        setSelectedLoan(null);
+      };
+    }
+  }
   if (onPage === "Borrow-Repay") {
     if (selectedLoan) {
       goBack = () => {
@@ -20,11 +30,7 @@ const Borrow = () => {
   }
 
   return (
-    <Card
-      className="main-card text-center"
-      title={selectedLoan ? `ID ${selectedLoan.id}` : subSection}
-      goBack={goBack}
-    >
+    <Card className="main-card text-center" title={pageTitle} goBack={goBack}>
       <div className="my-5">
         {subSection == "Repay" && <Repay />}
         {subSection == "Deposit" && <Deposit />}
