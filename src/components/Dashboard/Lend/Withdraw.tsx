@@ -6,6 +6,7 @@ import ProcessingScreen from "../../ProcessingScreen/ProcessingScreen";
 import TableRow from "../../UI/TableRow";
 import CustomInput from "../../UI/CustomInput";
 import FormValidationWarning from "../../UI/FormValidationWarning";
+
 import {
   AppContext,
   AppContextState,
@@ -13,7 +14,10 @@ import {
   mapLendingTokensToTellerTokens,
   BaseTokens,
 } from "../../../context/app";
-import { withdraw, WithdrawRequest } from "../../../actions/DashboardLendActions";
+import {
+  withdraw,
+  WithdrawRequest,
+} from "../../../actions/DashboardLendActions";
 
 const Withdraw = () => {
   const { state, updateAppState } = useContext(AppContext);

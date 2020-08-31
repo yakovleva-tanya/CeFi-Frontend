@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import {
   AppContext,
   BaseTokens,
-  mapLendingTokensToTellerTokens
+  mapLendingTokensToTellerTokens,
 } from "../../context/app";
 import Metric from "../UI/Metric";
 import Card from "../UI/Card";
@@ -21,28 +21,33 @@ const LendMetrics = () => {
     ? `${Math.round(tokenData[selectedCurrency].supplyAPY * 10000) / 100}%`
     : "-";
 
-  const walletBalance = teller?.userWalletBalance&&(
-    teller?.userWalletBalance[selectedCurrency] !== null
-  )
-    ? `${teller.userWalletBalance[selectedCurrency]} ${selectedCurrency}`
-    : "-";
+  const walletBalance =
+    teller?.userWalletBalance &&
+    teller?.userWalletBalance[selectedCurrency] !== undefined
+      ? `${teller.userWalletBalance[selectedCurrency]} ${selectedCurrency}`
+      : "-";
 
   const convertedCurrency = mapLendingTokensToTellerTokens(selectedCurrency);
 
   const suppliedBalance =
-    teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance !== null
-      ? `${teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance} ${selectedCurrency}`
+    teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance !==
+      null &&
+    teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance !==
+      undefined
+      ? `${
+          teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance
+        } ${selectedCurrency}`
       : "-";
   //TODO: Get real values
-  const ATM = '74.4223';
-  const COMP = '45.4311';
+  const ATM = "74.4223";
+  const COMP = "45.4311";
   return (
     <Card className="metrics-card" title="Summary">
       <Metric title="Supply APY" value={supplyAPY} />
       <Metric title={`${selectedCurrency} Price`} value={price} />
       <Metric title="Wallet Balance" value={walletBalance} />
       <Metric title="Balance Supplied" value={suppliedBalance} />
-      <Metric title="Earned Balance" values={[`${ATM} ATM`, `${COMP} COMP`]}/>
+      <Metric title="Earned Balance" values={[`${ATM} ATM`, `${COMP} COMP`]} />
     </Card>
   );
 };
