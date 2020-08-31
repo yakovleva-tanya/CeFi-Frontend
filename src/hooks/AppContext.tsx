@@ -9,9 +9,6 @@
 import * as React from "react";
 import { AppContextDefault, AppContextState } from "./../context/app";
 
-import Either from "./../util/Either";
-import Plaid, { PlaidTransaction } from "./../models/Plaid";
-import { BlockNativeOptions } from "./../util/constants";
 import signInContracts from "./../actions/signInContracts";
 import FetchTokenData from "../models/FetchTokenData";
 
@@ -99,19 +96,13 @@ export default function useAppContext() {
 
   React.useEffect(() => {
     if (!state.web3State.network) return;
+    if (!state.web3State.web3) return;
     setUpdates(state, updateAppState);
-  }, [state.web3State?.network]);
+  }, [state.web3State?.network, state.web3State.address]);
 
   React.useEffect(() => {
     getTokenData(state, updateAppState);
   }, []);
-
-  React.useEffect(() => {
-    if (!state.web3State.web3) return;
-    if(!state.web3State.network) return;
-    setAddress(state, updateAppState);
-    setBlockNumber(state, updateAppState);
-  }, [state.web3State.network]);
 
   return [state, updateAppState];
 }

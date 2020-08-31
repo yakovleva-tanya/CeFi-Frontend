@@ -44,6 +44,13 @@ export async function web3FromProvider(updateAppState: Function) {
           return { ...st, web3State };
         });
       },
+      address: async (address: any) => {
+        updateAppState((st: AppContextState) => {
+          const web3State = st.web3State;
+          web3State.address = address;
+          return { ...st, web3State };
+        });
+      },
     },
   });
   await onboard.walletSelect();
@@ -73,7 +80,7 @@ export const NavLoginButton = () => {
 };
 
 const LoginButton = () => {
-  const { state, updateAppState } = useContext(AppContext);
+  const { updateAppState } = useContext(AppContext);
 
   return (
     <PrimaryButton
