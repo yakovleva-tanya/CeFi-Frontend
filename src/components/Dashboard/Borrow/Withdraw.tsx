@@ -52,7 +52,7 @@ const Withdraw = () => {
           {selectedLoan &&
             (withdrawCollateralSubmenu ? (
               <SubmenuCard
-                title="Add collateral"
+                title="Withdraw collateral"
                 onCloseAction={() => {
                   setWithdrawCollateralSubmenu(false);
                 }}
@@ -116,7 +116,7 @@ const Withdraw = () => {
 
                 {selectedLoan.status !== "Repaid" && (
                   <div className="table border-thin mb-4 mt-3">
-                    <TableRow title="Add collateral">
+                    <TableRow title="Withdraw collateral">
                       <CustomSubmenuLink
                         title={`${withdrawAmount} ${selectedLoan.collateralWith}`}
                         onClickAction={() => {
