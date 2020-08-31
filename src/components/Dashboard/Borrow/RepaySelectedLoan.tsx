@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import TableRow from "../UI/TableRow";
-import BR from "../UI/BR";
-import PrimaryButton from "../UI/PrimaryButton";
-import { repayLoan } from "../../actions/DashboardBorrowActions";
-import FormValidationWarning from "../UI/FormValidationWarning";
-import { DashboardContext } from "../../context/dashboardContext";
+import TableRow from "../../UI/TableRow";
+import BR from "../../UI/BR";
+import PrimaryButton from "../../UI/PrimaryButton";
+import { repayLoan } from "../../../actions/DashboardBorrowActions";
+import FormValidationWarning from "../../UI/FormValidationWarning";
+import { DashboardContext } from "../../../context/dashboardContext";
 
-const SelectedLoan = () => {
+const RepaySelectedLoan = () => {
   const currentTime = Date.now();
 
   const { repayProcessState } = useContext(DashboardContext);
@@ -108,4 +108,4 @@ const SelectedLoan = () => {
   );
 };
 
-export default SelectedLoan;
+export default RepaySelectedLoan;

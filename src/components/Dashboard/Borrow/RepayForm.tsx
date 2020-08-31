@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import TableRow from "../UI/TableRow";
-import BR from "../UI/BR";
-import CustomSubmenuLink from "../UI/CustomSubmenuLink";
-import { DashboardContext } from "../../context/dashboardContext";
+import TableRow from "../../UI/TableRow";
+import BR from "../../UI/BR";
+import CustomSubmenuLink from "../../UI/CustomSubmenuLink";
+import { DashboardContext } from "../../../context/dashboardContext";
 
-const RepayMainSection = () => {
+const RepayForm = () => {
   const { loans, repayProcessState } = useContext(DashboardContext);
   const currentTime = Date.now();
 
@@ -99,4 +99,4 @@ const RepayMainSection = () => {
     </div>
   );
 };
-export default RepayMainSection;
+export default RepayForm;

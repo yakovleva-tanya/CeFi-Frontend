@@ -109,7 +109,7 @@ const default_loans: Array<loansInterface> = [
   },
   {
     interestRate: 50,
-    loanSize: 100,
+    loanSize: 20,
     lendWith: "DAI",
     loanTerm: 1,
     loanType: "Fixed",

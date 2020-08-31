@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
-import PrimaryButton from "../UI/PrimaryButton";
-import { CustomDropdown } from "../UI/CustomDropdown";
-import SuccessScreen from "../SuccessScreen/SuccessScreen";
-import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
-import { withdraw } from "../../actions/DashboardLendActions";
-import TableRow from "../UI/TableRow";
-import CustomInput from "../UI/CustomInput";
-import { AppContext } from "../../context/app";
-import FormValidationWarning from "../UI/FormValidationWarning";
+import PrimaryButton from "../../UI/PrimaryButton";
+import { CustomDropdown } from "../../UI/CustomDropdown";
+import SuccessScreen from "../../SuccessScreen/SuccessScreen";
+import ProcessingScreen from "../../ProcessingScreen/ProcessingScreen";
+import { withdraw } from "../../../actions/DashboardLendActions";
+import TableRow from "../../UI/TableRow";
+import CustomInput from "../../UI/CustomInput";
+import { AppContext } from "../../../context/app";
+import FormValidationWarning from "../../UI/FormValidationWarning";
 
-const LendWithdrawSubsection = () => {
+const Withdraw = () => {
   const { state } = useContext(AppContext);
   const tokenData = state.tokenData;
   const [isWithdrawing, setWithdrawing] = useState(false);
@@ -131,4 +131,4 @@ const LendWithdrawSubsection = () => {
   );
 };
 
-export default LendWithdrawSubsection;
+export default Withdraw;

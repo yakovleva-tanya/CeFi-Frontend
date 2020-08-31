@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import Card from "../UI/Card";
-import { DashboardContext } from "../../context/dashboardContext";
-import BorrowRepaySubsection from "./BorrowRepaySubsection";
-import BorrowDepositSubsection from "./BorrowDepositSubsection";
-import BorrowWithdrawSubsection from "./BorrowWithdrawSubsection";
+import Card from "../../UI/Card";
+import { DashboardContext } from "../../../context/dashboardContext";
+import Repay from "./Repay";
+import Deposit from "./Deposit";
+import Withdraw from "./Withdraw";
 
-const DashboardBorrowSection = () => {
+const Borrow = () => {
   const { onPage, repayProcessState } = useContext(DashboardContext);
   const subSection = onPage.split("-")[1];
   let goBack: null | Function = null;
@@ -26,12 +26,12 @@ const DashboardBorrowSection = () => {
       goBack={goBack}
     >
       <div className="my-5">
-        {subSection == "Repay" && <BorrowRepaySubsection />}
-        {subSection == "Deposit" && <BorrowDepositSubsection />}
-        {subSection == "Withdraw" && <BorrowWithdrawSubsection />}
+        {subSection == "Repay" && <Repay />}
+        {subSection == "Deposit" && <Deposit />}
+        {subSection == "Withdraw" && <Withdraw />}
       </div>
     </Card>
   );
 };
 
-export default DashboardBorrowSection;
+export default Borrow;
