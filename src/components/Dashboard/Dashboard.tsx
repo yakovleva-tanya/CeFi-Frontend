@@ -4,9 +4,9 @@ import DashboardContextProvider, {
   DashboardContext,
 } from "../../context/dashboardContext";
 import DashboardNav from "./DashboardNav";
-import DashboardLendSection from "./DashboardLendSection";
-import DashboardBorrowSection from "./DashboardBorrowSection";
-import DashboardUseSection from "./DashboardUseSection";
+import Lend from "./Lend";
+import Borrow from "./Borrow";
+import Use from "./Use";
 
 const Dashboard = () => {
   const { onPage } = useContext(DashboardContext);
@@ -16,9 +16,9 @@ const Dashboard = () => {
     <Container>
       <div className="cards-container">
         <DashboardNav />
-        {section === "Lend" && <DashboardLendSection />}
-        {section === "Borrow" && <DashboardBorrowSection />}
-        {section === "Use" && <DashboardUseSection />}
+        {section === "Lend" && <Lend />}
+        {section === "Borrow" && <Borrow />}
+        {section === "Use" && <Use />}
       </div>
     </Container>
   );

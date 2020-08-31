@@ -1,17 +1,17 @@
 import React, { useContext, useState } from "react";
-import PrimaryButton from "../UI/PrimaryButton";
-import TableRow from "../UI/TableRow";
-import BR from "../UI/BR";
-import { CustomSubmitButton } from "../UI/CustomSubmitButton";
-import WarningModal from "../UI/WarningModal";
+import PrimaryButton from "../../UI/PrimaryButton";
+import TableRow from "../../UI/TableRow";
+import BR from "../../UI/BR";
+import { CustomSubmitButton } from "../../UI/CustomSubmitButton";
+import WarningModal from "../../UI/WarningModal";
 import {
   claimInterest,
   collectInterest,
-} from "../../actions/DashboardLendActions";
-import SuccessScreen from "../SuccessScreen/SuccessScreen";
-import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
+} from "../../../actions/DashboardLendActions";
+import SuccessScreen from "../../SuccessScreen/SuccessScreen";
+import ProcessingScreen from "../../ProcessingScreen/ProcessingScreen";
 
-const LendClaimSubsection = () => {
+const Claim = () => {
   const [success, setSuccess] = useState(false);
   const [isCollecting, setCollecting] = useState(false);
   const [assetChangeWarning, setAssetChangeWarning] = useState("");
@@ -126,4 +126,4 @@ const LendClaimSubsection = () => {
   );
 };
 
-export default LendClaimSubsection;
+export default Claim;

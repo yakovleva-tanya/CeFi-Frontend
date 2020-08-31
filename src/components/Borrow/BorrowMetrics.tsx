@@ -2,38 +2,39 @@ import React, { useContext } from "react";
 import Card from "../UI/Card";
 import Metric from "../UI/Metric";
 import BR from "../UI/BR";
-import './borrow.scss';
+import "./borrow.scss";
 import { BorrowPageContext } from "../../context/borrowContext";
 import { AppContext, mapLendingTokensToTellerTokens } from "../../context/app";
 
 const BorrowMetrics = () => {
   const { borrowRequest, stage } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
-  const {tokenData, teller} = state;
+  const { tokenData, teller } = state;
   const { lendWith, collateralWith } = borrowRequest;
 
   const assetPrice = tokenData
-    ? `$ ${Math.round(tokenData[lendWith].price * 10000) / 10000}`
+    ? `$ ${Math.round(tokenData[lendWith].price * 100) / 100}`
     : "-";
-  const walletBalance = teller?.userWalletBalance&&(
-    teller?.userWalletBalance[lendWith] !== null
-  )
-    ? `${teller.userWalletBalance[lendWith]} ${lendWith}`
-    : "-";
+  const walletBalance =
+    teller?.userWalletBalance &&
+    teller?.userWalletBalance[lendWith] !== undefined
+      ? `${teller.userWalletBalance[lendWith].toFixed(2)} ${lendWith}`
+      : "-";
+  //const tellerToken = mapLendingTokensToTellerTokens(lendWith);
 
-  const tellerToken = mapLendingTokensToTellerTokens(lendWith);
-  //TODO: Update ETH to [CollateralWith]
-  const collateralTotal =
-    teller?.contracts.ETH[tellerToken].userCollateralBalance !== null
-      ? `${teller?.contracts.ETH[tellerToken].userCollateralBalance} ${collateralWith}`
+  const collateralAvailable =
+    teller?.userWalletBalance &&
+    teller?.userWalletBalance[collateralWith] !== undefined
+      ? `${teller.userWalletBalance[collateralWith].toFixed(
+          2
+        )} ${collateralWith}`
       : "-";
 
   return (
     <Card className="metrics-card" title="Summary">
       <Metric title={`${lendWith} Price`} value={assetPrice} />
       <Metric title="Wallet Balance" value={walletBalance} />
-      <Metric title="Collateral total" value={collateralTotal} />
-      {/* TODO: check if plaid is connected */}
+      <Metric title="Collateral available" value={collateralAvailable} />
       {stage === 1 && (
         <div>
           <div className="metrics-div">

@@ -6,17 +6,20 @@ type primaryButtonProps = {
   onClick?: Function;
   disabled?: boolean;
   type?: string;
+  variant?: string;
 };
 const PrimaryButton = ({
   text,
   onClick = () => {},
   disabled = false,
   type = "",
+  variant = "primary",
 }: primaryButtonProps) => {
   return (
     <Button
+      style={{}}
       type={type}
-      variant="primary"
+      variant={variant}
       onClick={() => {
         onClick();
       }}

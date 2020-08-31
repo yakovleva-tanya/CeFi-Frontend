@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 
-import { DashboardContext } from "../../context/dashboardContext";
+import { DashboardContext } from "../../../context/dashboardContext";
 
-import SuccessScreen from "../SuccessScreen/SuccessScreen";
-import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
-import RepayMainSection from "./RepayMainSection";
-import SelectedLoan from "./SelectedLoan";
+import SuccessScreen from "../../SuccessScreen/SuccessScreen";
+import ProcessingScreen from "../../ProcessingScreen/ProcessingScreen";
+import RepayForm from "./RepayForm";
+import RepaySelectedLoan from "./RepaySelectedLoan";
 
-const BorrowRepaySubsection = () => {
+const Repay = () => {
   const { repayProcessState } = useContext(DashboardContext);
 
   const {
@@ -32,10 +32,10 @@ const BorrowRepaySubsection = () => {
       {isRepaying && (
         <ProcessingScreen link="" title="Repaying" fullScreen={false} />
       )}
-      {!selectedLoan && !repaySuccess && !isRepaying && <RepayMainSection />}
-      {selectedLoan && <SelectedLoan />}
+      {!selectedLoan && !repaySuccess && !isRepaying && <RepayForm />}
+      {selectedLoan && <RepaySelectedLoan />}
     </div>
   );
 };
 
-export default BorrowRepaySubsection;
+export default Repay;

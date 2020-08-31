@@ -48,24 +48,22 @@ export const CustomDropdown = ({
                 }}
                 className="dropdown-title d-flex flex-row align-items-center"
               >
-                <div className="text-black mr-3">
-                  {option}</div>
-                  {option === "DAI" && (
-                    <img className="mr-3" src={dai} height="20" />
-                  )}
-                  {option === "USDT" && (
-                    <img className="mr-3" src={usdt} height="20" />
-                  )}
-                  {option === "USDC" && (
-                    <img className="mr-3" src={usdc} height="20" />
-                  )}
-                  {option === "ETH" && (
-                    <img className="mr-3" src={eth} height="20" />
-                  )}
-                  {option === "LINK" && (
-                    <img className="mr-3" src={link} height="20" />
-                  )}
-
+                <div className="text-black mr-3 font-medium">{option}</div>
+                {option === "DAI" && (
+                  <img className="mr-3" src={dai} height="20" />
+                )}
+                {option === "USDT" && (
+                  <img className="mr-3" src={usdt} height="20" />
+                )}
+                {option === "USDC" && (
+                  <img className="mr-3" src={usdc} height="20" />
+                )}
+                {option === "ETH" && (
+                  <img className="mr-3" src={eth} height="20" />
+                )}
+                {option === "LINK" && (
+                  <img className="mr-3" src={link} height="20" />
+                )}
               </Dropdown.Item>
             );
           }

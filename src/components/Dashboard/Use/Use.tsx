@@ -1,23 +1,20 @@
 import React, { useContext } from "react";
-import Card from "../UI/Card";
-import { DashboardContext } from "../../context/dashboardContext";
+import Card from "../../UI/Card";
+import { DashboardContext } from "../../../context/dashboardContext";
+import CompoundFinance from "./CompoundFinance";
 
-const DashboardUseSection = () => {
+const Use = () => {
   const { onPage } = useContext(DashboardContext);
   const subSection = onPage.split("-")[1];
 
   return (
     <Card className="main-card text-center" title={subSection}>
       <div className="my-5">
-        {subSection == "Compound Finance" && (
-          <div className="text-gray">
-            Earn interest by supplying to Compound Finance.
-          </div>
-        )}
+        {subSection == "Compound Finance" && <CompoundFinance />}
         {subSection == "Uniswap" && <div className="text-gray">Uniswap</div>}
       </div>
     </Card>
   );
 };
 
-export default DashboardUseSection;
+export default Use;

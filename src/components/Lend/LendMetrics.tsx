@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import {
   AppContext,
   BaseTokens,
-  mapLendingTokensToTellerTokens
+  mapLendingTokensToTellerTokens,
 } from "../../context/app";
 import Metric from "../UI/Metric";
 import Card from "../UI/Card";
@@ -14,35 +14,42 @@ const LendMetrics = () => {
   const { tokenData, teller } = state;
 
   const price = tokenData
-    ? `$ ${Math.round(tokenData[selectedCurrency].price * 10000) / 10000}`
+    ? `$ ${Math.round(tokenData[selectedCurrency].price * 100) / 100}`
     : "-";
   // TODO: this should update based on the selected ATM type.
   const supplyAPY = tokenData
     ? `${Math.round(tokenData[selectedCurrency].supplyAPY * 10000) / 100}%`
     : "-";
 
-  const walletBalance = teller?.userWalletBalance&&(
-    teller?.userWalletBalance[selectedCurrency] !== null
-  )
-    ? `${teller.userWalletBalance[selectedCurrency]} ${selectedCurrency}`
-    : "-";
+  const walletBalance =
+    teller?.userWalletBalance &&
+    teller?.userWalletBalance[selectedCurrency] !== undefined
+      ? `${teller.userWalletBalance[selectedCurrency].toFixed(
+          2
+        )} ${selectedCurrency}`
+      : "-";
 
   const convertedCurrency = mapLendingTokensToTellerTokens(selectedCurrency);
 
   const suppliedBalance =
-    teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance !== null
-      ? `${teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance} ${selectedCurrency}`
+    teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance !==
+      null &&
+    teller?.contracts[BaseTokens.ETH][convertedCurrency].suppliedBalance !==
+      undefined
+      ? `${teller?.contracts[BaseTokens.ETH][
+          convertedCurrency
+        ].suppliedBalance.toFixed(2)} ${selectedCurrency}`
       : "-";
   //TODO: Get real values
-  const ATM = '74.4223';
-  const COMP = '45.4311';
+  const ATM = "74.43";
+  const COMP = "45.43";
   return (
     <Card className="metrics-card" title="Summary">
       <Metric title="Supply APY" value={supplyAPY} />
       <Metric title={`${selectedCurrency} Price`} value={price} />
       <Metric title="Wallet Balance" value={walletBalance} />
       <Metric title="Balance Supplied" value={suppliedBalance} />
-      <Metric title="Earned Balance" values={[`${ATM} ATM`, `${COMP} COMP`]}/>
+      <Metric title="Earned Balance" values={[`${ATM} ATM`, `${COMP} COMP`]} />
     </Card>
   );
 };

@@ -11,7 +11,7 @@ import {
   ATMData,
   AppContextDefault,
   TellerTokens,
-  BaseTokens
+  BaseTokens,
 } from "./../context/app";
 
 import ZDaiInterface = require("./../abi/contracts/ZDai.json");
@@ -22,7 +22,6 @@ import LenderInterface = require("./../abi/contracts/Lenders.json");
 import LendingPoolInterface = require("./../abi/contracts/LendingPoolInterface.json");
 import { globalDecimals, allContractAddresses } from "./../util/constants";
 
-
 /**
  * Sets up ATM data for a given lendingPoolAddress.
  */
@@ -31,9 +30,8 @@ async function setupTellerContracts(
   lendingPoolAddress: string,
   primaryAccount: string,
   collateralAddress: string,
-  tTokenAddress: string,
+  tTokenAddress: string
 ): Promise<ATMData> {
-
   const lendingPool = new web3State.web3.eth.Contract(
     LendingPoolInterface.abi,
     lendingPoolAddress,
@@ -101,9 +99,23 @@ async function getWalletBalance(
   const daiBalanceStr = await dai.methods.balanceOf(primaryAccount).call();
   const DAI = parseFloat(daiBalanceStr) / globalDecimals;
 
+  const link = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    contractAddress.tokens.LINK,
+    {}
+  );
+  const linkBalanceStr = await link.methods.balanceOf(primaryAccount).call();
+  const LINK = parseFloat(linkBalanceStr) / globalDecimals;
+
+  const ethBalanceStr = await web3State.web3.eth.getBalance(primaryAccount);
+  const ETH = parseFloat(ethBalanceStr) / globalDecimals;
+
+  console.log(DAI, USDC, ETH, LINK);
   return {
     DAI,
     USDC,
+    ETH,
+    LINK,
   };
 }
 /**
@@ -122,7 +134,10 @@ export default async (
     if (!web3State.web3) return teller;
     const primaryAccount = web3State.address;
     const network = web3State.network.toString();
-    const contractAddresses = network === "1" ? allContractAddresses.mainnet : allContractAddresses.ropsten;
+    const contractAddresses =
+      network === "1"
+        ? allContractAddresses.mainnet
+        : allContractAddresses.ropsten;
     const ETH_DAI = await setupTellerContracts(
       web3State,
       contractAddresses.ETH_LendingPool_tDAI_Proxy,

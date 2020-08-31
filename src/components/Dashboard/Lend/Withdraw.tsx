@@ -1,41 +1,44 @@
 import React, { useState, useContext } from "react";
-import PrimaryButton from "../UI/PrimaryButton";
-import { CustomDropdown } from "../UI/CustomDropdown";
-import SuccessScreen from "../SuccessScreen/SuccessScreen";
-import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
-import { withdraw, WithdrawRequest } from "../../actions/DashboardLendActions";
-import TableRow from "../UI/TableRow";
-import CustomInput from "../UI/CustomInput";
+import PrimaryButton from "../../UI/PrimaryButton";
+import { CustomDropdown } from "../../UI/CustomDropdown";
+import SuccessScreen from "../../SuccessScreen/SuccessScreen";
+import ProcessingScreen from "../../ProcessingScreen/ProcessingScreen";
+import TableRow from "../../UI/TableRow";
+import CustomInput from "../../UI/CustomInput";
+import FormValidationWarning from "../../UI/FormValidationWarning";
+
 import {
   AppContext,
   AppContextState,
   AvailableLendingTokens,
   mapLendingTokensToTellerTokens,
-  BaseTokens
-} from "../../context/app";
-import FormValidationWarning from "../UI/FormValidationWarning";
+  BaseTokens,
+} from "../../../context/app";
+import {
+  withdraw,
+  WithdrawRequest,
+} from "../../../actions/DashboardLendActions";
 
-const LendWithdrawSubsection = () => {
+const Withdraw = () => {
   const { state, updateAppState } = useContext(AppContext);
   const tokenData = state.tokenData;
   const primaryAddress = state.web3State?.address;
   const contracts = state.teller.contracts;
   const [isWithdrawing, setWithdrawing] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState<AvailableLendingTokens>(AvailableLendingTokens.DAI);
+  const [selectedCurrency, setSelectedCurrency] = useState<
+    AvailableLendingTokens
+  >(AvailableLendingTokens.DAI);
   const [selectedAmount, setSelectedAmount] = useState("0.00");
   const [warningMessage, setWarningMessage] = useState("");
 
   const convertFromUSD = (value: number) => {
-    return tokenData ?
-      Math.round(
-        (
-          parseFloat(tokenData[selectedCurrency].price) *
-          value
-        ) * 10000
-      ) / 10000 :
-      value;
-  }
+    return tokenData
+      ? Math.round(
+          parseFloat(tokenData[selectedCurrency].price) * value * 10000
+        ) / 10000
+      : value;
+  };
 
   const clearSigns = (value: string) => value.replace(/[^0-9.]/g, "");
 
@@ -43,15 +46,13 @@ const LendWithdrawSubsection = () => {
     try {
       setWithdrawing(true);
       const value = `${convertFromUSD(parseFloat(selectedAmount))}`;
-      await withdraw(
-        ({
-          selectedCurrency,
-          selectedAmount: value,
-          primaryAddress,
-          updateAppState,
-          contracts
-        } as WithdrawRequest)
-      );
+      await withdraw({
+        selectedCurrency,
+        selectedAmount: value,
+        primaryAddress,
+        updateAppState,
+        contracts,
+      } as WithdrawRequest);
       setSuccess(true);
     } catch (error) {
       updateAppState((st: AppContextState) => {
@@ -69,20 +70,21 @@ const LendWithdrawSubsection = () => {
     }
   };
 
-  const priceValue = tokenData ? Math.round(
-    (parseFloat(clearSigns(selectedAmount)) /
-      tokenData[selectedCurrency].price) *
-      10000
-  ) / 10000 : 0;
+  const priceValue = tokenData
+    ? Math.round(
+        (parseFloat(clearSigns(selectedAmount)) /
+          tokenData[selectedCurrency].price) *
+          10000
+      ) / 10000
+    : 0;
 
-  const price = tokenData
-    ? `${priceValue} ${selectedCurrency}`
-    : "-";
+  const price = tokenData ? `${priceValue} ${selectedCurrency}` : "-";
 
   const tellerTokens = mapLendingTokensToTellerTokens(selectedCurrency);
 
-
-  const userBalance = convertFromUSD(contracts[BaseTokens.ETH][tellerTokens].suppliedBalance);
+  const userBalance = convertFromUSD(
+    contracts[BaseTokens.ETH][tellerTokens].suppliedBalance
+  );
 
   const maxValue = `${userBalance}`;
 
@@ -156,7 +158,10 @@ const LendWithdrawSubsection = () => {
             <TableRow title="Withdraw With">
               <CustomDropdown
                 selected={selectedCurrency}
-                options={[AvailableLendingTokens.DAI, AvailableLendingTokens.USDC]}
+                options={[
+                  AvailableLendingTokens.DAI,
+                  AvailableLendingTokens.USDC,
+                ]}
                 handleSelect={setSelectedCurrency}
               />
             </TableRow>
@@ -176,4 +181,4 @@ const LendWithdrawSubsection = () => {
   );
 };
 
-export default LendWithdrawSubsection;
+export default Withdraw;
