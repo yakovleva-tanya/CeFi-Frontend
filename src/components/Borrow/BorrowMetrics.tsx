@@ -13,19 +13,21 @@ const BorrowMetrics = () => {
   const { lendWith, collateralWith } = borrowRequest;
 
   const assetPrice = tokenData
-    ? `$ ${Math.round(tokenData[lendWith].price * 10000) / 10000}`
+    ? `$ ${Math.round(tokenData[lendWith].price * 100) / 100}`
     : "-";
   const walletBalance =
     teller?.userWalletBalance &&
     teller?.userWalletBalance[lendWith] !== undefined
-      ? `${teller.userWalletBalance[lendWith]} ${lendWith}`
+      ? `${teller.userWalletBalance[lendWith].toFixed(2)} ${lendWith}`
       : "-";
   //const tellerToken = mapLendingTokensToTellerTokens(lendWith);
 
   const collateralAvailable =
     teller?.userWalletBalance &&
     teller?.userWalletBalance[collateralWith] !== undefined
-      ? `${teller.userWalletBalance[collateralWith]} ${collateralWith}`
+      ? `${teller.userWalletBalance[collateralWith].toFixed(
+          2
+        )} ${collateralWith}`
       : "-";
 
   return (
