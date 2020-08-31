@@ -1,6 +1,7 @@
 import Notify from "./Web3Notify";
 import ERC20 = require('./../abi/contracts/ERC20Detailed.json');
 import { Web3State } from './../context/app';
+import { globalDecimals } from './../util/constants';
 
 async function getLendingToken(lendingPool: any, web3State: Web3State) {
   const lendingTokenAddress = await lendingPool.methods.lendingToken().call();
@@ -8,13 +9,12 @@ async function getLendingToken(lendingPool: any, web3State: Web3State) {
 }
 
 /**
- * Redeeem zDai.
+ * Redeeem Teller tokens from specified lending Pool.
  */
 export async function redeemZDai(amount: string, primaryAddress: string, lendingPool: any) {
+  const bnAmount = (parseFloat(amount) * globalDecimals).toLocaleString('fullwide', { useGrouping:false });
   return new Promise((resolve, reject) => lendingPool.methods
-    .withdraw(
-      (parseFloat(amount)).toLocaleString('fullwide', { useGrouping:false })
-    )
+    .withdraw(bnAmount)
     .send({ from: primaryAddress })
     .on('transactionHash', Notify.hash)
     .on('receipt', resolve)
