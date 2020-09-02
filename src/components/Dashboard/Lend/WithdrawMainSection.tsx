@@ -150,8 +150,8 @@ const WithdrawMainSection = () => {
       <PrimaryButton
         text="Withdraw"
         onClick={() => {
-          // process.env.INTEGRATIONS_DISABLED === "true"
-          (true)? onSubmitMock()
+          process.env.INTEGRATIONS_DISABLED === "true"
+            ? onSubmitMock()
             : onSubmit(
                 selectedCurrency,
                 selectedAmount.replace(/[^0-9.]/g, "")
