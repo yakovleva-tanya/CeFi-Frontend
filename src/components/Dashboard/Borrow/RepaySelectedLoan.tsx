@@ -63,7 +63,9 @@ const RepaySelectedLoan = () => {
         </TableRow>
         <BR />
         <TableRow title="Current Collateral %">
-          <div className="font-medium">{currentCollateralPercent.toFixed(2)} %</div>
+          <div className="font-medium">
+            {currentCollateralPercent.toFixed(2)} %
+          </div>
         </TableRow>
         <BR />
         <TableRow title="Collateral amount">
@@ -77,15 +79,15 @@ const RepaySelectedLoan = () => {
           <div className="font-medium">{statusName}</div>
         </TableRow>
         <BR />
-        {status !== "Closed" && (
+        {statusName !== "Repaid" && (
           <div>
             <TableRow title="Time remaining">
-              {timeTillExpires < 0 && (
+              {statusName === "Overdue" && (
                 <div className="font-medium">
                   {-timeTillExpires} days overdue
                 </div>
               )}
-              {timeTillExpires > 0 && (
+              {statusName === "Outstanding" && (
                 <div className="font-medium">
                   {timeTillExpires} days remaining
                 </div>

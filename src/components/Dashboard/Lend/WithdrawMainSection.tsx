@@ -44,6 +44,12 @@ const WithdrawMainSection = () => {
 
   const clearSigns = (value: string) => value.replace(/[^0-9.]/g, "");
 
+  const onSubmitMock = async () => {
+    setWithdrawing(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setWithdrawing(false);
+    setSuccess(true);
+  };
   const onSubmit = async (selectedCurrency: string, selectedAmount: string) => {
     try {
       setWithdrawing(true);
@@ -144,7 +150,12 @@ const WithdrawMainSection = () => {
       <PrimaryButton
         text="Withdraw"
         onClick={() => {
-          onSubmit(selectedCurrency, selectedAmount.replace(/[^0-9.]/g, ""));
+          // process.env.INTEGRATIONS_DISABLED === "true"
+          (true)? onSubmitMock()
+            : onSubmit(
+                selectedCurrency,
+                selectedAmount.replace(/[^0-9.]/g, "")
+              );
         }}
       />
     </div>
