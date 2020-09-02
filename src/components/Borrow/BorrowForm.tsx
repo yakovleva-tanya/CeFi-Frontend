@@ -79,11 +79,16 @@ const BorrowForm = () => {
     setRequesting(false);
     setSuccess(res);
   };
+  const onRequestLoanMock = async () => {
+    setRequesting(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setRequesting(false);
+    setSuccess(true);
+  };
   const onAcceptTerms = async () => {
     setSubmitting(true);
     //Accept loan terms
     await new Promise((resolve) => setTimeout(resolve, 2000));
-
     setSubmitting(false);
     setStage(stage + 1);
   };
@@ -122,7 +127,11 @@ const BorrowForm = () => {
               <PrimaryButton
                 disabled={!borrowRequest.transferred}
                 text="Request Loan"
-                onClick={onRequestLoan}
+                onClick={
+                  process.env.INTEGRATIONS_DISABLED === "true"
+                    ? onRequestLoanMock
+                    : onRequestLoan
+                }
               />
             </div>
           )}
