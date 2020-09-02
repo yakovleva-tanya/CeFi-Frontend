@@ -4,18 +4,17 @@ import BR from "../../UI/BR";
 import PrimaryButton from "../../UI/PrimaryButton";
 import { repayLoan } from "../../../actions/DashboardBorrowActions";
 import FormValidationWarning from "../../UI/FormValidationWarning";
-import { DashboardContext } from "../../../context/dashboardContext";
+import { BorrowRepayContext } from "../../../context/dashboardContext";
 
 const RepaySelectedLoan = () => {
   const currentTime = Date.now();
 
-  const { repayProcessState } = useContext(DashboardContext);
   const {
     setRepaying,
     selectedLoan,
     setSelectedLoan,
     setRepaySuccess,
-  } = repayProcessState;
+  } = useContext(BorrowRepayContext);
 
   const onRepayLoan = async (id: string) => {
     setRepaying(true);
@@ -24,38 +23,42 @@ const RepaySelectedLoan = () => {
     setRepaying(false);
     setRepaySuccess(res);
   };
+  const timeTillExpires = Math.round(
+    (currentTime - selectedLoan.terms.expiryAt) / (60 * 60 * 24 * 1000)
+  );
   return (
     <div>
       <div className="table border-thin mb-4 mt-3">
         <TableRow title="Interest Rate">
-          <div className="font-medium">{selectedLoan.interestRate}%</div>
+          <div className="font-medium">{selectedLoan.terms.interestRate}%</div>
         </TableRow>
         <BR />
         <TableRow title="Loan size">
           <div className="font-medium">
-            {selectedLoan.loanSize} {selectedLoan.lendWith}
+            {selectedLoan.amountBorrowed} {selectedLoan.token}
           </div>
         </TableRow>
         <BR />
         <TableRow title="Loan term">
-          <div className="font-medium">{selectedLoan.loanTerm} Days</div>
+          <div className="font-medium">{selectedLoan.terms.duration} Days</div>
         </TableRow>
         <BR />
         <TableRow title="Loan type">
-          <div className="font-medium">{selectedLoan.loanType}</div>
+          <div className="font-medium">-</div>
         </TableRow>
         <BR />
         <TableRow title="Liquidation %">
-          <div className="font-medium">{selectedLoan.liquidation}%</div>
+          <div className="font-medium">%</div>
         </TableRow>
         <BR />
         <TableRow title="Collateral %">
-          <div className="font-medium">{selectedLoan.collateralPercent}%</div>
+          <div className="font-medium">%</div>
         </TableRow>
         <BR />
         <TableRow title="Collateral amount">
           <div className="font-medium">
-            {selectedLoan.collateralAmount} {selectedLoan.collateralWith}
+            {selectedLoan.totalCollateralDepositsAmount}{" "}
+            {selectedLoan.collateralToken}
           </div>
         </TableRow>
       </div>
@@ -64,23 +67,17 @@ const RepaySelectedLoan = () => {
           <div className="font-medium">{selectedLoan.status}</div>
         </TableRow>
         <BR />
-        {selectedLoan.status !== "Repaid" && (
+        {selectedLoan.status !== "Closed" && (
           <div>
             <TableRow title="Time remaining">
-              {selectedLoan.status === "Overdue" && (
+              {timeTillExpires < 0 && (
                 <div className="font-medium">
-                  {Math.round(
-                    (currentTime - selectedLoan.due) / (60 * 60 * 24 * 1000)
-                  )}{" "}
-                  days overdue
+                  {-timeTillExpires} days overdue
                 </div>
               )}
-              {selectedLoan.status === "Outstanding" && (
+              {timeTillExpires > 0 && (
                 <div className="font-medium">
-                  {Math.round(
-                    (selectedLoan.due - currentTime) / (60 * 60 * 24 * 1000)
-                  )}{" "}
-                  days remaining
+                  {timeTillExpires} days remaining
                 </div>
               )}
             </TableRow>
@@ -88,14 +85,14 @@ const RepaySelectedLoan = () => {
         )}
         <TableRow title="Amount owed">
           <div className="font-medium">
-            {selectedLoan.amountOwed} {selectedLoan.lendWith}
+            {selectedLoan.totalOwedAmount} {selectedLoan.token}
           </div>
         </TableRow>
       </div>
       <div className="text-right mb-5">
         <u>View contract</u>
       </div>
-      {selectedLoan.status !== "Repaid" && (
+      {selectedLoan.status !== "Closed" && (
         <div>
           <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." />
           <PrimaryButton
