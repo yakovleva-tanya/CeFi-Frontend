@@ -15,17 +15,17 @@ import {
 import { AvailableLendingTokens } from "./app";
 
 const navigationMap: NavigationInterface = {
-  LEND: { Claim: "Lend-Claim", Withdraw: "Lend-Withdraw" },
+  DEPOSIT: { Redeem: "Lend-Redeem", Withdraw: "Lend-Withdraw" },
   BORROW: {
     Repay: "Borrow-Repay",
     Deposit: "Borrow-Deposit",
     Withdraw: "Borrow-Withdraw",
   },
-  USE: { "Compound Finance": "Use-Compound Finance", Uniswap: "Use-Uniswap" },
+  SPEND: { "Compound": "Spend-Compound", Uniswap: "Spend-Uniswap" },
 };
 
 const defaultDashboardContext: DashboardContextInterface = {
-  onPage: PageTypes["Lend-Claim"],
+  onPage: PageTypes["Lend-Redeem"],
   setOnPage: () => {},
   navigationMap: navigationMap,
   setLoans: () => {},
@@ -36,7 +36,7 @@ export const DashboardContext = createContext<DashboardContextInterface>(
 );
 
 const DashboardContextProvider = ({ children }: ContextProps) => {
-  const [onPage, setOnPage] = useState<PageTypes>(PageTypes["Lend-Claim"]);
+  const [onPage, setOnPage] = useState<PageTypes>(PageTypes["Lend-Redeem"]);
   const [loans, setLoans] = useState<Array<LoanInterface>>(null);
 
   return (

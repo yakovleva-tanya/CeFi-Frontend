@@ -17,13 +17,6 @@ export interface LoanInterface {
   totalCollateralDepositsAmount: number;
   collateralWithdrawns: null | Array<CollateralWithdrawInterface>;
   totalCollateralWithdrawalsAmount: number;
-  liquidation: null | LiquidationInterface;
-  timestamp: number;
-}
-
-export interface LiquidationInterface {
-  collateralOut: number;
-  tokensIn: number;
 }
 
 export interface CollateralWithdrawInterface {
@@ -39,7 +32,6 @@ export interface TermsInterface {
   maxLoanAmount: number;
   duration: number;
   expiryAt: number;
-  timestamp: number;
 }
 
 export interface LoanRepaymentInterface {
@@ -181,13 +173,13 @@ export interface UseCompoundStateInterface {
 export interface UseUniswapStateInterface {}
 
 export enum PageTypes {
-  "Lend-Claim" = "Lend-Claim",
+  "Lend-Redeem" = "Lend-Redeem",
   "Lend-Withdraw" = "Lend-Withdraw",
   "Borrow-Repay" = "Borrow-Repay",
   "Borrow-Deposit" = "Borrow-Deposit",
   "Borrow-Withdraw" = "Borrow-Withdraw",
-  "Use-Compound Finance" = "Use-Compound Finance",
-  "Use-Uniswap" = "Use-Uniswap",
+  "Spend-Compound" = "Spend-Compound",
+  "Spend-Uniswap" = "Spend-Uniswap",
 }
 
 export enum StatusTypes {

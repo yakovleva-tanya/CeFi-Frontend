@@ -39,7 +39,7 @@ const RepayPage = () => {
           />
         )}
         {isRepaying && (
-          <ProcessingScreen link="" title="Repaying" fullScreen={false} />
+          <ProcessingScreen link={""} title="Repaying" fullScreen={false} />
         )}
         {!repaySuccess && !isRepaying && selectedLoan && <RepaySelectedLoan />}
         {!repaySuccess && !isRepaying && !selectedLoan && <RepayForm />}

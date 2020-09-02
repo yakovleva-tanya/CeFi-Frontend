@@ -22,8 +22,7 @@ const RepayForm = () => {
   const repaidLoans = loans.filter((loan: LoanInterface) => {
     return loan.status == "Closed";
   });
-
-  const { setSelectedLoan, selectedLoan } = useContext(BorrowRepayContext);
+  const { setSelectedLoan } = useContext(BorrowRepayContext);
 
   return (
     <div>
