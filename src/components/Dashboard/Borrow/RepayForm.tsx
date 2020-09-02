@@ -2,23 +2,27 @@ import React, { useContext } from "react";
 import TableRow from "../../UI/TableRow";
 import BR from "../../UI/BR";
 import CustomSubmenuLink from "../../UI/CustomSubmenuLink";
-import { DashboardContext } from "../../../context/dashboardContext";
+import {
+  DashboardContext,
+  BorrowRepayContext,
+} from "../../../context/dashboardContext";
+import { LoanInterface } from "../../../context/types";
 
 const RepayForm = () => {
-  const { loans, repayProcessState } = useContext(DashboardContext);
+  const { loans } = useContext(DashboardContext);
+
   const currentTime = Date.now();
 
-  const overdueLoans = loans.filter((loan) => {
-    return loan.status === "Overdue";
+  const overdueLoans = loans.filter((loan: LoanInterface) => {
+    return (loan.statusName === "Overdue")
   });
-  const outstandingLoans = loans.filter((loan) => {
-    return loan.status === "Outstanding";
+  const outstandingLoans = loans.filter((loan: LoanInterface) => {
+    return (loan.statusName === "Outstanding");
   });
-  const repaidLoans = loans.filter((loan) => {
-    return loan.status === "Repaid";
+  const repaidLoans = loans.filter((loan: LoanInterface) => {
+    return (loan.statusName === "Repaid");
   });
-
-  const { setSelectedLoan } = repayProcessState;
+  const { setSelectedLoan } = useContext(BorrowRepayContext);
 
   return (
     <div>
@@ -26,16 +30,16 @@ const RepayForm = () => {
         <div className="mb-4">
           <div className="text-left">Outstanding loans</div>
           <div className="table border-thin mb-4 mt-3">
-            {outstandingLoans.map((loan: any) => {
+            {outstandingLoans.map((loan: LoanInterface) => {
               return (
-                <div key={loan.due}>
+                <div key={loan.id}>
                   <TableRow
                     title={`${Math.round(
-                      (loan.due - currentTime) / (60 * 60 * 24 * 1000)
+                      (currentTime - loan.terms.expiryAt ) / (60 * 60 * 24 * 1000)
                     )} days remaining`}
                   >
                     <CustomSubmenuLink
-                      title={`${loan.loanSize} ${loan.lendWith}`}
+                      title={`${loan.amountBorrowed} ${loan.token}`}
                       onClickAction={() => {
                         setSelectedLoan(loan);
                       }}
@@ -52,16 +56,16 @@ const RepayForm = () => {
         <div className="mb-4">
           <div className="text-left">Overdue loans</div>
           <div className="table border-thin mb-4 mt-3">
-            {overdueLoans.map((loan: any) => {
+            {overdueLoans.map((loan: LoanInterface) => {
               return (
-                <div key={loan.due}>
+                <div key={loan.id}>
                   <TableRow
                     title={`${Math.round(
-                      (currentTime - loan.due) / (60 * 60 * 24 * 1000)
+                      ( loan.terms.expiryAt - currentTime ) / (60 * 60 * 24 * 1000)
                     )} days overdue`}
                   >
                     <CustomSubmenuLink
-                      title={`${loan.loanSize} ${loan.lendWith}`}
+                      title={`${loan.amountBorrowed} ${loan.token}`}
                       onClickAction={() => {
                         setSelectedLoan(loan);
                       }}
@@ -78,12 +82,12 @@ const RepayForm = () => {
         <div className="mb-4">
           <div className="text-left">Repaid loans</div>
           <div className="table border-thin mb-4 mt-3">
-            {repaidLoans.map((loan: any) => {
+            {repaidLoans.map((loan: LoanInterface) => {
               return (
-                <div key={loan.due}>
+                <div key={loan.id}>
                   <TableRow title={`ID ${loan.id}`}>
                     <CustomSubmenuLink
-                      title={`${loan.loanSize} ${loan.lendWith}`}
+                      title={`${loan.amountBorrowed} ${loan.token}`}
                       onClickAction={() => {
                         setSelectedLoan(loan);
                       }}

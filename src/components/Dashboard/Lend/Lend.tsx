@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import Card from "../../UI/Card";
 import { DashboardContext } from "../../../context/dashboardContext";
-import Claim from './Claim';
-import Withdraw from './Withdraw';
+import Claim from "./Claim";
+import Withdraw from "./Withdraw";
 
 const Lend = () => {
   const { onPage } = useContext(DashboardContext);
@@ -10,11 +10,10 @@ const Lend = () => {
   return (
     <Card className="main-card text-center" title={subSection}>
       <div className="my-5">
-        {subSection == "Claim" && <Claim />}
+        {subSection == "Redeem" && <Claim />}
         {subSection == "Withdraw" && <Withdraw />}
       </div>
     </Card>
   );
 };
 export default Lend;
-

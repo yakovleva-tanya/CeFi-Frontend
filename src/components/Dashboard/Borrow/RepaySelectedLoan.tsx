@@ -4,18 +4,30 @@ import BR from "../../UI/BR";
 import PrimaryButton from "../../UI/PrimaryButton";
 import { repayLoan } from "../../../actions/DashboardBorrowActions";
 import FormValidationWarning from "../../UI/FormValidationWarning";
-import { DashboardContext } from "../../../context/dashboardContext";
+import { BorrowRepayContext } from "../../../context/dashboardContext";
+import ViewContractLink from "../ViewContractLink";
 
 const RepaySelectedLoan = () => {
-  const currentTime = Date.now();
-
-  const { repayProcessState } = useContext(DashboardContext);
   const {
     setRepaying,
     selectedLoan,
     setSelectedLoan,
     setRepaySuccess,
-  } = repayProcessState;
+  } = useContext(BorrowRepayContext);
+
+  const {
+    terms,
+    amountBorrowed,
+    token,
+    collateralToken,
+    totalOwedAmount,
+    id,
+    transactionHash,
+    statusName,
+    timeTillExpires,
+    currentCollateralPercent,
+    collateralAmount,
+  } = selectedLoan;
 
   const onRepayLoan = async (id: string) => {
     setRepaying(true);
@@ -24,84 +36,77 @@ const RepaySelectedLoan = () => {
     setRepaying(false);
     setRepaySuccess(res);
   };
+
   return (
     <div>
       <div className="table border-thin mb-4 mt-3">
         <TableRow title="Interest Rate">
-          <div className="font-medium">{selectedLoan.interestRate}%</div>
+          <div className="font-medium">{terms.interestRate}%</div>
         </TableRow>
         <BR />
         <TableRow title="Loan size">
           <div className="font-medium">
-            {selectedLoan.loanSize} {selectedLoan.lendWith}
+            {amountBorrowed} {token}
           </div>
         </TableRow>
         <BR />
         <TableRow title="Loan term">
-          <div className="font-medium">{selectedLoan.loanTerm} Days</div>
+          <div className="font-medium">{terms.duration} Days</div>
         </TableRow>
         <BR />
         <TableRow title="Loan type">
-          <div className="font-medium">{selectedLoan.loanType}</div>
+          <div className="font-medium">-</div>
         </TableRow>
         <BR />
         <TableRow title="Liquidation %">
-          <div className="font-medium">{selectedLoan.liquidation}%</div>
+          <div className="font-medium">{terms.collateralRatio} %</div>
         </TableRow>
         <BR />
-        <TableRow title="Collateral %">
-          <div className="font-medium">{selectedLoan.collateralPercent}%</div>
+        <TableRow title="Current Collateral %">
+          <div className="font-medium">
+            {currentCollateralPercent.toFixed(2)} %
+          </div>
         </TableRow>
         <BR />
         <TableRow title="Collateral amount">
           <div className="font-medium">
-            {selectedLoan.collateralAmount} {selectedLoan.collateralWith}
+            {collateralAmount} {collateralToken}
           </div>
         </TableRow>
       </div>
       <div className="table border-thin mb-4 mt-3">
         <TableRow title="Status">
-          <div className="font-medium">{selectedLoan.status}</div>
+          <div className="font-medium">{statusName}</div>
         </TableRow>
         <BR />
-        {selectedLoan.status !== "Repaid" && (
+        {statusName !== "Repaid" && (
           <div>
             <TableRow title="Time remaining">
-              {selectedLoan.status === "Overdue" && (
+              {statusName === "Overdue" && (
                 <div className="font-medium">
-                  {Math.round(
-                    (currentTime - selectedLoan.due) / (60 * 60 * 24 * 1000)
-                  )}{" "}
-                  days overdue
+                  {-timeTillExpires} days overdue
                 </div>
               )}
-              {selectedLoan.status === "Outstanding" && (
+              {statusName === "Outstanding" && (
                 <div className="font-medium">
-                  {Math.round(
-                    (selectedLoan.due - currentTime) / (60 * 60 * 24 * 1000)
-                  )}{" "}
-                  days remaining
+                  {timeTillExpires} days remaining
                 </div>
               )}
             </TableRow>
           </div>
         )}
+        <BR />
         <TableRow title="Amount owed">
           <div className="font-medium">
-            {selectedLoan.amountOwed} {selectedLoan.lendWith}
+            {totalOwedAmount} {token}
           </div>
         </TableRow>
       </div>
-      <div className="text-right mb-5">
-        <u>View contract</u>
-      </div>
-      {selectedLoan.status !== "Repaid" && (
+      <ViewContractLink link={transactionHash} />
+      {statusName !== "Repaid" && (
         <div>
           <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." />
-          <PrimaryButton
-            text="Repay Loan"
-            onClick={() => onRepayLoan(selectedLoan.id)}
-          />
+          <PrimaryButton text="Repay Loan" onClick={() => onRepayLoan(id)} />
         </div>
       )}
     </div>

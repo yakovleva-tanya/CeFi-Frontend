@@ -1,182 +1,43 @@
 import React, { createContext, useState } from "react";
+import {
+  PageTypes,
+  DashboardContextInterface,
+  ContextProps,
+  LoanInterface,
+  NavigationInterface,
+  LendClaimStateInterface,
+  LendWithdrawStateInterface,
+  BorrowRepayStateInterface,
+  BorrowDepositStateInterface,
+  BorrowWithdrawStateInterface,
+  UseCompoundStateInterface,
+} from "./types";
+import { AvailableLendingTokens } from "./app";
 
-interface RepayProcessInterface {
-  isRepaying: boolean;
-  setRepaying: Function;
-  repaySuccess: boolean;
-  selectedLoan: null | loansInterface;
-  setSelectedLoan: Function;
-  setRepaySuccess: Function;
-}
-export interface DashboardContextInterface {
-  onPage: pageTypes;
-  setOnPage: Function;
-  navigationMap: navigationInterface;
-  loans: null | Array<loansInterface>;
-  repayProcessState: null | RepayProcessInterface;
-}
-type DashboardContextProps = {
-  children: React.ReactNode;
-};
-
-export interface navigationInterface {
-  [key: string]: subNavInterface;
-}
-export interface subNavInterface {
-  [key: string]: string;
-}
-export enum pageTypes {
-  "Lend-Claim" = "Lend-Claim",
-  "Lend-Withdraw" = "Lend-Withdraw",
-  "Borrow-Repay" = "Borrow-Repay",
-  "Borrow-Deposit" = "Borrow-Deposit",
-  "Borrow-Withdraw" = "Borrow-Withdraw",
-  "Use-Compound Finance" = "Use-Compound Finance",
-  "Use-Uniswap" = "Use-Uniswap",
-}
-
-const navigationMap: navigationInterface = {
-  LEND: { Claim: "Lend-Claim", Withdraw: "Lend-Withdraw" },
+const navigationMap: NavigationInterface = {
+  DEPOSIT: { Redeem: "Lend-Redeem", Withdraw: "Lend-Withdraw" },
   BORROW: {
     Repay: "Borrow-Repay",
     Deposit: "Borrow-Deposit",
     Withdraw: "Borrow-Withdraw",
   },
-  USE: { "Compound Finance": "Use-Compound Finance", Uniswap: "Use-Uniswap" },
+  SPEND: { "Compound": "Spend-Compound", Uniswap: "Spend-Uniswap" },
 };
 
-interface loansInterface {
-  interestRate: number;
-  loanSize: number;
-  lendWith: string;
-  loanTerm: number;
-  loanType: string;
-  liquidation: number;
-  collateralWith: string;
-  collateralAmount: number;
-  collateralPercent: number;
-  due: number;
-  amountOwed: number;
-  id: string;
-  status?: string;
-  percentFromLiquidation: number,
-}
-const default_loans: Array<loansInterface> = [
-  {
-    interestRate: 50,
-    loanSize: 109,
-    lendWith: "DAI",
-    loanTerm: 1,
-    loanType: "Fixed",
-    liquidation: 100,
-    collateralWith: "ETH",
-    collateralAmount: 100,
-    collateralPercent: 150,
-    due: 1599951940049,
-    amountOwed: 10,
-    id: "1243",
-    percentFromLiquidation: 1,
-  },
-  {
-    interestRate: 50,
-    loanSize: 150,
-    lendWith: "DAI",
-    loanTerm: 1,
-    loanType: "Fixed",
-    liquidation: 100,
-    collateralWith: "ETH",
-    collateralAmount: 100,
-    collateralPercent: 150,
-    due: 1598159140049,
-    amountOwed: 0,
-    id: "2343",
-    percentFromLiquidation: -2,
-  },
-  {
-    interestRate: 50,
-    loanSize: 1140,
-    lendWith: "DAI",
-    loanTerm: 1,
-    loanType: "Fixed",
-    liquidation: 100,
-    collateralWith: "ETH",
-    collateralAmount: 100,
-    collateralPercent: 150,
-    due: 1598553990049,
-    amountOwed: 100,
-    id: "4643",
-    percentFromLiquidation: 240,
-  },
-  {
-    interestRate: 50,
-    loanSize: 20,
-    lendWith: "DAI",
-    loanTerm: 1,
-    loanType: "Fixed",
-    liquidation: 100,
-    collateralWith: "ETH",
-    collateralAmount: 100,
-    collateralPercent: 150,
-    status: "outstanding",
-    due: 1598252890049,
-    amountOwed: 10,
-    id: "473",
-    percentFromLiquidation: 20,
-  },
-  {
-    interestRate: 20,
-    loanSize: 10,
-    lendWith: "DAI",
-    loanTerm: 5,
-    loanType: "Fixed",
-    liquidation: 90,
-    collateralWith: "ETH",
-    collateralAmount: 130,
-    collateralPercent: 250,
-    status: "outstanding",
-    due: 1598252990049,
-    amountOwed: 0,
-    id: "876",
-    percentFromLiquidation: -10,
-  },
-];
-
-export const DashboardContext = createContext<DashboardContextInterface>({
-  onPage: pageTypes["Lend-Claim"],
+const defaultDashboardContext: DashboardContextInterface = {
+  onPage: PageTypes["Lend-Redeem"],
   setOnPage: () => {},
   navigationMap: navigationMap,
-  loans: default_loans,
-  repayProcessState: null,
-});
+  setLoans: () => {},
+  loans: null,
+};
+export const DashboardContext = createContext<DashboardContextInterface>(
+  defaultDashboardContext
+);
 
-const DashboardContextProvider = ({ children }: DashboardContextProps) => {
-  const [onPage, setOnPage] = useState<pageTypes>(pageTypes["Lend-Claim"]);
-
-  const [selectedLoan, setSelectedLoan] = useState(null);
-  const [isRepaying, setRepaying] = useState(false);
-  const [repaySuccess, setRepaySuccess] = useState(false);
-
-  const currentTime = Date.now();
-
-  const loans = default_loans.map((loan) => {
-    if (loan.amountOwed === 0) {
-      loan.status = "Repaid";
-    } else if (currentTime > loan.due) {
-      loan.status = "Overdue";
-    } else {
-      loan.status = "Outstanding";
-    }
-    return loan;
-  });
-
-  const repayProcessState: RepayProcessInterface = {
-    isRepaying,
-    setRepaying,
-    repaySuccess,
-    setRepaySuccess,
-    selectedLoan,
-    setSelectedLoan,
-  };
+const DashboardContextProvider = ({ children }: ContextProps) => {
+  const [onPage, setOnPage] = useState<PageTypes>(PageTypes["Lend-Redeem"]);
+  const [loans, setLoans] = useState<Array<LoanInterface>>(null);
 
   return (
     <DashboardContext.Provider
@@ -185,7 +46,7 @@ const DashboardContextProvider = ({ children }: DashboardContextProps) => {
         setOnPage,
         navigationMap,
         loans,
-        repayProcessState,
+        setLoans,
       }}
     >
       {children}
@@ -193,3 +54,283 @@ const DashboardContextProvider = ({ children }: DashboardContextProps) => {
   );
 };
 export default DashboardContextProvider;
+
+//LEND-CLAIM
+const defaultLendClaimState: LendClaimStateInterface = {
+  success: null as null,
+  setSuccess: () => {},
+  isCollecting: null as null,
+  setCollecting: () => {},
+  assetChangeWarning: null as null,
+  setAssetChangeWarning: () => {},
+  isClaiming: null as null,
+  setClaiming: () => {},
+  assetClaimed: null as null,
+  setAssetClaimed: () => {},
+};
+export const LendClaimContext = React.createContext(defaultLendClaimState);
+export const LendClaimContextProvider = ({ children }: ContextProps) => {
+  const [success, setSuccess] = useState<LendClaimStateInterface["success"]>(
+    defaultLendClaimState.success
+  );
+  const [isCollecting, setCollecting] = useState<
+    LendClaimStateInterface["isCollecting"]
+  >(null);
+  const [assetChangeWarning, setAssetChangeWarning] = useState<
+    LendClaimStateInterface["assetChangeWarning"]
+  >(null);
+  const [isClaiming, setClaiming] = useState<
+    LendClaimStateInterface["isClaiming"]
+  >(null);
+  const [assetClaimed, setAssetClaimed] = useState<
+    LendClaimStateInterface["assetClaimed"]
+  >(null);
+
+  const state = {
+    success,
+    setSuccess,
+    isCollecting,
+    setCollecting,
+    assetChangeWarning,
+    setAssetChangeWarning,
+    isClaiming,
+    setClaiming,
+    assetClaimed,
+    setAssetClaimed,
+  };
+  return (
+    <LendClaimContext.Provider value={state}>
+      {children}
+    </LendClaimContext.Provider>
+  );
+};
+
+// LEND-WITHDRAW
+const defaultLendWithdrawState: LendWithdrawStateInterface = {
+  selectedCurrency: null,
+  setSelectedCurrency: () => {},
+  isWithdrawing: false,
+  setWithdrawing: () => {},
+  success: false,
+  setSuccess: () => {},
+  warningMessage: "",
+  setWarningMessage: () => {},
+};
+export const LendWithdrawContext = React.createContext(
+  defaultLendWithdrawState
+);
+export const LendWithdrawContextProvider = ({ children }: ContextProps) => {
+  const [selectedCurrency, setSelectedCurrency] = useState<
+    AvailableLendingTokens
+  >(AvailableLendingTokens.DAI);
+  const [isWithdrawing, setWithdrawing] = useState<
+    LendWithdrawStateInterface["isWithdrawing"]
+  >(false);
+  const [success, setSuccess] = useState<LendWithdrawStateInterface["success"]>(
+    false
+  );
+  const [warningMessage, setWarningMessage] = useState<
+    LendWithdrawStateInterface["warningMessage"]
+  >("");
+
+  const state = {
+    selectedCurrency,
+    setSelectedCurrency,
+    isWithdrawing,
+    setWithdrawing,
+    success,
+    setSuccess,
+    warningMessage,
+    setWarningMessage,
+  };
+
+  return (
+    <LendWithdrawContext.Provider value={state}>
+      {children}
+    </LendWithdrawContext.Provider>
+  );
+};
+
+//BORROW-REPAY
+const defaultBorrowRepayState: BorrowRepayStateInterface = {
+  selectedLoan: null as null,
+  setSelectedLoan: () => {},
+  isRepaying: false,
+  setRepaying: () => {},
+  repaySuccess: false,
+  setRepaySuccess: () => {},
+};
+
+export const BorrowRepayContext = React.createContext(defaultBorrowRepayState);
+export const BorrowRepayContextProvider = ({ children }: ContextProps) => {
+  const [selectedLoan, setSelectedLoan] = useState<LoanInterface | null>(null);
+  const [isRepaying, setRepaying] = useState<
+    BorrowRepayStateInterface["isRepaying"]
+  >(false);
+  const [repaySuccess, setRepaySuccess] = useState<boolean>(false);
+
+  const state = {
+    selectedLoan,
+    setSelectedLoan,
+    isRepaying,
+    setRepaying,
+    repaySuccess,
+    setRepaySuccess,
+  };
+
+  return (
+    <BorrowRepayContext.Provider value={state}>
+      {children}
+    </BorrowRepayContext.Provider>
+  );
+};
+
+//BORROW-DEPOSIT
+const defaultBorrowDepositState: BorrowDepositStateInterface = {
+  success: false,
+  setSuccess: () => {},
+  isDepositing: false,
+  setDepositing: () => {},
+  selectedLoan: null as null,
+  setSelectedLoan: () => {},
+  addCollateralSubmenu: null as null,
+  setAddCollateralSubmenu: () => {},
+  collateral: null as null,
+  setCollateral: () => {},
+};
+export const BorrowDepositContext = React.createContext(
+  defaultBorrowDepositState
+);
+export const BorrowDepositContextProvider = ({ children }: ContextProps) => {
+  const [success, setSuccess] = useState<
+    BorrowDepositStateInterface["success"]
+  >(false);
+  const [isDepositing, setDepositing] = useState<
+    BorrowDepositStateInterface["isDepositing"]
+  >(false);
+  const [selectedLoan, setSelectedLoan] = useState<
+    BorrowDepositStateInterface["selectedLoan"]
+  >(null);
+  const [addCollateralSubmenu, setAddCollateralSubmenu] = useState<
+    BorrowDepositStateInterface["addCollateralSubmenu"]
+  >(false);
+  const [collateral, setCollateral] = useState<
+    BorrowDepositStateInterface["collateral"]
+  >(selectedLoan ? selectedLoan.totalCollateralDepositsAmount : 0);
+
+  const state = {
+    success,
+    setSuccess,
+    isDepositing,
+    setDepositing,
+    selectedLoan,
+    setSelectedLoan,
+    addCollateralSubmenu,
+    setAddCollateralSubmenu,
+    collateral,
+    setCollateral,
+  };
+  return (
+    <BorrowDepositContext.Provider value={state}>
+      {children}
+    </BorrowDepositContext.Provider>
+  );
+};
+
+//BORROW-WITHDRAW
+const defaultBorrowWithdrawState: BorrowWithdrawStateInterface = {
+  success: false,
+  setSuccess: () => {},
+  isWithdrawing: false,
+  setWithdrawing: () => {},
+  selectedLoan: null as null,
+  setSelectedLoan: () => {},
+  withdrawCollateralSubmenu: false,
+  setWithdrawCollateralSubmenu: () => {},
+  withdrawAmount: 0,
+  setWithdrawAmount: () => {},
+};
+export const BorrowWithdrawContext = React.createContext(
+  defaultBorrowWithdrawState
+);
+export const BorrowWithdrawContextProvider = ({ children }: ContextProps) => {
+  const [success, setSuccess] = useState<
+    BorrowWithdrawStateInterface["success"]
+  >(false);
+  const [isWithdrawing, setWithdrawing] = useState<
+    BorrowWithdrawStateInterface["isWithdrawing"]
+  >(false);
+  const [selectedLoan, setSelectedLoan] = useState<
+    BorrowWithdrawStateInterface["selectedLoan"]
+  >(null);
+  const [withdrawCollateralSubmenu, setWithdrawCollateralSubmenu] = useState<
+    BorrowWithdrawStateInterface["withdrawCollateralSubmenu"]
+  >(false);
+  const [withdrawAmount, setWithdrawAmount] = useState<
+    BorrowWithdrawStateInterface["withdrawAmount"]
+  >(0);
+
+  const state = {
+    success,
+    setSuccess,
+    isWithdrawing,
+    setWithdrawing,
+    selectedLoan,
+    setSelectedLoan,
+    withdrawCollateralSubmenu,
+    setWithdrawCollateralSubmenu,
+    withdrawAmount,
+    setWithdrawAmount,
+  };
+
+  return (
+    <BorrowWithdrawContext.Provider value={state}>
+      {children}
+    </BorrowWithdrawContext.Provider>
+  );
+};
+
+//USE-COMPOUND
+const defaultUseCompoundState: UseCompoundStateInterface = {
+  success: false,
+  setSuccess: () => {},
+  isWithdrawing: false,
+  setWithdrawing: () => {},
+  isSupplying: false,
+  setSupplying: () => {},
+  selectedLoan: null as null,
+  setSelectedLoan: () => {},
+  amountSubmenu: false,
+  setAmountSubmenu: () => {},
+  amount: 0,
+  setAmount: () => {},
+};
+export const UseCompoundContext = React.createContext(defaultUseCompoundState);
+export const UseCompoundContextProvider = ({ children }: ContextProps) => {
+  const [success, setSuccess] = useState(false);
+  const [isWithdrawing, setWithdrawing] = useState(false);
+  const [isSupplying, setSupplying] = useState(false);
+  const [selectedLoan, setSelectedLoan] = useState(null);
+  const [amountSubmenu, setAmountSubmenu] = useState(false);
+  const [amount, setAmount] = useState(0);
+
+  const state = {
+    success,
+    setSuccess,
+    isWithdrawing,
+    setWithdrawing,
+    isSupplying,
+    setSupplying,
+    selectedLoan,
+    setSelectedLoan,
+    amountSubmenu,
+    setAmountSubmenu,
+    amount,
+    setAmount,
+  };
+  return (
+    <UseCompoundContext.Provider value={state}>
+      {children}
+    </UseCompoundContext.Provider>
+  );
+};

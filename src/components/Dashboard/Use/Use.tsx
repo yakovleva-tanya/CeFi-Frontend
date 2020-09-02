@@ -10,7 +10,7 @@ const Use = () => {
   return (
     <Card className="main-card text-center" title={subSection}>
       <div className="my-5">
-        {subSection == "Compound Finance" && <CompoundFinance />}
+        {subSection == "Compound" && <CompoundFinance />}
         {subSection == "Uniswap" && <div className="text-gray">Uniswap</div>}
       </div>
     </Card>
