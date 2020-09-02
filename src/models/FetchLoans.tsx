@@ -1,5 +1,5 @@
 const { request } = require("graphql-request");
-import { LoanInterface } from "../context/Types";
+import { LoanInterface } from "../context/types";
 import { loansTestData } from "../context/testdata";
 
 const getUrl = (network: string) => {
