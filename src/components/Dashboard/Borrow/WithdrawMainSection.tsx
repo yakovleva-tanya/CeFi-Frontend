@@ -13,6 +13,7 @@ import { loanWithdraw } from "../../../actions/DashboardBorrowActions";
 import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
+import ViewContractLink from "../ViewContractLink";
 
 const WithdrawMainSection = () => {
   const { loans } = useContext(DashboardContext);
@@ -34,6 +35,10 @@ const WithdrawMainSection = () => {
     setSuccess(res);
   };
 
+  const getExpuryDateString = (date:number) =>{
+  const expiryDate = new Date(date);
+  return expiryDate.toLocaleDateString()
+  }
   return (
     <div>
       {selectedLoan &&
@@ -80,44 +85,63 @@ const WithdrawMainSection = () => {
           </SubmenuCard>
         ) : (
           <div>
-            <div className="table border-thin mb-4 mt-3">
-              <TableRow title="Liquidation %">
-                <div className="font-medium">-%</div>
-              </TableRow>
-              <BR />
-              <TableRow title="Collateral %">
-                <div className="font-medium">
-                  -%
-                </div>
-              </TableRow>
-              <BR />
-              <TableRow title="Collateral amount">
-                <div className="font-medium">
-                  {selectedLoan.totalCollateralDepositsAmount} {selectedLoan.collateralToken}
-                </div>
-              </TableRow>
-            </div>
-
-            {selectedLoan.status !== "Closed" && (
+            {selectedLoan.status === "Closed" && (
               <div className="table border-thin mb-4 mt-3">
-                <TableRow title="Withdraw collateral">
-                  <CustomSubmenuLink
-                    title={`${withdrawAmount} ${selectedLoan.collateralToken}`}
-                    onClickAction={() => {
-                      setWithdrawCollateralSubmenu(true);
-                    }}
-                  />
+                <TableRow title="Status">
+                  <div className="font-medium">{selectedLoan.statusName}</div>
                 </TableRow>
                 <BR />
-                <TableRow title="New collateral %">
-                  <div className="font-medium">-</div>
+                <TableRow title="Loan Expiration">
+                  <div className="font-medium">{getExpuryDateString(selectedLoan.terms.expiryAt)}</div>
+                </TableRow>
+                <BR />
+                <TableRow title="Collateral amount">
+                  <div className="font-medium">
+                    {selectedLoan.totalCollateralDepositsAmount}{" "}
+                    {selectedLoan.collateralToken}
+                  </div>
                 </TableRow>
               </div>
             )}
-
-            <div className="text-right mb-5">
-              <u>View contract</u>
-            </div>
+            {selectedLoan.status !== "Closed" && (
+              <div>
+                <div className="table border-thin mb-4 mt-3">
+                  <TableRow title="Liquidation %">
+                    <div className="font-medium">
+                      {selectedLoan.terms.collateralRatio}%
+                    </div>
+                  </TableRow>
+                  <BR />
+                  <TableRow title="Current Collateral %">
+                    <div className="font-medium">
+                      {selectedLoan.currentCollateralPercent.toFixed(2)} %
+                    </div>
+                  </TableRow>
+                  <BR />
+                  <TableRow title="Collateral amount">
+                    <div className="font-medium">
+                      {selectedLoan.totalCollateralDepositsAmount}{" "}
+                      {selectedLoan.collateralToken}
+                    </div>
+                  </TableRow>
+                </div>
+                <div className="table border-thin mb-4 mt-3">
+                  <TableRow title="Withdraw collateral">
+                    <CustomSubmenuLink
+                      title={`${withdrawAmount} ${selectedLoan.collateralToken}`}
+                      onClickAction={() => {
+                        setWithdrawCollateralSubmenu(true);
+                      }}
+                    />
+                  </TableRow>
+                  <BR />
+                  <TableRow title="New collateral %">
+                    <div className="font-medium">-</div>
+                  </TableRow>
+                </div>
+              </div>
+            )}
+            <ViewContractLink link={selectedLoan.transactionHash} />
             <div>
               <PrimaryButton text="Withdraw" onClick={() => withdraw()} />
             </div>

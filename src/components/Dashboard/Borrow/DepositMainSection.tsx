@@ -13,6 +13,7 @@ import { loanDeposit } from "../../../actions/DashboardBorrowActions";
 import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
+import ViewContractLink from "../ViewContractLink";
 
 const DepositMainSection = () => {
   const { loans } = useContext(DashboardContext);
@@ -37,6 +38,7 @@ const DepositMainSection = () => {
     setDepositing(false);
     setSuccess(true);
   };
+
   return (
     <div>
       {selectedLoan &&
@@ -85,11 +87,15 @@ const DepositMainSection = () => {
           <div>
             <div className="table border-thin mb-4 mt-3">
               <TableRow title="Liquidation %">
-                <div className="font-medium">-%</div>
+                <div className="font-medium">
+                  {selectedLoan.terms.collateralRatio}%
+                </div>
               </TableRow>
               <BR />
               <TableRow title="Collateral %">
-                <div className="font-medium">-%</div>
+                <div className="font-medium">
+                  {selectedLoan.currentCollateralPercent.toFixed(2)}%
+                </div>
               </TableRow>
               <BR />
               <TableRow title="Collateral amount">
@@ -114,11 +120,7 @@ const DepositMainSection = () => {
                 <div className="font-medium">-</div>
               </TableRow>
             </div>
-
-            <div className="text-right mb-5">
-              <u>View contract</u>
-            </div>
-
+            <ViewContractLink link={selectedLoan.transactionHash} />
             <div>
               <PrimaryButton text="Deposit" onClick={() => deposit()} />
             </div>
@@ -132,18 +134,24 @@ const DepositMainSection = () => {
           </div>
           <div className="table border-thin mb-4 mt-3">
             {currentLoans.map((loan: LoanInterface) => {
+              const percentFromLiquidaton =
+                loan.currentCollateralPercent - loan.terms.collateralRatio;
               return (
                 <div
                   key={loan.id}
-                  // style={
-                  //   loan.percentFromLiquidation < 0
-                  //     ? { border: "1px solid #FC5A5A" }
-                  //     : {}
-                  // }
+                  style={
+                    percentFromLiquidaton < 0
+                      ? { border: "1px solid #FC5A5A" }
+                      : {}
+                  }
                 >
-                  <TableRow title={`-%  from liquidation`}>
+                  <TableRow
+                    title={`${percentFromLiquidaton.toFixed(
+                      0
+                    )}%  from liquidation`}
+                  >
                     <CustomSubmenuLink
-                      title={`- ${loan.collateralToken}`}
+                      title={`${loan.collateralAmount} ${loan.collateralToken}`}
                       onClickAction={() => {
                         setSelectedLoan(loan);
                       }}

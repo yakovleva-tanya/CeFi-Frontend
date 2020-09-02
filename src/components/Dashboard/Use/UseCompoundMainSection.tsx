@@ -16,6 +16,7 @@ import PrimaryButton from "../../UI/PrimaryButton";
 import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
+import ViewContractLink from '../ViewContractLink';
 
 const UseCompoundMainSection = () => {
   const { loans } = useContext(DashboardContext);
@@ -124,9 +125,7 @@ const UseCompoundMainSection = () => {
                 <div className="font-medium">-</div>
               </TableRow>
             </div>
-            <div className="text-right mb-5">
-              <u>View contract</u>
-            </div>
+            <ViewContractLink link={selectedLoan.transactionHash} />
             <div className="d-flex flex-row justify-content-around">
               <div>
                 <PrimaryButton text="Withdraw" onClick={() => withdraw()} />

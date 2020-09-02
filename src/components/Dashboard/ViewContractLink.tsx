@@ -18,7 +18,7 @@ const ViewContractLink = ({ link }: ContractLinkProps) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        View contract
+        <u>View contract</u>
       </a>
     </div>
   );

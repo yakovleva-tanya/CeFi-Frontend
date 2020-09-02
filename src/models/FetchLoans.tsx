@@ -55,13 +55,50 @@ const loansQuery = (address: string) => `
   }
 `;
 
+//TODO fetch real rates
+const collateralRates: any = {
+  ETH: 441.25,
+  LINK: 14.92,
+};
+const tokenRates: any = {
+  DAI: 1.01,
+  USDC: 0.99,
+};
 const FetchLoans = async (network: string, address: string) => {
+  const currentTime = Date.now();
   try {
     const url = getUrl(network);
     const query = loansQuery(address);
-    //fetch loans
 
-    const loans: Array<LoanInterface> = loansTestData;
+    //fetch loans
+    const res = loansTestData;
+
+    const loans: Array<LoanInterface> = res.map((loan: LoanInterface) => {
+      loan.collateralAmount =
+        loan.totalCollateralDepositsAmount -
+        loan.totalCollateralWithdrawalsAmount;
+      loan.currentCollateralPercent =
+        (loan.collateralAmount /
+          tokenRates[loan.token]/
+          (loan.totalOwedAmount / collateralRates[loan.collateralToken])) *
+        100;
+      const timeTillExpires = Math.round(
+        (currentTime - loan.terms.expiryAt) / (60 * 60 * 24 * 1000)
+      );
+      let statusName = "";
+      if (loan.status === "Closed") {
+        statusName = "Repaid";
+      } else if (timeTillExpires > 0) {
+        statusName = "Outstanding";
+      } else {
+        statusName = "Overdue";
+      }
+
+      loan.statusName = statusName;
+      loan.timeTillExpires = timeTillExpires;
+      return loan;
+    });
+
     return loans;
   } catch (err) {
     console.log(err);

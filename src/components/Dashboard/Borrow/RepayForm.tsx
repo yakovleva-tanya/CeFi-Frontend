@@ -14,13 +14,13 @@ const RepayForm = () => {
   const currentTime = Date.now();
 
   const overdueLoans = loans.filter((loan: LoanInterface) => {
-    return loan.status == "Active" && loan.terms.expiryAt < currentTime;
+    return (loan.statusName === "Overdue")
   });
   const outstandingLoans = loans.filter((loan: LoanInterface) => {
-    return loan.status == "Active" && loan.terms.expiryAt > currentTime;
+    return (loan.statusName === "Outstanding");
   });
   const repaidLoans = loans.filter((loan: LoanInterface) => {
-    return loan.status == "Closed";
+    return (loan.statusName === "Repaid");
   });
   const { setSelectedLoan } = useContext(BorrowRepayContext);
 
@@ -35,7 +35,7 @@ const RepayForm = () => {
                 <div key={loan.id}>
                   <TableRow
                     title={`${Math.round(
-                      (loan.terms.expiryAt - currentTime) / (60 * 60 * 24 * 1000)
+                      (currentTime - loan.terms.expiryAt ) / (60 * 60 * 24 * 1000)
                     )} days remaining`}
                   >
                     <CustomSubmenuLink
@@ -61,7 +61,7 @@ const RepayForm = () => {
                 <div key={loan.id}>
                   <TableRow
                     title={`${Math.round(
-                      (currentTime - loan.terms.expiryAt) / (60 * 60 * 24 * 1000)
+                      ( loan.terms.expiryAt - currentTime ) / (60 * 60 * 24 * 1000)
                     )} days overdue`}
                   >
                     <CustomSubmenuLink
@@ -87,7 +87,7 @@ const RepayForm = () => {
                 <div key={loan.id}>
                   <TableRow title={`ID ${loan.id}`}>
                     <CustomSubmenuLink
-                      title={`${loan.terms.expiryAt} ${loan.token}`}
+                      title={`${loan.amountBorrowed} ${loan.token}`}
                       onClickAction={() => {
                         setSelectedLoan(loan);
                       }}

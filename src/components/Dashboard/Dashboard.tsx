@@ -31,7 +31,7 @@ const Dashboard = () => {
         <DashboardNav />
         {section === "Lend" && <Lend />}
         {section === "Borrow" && <Borrow />}
-        {section === "Use" && <Use />}
+        {section === "Spend" && <Use />}
       </div>
     </Container>
   );

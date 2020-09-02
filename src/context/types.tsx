@@ -17,6 +17,10 @@ export interface LoanInterface {
   totalCollateralDepositsAmount: number;
   collateralWithdrawns: null | Array<CollateralWithdrawInterface>;
   totalCollateralWithdrawalsAmount: number;
+  statusName?: string;
+  timeTillExpires?: number;
+  currentCollateralPercent?: number;
+  collateralAmount?:number
 }
 
 export interface CollateralWithdrawInterface {

@@ -21,7 +21,7 @@ const DepositPage = () => {
     setSelectedLoan(null);
   };
   return (
-    <BorrowDepositContextProvider>
+    <div>
       <Card
         className="main-card text-center"
         title={selectedLoan ? `ID ${selectedLoan.id}` : "Deposit Collateral"}
@@ -37,14 +37,12 @@ const DepositPage = () => {
             message={<div>You’ve deposited your loan!</div>}
           />
         )}
-
         {isDepositing && (
           <ProcessingScreen link="" fullScreen={false} title="Depositing" />
         )}
-
         {!success && !isDepositing && <DepositMainSection />}
       </Card>
-    </BorrowDepositContextProvider>
+    </div>
   );
 };
 

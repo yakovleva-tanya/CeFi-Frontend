@@ -5,17 +5,9 @@ import PrimaryButton from "../../UI/PrimaryButton";
 import { repayLoan } from "../../../actions/DashboardBorrowActions";
 import FormValidationWarning from "../../UI/FormValidationWarning";
 import { BorrowRepayContext } from "../../../context/dashboardContext";
-import { AppContext } from "../../../context/app";
 import ViewContractLink from "../ViewContractLink";
 
 const RepaySelectedLoan = () => {
-  //TODO fetch real rates
-  const collateralRates: any = {
-    ETH: 441.25,
-    LINK: 14.92,
-  };
-  const currentTime = Date.now();
-
   const {
     setRepaying,
     selectedLoan,
@@ -27,24 +19,15 @@ const RepaySelectedLoan = () => {
     terms,
     amountBorrowed,
     token,
-    totalCollateralDepositsAmount,
-    totalCollateralWithdrawalsAmount,
     collateralToken,
     totalOwedAmount,
     id,
     transactionHash,
-    status,
+    statusName,
+    timeTillExpires,
+    currentCollateralPercent,
+    collateralAmount,
   } = selectedLoan;
-
-  const { state } = useContext(AppContext);
-  const collateralAmount =
-    totalCollateralDepositsAmount - totalCollateralWithdrawalsAmount;
-  const currentCollateralPercent = (
-    (collateralAmount /
-      state.tokenData[token].price /
-      (totalOwedAmount / collateralRates[collateralToken])) *
-    100
-  ).toFixed(2);
 
   const onRepayLoan = async (id: string) => {
     setRepaying(true);
@@ -53,17 +36,7 @@ const RepaySelectedLoan = () => {
     setRepaying(false);
     setRepaySuccess(res);
   };
-  const timeTillExpires = Math.round(
-    (currentTime - terms.expiryAt) / (60 * 60 * 24 * 1000)
-  );
-  let statusName = "";
-  if (status === "Closed") {
-    statusName = "Repaid";
-  } else if (timeTillExpires > 0) {
-    statusName = "Outstanding";
-  } else {
-    statusName = "Overdue";
-  }
+
   return (
     <div>
       <div className="table border-thin mb-4 mt-3">
@@ -90,7 +63,7 @@ const RepaySelectedLoan = () => {
         </TableRow>
         <BR />
         <TableRow title="Current Collateral %">
-          <div className="font-medium">{currentCollateralPercent} %</div>
+          <div className="font-medium">{currentCollateralPercent.toFixed(2)} %</div>
         </TableRow>
         <BR />
         <TableRow title="Collateral amount">
@@ -128,7 +101,7 @@ const RepaySelectedLoan = () => {
         </TableRow>
       </div>
       <ViewContractLink link={transactionHash} />
-      {status !== "Closed" && (
+      {statusName !== "Repaid" && (
         <div>
           <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." />
           <PrimaryButton text="Repay Loan" onClick={() => onRepayLoan(id)} />
