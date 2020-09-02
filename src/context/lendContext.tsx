@@ -2,8 +2,9 @@ import React, { createContext, useState } from "react";
 import {
   TellerTokens,
   AvailableLendingTokens,
-  mapLendingTokensToTellerTokens
+  mapLendingTokensToTellerTokens,
 } from "../context/app";
+import { ContextProps } from "./types";
 
 export interface LendPageContextInterface {
   selectedCurrency: AvailableLendingTokens;
@@ -17,19 +18,17 @@ export interface LendPageContextInterface {
 export const LendPageContext = createContext<LendPageContextInterface>({
   selectedCurrency: AvailableLendingTokens.DAI,
   setSelectedCurrency: () => {},
-  selectedAmount: 0.00,
+  selectedAmount: 0.0,
   setSelectedAmount: () => {},
   tokensApproved: false,
   setTokensApproved: () => {},
 });
 
-type LendPageContextProps = {
-  children: React.ReactNode;
-};
-
-const LendPageContextProvider = ({ children }: LendPageContextProps) => {
-  const [selectedCurrency, setSelectedCurrency] = useState<AvailableLendingTokens>(AvailableLendingTokens.DAI);
-  const [selectedAmount, setSelectedAmount] = useState(0.00);
+const LendPageContextProvider = ({ children }: ContextProps) => {
+  const [selectedCurrency, setSelectedCurrency] = useState<
+    AvailableLendingTokens
+  >(AvailableLendingTokens.DAI);
+  const [selectedAmount, setSelectedAmount] = useState(0.0);
   const [tokensApproved, setTokensApproved] = useState(false);
 
   return (

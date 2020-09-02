@@ -6,45 +6,11 @@ import {
   AvailableLendingTokens,
   BaseTokens,
 } from "../context/app";
-
-interface BorrowRequest {
-  loanSize: number;
-  loanTerm: number;
-  collateralWith: BaseTokens;
-  collateralPercent: number;
-  loanType: string;
-  bankConnected: boolean;
-  lendWith: AvailableLendingTokens;
-  collateralAmount: null | number;
-  approved: boolean;
-  transferred: boolean;
-}
-
-interface LoanTerms {
-  interestRate: number;
-  minCollateralNeeded: number;
-}
-interface BorrowProcessInterface {
-  success: boolean;
-  setSuccess: Function;
-  isSubmitting: boolean;
-  setSubmitting: Function;
-  isRequesting: boolean;
-  setRequesting: Function;
-  stageChangeWarning: boolean;
-  setStageChangeWarning: Function;
-}
-interface BorrowPageContextInterface {
-  stage: number;
-  setStage: Function;
-  submenu: React.ReactNode;
-  setSubmenu: Function;
-  borrowRequest: BorrowRequest;
-  setBorrowRequest: Function;
-  loanTerms: LoanTerms;
-  setLoanTerms: Function;
-  borrowProcessState: null | BorrowProcessInterface;
-}
+import {
+  ContextProps,
+  BorrowRequest,
+  BorrowPageContextInterface,
+} from "./types";
 
 const DAYS = 86400; // Seconds per day
 
@@ -105,11 +71,7 @@ export const BorrowPageContext = createContext<BorrowPageContextInterface>({
   borrowProcessState: null,
 });
 
-type BorrowPageContextProps = {
-  children: React.ReactNode;
-};
-
-const BorrowPageContextProvider = ({ children }: BorrowPageContextProps) => {
+const BorrowPageContextProvider = ({ children }: ContextProps) => {
   const [stage, setStage] = useState(1);
   const [submenu, setSubmenu] = useState(null);
   const [borrowRequest, setBorrowRequest] = useState(defaultBorrowRequest);

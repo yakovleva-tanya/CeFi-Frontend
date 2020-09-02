@@ -28,10 +28,11 @@ const supplyFormValidation = () => {
   const errors = {};
   return errors;
 };
-const getEtherscanLink = (hash: string, network: string) => {
+export const getEtherscanLink = (hash: string, network: string) => {
   if (network == "4") return `https://rinkeby.etherscan.io/tx/${hash}`;
   else if (network == "3") return `https://ropsten.etherscan.io/tx/${hash}`;
   else return `https://etherscan.io/tx/${hash}`;
+  return ""
 };
 
 const Lend = () => {
