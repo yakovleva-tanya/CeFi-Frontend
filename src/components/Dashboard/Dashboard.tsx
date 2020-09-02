@@ -9,7 +9,10 @@ import Borrow from "./Borrow";
 import Use from "./Use";
 import FetchLoans from "../../models/FetchLoans";
 import { AppContext } from "../../context/app";
+<<<<<<< HEAD
 import LoginButton from "../LoginButton/LoginButton";
+=======
+>>>>>>> upstream/development
 
 const Dashboard = () => {
   const { state } = useContext(AppContext);
