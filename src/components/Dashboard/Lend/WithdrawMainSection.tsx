@@ -153,8 +153,7 @@ const WithdrawMainSection = () => {
       <PrimaryButton
         text="Withdraw"
         onClick={() => {
-          // process.env.INTEGRATIONS_DISABLED === "true"
-          true
+          process.env.INTEGRATIONS_DISABLED === "true"
             ? onSubmitMock()
             : onSubmit(
                 selectedCurrency,

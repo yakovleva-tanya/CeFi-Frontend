@@ -9,6 +9,7 @@ import Borrow from "./Borrow";
 import Use from "./Use";
 import FetchLoans from "../../models/FetchLoans";
 import { AppContext } from "../../context/app";
+import LoginButton from "../LoginButton/LoginButton";
 
 const Dashboard = () => {
   const { state } = useContext(AppContext);
@@ -27,12 +28,21 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <div className="cards-container">
-        <DashboardNav />
-        {section === "Lend" && <Lend />}
-        {section === "Borrow" && <Borrow />}
-        {section === "Spend" && <Use />}
-      </div>
+      {web3State.address ? (
+        <div className="cards-container">
+          <DashboardNav />
+          {section === "Lend" && <Lend />}
+          {section === "Borrow" && <Borrow />}
+          {section === "Spend" && <Use />}
+        </div>
+      ) : (
+        <div className="d-flex justify-content-center align-items-center flex-column">
+          <div >
+            Please connect your wallet to view the dashboard
+          </div>
+          <LoginButton />
+        </div>
+      )}
     </Container>
   );
 };
