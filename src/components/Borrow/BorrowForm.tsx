@@ -99,7 +99,7 @@ const BorrowForm = () => {
               <FirstStageTable />
               {loggedIn ? (
                 <PrimaryButton
-                  text="Get Loan Terms"
+                  text="Request terms"
                   onClick={() => {
                     //Get LoanTerms
                     setStage(stage + 1);
@@ -113,7 +113,7 @@ const BorrowForm = () => {
           {stage === 2 && (
             <div>
               <SecondStageTable />
-              <PrimaryButton text="Accept Loan Terms" onClick={onAcceptTerms} />
+              <PrimaryButton text="Accept terms" onClick={onAcceptTerms} />
             </div>
           )}
           {stage === 3 && (

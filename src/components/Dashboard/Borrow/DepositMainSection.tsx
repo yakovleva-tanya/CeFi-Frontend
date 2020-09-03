@@ -130,7 +130,7 @@ const DepositMainSection = () => {
       {!selectedLoan && (
         <div>
           <div className="text-gray">
-            Select the loan you want to deposit into
+            Deposit additional collateral for an outstanding loan
           </div>
           <div className="table border-thin mb-4 mt-3">
             {currentLoans.map((loan: LoanInterface) => {

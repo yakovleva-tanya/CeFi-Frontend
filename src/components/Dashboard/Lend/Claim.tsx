@@ -13,21 +13,18 @@ const ClaimPage = () => {
   return (
     <div>
       {isCollecting && (
-        <ProcessingScreen
-          title="Collecting Interest"
-          link=""
-          fullScreen={false}
-        />
+        <ProcessingScreen title="Redeeming APY" link="" fullScreen={false} />
       )}
       {success && (
         <SuccessScreen
-          title="Interest Collected!"
+          title="Redemption accepted"
           message={
             <div>
-              View your{" "}
+              View your transaction status{" "}
               <a target="_blank" rel="noreferrer" href="">
-                claim transaction.
+                here
               </a>
+              .
             </div>
           }
           fullScreen={false}

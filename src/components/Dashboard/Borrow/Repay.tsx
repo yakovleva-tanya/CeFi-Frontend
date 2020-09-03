@@ -30,7 +30,7 @@ const RepayPage = () => {
       >
         {repaySuccess && (
           <SuccessScreen
-            title="You're set!"
+            title="Payment complete"
             message={<div>You’ve repaid your loan!</div>}
             fullScreen={false}
             onButtonClick={() => {
@@ -39,7 +39,7 @@ const RepayPage = () => {
           />
         )}
         {isRepaying && (
-          <ProcessingScreen link={""} title="Repaying" fullScreen={false} />
+          <ProcessingScreen link={""} title="Repaying loan" fullScreen={false} />
         )}
         {!repaySuccess && !isRepaying && selectedLoan && <RepaySelectedLoan />}
         {!repaySuccess && !isRepaying && !selectedLoan && <RepayForm />}

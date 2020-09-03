@@ -20,7 +20,7 @@ const WithdrawPage = () => {
           onButtonClick={() => {
             setSuccess(false);
           }}
-          title="You're set!"
+          title="Withdraw completed"
           message={
             <div>
               View your{" "}
@@ -32,7 +32,7 @@ const WithdrawPage = () => {
         />
       )}
       {isWithdrawing && (
-        <ProcessingScreen link="" title="Withdrawing" fullScreen={false} />
+        <ProcessingScreen link="" title="Withdrawing deposit" fullScreen={false} />
       )}
       {!isWithdrawing && !success && <WithdrawMainSection />}
     </div>

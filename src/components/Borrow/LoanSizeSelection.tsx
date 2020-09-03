@@ -53,7 +53,7 @@ const LoanSizeSubmenu = () => {
             setSubmenu(null);
           }}
         >
-          Submit
+          Enter
         </div>
       </div>
     </SubmenuCard>

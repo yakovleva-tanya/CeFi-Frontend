@@ -1,15 +1,22 @@
 import React, { useContext } from "react";
+
+import { BorrowPageContext } from "../../context/borrowContext";
+import { AppContext, mapLendingTokensToTellerTokens } from "../../context/app";
+import ConnectPlaid from "./../../actions/ConnectPlaid";
+
+import Arrow from "../UI/Arrow";
 import Card from "../UI/Card";
 import Metric from "../UI/Metric";
 import BR from "../UI/BR";
+
 import "./borrow.scss";
-import { BorrowPageContext } from "../../context/borrowContext";
-import { AppContext, mapLendingTokensToTellerTokens } from "../../context/app";
 
 const BorrowMetrics = () => {
   const { borrowRequest, stage } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
-  const { tokenData, teller } = state;
+
+  const { tokenData, teller, web3State } = state;
+  const address = web3State?.address;
   const { lendWith, collateralWith } = borrowRequest;
 
   const assetPrice = tokenData
@@ -32,8 +39,8 @@ const BorrowMetrics = () => {
 
   return (
     <Card className="metrics-card" title="Summary">
-      <Metric title={`${lendWith} Price`} value={assetPrice} />
-      <Metric title="Wallet Balance" value={walletBalance} />
+      <Metric title="Asset price" value={assetPrice} />
+      <Metric title="Wallet balance" value={walletBalance} />
       <Metric title="Collateral available" value={collateralAvailable} />
       {stage === 1 && (
         <div>
@@ -41,9 +48,22 @@ const BorrowMetrics = () => {
             <BR />
           </div>
           <Metric
-            title="Tip"
-            value=" Connect your bank account and select Fixed loan type to qualify for 0% collateral."
+            title="Pro tip"
+            value="Connect to your bank account to reduce collateral ratios."
           />
+          <div
+            className={`${
+              address ? "pointer" : "disabled"
+            } text-lg font-medium`}
+            onClick={() => {
+              if (address) {
+                ConnectPlaid(updateAppState, address)();
+              }
+            }}
+          >
+            <u className="mr-2">Connect accounts</u>
+            <Arrow direction="right" />
+          </div>
         </div>
       )}
     </Card>

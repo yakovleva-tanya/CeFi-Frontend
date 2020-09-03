@@ -17,7 +17,7 @@ const FirstStageTable = () => {
   return (
     <div>
       <div className="table border-thin my-5">
-        <TableRow title="Lend With">
+        <TableRow title="Borrow">
           <CustomDropdown
             options={["DAI", "USDC"]}
             selected={borrowRequest.lendWith}
@@ -30,15 +30,15 @@ const FirstStageTable = () => {
           />
         </TableRow>
         <BR />
-        <TableRow title="Loan Size">
+        <TableRow title="Loan size">
           <LoanSizeSelection />
         </TableRow>
         <BR />
-        <TableRow title="Loan Term">
+        <TableRow title="Loan period">
           <LoanTermSelection />
         </TableRow>
         <BR />
-        <TableRow title="Collateral With">
+        <TableRow title="Collateral asset">
           <CustomDropdown
             options={["ETH", "LINK"]}
             selected={borrowRequest.collateralWith}
@@ -55,18 +55,18 @@ const FirstStageTable = () => {
           <ConnectPlaidButton />
         </TableRow>
         <BR />
-        <TableRow title="Collateral Percent">
-          <CollateralPercentSelection />
-        </TableRow>
-        <BR />
-        <TableRow title="Loan Type">
+        <TableRow title="Loan type">
           <CustomDropdown
-            options={["Fixed", "Variable"]}
+            options={["Secure", "Unsecured"]}
             selected={borrowRequest.loanType}
             handleSelect={(eventKey: any) => {
               setBorrowRequest({ ...borrowRequest, loanType: eventKey });
             }}
           />
+        </TableRow>
+        <BR />
+        <TableRow title="Collateral percent">
+          <CollateralPercentSelection />
         </TableRow>
       </div>
     </div>

@@ -31,7 +31,7 @@ const WithdrawPage = () => {
         {success && (
           <SuccessScreen
             fullScreen={false}
-            title="You're set!"
+            title="Withdraw accepted"
             onButtonClick={() => {
               setSuccess(false);
             }}
@@ -39,7 +39,7 @@ const WithdrawPage = () => {
           />
         )}
         {isWithdrawing && (
-          <ProcessingScreen link="" fullScreen={false} title="Withdrawing" />
+          <ProcessingScreen link="" fullScreen={false} title="Withdrawing collateral" />
         )}
         {!success && !isWithdrawing && <WithdrawMainSection />}
       </Card>

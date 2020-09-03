@@ -87,7 +87,7 @@ const LoanTermSubmenu = () => {
           className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"
           onClick={onSubmit}
         >
-          Submit
+          Enter
         </div>
       </div>
     </SubmenuCard>

@@ -40,7 +40,7 @@ const RepaySelectedLoan = () => {
   return (
     <div>
       <div className="table border-thin mb-4 mt-3">
-        <TableRow title="Interest Rate">
+        <TableRow title="APR">
           <div className="font-medium">{terms.interestRate}%</div>
         </TableRow>
         <BR />

@@ -58,7 +58,7 @@ const CollateralPercentSubmenu = () => {
 
   return (
     <SubmenuCard
-      title="Collateral Percent"
+      title="Collateral percent"
       onCloseAction={() => {
         setSubmenu(null);
       }}
@@ -88,7 +88,7 @@ const CollateralPercentSubmenu = () => {
           className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"
           onClick={onSubmit}
         >
-          Submit
+          Enter
         </div>
       </div>
     </SubmenuCard>

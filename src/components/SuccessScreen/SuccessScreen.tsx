@@ -25,7 +25,7 @@ const SuccessScreen = ({
         <div className="text-5xl font-medium">{title}</div>
         <div className="text-gray m-3">{message}</div>
         <Link to="/dashboard">
-          <PrimaryButton onClick={onButtonClick} text={"Explore Dashboard"} />
+          <PrimaryButton onClick={onButtonClick} text={"Go to dashboard"} />
         </Link>
       </div>
     </div>

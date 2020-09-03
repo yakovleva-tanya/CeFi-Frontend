@@ -24,13 +24,13 @@ const DepositPage = () => {
     <div>
       <Card
         className="main-card text-center"
-        title={selectedLoan ? `ID ${selectedLoan.id}` : "Deposit Collateral"}
+        title={selectedLoan ? `ID ${selectedLoan.id}` : "Deposit collateral"}
         goBack={selectedLoan ? goBack : null}
       >
         {success && (
           <SuccessScreen
             fullScreen={false}
-            title="You're set!"
+            title="Deposit accepted"
             onButtonClick={() => {
               setSuccess(false);
             }}
@@ -38,7 +38,7 @@ const DepositPage = () => {
           />
         )}
         {isDepositing && (
-          <ProcessingScreen link="" fullScreen={false} title="Depositing" />
+          <ProcessingScreen link="" fullScreen={false} title="Depositing collateral" />
         )}
         {!success && !isDepositing && <DepositMainSection />}
       </Card>
