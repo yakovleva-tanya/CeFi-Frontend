@@ -30,11 +30,13 @@ const UseCompoundMainSection = () => {
     setAmountSubmenu,
     amount,
     setAmount,
+    setSuccessMessage,
   } = useContext(UseCompoundContext);
 
   const withdraw = async () => {
     setWithdrawing(true);
     const res = await compoundWithdraw(amount);
+    setSuccessMessage("Withdraw accepted");
     setWithdrawing(false);
     setSuccess(res);
   };
@@ -42,6 +44,7 @@ const UseCompoundMainSection = () => {
   const supply = async () => {
     setSupplying(true);
     const res = await compoundSupply(amount);
+    setSuccessMessage("Deposit accepted");
     setSupplying(false);
     setSuccess(res);
   };
@@ -124,18 +127,16 @@ const UseCompoundMainSection = () => {
             <ViewContractLink link={selectedLoan.transactionHash} />
             <div className="d-flex flex-row justify-content-between">
               <div>
-                <PrimaryButton
-                  text="Withdraw"
-                  onClick={() => withdraw()}
-                />
+                <PrimaryButton text="Withdraw" onClick={() => withdraw()} />
               </div>
               <div
                 onClick={() => supply()}
-                className="font-medium text-lg mt-4 py-3"
+                className="font-medium text-lg mt-4 py-3 pointer"
                 style={{
                   backgroundColor: "#5DEDCA",
                   borderRadius: "4px",
                   color: "white",
+                  minWidth: "152px"
                 }}
               >
                 Deposit

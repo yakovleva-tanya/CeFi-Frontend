@@ -21,7 +21,7 @@ const navigationMap: NavigationInterface = {
     Deposit: "Borrow-Deposit",
     Withdraw: "Borrow-Withdraw",
   },
-  SPEND: { "Compound": "Spend-Compound", Uniswap: "Spend-Uniswap" },
+  SPEND: { Compound: "Spend-Compound", Uniswap: "Spend-Uniswap" },
 };
 
 const defaultDashboardContext: DashboardContextInterface = {
@@ -304,6 +304,8 @@ const defaultUseCompoundState: UseCompoundStateInterface = {
   setAmountSubmenu: () => {},
   amount: 0,
   setAmount: () => {},
+  successMessage: "",
+  setSuccessMessage: () => {},
 };
 export const UseCompoundContext = React.createContext(defaultUseCompoundState);
 export const UseCompoundContextProvider = ({ children }: ContextProps) => {
@@ -313,6 +315,7 @@ export const UseCompoundContextProvider = ({ children }: ContextProps) => {
   const [selectedLoan, setSelectedLoan] = useState(null);
   const [amountSubmenu, setAmountSubmenu] = useState(false);
   const [amount, setAmount] = useState(0);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const state = {
     success,
@@ -327,6 +330,8 @@ export const UseCompoundContextProvider = ({ children }: ContextProps) => {
     setAmountSubmenu,
     amount,
     setAmount,
+    successMessage,
+    setSuccessMessage,
   };
   return (
     <UseCompoundContext.Provider value={state}>
