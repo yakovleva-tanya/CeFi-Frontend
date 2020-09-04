@@ -36,7 +36,7 @@ const CollateralPercentSubmenu = () => {
 
   return (
     <SubmenuCard
-      title="Collateral Amount"
+      title="Collateral amount"
       onCloseAction={() => {
         setSubmenu(null);
       }}
@@ -75,7 +75,7 @@ const CollateralPercentSubmenu = () => {
             }
           }}
         >
-          Submit
+          Enter
         </div>
       </div>
     </SubmenuCard>

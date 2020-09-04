@@ -9,27 +9,44 @@ import ProcessingScreen from "../../ProcessingScreen/ProcessingScreen";
 import UseCompoundMainSection from "./UseCompoundMainSection";
 
 const CompoundFinancePage = () => {
-  const { success, setSuccess, isWithdrawing, isSupplying } = useContext(
-    UseCompoundContext
-  );
+  const {
+    success,
+    setSuccess,
+    isWithdrawing,
+    isSupplying,
+    successMessage,
+  } = useContext(UseCompoundContext);
 
   return (
     <div>
       {success && (
         <SuccessScreen
           fullScreen={false}
-          title="You're set!"
+          title={successMessage}
           onButtonClick={() => {
             setSuccess(false);
           }}
-          message={<div> </div>}
+          message={
+            <div>
+              View transaction status{" "}
+              <a className="link text-gray">
+                <u>here</u>
+              </a>
+              .
+            </div>
+          }
+          CTA="Go back"
         />
       )}
       {isWithdrawing && (
-        <ProcessingScreen link="" fullScreen={false} title="Withdrawing" />
+        <ProcessingScreen
+          link=""
+          fullScreen={false}
+          title="Withdrawing deposit"
+        />
       )}
       {isSupplying && (
-        <ProcessingScreen link="" fullScreen={false} title="Supplying" />
+        <ProcessingScreen link="" fullScreen={false} title="Depositing" />
       )}
       {!success && !isWithdrawing && !isSupplying && <UseCompoundMainSection />}
     </div>

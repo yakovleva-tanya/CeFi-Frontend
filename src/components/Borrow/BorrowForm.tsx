@@ -79,11 +79,16 @@ const BorrowForm = () => {
     setRequesting(false);
     setSuccess(res);
   };
+  const onRequestLoanMock = async () => {
+    setRequesting(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setRequesting(false);
+    setSuccess(true);
+  };
   const onAcceptTerms = async () => {
     setSubmitting(true);
     //Accept loan terms
     await new Promise((resolve) => setTimeout(resolve, 2000));
-
     setSubmitting(false);
     setStage(stage + 1);
   };
@@ -99,7 +104,7 @@ const BorrowForm = () => {
               <FirstStageTable />
               {loggedIn ? (
                 <PrimaryButton
-                  text="Get Loan Terms"
+                  text="Request terms"
                   onClick={() => {
                     //Get LoanTerms
                     setStage(stage + 1);
@@ -113,7 +118,7 @@ const BorrowForm = () => {
           {stage === 2 && (
             <div>
               <SecondStageTable />
-              <PrimaryButton text="Accept Loan Terms" onClick={onAcceptTerms} />
+              <PrimaryButton text="Accept terms" onClick={onAcceptTerms} />
             </div>
           )}
           {stage === 3 && (
@@ -121,8 +126,12 @@ const BorrowForm = () => {
               <ThirdStageTable />
               <PrimaryButton
                 disabled={!borrowRequest.transferred}
-                text="Request Loan"
-                onClick={onRequestLoan}
+                text="Request loan"
+                onClick={
+                  process.env.INTEGRATIONS_DISABLED === "true"
+                    ? onRequestLoanMock
+                    : onRequestLoan
+                }
               />
             </div>
           )}

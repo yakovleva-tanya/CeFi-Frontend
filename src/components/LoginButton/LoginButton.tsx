@@ -85,7 +85,7 @@ const LoginButton = () => {
   return (
     <PrimaryButton
       onClick={() => web3FromProvider(updateAppState)}
-      text="Connect Wallet"
+      text="Connect wallet"
     />
   );
 };

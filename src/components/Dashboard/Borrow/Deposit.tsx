@@ -24,21 +24,38 @@ const DepositPage = () => {
     <div>
       <Card
         className="main-card text-center"
-        title={selectedLoan ? `ID ${selectedLoan.id}` : "Deposit Collateral"}
+        title={selectedLoan ? `ID ${selectedLoan.id}` : "Deposit collateral"}
         goBack={selectedLoan ? goBack : null}
       >
         {success && (
           <SuccessScreen
             fullScreen={false}
-            title="You're set!"
+            title="Deposit accepted"
             onButtonClick={() => {
               setSuccess(false);
             }}
-            message={<div>You’ve deposited your loan!</div>}
+            message={
+              <div>
+                View your transaction status{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://etherscan.io/tx/"
+                  className="link text-gray"
+                >
+                  <u>here</u>
+                </a>
+              </div>
+            }
+            CTA="Go back"
           />
         )}
         {isDepositing && (
-          <ProcessingScreen link="" fullScreen={false} title="Depositing" />
+          <ProcessingScreen
+            link=""
+            fullScreen={false}
+            title="Depositing collateral"
+          />
         )}
         {!success && !isDepositing && <DepositMainSection />}
       </Card>

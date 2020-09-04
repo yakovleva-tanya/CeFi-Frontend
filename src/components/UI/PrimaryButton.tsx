@@ -17,7 +17,7 @@ const PrimaryButton = ({
 }: primaryButtonProps) => {
   return (
     <Button
-      style={{}}
+      style={{minWidth:'152px'}}
       type={type}
       variant={variant}
       onClick={() => {

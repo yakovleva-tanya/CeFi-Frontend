@@ -98,6 +98,9 @@ const WithdrawMainSection = () => {
 
   return (
     <div>
+      <div className="text-gray -mx-2">
+        Select an asset to withdraw your deposit to date
+      </div>
       <FormValidationWarning message={warningMessage} />
       <CustomInput
         onChangeFunction={(e: any) => {
@@ -150,8 +153,8 @@ const WithdrawMainSection = () => {
       <PrimaryButton
         text="Withdraw"
         onClick={() => {
-          // process.env.INTEGRATIONS_DISABLED === "true"
-          (true)? onSubmitMock()
+          process.env.INTEGRATIONS_DISABLED === "true"
+            ? onSubmitMock()
             : onSubmit(
                 selectedCurrency,
                 selectedAmount.replace(/[^0-9.]/g, "")

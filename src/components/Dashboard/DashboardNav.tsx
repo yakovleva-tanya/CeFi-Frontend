@@ -8,7 +8,7 @@ const DashboardNav = () => {
       {Object.keys(navigationMap).map((section) => {
         return (
           <div className="m-2 pb-4" key={section}>
-            <div className="mb-1">{section}</div>
+            <div className="mb-1 text-gray">{section}</div>
             {Object.keys(navigationMap[section]).map((subsection) => {
               return (
                 <div

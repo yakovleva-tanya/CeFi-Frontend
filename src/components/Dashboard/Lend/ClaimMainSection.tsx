@@ -59,16 +59,16 @@ const ClaimMainSection = () => {
   return (
     <div>
       <div className="text-gray mb-2">
-        Select an asset to claim interest/rewards on
+        Select an asset to redeem your APY to date.
       </div>
       <div className="border-thin my-4">
         {assets.map((asset) => {
           const { currency, amount } = asset;
-          const title = `${amount} ${currency} - $${amount}`;
+          const title = `${amount} ${currency}`;
           return (
             <div key={currency}>
               <WarningModal
-                text="You're about to change your supply asset, doing so will submit another transaction approval and cost additional gas fees. Are you sure you want to proceed?"
+                text="Redeeming your APY will submit a transaction and incur gas fees. Costs will be debited from your wallet. Are you sure you want to proceed?"
                 show={assetChangeWarning === currency}
                 proceed={async () => {
                   setAssetChangeWarning("");
@@ -82,7 +82,7 @@ const ClaimMainSection = () => {
                 <CustomSubmitButton
                   text="Claim"
                   onClickAction={() => onAssetClaim(currency)}
-                  disabled={!!assetClaimed}
+                  disabled={!!assetClaimed && assetClaimed !== currency}
                   loading={isClaiming === currency}
                   approved={assetClaimed === currency}
                 />
@@ -94,7 +94,7 @@ const ClaimMainSection = () => {
       </div>
       <PrimaryButton
         disabled={!assetClaimed}
-        text="Collect Interest"
+        text="Redeem"
         onClick={processCollectInterest}
       />
     </div>
