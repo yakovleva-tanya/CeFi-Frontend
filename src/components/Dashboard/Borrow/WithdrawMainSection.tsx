@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import {
   DashboardContext,
@@ -14,8 +14,16 @@ import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
+import { AppContext } from "../../../context/app";
+import {
+  calculateCollateralPercent,
+  getMaxWithdrawAmount,
+} from "../../../actions/HelperFunctions";
+import FormValidationWarning from "../../UI/FormValidationWarning";
 
 const WithdrawMainSection = () => {
+  const [warning, setWarning] = useState("");
+  const { state } = useContext(AppContext);
   const { loans } = useContext(DashboardContext);
   const {
     setSuccess,
@@ -26,6 +34,8 @@ const WithdrawMainSection = () => {
     setWithdrawCollateralSubmenu,
     withdrawAmount,
     setWithdrawAmount,
+    setNewCollateralPercent,
+    newCollateralPercent,
   } = useContext(BorrowWithdrawContext);
 
   const withdraw = async () => {
@@ -35,9 +45,14 @@ const WithdrawMainSection = () => {
     setSuccess(res);
   };
 
-  const getExpuryDateString = (date:number) =>{
-  const expiryDate = new Date(date);
-  return expiryDate.toLocaleDateString()
+  const getExpuryDateString = (date: number) => {
+    const expiryDate = new Date(date);
+    return expiryDate.toLocaleDateString();
+  };
+  let maxWithdrawAmount = 0;
+  if (selectedLoan) {
+    maxWithdrawAmount = getMaxWithdrawAmount(state.tokenData, selectedLoan);
+    console.log(maxWithdrawAmount);
   }
   return (
     <div>
@@ -50,6 +65,7 @@ const WithdrawMainSection = () => {
             }}
           >
             <div className="d-flex flex-column">
+              <FormValidationWarning message={warning} />
               <CustomInput
                 onChangeFunction={(e: any) => {
                   let value = e.target.value.replace(/[^0-9.]/g, "");
@@ -60,7 +76,23 @@ const WithdrawMainSection = () => {
                   if (isNaN(value)) {
                     value = "0.00";
                   }
+                  if (value > maxWithdrawAmount) {
+                    setWarning(
+                      `You cannot withdraw more than ${maxWithdrawAmount} ${selectedLoan.collateralToken}`
+                    );
+                  } else {
+                    setWarning("");
+                  }
                   setWithdrawAmount(value);
+                  const newCollateralPercent = calculateCollateralPercent(
+                    state.tokenData,
+                    {
+                      ...selectedLoan,
+                      collateralAmount:
+                        selectedLoan.collateralAmount - parseFloat(value),
+                    }
+                  );
+                  setNewCollateralPercent(newCollateralPercent);
                 }}
                 value={withdrawAmount.toString()}
                 type="string"
@@ -69,10 +101,23 @@ const WithdrawMainSection = () => {
                   if (isNaN(value)) {
                     value = 0;
                   }
+                  if (value > maxWithdrawAmount) {
+                    value = maxWithdrawAmount;
+                    const newCollateralPercent = calculateCollateralPercent(
+                      state.tokenData,
+                      {
+                        ...selectedLoan,
+                        collateralAmount: maxWithdrawAmount,
+                      }
+                    );
+                    setNewCollateralPercent(newCollateralPercent);
+                  }
                   setWithdrawAmount(value);
                 }}
               />
-              <div className="text-lightest-gray text-lg ">140%</div>
+              <div className="text-lightest-gray text-lg ">
+                {newCollateralPercent || selectedLoan.currentCollateralPercent}%
+              </div>
               <div
                 className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"
                 onClick={() => {
@@ -92,7 +137,9 @@ const WithdrawMainSection = () => {
                 </TableRow>
                 <BR />
                 <TableRow title="Loan Expiration">
-                  <div className="font-medium">{getExpuryDateString(selectedLoan.terms.expiryAt)}</div>
+                  <div className="font-medium">
+                    {getExpuryDateString(selectedLoan.terms.expiryAt)}
+                  </div>
                 </TableRow>
                 <BR />
                 <TableRow title="Collateral amount">
@@ -136,7 +183,9 @@ const WithdrawMainSection = () => {
                   </TableRow>
                   <BR />
                   <TableRow title="New collateral %">
-                    <div className="font-medium">-</div>
+                    <div className="font-medium">
+                      {newCollateralPercent ? `${newCollateralPercent}%` : "-"}
+                    </div>
                   </TableRow>
                 </div>
               </div>

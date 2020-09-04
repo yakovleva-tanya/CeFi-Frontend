@@ -77,23 +77,18 @@ const FetchLoans = async (network: string, address: string) => {
       loan.collateralAmount =
         loan.totalCollateralDepositsAmount -
         loan.totalCollateralWithdrawalsAmount;
-      loan.currentCollateralPercent =
-        (loan.collateralAmount /
-          tokenRates[loan.token]/
-          (loan.totalOwedAmount / collateralRates[loan.collateralToken])) *
-        100;
       const timeTillExpires = Math.round(
         (currentTime - loan.terms.expiryAt) / (60 * 60 * 24 * 1000)
       );
       let statusName = "";
       if (loan.status === "Closed") {
         statusName = "Repaid";
-      } else if (timeTillExpires > 0) {
+      } else if (timeTillExpires >= 0) {
         statusName = "Outstanding";
       } else {
         statusName = "Overdue";
       }
-
+      loan.currentCollateralPercent = 0;
       loan.statusName = statusName;
       loan.timeTillExpires = timeTillExpires;
       return loan;

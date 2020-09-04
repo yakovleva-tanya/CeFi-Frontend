@@ -10,17 +10,27 @@ import Use from "./Use";
 import FetchLoans from "../../models/FetchLoans";
 import { AppContext } from "../../context/app";
 import LoginButton from "../LoginButton/LoginButton";
+import { LoanInterface } from "../../context/types";
+import { calculateCollateralPercent } from "../../actions/HelperFunctions";
 
 const Dashboard = () => {
   const { state } = useContext(AppContext);
-  const { web3State } = state;
+  const { web3State, tokenData } = state;
   const { onPage, setLoans } = useContext(DashboardContext);
 
   const updateLoans = async () => {
     const loans = await FetchLoans(web3State.network, web3State.address);
-    setLoans(loans);
+    const updatedLoans = loans.map((loan: LoanInterface) => {
+      loan.currentCollateralPercent = calculateCollateralPercent(
+        tokenData,
+        loan
+      );
+      return loan;
+    });
+    setLoans(updatedLoans);
   };
   useEffect(() => {
+    if (!web3State.address) return;
     updateLoans();
   }, [web3State.address, web3State.network]);
 
@@ -37,9 +47,7 @@ const Dashboard = () => {
         </div>
       ) : (
         <div className="d-flex justify-content-center align-items-center flex-column">
-          <div >
-            Please connect your wallet to view the dashboard
-          </div>
+          <div>Please connect your wallet to view the dashboard</div>
           <LoginButton />
         </div>
       )}

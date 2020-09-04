@@ -23,16 +23,11 @@ import LendPageContextProvider, {
 import LoginButton from "../LoginButton/LoginButton";
 import "./lend.scss";
 import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
+import { getEtherscanLink } from "../../actions/HelperFunctions";
 
 const supplyFormValidation = () => {
   const errors = {};
   return errors;
-};
-export const getEtherscanLink = (hash: string, network: string) => {
-  if (network == "4") return `https://rinkeby.etherscan.io/tx/${hash}`;
-  else if (network == "3") return `https://ropsten.etherscan.io/tx/${hash}`;
-  else return `https://etherscan.io/tx/${hash}`;
-  return ""
 };
 
 const Lend = () => {
