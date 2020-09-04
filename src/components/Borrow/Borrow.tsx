@@ -57,7 +57,7 @@ const Borrow = () => {
                 >
                   <u>click here</u>
                 </a>{" "}
-                to view you borrow balance.
+                to view your borrow balance.
               </div>
             </div>
           }
