@@ -21,7 +21,12 @@ const ProcessingScreen = ({ link, title, fullScreen = true }: props) => {
       <div className="text-5xl processing-text font-medium">{title}</div>
       <div className="text-gray m-3">
         View transaction status{" "}
-        <a className="text-gray" href={link} target="_blank" rel="noreferrer">
+        <a
+          className="link text-gray"
+          href={link}
+          target="_blank"
+          rel="noreferrer"
+        >
           <u>here</u>
         </a>
         .

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import {
   DashboardContext,
   UseCompoundContext,
-  UseCompoundContextProvider
+  UseCompoundContextProvider,
 } from "../../../context/dashboardContext";
 import {
   compoundWithdraw,
@@ -16,7 +16,7 @@ import PrimaryButton from "../../UI/PrimaryButton";
 import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
-import ViewContractLink from '../ViewContractLink';
+import ViewContractLink from "../ViewContractLink";
 
 const UseCompoundMainSection = () => {
   const { loans } = useContext(DashboardContext);
@@ -112,7 +112,7 @@ const UseCompoundMainSection = () => {
                 <div className="font-medium">{`0 ${selectedLoan.token}`}</div>
               </TableRow>
               <BR />
-              <TableRow title="Add collateral">
+              <TableRow title="Amount">
                 <CustomSubmenuLink
                   title={`${amount} ${selectedLoan.token}`}
                   onClickAction={() => {
@@ -120,22 +120,25 @@ const UseCompoundMainSection = () => {
                   }}
                 />
               </TableRow>
-              <BR />
-              <TableRow title="New collateral %">
-                <div className="font-medium">-</div>
-              </TableRow>
             </div>
             <ViewContractLink link={selectedLoan.transactionHash} />
-            <div className="d-flex flex-row justify-content-around">
-              <div>
-                <PrimaryButton text="Withdraw" onClick={() => withdraw()} />
-              </div>
+            <div className="d-flex flex-row justify-content-between">
               <div>
                 <PrimaryButton
-                  text="Supply"
-                  onClick={() => supply()}
-                  variant="info"
+                  text="Withdraw"
+                  onClick={() => withdraw()}
                 />
+              </div>
+              <div
+                onClick={() => supply()}
+                className="font-medium text-lg mt-4 py-3"
+                style={{
+                  backgroundColor: "#5DEDCA",
+                  borderRadius: "4px",
+                  color: "white",
+                }}
+              >
+                Deposit
               </div>
             </div>
           </div>

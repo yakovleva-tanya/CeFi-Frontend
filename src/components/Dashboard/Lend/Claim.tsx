@@ -21,8 +21,13 @@ const ClaimPage = () => {
           message={
             <div>
               View your transaction status{" "}
-              <a target="_blank" rel="noreferrer" href="">
-                here
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href=''
+                className="link text-gray"
+              >
+                <u>here</u>
               </a>
               .
             </div>
@@ -31,6 +36,7 @@ const ClaimPage = () => {
           onButtonClick={() => {
             setSuccess(false);
           }}
+          CTA = "Go back"
         />
       )}
       {!isCollecting && !success && <ClaimMainSection />}

@@ -42,7 +42,6 @@ const BorrowMetrics = () => {
       <Metric title="Asset price" value={assetPrice} />
       <Metric title="Wallet balance" value={walletBalance} />
       <Metric title="Collateral available" value={collateralAvailable} />
-      {stage === 1 && (
         <div>
           <div className="metrics-div">
             <BR />
@@ -65,7 +64,6 @@ const BorrowMetrics = () => {
             <Arrow direction="right" />
           </div>
         </div>
-      )}
     </Card>
   );
 };

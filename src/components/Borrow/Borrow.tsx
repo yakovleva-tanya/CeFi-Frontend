@@ -19,6 +19,7 @@ const Borrow = () => {
     success,
     stageChangeWarning,
     setStageChangeWarning,
+    setSuccess,
   } = borrowProcessState;
 
   return (
@@ -36,9 +37,7 @@ const Borrow = () => {
           }}
         />
       )}
-      {isSubmitting && (
-        <ProcessingScreen link="" title="Submitting terms" />
-      )}
+      {isSubmitting && <ProcessingScreen link="" title="Submitting terms" />}
       {isRequesting && <ProcessingScreen link="" title="Requesting Loan" />}
       {success && (
         <SuccessScreen
@@ -46,13 +45,20 @@ const Borrow = () => {
           message={
             <div>
               <div>
-                Go to dashboard or click{" "}
-                <a target="_blank" rel="noreferrer" href="">
-                  here.
+                Go to dashboard or{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  className="link text-gray pointer"
+                  onClick={() => {
+                    setStage(1);
+                    setSuccess(false);
+                  }}
+                >
+                  <u>click here</u>
                 </a>{" "}
                 to view you borrow balance.
               </div>
-              <div>Get started using your loan by exploring our dashboard.</div>
             </div>
           }
         />

@@ -116,13 +116,14 @@ const Lend = () => {
           title="Deposit accepted"
           message={
             <div>
-              Go to dashboard or click{" "}
+              Go to dashboard or{" "}
               <a
+                className="link text-gray"
                 target="_blank"
                 rel="noreferrer"
                 href={getEtherscanLink(transactionHash, network)}
               >
-                here
+                <u>click here</u>
               </a>{" "}
               to view you deposit balance.
             </div>

@@ -12,7 +12,7 @@ const ThirdStageTable = () => {
   return (
     <div>
       <div className="table border-thin my-5">
-        <TableRow title="Interest Rate">
+        <TableRow title="Interest rate">
           <div className="font-medium"> {interestRate} % </div>
         </TableRow>
         <BR />

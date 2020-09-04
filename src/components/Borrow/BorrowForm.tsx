@@ -126,7 +126,7 @@ const BorrowForm = () => {
               <ThirdStageTable />
               <PrimaryButton
                 disabled={!borrowRequest.transferred}
-                text="Request Loan"
+                text="Request loan"
                 onClick={
                   process.env.INTEGRATIONS_DISABLED === "true"
                     ? onRequestLoanMock

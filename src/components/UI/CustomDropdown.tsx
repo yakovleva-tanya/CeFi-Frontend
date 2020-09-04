@@ -98,7 +98,7 @@ const CustomToggle = React.forwardRef<HTMLAnchorElement, toggleProps>(
   ({ children, onClick }, ref) => {
     return (
       <a
-        href=""
+        href="https://etherscan.io/tx/"
         ref={ref}
         onClick={(e) => {
           e.preventDefault();

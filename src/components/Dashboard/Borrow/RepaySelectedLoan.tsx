@@ -51,7 +51,9 @@ const RepaySelectedLoan = () => {
         </TableRow>
         <BR />
         <TableRow title="Loan term">
-          <div className="font-medium">{terms.duration} Days</div>
+          <div className="font-medium">
+            {terms.duration} {terms.duration % 10 === 1 ? "day" : "days"}
+          </div>
         </TableRow>
         <BR />
         <TableRow title="Loan type">
@@ -89,7 +91,9 @@ const RepaySelectedLoan = () => {
               )}
               {statusName === "Outstanding" && (
                 <div className="font-medium">
-                  {timeTillExpires} days remaining
+                  {`${timeTillExpires} ${
+                    timeTillExpires % 10 === 1 ? "day" : "days"
+                  } remaining`}
                 </div>
               )}
             </TableRow>

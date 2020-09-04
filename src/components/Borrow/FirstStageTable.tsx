@@ -57,7 +57,7 @@ const FirstStageTable = () => {
         <BR />
         <TableRow title="Loan type">
           <CustomDropdown
-            options={["Secure", "Unsecured"]}
+            options={["Secured", "Unsecured"]}
             selected={borrowRequest.loanType}
             handleSelect={(eventKey: any) => {
               setBorrowRequest({ ...borrowRequest, loanType: eventKey });

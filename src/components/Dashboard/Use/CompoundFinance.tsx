@@ -18,18 +18,31 @@ const CompoundFinancePage = () => {
       {success && (
         <SuccessScreen
           fullScreen={false}
-          title="You're set!"
+          title="Withdraw accepted"
           onButtonClick={() => {
             setSuccess(false);
           }}
-          message={<div> </div>}
+          message={
+            <div>
+              View transaction status{" "}
+              <a className="link text-gray">
+                <u>here</u>
+              </a>
+              .
+            </div>
+          }
+          CTA = "Go back"
         />
       )}
       {isWithdrawing && (
-        <ProcessingScreen link="" fullScreen={false} title="Withdrawing" />
+        <ProcessingScreen
+          link=""
+          fullScreen={false}
+          title="Withdrawing deposit"
+        />
       )}
       {isSupplying && (
-        <ProcessingScreen link="" fullScreen={false} title="Supplying" />
+        <ProcessingScreen link="" fullScreen={false} title="Depositing" />
       )}
       {!success && !isWithdrawing && !isSupplying && <UseCompoundMainSection />}
     </div>

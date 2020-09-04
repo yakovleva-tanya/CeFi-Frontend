@@ -35,11 +35,28 @@ const WithdrawPage = () => {
             onButtonClick={() => {
               setSuccess(false);
             }}
-            message={<div>You’ve withdrawed your loan!</div>}
+            message={
+              <div>
+                View transaction status{" "}
+                <a
+                  className="link text-gray"
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://etherscan.io/tx/"
+                >
+                  <u>here</u>.
+                </a>
+              </div>
+            }
+            CTA="Go back"
           />
         )}
         {isWithdrawing && (
-          <ProcessingScreen link="" fullScreen={false} title="Withdrawing collateral" />
+          <ProcessingScreen
+            link=""
+            fullScreen={false}
+            title="Withdrawing collateral"
+          />
         )}
         {!success && !isWithdrawing && <WithdrawMainSection />}
       </Card>

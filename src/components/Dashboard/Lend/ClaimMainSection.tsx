@@ -82,7 +82,7 @@ const ClaimMainSection = () => {
                 <CustomSubmitButton
                   text="Claim"
                   onClickAction={() => onAssetClaim(currency)}
-                  disabled={!!assetClaimed}
+                  disabled={!!assetClaimed && assetClaimed !== currency}
                   loading={isClaiming === currency}
                   approved={assetClaimed === currency}
                 />

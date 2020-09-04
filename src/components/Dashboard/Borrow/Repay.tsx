@@ -31,15 +31,32 @@ const RepayPage = () => {
         {repaySuccess && (
           <SuccessScreen
             title="Payment complete"
-            message={<div>You’ve repaid your loan!</div>}
+            message={
+              <div>
+                View transaction status{" "}
+                <a
+                  className="link text-gray"
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://etherscan.io/tx/"
+                >
+                  <u>here</u>.
+                </a>
+              </div>
+            }
             fullScreen={false}
             onButtonClick={() => {
               setRepaySuccess(false);
             }}
+            CTA = "Go back"
           />
         )}
         {isRepaying && (
-          <ProcessingScreen link={""} title="Repaying loan" fullScreen={false} />
+          <ProcessingScreen
+            link={""}
+            title="Repaying loan"
+            fullScreen={false}
+          />
         )}
         {!repaySuccess && !isRepaying && selectedLoan && <RepaySelectedLoan />}
         {!repaySuccess && !isRepaying && !selectedLoan && <RepayForm />}

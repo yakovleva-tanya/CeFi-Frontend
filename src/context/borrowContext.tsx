@@ -47,7 +47,7 @@ const defaultBorrowRequest = {
   loanTerm: 1,
   collateralWith: BaseTokens.ETH,
   collateralPercent: 150,
-  loanType: "Secure",
+  loanType: "Secured",
   bankConnected: false,
   lendWith: AvailableLendingTokens.DAI,
   collateralAmount: null as null,
