@@ -45,7 +45,7 @@ const WithdrawMainSection = () => {
     setSuccess(res);
   };
 
-  const getExpuryDateString = (date: number) => {
+  const getExpiryDateString = (date: number) => {
     const expiryDate = new Date(date);
     return expiryDate.toLocaleDateString();
   };
@@ -138,7 +138,7 @@ const WithdrawMainSection = () => {
                 <BR />
                 <TableRow title="Loan Expiration">
                   <div className="font-medium">
-                    {getExpuryDateString(selectedLoan.terms.expiryAt)}
+                    {getExpiryDateString(selectedLoan.terms.expiryAt)}
                   </div>
                 </TableRow>
                 <BR />
