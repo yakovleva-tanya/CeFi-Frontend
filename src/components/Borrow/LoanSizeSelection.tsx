@@ -12,7 +12,7 @@ const LoanSizeSubmenu = () => {
 
   return (
     <SubmenuCard
-      title="Loan Size"
+      title="Loan size"
       onCloseAction={() => {
         setSubmenu(null);
       }}
@@ -53,7 +53,7 @@ const LoanSizeSubmenu = () => {
             setSubmenu(null);
           }}
         >
-          Submit
+          Enter
         </div>
       </div>
     </SubmenuCard>

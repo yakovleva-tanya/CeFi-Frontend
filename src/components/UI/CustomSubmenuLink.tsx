@@ -1,5 +1,4 @@
 import React from "react";
-
 import Arrow from "../UI/Arrow";
 
 type customSubmenuLinkProps = {

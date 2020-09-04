@@ -20,7 +20,7 @@ export interface LoanInterface {
   statusName?: string;
   timeTillExpires?: number;
   currentCollateralPercent?: number;
-  collateralAmount?:number
+  collateralAmount?: number;
 }
 
 export interface CollateralWithdrawInterface {
@@ -173,6 +173,8 @@ export interface UseCompoundStateInterface {
   setAmountSubmenu: Function;
   amount: number;
   setAmount: Function;
+  successMessage: string;
+  setSuccessMessage: Function;
 }
 export interface UseUniswapStateInterface {}
 

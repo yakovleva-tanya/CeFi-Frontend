@@ -23,11 +23,11 @@ export default () => {
                 <td><p className="font-weight-bold float-right">10 DAI</p></td>
               </tr>
               <tr>
-                <td>Due Date</td>
+                <td>Due date</td>
                 <td><p className="float-right">06/01/2020</p></td>
               </tr>
               <tr>
-                <td>Interest Rate</td>
+                <td>Interest rate</td>
                 <td><p className="float-right">18% APY</p></td>
               </tr>
               <tr>

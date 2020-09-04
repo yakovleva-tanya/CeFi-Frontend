@@ -8,6 +8,7 @@ type successProps = {
   message: React.ReactNode;
   onButtonClick?: Function;
   fullScreen?: boolean;
+  CTA?:string
 };
 
 const SuccessScreen = ({
@@ -15,6 +16,7 @@ const SuccessScreen = ({
   message,
   onButtonClick,
   fullScreen = true,
+  CTA = 'Go to dashboard'
 }: successProps) => {
   return (
     <div className={`${fullScreen ? "cards-container success-screen" : ""} `}>
@@ -25,7 +27,7 @@ const SuccessScreen = ({
         <div className="text-5xl font-medium">{title}</div>
         <div className="text-gray m-3">{message}</div>
         <Link to="/dashboard">
-          <PrimaryButton onClick={onButtonClick} text={"Explore Dashboard"} />
+          <PrimaryButton onClick={onButtonClick} text={CTA} />
         </Link>
       </div>
     </div>

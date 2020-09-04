@@ -40,7 +40,7 @@ const HiddenNavbar = () => {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse className="justify-content-end navbar-links">
-        <NavigationLink to="lend" name="Lend" />
+        <NavigationLink to="lend" name="Deposit" />
         <NavigationLink to="borrow" name="Borrow" />
         <NavigationLink to="dashboard" name="Dashboard" />
         <NavLoginButton />

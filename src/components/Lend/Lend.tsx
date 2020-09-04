@@ -77,7 +77,7 @@ const Lend = () => {
                       handleChange={handleChange}
                     />
                     <div className="table border-thin my-5">
-                      <TableRow title="Supply With">
+                      <TableRow title="Deposit">
                         <CurrencyDropdown />
                       </TableRow>
                       <BR />
@@ -87,7 +87,7 @@ const Lend = () => {
                     </div>
                     {loggedIn ? (
                       <PrimaryButton
-                        text="Supply"
+                        text="Deposit"
                         type="submit"
                         disabled={isSubmitting || !tokensApproved}
                       />
@@ -113,19 +113,19 @@ const Lend = () => {
           onButtonClick={() => {
             setTransactionHash("");
           }}
-          title="You're set!"
+          title="Deposit accepted"
           message={
             <div>
-              Click{" "}
+              Go to dashboard or{" "}
               <a
+                className="link text-gray"
                 target="_blank"
                 rel="noreferrer"
                 href={getEtherscanLink(transactionHash, network)}
               >
-                here
+                <u>click here</u>
               </a>{" "}
-              to view your supply balance. Get started by exploring our
-              dashboard.
+              to view you deposit balance.
             </div>
           }
         />

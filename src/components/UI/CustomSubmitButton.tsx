@@ -29,7 +29,9 @@ export const CustomSubmitButton = ({
         {text}
       </div>
       {loading ? (
-        <LoadingAnimation isStopped={!loading} />
+        <div style={{ width: "14px" }}>
+          <LoadingAnimation isStopped={!loading} />
+        </div>
       ) : (
         <img src={approved ? greenCheck : grayCheck} height={14} />
       )}

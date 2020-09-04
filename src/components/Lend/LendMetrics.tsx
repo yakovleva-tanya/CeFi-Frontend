@@ -14,7 +14,7 @@ const LendMetrics = () => {
   const { tokenData, teller } = state;
 
   const price = tokenData
-    ? `$ ${Math.round(tokenData[selectedCurrency].price * 100) / 100}`
+    ? `$${Math.round(tokenData[selectedCurrency].price * 100) / 100}`
     : "-";
   // TODO: this should update based on the selected ATM type.
   const supplyAPY = tokenData
@@ -45,11 +45,11 @@ const LendMetrics = () => {
   const COMP = "45.43";
   return (
     <Card className="metrics-card" title="Summary">
-      <Metric title="Supply APY" value={supplyAPY} />
-      <Metric title={`${selectedCurrency} Price`} value={price} />
-      <Metric title="Wallet Balance" value={walletBalance} />
-      <Metric title="Balance Supplied" value={suppliedBalance} />
-      <Metric title="Earned Balance" values={[`${ATM} ATM`, `${COMP} COMP`]} />
+      <Metric title="Deposit APY" value={supplyAPY} />
+      <Metric title="Asset price" value={`${price}`} />
+      <Metric title="Wallet balance" value={walletBalance} />
+      <Metric title="Balance supplied" value={suppliedBalance} />
+      <Metric title="Earned balance" values={[`${ATM} TLR`, `${COMP} COMP`]} />
     </Card>
   );
 };

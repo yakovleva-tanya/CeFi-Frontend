@@ -56,7 +56,7 @@ const LoanTermSubmenu = () => {
 
   return (
     <SubmenuCard
-      title="Loan Term"
+      title="Loan term"
       onCloseAction={() => {
         setSubmenu(null);
       }}
@@ -75,7 +75,7 @@ const LoanTermSubmenu = () => {
           }}
         />
         <div className="text-lg text-gray">
-          {value % 10 === 1 ? "DAY" : "DAYS"}
+          {value % 10 === 1 ? "day" : "days"}
         </div>
         <CustomSlider
           min={`${min} day`}
@@ -87,7 +87,7 @@ const LoanTermSubmenu = () => {
           className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"
           onClick={onSubmit}
         >
-          Submit
+          Enter
         </div>
       </div>
     </SubmenuCard>
@@ -100,7 +100,7 @@ const LoanTermSelection = () => {
   return (
     <CustomSubmenuLink
       title={`${borrowRequest.loanTerm} ${
-        borrowRequest.loanTerm % 10 == 1 ? "DAY" : "DAYS"
+        borrowRequest.loanTerm % 10 == 1 ? "day" : "days"
       }`}
       onClickAction={() => {
         setSubmenu(<LoanTermSubmenu />);

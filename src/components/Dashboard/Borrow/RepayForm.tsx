@@ -14,13 +14,13 @@ const RepayForm = () => {
   const currentTime = Date.now();
 
   const overdueLoans = loans.filter((loan: LoanInterface) => {
-    return (loan.statusName === "Overdue")
+    return loan.statusName === "Overdue";
   });
   const outstandingLoans = loans.filter((loan: LoanInterface) => {
-    return (loan.statusName === "Outstanding");
+    return loan.statusName === "Outstanding";
   });
   const repaidLoans = loans.filter((loan: LoanInterface) => {
-    return (loan.statusName === "Repaid");
+    return loan.statusName === "Repaid";
   });
   const { setSelectedLoan } = useContext(BorrowRepayContext);
 
@@ -31,12 +31,15 @@ const RepayForm = () => {
           <div className="text-left">Outstanding loans</div>
           <div className="table border-thin mb-4 mt-3">
             {outstandingLoans.map((loan: LoanInterface) => {
+              const days = Math.round(
+                (currentTime - loan.terms.expiryAt) / (60 * 60 * 24 * 1000)
+              );
               return (
                 <div key={loan.id}>
                   <TableRow
-                    title={`${Math.round(
-                      (currentTime - loan.terms.expiryAt ) / (60 * 60 * 24 * 1000)
-                    )} days remaining`}
+                    title={`${days} ${
+                      days % 10 === 1 ? "day" : "days"
+                    } remaining`}
                   >
                     <CustomSubmenuLink
                       title={`${loan.amountBorrowed} ${loan.token}`}
@@ -57,12 +60,15 @@ const RepayForm = () => {
           <div className="text-left">Overdue loans</div>
           <div className="table border-thin mb-4 mt-3">
             {overdueLoans.map((loan: LoanInterface) => {
+              const days = Math.round(
+                (loan.terms.expiryAt - currentTime) / (60 * 60 * 24 * 1000)
+              );
               return (
                 <div key={loan.id}>
                   <TableRow
-                    title={`${Math.round(
-                      ( loan.terms.expiryAt - currentTime ) / (60 * 60 * 24 * 1000)
-                    )} days overdue`}
+                    title={`${days} ${
+                      days % 10 === 1 ? "day" : "days"
+                    } overdue`}
                   >
                     <CustomSubmenuLink
                       title={`${loan.amountBorrowed} ${loan.token}`}
@@ -80,7 +86,7 @@ const RepayForm = () => {
       )}
       {repaidLoans.length > 0 && (
         <div className="mb-4">
-          <div className="text-left">Repaid loans</div>
+          <div className="text-left">Closed loans</div>
           <div className="table border-thin mb-4 mt-3">
             {repaidLoans.map((loan: LoanInterface) => {
               return (
