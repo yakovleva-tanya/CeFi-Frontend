@@ -198,6 +198,8 @@ const defaultBorrowDepositState: BorrowDepositStateInterface = {
   setAddCollateralSubmenu: () => {},
   collateral: null as null,
   setCollateral: () => {},
+  newCollateralPercent: null as null,
+  setNewCollateralPercent: () => {},
 };
 export const BorrowDepositContext = React.createContext(
   defaultBorrowDepositState
@@ -218,6 +220,9 @@ export const BorrowDepositContextProvider = ({ children }: ContextProps) => {
   const [collateral, setCollateral] = useState<
     BorrowDepositStateInterface["collateral"]
   >(selectedLoan ? selectedLoan.totalCollateralDepositsAmount : 0);
+  const [newCollateralPercent, setNewCollateralPercent] = useState<
+    BorrowDepositStateInterface["newCollateralPercent"]
+  >(null);
 
   const state = {
     success,
@@ -230,6 +235,8 @@ export const BorrowDepositContextProvider = ({ children }: ContextProps) => {
     setAddCollateralSubmenu,
     collateral,
     setCollateral,
+    newCollateralPercent,
+    setNewCollateralPercent,
   };
   return (
     <BorrowDepositContext.Provider value={state}>
@@ -250,6 +257,8 @@ const defaultBorrowWithdrawState: BorrowWithdrawStateInterface = {
   setWithdrawCollateralSubmenu: () => {},
   withdrawAmount: 0,
   setWithdrawAmount: () => {},
+  newCollateralPercent: null,
+  setNewCollateralPercent: () => {},
 };
 export const BorrowWithdrawContext = React.createContext(
   defaultBorrowWithdrawState
@@ -270,7 +279,9 @@ export const BorrowWithdrawContextProvider = ({ children }: ContextProps) => {
   const [withdrawAmount, setWithdrawAmount] = useState<
     BorrowWithdrawStateInterface["withdrawAmount"]
   >(0);
-
+  const [newCollateralPercent, setNewCollateralPercent] = useState<
+    BorrowDepositStateInterface["newCollateralPercent"]
+  >(null);
   const state = {
     success,
     setSuccess,
@@ -282,6 +293,8 @@ export const BorrowWithdrawContextProvider = ({ children }: ContextProps) => {
     setWithdrawCollateralSubmenu,
     withdrawAmount,
     setWithdrawAmount,
+    newCollateralPercent,
+    setNewCollateralPercent,
   };
 
   return (
