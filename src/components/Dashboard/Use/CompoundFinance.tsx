@@ -7,6 +7,12 @@ import {
 import SuccessScreen from "../../SuccessScreen/SuccessScreen";
 import ProcessingScreen from "../../ProcessingScreen/ProcessingScreen";
 import UseCompoundMainSection from "./UseCompoundMainSection";
+import Card from "../../UI/Card";
+import logo from "../../../../dist/assets/compound-logo.svg";
+
+const CompoundLogo = () => {
+  return <img className="mr-3" src={logo} height="31" />;
+};
 
 const CompoundFinancePage = () => {
   const {
@@ -15,10 +21,24 @@ const CompoundFinancePage = () => {
     isWithdrawing,
     isSupplying,
     successMessage,
+    selectedLoan,
+    setSelectedLoan,
   } = useContext(UseCompoundContext);
 
   return (
-    <div>
+    <Card
+      dashboard={true}
+      className="main-card text-center"
+      title={selectedLoan ? `ID ${selectedLoan.id}` : "Compound"}
+      logo={selectedLoan ? null : <CompoundLogo />}
+      goBack={
+        selectedLoan
+          ? () => {
+              setSelectedLoan(null);
+            }
+          : null
+      }
+    >
       {success && (
         <SuccessScreen
           fullScreen={false}
@@ -49,7 +69,7 @@ const CompoundFinancePage = () => {
         <ProcessingScreen link="" fullScreen={false} title="Depositing" />
       )}
       {!success && !isWithdrawing && !isSupplying && <UseCompoundMainSection />}
-    </div>
+    </Card>
   );
 };
 

@@ -11,6 +11,7 @@ import {
   BorrowDepositStateInterface,
   BorrowWithdrawStateInterface,
   UseCompoundStateInterface,
+  UniswapStateInterface,
 } from "./types";
 import { AvailableLendingTokens } from "./app";
 
@@ -337,5 +338,21 @@ export const UseCompoundContextProvider = ({ children }: ContextProps) => {
     <UseCompoundContext.Provider value={state}>
       {children}
     </UseCompoundContext.Provider>
+  );
+};
+
+
+//USE-UNISWAP
+
+const defaultUniswapState: UniswapStateInterface = {
+};
+export const UniswapContext = React.createContext(defaultUniswapState);
+export const UniswapContextProvider = ({ children }: ContextProps) => {
+  const state = {
+  };
+  return (
+    <UniswapContext.Provider value={state}>
+      {children}
+    </UniswapContext.Provider>
   );
 };

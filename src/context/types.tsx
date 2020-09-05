@@ -176,7 +176,7 @@ export interface UseCompoundStateInterface {
   successMessage: string;
   setSuccessMessage: Function;
 }
-export interface UseUniswapStateInterface {}
+export interface UniswapStateInterface {}
 
 export enum PageTypes {
   "Lend-Redeem" = "Lend-Redeem",
