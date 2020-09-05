@@ -14,8 +14,11 @@ import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
+import { AppContext } from "../../../context/app";
+import { calculateCollateralPercent } from "../../../actions/HelperFunctions";
 
 const DepositMainSection = () => {
+  const { state } = useContext(AppContext);
   const { loans } = useContext(DashboardContext);
   const {
     setSuccess,
@@ -26,6 +29,8 @@ const DepositMainSection = () => {
     setAddCollateralSubmenu,
     collateral,
     setCollateral,
+    setNewCollateralPercent,
+    newCollateralPercent,
   } = useContext(BorrowDepositContext);
 
   const currentLoans = loans.filter((loan: any) => {
@@ -61,6 +66,15 @@ const DepositMainSection = () => {
                     value = "0.00";
                   }
                   setCollateral(value);
+                  const newCollateralPercent = calculateCollateralPercent(
+                    state.tokenData,
+                    {
+                      ...selectedLoan,
+                      collateralAmount:
+                        selectedLoan.collateralAmount + parseFloat(value),
+                    }
+                  );
+                  setNewCollateralPercent(newCollateralPercent);
                 }}
                 value={collateral.toString()}
                 type="string"
@@ -72,7 +86,9 @@ const DepositMainSection = () => {
                   setCollateral(value);
                 }}
               />
-              <div className="text-lightest-gray text-lg ">140%</div>
+              <div className="text-lightest-gray text-lg ">
+                {newCollateralPercent || selectedLoan.currentCollateralPercent}%
+              </div>
               <div
                 className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"
                 onClick={() => {
@@ -117,7 +133,7 @@ const DepositMainSection = () => {
               </TableRow>
               <BR />
               <TableRow title="New collateral %">
-                <div className="font-medium">-</div>
+                <div className="font-medium">{newCollateralPercent?`${newCollateralPercent}%`:"-"}</div>
               </TableRow>
             </div>
             <ViewContractLink link={selectedLoan.transactionHash} />
@@ -140,15 +156,13 @@ const DepositMainSection = () => {
                 <div
                   key={loan.id}
                   style={
-                    percentFromLiquidaton < 0
+                    Math.round(percentFromLiquidaton) < 0
                       ? { border: "1px solid #FC5A5A" }
                       : {}
                   }
                 >
                   <TableRow
-                    title={`${percentFromLiquidaton.toFixed(
-                      0
-                    )}%  from liquidation`}
+                    title={`${Math.round(percentFromLiquidaton)}%  from liquidation`}
                   >
                     <CustomSubmenuLink
                       title={`${loan.collateralAmount} ${loan.collateralToken}`}

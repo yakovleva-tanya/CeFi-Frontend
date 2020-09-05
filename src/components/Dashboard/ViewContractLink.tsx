@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context/app";
-import { getEtherscanLink } from "../Lend/Lend";
+import { getEtherscanLink } from "../../actions/HelperFunctions";
 
 type ContractLinkProps = {
   link: string;
