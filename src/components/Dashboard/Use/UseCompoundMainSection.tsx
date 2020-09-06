@@ -49,7 +49,7 @@ const UseCompoundMainSection = () => {
     setSuccess(res);
   };
   return (
-    <UseCompoundContextProvider>
+    <div>
       {selectedLoan &&
         (amountSubmenu ? (
           <SubmenuCard
@@ -136,7 +136,7 @@ const UseCompoundMainSection = () => {
                   backgroundColor: "#5DEDCA",
                   borderRadius: "4px",
                   color: "white",
-                  minWidth: "152px"
+                  minWidth: "152px",
                 }}
               >
                 Deposit
@@ -168,7 +168,7 @@ const UseCompoundMainSection = () => {
           </div>
         </div>
       )}
-    </UseCompoundContextProvider>
+    </div>
   );
 };
 export default UseCompoundMainSection;

@@ -26,6 +26,7 @@ const DepositPage = () => {
         className="main-card text-center"
         title={selectedLoan ? `ID ${selectedLoan.id}` : "Deposit collateral"}
         goBack={selectedLoan ? goBack : null}
+        dashboard={true}
       >
         {success && (
           <SuccessScreen

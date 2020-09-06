@@ -27,6 +27,7 @@ const RepayPage = () => {
         className="main-card text-center"
         title={selectedLoan ? `ID ${selectedLoan.id}` : "Repay"}
         goBack={selectedLoan ? goBack : null}
+        dashboard={true}
       >
         {repaySuccess && (
           <SuccessScreen
@@ -48,7 +49,7 @@ const RepayPage = () => {
             onButtonClick={() => {
               setRepaySuccess(false);
             }}
-            CTA = "Go back"
+            CTA="Go back"
           />
         )}
         {isRepaying && (

@@ -180,7 +180,7 @@ export interface UseCompoundStateInterface {
   successMessage: string;
   setSuccessMessage: Function;
 }
-export interface UseUniswapStateInterface {}
+export interface UniswapStateInterface {}
 
 export interface TokenInterface {
   supplyAPY: string;
