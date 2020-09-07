@@ -34,3 +34,16 @@ export const getEtherscanLink = (hash: string, network: string) => {
   else if (network == "3") return `https://ropsten.etherscan.io/tx/${hash}`;
   else return `https://etherscan.io/tx/${hash}`;
 };
+
+export const exchangeCurrency = (
+  amount: number,
+  initialCurrency: string,
+  tokenData: TokenDataInterface,
+  finalCurrency?: string
+) => {
+  const initialCurrencyPrice = parseFloat(tokenData[initialCurrency].price);
+  const finalCurrencyPrice = finalCurrency
+    ? parseFloat(tokenData[finalCurrency].price)
+    : 1;
+  return (amount * initialCurrencyPrice) / finalCurrencyPrice;
+};

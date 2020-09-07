@@ -30,15 +30,16 @@ const Dashboard = () => {
     setLoans(updatedLoans);
   };
   useEffect(() => {
+    if (!tokenData) return;
     if (!web3State.address) return;
     updateLoans();
-  }, [web3State.address, web3State.network]);
+  }, [web3State.address, web3State.network, tokenData]);
 
   const section = onPage.split("-")[0];
 
   return (
     <Container>
-      {web3State.address ? (
+      {web3State.address && tokenData ? (
         <div className="cards-container">
           <DashboardNav />
           {section === "Lend" && <Lend />}

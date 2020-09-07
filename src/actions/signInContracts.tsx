@@ -115,6 +115,13 @@ async function getWalletBalance(
     USDC,
     ETH,
     LINK,
+    //TODO get other balances
+    SNX: 10.1,
+    MKR: 21.3,
+    YFI: 4,
+    LEND: 0.3,
+    wBTC: 0.1,
+    USDT: 100,
   };
 }
 /**

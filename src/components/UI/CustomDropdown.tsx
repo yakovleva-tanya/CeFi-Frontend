@@ -5,15 +5,21 @@ import usdc from "../../../dist/assets/usdc-logo.svg";
 import usdt from "../../../dist/assets/usdt-logo.svg";
 import eth from "../../../dist/assets/eth-logo.svg";
 import link from "../../../dist/assets/link-logo.png";
+import btc from "../../../dist/assets/btc-logo.svg";
+import lend from "../../../dist/assets/lend-logo.svg";
+import mkr from "../../../dist/assets/mkr-logo.svg";
+import snx from "../../../dist/assets/snx-logo.svg";
+import yfi from "../../../dist/assets/yfi-logo.svg";
+import dropdown from "../../../dist/assets/arrow-down.svg";
 
 import "./custom-dropdown.scss";
-import dropdown from "../../../dist/assets/arrow-down.svg";
 
 type dropdownProps = {
   selected: string;
   handleSelect: Function;
   options: Array<string>;
 };
+
 export const CustomDropdown = ({
   selected,
   handleSelect,
@@ -33,6 +39,11 @@ export const CustomDropdown = ({
         {selected === "USDC" && <img className="mr-3" src={usdc} height="20" />}
         {selected === "ETH" && <img className="mr-3" src={eth} height="20" />}
         {selected === "LINK" && <img className="mr-3" src={link} height="20" />}
+        {selected === "wBTC" && <img className="mr-3" src={btc} height="20" />}
+        {selected === "SNX" && <img className="mr-3" src={snx} height="20" />}
+        {selected === "MKR" && <img className="mr-3" src={mkr} height="20" />}
+        {selected === "YFI" && <img className="mr-3" src={yfi} height="20" />}
+        {selected === "LEND" && <img className="mr-3" src={lend} height="20" />}
       </Dropdown.Toggle>
       <Dropdown.Menu className="dropdown-menu">
         {options.map((option: string) => {
@@ -63,6 +74,21 @@ export const CustomDropdown = ({
                 )}
                 {option === "LINK" && (
                   <img className="mr-3" src={link} height="20" />
+                )}
+                {option === "wBTC" && (
+                  <img className="mr-3" src={btc} height="20" />
+                )}
+                {option === "SNX" && (
+                  <img className="mr-3" src={snx} height="20" />
+                )}
+                {option === "MKR" && (
+                  <img className="mr-3" src={mkr} height="20" />
+                )}
+                {option === "YFI" && (
+                  <img className="mr-3" src={yfi} height="20" />
+                )}
+                {option === "LEND" && (
+                  <img className="mr-3" src={lend} height="20" />
                 )}
               </Dropdown.Item>
             );
