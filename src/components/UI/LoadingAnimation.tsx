@@ -15,11 +15,13 @@ const LoadingAnimation = ({
 }: animationProps) => {
   const animationData =
     animation === "loading" ? loading_animation : success_animation;
+  const isLooping = animation === "loading" ? true : false;
+
   return (
     <div style={animation === "loading" ? { margin: "-8px" } : {}}>
       <Lottie
         options={{
-          loop: false,
+          loop: isLooping,
           autoplay: true,
           animationData: animationData,
           rendererSettings: {

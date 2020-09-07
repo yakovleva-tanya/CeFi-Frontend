@@ -16,6 +16,8 @@ import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
 import { AppContext } from "../../../context/app";
 import { calculateCollateralPercent } from "../../../actions/HelperFunctions";
+import eth from "../../../../dist/assets/eth-logo.svg";
+import link from "../../../../dist/assets/link-logo.png";
 
 const DepositMainSection = () => {
   const { state } = useContext(AppContext);
@@ -54,7 +56,13 @@ const DepositMainSection = () => {
               setAddCollateralSubmenu(false);
             }}
           >
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column align-items-center">
+              {selectedLoan.collateralToken === "LINK" && (
+                <img className="my-2" src={link} height="20" width="20" />
+              )}
+              {selectedLoan.collateralToken === "ETH" && (
+                <img className="my-2" src={eth} height="20" width="20" />
+              )}
               <CustomInput
                 onChangeFunction={(e: any) => {
                   let value = e.target.value.replace(/[^0-9.]/g, "");
@@ -133,7 +141,9 @@ const DepositMainSection = () => {
               </TableRow>
               <BR />
               <TableRow title="New collateral %">
-                <div className="font-medium">{newCollateralPercent?`${newCollateralPercent}%`:"-"}</div>
+                <div className="font-medium">
+                  {newCollateralPercent ? `${newCollateralPercent}%` : "-"}
+                </div>
               </TableRow>
             </div>
             <ViewContractLink link={selectedLoan.transactionHash} />
@@ -162,7 +172,9 @@ const DepositMainSection = () => {
                   }
                 >
                   <TableRow
-                    title={`${Math.round(percentFromLiquidaton)}%  from liquidation`}
+                    title={`${Math.round(
+                      percentFromLiquidaton
+                    )}%  from liquidation`}
                   >
                     <CustomSubmenuLink
                       title={`${loan.collateralAmount} ${loan.collateralToken}`}

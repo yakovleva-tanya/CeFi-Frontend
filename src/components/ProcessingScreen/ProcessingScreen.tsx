@@ -23,7 +23,7 @@ const ProcessingScreen = ({ link, title, fullScreen = true }: props) => {
         View transaction status{" "}
         <a
           className="link text-gray"
-          href={link}
+          //href={link}
           target="_blank"
           rel="noreferrer"
         >

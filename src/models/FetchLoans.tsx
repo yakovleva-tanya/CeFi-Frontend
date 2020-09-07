@@ -67,7 +67,7 @@ const tokenRates: any = {
 const FetchLoans = async (network: string, address: string) => {
   const currentTime = Date.now();
   try {
-    const url = getUrl(network);
+    const url ="" //getUrl(network);
     const query = loansQuery(address);
 
     //fetch loans

@@ -116,7 +116,7 @@ const Lend = () => {
                 className="link text-gray"
                 target="_blank"
                 rel="noreferrer"
-                href={getEtherscanLink(transactionHash, network)}
+                //href={getEtherscanLink(transactionHash, network)}
               >
                 <u>click here</u>
               </a>{" "}
