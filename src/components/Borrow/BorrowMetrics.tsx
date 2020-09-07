@@ -12,7 +12,7 @@ import BR from "../UI/BR";
 import "./borrow.scss";
 
 const BorrowMetrics = () => {
-  const { borrowRequest, stage } = useContext(BorrowPageContext);
+  const { borrowRequest } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
 
   const { tokenData, teller, web3State } = state;
@@ -38,22 +38,20 @@ const BorrowMetrics = () => {
       : "-";
 
   return (
-    <Card className="metrics-card" title="Summary">
-      <Metric title="Asset price" value={assetPrice} />
-      <Metric title="Wallet balance" value={walletBalance} />
-      <Metric title="Collateral available" value={collateralAvailable} />
-        <div>
-          <div className="metrics-div">
-            <BR />
+    <div className="d-flex flex-column">
+      <Card className="metrics-card" title="Summary">
+        <Metric title="Asset price" value={assetPrice} />
+        <Metric title="Wallet balance" value={walletBalance} />
+        <Metric title="Collateral available" value={collateralAvailable} />
+      </Card>
+        <Card className="metrics-card my-1" title="Pro tip">
+          <div className="text-lg">
+            Connect to your bank account to reduce collateral ratios.
           </div>
-          <Metric
-            title="Pro tip"
-            value="Connect to your bank account to reduce collateral ratios."
-          />
           <div
             className={`${
               address ? "pointer" : "disabled"
-            } text-lg font-medium`}
+            } text-lg font-medium mt-2`}
             onClick={() => {
               if (address) {
                 ConnectPlaid(updateAppState, address)();
@@ -63,8 +61,8 @@ const BorrowMetrics = () => {
             <u className="mr-2">Connect accounts</u>
             <Arrow direction="right" />
           </div>
-        </div>
-    </Card>
+        </Card>
+    </div>
   );
 };
 

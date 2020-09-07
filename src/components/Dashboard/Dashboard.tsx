@@ -38,7 +38,7 @@ const Dashboard = () => {
 
   return (
     <Container>
-      {web3State.address ? (
+      {web3State.address && tokenData ? (
         <div className="cards-container">
           <DashboardNav />
           {section === "Lend" && <Lend />}
