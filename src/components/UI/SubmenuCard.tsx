@@ -22,7 +22,7 @@ const SubmenuCard = ({ title, children, onCloseAction }: CardProps) => {
       </div>
       <BR />
       <div className="p-4 d-flex justify-content-center">
-        <div style={{ maxWidth: "344px", width: "100%" }} className="py-5">
+        <div style={{ width: "80%" }} className="py-5">
           {children}
         </div>
       </div>

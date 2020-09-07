@@ -147,6 +147,8 @@ export interface BorrowDepositStateInterface {
   setAddCollateralSubmenu: Function;
   collateral: null | number;
   setCollateral: Function;
+  newCollateralPercent: null | number;
+  setNewCollateralPercent: Function;
 }
 export interface BorrowWithdrawStateInterface {
   success: boolean;
@@ -159,6 +161,8 @@ export interface BorrowWithdrawStateInterface {
   setWithdrawCollateralSubmenu: Function;
   withdrawAmount: number;
   setWithdrawAmount: Function;
+  newCollateralPercent: null | number;
+  setNewCollateralPercent: Function;
 }
 export interface UseCompoundStateInterface {
   success: boolean;
@@ -176,8 +180,15 @@ export interface UseCompoundStateInterface {
   successMessage: string;
   setSuccessMessage: Function;
 }
-export interface UseUniswapStateInterface {}
+export interface UniswapStateInterface {}
 
+export interface TokenInterface {
+  supplyAPY: string;
+  price: string;
+}
+export interface TokenDataInterface {
+  [key: string]: TokenInterface;
+}
 export enum PageTypes {
   "Lend-Redeem" = "Lend-Redeem",
   "Lend-Withdraw" = "Lend-Withdraw",

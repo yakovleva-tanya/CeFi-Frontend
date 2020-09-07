@@ -5,9 +5,8 @@ import Deposit from "./Deposit";
 import Withdraw from "./Withdraw";
 
 const Borrow = () => {
-  const { onPage } = useContext(DashboardContext);
+  const { onPage, loans } = useContext(DashboardContext);
   const subSection = onPage.split("-")[1];
-
   return (
     <div className="">
       {subSection == "Repay" && <Repay />}
