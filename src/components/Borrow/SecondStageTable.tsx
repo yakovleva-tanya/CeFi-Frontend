@@ -10,7 +10,7 @@ const SecondStageTable = () => {
 
   return (
     <div>
-      <div>Your loan terms have been calculated</div>
+      <div className="mt-5">Your loan terms have been calculated</div>
       <div className="table border-thin my-5">
         <TableRow title="Interest rate">
           <div className="font-medium"> {interestRate} % </div>
