@@ -32,7 +32,7 @@ const RepayForm = () => {
           <div className="table border-thin mb-4 mt-3">
             {outstandingLoans.map((loan: LoanInterface) => {
               const days = Math.round(
-                (currentTime - loan.terms.expiryAt) / (60 * 60 * 24 * 1000)
+                (loan.terms.expiryAt - currentTime) / (60 * 60 * 24 * 1000)
               );
               return (
                 <div key={loan.id}>
@@ -61,7 +61,7 @@ const RepayForm = () => {
           <div className="table border-thin mb-4 mt-3">
             {overdueLoans.map((loan: LoanInterface) => {
               const days = Math.round(
-                (loan.terms.expiryAt - currentTime) / (60 * 60 * 24 * 1000)
+                (currentTime - loan.terms.expiryAt) / (60 * 60 * 24 * 1000)
               );
               return (
                 <div key={loan.id}>

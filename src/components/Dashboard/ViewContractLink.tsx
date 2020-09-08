@@ -14,7 +14,7 @@ const ViewContractLink = ({ link }: ContractLinkProps) => {
     <div className="text-right mb-5">
       <a
         className="link text-lightest-gray pl-4"
-        href={url}
+        //href={url}
         target="_blank"
         rel="noopener noreferrer"
       >

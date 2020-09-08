@@ -5,6 +5,8 @@ import SecondStageTable from "./SecondStageTable";
 import ThirdStageTable from "./ThirdStageTable";
 import PrimaryButton from "../UI/PrimaryButton";
 import LoginButton from "../LoginButton/LoginButton";
+import Submenu from "./Submenu";
+import LoanSelectCard from './LoanSelectedCard';
 
 import "./borrow.scss";
 
@@ -31,8 +33,10 @@ const BorrowForm = () => {
     setStage,
     submenu,
     borrowRequest,
+    setBorrowRequest,
     borrowProcessState,
     loanTerms,
+    setLoanTerms,
   } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
   const { setRequesting, setSuccess, setSubmitting } = borrowProcessState;
@@ -88,7 +92,7 @@ const BorrowForm = () => {
       } = borrowRequest;
       const loans = st.demoData.loans;
       const time = Date.now();
-      const expiryDate = time + loanTerm + 86400000;
+      const expiryDate = time + loanTerm * 86400000;
       loans.push({
         id: `126${loans.length + 1}`,
         token: lendWith,
@@ -137,20 +141,56 @@ const BorrowForm = () => {
     setStage(stage + 1);
   };
 
+  const isSecured = Boolean(borrowRequest.loanType === "Secured");
+  const plaidConnected = state?.plaid?.loggedIn;
   return (
     <div>
       {submenu ? (
-        submenu
+        <Submenu variant={submenu} />
       ) : (
         <div>
+          {stage === 0 && (
+            <div className="py-3">
+              <div className="mt-5">Select your loan type</div>
+              <LoanSelectCard
+                className="mt-4"
+                onClick={() => {
+                  setStage(stage + 1);
+                  setBorrowRequest({
+                    ...borrowRequest,
+                    loanType: "Unsecured",
+                  });
+                }}
+                title="Unsecured loan"
+                subTitle="Apply for an uncollateralized loan by connecting your bank account. Whitelisted dApps only."
+              />
+              <LoanSelectCard
+                className="mt-4"
+                onClick={() => {
+                  setStage(stage + 1);
+                  setBorrowRequest({
+                    ...borrowRequest,
+                    loanType: "Secured",
+                  });
+                }}
+                title="Secured loan"
+                subTitle="Apply for a collateralized loan by connecting your bank account."
+              />
+            </div>
+          )}
           {stage === 1 && (
             <div>
               <FirstStageTable />
               {loggedIn ? (
                 <PrimaryButton
                   text="Request terms"
+                  disabled={isSecured ? false : Boolean(!plaidConnected)}
                   onClick={() => {
                     //Get LoanTerms
+                    setLoanTerms({
+                      ...loanTerms,
+                      minCollateralNeeded: borrowRequest.collateralPercent,
+                    });
                     setStage(stage + 1);
                   }}
                 />

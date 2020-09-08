@@ -141,7 +141,7 @@ const UniswapMainSection = () => {
                 className="link text-gray"
                 target="_blank"
                 rel="noreferrer"
-                href="https://etherscan.io/tx/"
+                //href="https://etherscan.io/tx/"
               >
                 <u>here</u>.
               </a>

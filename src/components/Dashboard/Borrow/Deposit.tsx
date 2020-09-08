@@ -41,7 +41,7 @@ const DepositPage = () => {
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href="https://etherscan.io/tx/"
+                  //href="https://etherscan.io/tx/"
                   className="link text-gray"
                 >
                   <u>here</u>

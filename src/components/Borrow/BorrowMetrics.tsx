@@ -4,10 +4,9 @@ import { BorrowPageContext } from "../../context/borrowContext";
 import { AppContext, mapLendingTokensToTellerTokens } from "../../context/app";
 import ConnectPlaid from "./../../actions/ConnectPlaid";
 
-import Arrow from "../UI/Arrow";
 import Card from "../UI/Card";
 import Metric from "../UI/Metric";
-import BR from "../UI/BR";
+import ProTip from "./ProTip";
 
 import "./borrow.scss";
 
@@ -40,22 +39,7 @@ const BorrowMetrics = () => {
         <Metric title="Collateral available" value={collateralAvailable} />
       </Card>
       <Card className="metrics-card my-1" title="Pro tip">
-        <div className="text-lg">
-          Connect to your bank account to reduce collateral ratios.
-        </div>
-        <div
-          className={`${
-            address ? "pointer" : "disabled"
-          } text-lg font-medium mt-2`}
-          onClick={() => {
-            if (address) {
-              ConnectPlaid(updateAppState, address)();
-            }
-          }}
-        >
-          <u className="mr-2">Connect accounts</u>
-          <Arrow direction="right" />
-        </div>
+        <ProTip />
       </Card>
     </div>
   );

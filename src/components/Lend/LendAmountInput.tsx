@@ -16,6 +16,7 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
     LendPageContext
   );
   const { state } = useContext(AppContext);
+  const walletBalances = state.demoData.walletBalances;
   const tokenData = state.tokenData;
   const convertedAmount = tokenData
     ? `${convertCurrency(
@@ -34,6 +35,9 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
   };
   const onBlur = (e: any) => {
     e.target.value = convertInputAmount(e.target.value);
+    if (e.target.value > walletBalances[selectedCurrency]) {
+      e.target.value = walletBalances[selectedCurrency];
+    }
     handleChange(e);
     setSelectedAmount(e.target.value);
   };

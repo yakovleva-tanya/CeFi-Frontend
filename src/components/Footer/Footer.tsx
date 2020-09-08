@@ -10,7 +10,7 @@ const FooterLink = ({ name, url }: linkProps) => {
   return (
     <a
       className="link text-lightest-gray pl-4"
-      href={url}
+      //href={url}
       target="_blank"
       rel="noopener noreferrer"
     >

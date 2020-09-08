@@ -5,7 +5,7 @@ import CustomSubmenuLink from "../UI/CustomSubmenuLink";
 import FormValidationWarning from "../UI/FormValidationWarning";
 import CustomSlider from "../UI/CustomSlider";
 
-const LoanTermSubmenu = () => {
+export const LoanTermSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
     BorrowPageContext
   );
@@ -62,7 +62,7 @@ const LoanTermSubmenu = () => {
       }}
     >
       <div className="-my-2 d-flex flex-column px-4">
-        <FormValidationWarning message={warning} />
+        <div className="mb-4">Enter in the duration of your loan term </div>
         <input
           autoComplete="off"
           autoCorrect="off"
@@ -93,6 +93,7 @@ const LoanTermSubmenu = () => {
         >
           Enter
         </div>
+        <FormValidationWarning message={warning} />
       </div>
     </SubmenuCard>
   );
@@ -107,7 +108,7 @@ const LoanTermSelection = () => {
         borrowRequest.loanTerm % 10 == 1 ? "day" : "days"
       }`}
       onClickAction={() => {
-        setSubmenu(<LoanTermSubmenu />);
+        setSubmenu("LoanTerm");
       }}
     />
   );
