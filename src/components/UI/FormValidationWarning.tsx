@@ -7,7 +7,7 @@ type validationProps = {
 
 const FormValidationWarning = ({ message }: validationProps) => {
   return message ? (
-    <div className="d-flex align-items-center justify-content-center">
+    <div className="d-flex align-items-start justify-content-center">
       <img className="mr-1" src={infoTriangle} height={14} />
       <div className="text-xs text-gray">{message}</div>
     </div>
