@@ -71,11 +71,7 @@ const FetchLoans = async (
 ) => {
   const currentTime = Date.now();
   try {
-<<<<<<< HEAD
     const url = ""; //getUrl(network);
-=======
-    const url ="" //getUrl(network);
->>>>>>> demo
     const query = loansQuery(address);
 
     //fetch loans
