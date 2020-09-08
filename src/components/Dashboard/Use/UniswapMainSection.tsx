@@ -129,6 +129,7 @@ const UniswapMainSection = () => {
       )}
       {success && (
         <SuccessScreen
+          fullScreen = {false}
           title="Transaction Submitted"
           onButtonClick={() => {
             setSuccess(false);

@@ -14,7 +14,7 @@ interface CardProps {
 
 const Card = ({ title, children, className, goBack, logo, dashboard=false }: CardProps) => {
   return (
-    <div className={`border-thin d-flex flex-column mx-2 my-4 ${className}`}>
+    <div className={`border-thin d-flex flex-column mx-2 my-2 ${className}`}>
       {goBack ? (
         <div className="px-4 d-flex justify-content-between align-items-center flex-row">
           <Arrow onClick={goBack} direction="left" />
