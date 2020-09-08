@@ -23,6 +23,7 @@ import {
 import { sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
 import { getNonce } from "../../models/DataProviders";
+import { loansTestData } from "../../context/testdata";
 
 const BorrowForm = () => {
   const {
@@ -31,6 +32,7 @@ const BorrowForm = () => {
     submenu,
     borrowRequest,
     borrowProcessState,
+    loanTerms,
   } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
   const { setRequesting, setSuccess, setSubmitting } = borrowProcessState;
@@ -75,9 +77,51 @@ const BorrowForm = () => {
   const loggedIn = state.web3State?.address || "";
   const onRequestLoan = async () => {
     setRequesting(true);
-    const res = await requestLoan();
+    updateAppState((st: AppContextState) => {
+      const {
+        loanSize,
+        loanTerm,
+        collateralWith,
+        collateralPercent,
+        lendWith,
+        collateralAmount,
+      } = borrowRequest;
+      const loans = st.demoData.loans;
+      const time = Date.now();
+      const expiryDate = time + loanTerm + 86400000;
+      loans.push({
+        id: `126${loans.length + 1}`,
+        token: lendWith,
+        collateralToken: collateralWith,
+        transactionHash: "0xxxxxxxxxxxxxxxxxxxxxxx",
+        terms: {
+          interestRate: loanTerms.interestRate,
+          collateralRatio: collateralPercent,
+          maxLoanAmount: loanSize,
+          duration: loanTerm,
+          expiryAt: expiryDate,
+        },
+        startDate: time,
+        endDate: expiryDate,
+        amountBorrowed: loanSize,
+        status: "Active",
+        repayments: [{ amount: 0 }],
+        totalRepaidAmount: 0,
+        totalOwedAmount: loanSize,
+        collateralDeposits: [{ amount: 0 }],
+        totalCollateralDepositsAmount: collateralAmount,
+        collateralWithdrawns: [],
+        totalCollateralWithdrawalsAmount: 0,
+      });
+      const walletBalances = st.demoData.walletBalances;
+      walletBalances[collateralWith] -= collateralAmount;
+      walletBalances[lendWith] += loanSize;
+      const demoData = { ...st.demoData, walletBalances, loans };
+      return { ...st, demoData };
+    });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     setRequesting(false);
-    setSuccess(res);
+    setSuccess(true);
   };
   const onRequestLoanMock = async () => {
     setRequesting(true);
@@ -127,11 +171,7 @@ const BorrowForm = () => {
               <PrimaryButton
                 disabled={!borrowRequest.transferred}
                 text="Request loan"
-                onClick={
-                  process.env.INTEGRATIONS_DISABLED === "true"
-                    ? onRequestLoanMock
-                    : onRequestLoan
-                }
+                onClick={onRequestLoan}
               />
             </div>
           )}
