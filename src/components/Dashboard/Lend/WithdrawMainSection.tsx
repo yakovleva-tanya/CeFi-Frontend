@@ -155,13 +155,19 @@ const WithdrawMainSection = () => {
       </div>
       <PrimaryButton
         text="Withdraw"
-        onClick={() => {
-          process.env.INTEGRATIONS_DISABLED === "true"
-            ? onSubmitMock()
-            : onSubmit(
-                selectedCurrency,
-                selectedAmount.replace(/[^0-9.]/g, "")
-              );
+        onClick={async () => {
+          setWithdrawing(true);
+          updateAppState((st: AppContextState) => {
+            const deposits = st.demoData.deposits;
+            deposits[selectedCurrency] -= parseFloat(price);
+            const walletBalances = st.demoData.walletBalances;
+            walletBalances[selectedCurrency] += parseFloat(price);
+            const demoData = { ...st.demoData, walletBalances, deposits };
+            return { ...st, demoData };
+          });
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          setWithdrawing(false);
+          setSuccess(true);
         }}
       />
     </div>

@@ -215,7 +215,14 @@ export const AppContextDefault = {
       someproperty: null as null,
     },
     demoData: {
-      walletBalances: { USDC: 120.23, DAI: 215.65, ETH: 1.42, LINK: 52 },
+      walletBalances: {
+        USDC: 120.23,
+        DAI: 215.65,
+        ETH: 1.42,
+        LINK: 52,
+        TLR: 0,
+        COMP: 0,
+      },
       APYs: { USDC: 211.12, DAI: 107.02, TLR: 12.87, COMP: 20.54 },
       loans: [
         {
