@@ -64,14 +64,18 @@ const tokenRates: any = {
   DAI: 1.01,
   USDC: 0.99,
 };
-const FetchLoans = async (network: string, address: string) => {
+const FetchLoans = async (
+  network: string,
+  address: string,
+  loansArray: any
+) => {
   const currentTime = Date.now();
   try {
     const url = getUrl(network);
     const query = loansQuery(address);
 
     //fetch loans
-    const res = loansTestData;
+    const res = loansArray;
 
     const loans: Array<LoanInterface> = res.map((loan: LoanInterface) => {
       loan.collateralAmount =
