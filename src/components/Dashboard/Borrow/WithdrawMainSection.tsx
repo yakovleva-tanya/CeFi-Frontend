@@ -132,7 +132,7 @@ const WithdrawMainSection = () => {
                   setWithdrawCollateralSubmenu(false);
                 }}
               >
-                Submit
+                Enter
               </div>
             </div>
           </SubmenuCard>

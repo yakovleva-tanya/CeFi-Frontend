@@ -103,7 +103,7 @@ const DepositMainSection = () => {
                   setAddCollateralSubmenu(false);
                 }}
               >
-                Submit
+                Enter
               </div>
             </div>
           </SubmenuCard>
