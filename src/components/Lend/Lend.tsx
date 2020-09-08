@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AppContext, AppContextState } from "../../context/app";
 
 import { Formik } from "formik";
-import completeSupply from "../../actions/lendTokens";
+import {demoCompleteSupply} from "../../actions/lendTokens";
 
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -52,7 +52,7 @@ const Lend = () => {
               <Formik
                 initialValues={initialSupplyValues}
                 validate={supplyFormValidation}
-                onSubmit={completeSupply(
+                onSubmit={demoCompleteSupply(
                   state,
                   updateAppState,
                   setTransactionHash,

@@ -2,6 +2,7 @@ import * as React from "react";
 import Plaid, { PlaidTransaction } from "./../models/Plaid";
 import { AssetReport } from "plaid";
 import { CollateralAdjustType } from "../components/CollateralAdjustModal";
+import { StatusTypes } from "./types";
 
 interface ErrorModal {
   show: boolean;
@@ -116,7 +117,7 @@ export interface AppContextState {
   teller: TellerState;
   dataProviderResponse: DataProviderResponseInterface;
   tokenData: any;
-  dummyData: any;
+  demoData: any;
 }
 
 export interface AppContextInterface {
@@ -213,12 +214,109 @@ export const AppContextDefault = {
     myState: {
       someproperty: null as null,
     },
-    dummyData: {
-      walletBalances: {USDC: 10, DAI: 15, ETH: 12},
-      APYs: {USDC: 1, DAI: 5},
-      loans: {},
-      deposits: {DAI: 20}
-    }
+    demoData: {
+      walletBalances: { USDC: 120.23, DAI: 215.65, ETH: 1.42, LINK: 52 },
+      APYs: { USDC: 211.12, DAI: 107.02, TLR: 12.87, COMP: 20.54 },
+      loans: [
+        {
+          id: "1234",
+          token: "DAI",
+          collateralToken: "ETH",
+          transactionHash: "0xxxxxxxxxxxxxxxxxxxxxxx",
+          terms: {
+            interestRate: 1,
+            collateralRatio: 60,
+            maxLoanAmount: 500,
+            duration: 1,
+            expiryAt: 1598195687893,
+          },
+          startDate: 1598995687893,
+          endDate: 1598195687893,
+          amountBorrowed: 500,
+          status: StatusTypes["Active"],
+          repayments: [{ amount: 1 }],
+          totalRepaidAmount: 0,
+          totalOwedAmount: 500,
+          collateralDeposits: [{ amount: 0.71 }],
+          totalCollateralDepositsAmount: 0.71,
+          collateralWithdrawns: [{ amount: 1 }],
+          totalCollateralWithdrawalsAmount: 0,
+        },
+        {
+          id: "1244",
+          token: "USDC",
+          collateralToken: "LINK",
+          transactionHash: "0xxxxxxxxxxxxxxxxxxxxxxx",
+          terms: {
+            interestRate: 1,
+            collateralRatio: 70,
+            maxLoanAmount: 150,
+            duration: 1,
+            expiryAt: 1598195687893,
+          },
+          startDate: 1598995687893,
+          endDate: 1598195687893,
+          amountBorrowed: 5000,
+          status: StatusTypes["Active"],
+          repayments: [{ amount: 1 }],
+          totalRepaidAmount: 0,
+          totalOwedAmount: 650,
+          collateralDeposits: [{ amount: 40 }],
+          totalCollateralDepositsAmount: 40,
+          collateralWithdrawns: [{ amount: 1 }],
+          totalCollateralWithdrawalsAmount: 0,
+        },
+        {
+          id: "1254",
+          token: "USDC",
+          collateralToken: "LINK",
+          transactionHash: "0xxxxxxxxxxxxxxxxxxxxxxx",
+          terms: {
+            interestRate: 1,
+            collateralRatio: 60,
+            maxLoanAmount: 50,
+            duration: 1,
+            expiryAt: 1598995687893,
+          },
+          startDate: 1598995687893,
+          endDate: 1598995687893,
+          amountBorrowed: 5000,
+          status: StatusTypes["Active"],
+          repayments: [{ amount: 1 }],
+          totalRepaidAmount: 0,
+          totalOwedAmount: 50,
+          collateralDeposits: [{ amount: 4 }],
+          totalCollateralDepositsAmount: 4,
+          collateralWithdrawns: [],
+          totalCollateralWithdrawalsAmount: 0,
+        },
+        {
+          id: "1264",
+          token: "DAI",
+          collateralToken: "ETH",
+          transactionHash: "0xxxxxxxxxxxxxxxxxxxxxxx",
+          terms: {
+            interestRate: 1,
+            collateralRatio: 60,
+            maxLoanAmount: 50,
+            duration: 1,
+            expiryAt: 1598995687893,
+          },
+          startDate: 1598995687893,
+          endDate: 1598995687893,
+          amountBorrowed: 500,
+          status: StatusTypes["Closed"],
+          repayments: [{ amount: 1 }],
+          totalRepaidAmount: 0,
+          totalOwedAmount: 500,
+          collateralDeposits: [{ amount: 0.81 }],
+          totalCollateralDepositsAmount: 0.81,
+          collateralWithdrawns: [{ amount: 1 }],
+          totalCollateralWithdrawalsAmount: 0,
+        },
+      ],
+      deposits: { DAI: 325, USDC: 141 },
+    },
   },
   updateAppState: () => {},
 };

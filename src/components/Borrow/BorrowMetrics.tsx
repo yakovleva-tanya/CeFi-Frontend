@@ -15,27 +15,22 @@ const BorrowMetrics = () => {
   const { borrowRequest } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
 
-  const { tokenData, teller, web3State, dummyData } = state;
+  const { tokenData, teller, web3State, demoData } = state;
   const address = web3State?.address;
   const { lendWith, collateralWith } = borrowRequest;
 
   const assetPrice = tokenData
     ? `$ ${Math.round(tokenData[lendWith].price * 100) / 100}`
     : "-";
-  const walletBalance =
-    dummyData?.walletBalances &&
-    dummyData?.walletBalances[lendWith] !== undefined
-      ? `${dummyData.walletBalances[lendWith].toFixed(2)} ${lendWith}`
-      : "-";
+  const walletBalance = address
+    ? `${demoData.walletBalances[lendWith].toFixed(2)} ${lendWith}`
+    : "-";
+
   //const tellerToken = mapLendingTokensToTellerTokens(lendWith);
 
-  const collateralAvailable =
-    dummyData?.walletBalances &&
-    dummyData?.walletBalances[collateralWith] !== undefined
-      ? `${dummyData.walletBalances[collateralWith].toFixed(
-          2
-        )} ${collateralWith}`
-      : "-";
+  const collateralAvailable = address
+    ? `${demoData.walletBalances[collateralWith].toFixed(2)} ${collateralWith}`
+    : "-";
 
   return (
     <div className="d-flex flex-column">
@@ -44,24 +39,24 @@ const BorrowMetrics = () => {
         <Metric title="Wallet balance" value={walletBalance} />
         <Metric title="Collateral available" value={collateralAvailable} />
       </Card>
-        <Card className="metrics-card my-1" title="Pro tip">
-          <div className="text-lg">
-            Connect to your bank account to reduce collateral ratios.
-          </div>
-          <div
-            className={`${
-              address ? "pointer" : "disabled"
-            } text-lg font-medium mt-2`}
-            onClick={() => {
-              if (address) {
-                ConnectPlaid(updateAppState, address)();
-              }
-            }}
-          >
-            <u className="mr-2">Connect accounts</u>
-            <Arrow direction="right" />
-          </div>
-        </Card>
+      <Card className="metrics-card my-1" title="Pro tip">
+        <div className="text-lg">
+          Connect to your bank account to reduce collateral ratios.
+        </div>
+        <div
+          className={`${
+            address ? "pointer" : "disabled"
+          } text-lg font-medium mt-2`}
+          onClick={() => {
+            if (address) {
+              ConnectPlaid(updateAppState, address)();
+            }
+          }}
+        >
+          <u className="mr-2">Connect accounts</u>
+          <Arrow direction="right" />
+        </div>
+      </Card>
     </div>
   );
 };

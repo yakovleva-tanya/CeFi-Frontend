@@ -64,6 +64,10 @@ const LoanTermSubmenu = () => {
       <div className="-my-2 d-flex flex-column px-4">
         <FormValidationWarning message={warning} />
         <input
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
           className="input text-5xl font-medium text-black text-center"
           value={value}
           name="amount"

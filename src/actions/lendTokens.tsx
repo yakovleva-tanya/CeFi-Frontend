@@ -76,4 +76,29 @@ const completeSupply = (
   }
 };
 
+export const demoCompleteSupply = (
+  state: any,
+  updateAppState: Function,
+  setTransactionHash: Function,
+  setProcessing: Function,
+  lendingTokens: AvailableLendingTokens
+) => async (values: any) => {
+  try {
+    setProcessing("processing");
+    const amount = parseFloat(values.amount);
+    updateAppState((st: AppContextState) => {
+      const deposits = st.demoData.deposits;
+      deposits[lendingTokens] += amount;
+      const walletBalances = st.demoData.walletBalances;
+      walletBalances[lendingTokens] -= amount;
+      const demoData = { ...st.demoData, walletBalances, deposits };
+      return { ...st, demoData };
+    });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setProcessing("");
+    setTransactionHash("transactionHash");
+  } catch (err) {
+    console.log(err);
+  }
+};
 export default completeSupply;
