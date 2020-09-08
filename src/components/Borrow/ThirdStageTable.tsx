@@ -16,10 +16,14 @@ const ThirdStageTable = () => {
           <div className="font-medium"> {interestRate} % </div>
         </TableRow>
         <BR />
-        <TableRow title="Collateral ratio">
-          <div className="font-medium"> {minCollateralNeeded} % </div>
-        </TableRow>
-        <BR />
+        {minCollateralNeeded > 0 && (
+          <div>
+            <TableRow title="Collateral ratio">
+              <div className="font-medium"> {minCollateralNeeded} % </div>
+            </TableRow>
+            <BR />
+          </div>
+        )}
         <TableRow title="Loan size">
           <div className="font-medium">
             {" "}

@@ -60,27 +60,28 @@ const mockLoanTerms = {
 };
 
 export const BorrowPageContext = createContext<BorrowPageContextInterface>({
-  stage: 1,
+  stage: 0,
   setStage: () => {},
-  submenu: null,
+  submenu: null as null,
   setSubmenu: () => {},
   borrowRequest: defaultBorrowRequest,
   setBorrowRequest: () => {},
   loanTerms: mockLoanTerms,
   setLoanTerms: () => {},
   borrowProcessState: null,
+
 });
 
 const BorrowPageContextProvider = ({ children }: ContextProps) => {
-  const [stage, setStage] = useState(1);
-  const [submenu, setSubmenu] = useState(null);
+  const [stage, setStage] = useState(0);
+  const [submenu, setSubmenu] = useState(null as null);
   const [borrowRequest, setBorrowRequest] = useState(defaultBorrowRequest);
   const [loanTerms, setLoanTerms] = useState(mockLoanTerms);
 
   const [success, setSuccess] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
   const [isRequesting, setRequesting] = useState(false);
-  const [stageChangeWarning, setStageChangeWarning] = useState(false);
+  const [stageChangeWarning, setStageChangeWarning] = useState(null);
 
   const borrowProcessState = {
     success,

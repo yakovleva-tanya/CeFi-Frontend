@@ -24,7 +24,7 @@ const ClaimPage = () => {
               <a
                 target="_blank"
                 rel="noreferrer"
-                href=''
+                //href=''
                 className="link text-gray"
               >
                 <u>here</u>

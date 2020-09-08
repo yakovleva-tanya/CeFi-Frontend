@@ -21,6 +21,9 @@ import {
 } from "../../../actions/HelperFunctions";
 import FormValidationWarning from "../../UI/FormValidationWarning";
 
+import eth from "../../../../dist/assets/eth-logo.svg";
+import link from "../../../../dist/assets/link-logo.png";
+
 const WithdrawMainSection = () => {
   const [warning, setWarning] = useState("");
   const { state } = useContext(AppContext);
@@ -52,7 +55,6 @@ const WithdrawMainSection = () => {
   let maxWithdrawAmount = 0;
   if (selectedLoan) {
     maxWithdrawAmount = getMaxWithdrawAmount(state.tokenData, selectedLoan);
-    console.log(maxWithdrawAmount);
   }
   return (
     <div>
@@ -64,8 +66,14 @@ const WithdrawMainSection = () => {
               setWithdrawCollateralSubmenu(false);
             }}
           >
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column align-items-center">
               <FormValidationWarning message={warning} />
+              {selectedLoan.collateralToken === "LINK" && (
+                <img className="my-2" src={link} height="20" width="20" />
+              )}
+              {selectedLoan.collateralToken === "ETH" && (
+                <img className="my-2" src={eth} height="20" width="20" />
+              )}
               <CustomInput
                 onChangeFunction={(e: any) => {
                   let value = e.target.value.replace(/[^0-9.]/g, "");
@@ -124,7 +132,7 @@ const WithdrawMainSection = () => {
                   setWithdrawCollateralSubmenu(false);
                 }}
               >
-                Submit
+                Enter
               </div>
             </div>
           </SubmenuCard>
