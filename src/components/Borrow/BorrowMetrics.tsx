@@ -15,7 +15,7 @@ const BorrowMetrics = () => {
   const { borrowRequest } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
 
-  const { tokenData, teller, web3State } = state;
+  const { tokenData, teller, web3State, dummyData } = state;
   const address = web3State?.address;
   const { lendWith, collateralWith } = borrowRequest;
 
@@ -23,16 +23,16 @@ const BorrowMetrics = () => {
     ? `$ ${Math.round(tokenData[lendWith].price * 100) / 100}`
     : "-";
   const walletBalance =
-    teller?.userWalletBalance &&
-    teller?.userWalletBalance[lendWith] !== undefined
-      ? `${teller.userWalletBalance[lendWith].toFixed(2)} ${lendWith}`
+    dummyData?.walletBalances &&
+    dummyData?.walletBalances[lendWith] !== undefined
+      ? `${dummyData.walletBalances[lendWith].toFixed(2)} ${lendWith}`
       : "-";
   //const tellerToken = mapLendingTokensToTellerTokens(lendWith);
 
   const collateralAvailable =
-    teller?.userWalletBalance &&
-    teller?.userWalletBalance[collateralWith] !== undefined
-      ? `${teller.userWalletBalance[collateralWith].toFixed(
+    dummyData?.walletBalances &&
+    dummyData?.walletBalances[collateralWith] !== undefined
+      ? `${dummyData.walletBalances[collateralWith].toFixed(
           2
         )} ${collateralWith}`
       : "-";

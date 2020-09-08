@@ -11,7 +11,7 @@ import { LendPageContext } from "../../context/lendContext";
 const LendMetrics = () => {
   const { selectedCurrency } = useContext(LendPageContext);
   const { state } = useContext(AppContext);
-  const { tokenData, teller } = state;
+  const { tokenData, teller, dummyData } = state;
 
   const price = tokenData
     ? `$${Math.round(tokenData[selectedCurrency].price * 100) / 100}`
@@ -22,9 +22,9 @@ const LendMetrics = () => {
     : "-";
 
   const walletBalance =
-    teller?.userWalletBalance &&
-    teller?.userWalletBalance[selectedCurrency] !== undefined
-      ? `${teller.userWalletBalance[selectedCurrency].toFixed(
+    dummyData?.walletBalances &&
+    dummyData?.walletBalances[selectedCurrency] !== undefined
+      ? `${dummyData.walletBalances[selectedCurrency].toFixed(
           2
         )} ${selectedCurrency}`
       : "-";

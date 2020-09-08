@@ -24,6 +24,7 @@ import LoginButton from "../LoginButton/LoginButton";
 import "./lend.scss";
 import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
 import { getEtherscanLink } from "../../actions/HelperFunctions";
+import { StatusTypes } from "../../context/types";
 
 const supplyFormValidation = () => {
   const errors = {};

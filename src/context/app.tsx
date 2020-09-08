@@ -116,6 +116,7 @@ export interface AppContextState {
   teller: TellerState;
   dataProviderResponse: DataProviderResponseInterface;
   tokenData: any;
+  dummyData: any;
 }
 
 export interface AppContextInterface {
@@ -212,6 +213,12 @@ export const AppContextDefault = {
     myState: {
       someproperty: null as null,
     },
+    dummyData: {
+      walletBalances: {USDC: 10, DAI: 15, ETH: 12},
+      APYs: {USDC: 1, DAI: 5},
+      loans: {},
+      deposits: {DAI: 20}
+    }
   },
   updateAppState: () => {},
 };
