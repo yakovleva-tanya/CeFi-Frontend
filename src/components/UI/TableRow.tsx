@@ -16,7 +16,7 @@ const TableRow = ({ title, children, currency = "" }: RowProps) => {
         {currency && (
           <div className="d-flex align-items-center">
             {currency === "DAI" && <img src={dai} height="20" />}
-            {currency === "TRL" && <img src={teller} height="20" width='20' />}
+            {currency === "TLR" && <img src={teller} height="20" width='20' />}
             {currency === "USDC" && <img src={usdc} height="20" />}
             {currency === "COMP" && <img src={comp} height="20" />}
           </div>

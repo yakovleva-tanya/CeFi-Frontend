@@ -5,6 +5,8 @@ import SecondStageTable from "./SecondStageTable";
 import ThirdStageTable from "./ThirdStageTable";
 import PrimaryButton from "../UI/PrimaryButton";
 import LoginButton from "../LoginButton/LoginButton";
+import Submenu from "./Submenu";
+import LoanSelectCard from './LoanSelectedCard';
 
 import "./borrow.scss";
 
@@ -23,6 +25,7 @@ import {
 import { sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
 import { getNonce } from "../../models/DataProviders";
+import { loansTestData } from "../../context/testdata";
 
 const BorrowForm = () => {
   const {
@@ -30,7 +33,10 @@ const BorrowForm = () => {
     setStage,
     submenu,
     borrowRequest,
+    setBorrowRequest,
     borrowProcessState,
+    loanTerms,
+    setLoanTerms,
   } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
   const { setRequesting, setSuccess, setSubmitting } = borrowProcessState;
@@ -75,9 +81,51 @@ const BorrowForm = () => {
   const loggedIn = state.web3State?.address || "";
   const onRequestLoan = async () => {
     setRequesting(true);
-    const res = await requestLoan();
+    updateAppState((st: AppContextState) => {
+      const {
+        loanSize,
+        loanTerm,
+        collateralWith,
+        collateralPercent,
+        lendWith,
+        collateralAmount,
+      } = borrowRequest;
+      const loans = st.demoData.loans;
+      const time = Date.now();
+      const expiryDate = time + loanTerm * 86400000;
+      loans.push({
+        id: `126${loans.length + 1}`,
+        token: lendWith,
+        collateralToken: collateralWith,
+        transactionHash: "0xxxxxxxxxxxxxxxxxxxxxxx",
+        terms: {
+          interestRate: loanTerms.interestRate,
+          collateralRatio: collateralPercent,
+          maxLoanAmount: loanSize,
+          duration: loanTerm,
+          expiryAt: expiryDate,
+        },
+        startDate: time,
+        endDate: expiryDate,
+        amountBorrowed: loanSize,
+        status: "Active",
+        repayments: [{ amount: 0 }],
+        totalRepaidAmount: 0,
+        totalOwedAmount: loanSize,
+        collateralDeposits: [{ amount: 0 }],
+        totalCollateralDepositsAmount: collateralAmount,
+        collateralWithdrawns: [],
+        totalCollateralWithdrawalsAmount: 0,
+      });
+      const walletBalances = st.demoData.walletBalances;
+      walletBalances[collateralWith] -= collateralAmount;
+      walletBalances[lendWith] += loanSize;
+      const demoData = { ...st.demoData, walletBalances, loans };
+      return { ...st, demoData };
+    });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     setRequesting(false);
-    setSuccess(res);
+    setSuccess(true);
   };
   const onRequestLoanMock = async () => {
     setRequesting(true);
@@ -93,20 +141,56 @@ const BorrowForm = () => {
     setStage(stage + 1);
   };
 
+  const isSecured = Boolean(borrowRequest.loanType === "Secured");
+  const plaidConnected = state?.plaid?.loggedIn;
   return (
     <div>
       {submenu ? (
-        submenu
+        <Submenu variant={submenu} />
       ) : (
         <div>
+          {stage === 0 && (
+            <div className="py-3">
+              <div className="mt-5">Select your loan type</div>
+              <LoanSelectCard
+                className="mt-4"
+                onClick={() => {
+                  setStage(stage + 1);
+                  setBorrowRequest({
+                    ...borrowRequest,
+                    loanType: "Unsecured",
+                  });
+                }}
+                title="Unsecured loan"
+                subTitle="Apply for an uncollateralized loan by connecting your bank account. Whitelisted dApps only."
+              />
+              <LoanSelectCard
+                className="mt-4"
+                onClick={() => {
+                  setStage(stage + 1);
+                  setBorrowRequest({
+                    ...borrowRequest,
+                    loanType: "Secured",
+                  });
+                }}
+                title="Secured loan"
+                subTitle="Apply for a collateralized loan by connecting your bank account."
+              />
+            </div>
+          )}
           {stage === 1 && (
             <div>
               <FirstStageTable />
               {loggedIn ? (
                 <PrimaryButton
                   text="Request terms"
+                  disabled={isSecured ? false : Boolean(!plaidConnected)}
                   onClick={() => {
                     //Get LoanTerms
+                    setLoanTerms({
+                      ...loanTerms,
+                      minCollateralNeeded: borrowRequest.collateralPercent,
+                    });
                     setStage(stage + 1);
                   }}
                 />
@@ -127,11 +211,7 @@ const BorrowForm = () => {
               <PrimaryButton
                 disabled={!borrowRequest.transferred}
                 text="Request loan"
-                onClick={
-                  process.env.INTEGRATIONS_DISABLED === "true"
-                    ? onRequestLoanMock
-                    : onRequestLoan
-                }
+                onClick={onRequestLoan}
               />
             </div>
           )}

@@ -64,21 +64,24 @@ const tokenRates: any = {
   DAI: 1.01,
   USDC: 0.99,
 };
-const FetchLoans = async (network: string, address: string) => {
+const FetchLoans = async (
+  network: string,
+  address: string,
+  loansArray: any
+) => {
   const currentTime = Date.now();
   try {
-    const url = getUrl(network);
+    const url = ""; //getUrl(network);
     const query = loansQuery(address);
 
     //fetch loans
-    const res = loansTestData;
-
+    const res = loansArray;
     const loans: Array<LoanInterface> = res.map((loan: LoanInterface) => {
       loan.collateralAmount =
         loan.totalCollateralDepositsAmount -
         loan.totalCollateralWithdrawalsAmount;
       const timeTillExpires = Math.round(
-        (currentTime - loan.terms.expiryAt) / (60 * 60 * 24 * 1000)
+        (loan.terms.expiryAt - currentTime) / (60 * 60 * 24 * 1000)
       );
       let statusName = "";
       if (loan.status === "Closed") {

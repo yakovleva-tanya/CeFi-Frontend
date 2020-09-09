@@ -11,23 +11,21 @@ import { LendPageContext } from "../../context/lendContext";
 const LendMetrics = () => {
   const { selectedCurrency } = useContext(LendPageContext);
   const { state } = useContext(AppContext);
-  const { tokenData, teller } = state;
+  const { tokenData, teller, demoData } = state;
 
   const price = tokenData
-    ? `$${Math.round(tokenData[selectedCurrency].price * 100) / 100}`
+    ? `$${(Math.round(tokenData[selectedCurrency].price * 100) / 100).toFixed(
+        2
+      )}`
     : "-";
   // TODO: this should update based on the selected ATM type.
   const supplyAPY = tokenData
     ? `${Math.round(tokenData[selectedCurrency].supplyAPY * 10000) / 100}%`
     : "-";
 
-  const walletBalance =
-    teller?.userWalletBalance &&
-    teller?.userWalletBalance[selectedCurrency] !== undefined
-      ? `${teller.userWalletBalance[selectedCurrency].toFixed(
-          2
-        )} ${selectedCurrency}`
-      : "-";
+  const walletBalance = `${demoData.walletBalances[selectedCurrency].toFixed(
+    2
+  )} ${selectedCurrency}`;
 
   const convertedCurrency = mapLendingTokensToTellerTokens(selectedCurrency);
 
@@ -41,12 +39,12 @@ const LendMetrics = () => {
         ].suppliedBalance.toFixed(2)} ${selectedCurrency}`
       : "-";
   //TODO: Get real values
-  const ATM = "74.43";
-  const COMP = "45.43";
+  // const ATM = "74.43";
+  // const COMP = "45.43";
   return (
     <Card className="metrics-card" title="Summary">
       <Metric title="Deposit APY" value={supplyAPY} />
-      <Metric title="Asset price" value={`${price}`} />
+      <Metric title="Asset price" value={price} />
       <Metric title="Wallet balance" value={walletBalance} />
       {/* <Metric title="Balance supplied" value={suppliedBalance} />
       <Metric title="Earned balance" values={[`${ATM} TLR`, `${COMP} COMP`]} /> */}

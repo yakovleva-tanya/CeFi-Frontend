@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AppContext, AppContextState } from "../../context/app";
 
 import { Formik } from "formik";
-import completeSupply from "../../actions/lendTokens";
+import {demoCompleteSupply} from "../../actions/lendTokens";
 
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -24,6 +24,7 @@ import LoginButton from "../LoginButton/LoginButton";
 import "./lend.scss";
 import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
 import { getEtherscanLink } from "../../actions/HelperFunctions";
+import { StatusTypes } from "../../context/types";
 
 const supplyFormValidation = () => {
   const errors = {};
@@ -51,7 +52,7 @@ const Lend = () => {
               <Formik
                 initialValues={initialSupplyValues}
                 validate={supplyFormValidation}
-                onSubmit={completeSupply(
+                onSubmit={demoCompleteSupply(
                   state,
                   updateAppState,
                   setTransactionHash,
@@ -116,7 +117,7 @@ const Lend = () => {
                 className="link text-gray"
                 target="_blank"
                 rel="noreferrer"
-                href={getEtherscanLink(transactionHash, network)}
+                //href={getEtherscanLink(transactionHash, network)}
               >
                 <u>click here</u>
               </a>{" "}

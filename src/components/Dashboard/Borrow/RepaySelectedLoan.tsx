@@ -6,8 +6,12 @@ import { repayLoan } from "../../../actions/DashboardBorrowActions";
 import FormValidationWarning from "../../UI/FormValidationWarning";
 import { BorrowRepayContext } from "../../../context/dashboardContext";
 import ViewContractLink from "../ViewContractLink";
+import { AppContext, AppContextState } from "../../../context/app";
+import { LoanInterface, StatusTypes } from "../../../context/types";
 
 const RepaySelectedLoan = () => {
+  const { updateAppState } = useContext(AppContext);
+
   const {
     setRepaying,
     selectedLoan,
@@ -29,12 +33,29 @@ const RepaySelectedLoan = () => {
     collateralAmount,
   } = selectedLoan;
 
-  const onRepayLoan = async (id: string) => {
+  const onRepayLoan = async (selectedLoan: LoanInterface) => {
     setRepaying(true);
     setSelectedLoan(null);
-    const res = await repayLoan(id);
+    updateAppState((st: AppContextState) => {
+      const filteredLoans = st.demoData.loans.filter((loan: LoanInterface) => {
+        return loan.id != id;
+      });
+      const walletBalances = st.demoData.walletBalances;
+      const amount = selectedLoan.totalOwedAmount;
+      walletBalances[selectedLoan.token] -= amount;
+      selectedLoan = {
+        ...selectedLoan,
+        status: StatusTypes["Closed"],
+        totalOwedAmount: 0,
+        totalRepaidAmount: selectedLoan.totalOwedAmount,
+      };
+      const loans = [...filteredLoans, selectedLoan];
+      const demoData = { ...st.demoData, walletBalances, loans };
+      return { ...st, demoData };
+    });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     setRepaying(false);
-    setRepaySuccess(res);
+    setRepaySuccess(true);
   };
 
   return (
@@ -110,7 +131,10 @@ const RepaySelectedLoan = () => {
       {statusName !== "Repaid" && (
         <div>
           <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." />
-          <PrimaryButton text="Repay Loan" onClick={() => onRepayLoan(id)} />
+          <PrimaryButton
+            text="Repay Loan"
+            onClick={() => onRepayLoan(selectedLoan)}
+          />
         </div>
       )}
     </div>

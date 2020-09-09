@@ -14,15 +14,22 @@ const DashboardNav = () => {
               <BR />
             </div>
             {Object.keys(navigationMap[section]).map((subsection) => {
+              const linkDisabled = Boolean(
+                (section === "BORROW" && subsection !== "Repay") ||
+                  section === "SPEND"
+              );
               return (
                 <div
                   key={subsection}
-                  className={`font-medium text-lg mb-1 pointer ${
+                  className={`font-medium text-lg mb-1 ${
+                    linkDisabled ? "" : "pointer"
+                  } ${
                     onPage === navigationMap[section][subsection]
                       ? "text-black"
                       : "text-lightest-gray"
                   }`}
                   onClick={() => {
+                    if (linkDisabled) return;
                     setOnPage(navigationMap[section][subsection]);
                   }}
                 >

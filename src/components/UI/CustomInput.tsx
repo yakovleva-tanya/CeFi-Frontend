@@ -12,7 +12,12 @@ const CustomInput = ({
   type,
   onBlur = () => {},
 }: customInputProps) => {
-  return (<input
+  return (
+    <input
+      autoComplete="off"
+      autoCorrect="off"
+      autoCapitalize="off"
+      spellCheck="false"
       type={type}
       className="input text-5xl font-medium text-black"
       value={value}
@@ -29,7 +34,8 @@ const CustomInput = ({
       onBlur={(e: any) => {
         onBlur(e);
       }}
-    />);
+    />
+  );
 };
 
 export const MockCustomInput = () => {

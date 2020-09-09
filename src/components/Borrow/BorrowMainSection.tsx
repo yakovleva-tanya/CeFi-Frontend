@@ -10,22 +10,25 @@ import "./borrow.scss";
 import { BorrowPageContext } from "../../context/borrowContext";
 
 const BorrowMainSection = () => {
-  const { stage, setStage, borrowProcessState } = useContext(BorrowPageContext);
+  const { stage, borrowProcessState } = useContext(BorrowPageContext);
 
-  const goBack = () => {
-    setStage(stage - 1);
+  const showWarning = (s: number) => {
+    borrowProcessState.setStageChangeWarning(s);
   };
 
-  const showWarning = () => {
-    borrowProcessState.setStageChangeWarning(true);
-  };
   return (
     <div className="borrow">
       <div className="cards-container">
         <Card
           className="main-card text-center"
           title="Borrow"
-          goBack={stage === 1 ? null : stage === 2 ? goBack : showWarning}
+          goBack={
+            stage === 0
+              ? null
+              : () => {
+                  showWarning(stage - 1);
+                }
+          }
         >
           <div className="my-4 py-4">
             <StageBar />

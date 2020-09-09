@@ -16,6 +16,7 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
     LendPageContext
   );
   const { state } = useContext(AppContext);
+  const walletBalances = state.demoData.walletBalances;
   const tokenData = state.tokenData;
   const convertedAmount = tokenData
     ? `${convertCurrency(

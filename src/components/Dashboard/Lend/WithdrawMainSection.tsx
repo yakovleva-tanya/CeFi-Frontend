@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import PrimaryButton from "../../UI/PrimaryButton";
 import { CustomDropdown } from "../../UI/CustomDropdown";
 import TableRow from "../../UI/TableRow";
@@ -29,7 +29,7 @@ const WithdrawMainSection = () => {
   } = useContext(LendWithdrawContext);
 
   const { state, updateAppState } = useContext(AppContext);
-  const tokenData = state.tokenData;
+  const { tokenData, demoData } = state;
   const primaryAddress = state.web3State?.address;
   const contracts = state.teller.contracts;
   const [selectedAmount, setSelectedAmount] = useState("0.00");
@@ -37,8 +37,8 @@ const WithdrawMainSection = () => {
   const convertFromUSD = (value: number) => {
     return tokenData
       ? Math.round(
-          parseFloat(tokenData[selectedCurrency].price) * value * 10000
-        ) / 10000
+          parseFloat(tokenData[selectedCurrency].price) * value * 100
+        ) / 100
       : value;
   };
 
@@ -82,26 +82,35 @@ const WithdrawMainSection = () => {
     ? Math.round(
         (parseFloat(clearSigns(selectedAmount)) /
           tokenData[selectedCurrency].price) *
-          10000
-      ) / 10000
+          100
+      ) / 100
     : 0;
 
   const price = tokenData ? `${priceValue} ${selectedCurrency}` : "-";
-
   const tellerTokens = mapLendingTokensToTellerTokens(selectedCurrency);
 
-  const userBalance = convertFromUSD(
-    contracts[BaseTokens.ETH][tellerTokens].suppliedBalance
-  );
+  const maxValue = {
+    USDC: convertFromUSD(demoData.deposits["USDC"]),
+    DAI: convertFromUSD(demoData.deposits["DAI"]),
+  };
 
-  const maxValue = `${userBalance}`;
+  useEffect(() => {
+    if (parseFloat(selectedAmount) > maxValue[selectedCurrency]) {
+      setWarningMessage(
+        `Please input amount smaller than ${maxValue[selectedCurrency]}`
+      );
+    } else {
+      setWarningMessage("");
+    }
+  }, [selectedCurrency, selectedAmount]);
 
   return (
     <div>
-      <div className="text-gray -mx-2">
+      <div className="text-gray mb-4">
         Select an asset to withdraw your deposit to date
       </div>
       <FormValidationWarning message={warningMessage} />
+
       <CustomInput
         onChangeFunction={(e: any) => {
           let value = e.target.value.replace(/[^0-9.]/g, "");
@@ -109,13 +118,7 @@ const WithdrawMainSection = () => {
           if (split[1] && split[1].length > 2) {
             value = `${split[0]}.${split[1].substring(0, 2)}`;
           }
-          if (
-            parseFloat(value) > parseFloat(maxValue.replace(/[^0-9.]/g, ""))
-          ) {
-            setWarningMessage(`Please input amount smaller than ${maxValue}`);
-          } else {
-            setWarningMessage("");
-          }
+
           if (isNaN(value)) {
             value = "0.00";
           }
@@ -136,7 +139,7 @@ const WithdrawMainSection = () => {
         className="mx-auto py-1 px-3 my-4 border-thin pointer text-black"
         style={{ width: "85px" }}
         onClick={() => {
-          setSelectedAmount(maxValue);
+          setSelectedAmount(maxValue[selectedCurrency].toFixed(2));
         }}
       >
         Max
@@ -152,13 +155,19 @@ const WithdrawMainSection = () => {
       </div>
       <PrimaryButton
         text="Withdraw"
-        onClick={() => {
-          process.env.INTEGRATIONS_DISABLED === "true"
-            ? onSubmitMock()
-            : onSubmit(
-                selectedCurrency,
-                selectedAmount.replace(/[^0-9.]/g, "")
-              );
+        onClick={async () => {
+          setWithdrawing(true);
+          updateAppState((st: AppContextState) => {
+            const deposits = st.demoData.deposits;
+            deposits[selectedCurrency] -= parseFloat(price);
+            const walletBalances = st.demoData.walletBalances;
+            walletBalances[selectedCurrency] += parseFloat(price);
+            const demoData = { ...st.demoData, walletBalances, deposits };
+            return { ...st, demoData };
+          });
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          setWithdrawing(false);
+          setSuccess(true);
         }}
       />
     </div>

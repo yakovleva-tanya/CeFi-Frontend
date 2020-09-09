@@ -49,10 +49,12 @@ const SubmitApproveButton = () => {
       });
     }
   };
-  const onClickAction = () => {
+  const onClickAction = async () => {
     if (loggedIn) {
       setApproving(true);
-      approve();
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setTokensApproved(true);
+      setApproving(false);
     }
   };
   return (

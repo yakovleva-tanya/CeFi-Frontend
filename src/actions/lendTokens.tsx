@@ -2,7 +2,7 @@ import {
   AppContextState,
   AvailableLendingTokens,
   mapLendingTokensToTellerTokens,
-  BaseTokens
+  BaseTokens,
 } from "./../context/app";
 import { mintZDai } from "./../models/Contracts";
 import { globalDecimals } from "./../util/constants";
@@ -20,7 +20,7 @@ const supplyDai = async (
     lendingPoolContract,
     web3State,
     primaryAddress,
-    amount,
+    amount
   );
   const balance = await zDaiContract.methods.balanceOf(primaryAddress).call();
   const result = {
@@ -44,7 +44,9 @@ const completeSupply = (
   const primaryAddress = state.web3State.address;
   const baseTokens = BaseTokens.ETH; // Currently constant.
   const tellerTokens = mapLendingTokensToTellerTokens(lendingTokens);
-  const { lendingPool, tToken } = state.teller.contracts[baseTokens][tellerTokens];
+  const { lendingPool, tToken } = state.teller.contracts[baseTokens][
+    tellerTokens
+  ];
 
   try {
     const { balance, transactionHash } = await supplyDai(
@@ -55,7 +57,7 @@ const completeSupply = (
       tToken,
       state.web3State
     );
-    setProcessing('');
+    setProcessing("");
     setTransactionHash(transactionHash);
     updateAppState((st: AppContextState) => {
       const teller = st.teller;
@@ -76,4 +78,33 @@ const completeSupply = (
   }
 };
 
+export const demoCompleteSupply = (
+  state: any,
+  updateAppState: Function,
+  setTransactionHash: Function,
+  setProcessing: Function,
+  lendingTokens: AvailableLendingTokens
+) => async (values: any) => {
+  try {
+    setProcessing("processing");
+    let amount = parseFloat(values.amount);
+    updateAppState((st: AppContextState) => {
+      const walletBalances = st.demoData.walletBalances;
+      const deposits = st.demoData.deposits;
+      const balance = walletBalances[lendingTokens];
+      if (amount > balance) {
+        amount = balance;
+      }
+      deposits[lendingTokens] += amount;
+      walletBalances[lendingTokens] -= amount;
+      const demoData = { ...st.demoData, walletBalances, deposits };
+      return { ...st, demoData };
+    });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setProcessing("");
+    setTransactionHash("transactionHash");
+  } catch (err) {
+    console.log(err);
+  }
+};
 export default completeSupply;

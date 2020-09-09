@@ -5,7 +5,7 @@ import CustomSubmenuLink from "../UI/CustomSubmenuLink";
 import FormValidationWarning from "../UI/FormValidationWarning";
 import CustomSlider from "../UI/CustomSlider";
 
-const CollateralPercentSubmenu = () => {
+export const CollateralPercentSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
     BorrowPageContext
   );
@@ -64,8 +64,12 @@ const CollateralPercentSubmenu = () => {
       }}
     >
       <div className="-my-2 d-flex flex-column px-4">
-        <FormValidationWarning message={warning} />
+        <div className="mb-4">Enter your desired collateral ratio</div>
         <input
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
           className="input text-5xl font-medium text-black text-center"
           value={value}
           name="amount"
@@ -90,6 +94,7 @@ const CollateralPercentSubmenu = () => {
         >
           Enter
         </div>
+        <FormValidationWarning message={warning} />
       </div>
     </SubmenuCard>
   );
@@ -102,7 +107,7 @@ const CollateralPercentSelection = () => {
     <CustomSubmenuLink
       title={`${borrowRequest.collateralPercent}%`}
       onClickAction={() => {
-        setSubmenu(<CollateralPercentSubmenu />);
+        setSubmenu("CollateralPercent");
       }}
     />
   );
