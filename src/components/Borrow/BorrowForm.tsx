@@ -162,7 +162,8 @@ const BorrowForm = () => {
                   });
                 }}
                 title="Unsecured loan"
-                subTitle="Apply for an uncollateralized loan by connecting your bank account. Whitelisted dApps only."
+                subTitle="Apply for an unsecured loan by connecting your bank account."
+                logos={['compound']}
               />
               <LoanSelectCard
                 className="mt-4"
@@ -174,7 +175,8 @@ const BorrowForm = () => {
                   });
                 }}
                 title="Secured loan"
-                subTitle="Apply for a collateralized loan by connecting your bank account."
+                subTitle="Apply for a secured loan, no bank account needed."
+                logos={['compound', 'uniswap']}
               />
             </div>
           )}
