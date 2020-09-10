@@ -4,8 +4,8 @@ import { Web3State } from './../context/app';
 import { globalDecimals } from './../util/constants';
 
 /**
- * @notice Converts a given amount into a BN instance
- * @param amount The amount to be converted
+ * Converts a given amount into a BN instance
+ * @param {string} amount The amount to be converted
  */
 function convertToBN(
   amount: string
@@ -14,6 +14,11 @@ function convertToBN(
   return result;
 }
 
+/**
+ * Get the associated token contract
+ * @param {*} loansInterface Teller protocol's loansInterface contract
+ * @param {Web3State} web3State stored web3 state
+ */
 async function getCollateralToken(
   loansInterface: any,
   web3State: Web3State
@@ -22,6 +27,13 @@ async function getCollateralToken(
   return new web3State.web3.eth.Contract(ERC20.abi, collateralTokenAddress, {});
 }
 
+/**
+ * Approves tokens for a loansInterface
+ * @param {*} loansInterface Teller protocol's loansInterface contract
+ * @param {Web3State} web3State The stored web3 state
+ * @param {string} spenderAddress The wallet address of the spender
+ * @param {number} amountToApprove The amount to be approved
+ */
 export async function approveToken(
   loansInterface: any,
   web3State: Web3State,
@@ -49,12 +61,12 @@ export async function approveToken(
 }
 
 /**
- * @notice Creates/processes a loan with loan request and terms
- * @param loanRequest The Teller protocol loan request
- * @param loanResponses The list of the Teller protocol loan responses
- * @param loansInterface Teller protocol's loansInterface contract
- * @param collateralAmount The amount of collateral required for the loan
- * @param borrowerAddress The wallet address of the borrower
+ * Creates/processes a loan with loan request and terms
+ * @param {*} loanRequest The Teller protocol loan request
+ * @param {*} loanResponses The list of the Teller protocol loan responses
+ * @param {*} loansInterface Teller protocol's loansInterface contract
+ * @param {string} collateralAmount The amount of collateral required for the loan
+ * @param {string} borrowerAddress The wallet address of the borrower
  */
 export async function createLoanWithTerms(
   loanRequest: any,
@@ -80,11 +92,12 @@ export async function createLoanWithTerms(
 // erc20.approve(loansInterface)
 
 /**
- * @notice Deposits collateral into a created loan
- * @param loansInterface Teller protocol's loansInterface contract
- * @param borrowerAddress The address of the loan borrower
- * @param loanId The ID of the loan the collateral is for
- * @param amount The amount of collateral being deposited
+ * Deposits collateral into a created loan
+ * @param {*} loansInterface Teller protocol's loansInterface contract
+ * @param {string} borrowerAddress The address of the loan borrower
+ * @param {number} loanId The ID of the loan the collateral is for
+ * @param {string} amount The amount of collateral being deposited
+ * @param {Web3State} web3State The stored web3 state
  */
 export async function depositCollateral(
   loansInterface: any,
@@ -116,10 +129,10 @@ export async function depositCollateral(
 
 /**
  * Takes out a loan from the Teller protocol
- * @param loansInterface Teller protocol's loanInterface contract
- * @param loanId The ID of the loan being taken out
- * @param amountToBorrow The amount to be borrowed
- * @param borrowerAddress The address of the loan borrower
+ * @param {*} loansInterface Teller protocol's loanInterface contract
+ * @param {number} loanId The ID of the loan being taken out
+ * @param {string} amountToBorrow The amount to be borrowed
+ * @param {string} borrowerAddress The address of the loan borrower
  */
 export async function takeOutLoan(
   loansInterface: any,
@@ -142,10 +155,10 @@ export async function takeOutLoan(
 
 /**
  * Withdraws collateral from a loan
- * @param loansInterface Teller protocol's loanInterface contract
- * @param loanId The ID of the loan from which collateral is being withdrawn
- * @param amountToWithdraw The amount of collateral to withdraw
- * @param borrowerAddress The address of the loan borrower
+ * @param {*} loansInterface Teller protocol's loanInterface contract
+ * @param {number} loanId The ID of the loan from which collateral is being withdrawn
+ * @param {string} amountToWithdraw The amount of collateral to withdraw
+ * @param {string} borrowerAddress The address of the loan borrower
  */
 export async function withdrawCollateral(
   loansInterface: any,
@@ -175,10 +188,10 @@ export async function withdrawCollateral(
 
 /**
  * Makes a payment to a loan
- * @param loansInterface Teller protocol's loanInterface contract
- * @param loanId The ID of the loan for which the payment is being made
- * @param amountToRepay The payment amount 
- * @param borrowerAddress The address of the loan borrower
+ * @param {*} loansInterface Teller protocol's loanInterface contract
+ * @param {number} loanId The ID of the loan for which the payment is being made
+ * @param {string} amountToRepay The payment amount 
+ * @param {string} borrowerAddress The address of the loan borrower
  */
 export async function repayLoan(
   loansInterface: any,
@@ -208,9 +221,9 @@ export async function repayLoan(
 
 /**
  * Liquidates an expired or undercollateralized loan
- * @param loansInterface Teller protocol's loanInterface contract
- * @param loanId The ID of the loan being liquidated
- * @param liquidatorAddress The address of the loan liquidator
+ * @param {*} loansInterface Teller protocol's loanInterface contract
+ * @param {number} loanId The ID of the loan being liquidated
+ * @param {string} liquidatorAddress The address of the loan liquidator
  */
 export async function liquidateLoan(
   loansInterface: any,
