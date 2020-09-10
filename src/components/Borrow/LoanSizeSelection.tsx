@@ -4,7 +4,7 @@ import CustomInput from "../UI/CustomInput";
 import SubmenuCard from "../UI/SubmenuCard";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
 
-const LoanSizeSubmenu = () => {
+export const LoanSizeSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
     BorrowPageContext
   );
@@ -18,6 +18,9 @@ const LoanSizeSubmenu = () => {
       }}
     >
       <div className="d-flex flex-column">
+        <div className="mb-4">
+          Enter in the loan amount you would like to request
+        </div>
         <CustomInput
           onChangeFunction={(e: any) => {
             let value = e.target.value.replace(/[^0-9.]/g, "");
@@ -67,7 +70,7 @@ const LoanSizeSelection = () => {
     <CustomSubmenuLink
       title={`${borrowRequest.loanSize} ${borrowRequest.lendWith}`}
       onClickAction={() => {
-        setSubmenu(<LoanSizeSubmenu />);
+        setSubmenu("LoanSize");
       }}
     />
   );
