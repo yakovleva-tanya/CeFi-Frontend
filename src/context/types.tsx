@@ -90,14 +90,14 @@ export interface BorrowProcessInterface {
   setSubmitting: Function;
   isRequesting: boolean;
   setRequesting: Function;
-  stageChangeWarning: boolean;
+  stageChangeWarning: null | number;
   setStageChangeWarning: Function;
 }
 
 export interface BorrowPageContextInterface {
   stage: number;
   setStage: Function;
-  submenu: React.ReactNode;
+  submenu: null | string;
   setSubmenu: Function;
   borrowRequest: BorrowRequest;
   setBorrowRequest: Function;

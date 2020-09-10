@@ -102,6 +102,7 @@ const WithdrawMainSection = () => {
         Select an asset to withdraw your deposit to date
       </div>
       <FormValidationWarning message={warningMessage} />
+
       <CustomInput
         onChangeFunction={(e: any) => {
           let value = e.target.value.replace(/[^0-9.]/g, "");

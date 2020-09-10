@@ -19,7 +19,7 @@ const StageNumber = ({ number, onClickAction, stage }: stageTypes) => {
         onClickAction();
       }}
     >
-      {number}
+      {number + 1}
     </div>
   );
 };
@@ -28,15 +28,17 @@ const StageBar = () => {
   const { state } = useContext(AppContext);
 
   const [progress, setProgress] = useState(0);
-  const { stage, setStage, borrowProcessState } = useContext(BorrowPageContext);
+  const { stage, setSubmenu, borrowProcessState } = useContext(
+    BorrowPageContext
+  );
   const loggedIn = state.web3State?.address || "";
 
   useEffect(() => {
-    const newProgress = 50 * (stage - 1);
+    const newProgress = 33 * stage;
     setProgress(newProgress);
   }, [stage]);
 
-  const stages = [1, 2, 3];
+  const stages = [0, 1, 2, 3];
 
   return (
     <div>
@@ -51,21 +53,13 @@ const StageBar = () => {
       <div className={`d-flex flex-row justify-content-between`}>
         {stages.map((s) => {
           return (
-            <div
-              key={s}
-              className={` ${
-                loggedIn && s === stage - 1 ? "pointer" : "disabled"
-              }`}
-            >
+            <div key={s} className={` ${s < stage ? "pointer" : "disabled"}`}>
               <StageNumber
                 number={s}
                 onClickAction={() => {
-                  if (loggedIn && s === stage - 1) {
-                    if (stage === 3) {
-                      borrowProcessState.setStageChangeWarning(true);
-                    } else {
-                      setStage(s);
-                    }
+                  if (s < stage) {
+                    borrowProcessState.setStageChangeWarning(s);
+                    setSubmenu(null);
                   }
                 }}
                 stage={stage}
