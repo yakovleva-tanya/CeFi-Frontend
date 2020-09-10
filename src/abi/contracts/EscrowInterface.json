@@ -1,0 +1,997 @@
+{
+  "contractName": "EscrowInterface",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "location",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct TellerCommon.DappData",
+          "name": "dappData",
+          "type": "tuple"
+        }
+      ],
+      "name": "callDapp",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getBorrower",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "calculateTotalValue",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "valueInToken",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "valueInEth",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TellerCommon.EscrowValue",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "canPurchase",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isUnderValued",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "loansAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "aLoanID",
+          "type": "uint256"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"calculateTotalValue\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"valueInToken\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"valueInEth\",\"type\":\"uint256\"}],\"internalType\":\"struct TellerCommon.EscrowValue\",\"name\":\"\",\"type\":\"tuple\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"location\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct TellerCommon.DappData\",\"name\":\"dappData\",\"type\":\"tuple\"}],\"name\":\"callDapp\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"canPurchase\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getBorrower\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"loansAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"aLoanID\",\"type\":\"uint256\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isUnderValued\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"callDapp((address,bytes))\":{\"params\":{\"dappData\":\"the current dapp data to be executed.\"}},\"initialize(address,uint256)\":{\"params\":{\"aLoanID\":\"the loan ID associated to this escrow instance.\",\"loansAddress\":\"loans contract address.\"}}}},\"userdoc\":{\"methods\":{\"callDapp((address,bytes))\":{\"notice\":\"It calls a given dapp using a delegatecall function by a borrower owned the current loan id associated to this escrow contract.\"},\"initialize(address,uint256)\":{\"notice\":\"It initializes this escrow instance for a given loans address and loan id.\"}},\"notice\":\"This interface defines all function to allow borrowers interact with their escrow contracts.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowInterface.sol\":\"EscrowInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowInterface.sol\":{\"keccak256\":\"0x65c08f6f62a51becac639418b7ebe9781decdc89e1f0bc21acfa609418dfa8cb\",\"urls\":[\"bzz-raw://dabc828f30fae14e7d70643480cb1202ec2c85cf654517f18440a0f5b8062101\",\"dweb:/ipfs/QmP3LXe9upby2uN3KunXhBeKm1Mj9xqf31sqDFEMYnwXYt\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0xbe70455cee756e9498c220e13c1550d163a4cbcb09e8afe2f0ee94f717c80315\",\"urls\":[\"bzz-raw://0ad4a0a6394e560e40da2fee213381db0184878c29078b2f570eaacf116bb855\",\"dweb:/ipfs/QmTF87YYagh3WrxNZyi2uxhzcxyGsdtJCLu9nwmXGGaoMz\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.5.17;\npragma experimental ABIEncoderV2;\n\nimport \"../util/TellerCommon.sol\";\n\n/**\n    @notice This interface defines all function to allow borrowers interact with their escrow contracts.\n    \n    @author develop@teller.finance\n */\ninterface EscrowInterface {\n    /**\n        @notice It calls a given dapp using a delegatecall function by a borrower owned the current loan id associated to this escrow contract.\n        @param dappData the current dapp data to be executed.\n     */\n    function callDapp(TellerCommon.DappData calldata dappData) external;\n\n    function getBorrower() external view returns (address);\n\n    function calculateTotalValue()\n        external\n        view\n        returns (TellerCommon.EscrowValue memory);\n\n    function canPurchase() external view returns (bool);\n\n    function isUnderValued() external view returns (bool);\n\n    /**\n        @notice It initializes this escrow instance for a given loans address and loan id.\n        @param loansAddress loans contract address.\n        @param aLoanID the loan ID associated to this escrow instance.\n     */\n    function initialize(address loansAddress, uint256 aLoanID) external;\n}\n",
+  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowInterface.sol",
+  "ast": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowInterface.sol",
+    "exportedSymbols": {
+      "EscrowInterface": [
+        10374
+      ]
+    },
+    "id": 10375,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10339,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:43"
+      },
+      {
+        "id": 10340,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "24:33:43"
+      },
+      {
+        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol",
+        "file": "../util/TellerCommon.sol",
+        "id": 10341,
+        "nodeType": "ImportDirective",
+        "scope": 10375,
+        "sourceUnit": 17991,
+        "src": "59:34:43",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "@notice This interface defines all function to allow borrowers interact with their escrow contracts.\n@author develop@teller.finance",
+        "fullyImplemented": false,
+        "id": 10374,
+        "linearizedBaseContracts": [
+          10374
+        ],
+        "name": "EscrowInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@notice It calls a given dapp using a delegatecall function by a borrower owned the current loan id associated to this escrow contract.\n@param dappData the current dapp data to be executed.",
+            "id": 10346,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "callDapp",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10344,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10343,
+                  "name": "dappData",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10346,
+                  "src": "520:39:43",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_DappData_$17956_calldata_ptr",
+                    "typeString": "struct TellerCommon.DappData"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 10342,
+                    "name": "TellerCommon.DappData",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17956,
+                    "src": "520:21:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_DappData_$17956_storage_ptr",
+                      "typeString": "struct TellerCommon.DappData"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "519:41:43"
+            },
+            "returnParameters": {
+              "id": 10345,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "569:0:43"
+            },
+            "scope": 10374,
+            "src": "502:68:43",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 10351,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBorrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10347,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "596:2:43"
+            },
+            "returnParameters": {
+              "id": 10350,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10349,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10351,
+                  "src": "622:7:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10348,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "622:7:43",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "621:9:43"
+            },
+            "scope": 10374,
+            "src": "576:55:43",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 10356,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "calculateTotalValue",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10352,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "665:2:43"
+            },
+            "returnParameters": {
+              "id": 10355,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10354,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10356,
+                  "src": "715:31:43",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_EscrowValue_$17989_memory_ptr",
+                    "typeString": "struct TellerCommon.EscrowValue"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 10353,
+                    "name": "TellerCommon.EscrowValue",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17989,
+                    "src": "715:24:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_EscrowValue_$17989_storage_ptr",
+                      "typeString": "struct TellerCommon.EscrowValue"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "714:33:43"
+            },
+            "scope": 10374,
+            "src": "637:111:43",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 10361,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "canPurchase",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10357,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "774:2:43"
+            },
+            "returnParameters": {
+              "id": 10360,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10359,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10361,
+                  "src": "800:4:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10358,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "800:4:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "799:6:43"
+            },
+            "scope": 10374,
+            "src": "754:52:43",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 10366,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isUnderValued",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10362,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "834:2:43"
+            },
+            "returnParameters": {
+              "id": 10365,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10364,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10366,
+                  "src": "860:4:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10363,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "860:4:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "859:6:43"
+            },
+            "scope": 10374,
+            "src": "812:54:43",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It initializes this escrow instance for a given loans address and loan id.\n@param loansAddress loans contract address.\n@param aLoanID the loan ID associated to this escrow instance.",
+            "id": 10373,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10371,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10368,
+                  "name": "loansAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10373,
+                  "src": "1122:20:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10367,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1122:7:43",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10370,
+                  "name": "aLoanID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10373,
+                  "src": "1144:15:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10369,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1144:7:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1121:39:43"
+            },
+            "returnParameters": {
+              "id": 10372,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1169:0:43"
+            },
+            "scope": 10374,
+            "src": "1102:68:43",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 10375,
+        "src": "248:924:43"
+      }
+    ],
+    "src": "0:1173:43"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowInterface.sol",
+    "exportedSymbols": {
+      "EscrowInterface": [
+        10374
+      ]
+    },
+    "id": 10375,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10339,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:43"
+      },
+      {
+        "id": 10340,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "24:33:43"
+      },
+      {
+        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol",
+        "file": "../util/TellerCommon.sol",
+        "id": 10341,
+        "nodeType": "ImportDirective",
+        "scope": 10375,
+        "sourceUnit": 17991,
+        "src": "59:34:43",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "@notice This interface defines all function to allow borrowers interact with their escrow contracts.\n@author develop@teller.finance",
+        "fullyImplemented": false,
+        "id": 10374,
+        "linearizedBaseContracts": [
+          10374
+        ],
+        "name": "EscrowInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@notice It calls a given dapp using a delegatecall function by a borrower owned the current loan id associated to this escrow contract.\n@param dappData the current dapp data to be executed.",
+            "id": 10346,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "callDapp",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10344,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10343,
+                  "name": "dappData",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10346,
+                  "src": "520:39:43",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_DappData_$17956_calldata_ptr",
+                    "typeString": "struct TellerCommon.DappData"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 10342,
+                    "name": "TellerCommon.DappData",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17956,
+                    "src": "520:21:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_DappData_$17956_storage_ptr",
+                      "typeString": "struct TellerCommon.DappData"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "519:41:43"
+            },
+            "returnParameters": {
+              "id": 10345,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "569:0:43"
+            },
+            "scope": 10374,
+            "src": "502:68:43",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 10351,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBorrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10347,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "596:2:43"
+            },
+            "returnParameters": {
+              "id": 10350,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10349,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10351,
+                  "src": "622:7:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10348,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "622:7:43",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "621:9:43"
+            },
+            "scope": 10374,
+            "src": "576:55:43",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 10356,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "calculateTotalValue",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10352,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "665:2:43"
+            },
+            "returnParameters": {
+              "id": 10355,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10354,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10356,
+                  "src": "715:31:43",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_EscrowValue_$17989_memory_ptr",
+                    "typeString": "struct TellerCommon.EscrowValue"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 10353,
+                    "name": "TellerCommon.EscrowValue",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17989,
+                    "src": "715:24:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_EscrowValue_$17989_storage_ptr",
+                      "typeString": "struct TellerCommon.EscrowValue"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "714:33:43"
+            },
+            "scope": 10374,
+            "src": "637:111:43",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 10361,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "canPurchase",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10357,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "774:2:43"
+            },
+            "returnParameters": {
+              "id": 10360,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10359,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10361,
+                  "src": "800:4:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10358,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "800:4:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "799:6:43"
+            },
+            "scope": 10374,
+            "src": "754:52:43",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 10366,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isUnderValued",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10362,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "834:2:43"
+            },
+            "returnParameters": {
+              "id": 10365,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10364,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10366,
+                  "src": "860:4:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10363,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "860:4:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "859:6:43"
+            },
+            "scope": 10374,
+            "src": "812:54:43",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It initializes this escrow instance for a given loans address and loan id.\n@param loansAddress loans contract address.\n@param aLoanID the loan ID associated to this escrow instance.",
+            "id": 10373,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10371,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10368,
+                  "name": "loansAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10373,
+                  "src": "1122:20:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10367,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1122:7:43",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10370,
+                  "name": "aLoanID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10373,
+                  "src": "1144:15:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10369,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1144:7:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1121:39:43"
+            },
+            "returnParameters": {
+              "id": 10372,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1169:0:43"
+            },
+            "scope": 10374,
+            "src": "1102:68:43",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 10375,
+        "src": "248:924:43"
+      }
+    ],
+    "src": "0:1173:43"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-09-06T02:15:12.364Z",
+  "devdoc": {
+    "author": "develop@teller.finance",
+    "methods": {
+      "callDapp((address,bytes))": {
+        "params": {
+          "dappData": "the current dapp data to be executed."
+        }
+      },
+      "initialize(address,uint256)": {
+        "params": {
+          "aLoanID": "the loan ID associated to this escrow instance.",
+          "loansAddress": "loans contract address."
+        }
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "callDapp((address,bytes))": {
+        "notice": "It calls a given dapp using a delegatecall function by a borrower owned the current loan id associated to this escrow contract."
+      },
+      "initialize(address,uint256)": {
+        "notice": "It initializes this escrow instance for a given loans address and loan id."
+      }
+    },
+    "notice": "This interface defines all function to allow borrowers interact with their escrow contracts."
+  }
+}

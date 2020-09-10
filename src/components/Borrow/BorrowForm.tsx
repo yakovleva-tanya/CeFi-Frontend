@@ -134,6 +134,8 @@ const BorrowForm = () => {
     setSuccess(true);
   };
   const onAcceptTerms = async () => {
+    const { web3State } = state;
+
     setSubmitting(true);
     //Accept loan terms
     await new Promise((resolve) => setTimeout(resolve, 2000));

@@ -1,0 +1,1840 @@
+{
+  "contractName": "TLRTokenProxy",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "symbol",
+          "type": "string"
+        },
+        {
+          "internalType": "uint8",
+          "name": "decimals",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "cap",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxVestingPerWallet",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "atmSettingsAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "atm",
+          "type": "address"
+        }
+      ],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "atmSettings",
+      "outputs": [
+        {
+          "internalType": "contract IATMSettings",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "implementation",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"symbol\",\"type\":\"string\"},{\"internalType\":\"uint8\",\"name\":\"decimals\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"cap\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxVestingPerWallet\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"atmSettingsAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"atm\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"constant\":true,\"inputs\":[],\"name\":\"atmSettings\",\"outputs\":[{\"internalType\":\"contract IATMSettings\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"constructor\":{\"params\":{\"atm\":\"The ATMGovernance address for this token\",\"atmSettingsAddress\":\"The ATMSettings address\",\"cap\":\"The maximum number of tokens available\",\"decimals\":\"The amount of decimals for token\",\"maxVestingPerWallet\":\"The maximum number of times a wallet can mint their vesting\",\"name\":\"The name of the token\",\"symbol\":\"The symbol of the token\"}},\"implementation()\":{\"return\":\"Address of the current implementation\"}}},\"userdoc\":{\"methods\":{\"constructor\":\"This constructor forwards the parameters to the implementation logic contract defined in ATMSettings.\",\"implementation()\":{\"notice\":\"Returns the current implementation.\"}},\"notice\":\"It is the Proxy contract for TLR Tokens.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenProxy.sol\":\"TLRTokenProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/BaseATM.sol\":{\"keccak256\":\"0x320fada9d009a48c4e04f17a172f18b7cf98694e85388530c062f081418d48a6\",\"urls\":[\"bzz-raw://2ee3c4aaadf693ea2fc543ece5b2acb0be54fe3d6be9bc164c6156a42ba2ac2c\",\"dweb:/ipfs/QmeqA4S9b5N9Whm9rVpAss2LemC6feayCwyzsiqADedcMi\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/BaseATMProxy.sol\":{\"keccak256\":\"0x9d8f29c4ce93cb6de947ea483fd287d62a15d8bf16cd14e2f540f6936f507269\",\"urls\":[\"bzz-raw://ce8dafa77644b0b910cdb3a4ac773977dede01bfc28076dd9e544a254c1e0ad5\",\"dweb:/ipfs/QmTwzapZLvKNSxD28kAGiuFafLsLouv1CppojrUn57KSFu\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenProxy.sol\":{\"keccak256\":\"0x9e2a5d31c751a05fd4fe937934d7d7277243b234073257a9bf6339763812e194\",\"urls\":[\"bzz-raw://001ecdeaad994ce54ceb42f6fb7f0706861ddfc4f76250511eb29cf79f03714c\",\"dweb:/ipfs/QmQuevAAC2tGjiAQrME2dckcxBAhTF5bzNUoMCkSfQKN3U\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/BaseProxy.sol\":{\"keccak256\":\"0xd93ca9dc41b329c04070c4dfb1370646ab3b24a5e8d582b2de81bef3b2fc28bc\",\"urls\":[\"bzz-raw://f5f18321b6aa447e85188ab99753423c7bed581561a935eab3da82ba46f92734\",\"dweb:/ipfs/QmRi9jxg722XeNp6uVotWUkgjPJt13zoCdxwEcVkZQxyu3\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/SettingsInterface.sol\":{\"keccak256\":\"0x425cc07c2fc7ae0ad8aa2b23a3aa3b7a44f84047344ab88714502aef018200f2\",\"urls\":[\"bzz-raw://f7f20c0780c2aad569edbb214375616bbb28de334623b7005fa4490e5bc61f5f\",\"dweb:/ipfs/QmdPLfJxEBiNhgFkhNe7AS92cfcDzqLBPQaMHabxhynmG9\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/settings/IATMSettings.sol\":{\"keccak256\":\"0x0dac741a2ac83d2983852886597221cdc07099c46761d718e3e2afb03f2cf322\",\"urls\":[\"bzz-raw://b4704eda2956c8caaa321eba013575f3481678b8b3f69e396d4160d385f2126a\",\"dweb:/ipfs/QmR4AyWVoi66LFLrR37RPh3YszAhMVY82Z9Y8UXbiRCcXW\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AddressLib.sol\":{\"keccak256\":\"0x8a80e4d41132c052ccd109ba299be9a026226b6b9a3ed7b8db203aa95029cfc7\",\"urls\":[\"bzz-raw://6b685861a3c48117bcb441fe8c008a6c04499d5f7d85e33bb052f1bbdb86d702\",\"dweb:/ipfs/QmSiRbzC4SHMFYQhA97aNZCZzBo9SbL8XPWvcCUbTwMLKn\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AssetSettingsLib.sol\":{\"keccak256\":\"0x982efd04a5514334651af912199202a054302e924ff3913c13b90f0281e239b3\",\"urls\":[\"bzz-raw://a39501ddbe7697a5c1fb9b93669598ec457e2d80c3b8419951a60c1a3d481fe7\",\"dweb:/ipfs/QmQcycnVeWDiFTfoHygDn139aqa6vwJHmU3u5Ha3y2LsUm\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/PlatformSettingsLib.sol\":{\"keccak256\":\"0xd428c06d3a5fe7ec35f0b087dd2a9aec22f73c5737d04cd47a46410012a933ec\",\"urls\":[\"bzz-raw://f2f904a9111d1bcce6f97bb9e0cd5b15d0a707635a7198bd841107b7d286feb9\",\"dweb:/ipfs/QmQhSnFBuD7m28QMeBuxHsxfkpMZagjsMeKzFUpSs2Mvzh\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"@openzeppelin/contracts-ethereum-package/contracts/utils/Address.sol\":{\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\",\"urls\":[\"bzz-raw://03335b7b07c7c8c8d613cfdd8ec39a0b5ec133ee510bf2fe6cc5a496767bef4b\",\"dweb:/ipfs/Qmebp4nzPja645c9yXSdJkGq96oU3am3LUnG2K3R7XxyKf\"]},\"@openzeppelin/upgrades/contracts/upgradeability/Proxy.sol\":{\"keccak256\":\"0xd8074ae5fa7ee6384ca8196a896612fb044bbf4ff4b7336d03cd97845000ac21\",\"urls\":[\"bzz-raw://3a111e1dc777d80e6c2ad41c6ff2bfb3ae8f61658fd6580ddf9ba9ab0d25a354\",\"dweb:/ipfs/QmSfwvUqqiownzHeMmUiYkejWs6FXR2KLtHQnSzP6FivTj\"]}},\"version\":1}",
+  "bytecode": "0x60806040526040516106e93803806106e9833981810160405260e081101561002657600080fd5b810190808051604051939291908464010000000082111561004657600080fd5b90830190602082018581111561005b57600080fd5b825164010000000081118282018810171561007557600080fd5b82525081516020918201929091019080838360005b838110156100a257818101518382015260200161008a565b50505050905090810190601f1680156100cf5780820380516001836020036101000a031916815260200191505b50604052602001805160405193929190846401000000008211156100f257600080fd5b90830190602082018581111561010757600080fd5b825164010000000081118282018810171561012157600080fd5b82525081516020918201929091019080838360005b8381101561014e578181015183820152602001610136565b50505050905090810190601f16801561017b5780820380516001836020036101000a031916815260200191505b50604081815260208381015191840151606080860151608087015160a09097015160ff861660648801526084870184905260a487018290526001600160a01b0380891660c4890152811660e488015260e0602488019081528c516101048901528c51969a50939850909695909491938b938b938b938b938b938b938b93919283926044810192610124909101918c019080838360005b83811015610229578181015183820152602001610211565b50505050905090810190601f1680156102565780820380516001836020036101000a031916815260200191505b5083810382528951815289516020918201918b019080838360005b83811015610289578181015183820152602001610271565b50505050905090810190601f1680156102b65780820380516001836020036101000a031916815260200191505b5060408051601f198184030181529190526020810180516001600160e01b0390811663561cf2ab60e01b17909152909b5060009a5061030199508d9850610325169650505050505050565b905061031681836001600160e01b0361039216565b505050505050505050506104de565b6000816001600160a01b03166368afc3c66040518163ffffffff1660e01b815260040160206040518083038186803b15801561036057600080fd5b505afa158015610374573d6000803e3d6000fd5b505050506040513d602081101561038a57600080fd5b505192915050565b60606103b0836001600160a01b03166104a560201b6101581760201c565b6103eb5760405162461bcd60e51b81526004018080602001828103825260338152602001806106b66033913960400191505060405180910390fd5b60006060846001600160a01b0316846040518082805190602001908083835b602083106104295780518252601f19909201916020918201910161040a565b6001836020036101000a038019825116818451168082178552505050505050905001915050600060405180830381855af49150503d8060008114610489576040519150601f19603f3d011682016040523d82523d6000602084013e61048e565b606091505b50915091508161049d57600080fd5b949350505050565b6000813f7fc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a47081811480159061049d575050151592915050565b6101c9806104ed6000396000f3fe6080604052600436106100295760003560e01c80635c60da1b14610033578063dc21a6a014610064575b610031610079565b005b34801561003f57600080fd5b50610048610093565b604080516001600160a01b039092168252519081900360200190f35b34801561007057600080fd5b506100486100a2565b610081610091565b61009161008c6100b1565b6100c7565b565b600061009d6100b1565b905090565b6000546001600160a01b031681565b6000805461009d906001600160a01b03166100eb565b3660008037600080366000845af43d6000803e8080156100e6573d6000f35b3d6000fd5b6000816001600160a01b03166368afc3c66040518163ffffffff1660e01b815260040160206040518083038186803b15801561012657600080fd5b505afa15801561013a573d6000803e3d6000fd5b505050506040513d602081101561015057600080fd5b505192915050565b6000813f7fc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a47081811480159061018c57508115155b94935050505056fea265627a7a72315820062a217340fa14a4cfdf96776fccab00ed3d596897619b17d81fc10d7b257dc264736f6c6343000511003250524f58595f44454c45474154455f544f5f494d504c454d454e544154494f4e5f4d5553545f42455f415f434f4e5452414354",
+  "deployedBytecode": "0x6080604052600436106100295760003560e01c80635c60da1b14610033578063dc21a6a014610064575b610031610079565b005b34801561003f57600080fd5b50610048610093565b604080516001600160a01b039092168252519081900360200190f35b34801561007057600080fd5b506100486100a2565b610081610091565b61009161008c6100b1565b6100c7565b565b600061009d6100b1565b905090565b6000546001600160a01b031681565b6000805461009d906001600160a01b03166100eb565b3660008037600080366000845af43d6000803e8080156100e6573d6000f35b3d6000fd5b6000816001600160a01b03166368afc3c66040518163ffffffff1660e01b815260040160206040518083038186803b15801561012657600080fd5b505afa15801561013a573d6000803e3d6000fd5b505050506040513d602081101561015057600080fd5b505192915050565b6000813f7fc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a47081811480159061018c57508115155b94935050505056fea265627a7a72315820062a217340fa14a4cfdf96776fccab00ed3d596897619b17d81fc10d7b257dc264736f6c63430005110032",
+  "sourceMap": "152:1702:10:-;;;747:648;;;;;;;;;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;747:648:10;;;;;;;;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;372:25;;-1:-1;747:648:10;;420:4:-1;411:14;;;;747:648:10;;;;;411:14:-1;747:648:10;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;747:648:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;372:25;;-1:-1;747:648:10;;420:4:-1;411:14;;;;747:648:10;;;;;411:14:-1;747:648:10;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;747:648:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;747:648:10;;;;;;;;;;;;;;;;;;;;;;;;;;;1011:271;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;1011:271:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;747:648;;-1:-1:-1;747:648:10;;-1:-1:-1;747:648:10;;;;;;;1011:271;;1145:6;;747:648;;;;;;;;;;1011:271;;;;;;;;;;;;;;;;;;;-1:-1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;1011:271:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1011:271:10;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;1011:271:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1011:271:10;;;26:21:-1;;;-1:-1;;22:32;6:49;;1011:271:10;;;49:4:-1;25:18;;61:17;;-1:-1;;;;;;;;182:15;;;179:29;160:49;;;1011:271:10;;-1:-1:-1;;;;1308:38:10;;-1:-1:-1;1327:18:10;;-1:-1:-1;1308:18:10;:38;;-1:-1:-1;;;;;;;1308:38:10:i;:::-;1292:54;-1:-1:-1;1356:32:10;1292:54;1379:8;1356:15;:32::i;:::-;;747:648;;;;;;;;;152:1702;;1692:160;1771:7;1810:18;-1:-1:-1;;;;;1797:46:10;;:48;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1797:48:10;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1797:48:10;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1797:48:10;;1692:160;-1:-1:-1;;1692:160:10:o;1028:340:12:-;1116:12;1148:28;:15;-1:-1:-1;;;;;1148:26:12;;;;;;:28;;:::i;:::-;1140:92;;;;-1:-1:-1;;;1140:92:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1244:12;1258:17;1279:15;-1:-1:-1;;;;;1279:28:12;1308:5;1279:35;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;36:153;;176:10;;164:23;;-1:-1;;139:12;;;;98:2;89:12;;;;114;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;1279:35:12;;;;;;;;;;;;;;;;;;;;;;;14:1:-1;21;16:31;;;;75:4;69:11;64:16;;144:4;140:9;133:4;115:16;111:27;107:43;104:1;100:51;94:4;87:65;169:16;166:1;159:27;225:16;222:1;215:4;212:1;208:12;193:49;7:242;;16:31;36:4;31:9;;7:242;;1243:71:12;;;;1332:7;1324:16;;;;;;1357:4;1028:340;-1:-1:-1;;;;1028:340:12:o;686:610:98:-;746:4;1207:20;;1052:66;1246:23;;;;;;:42;;-1:-1:-1;;1273:15:98;;;1238:51;-1:-1:-1;;686:610:98:o;152:1702:10:-;;;;;;;",
+  "deployedSourceMap": "152:1702:10:-;;;;;;;;;;;;;;;;;;;;;;;453:11:117;:9;:11::i;:::-;152:1702:10;644:99:12;;8:9:-1;5:2;;;30:1;27;20:12;5:2;644:99:12;;;:::i;:::-;;;;-1:-1:-1;;;;;644:99:12;;;;;;;;;;;;;;1336:31:6;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1336:31:6;;;:::i;1952:90:117:-;1988:15;:13;:15::i;:::-;2009:28;2019:17;:15;:17::i;:::-;2009:9;:28::i;:::-;1952:90::o;644:99:12:-;693:7;719:17;:15;:17::i;:::-;712:24;;644:99;:::o;1336:31:6:-;;;-1:-1:-1;;;;;1336:31:6;;:::o;517:126:7:-;567:11;623;;596:40;;-1:-1:-1;;;;;623:11:7;596:18;:40::i;878:731:117:-;1180:12;1177:1;1174;1161:32;1370:1;1367;1353:12;1350:1;1334:14;1329:3;1316:56;1434:14;1431:1;1428;1413:36;1464:6;1519:36;;;;1582:14;1579:1;1572:25;1519:36;1538:14;1535:1;1528:25;1692:160:10;1771:7;1810:18;-1:-1:-1;;;;;1797:46:10;;:48;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1797:48:10;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1797:48:10;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1797:48:10;;1692:160;-1:-1:-1;;1692:160:10:o;686:610:98:-;746:4;1207:20;;1052:66;1246:23;;;;;;:42;;-1:-1:-1;1273:15:98;;;1246:42;1238:51;686:610;-1:-1:-1;;;;686:610:98:o",
+  "source": "pragma solidity 0.5.17;\n\nimport \"./BaseATMProxy.sol\";\n\n/**\n * @notice It is the Proxy contract for TLR Tokens.\n *\n * @author develop@teller.finance\n */\ncontract TLRTokenProxy is BaseATMProxy {\n    /**\n        @notice This constructor forwards the parameters to the implementation logic contract defined in ATMSettings.\n        @param name The name of the token\n        @param symbol The symbol of the token\n        @param decimals The amount of decimals for token\n        @param cap The maximum number of tokens available\n        @param maxVestingPerWallet The maximum number of times a wallet can mint their vesting\n        @param atmSettingsAddress The ATMSettings address\n        @param atm The ATMGovernance address for this token\n     */\n    constructor(\n        string memory name,\n        string memory symbol,\n        uint8 decimals,\n        uint256 cap,\n        uint256 maxVestingPerWallet,\n        address atmSettingsAddress,\n        address atm\n    ) public payable {\n        bytes memory initData = abi.encodeWithSignature(\n            \"initialize(string,string,uint8,uint256,uint256,address,address)\",\n            name,\n            symbol,\n            decimals,\n            cap,\n            maxVestingPerWallet,\n            atmSettingsAddress,\n            atm\n        );\n        address logic = _getImplementation(atmSettingsAddress);\n        _delegateToWith(logic, initData);\n    }\n\n    /** internal functions **/\n\n    /**\n        @notice it is the logic of grabbing the current TLRToken logic address from an ATMSettings contract address.\n        @param atmSettingsAddress address of an ATMSettings contract\n        @return address of TLRToken logic implementation\n     */\n    function _getImplementation(address atmSettingsAddress) internal view returns (address) {\n        return IATMSettings(atmSettingsAddress).tlrTokenLogic();\n    }\n}\n",
+  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenProxy.sol",
+  "ast": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenProxy.sol",
+    "exportedSymbols": {
+      "TLRTokenProxy": [
+        2227
+      ]
+    },
+    "id": 2228,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2166,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:10"
+      },
+      {
+        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/BaseATMProxy.sol",
+        "file": "./BaseATMProxy.sol",
+        "id": 2167,
+        "nodeType": "ImportDirective",
+        "scope": 2228,
+        "sourceUnit": 1281,
+        "src": "25:28:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 2168,
+              "name": "BaseATMProxy",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1280,
+              "src": "178:12:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_BaseATMProxy_$1280",
+                "typeString": "contract BaseATMProxy"
+              }
+            },
+            "id": 2169,
+            "nodeType": "InheritanceSpecifier",
+            "src": "178:12:10"
+          }
+        ],
+        "contractDependencies": [
+          1250,
+          1280,
+          2441,
+          17045
+        ],
+        "contractKind": "contract",
+        "documentation": "@notice It is the Proxy contract for TLR Tokens.\n * @author develop@teller.finance",
+        "fullyImplemented": true,
+        "id": 2227,
+        "linearizedBaseContracts": [
+          2227,
+          1280,
+          1250,
+          2441,
+          17045
+        ],
+        "name": "TLRTokenProxy",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 2211,
+              "nodeType": "Block",
+              "src": "977:418:10",
+              "statements": [
+                {
+                  "assignments": [
+                    2187
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2187,
+                      "name": "initData",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2211,
+                      "src": "987:21:10",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 2186,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "987:5:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2199,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "696e697469616c697a6528737472696e672c737472696e672c75696e74382c75696e743235362c75696e743235362c616464726573732c6164647265737329",
+                        "id": 2190,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1048:65:10",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_561cf2ab6ec695144bcd569911bb89220c3bccd0eae1bfb3daeacdc9ff1814c7",
+                          "typeString": "literal_string \"initialize(string,string,uint8,uint256,uint256,address,address)\""
+                        },
+                        "value": "initialize(string,string,uint8,uint256,uint256,address,address)"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2191,
+                        "name": "name",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2171,
+                        "src": "1127:4:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2192,
+                        "name": "symbol",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2173,
+                        "src": "1145:6:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2193,
+                        "name": "decimals",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2175,
+                        "src": "1165:8:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2194,
+                        "name": "cap",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2177,
+                        "src": "1187:3:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2195,
+                        "name": "maxVestingPerWallet",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2179,
+                        "src": "1204:19:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2196,
+                        "name": "atmSettingsAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2181,
+                        "src": "1237:18:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2197,
+                        "name": "atm",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2183,
+                        "src": "1269:3:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_561cf2ab6ec695144bcd569911bb89220c3bccd0eae1bfb3daeacdc9ff1814c7",
+                          "typeString": "literal_string \"initialize(string,string,uint8,uint256,uint256,address,address)\""
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2188,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 17115,
+                        "src": "1011:3:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 2189,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "encodeWithSignature",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1011:23:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abiencodewithsignature_pure$_t_string_memory_ptr_$returns$_t_bytes_memory_ptr_$",
+                        "typeString": "function (string memory) pure returns (bytes memory)"
+                      }
+                    },
+                    "id": 2198,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1011:271:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "987:295:10"
+                },
+                {
+                  "assignments": [
+                    2201
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2201,
+                      "name": "logic",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2211,
+                      "src": "1292:13:10",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 2200,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1292:7:10",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2205,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2203,
+                        "name": "atmSettingsAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2181,
+                        "src": "1327:18:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 2202,
+                      "name": "_getImplementation",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        2226
+                      ],
+                      "referencedDeclaration": 2226,
+                      "src": "1308:18:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_address_$",
+                        "typeString": "function (address) view returns (address)"
+                      }
+                    },
+                    "id": 2204,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1308:38:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1292:54:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2207,
+                        "name": "logic",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2201,
+                        "src": "1372:5:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2208,
+                        "name": "initData",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2187,
+                        "src": "1379:8:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "id": 2206,
+                      "name": "_delegateToWith",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2440,
+                      "src": "1356:15:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bytes_memory_ptr_$returns$_t_bytes_memory_ptr_$",
+                        "typeString": "function (address,bytes memory) returns (bytes memory)"
+                      }
+                    },
+                    "id": 2209,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1356:32:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "id": 2210,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1356:32:10"
+                }
+              ]
+            },
+            "documentation": "@notice This constructor forwards the parameters to the implementation logic contract defined in ATMSettings.\n@param name The name of the token\n@param symbol The symbol of the token\n@param decimals The amount of decimals for token\n@param cap The maximum number of tokens available\n@param maxVestingPerWallet The maximum number of times a wallet can mint their vesting\n@param atmSettingsAddress The ATMSettings address\n@param atm The ATMGovernance address for this token",
+            "id": 2212,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2184,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2171,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "768:18:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2170,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "768:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2173,
+                  "name": "symbol",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "796:20:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2172,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "796:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2175,
+                  "name": "decimals",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "826:14:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 2174,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "826:5:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2177,
+                  "name": "cap",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "850:11:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2176,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "850:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2179,
+                  "name": "maxVestingPerWallet",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "871:27:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2178,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "871:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2181,
+                  "name": "atmSettingsAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "908:26:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2180,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "908:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2183,
+                  "name": "atm",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "944:11:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2182,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "944:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "758:203:10"
+            },
+            "returnParameters": {
+              "id": 2185,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "977:0:10"
+            },
+            "scope": 2227,
+            "src": "747:648:10",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2225,
+              "nodeType": "Block",
+              "src": "1780:72:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 2220,
+                            "name": "atmSettingsAddress",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2214,
+                            "src": "1810:18:10",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 2219,
+                          "name": "IATMSettings",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 11231,
+                          "src": "1797:12:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_contract$_IATMSettings_$11231_$",
+                            "typeString": "type(contract IATMSettings)"
+                          }
+                        },
+                        "id": 2221,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1797:32:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IATMSettings_$11231",
+                          "typeString": "contract IATMSettings"
+                        }
+                      },
+                      "id": 2222,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "tlrTokenLogic",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 11153,
+                      "src": "1797:46:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
+                        "typeString": "function () view external returns (address)"
+                      }
+                    },
+                    "id": 2223,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1797:48:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 2218,
+                  "id": 2224,
+                  "nodeType": "Return",
+                  "src": "1790:55:10"
+                }
+              ]
+            },
+            "documentation": "@notice it is the logic of grabbing the current TLRToken logic address from an ATMSettings contract address.\n@param atmSettingsAddress address of an ATMSettings contract\n@return address of TLRToken logic implementation",
+            "id": 2226,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_getImplementation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2215,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2214,
+                  "name": "atmSettingsAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2226,
+                  "src": "1720:26:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2213,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1720:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1719:28:10"
+            },
+            "returnParameters": {
+              "id": 2218,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2217,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2226,
+                  "src": "1771:7:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2216,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1771:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1770:9:10"
+            },
+            "scope": 2227,
+            "src": "1692:160:10",
+            "stateMutability": "view",
+            "superFunction": 1279,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 2228,
+        "src": "152:1702:10"
+      }
+    ],
+    "src": "0:1855:10"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenProxy.sol",
+    "exportedSymbols": {
+      "TLRTokenProxy": [
+        2227
+      ]
+    },
+    "id": 2228,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2166,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:10"
+      },
+      {
+        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/BaseATMProxy.sol",
+        "file": "./BaseATMProxy.sol",
+        "id": 2167,
+        "nodeType": "ImportDirective",
+        "scope": 2228,
+        "sourceUnit": 1281,
+        "src": "25:28:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 2168,
+              "name": "BaseATMProxy",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1280,
+              "src": "178:12:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_BaseATMProxy_$1280",
+                "typeString": "contract BaseATMProxy"
+              }
+            },
+            "id": 2169,
+            "nodeType": "InheritanceSpecifier",
+            "src": "178:12:10"
+          }
+        ],
+        "contractDependencies": [
+          1250,
+          1280,
+          2441,
+          17045
+        ],
+        "contractKind": "contract",
+        "documentation": "@notice It is the Proxy contract for TLR Tokens.\n * @author develop@teller.finance",
+        "fullyImplemented": true,
+        "id": 2227,
+        "linearizedBaseContracts": [
+          2227,
+          1280,
+          1250,
+          2441,
+          17045
+        ],
+        "name": "TLRTokenProxy",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 2211,
+              "nodeType": "Block",
+              "src": "977:418:10",
+              "statements": [
+                {
+                  "assignments": [
+                    2187
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2187,
+                      "name": "initData",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2211,
+                      "src": "987:21:10",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 2186,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "987:5:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2199,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "696e697469616c697a6528737472696e672c737472696e672c75696e74382c75696e743235362c75696e743235362c616464726573732c6164647265737329",
+                        "id": 2190,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1048:65:10",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_561cf2ab6ec695144bcd569911bb89220c3bccd0eae1bfb3daeacdc9ff1814c7",
+                          "typeString": "literal_string \"initialize(string,string,uint8,uint256,uint256,address,address)\""
+                        },
+                        "value": "initialize(string,string,uint8,uint256,uint256,address,address)"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2191,
+                        "name": "name",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2171,
+                        "src": "1127:4:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2192,
+                        "name": "symbol",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2173,
+                        "src": "1145:6:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2193,
+                        "name": "decimals",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2175,
+                        "src": "1165:8:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2194,
+                        "name": "cap",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2177,
+                        "src": "1187:3:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2195,
+                        "name": "maxVestingPerWallet",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2179,
+                        "src": "1204:19:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2196,
+                        "name": "atmSettingsAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2181,
+                        "src": "1237:18:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2197,
+                        "name": "atm",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2183,
+                        "src": "1269:3:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_561cf2ab6ec695144bcd569911bb89220c3bccd0eae1bfb3daeacdc9ff1814c7",
+                          "typeString": "literal_string \"initialize(string,string,uint8,uint256,uint256,address,address)\""
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2188,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 17115,
+                        "src": "1011:3:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 2189,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "encodeWithSignature",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1011:23:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abiencodewithsignature_pure$_t_string_memory_ptr_$returns$_t_bytes_memory_ptr_$",
+                        "typeString": "function (string memory) pure returns (bytes memory)"
+                      }
+                    },
+                    "id": 2198,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1011:271:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "987:295:10"
+                },
+                {
+                  "assignments": [
+                    2201
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2201,
+                      "name": "logic",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2211,
+                      "src": "1292:13:10",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 2200,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1292:7:10",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2205,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2203,
+                        "name": "atmSettingsAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2181,
+                        "src": "1327:18:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 2202,
+                      "name": "_getImplementation",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        2226
+                      ],
+                      "referencedDeclaration": 2226,
+                      "src": "1308:18:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_address_$",
+                        "typeString": "function (address) view returns (address)"
+                      }
+                    },
+                    "id": 2204,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1308:38:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1292:54:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2207,
+                        "name": "logic",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2201,
+                        "src": "1372:5:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 2208,
+                        "name": "initData",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2187,
+                        "src": "1379:8:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "id": 2206,
+                      "name": "_delegateToWith",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2440,
+                      "src": "1356:15:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bytes_memory_ptr_$returns$_t_bytes_memory_ptr_$",
+                        "typeString": "function (address,bytes memory) returns (bytes memory)"
+                      }
+                    },
+                    "id": 2209,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1356:32:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "id": 2210,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1356:32:10"
+                }
+              ]
+            },
+            "documentation": "@notice This constructor forwards the parameters to the implementation logic contract defined in ATMSettings.\n@param name The name of the token\n@param symbol The symbol of the token\n@param decimals The amount of decimals for token\n@param cap The maximum number of tokens available\n@param maxVestingPerWallet The maximum number of times a wallet can mint their vesting\n@param atmSettingsAddress The ATMSettings address\n@param atm The ATMGovernance address for this token",
+            "id": 2212,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2184,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2171,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "768:18:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2170,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "768:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2173,
+                  "name": "symbol",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "796:20:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2172,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "796:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2175,
+                  "name": "decimals",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "826:14:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 2174,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "826:5:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2177,
+                  "name": "cap",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "850:11:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2176,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "850:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2179,
+                  "name": "maxVestingPerWallet",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "871:27:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2178,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "871:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2181,
+                  "name": "atmSettingsAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "908:26:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2180,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "908:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2183,
+                  "name": "atm",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2212,
+                  "src": "944:11:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2182,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "944:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "758:203:10"
+            },
+            "returnParameters": {
+              "id": 2185,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "977:0:10"
+            },
+            "scope": 2227,
+            "src": "747:648:10",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2225,
+              "nodeType": "Block",
+              "src": "1780:72:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 2220,
+                            "name": "atmSettingsAddress",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2214,
+                            "src": "1810:18:10",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 2219,
+                          "name": "IATMSettings",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 11231,
+                          "src": "1797:12:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_contract$_IATMSettings_$11231_$",
+                            "typeString": "type(contract IATMSettings)"
+                          }
+                        },
+                        "id": 2221,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1797:32:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IATMSettings_$11231",
+                          "typeString": "contract IATMSettings"
+                        }
+                      },
+                      "id": 2222,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "tlrTokenLogic",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 11153,
+                      "src": "1797:46:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
+                        "typeString": "function () view external returns (address)"
+                      }
+                    },
+                    "id": 2223,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1797:48:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 2218,
+                  "id": 2224,
+                  "nodeType": "Return",
+                  "src": "1790:55:10"
+                }
+              ]
+            },
+            "documentation": "@notice it is the logic of grabbing the current TLRToken logic address from an ATMSettings contract address.\n@param atmSettingsAddress address of an ATMSettings contract\n@return address of TLRToken logic implementation",
+            "id": 2226,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_getImplementation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2215,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2214,
+                  "name": "atmSettingsAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2226,
+                  "src": "1720:26:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2213,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1720:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1719:28:10"
+            },
+            "returnParameters": {
+              "id": 2218,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2217,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2226,
+                  "src": "1771:7:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2216,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1771:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1770:9:10"
+            },
+            "scope": 2227,
+            "src": "1692:160:10",
+            "stateMutability": "view",
+            "superFunction": 1279,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 2228,
+        "src": "152:1702:10"
+      }
+    ],
+    "src": "0:1855:10"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-08-28T22:57:03.820Z",
+  "devdoc": {
+    "author": "develop@teller.finance",
+    "methods": {
+      "constructor": {
+        "params": {
+          "atm": "The ATMGovernance address for this token",
+          "atmSettingsAddress": "The ATMSettings address",
+          "cap": "The maximum number of tokens available",
+          "decimals": "The amount of decimals for token",
+          "maxVestingPerWallet": "The maximum number of times a wallet can mint their vesting",
+          "name": "The name of the token",
+          "symbol": "The symbol of the token"
+        }
+      },
+      "implementation()": {
+        "return": "Address of the current implementation"
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "constructor": "This constructor forwards the parameters to the implementation logic contract defined in ATMSettings.",
+      "implementation()": {
+        "notice": "Returns the current implementation."
+      }
+    },
+    "notice": "It is the Proxy contract for TLR Tokens."
+  }
+}

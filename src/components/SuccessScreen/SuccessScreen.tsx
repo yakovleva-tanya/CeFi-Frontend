@@ -23,7 +23,7 @@ const SuccessScreen = ({
     <div className={`${fullScreen ? "cards-container success-screen" : ""} `}>
       <div className="d-flex align-items-center justify-content-center flex-column">
         <div className="text-5xl m-4">
-          <LoadingAnimation isStopped={false} animation="success" />
+          <LoadingAnimation isStopped={true} animation="success" />
         </div>
         <div className="text-5xl font-medium">{title}</div>
         <div className="text-gray m-3">{message}</div>
