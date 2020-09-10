@@ -14,7 +14,7 @@ import {
   BaseTokens,
 } from "./../context/app";
 
-import TDaiInterface = require("./../abi/contracts/TDai.json");
+import TDaiInterface = require("./../abi/contracts/TDAI.json");
 import DaiPoolInterface = require("./../abi/DaiPoolInterface.json");
 import LoansInterface = require("./../abi/contracts/LoansInterface.json");
 import ERC20Interface = require("./../abi/contracts/ERC20.json");
