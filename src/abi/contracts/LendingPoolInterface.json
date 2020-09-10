@@ -242,72 +242,62 @@
       "type": "function"
     },
     {
+      "constant": true,
+      "inputs": [],
+      "name": "interestValidator",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "constant": false,
       "inputs": [
         {
           "internalType": "address",
-          "name": "tTokenAddress",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "lendingTokenAddress",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "lendersAddress",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "loansAddress",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "cTokenAddress",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "settingsAddress",
+          "name": "newInterestValidator",
           "type": "address"
         }
       ],
-      "name": "initialize",
+      "name": "setInterestValidator",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"oldInterestValidator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newInterestValidator\",\"type\":\"address\"}],\"name\":\"InterestValidatorUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"InterestWithdrawn\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"liquidator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"PaymentLiquidated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenDeposited\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenRepaid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenWithdrawn\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"}],\"name\":\"createLoan\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"deposit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"lendingTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"lendersAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"loansAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"cTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"lendingToken\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"liquidator\",\"type\":\"address\"}],\"name\":\"liquidationPayment\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"}],\"name\":\"repay\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdrawInterest\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"createLoan(uint256,address)\":{\"details\":\"This function only can be invoked by the LoansInterface implementation.It throws a require error if current ERC20 balance isn't enough to transfer the tokens.\",\"params\":{\"amount\":\"of tokens to transfer.\",\"borrower\":\"address which will receive the tokens.\"}},\"deposit(uint256)\":{\"details\":\"the user must call ERC20.approve function previously.\",\"params\":{\"amount\":\"of tokens to deposit in the pool.\"}},\"initialize(address,address,address,address,address,address)\":{\"details\":\"It throws a require error if the contract is already initialized.\",\"params\":{\"lendersAddress\":\"Lenders contract address.\",\"lendingTokenAddress\":\"ERC20 token address.\",\"loansAddress\":\"Loans contract address.\",\"settingsAddress\":\"Settings contract address.\",\"tTokenAddress\":\"tToken token address.\"}},\"lendingToken()\":{\"return\":\"the ERC20 lending token address.\"},\"liquidationPayment(uint256,address)\":{\"details\":\"It throws a require error if this contract hasn't enough token balance.\",\"params\":{\"amount\":\"of tokens to liquidate.\",\"liquidator\":\"address to receive the tokens.\"}},\"repay(uint256,address)\":{\"details\":\"This function can be called ONLY by the Loans contract.It requires a ERC20.approve call before calling it.It throws a require error if borrower called ERC20.approve function before calling it.\",\"params\":{\"amount\":\"of tokens.\",\"borrower\":\"address that is repaying the loan.\"}},\"withdraw(uint256)\":{\"details\":\"It throws a require error if the contract hasn't enough tokens balance.It throws a require error if the holder hasn't enough tToken balance.\",\"params\":{\"amount\":\"of tokens to withdraw.\"}},\"withdrawInterest(uint256)\":{\"details\":\"It throws a require error if amount exceeds the current accrued interest.\",\"params\":{\"amount\":\"to withdraw.\"}}}},\"userdoc\":{\"methods\":{\"createLoan(uint256,address)\":{\"notice\":\"Once the loan is created, it transfers the amount of tokens to the borrower.\"},\"deposit(uint256)\":{\"notice\":\"It allows users to deposit tokens into the pool.\"},\"initialize(address,address,address,address,address,address)\":{\"notice\":\"It initializes the contract state variables.\"},\"lendingToken()\":{\"notice\":\"It gets the lending token address.\"},\"liquidationPayment(uint256,address)\":{\"notice\":\"Once a loan is liquidated, it transfers the amount of tokens to the liquidator address.\"},\"repay(uint256,address)\":{\"notice\":\"It allows a borrower repaying their loan. \"},\"withdraw(uint256)\":{\"notice\":\"It allows any tToken holder to burn their tToken tokens and withdraw their tokens.\"},\"withdrawInterest(uint256)\":{\"notice\":\"It allows a lender to withdraw a specific amount of interest.\"}},\"notice\":\"This interface defines the functions for a lending pool that holds all of the tokens that lenders transfer into the protocol.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LendingPoolInterface.sol\":\"LendingPoolInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LendingPoolInterface.sol\":{\"keccak256\":\"0x6fff3f4e065b2d00d8ef933f3e4a173524c2b9888bf86a6081092e5893efe294\",\"urls\":[\"bzz-raw://46411a67543dde454785d65bc33d4b920c271ac27c0353666d307a2210341d47\",\"dweb:/ipfs/QmbgZu2hQZkDgKnSU9J7XR5DvN7gKVfd8ffvSnDS6DWREA\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"oldInterestValidator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newInterestValidator\",\"type\":\"address\"}],\"name\":\"InterestValidatorUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"InterestWithdrawn\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"liquidator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"PaymentLiquidated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenDeposited\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenRepaid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenWithdrawn\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"}],\"name\":\"createLoan\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"deposit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"interestValidator\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"lendingToken\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"liquidator\",\"type\":\"address\"}],\"name\":\"liquidationPayment\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"}],\"name\":\"repay\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"newInterestValidator\",\"type\":\"address\"}],\"name\":\"setInterestValidator\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdrawInterest\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"createLoan(uint256,address)\":{\"details\":\"This function only can be invoked by the LoansInterface implementation.It throws a require error if current ERC20 balance isn't enough to transfer the tokens.\",\"params\":{\"amount\":\"of tokens to transfer.\",\"borrower\":\"address which will receive the tokens.\"}},\"deposit(uint256)\":{\"details\":\"the user must call ERC20.approve function previously.\",\"params\":{\"amount\":\"of tokens to deposit in the pool.\"}},\"interestValidator()\":{\"return\":\"the interest validator contract address or empty address (0x0). \"},\"lendingToken()\":{\"return\":\"the ERC20 lending token address.\"},\"liquidationPayment(uint256,address)\":{\"details\":\"It throws a require error if this contract hasn't enough token balance.\",\"params\":{\"amount\":\"of tokens to liquidate.\",\"liquidator\":\"address to receive the tokens.\"}},\"repay(uint256,address)\":{\"details\":\"This function can be called ONLY by the Loans contract.It requires a ERC20.approve call before calling it.It throws a require error if borrower called ERC20.approve function before calling it.\",\"params\":{\"amount\":\"of tokens.\",\"borrower\":\"address that is repaying the loan.\"}},\"setInterestValidator(address)\":{\"params\":{\"newInterestValidator\":\"the new interest validator address.\"}},\"withdraw(uint256)\":{\"details\":\"It throws a require error if the contract hasn't enough tokens balance.It throws a require error if the holder hasn't enough tToken balance.\",\"params\":{\"amount\":\"of tokens to withdraw.\"}},\"withdrawInterest(uint256)\":{\"details\":\"It throws a require error if amount exceeds the current accrued interest.\",\"params\":{\"amount\":\"to withdraw.\"}}}},\"userdoc\":{\"methods\":{\"createLoan(uint256,address)\":{\"notice\":\"Once the loan is created, it transfers the amount of tokens to the borrower.\"},\"deposit(uint256)\":{\"notice\":\"It allows users to deposit tokens into the pool.\"},\"interestValidator()\":{\"notice\":\"Gets the current interest validator. By default it is 0x0.\"},\"lendingToken()\":{\"notice\":\"It gets the lending token address.\"},\"liquidationPayment(uint256,address)\":{\"notice\":\"Once a loan is liquidated, it transfers the amount of tokens to the liquidator address.\"},\"repay(uint256,address)\":{\"notice\":\"It allows a borrower repaying their loan. \"},\"setInterestValidator(address)\":{\"notice\":\"Update the current interest validator address.\"},\"withdraw(uint256)\":{\"notice\":\"It allows any tToken holder to burn their tToken tokens and withdraw their tokens.\"},\"withdrawInterest(uint256)\":{\"notice\":\"It allows a lender to withdraw a specific amount of interest.\"}},\"notice\":\"This interface defines the functions for a lending pool that holds all of the tokens that lenders transfer into the protocol.\"}},\"settings\":{\"compilationTarget\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LendingPoolInterface.sol\":\"LendingPoolInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LendingPoolInterface.sol\":{\"keccak256\":\"0x214c5b65e08cb2426a74ae33acac09435096a79f8d36645ec472efbc32fb5468\",\"urls\":[\"bzz-raw://6fd5b1970d7e344d0bf02a4027fbd29c59333073af01dafe68c3f6bf2369f65a\",\"dweb:/ipfs/QmZWeuDseAaZ8gfbRERA85EFWbjnGQviufKf75vB43oPx1\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.17;\n\n/**\n    @notice This interface defines the functions for a lending pool that holds all of the tokens that lenders transfer into the protocol.\n\n    @author develop@teller.finance\n */\ninterface LendingPoolInterface {\n    /**\n        @notice It allows users to deposit tokens into the pool.\n        @dev the user must call ERC20.approve function previously.\n        @param amount of tokens to deposit in the pool.\n    */\n    function deposit(uint256 amount) external;\n\n    /**\n        @notice It allows any tToken holder to burn their tToken tokens and withdraw their tokens.\n        @param amount of tokens to withdraw.\n        @dev It throws a require error if the contract hasn't enough tokens balance.\n        @dev It throws a require error if the holder hasn't enough tToken balance.\n     */\n    function withdraw(uint256 amount) external;\n\n    /**\n        @notice It allows a borrower repaying their loan. \n        @dev This function can be called ONLY by the Loans contract.\n        @dev It requires a ERC20.approve call before calling it.\n        @dev It throws a require error if borrower called ERC20.approve function before calling it.\n        @param amount of tokens.\n        @param borrower address that is repaying the loan.\n     */\n    function repay(uint256 amount, address borrower) external;\n\n    /**\n        @notice Once a loan is liquidated, it transfers the amount of tokens to the liquidator address.\n        @param amount of tokens to liquidate.\n        @param liquidator address to receive the tokens.\n        @dev It throws a require error if this contract hasn't enough token balance.\n     */\n    function liquidationPayment(uint256 amount, address liquidator) external;\n\n    /**\n        @notice Once the loan is created, it transfers the amount of tokens to the borrower.\n        @param amount of tokens to transfer.\n        @param borrower address which will receive the tokens.\n        @dev This function only can be invoked by the LoansInterface implementation.\n        @dev It throws a require error if current ERC20 balance isn't enough to transfer the tokens.\n     */\n    function createLoan(uint256 amount, address borrower) external;\n\n    /**\n        @notice It allows a lender to withdraw a specific amount of interest.\n        @param amount to withdraw.\n        @dev It throws a require error if amount exceeds the current accrued interest.\n    */\n    function withdrawInterest(uint256 amount) external;\n\n    /**\n        @notice It gets the lending token address.\n        @return the ERC20 lending token address.\n    */\n    function lendingToken() external view returns (address);\n\n    /**\n        @notice It initializes the contract state variables.\n        @param tTokenAddress tToken token address.\n        @param lendingTokenAddress ERC20 token address.\n        @param lendersAddress Lenders contract address.\n        @param loansAddress Loans contract address.\n        @param settingsAddress Settings contract address.\n        @dev It throws a require error if the contract is already initialized.\n     */\n    function initialize(\n        address tTokenAddress,\n        address lendingTokenAddress,\n        address lendersAddress,\n        address loansAddress,\n        address cTokenAddress,\n        address settingsAddress\n    ) external;\n\n    /**\n        @notice This event is emitted when an user deposits tokens into the pool.\n        @param sender address.\n        @param amount of tokens.\n     */\n    event TokenDeposited(address indexed sender, uint256 amount);\n\n    /**\n        @notice This event is emitted when an user withdraws tokens from the pool.\n        @param sender address that withdrew the tokens.\n        @param amount of tokens.\n     */\n    event TokenWithdrawn(address indexed sender, uint256 amount);\n\n    /**\n        @notice This event is emitted when an borrower repaid a loan.\n        @param borrower address.\n        @param amount of tokens.\n     */\n    event TokenRepaid(address indexed borrower, uint256 amount);\n\n    /**\n        @notice This event is emitted when an lender withdraws interests.\n        @param lender address.\n        @param amount of tokens.\n     */\n    event InterestWithdrawn(address indexed lender, uint256 amount);\n\n    /**\n        @notice This event is emitted when a liquidator liquidates a loan.\n        @param liquidator address.\n        @param amount of tokens.\n     */\n    event PaymentLiquidated(address indexed liquidator, uint256 amount);\n\n    /**\n        @notice This event is emitted when the interest validator is updated.\n        @param sender account that sends the transaction.\n        @param oldInterestValidator the old validator address.\n        @param newInterestValidator the new validator address.\n     */\n    event InterestValidatorUpdated(\n        address indexed sender,\n        address indexed oldInterestValidator,\n        address indexed newInterestValidator\n    );\n}\n",
-  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LendingPoolInterface.sol",
+  "source": "pragma solidity 0.5.17;\n\n\n/**\n    @notice This interface defines the functions for a lending pool that holds all of the tokens that lenders transfer into the protocol.\n\n    @author develop@teller.finance\n */\ninterface LendingPoolInterface {\n    /**\n        @notice It allows users to deposit tokens into the pool.\n        @dev the user must call ERC20.approve function previously.\n        @param amount of tokens to deposit in the pool.\n    */\n    function deposit(uint256 amount) external;\n\n    /**\n        @notice It allows any tToken holder to burn their tToken tokens and withdraw their tokens.\n        @param amount of tokens to withdraw.\n        @dev It throws a require error if the contract hasn't enough tokens balance.\n        @dev It throws a require error if the holder hasn't enough tToken balance.\n     */\n    function withdraw(uint256 amount) external;\n\n    /**\n        @notice It allows a borrower repaying their loan. \n        @dev This function can be called ONLY by the Loans contract.\n        @dev It requires a ERC20.approve call before calling it.\n        @dev It throws a require error if borrower called ERC20.approve function before calling it.\n        @param amount of tokens.\n        @param borrower address that is repaying the loan.\n     */\n    function repay(uint256 amount, address borrower) external;\n\n    /**\n        @notice Once a loan is liquidated, it transfers the amount of tokens to the liquidator address.\n        @param amount of tokens to liquidate.\n        @param liquidator address to receive the tokens.\n        @dev It throws a require error if this contract hasn't enough token balance.\n     */\n    function liquidationPayment(uint256 amount, address liquidator) external;\n\n    /**\n        @notice Once the loan is created, it transfers the amount of tokens to the borrower.\n        @param amount of tokens to transfer.\n        @param borrower address which will receive the tokens.\n        @dev This function only can be invoked by the LoansInterface implementation.\n        @dev It throws a require error if current ERC20 balance isn't enough to transfer the tokens.\n     */\n    function createLoan(uint256 amount, address borrower) external;\n\n    /**\n        @notice It allows a lender to withdraw a specific amount of interest.\n        @param amount to withdraw.\n        @dev It throws a require error if amount exceeds the current accrued interest.\n    */\n    function withdrawInterest(uint256 amount) external;\n\n    /**\n        @notice It gets the lending token address.\n        @return the ERC20 lending token address.\n    */\n    function lendingToken() external view returns (address);\n\n    /**\n        @notice Gets the current interest validator. By default it is 0x0.\n        @return the interest validator contract address or empty address (0x0). \n     */\n    function interestValidator() external view returns (address);\n\n    /**\n        @notice Update the current interest validator address.\n        @param newInterestValidator the new interest validator address.\n     */\n    function setInterestValidator(address newInterestValidator) external;\n\n    /**\n        @notice This event is emitted when an user deposits tokens into the pool.\n        @param sender address.\n        @param amount of tokens.\n     */\n    event TokenDeposited(address indexed sender, uint256 amount);\n\n    /**\n        @notice This event is emitted when an user withdraws tokens from the pool.\n        @param sender address that withdrew the tokens.\n        @param amount of tokens.\n     */\n    event TokenWithdrawn(address indexed sender, uint256 amount);\n\n    /**\n        @notice This event is emitted when an borrower repaid a loan.\n        @param borrower address.\n        @param amount of tokens.\n     */\n    event TokenRepaid(address indexed borrower, uint256 amount);\n\n    /**\n        @notice This event is emitted when an lender withdraws interests.\n        @param lender address.\n        @param amount of tokens.\n     */\n    event InterestWithdrawn(address indexed lender, uint256 amount);\n\n    /**\n        @notice This event is emitted when a liquidator liquidates a loan.\n        @param liquidator address.\n        @param amount of tokens.\n     */\n    event PaymentLiquidated(address indexed liquidator, uint256 amount);\n\n    /**\n        @notice This event is emitted when the interest validator is updated.\n        @param sender account that sends the transaction.\n        @param oldInterestValidator the old validator address.\n        @param newInterestValidator the new validator address.\n     */\n    event InterestValidatorUpdated(\n        address indexed sender,\n        address indexed oldInterestValidator,\n        address indexed newInterestValidator\n    );\n}\n",
+  "sourcePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LendingPoolInterface.sol",
   "ast": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LendingPoolInterface.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LendingPoolInterface.sol",
     "exportedSymbols": {
       "LendingPoolInterface": [
-        10580
+        7048
       ]
     },
-    "id": 10581,
+    "id": 7049,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10485,
+        "id": 6958,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:47"
+        "src": "0:23:27"
       },
       {
         "baseContracts": [],
@@ -315,9 +305,9 @@
         "contractKind": "interface",
         "documentation": "@notice This interface defines the functions for a lending pool that holds all of the tokens that lenders transfer into the protocol.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10580,
+        "id": 7048,
         "linearizedBaseContracts": [
-          10580
+          7048
         ],
         "name": "LendingPoolInterface",
         "nodeType": "ContractDefinition",
@@ -325,23 +315,23 @@
           {
             "body": null,
             "documentation": "@notice It allows users to deposit tokens into the pool.\n@dev the user must call ERC20.approve function previously.\n@param amount of tokens to deposit in the pool.",
-            "id": 10490,
+            "id": 6963,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10488,
+              "id": 6961,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10487,
+                  "id": 6960,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10490,
-                  "src": "464:14:47",
+                  "scope": 6963,
+                  "src": "465:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -349,10 +339,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10486,
+                    "id": 6959,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "464:7:47",
+                    "src": "465:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -362,16 +352,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "463:16:47"
+              "src": "464:16:27"
             },
             "returnParameters": {
-              "id": 10489,
+              "id": 6962,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "488:0:47"
+              "src": "489:0:27"
             },
-            "scope": 10580,
-            "src": "447:42:47",
+            "scope": 7048,
+            "src": "448:42:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -379,23 +369,23 @@
           {
             "body": null,
             "documentation": "@notice It allows any tToken holder to burn their tToken tokens and withdraw their tokens.\n@param amount of tokens to withdraw.\n@dev It throws a require error if the contract hasn't enough tokens balance.\n@dev It throws a require error if the holder hasn't enough tToken balance.",
-            "id": 10495,
+            "id": 6968,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10493,
+              "id": 6966,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10492,
+                  "id": 6965,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10495,
-                  "src": "841:14:47",
+                  "scope": 6968,
+                  "src": "842:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -403,10 +393,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10491,
+                    "id": 6964,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "841:7:47",
+                    "src": "842:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -416,16 +406,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "840:16:47"
+              "src": "841:16:27"
             },
             "returnParameters": {
-              "id": 10494,
+              "id": 6967,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "865:0:47"
+              "src": "866:0:27"
             },
-            "scope": 10580,
-            "src": "823:43:47",
+            "scope": 7048,
+            "src": "824:43:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -433,23 +423,23 @@
           {
             "body": null,
             "documentation": "@notice It allows a borrower repaying their loan. \n@dev This function can be called ONLY by the Loans contract.\n@dev It requires a ERC20.approve call before calling it.\n@dev It throws a require error if borrower called ERC20.approve function before calling it.\n@param amount of tokens.\n@param borrower address that is repaying the loan.",
-            "id": 10502,
+            "id": 6975,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "repay",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10500,
+              "id": 6973,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10497,
+                  "id": 6970,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10502,
-                  "src": "1288:14:47",
+                  "scope": 6975,
+                  "src": "1289:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -457,10 +447,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10496,
+                    "id": 6969,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1288:7:47",
+                    "src": "1289:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -471,11 +461,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10499,
+                  "id": 6972,
                   "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10502,
-                  "src": "1304:16:47",
+                  "scope": 6975,
+                  "src": "1305:16:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -483,10 +473,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10498,
+                    "id": 6971,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1304:7:47",
+                    "src": "1305:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -497,16 +487,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1287:34:47"
+              "src": "1288:34:27"
             },
             "returnParameters": {
-              "id": 10501,
+              "id": 6974,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1330:0:47"
+              "src": "1331:0:27"
             },
-            "scope": 10580,
-            "src": "1273:58:47",
+            "scope": 7048,
+            "src": "1274:58:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -514,23 +504,23 @@
           {
             "body": null,
             "documentation": "@notice Once a loan is liquidated, it transfers the amount of tokens to the liquidator address.\n@param amount of tokens to liquidate.\n@param liquidator address to receive the tokens.\n@dev It throws a require error if this contract hasn't enough token balance.",
-            "id": 10509,
+            "id": 6982,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "liquidationPayment",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10507,
+              "id": 6980,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10504,
+                  "id": 6977,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10509,
-                  "src": "1673:14:47",
+                  "scope": 6982,
+                  "src": "1674:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -538,10 +528,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10503,
+                    "id": 6976,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1673:7:47",
+                    "src": "1674:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -552,11 +542,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10506,
+                  "id": 6979,
                   "name": "liquidator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10509,
-                  "src": "1689:18:47",
+                  "scope": 6982,
+                  "src": "1690:18:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -564,10 +554,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10505,
+                    "id": 6978,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1689:7:47",
+                    "src": "1690:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -578,16 +568,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1672:36:47"
+              "src": "1673:36:27"
             },
             "returnParameters": {
-              "id": 10508,
+              "id": 6981,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1717:0:47"
+              "src": "1718:0:27"
             },
-            "scope": 10580,
-            "src": "1645:73:47",
+            "scope": 7048,
+            "src": "1646:73:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -595,23 +585,23 @@
           {
             "body": null,
             "documentation": "@notice Once the loan is created, it transfers the amount of tokens to the borrower.\n@param amount of tokens to transfer.\n@param borrower address which will receive the tokens.\n@dev This function only can be invoked by the LoansInterface implementation.\n@dev It throws a require error if current ERC20 balance isn't enough to transfer the tokens.",
-            "id": 10516,
+            "id": 6989,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createLoan",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10514,
+              "id": 6987,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10511,
+                  "id": 6984,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10516,
-                  "src": "2147:14:47",
+                  "scope": 6989,
+                  "src": "2148:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -619,10 +609,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10510,
+                    "id": 6983,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2147:7:47",
+                    "src": "2148:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -633,11 +623,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10513,
+                  "id": 6986,
                   "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10516,
-                  "src": "2163:16:47",
+                  "scope": 6989,
+                  "src": "2164:16:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -645,10 +635,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10512,
+                    "id": 6985,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2163:7:47",
+                    "src": "2164:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -659,16 +649,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2146:34:47"
+              "src": "2147:34:27"
             },
             "returnParameters": {
-              "id": 10515,
+              "id": 6988,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2189:0:47"
+              "src": "2190:0:27"
             },
-            "scope": 10580,
-            "src": "2127:63:47",
+            "scope": 7048,
+            "src": "2128:63:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -676,23 +666,23 @@
           {
             "body": null,
             "documentation": "@notice It allows a lender to withdraw a specific amount of interest.\n@param amount to withdraw.\n@dev It throws a require error if amount exceeds the current accrued interest.",
-            "id": 10521,
+            "id": 6994,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdrawInterest",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10519,
+              "id": 6992,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10518,
+                  "id": 6991,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10521,
-                  "src": "2437:14:47",
+                  "scope": 6994,
+                  "src": "2438:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -700,10 +690,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10517,
+                    "id": 6990,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2437:7:47",
+                    "src": "2438:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -713,16 +703,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2436:16:47"
+              "src": "2437:16:27"
             },
             "returnParameters": {
-              "id": 10520,
+              "id": 6993,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2461:0:47"
+              "src": "2462:0:27"
             },
-            "scope": 10580,
-            "src": "2411:51:47",
+            "scope": 7048,
+            "src": "2412:51:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -730,29 +720,29 @@
           {
             "body": null,
             "documentation": "@notice It gets the lending token address.\n@return the ERC20 lending token address.",
-            "id": 10526,
+            "id": 6999,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "lendingToken",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10522,
+              "id": 6995,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2604:2:47"
+              "src": "2605:2:27"
             },
             "returnParameters": {
-              "id": 10525,
+              "id": 6998,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10524,
+                  "id": 6997,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10526,
-                  "src": "2630:7:47",
+                  "scope": 6999,
+                  "src": "2631:7:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -760,10 +750,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10523,
+                    "id": 6996,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2630:7:47",
+                    "src": "2631:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -774,34 +764,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2629:9:47"
+              "src": "2630:9:27"
             },
-            "scope": 10580,
-            "src": "2583:56:47",
+            "scope": 7048,
+            "src": "2584:56:27",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": null,
-            "documentation": "@notice It initializes the contract state variables.\n@param tTokenAddress tToken token address.\n@param lendingTokenAddress ERC20 token address.\n@param lendersAddress Lenders contract address.\n@param loansAddress Loans contract address.\n@param settingsAddress Settings contract address.\n@dev It throws a require error if the contract is already initialized.",
-            "id": 10541,
+            "documentation": "@notice Gets the current interest validator. By default it is 0x0.\n@return the interest validator contract address or empty address (0x0). ",
+            "id": 7004,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "initialize",
+            "name": "interestValidator",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10539,
+              "id": 7000,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2844:2:27"
+            },
+            "returnParameters": {
+              "id": 7003,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10528,
-                  "name": "tTokenAddress",
+                  "id": 7002,
+                  "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3103:21:47",
+                  "scope": 7004,
+                  "src": "2870:7:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -809,145 +805,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10527,
+                    "id": 7001,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3103:7:47",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10530,
-                  "name": "lendingTokenAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3134:27:47",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10529,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3134:7:47",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10532,
-                  "name": "lendersAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3171:22:47",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10531,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3171:7:47",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10534,
-                  "name": "loansAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3203:20:47",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10533,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3203:7:47",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10536,
-                  "name": "cTokenAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3233:21:47",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10535,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3233:7:47",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10538,
-                  "name": "settingsAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3264:23:47",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10537,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3264:7:47",
+                    "src": "2870:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -958,16 +819,65 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3093:200:47"
+              "src": "2869:9:27"
+            },
+            "scope": 7048,
+            "src": "2818:61:27",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Update the current interest validator address.\n@param newInterestValidator the new interest validator address.",
+            "id": 7009,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setInterestValidator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7007,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7006,
+                  "name": "newInterestValidator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7009,
+                  "src": "3066:28:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7005,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3066:7:27",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3065:30:27"
             },
             "returnParameters": {
-              "id": 10540,
+              "id": 7008,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3302:0:47"
+              "src": "3104:0:27"
             },
-            "scope": 10580,
-            "src": "3074:229:47",
+            "scope": 7048,
+            "src": "3036:69:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -975,21 +885,21 @@
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an user deposits tokens into the pool.\n@param sender address.\n@param amount of tokens.",
-            "id": 10547,
+            "id": 7015,
             "name": "TokenDeposited",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10546,
+              "id": 7014,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10543,
+                  "id": 7011,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10547,
-                  "src": "3492:22:47",
+                  "scope": 7015,
+                  "src": "3294:22:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -997,10 +907,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10542,
+                    "id": 7010,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3492:7:47",
+                    "src": "3294:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1012,12 +922,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10545,
+                  "id": 7013,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10547,
-                  "src": "3516:14:47",
+                  "scope": 7015,
+                  "src": "3318:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1025,10 +935,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10544,
+                    "id": 7012,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3516:7:47",
+                    "src": "3318:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1038,28 +948,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3491:40:47"
+              "src": "3293:40:27"
             },
-            "src": "3471:61:47"
+            "src": "3273:61:27"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an user withdraws tokens from the pool.\n@param sender address that withdrew the tokens.\n@param amount of tokens.",
-            "id": 10553,
+            "id": 7021,
             "name": "TokenWithdrawn",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10552,
+              "id": 7020,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10549,
+                  "id": 7017,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10553,
-                  "src": "3747:22:47",
+                  "scope": 7021,
+                  "src": "3549:22:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1067,10 +977,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10548,
+                    "id": 7016,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3747:7:47",
+                    "src": "3549:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1082,12 +992,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10551,
+                  "id": 7019,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10553,
-                  "src": "3771:14:47",
+                  "scope": 7021,
+                  "src": "3573:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1095,10 +1005,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10550,
+                    "id": 7018,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3771:7:47",
+                    "src": "3573:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1108,28 +1018,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3746:40:47"
+              "src": "3548:40:27"
             },
-            "src": "3726:61:47"
+            "src": "3528:61:27"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an borrower repaid a loan.\n@param borrower address.\n@param amount of tokens.",
-            "id": 10559,
+            "id": 7027,
             "name": "TokenRepaid",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10558,
+              "id": 7026,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10555,
+                  "id": 7023,
                   "indexed": true,
                   "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10559,
-                  "src": "3963:24:47",
+                  "scope": 7027,
+                  "src": "3765:24:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1137,10 +1047,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10554,
+                    "id": 7022,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3963:7:47",
+                    "src": "3765:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1152,12 +1062,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10557,
+                  "id": 7025,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10559,
-                  "src": "3989:14:47",
+                  "scope": 7027,
+                  "src": "3791:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1165,10 +1075,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10556,
+                    "id": 7024,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3989:7:47",
+                    "src": "3791:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1178,28 +1088,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3962:42:47"
+              "src": "3764:42:27"
             },
-            "src": "3945:60:47"
+            "src": "3747:60:27"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an lender withdraws interests.\n@param lender address.\n@param amount of tokens.",
-            "id": 10565,
+            "id": 7033,
             "name": "InterestWithdrawn",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10564,
+              "id": 7032,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10561,
+                  "id": 7029,
                   "indexed": true,
                   "name": "lender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10565,
-                  "src": "4189:22:47",
+                  "scope": 7033,
+                  "src": "3991:22:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1207,10 +1117,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10560,
+                    "id": 7028,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4189:7:47",
+                    "src": "3991:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1222,12 +1132,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10563,
+                  "id": 7031,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10565,
-                  "src": "4213:14:47",
+                  "scope": 7033,
+                  "src": "4015:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1235,10 +1145,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10562,
+                    "id": 7030,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4213:7:47",
+                    "src": "4015:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1248,28 +1158,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4188:40:47"
+              "src": "3990:40:27"
             },
-            "src": "4165:64:47"
+            "src": "3967:64:27"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when a liquidator liquidates a loan.\n@param liquidator address.\n@param amount of tokens.",
-            "id": 10571,
+            "id": 7039,
             "name": "PaymentLiquidated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10570,
+              "id": 7038,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10567,
+                  "id": 7035,
                   "indexed": true,
                   "name": "liquidator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10571,
-                  "src": "4418:26:47",
+                  "scope": 7039,
+                  "src": "4220:26:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1277,10 +1187,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10566,
+                    "id": 7034,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4418:7:47",
+                    "src": "4220:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1292,12 +1202,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10569,
+                  "id": 7037,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10571,
-                  "src": "4446:14:47",
+                  "scope": 7039,
+                  "src": "4248:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1305,10 +1215,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10568,
+                    "id": 7036,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4446:7:47",
+                    "src": "4248:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1318,28 +1228,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4417:44:47"
+              "src": "4219:44:27"
             },
-            "src": "4394:68:47"
+            "src": "4196:68:27"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when the interest validator is updated.\n@param sender account that sends the transaction.\n@param oldInterestValidator the old validator address.\n@param newInterestValidator the new validator address.",
-            "id": 10579,
+            "id": 7047,
             "name": "InterestValidatorUpdated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10578,
+              "id": 7046,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10573,
+                  "id": 7041,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10579,
-                  "src": "4786:22:47",
+                  "scope": 7047,
+                  "src": "4588:22:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1347,10 +1257,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10572,
+                    "id": 7040,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4786:7:47",
+                    "src": "4588:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1362,12 +1272,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10575,
+                  "id": 7043,
                   "indexed": true,
                   "name": "oldInterestValidator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10579,
-                  "src": "4818:36:47",
+                  "scope": 7047,
+                  "src": "4620:36:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1375,10 +1285,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10574,
+                    "id": 7042,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4818:7:47",
+                    "src": "4620:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1390,12 +1300,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10577,
+                  "id": 7045,
                   "indexed": true,
                   "name": "newInterestValidator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10579,
-                  "src": "4864:36:47",
+                  "scope": 7047,
+                  "src": "4666:36:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1403,10 +1313,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10576,
+                    "id": 7044,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4864:7:47",
+                    "src": "4666:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1417,36 +1327,36 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4776:130:47"
+              "src": "4578:130:27"
             },
-            "src": "4746:161:47"
+            "src": "4548:161:27"
           }
         ],
-        "scope": 10581,
-        "src": "207:4702:47"
+        "scope": 7049,
+        "src": "208:4503:27"
       }
     ],
-    "src": "0:4910:47"
+    "src": "0:4712:27"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LendingPoolInterface.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LendingPoolInterface.sol",
     "exportedSymbols": {
       "LendingPoolInterface": [
-        10580
+        7048
       ]
     },
-    "id": 10581,
+    "id": 7049,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10485,
+        "id": 6958,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:47"
+        "src": "0:23:27"
       },
       {
         "baseContracts": [],
@@ -1454,9 +1364,9 @@
         "contractKind": "interface",
         "documentation": "@notice This interface defines the functions for a lending pool that holds all of the tokens that lenders transfer into the protocol.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10580,
+        "id": 7048,
         "linearizedBaseContracts": [
-          10580
+          7048
         ],
         "name": "LendingPoolInterface",
         "nodeType": "ContractDefinition",
@@ -1464,23 +1374,23 @@
           {
             "body": null,
             "documentation": "@notice It allows users to deposit tokens into the pool.\n@dev the user must call ERC20.approve function previously.\n@param amount of tokens to deposit in the pool.",
-            "id": 10490,
+            "id": 6963,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10488,
+              "id": 6961,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10487,
+                  "id": 6960,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10490,
-                  "src": "464:14:47",
+                  "scope": 6963,
+                  "src": "465:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1488,10 +1398,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10486,
+                    "id": 6959,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "464:7:47",
+                    "src": "465:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1501,16 +1411,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "463:16:47"
+              "src": "464:16:27"
             },
             "returnParameters": {
-              "id": 10489,
+              "id": 6962,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "488:0:47"
+              "src": "489:0:27"
             },
-            "scope": 10580,
-            "src": "447:42:47",
+            "scope": 7048,
+            "src": "448:42:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1518,23 +1428,23 @@
           {
             "body": null,
             "documentation": "@notice It allows any tToken holder to burn their tToken tokens and withdraw their tokens.\n@param amount of tokens to withdraw.\n@dev It throws a require error if the contract hasn't enough tokens balance.\n@dev It throws a require error if the holder hasn't enough tToken balance.",
-            "id": 10495,
+            "id": 6968,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10493,
+              "id": 6966,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10492,
+                  "id": 6965,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10495,
-                  "src": "841:14:47",
+                  "scope": 6968,
+                  "src": "842:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1542,10 +1452,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10491,
+                    "id": 6964,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "841:7:47",
+                    "src": "842:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1555,16 +1465,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "840:16:47"
+              "src": "841:16:27"
             },
             "returnParameters": {
-              "id": 10494,
+              "id": 6967,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "865:0:47"
+              "src": "866:0:27"
             },
-            "scope": 10580,
-            "src": "823:43:47",
+            "scope": 7048,
+            "src": "824:43:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1572,23 +1482,23 @@
           {
             "body": null,
             "documentation": "@notice It allows a borrower repaying their loan. \n@dev This function can be called ONLY by the Loans contract.\n@dev It requires a ERC20.approve call before calling it.\n@dev It throws a require error if borrower called ERC20.approve function before calling it.\n@param amount of tokens.\n@param borrower address that is repaying the loan.",
-            "id": 10502,
+            "id": 6975,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "repay",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10500,
+              "id": 6973,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10497,
+                  "id": 6970,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10502,
-                  "src": "1288:14:47",
+                  "scope": 6975,
+                  "src": "1289:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1596,10 +1506,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10496,
+                    "id": 6969,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1288:7:47",
+                    "src": "1289:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1610,11 +1520,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10499,
+                  "id": 6972,
                   "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10502,
-                  "src": "1304:16:47",
+                  "scope": 6975,
+                  "src": "1305:16:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1622,10 +1532,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10498,
+                    "id": 6971,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1304:7:47",
+                    "src": "1305:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1636,16 +1546,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1287:34:47"
+              "src": "1288:34:27"
             },
             "returnParameters": {
-              "id": 10501,
+              "id": 6974,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1330:0:47"
+              "src": "1331:0:27"
             },
-            "scope": 10580,
-            "src": "1273:58:47",
+            "scope": 7048,
+            "src": "1274:58:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1653,23 +1563,23 @@
           {
             "body": null,
             "documentation": "@notice Once a loan is liquidated, it transfers the amount of tokens to the liquidator address.\n@param amount of tokens to liquidate.\n@param liquidator address to receive the tokens.\n@dev It throws a require error if this contract hasn't enough token balance.",
-            "id": 10509,
+            "id": 6982,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "liquidationPayment",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10507,
+              "id": 6980,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10504,
+                  "id": 6977,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10509,
-                  "src": "1673:14:47",
+                  "scope": 6982,
+                  "src": "1674:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1677,10 +1587,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10503,
+                    "id": 6976,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1673:7:47",
+                    "src": "1674:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1691,11 +1601,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10506,
+                  "id": 6979,
                   "name": "liquidator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10509,
-                  "src": "1689:18:47",
+                  "scope": 6982,
+                  "src": "1690:18:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1703,10 +1613,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10505,
+                    "id": 6978,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1689:7:47",
+                    "src": "1690:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1717,16 +1627,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1672:36:47"
+              "src": "1673:36:27"
             },
             "returnParameters": {
-              "id": 10508,
+              "id": 6981,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1717:0:47"
+              "src": "1718:0:27"
             },
-            "scope": 10580,
-            "src": "1645:73:47",
+            "scope": 7048,
+            "src": "1646:73:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1734,23 +1644,23 @@
           {
             "body": null,
             "documentation": "@notice Once the loan is created, it transfers the amount of tokens to the borrower.\n@param amount of tokens to transfer.\n@param borrower address which will receive the tokens.\n@dev This function only can be invoked by the LoansInterface implementation.\n@dev It throws a require error if current ERC20 balance isn't enough to transfer the tokens.",
-            "id": 10516,
+            "id": 6989,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createLoan",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10514,
+              "id": 6987,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10511,
+                  "id": 6984,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10516,
-                  "src": "2147:14:47",
+                  "scope": 6989,
+                  "src": "2148:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1758,10 +1668,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10510,
+                    "id": 6983,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2147:7:47",
+                    "src": "2148:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1772,11 +1682,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10513,
+                  "id": 6986,
                   "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10516,
-                  "src": "2163:16:47",
+                  "scope": 6989,
+                  "src": "2164:16:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1784,10 +1694,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10512,
+                    "id": 6985,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2163:7:47",
+                    "src": "2164:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1798,16 +1708,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2146:34:47"
+              "src": "2147:34:27"
             },
             "returnParameters": {
-              "id": 10515,
+              "id": 6988,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2189:0:47"
+              "src": "2190:0:27"
             },
-            "scope": 10580,
-            "src": "2127:63:47",
+            "scope": 7048,
+            "src": "2128:63:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1815,23 +1725,23 @@
           {
             "body": null,
             "documentation": "@notice It allows a lender to withdraw a specific amount of interest.\n@param amount to withdraw.\n@dev It throws a require error if amount exceeds the current accrued interest.",
-            "id": 10521,
+            "id": 6994,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdrawInterest",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10519,
+              "id": 6992,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10518,
+                  "id": 6991,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10521,
-                  "src": "2437:14:47",
+                  "scope": 6994,
+                  "src": "2438:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1839,10 +1749,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10517,
+                    "id": 6990,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2437:7:47",
+                    "src": "2438:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1852,16 +1762,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2436:16:47"
+              "src": "2437:16:27"
             },
             "returnParameters": {
-              "id": 10520,
+              "id": 6993,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2461:0:47"
+              "src": "2462:0:27"
             },
-            "scope": 10580,
-            "src": "2411:51:47",
+            "scope": 7048,
+            "src": "2412:51:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1869,29 +1779,29 @@
           {
             "body": null,
             "documentation": "@notice It gets the lending token address.\n@return the ERC20 lending token address.",
-            "id": 10526,
+            "id": 6999,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "lendingToken",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10522,
+              "id": 6995,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2604:2:47"
+              "src": "2605:2:27"
             },
             "returnParameters": {
-              "id": 10525,
+              "id": 6998,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10524,
+                  "id": 6997,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10526,
-                  "src": "2630:7:47",
+                  "scope": 6999,
+                  "src": "2631:7:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1899,10 +1809,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10523,
+                    "id": 6996,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2630:7:47",
+                    "src": "2631:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1913,34 +1823,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2629:9:47"
+              "src": "2630:9:27"
             },
-            "scope": 10580,
-            "src": "2583:56:47",
+            "scope": 7048,
+            "src": "2584:56:27",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": null,
-            "documentation": "@notice It initializes the contract state variables.\n@param tTokenAddress tToken token address.\n@param lendingTokenAddress ERC20 token address.\n@param lendersAddress Lenders contract address.\n@param loansAddress Loans contract address.\n@param settingsAddress Settings contract address.\n@dev It throws a require error if the contract is already initialized.",
-            "id": 10541,
+            "documentation": "@notice Gets the current interest validator. By default it is 0x0.\n@return the interest validator contract address or empty address (0x0). ",
+            "id": 7004,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "initialize",
+            "name": "interestValidator",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10539,
+              "id": 7000,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2844:2:27"
+            },
+            "returnParameters": {
+              "id": 7003,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10528,
-                  "name": "tTokenAddress",
+                  "id": 7002,
+                  "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3103:21:47",
+                  "scope": 7004,
+                  "src": "2870:7:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1948,145 +1864,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10527,
+                    "id": 7001,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3103:7:47",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10530,
-                  "name": "lendingTokenAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3134:27:47",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10529,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3134:7:47",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10532,
-                  "name": "lendersAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3171:22:47",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10531,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3171:7:47",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10534,
-                  "name": "loansAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3203:20:47",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10533,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3203:7:47",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10536,
-                  "name": "cTokenAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3233:21:47",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10535,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3233:7:47",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10538,
-                  "name": "settingsAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10541,
-                  "src": "3264:23:47",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10537,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3264:7:47",
+                    "src": "2870:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2097,16 +1878,65 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3093:200:47"
+              "src": "2869:9:27"
+            },
+            "scope": 7048,
+            "src": "2818:61:27",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Update the current interest validator address.\n@param newInterestValidator the new interest validator address.",
+            "id": 7009,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setInterestValidator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7007,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7006,
+                  "name": "newInterestValidator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7009,
+                  "src": "3066:28:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7005,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3066:7:27",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3065:30:27"
             },
             "returnParameters": {
-              "id": 10540,
+              "id": 7008,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3302:0:47"
+              "src": "3104:0:27"
             },
-            "scope": 10580,
-            "src": "3074:229:47",
+            "scope": 7048,
+            "src": "3036:69:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2114,21 +1944,21 @@
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an user deposits tokens into the pool.\n@param sender address.\n@param amount of tokens.",
-            "id": 10547,
+            "id": 7015,
             "name": "TokenDeposited",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10546,
+              "id": 7014,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10543,
+                  "id": 7011,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10547,
-                  "src": "3492:22:47",
+                  "scope": 7015,
+                  "src": "3294:22:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2136,10 +1966,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10542,
+                    "id": 7010,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3492:7:47",
+                    "src": "3294:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2151,12 +1981,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10545,
+                  "id": 7013,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10547,
-                  "src": "3516:14:47",
+                  "scope": 7015,
+                  "src": "3318:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2164,10 +1994,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10544,
+                    "id": 7012,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3516:7:47",
+                    "src": "3318:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2177,28 +2007,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3491:40:47"
+              "src": "3293:40:27"
             },
-            "src": "3471:61:47"
+            "src": "3273:61:27"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an user withdraws tokens from the pool.\n@param sender address that withdrew the tokens.\n@param amount of tokens.",
-            "id": 10553,
+            "id": 7021,
             "name": "TokenWithdrawn",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10552,
+              "id": 7020,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10549,
+                  "id": 7017,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10553,
-                  "src": "3747:22:47",
+                  "scope": 7021,
+                  "src": "3549:22:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2206,10 +2036,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10548,
+                    "id": 7016,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3747:7:47",
+                    "src": "3549:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2221,12 +2051,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10551,
+                  "id": 7019,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10553,
-                  "src": "3771:14:47",
+                  "scope": 7021,
+                  "src": "3573:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2234,10 +2064,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10550,
+                    "id": 7018,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3771:7:47",
+                    "src": "3573:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2247,28 +2077,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3746:40:47"
+              "src": "3548:40:27"
             },
-            "src": "3726:61:47"
+            "src": "3528:61:27"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an borrower repaid a loan.\n@param borrower address.\n@param amount of tokens.",
-            "id": 10559,
+            "id": 7027,
             "name": "TokenRepaid",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10558,
+              "id": 7026,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10555,
+                  "id": 7023,
                   "indexed": true,
                   "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10559,
-                  "src": "3963:24:47",
+                  "scope": 7027,
+                  "src": "3765:24:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2276,10 +2106,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10554,
+                    "id": 7022,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3963:7:47",
+                    "src": "3765:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2291,12 +2121,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10557,
+                  "id": 7025,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10559,
-                  "src": "3989:14:47",
+                  "scope": 7027,
+                  "src": "3791:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2304,10 +2134,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10556,
+                    "id": 7024,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3989:7:47",
+                    "src": "3791:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2317,28 +2147,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3962:42:47"
+              "src": "3764:42:27"
             },
-            "src": "3945:60:47"
+            "src": "3747:60:27"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an lender withdraws interests.\n@param lender address.\n@param amount of tokens.",
-            "id": 10565,
+            "id": 7033,
             "name": "InterestWithdrawn",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10564,
+              "id": 7032,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10561,
+                  "id": 7029,
                   "indexed": true,
                   "name": "lender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10565,
-                  "src": "4189:22:47",
+                  "scope": 7033,
+                  "src": "3991:22:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2346,10 +2176,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10560,
+                    "id": 7028,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4189:7:47",
+                    "src": "3991:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2361,12 +2191,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10563,
+                  "id": 7031,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10565,
-                  "src": "4213:14:47",
+                  "scope": 7033,
+                  "src": "4015:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2374,10 +2204,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10562,
+                    "id": 7030,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4213:7:47",
+                    "src": "4015:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2387,28 +2217,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4188:40:47"
+              "src": "3990:40:27"
             },
-            "src": "4165:64:47"
+            "src": "3967:64:27"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when a liquidator liquidates a loan.\n@param liquidator address.\n@param amount of tokens.",
-            "id": 10571,
+            "id": 7039,
             "name": "PaymentLiquidated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10570,
+              "id": 7038,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10567,
+                  "id": 7035,
                   "indexed": true,
                   "name": "liquidator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10571,
-                  "src": "4418:26:47",
+                  "scope": 7039,
+                  "src": "4220:26:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2416,10 +2246,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10566,
+                    "id": 7034,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4418:7:47",
+                    "src": "4220:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2431,12 +2261,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10569,
+                  "id": 7037,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10571,
-                  "src": "4446:14:47",
+                  "scope": 7039,
+                  "src": "4248:14:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2444,10 +2274,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10568,
+                    "id": 7036,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4446:7:47",
+                    "src": "4248:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2457,28 +2287,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4417:44:47"
+              "src": "4219:44:27"
             },
-            "src": "4394:68:47"
+            "src": "4196:68:27"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when the interest validator is updated.\n@param sender account that sends the transaction.\n@param oldInterestValidator the old validator address.\n@param newInterestValidator the new validator address.",
-            "id": 10579,
+            "id": 7047,
             "name": "InterestValidatorUpdated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10578,
+              "id": 7046,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10573,
+                  "id": 7041,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10579,
-                  "src": "4786:22:47",
+                  "scope": 7047,
+                  "src": "4588:22:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2486,10 +2316,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10572,
+                    "id": 7040,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4786:7:47",
+                    "src": "4588:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2501,12 +2331,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10575,
+                  "id": 7043,
                   "indexed": true,
                   "name": "oldInterestValidator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10579,
-                  "src": "4818:36:47",
+                  "scope": 7047,
+                  "src": "4620:36:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2514,10 +2344,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10574,
+                    "id": 7042,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4818:7:47",
+                    "src": "4620:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2529,12 +2359,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10577,
+                  "id": 7045,
                   "indexed": true,
                   "name": "newInterestValidator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10579,
-                  "src": "4864:36:47",
+                  "scope": 7047,
+                  "src": "4666:36:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2542,10 +2372,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10576,
+                    "id": 7044,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4864:7:47",
+                    "src": "4666:7:27",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2556,24 +2386,24 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4776:130:47"
+              "src": "4578:130:27"
             },
-            "src": "4746:161:47"
+            "src": "4548:161:27"
           }
         ],
-        "scope": 10581,
-        "src": "207:4702:47"
+        "scope": 7049,
+        "src": "208:4503:27"
       }
     ],
-    "src": "0:4910:47"
+    "src": "0:4712:27"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.17+commit.d19bba13.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-06T02:15:12.378Z",
+  "schemaVersion": "3.2.0",
+  "updatedAt": "2020-08-15T22:31:55.148Z",
   "devdoc": {
     "author": "develop@teller.finance",
     "methods": {
@@ -2590,15 +2420,8 @@
           "amount": "of tokens to deposit in the pool."
         }
       },
-      "initialize(address,address,address,address,address,address)": {
-        "details": "It throws a require error if the contract is already initialized.",
-        "params": {
-          "lendersAddress": "Lenders contract address.",
-          "lendingTokenAddress": "ERC20 token address.",
-          "loansAddress": "Loans contract address.",
-          "settingsAddress": "Settings contract address.",
-          "tTokenAddress": "tToken token address."
-        }
+      "interestValidator()": {
+        "return": "the interest validator contract address or empty address (0x0). "
       },
       "lendingToken()": {
         "return": "the ERC20 lending token address."
@@ -2615,6 +2438,11 @@
         "params": {
           "amount": "of tokens.",
           "borrower": "address that is repaying the loan."
+        }
+      },
+      "setInterestValidator(address)": {
+        "params": {
+          "newInterestValidator": "the new interest validator address."
         }
       },
       "withdraw(uint256)": {
@@ -2639,8 +2467,8 @@
       "deposit(uint256)": {
         "notice": "It allows users to deposit tokens into the pool."
       },
-      "initialize(address,address,address,address,address,address)": {
-        "notice": "It initializes the contract state variables."
+      "interestValidator()": {
+        "notice": "Gets the current interest validator. By default it is 0x0."
       },
       "lendingToken()": {
         "notice": "It gets the lending token address."
@@ -2650,6 +2478,9 @@
       },
       "repay(uint256,address)": {
         "notice": "It allows a borrower repaying their loan. "
+      },
+      "setInterestValidator(address)": {
+        "notice": "Update the current interest validator address."
       },
       "withdraw(uint256)": {
         "notice": "It allows any tToken holder to burn their tToken tokens and withdraw their tokens."

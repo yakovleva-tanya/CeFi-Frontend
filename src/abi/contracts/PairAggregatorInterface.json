@@ -36,7 +36,7 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "roundsBack",
+          "name": "timestampBack",
           "type": "uint256"
         }
       ],
@@ -57,7 +57,7 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "roundsBack",
+          "name": "timestampBack",
           "type": "uint256"
         }
       ],
@@ -72,119 +72,74 @@
       "payable": false,
       "stateMutability": "view",
       "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "getLatestRound",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "aggregatorAddress",
-          "type": "address"
-        },
-        {
-          "internalType": "bool",
-          "name": "isInverse",
-          "type": "bool"
-        },
-        {
-          "internalType": "uint8",
-          "name": "responseDecimalsValue",
-          "type": "uint8"
-        },
-        {
-          "internalType": "uint8",
-          "name": "collateralDecimalsValue",
-          "type": "uint8"
-        }
-      ],
-      "name": "initialize",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"getLatestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getLatestRound\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getLatestTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"roundsBack\",\"type\":\"uint256\"}],\"name\":\"getPreviousAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"roundsBack\",\"type\":\"uint256\"}],\"name\":\"getPreviousTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"aggregatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"isInverse\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"responseDecimalsValue\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"collateralDecimalsValue\",\"type\":\"uint8\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"getLatestAnswer()\":{\"return\":\"the latest answer.\"},\"getLatestRound()\":{\"return\":\"the latest round id.\"},\"getLatestTimestamp()\":{\"return\":\"the latest timestamp.\"},\"getPreviousAnswer(uint256)\":{\"params\":{\"roundsBack\":\"the answer number to retrieve the answer for\"},\"return\":\"the previous answer.\"},\"getPreviousTimestamp(uint256)\":{\"params\":{\"roundsBack\":\"the answer number to retrieve the updated timestamp for.\"},\"return\":\"the previous timestamp.\"},\"initialize(address,bool,uint8,uint8)\":{\"params\":{\"aggregatorAddress\":\"to use in this Chainlink pair aggregator.\",\"collateralDecimalsValue\":\"the decimals included in the collateral token.\",\"isInverse\":\"defines whether this pair aggregator is inverse or not.\",\"responseDecimalsValue\":\"the decimals included in the Chainlink response.\"}}}},\"userdoc\":{\"methods\":{\"getLatestAnswer()\":{\"notice\":\"Gets the current answer from the aggregator.\"},\"getLatestRound()\":{\"notice\":\"Gets the latest completed round where the answer was updated.\"},\"getLatestTimestamp()\":{\"notice\":\"Gets the last updated height from the aggregator.\"},\"getPreviousAnswer(uint256)\":{\"notice\":\"Gets past rounds answer.\"},\"getPreviousTimestamp(uint256)\":{\"notice\":\"Gets block timestamp when an answer was last updated.\"},\"initialize(address,bool,uint8,uint8)\":{\"notice\":\"It creates a new ChainlinkPairAggregator instance.\"}},\"notice\":\"This interface defines the functions to work with Oracle feeds.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol\":\"PairAggregatorInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol\":{\"keccak256\":\"0x4331fd21591542fda69505ce457c03f9ef66f2b8fea50db669864f517c4f95a1\",\"urls\":[\"bzz-raw://3cd373c888a2b4f6d1a93f540e9a0f4982316f743c0891d310a5e712c0f8eb78\",\"dweb:/ipfs/QmYA6Z3HFYj8MZSJwKP7NjawaD5TehE6Lmtx2VbTfqEHfb\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"getLatestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getLatestTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestampBack\",\"type\":\"uint256\"}],\"name\":\"getPreviousAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestampBack\",\"type\":\"uint256\"}],\"name\":\"getPreviousTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jalil/Programs/zero-collateral-v1/contracts/interfaces/PairAggregatorInterface.sol\":\"PairAggregatorInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jalil/Programs/zero-collateral-v1/contracts/interfaces/PairAggregatorInterface.sol\":{\"keccak256\":\"0x7493b609324be04cbe79c3c93f720647c19fb93efecff323cd93d75093166d9a\",\"urls\":[\"bzz-raw://050ee7b160211ab9cb63cf143b996ba325fb8d33cc3c995249d2ca311cb3fc15\",\"dweb:/ipfs/QmXpDaA6XYjWdBYLKwLyRjiCPP9QPydFPTdSbbrUtVeDpw\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.17;\n\n/**\n    @notice This interface defines the functions to work with Oracle feeds.\n\n    @author develop@teller.finance\n */\ninterface PairAggregatorInterface {\n    /**\n        @notice Gets the current answer from the aggregator.\n        @return the latest answer.\n     */\n    function getLatestAnswer() external view returns (int256);\n\n    /**\n        @notice Gets the last updated height from the aggregator.\n        @return the latest timestamp.\n     */\n    function getLatestTimestamp() external view returns (uint256);\n\n    /**\n        @notice Gets past rounds answer.\n        @param roundsBack the answer number to retrieve the answer for\n        @return the previous answer.\n     */\n    function getPreviousAnswer(uint256 roundsBack) external view returns (int256);\n\n    /**\n        @notice Gets block timestamp when an answer was last updated.\n        @param roundsBack the answer number to retrieve the updated timestamp for.\n        @return the previous timestamp.\n     */\n    function getPreviousTimestamp(uint256 roundsBack) external view returns (uint256);\n\n    /**\n        @notice Gets the latest completed round where the answer was updated.\n        @return the latest round id.\n    */\n    function getLatestRound() external view returns (uint256);\n\n    /**\n        @notice It creates a new ChainlinkPairAggregator instance.\n        @param aggregatorAddress to use in this Chainlink pair aggregator.\n        @param isInverse defines whether this pair aggregator is inverse or not.\n        @param responseDecimalsValue the decimals included in the Chainlink response.\n        @param collateralDecimalsValue the decimals included in the collateral token.\n    */\n    function initialize(\n        address aggregatorAddress,\n        bool isInverse,\n        uint8 responseDecimalsValue,\n        uint8 collateralDecimalsValue\n    ) external;\n}\n",
-  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol",
+  "source": "pragma solidity 0.5.17;\n\n\ninterface PairAggregatorInterface {\n    function getLatestAnswer() external view returns (int256);\n\n    function getLatestTimestamp() external view returns (uint256);\n\n    function getPreviousAnswer(uint256 timestampBack) external view returns (int256);\n\n    function getPreviousTimestamp(uint256 timestampBack) external view returns (uint256);\n}\n",
+  "sourcePath": "/home/jalil/Programs/zero-collateral-v1/contracts/interfaces/PairAggregatorInterface.sol",
   "ast": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol",
+    "absolutePath": "/home/jalil/Programs/zero-collateral-v1/contracts/interfaces/PairAggregatorInterface.sol",
     "exportedSymbols": {
       "PairAggregatorInterface": [
-        11159
+        2383
       ]
     },
-    "id": 11160,
+    "id": 2384,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 11118,
+        "id": 2358,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:53"
+        "src": "0:23:12"
       },
       {
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "interface",
-        "documentation": "@notice This interface defines the functions to work with Oracle feeds.\n@author develop@teller.finance",
+        "documentation": null,
         "fullyImplemented": false,
-        "id": 11159,
+        "id": 2383,
         "linearizedBaseContracts": [
-          11159
+          2383
         ],
         "name": "PairAggregatorInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
-            "documentation": "@notice Gets the current answer from the aggregator.\n@return the latest answer.",
-            "id": 11123,
+            "documentation": null,
+            "id": 2363,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLatestAnswer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11119,
+              "id": 2359,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "321:2:53"
+              "src": "90:2:12"
             },
             "returnParameters": {
-              "id": 11122,
+              "id": 2362,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11121,
+                  "id": 2361,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11123,
-                  "src": "347:6:53",
+                  "scope": 2363,
+                  "src": "116:6:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -192,10 +147,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 11120,
+                    "id": 2360,
                     "name": "int256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "347:6:53",
+                    "src": "116:6:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -205,40 +160,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "346:8:53"
+              "src": "115:8:12"
             },
-            "scope": 11159,
-            "src": "297:58:53",
+            "scope": 2383,
+            "src": "66:58:12",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": null,
-            "documentation": "@notice Gets the last updated height from the aggregator.\n@return the latest timestamp.",
-            "id": 11128,
+            "documentation": null,
+            "id": 2368,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLatestTimestamp",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11124,
+              "id": 2364,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "508:2:53"
+              "src": "157:2:12"
             },
             "returnParameters": {
-              "id": 11127,
+              "id": 2367,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11126,
+                  "id": 2366,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11128,
-                  "src": "534:7:53",
+                  "scope": 2368,
+                  "src": "183:7:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -246,10 +201,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 11125,
+                    "id": 2365,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "534:7:53",
+                    "src": "183:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -259,34 +214,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "533:9:53"
+              "src": "182:9:12"
             },
-            "scope": 11159,
-            "src": "481:62:53",
+            "scope": 2383,
+            "src": "130:62:12",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": null,
-            "documentation": "@notice Gets past rounds answer.\n@param roundsBack the answer number to retrieve the answer for\n@return the previous answer.",
-            "id": 11135,
+            "documentation": null,
+            "id": 2375,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getPreviousAnswer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11131,
+              "id": 2371,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11130,
-                  "name": "roundsBack",
+                  "id": 2370,
+                  "name": "timestampBack",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11135,
-                  "src": "741:18:53",
+                  "scope": 2375,
+                  "src": "225:21:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -294,10 +249,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 11129,
+                    "id": 2369,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "741:7:53",
+                    "src": "225:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -307,19 +262,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "740:20:53"
+              "src": "224:23:12"
             },
             "returnParameters": {
-              "id": 11134,
+              "id": 2374,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11133,
+                  "id": 2373,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11135,
-                  "src": "784:6:53",
+                  "scope": 2375,
+                  "src": "271:6:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -327,10 +282,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 11132,
+                    "id": 2372,
                     "name": "int256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "784:6:53",
+                    "src": "271:6:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -340,34 +295,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "783:8:53"
+              "src": "270:8:12"
             },
-            "scope": 11159,
-            "src": "714:78:53",
+            "scope": 2383,
+            "src": "198:81:12",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": null,
-            "documentation": "@notice Gets block timestamp when an answer was last updated.\n@param roundsBack the answer number to retrieve the updated timestamp for.\n@return the previous timestamp.",
-            "id": 11142,
+            "documentation": null,
+            "id": 2382,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getPreviousTimestamp",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11138,
+              "id": 2378,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11137,
-                  "name": "roundsBack",
+                  "id": 2377,
+                  "name": "timestampBack",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11142,
-                  "src": "1037:18:53",
+                  "scope": 2382,
+                  "src": "315:21:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -375,10 +330,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 11136,
+                    "id": 2376,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1037:7:53",
+                    "src": "315:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -388,19 +343,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1036:20:53"
+              "src": "314:23:12"
             },
             "returnParameters": {
-              "id": 11141,
+              "id": 2381,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11140,
+                  "id": 2380,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11142,
-                  "src": "1080:7:53",
+                  "scope": 2382,
+                  "src": "361:7:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -408,10 +363,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 11139,
+                    "id": 2379,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1080:7:53",
+                    "src": "361:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -421,267 +376,80 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1079:9:53"
+              "src": "360:9:12"
             },
-            "scope": 11159,
-            "src": "1007:82:53",
+            "scope": 2383,
+            "src": "285:85:12",
             "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice Gets the latest completed round where the answer was updated.\n@return the latest round id.",
-            "id": 11147,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getLatestRound",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 11143,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1248:2:53"
-            },
-            "returnParameters": {
-              "id": 11146,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 11145,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 11147,
-                  "src": "1274:7:53",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 11144,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1274:7:53",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1273:9:53"
-            },
-            "scope": 11159,
-            "src": "1225:58:53",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It creates a new ChainlinkPairAggregator instance.\n@param aggregatorAddress to use in this Chainlink pair aggregator.\n@param isInverse defines whether this pair aggregator is inverse or not.\n@param responseDecimalsValue the decimals included in the Chainlink response.\n@param collateralDecimalsValue the decimals included in the collateral token.",
-            "id": 11158,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "initialize",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 11156,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 11149,
-                  "name": "aggregatorAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 11158,
-                  "src": "1728:25:53",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 11148,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1728:7:53",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 11151,
-                  "name": "isInverse",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 11158,
-                  "src": "1763:14:53",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 11150,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1763:4:53",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 11153,
-                  "name": "responseDecimalsValue",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 11158,
-                  "src": "1787:27:53",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 11152,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1787:5:53",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 11155,
-                  "name": "collateralDecimalsValue",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 11158,
-                  "src": "1824:29:53",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 11154,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1824:5:53",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1718:141:53"
-            },
-            "returnParameters": {
-              "id": 11157,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1868:0:53"
-            },
-            "scope": 11159,
-            "src": "1699:170:53",
-            "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 11160,
-        "src": "145:1726:53"
+        "scope": 2384,
+        "src": "26:346:12"
       }
     ],
-    "src": "0:1872:53"
+    "src": "0:373:12"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol",
+    "absolutePath": "/home/jalil/Programs/zero-collateral-v1/contracts/interfaces/PairAggregatorInterface.sol",
     "exportedSymbols": {
       "PairAggregatorInterface": [
-        11159
+        2383
       ]
     },
-    "id": 11160,
+    "id": 2384,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 11118,
+        "id": 2358,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:53"
+        "src": "0:23:12"
       },
       {
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "interface",
-        "documentation": "@notice This interface defines the functions to work with Oracle feeds.\n@author develop@teller.finance",
+        "documentation": null,
         "fullyImplemented": false,
-        "id": 11159,
+        "id": 2383,
         "linearizedBaseContracts": [
-          11159
+          2383
         ],
         "name": "PairAggregatorInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
-            "documentation": "@notice Gets the current answer from the aggregator.\n@return the latest answer.",
-            "id": 11123,
+            "documentation": null,
+            "id": 2363,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLatestAnswer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11119,
+              "id": 2359,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "321:2:53"
+              "src": "90:2:12"
             },
             "returnParameters": {
-              "id": 11122,
+              "id": 2362,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11121,
+                  "id": 2361,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11123,
-                  "src": "347:6:53",
+                  "scope": 2363,
+                  "src": "116:6:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -689,10 +457,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 11120,
+                    "id": 2360,
                     "name": "int256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "347:6:53",
+                    "src": "116:6:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -702,40 +470,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "346:8:53"
+              "src": "115:8:12"
             },
-            "scope": 11159,
-            "src": "297:58:53",
+            "scope": 2383,
+            "src": "66:58:12",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": null,
-            "documentation": "@notice Gets the last updated height from the aggregator.\n@return the latest timestamp.",
-            "id": 11128,
+            "documentation": null,
+            "id": 2368,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLatestTimestamp",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11124,
+              "id": 2364,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "508:2:53"
+              "src": "157:2:12"
             },
             "returnParameters": {
-              "id": 11127,
+              "id": 2367,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11126,
+                  "id": 2366,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11128,
-                  "src": "534:7:53",
+                  "scope": 2368,
+                  "src": "183:7:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -743,10 +511,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 11125,
+                    "id": 2365,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "534:7:53",
+                    "src": "183:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -756,34 +524,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "533:9:53"
+              "src": "182:9:12"
             },
-            "scope": 11159,
-            "src": "481:62:53",
+            "scope": 2383,
+            "src": "130:62:12",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": null,
-            "documentation": "@notice Gets past rounds answer.\n@param roundsBack the answer number to retrieve the answer for\n@return the previous answer.",
-            "id": 11135,
+            "documentation": null,
+            "id": 2375,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getPreviousAnswer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11131,
+              "id": 2371,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11130,
-                  "name": "roundsBack",
+                  "id": 2370,
+                  "name": "timestampBack",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11135,
-                  "src": "741:18:53",
+                  "scope": 2375,
+                  "src": "225:21:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -791,10 +559,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 11129,
+                    "id": 2369,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "741:7:53",
+                    "src": "225:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -804,19 +572,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "740:20:53"
+              "src": "224:23:12"
             },
             "returnParameters": {
-              "id": 11134,
+              "id": 2374,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11133,
+                  "id": 2373,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11135,
-                  "src": "784:6:53",
+                  "scope": 2375,
+                  "src": "271:6:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -824,10 +592,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 11132,
+                    "id": 2372,
                     "name": "int256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "784:6:53",
+                    "src": "271:6:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -837,34 +605,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "783:8:53"
+              "src": "270:8:12"
             },
-            "scope": 11159,
-            "src": "714:78:53",
+            "scope": 2383,
+            "src": "198:81:12",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": null,
-            "documentation": "@notice Gets block timestamp when an answer was last updated.\n@param roundsBack the answer number to retrieve the updated timestamp for.\n@return the previous timestamp.",
-            "id": 11142,
+            "documentation": null,
+            "id": 2382,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getPreviousTimestamp",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11138,
+              "id": 2378,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11137,
-                  "name": "roundsBack",
+                  "id": 2377,
+                  "name": "timestampBack",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11142,
-                  "src": "1037:18:53",
+                  "scope": 2382,
+                  "src": "315:21:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -872,10 +640,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 11136,
+                    "id": 2376,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1037:7:53",
+                    "src": "315:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -885,19 +653,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1036:20:53"
+              "src": "314:23:12"
             },
             "returnParameters": {
-              "id": 11141,
+              "id": 2381,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11140,
+                  "id": 2380,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11142,
-                  "src": "1080:7:53",
+                  "scope": 2382,
+                  "src": "361:7:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -905,10 +673,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 11139,
+                    "id": 2379,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1080:7:53",
+                    "src": "361:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -918,207 +686,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1079:9:53"
+              "src": "360:9:12"
             },
-            "scope": 11159,
-            "src": "1007:82:53",
+            "scope": 2383,
+            "src": "285:85:12",
             "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice Gets the latest completed round where the answer was updated.\n@return the latest round id.",
-            "id": 11147,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getLatestRound",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 11143,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1248:2:53"
-            },
-            "returnParameters": {
-              "id": 11146,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 11145,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 11147,
-                  "src": "1274:7:53",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 11144,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1274:7:53",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1273:9:53"
-            },
-            "scope": 11159,
-            "src": "1225:58:53",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It creates a new ChainlinkPairAggregator instance.\n@param aggregatorAddress to use in this Chainlink pair aggregator.\n@param isInverse defines whether this pair aggregator is inverse or not.\n@param responseDecimalsValue the decimals included in the Chainlink response.\n@param collateralDecimalsValue the decimals included in the collateral token.",
-            "id": 11158,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "initialize",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 11156,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 11149,
-                  "name": "aggregatorAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 11158,
-                  "src": "1728:25:53",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 11148,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1728:7:53",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 11151,
-                  "name": "isInverse",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 11158,
-                  "src": "1763:14:53",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 11150,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1763:4:53",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 11153,
-                  "name": "responseDecimalsValue",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 11158,
-                  "src": "1787:27:53",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 11152,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1787:5:53",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 11155,
-                  "name": "collateralDecimalsValue",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 11158,
-                  "src": "1824:29:53",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 11154,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1824:5:53",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1718:141:53"
-            },
-            "returnParameters": {
-              "id": 11157,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1868:0:53"
-            },
-            "scope": 11159,
-            "src": "1699:170:53",
-            "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 11160,
-        "src": "145:1726:53"
+        "scope": 2384,
+        "src": "26:346:12"
       }
     ],
-    "src": "0:1872:53"
+    "src": "0:373:12"
   },
   "compiler": {
     "name": "solc",
@@ -1126,62 +707,11 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-06T02:15:12.401Z",
+  "updatedAt": "2020-04-29T14:20:38.803Z",
   "devdoc": {
-    "author": "develop@teller.finance",
-    "methods": {
-      "getLatestAnswer()": {
-        "return": "the latest answer."
-      },
-      "getLatestRound()": {
-        "return": "the latest round id."
-      },
-      "getLatestTimestamp()": {
-        "return": "the latest timestamp."
-      },
-      "getPreviousAnswer(uint256)": {
-        "params": {
-          "roundsBack": "the answer number to retrieve the answer for"
-        },
-        "return": "the previous answer."
-      },
-      "getPreviousTimestamp(uint256)": {
-        "params": {
-          "roundsBack": "the answer number to retrieve the updated timestamp for."
-        },
-        "return": "the previous timestamp."
-      },
-      "initialize(address,bool,uint8,uint8)": {
-        "params": {
-          "aggregatorAddress": "to use in this Chainlink pair aggregator.",
-          "collateralDecimalsValue": "the decimals included in the collateral token.",
-          "isInverse": "defines whether this pair aggregator is inverse or not.",
-          "responseDecimalsValue": "the decimals included in the Chainlink response."
-        }
-      }
-    }
+    "methods": {}
   },
   "userdoc": {
-    "methods": {
-      "getLatestAnswer()": {
-        "notice": "Gets the current answer from the aggregator."
-      },
-      "getLatestRound()": {
-        "notice": "Gets the latest completed round where the answer was updated."
-      },
-      "getLatestTimestamp()": {
-        "notice": "Gets the last updated height from the aggregator."
-      },
-      "getPreviousAnswer(uint256)": {
-        "notice": "Gets past rounds answer."
-      },
-      "getPreviousTimestamp(uint256)": {
-        "notice": "Gets block timestamp when an answer was last updated."
-      },
-      "initialize(address,bool,uint8,uint8)": {
-        "notice": "It creates a new ChainlinkPairAggregator instance."
-      }
-    },
-    "notice": "This interface defines the functions to work with Oracle feeds."
+    "methods": {}
   }
 }

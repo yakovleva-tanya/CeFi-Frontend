@@ -12,9 +12,10 @@ import "./borrow.scss";
 
 const BorrowMetrics = () => {
   const { borrowRequest } = useContext(BorrowPageContext);
-  const { state } = useContext(AppContext);
+  const { state, updateAppState } = useContext(AppContext);
 
-  const { tokenData, teller } = state;
+  const { tokenData, teller, web3State, demoData } = state;
+  const address = web3State?.address;
   const { lendWith, collateralWith } = borrowRequest;
 
   const assetPrice = tokenData

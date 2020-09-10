@@ -4,7 +4,7 @@ import {
   mapLendingTokensToTellerTokens,
   BaseTokens,
 } from "./../context/app";
-import { mintTDai } from "./../models/Contracts";
+import { mintZDai } from "./../models/Contracts";
 import { globalDecimals } from "./../util/constants";
 
 const supplyDai = async (
@@ -15,7 +15,7 @@ const supplyDai = async (
   zDaiContract: any,
   web3State: any
 ): Promise<any> => {
-  const mint: any = await mintTDai(
+  const mint: any = await mintZDai(
     setProcessing,
     lendingPoolContract,
     web3State,

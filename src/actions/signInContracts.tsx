@@ -14,9 +14,9 @@ import {
   BaseTokens,
 } from "./../context/app";
 
-import TDaiInterface = require("./../abi/contracts/TDAI.json");
+import ZDaiInterface = require("./../abi/contracts/ZDai.json");
 import DaiPoolInterface = require("./../abi/DaiPoolInterface.json");
-import LoansInterface = require("./../abi/contracts/LoansInterface.json");
+import LoansInterface = require("./../abi/contracts/Loans.json");
 import ERC20Interface = require("./../abi/contracts/ERC20.json");
 import LenderInterface = require("./../abi/contracts/Lenders.json");
 import LendingPoolInterface = require("./../abi/contracts/LendingPoolInterface.json");
@@ -28,7 +28,6 @@ import { globalDecimals, allContractAddresses } from "./../util/constants";
 async function setupTellerContracts(
   web3State: Web3State,
   lendingPoolAddress: string,
-  loansInstanceAddress: string,
   primaryAccount: string,
   collateralAddress: string,
   tTokenAddress: string
@@ -38,11 +37,6 @@ async function setupTellerContracts(
     lendingPoolAddress,
     {}
   );
-
-  const loansInstance = new web3State.web3.eth.Contract(
-    LoansInterface.abi,
-    loansInstanceAddress,
-  )
 
   const tToken = new web3State.web3.eth.Contract(
     ERC20Interface.abi,
@@ -74,8 +68,6 @@ async function setupTellerContracts(
   return {
     lendingPool,
     lendingPoolAddress,
-    loansInstance,
-    loansInstanceAddress,
     tTokenAddress,
     tToken,
     collateralTokenAddress,
@@ -148,7 +140,6 @@ export default async (
     const ETH_DAI = await setupTellerContracts(
       web3State,
       contractAddresses.ETH_LendingPool_tDAI_Proxy,
-      contractAddresses.ETH_Loans_tDAI_Proxy,
       primaryAccount,
       contractAddresses.tokens.DAI,
       contractAddresses.TDAI

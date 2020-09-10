@@ -11,7 +11,7 @@ async function getLendingToken(lendingPool: any, web3State: Web3State) {
 /**
  * Redeeem Teller tokens from specified lending Pool.
  */
-export async function redeemTDai(amount: string, primaryAddress: string, lendingPool: any) {
+export async function redeemZDai(amount: string, primaryAddress: string, lendingPool: any) {
   const bnAmount = (parseFloat(amount) * globalDecimals).toLocaleString('fullwide', { useGrouping:false });
   return new Promise((resolve, reject) => lendingPool.methods
     .withdraw(bnAmount)
@@ -52,7 +52,7 @@ export async function approveDai(lendingPool: any, web3State: Web3State, primary
   );
 }
 
-export async function mintTDai( setProcessing: any, contract: any, web3State: Web3State, primaryAddress: string, amount: number) {
+export async function mintZDai( setProcessing: any, contract: any, web3State: Web3State, primaryAddress: string, amount: number) {
   const dai = await getLendingToken(contract, web3State);
   const decimals = await dai.methods.decimals().call();
   const tokenDecimals = 10**parseFloat(decimals);
