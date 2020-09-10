@@ -38,9 +38,10 @@ const completeSupply = (
   updateAppState: Function,
   setTransactionHash: Function,
   setProcessing: Function,
-  lendingTokens: AvailableLendingTokens
-) => async (values: any) => {
-  const amount = parseFloat(values.amount);
+  lendingTokens: AvailableLendingTokens,
+  selectedAmount: number
+) => async () => {
+  const amount = selectedAmount;
   const primaryAddress = state.web3State.address;
   const baseTokens = BaseTokens.ETH; // Currently constant.
   const tellerTokens = mapLendingTokensToTellerTokens(lendingTokens);
@@ -83,11 +84,12 @@ export const demoCompleteSupply = (
   updateAppState: Function,
   setTransactionHash: Function,
   setProcessing: Function,
-  lendingTokens: AvailableLendingTokens
-) => async (values: any) => {
+  lendingTokens: AvailableLendingTokens,
+  selectedAmount: number
+) => async () => {
   try {
     setProcessing("processing");
-    let amount = parseFloat(values.amount);
+    let amount = selectedAmount;
     updateAppState((st: AppContextState) => {
       const walletBalances = st.demoData.walletBalances;
       const deposits = st.demoData.deposits;

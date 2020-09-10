@@ -98,13 +98,12 @@ const CustomToggle = React.forwardRef<HTMLAnchorElement, toggleProps>(
   ({ children, onClick }, ref) => {
     return (
       <a
-        //href="https://etherscan.io/tx/"
         ref={ref}
         onClick={(e) => {
           e.preventDefault();
           onClick(e);
         }}
-        className="dropdown font-medium text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
+        className="pointer dropdown font-medium text-gray dropdown-title dropdown-title d-flex flex-row align-items-center"
       >
         {children}
         <img height={14} src={dropdown} />

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AppContext, AppContextState } from "../../context/app";
 
 import { Formik } from "formik";
@@ -24,7 +24,7 @@ import LoginButton from "../LoginButton/LoginButton";
 import "./lend.scss";
 import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
 import { getEtherscanLink } from "../../actions/HelperFunctions";
-import { StatusTypes } from "../../context/types";
+import FormValidationWarning from "../UI/FormValidationWarning";
 
 const supplyFormValidation = () => {
   const errors = {};
@@ -32,13 +32,28 @@ const supplyFormValidation = () => {
 };
 
 const Lend = () => {
-  const { tokensApproved, selectedCurrency } = useContext(LendPageContext);
+  const { tokensApproved, selectedCurrency, selectedAmount } = useContext(
+    LendPageContext
+  );
   const { state, updateAppState } = useContext(AppContext);
   const [transactionHash, setTransactionHash] = useState("");
   const [processing, setProcessing] = useState("");
+  const [amountExceeded, setAmountExceeded] = useState("");
+
   const loggedIn = state.web3State?.address || "";
   const network = state.web3State?.network || "";
   const initialSupplyValues = { amount: "0.00" };
+
+  const balance = state.teller?.userWalletBalance;
+
+  useEffect(() => {
+    if (!balance) return;
+    if (selectedAmount > balance[selectedCurrency]) {
+      setAmountExceeded("You have exceeded your max wallet balance.");
+    } else {
+      setAmountExceeded("");
+    }
+  }, [selectedAmount, balance]);
 
   return (
     <Container>
@@ -57,7 +72,8 @@ const Lend = () => {
                   updateAppState,
                   setTransactionHash,
                   setProcessing,
-                  selectedCurrency
+                  selectedCurrency,
+                  selectedAmount
                 )}
               >
                 {({
@@ -72,7 +88,7 @@ const Lend = () => {
                       amount={values.amount}
                       handleChange={handleChange}
                     />
-                    <div className="table border-thin my-5">
+                    <div className="table border-thin mt-5 mb-4">
                       <TableRow title="Deposit">
                         <CurrencyDropdown />
                       </TableRow>
@@ -81,6 +97,7 @@ const Lend = () => {
                         <SubmitApproveButton />
                       </TableRow>
                     </div>
+                    <FormValidationWarning message={amountExceeded}/>
                     {loggedIn ? (
                       <PrimaryButton
                         text="Deposit"
