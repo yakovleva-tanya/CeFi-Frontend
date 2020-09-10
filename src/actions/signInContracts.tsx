@@ -28,7 +28,7 @@ import { globalDecimals, allContractAddresses } from "./../util/constants";
 async function setupTellerContracts(
   web3State: Web3State,
   lendingPoolAddress: string,
-  loansInterfaceAddress: string,
+  loansInstanceAddress: string,
   primaryAccount: string,
   collateralAddress: string,
   tTokenAddress: string
@@ -39,9 +39,9 @@ async function setupTellerContracts(
     {}
   );
 
-  const loansInterface = new web3State.web3.eth.Contract(
+  const loansInstance = new web3State.web3.eth.Contract(
     LoansInterface.abi,
-    loansInterfaceAddress,
+    loansInstanceAddress,
   )
 
   const tToken = new web3State.web3.eth.Contract(
@@ -74,8 +74,8 @@ async function setupTellerContracts(
   return {
     lendingPool,
     lendingPoolAddress,
-    loansInterface,
-    loansInterfaceAddress,
+    loansInstance,
+    loansInstanceAddress,
     tTokenAddress,
     tToken,
     collateralTokenAddress,
