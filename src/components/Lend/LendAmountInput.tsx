@@ -17,14 +17,8 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
   );
   const { state } = useContext(AppContext);
   const tokenData = state.tokenData;
-  const convertedAmount = tokenData
-    ? `${convertCurrency(
-        tokenData[selectedCurrency].price,
-        selectedAmount
-      )} ${selectedCurrency}`
-    : "-";
 
-  const convertInputAmount = (value: any) => {
+  const format = (value: any) => {
     value = value.replace(/[^0-9.]/g, "");
     value = parseFloat(value).toFixed(2);
     if (isNaN(value)) {
@@ -33,14 +27,17 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
     return value;
   };
   const onBlur = (e: any) => {
-    e.target.value = convertInputAmount(e.target.value);
+    e.target.value = format(e.target.value);
     handleChange(e);
-    setSelectedAmount(e.target.value);
+    setSelectedAmount(
+      convertCurrency(tokenData[selectedCurrency].price, e.target.value)
+    );
   };
   const onChange = (e: any) => {
     handleChange(e);
-    const value = convertInputAmount(e.target.value);
-    setSelectedAmount(value);
+    setSelectedAmount(
+      convertCurrency(tokenData[selectedCurrency].price, format(e.target.value))
+    );
   };
 
   const value = `$${amount.toString().replace(/[^0-9.]/g, "")}`;
@@ -48,7 +45,9 @@ const LendAmountInput = ({ amount, handleChange }: lendAmountProps) => {
   return (
     <div className="">
       <CustomInput onChangeFunction={onChange} value={value} onBlur={onBlur} />
-      <div className="text-lightest-gray text-lg font-medium">{convertedAmount}</div>
+      <div className="text-lightest-gray text-lg font-medium">
+        {tokenData ? `${selectedAmount} ${selectedCurrency}` : "-"}
+      </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import {
   AppContextState,
   AvailableLendingTokens,
   mapLendingTokensToTellerTokens,
-  BaseTokens
+  BaseTokens,
 } from "./../context/app";
 import { mintZDai } from "./../models/Contracts";
 import { globalDecimals } from "./../util/constants";
@@ -20,7 +20,7 @@ const supplyDai = async (
     lendingPoolContract,
     web3State,
     primaryAddress,
-    amount,
+    amount
   );
   const balance = await zDaiContract.methods.balanceOf(primaryAddress).call();
   const result = {
@@ -38,13 +38,16 @@ const completeSupply = (
   updateAppState: Function,
   setTransactionHash: Function,
   setProcessing: Function,
-  lendingTokens: AvailableLendingTokens
-) => async (values: any) => {
-  const amount = parseFloat(values.amount);
+  lendingTokens: AvailableLendingTokens,
+  selectedAmount: number
+) => async () => {
+  const amount = selectedAmount;
   const primaryAddress = state.web3State.address;
   const baseTokens = BaseTokens.ETH; // Currently constant.
   const tellerTokens = mapLendingTokensToTellerTokens(lendingTokens);
-  const { lendingPool, tToken } = state.teller.contracts[baseTokens][tellerTokens];
+  const { lendingPool, tToken } = state.teller.contracts[baseTokens][
+    tellerTokens
+  ];
 
   try {
     const { balance, transactionHash } = await supplyDai(
@@ -55,7 +58,7 @@ const completeSupply = (
       tToken,
       state.web3State
     );
-    setProcessing('');
+    setProcessing("");
     setTransactionHash(transactionHash);
     updateAppState((st: AppContextState) => {
       const teller = st.teller;
