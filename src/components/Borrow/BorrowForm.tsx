@@ -61,7 +61,6 @@ const BorrowForm = () => {
         web3State
       );
       const response = await sendLendingApplication(lendingApplication);
-      setLoanTerms(response.data);
       console.log(response.data);
       return true;
     } catch (err) {
@@ -107,6 +106,11 @@ const BorrowForm = () => {
         state.web3State.address
       );
       console.log(response);
+      setSubmitting(true);
+      //Accept loan terms
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSubmitting(false);
+      setStage(stage + 1);
       return true;
     } catch (err) {
       console.log(err);
@@ -118,14 +122,13 @@ const BorrowForm = () => {
         };
         return { ...st, errorModal };
       });
+      setSubmitting(true);
+      //Accept loan terms
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSubmitting(false);
+      setStage(stage + 1);
       return false;
     }
-
-    setSubmitting(true);
-    //Accept loan terms
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setSubmitting(false);
-    setStage(stage + 1);
   };
 
   const isSecured = Boolean(borrowRequest.loanType === "Secured");
