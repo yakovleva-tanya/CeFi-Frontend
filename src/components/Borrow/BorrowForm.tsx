@@ -25,7 +25,7 @@ import {
 import { sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
 import { getNonce } from "../../models/DataProviders";
-import { createLoanWithTerms } from "../../models/LoansInterfaceContract";
+import { createLoanWithTerms, takeOutLoan } from "../../models/LoansInterfaceContract";
 
 const BorrowForm = () => {
   const {
@@ -80,6 +80,47 @@ const BorrowForm = () => {
 
   const loggedIn = state.web3State?.address || "";
   const onRequestLoan = async () => {
+    const { web3State } = state;
+    const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+      TellerTokens.tDAI
+    ];
+    try {
+      const borrower = state.web3State.address;
+      const borrowerLoans = await loansInstance.getBorrowerLoans(borrower);
+      if (borrowerLoans.length == 0) {
+        return false;
+      } else {
+        const loanId = borrowerLoans[borrowerLoans.length -1];
+        const amountToBorrow = borrowRequest.loanSize.toString();
+        const response = await takeOutLoan(
+        loansInstance,
+        loanId,
+        amountToBorrow,
+        borrower
+      );
+      console.log(response);
+      setSubmitting(true);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSubmitting(false);
+      setStage(stage + 1);
+      return true;
+      }
+    } catch (err) {
+      console.log(err);
+      updateAppState((st: AppContextState) => {
+        const errorModal = {
+          show: true,
+          message:
+            "An error occurred while taking out the loan. Please try again.", title: "Error",
+        };
+        return { ...st, errorModal };
+      });
+      setSubmitting(true);
+      //Accept loan terms
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSubmitting(false);
+      return false;
+    }
     setRequesting(true);
     const res = await requestLoan();
     setRequesting(false);
@@ -126,7 +167,6 @@ const BorrowForm = () => {
       //Accept loan terms
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setSubmitting(false);
-      setStage(stage + 1);
       return false;
     }
   };
