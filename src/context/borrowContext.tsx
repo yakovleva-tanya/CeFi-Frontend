@@ -62,7 +62,7 @@ const mockLoanTerms = {
 const LoanTerms = {
   interestRate: null as null,
   minCollateralNeeded: null as null,
-})
+};
 
 export const BorrowPageContext = createContext<BorrowPageContextInterface>({
   stage: 0,
