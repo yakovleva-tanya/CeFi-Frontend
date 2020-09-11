@@ -9,7 +9,7 @@ import {
 import {
   ContextProps,
   BorrowRequest,
-  BorrowPageContextInterface,
+  BorrowPageContextInterface
 } from "./types";
 
 const DAYS = 86400; // Seconds per day
@@ -59,6 +59,11 @@ const mockLoanTerms = {
   minCollateralNeeded: 100,
 };
 
+const LoanTerms = {
+  interestRate: null as null,
+  minCollateralNeeded: null as null,
+})
+
 export const BorrowPageContext = createContext<BorrowPageContextInterface>({
   stage: 0,
   setStage: () => {},
@@ -66,7 +71,7 @@ export const BorrowPageContext = createContext<BorrowPageContextInterface>({
   setSubmenu: () => {},
   borrowRequest: defaultBorrowRequest,
   setBorrowRequest: () => {},
-  loanTerms: mockLoanTerms,
+  loanTerms: LoanTerms,
   setLoanTerms: () => {},
   borrowProcessState: null,
 
@@ -76,7 +81,7 @@ const BorrowPageContextProvider = ({ children }: ContextProps) => {
   const [stage, setStage] = useState(0);
   const [submenu, setSubmenu] = useState(null as null);
   const [borrowRequest, setBorrowRequest] = useState(defaultBorrowRequest);
-  const [loanTerms, setLoanTerms] = useState(mockLoanTerms);
+  const [loanTerms, setLoanTerms] = useState(LoanTerms);
 
   const [success, setSuccess] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);

@@ -25,6 +25,7 @@ import {
 import { sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
 import { getNonce } from "../../models/DataProviders";
+import { createLoanWithTerms } from "../../models/LoansInterfaceContract";
 
 const BorrowForm = () => {
   const {
@@ -60,6 +61,7 @@ const BorrowForm = () => {
         web3State
       );
       const response = await sendLendingApplication(lendingApplication);
+      setLoanTerms(response.data);
       console.log(response.data);
       return true;
     } catch (err) {
@@ -92,6 +94,32 @@ const BorrowForm = () => {
   };
   const onAcceptTerms = async () => {
     const { web3State } = state;
+    const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+      TellerTokens.tDAI
+    ];
+    try {
+      const collateral = borrowRequest.collateralAmount.toString();
+      const response = await createLoanWithTerms(
+        borrowRequest,
+        loanTerms,
+        loansInstance,
+        collateral,
+        state.web3State.address
+      );
+      console.log(response);
+      return true;
+    } catch (err) {
+      console.log(err);
+      updateAppState((st: AppContextState) => {
+        const errorModal = {
+          show: true,
+          message:
+            "An error occurred during the loan creation process. Please try again.", title: "Error",
+        };
+        return { ...st, errorModal };
+      });
+      return false;
+    }
 
     setSubmitting(true);
     //Accept loan terms
