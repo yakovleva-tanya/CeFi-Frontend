@@ -105,12 +105,11 @@ const WithdrawMainSection = () => {
   }, [selectedCurrency, selectedAmount]);
 
   return (
-    <div>
-      <div className="text-gray mb-4">
+    <div className = "my-2">
+      <div className="text-gray mb-2">
         Select an asset to withdraw your deposit to date
       </div>
       <FormValidationWarning message={warningMessage} />
-
       <CustomInput
         onChangeFunction={(e: any) => {
           let value = e.target.value.replace(/[^0-9.]/g, "");
@@ -144,7 +143,7 @@ const WithdrawMainSection = () => {
       >
         Max
       </div>
-      <div className="table border-thin my-5">
+      <div className="table border-thin my-4">
         <TableRow title="Withdraw With">
           <CustomDropdown
             selected={selectedCurrency}

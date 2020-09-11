@@ -14,7 +14,7 @@ import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
-import { AppContext } from "../../../context/app";
+import { AppContext, AppContextState } from "../../../context/app";
 import {
   calculateCollateralPercent,
   getMaxWithdrawAmount,
@@ -26,8 +26,9 @@ import link from "../../../../dist/assets/link-logo.png";
 
 const WithdrawMainSection = () => {
   const [warning, setWarning] = useState("");
-  const { state } = useContext(AppContext);
-  const { loans } = useContext(DashboardContext);
+  const { state, updateAppState } = useContext(AppContext);
+  const loans = state.demoData.loans;
+
   const {
     setSuccess,
     setWithdrawing,
@@ -41,11 +42,26 @@ const WithdrawMainSection = () => {
     newCollateralPercent,
   } = useContext(BorrowWithdrawContext);
 
-  const withdraw = async () => {
+  const withdraw = async (selectedLoan: LoanInterface, amount: number) => {
     setWithdrawing(true);
-    const res = await loanWithdraw();
+    setSelectedLoan(null);
+    setWithdrawAmount(0);
+    setNewCollateralPercent(0);
+
+    updateAppState((st: AppContextState) => {
+      const filteredLoans = st.demoData.loans.filter((loan: LoanInterface) => {
+        return loan.id != selectedLoan.id;
+      });
+      const walletBalances = st.demoData.walletBalances;
+      walletBalances[selectedLoan.token] += amount;
+      selectedLoan.totalCollateralDepositsAmount -= amount;
+      const loans = [...filteredLoans, selectedLoan];
+      const demoData = { ...st.demoData, walletBalances, loans };
+      return { ...st, demoData };
+    });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     setWithdrawing(false);
-    setSuccess(res);
+    setSuccess(true);
   };
 
   const getExpiryDateString = (date: number) => {
@@ -56,8 +72,9 @@ const WithdrawMainSection = () => {
   if (selectedLoan) {
     maxWithdrawAmount = getMaxWithdrawAmount(state.tokenData, selectedLoan);
   }
+
   return (
-    <div>
+    <div className ="my-4">
       {selectedLoan &&
         (withdrawCollateralSubmenu ? (
           <SubmenuCard
@@ -200,52 +217,40 @@ const WithdrawMainSection = () => {
             )}
             <ViewContractLink link={selectedLoan.transactionHash} />
             <div>
-              <PrimaryButton text="Withdraw" onClick={() => withdraw()} />
+              <PrimaryButton
+                text="Withdraw"
+                onClick={() => withdraw(selectedLoan, withdrawAmount)}
+              />
             </div>
           </div>
         ))}
       {!selectedLoan && (
-        <div>
-          <div className="text-gray">
-            Select the loan you want to withdraw into
+        <div className="my-2">
+          <div className="text-gray mb-4">
+            Select the loan you want to withdraw collateral from.
           </div>
           <div className="table border-thin mb-4 mt-3">
-            {loans.map((loan: LoanInterface) => {
-              if (loan.status !== "Closed") {
-                return;
-              }
-              return (
-                <div key={loan.id}>
-                  <TableRow title="Repaid">
-                    <CustomSubmenuLink
-                      title={`${loan.totalCollateralDepositsAmount} ${loan.collateralToken}`}
-                      onClickAction={() => {
-                        setSelectedLoan(loan);
-                      }}
-                    />
-                  </TableRow>
-                  <BR />
-                </div>
-              );
-            })}
-            {loans.map((loan: any) => {
-              if (loan.status === "Closed") {
-                return;
-              }
-              return (
-                <div key={loan.id}>
-                  <TableRow title="Open">
-                    <CustomSubmenuLink
-                      title={`${loan.totalCollateralDepositsAmount} ${loan.collateralToken}`}
-                      onClickAction={() => {
-                        setSelectedLoan(loan);
-                      }}
-                    />
-                  </TableRow>
-                  <BR />
-                </div>
-              );
-            })}
+            {loans
+              .sort((a: any, b: any) => {
+                return b.status - a.status;
+              })
+              .map((loan: any, i: number) => {
+                return (
+                  <div key={loan.id}>
+                    <TableRow
+                      title={loan.status === "Closed" ? "Repaid" : "Open"}
+                    >
+                      <CustomSubmenuLink
+                        title={`${loan.totalCollateralDepositsAmount} ${loan.collateralToken}`}
+                        onClickAction={() => {
+                          setSelectedLoan(loan);
+                        }}
+                      />
+                    </TableRow>
+                    {i !== loans.length - 1 && <BR />}
+                  </div>
+                );
+              })}
           </div>
         </div>
       )}

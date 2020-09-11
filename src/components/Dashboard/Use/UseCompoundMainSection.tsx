@@ -49,7 +49,7 @@ const UseCompoundMainSection = () => {
     setSuccess(res);
   };
   return (
-    <div>
+    <div className="my-4">
       {selectedLoan &&
         (amountSubmenu ? (
           <SubmenuCard
@@ -145,12 +145,12 @@ const UseCompoundMainSection = () => {
           </div>
         ))}
       {!selectedLoan && (
-        <div>
-          <div className="text-gray">
+        <div className = 'my-2'>
+          <div className="text-gray mb-4">
             Select the loan you want to withdraw into
           </div>
           <div className="table border-thin mb-4 mt-3">
-            {loans.map((loan: LoanInterface) => {
+            {loans.map((loan: LoanInterface, i: number) => {
               return (
                 <div key={loan.id}>
                   <TableRow title={`ID ${loan.id}`}>
@@ -161,7 +161,7 @@ const UseCompoundMainSection = () => {
                       }}
                     />
                   </TableRow>
-                  <BR />
+                  {loans.length - 1 !== i && <BR />}
                 </div>
               );
             })}
