@@ -14,7 +14,11 @@ import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
-import { AppContext } from "../../../context/app";
+import { 
+  AppContext,
+  TellerTokens,
+  BaseTokens
+} from "../../../context/app";
 import {
   calculateCollateralPercent,
   getMaxWithdrawAmount,
@@ -23,6 +27,8 @@ import FormValidationWarning from "../../UI/FormValidationWarning";
 
 import eth from "../../../../dist/assets/eth-logo.svg";
 import link from "../../../../dist/assets/link-logo.png";
+
+import { withdrawCollateral } from "../../../models/LoansInterfaceContract";
 
 const WithdrawMainSection = () => {
   const [warning, setWarning] = useState("");
@@ -40,8 +46,20 @@ const WithdrawMainSection = () => {
     setNewCollateralPercent,
     newCollateralPercent,
   } = useContext(BorrowWithdrawContext);
+  const { web3State } = state;
+  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+    TellerTokens.tDAI
+  ];
+  const borrower = state.web3State.address;
 
   const withdraw = async () => {
+    const response = await withdrawCollateral(
+      loansInstance,
+      Number(selectedLoan.id),
+      withdrawAmount.toString(),
+      borrower
+    );
+    console.log(response);
     setWithdrawing(true);
     const res = await loanWithdraw();
     setWithdrawing(false);
