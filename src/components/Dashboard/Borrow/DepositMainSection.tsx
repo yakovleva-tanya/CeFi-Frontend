@@ -39,9 +39,9 @@ const DepositMainSection = () => {
     return loan.status != "repaid";
   });
 
-  const deposit = async () => {
+  const deposit = async (id: string, amountToDeposit: number) => {
     setDepositing(true);
-    await loanDeposit();
+    await loanDeposit(id, amountToDeposit);
     setDepositing(false);
     setSuccess(true);
   };
@@ -148,7 +148,7 @@ const DepositMainSection = () => {
             </div>
             <ViewContractLink link={selectedLoan.transactionHash} />
             <div>
-              <PrimaryButton text="Deposit" onClick={() => deposit()} />
+              <PrimaryButton text="Deposit" onClick={() => deposit(selectedLoan.id, collateral)} />
             </div>
           </div>
         ))}

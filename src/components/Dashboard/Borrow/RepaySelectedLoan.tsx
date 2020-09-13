@@ -29,10 +29,10 @@ const RepaySelectedLoan = () => {
     collateralAmount,
   } = selectedLoan;
 
-  const onRepayLoan = async (id: string) => {
+  const onRepayLoan = async (id: string, totalOwedAmount: number) => {
     setRepaying(true);
     setSelectedLoan(null);
-    const res = await repayLoan(id);
+    const res = await repayLoan(id, totalOwedAmount);
     setRepaying(false);
     setRepaySuccess(res);
   };
@@ -110,7 +110,7 @@ const RepaySelectedLoan = () => {
       {statusName !== "Repaid" && (
         <div>
           <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." />
-          <PrimaryButton text="Repay Loan" onClick={() => onRepayLoan(id)} />
+          <PrimaryButton text="Repay Loan" onClick={() => onRepayLoan(id, totalOwedAmount)} />
         </div>
       )}
     </div>

@@ -41,9 +41,9 @@ const WithdrawMainSection = () => {
     newCollateralPercent,
   } = useContext(BorrowWithdrawContext);
 
-  const withdraw = async () => {
+  const withdraw = async (id: string, amountToWithdraw: number) => {
     setWithdrawing(true);
-    const res = await loanWithdraw();
+    const res = await loanWithdraw(id, amountToWithdraw);
     setWithdrawing(false);
     setSuccess(res);
   };
@@ -200,7 +200,7 @@ const WithdrawMainSection = () => {
             )}
             <ViewContractLink link={selectedLoan.transactionHash} />
             <div>
-              <PrimaryButton text="Withdraw" onClick={() => withdraw()} />
+              <PrimaryButton text="Withdraw" onClick={() => withdraw(selectedLoan.id, withdrawAmount)} />
             </div>
           </div>
         ))}
