@@ -12,16 +12,14 @@ import {
 } from "../context/dashboardContext";
 import { loanRepayment, depositCollateral, withdrawCollateral } from "../models/LoansInterfaceContract";
 
-/** Declarations */
-const { state, updateAppState } = useContext(AppContext);
-const { web3State } = state;
-const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-  TellerTokens.tDAI
-];
-const borrower = state.web3State.address;
-
 /** Methods */
 export const repayLoan = async (id: string, totalOwedAmount: number) => {
+  const { state, updateAppState } = useContext(AppContext);
+  const { web3State } = state;
+  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+    TellerTokens.tDAI
+  ];
+  const borrower = state.web3State.address;
   const response = await loanRepayment(
     loansInstance,
     Number(id),
@@ -35,6 +33,12 @@ export const repayLoan = async (id: string, totalOwedAmount: number) => {
 };
 
 export const loanDeposit = async (id: string, amountToDeposit: number) => {
+  const { state, updateAppState } = useContext(AppContext);
+  const { web3State } = state;
+  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+    TellerTokens.tDAI
+  ];
+  const borrower = state.web3State.address;
   const response = await depositCollateral(
     loansInstance,
     borrower,
@@ -49,6 +53,12 @@ export const loanDeposit = async (id: string, amountToDeposit: number) => {
 };
 
 export const loanWithdraw = async (id: string, amountToWithdraw: number) => {
+  const { state, updateAppState } = useContext(AppContext);
+  const { web3State } = state;
+  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+    TellerTokens.tDAI
+  ];
+  const borrower = state.web3State.address;
   const response = await withdrawCollateral(
     loansInstance,
     Number(id),
