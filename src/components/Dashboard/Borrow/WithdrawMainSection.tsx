@@ -14,7 +14,11 @@ import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
-import { AppContext } from "../../../context/app";
+import { 
+  AppContext,
+  BaseTokens,
+  TellerTokens,
+} from "../../../context/app";
 import {
   calculateCollateralPercent,
   getMaxWithdrawAmount,
@@ -40,10 +44,22 @@ const WithdrawMainSection = () => {
     setNewCollateralPercent,
     newCollateralPercent,
   } = useContext(BorrowWithdrawContext);
+  const { web3State } = state;
+  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+    TellerTokens.tDAI
+  ];
 
-  const withdraw = async (id: string, amountToWithdraw: number) => {
+  const withdraw = async (
+    id: string,
+    amountToWithdraw: number
+  ) => {
     setWithdrawing(true);
-    const res = await loanWithdraw(id, amountToWithdraw);
+    const res = await loanWithdraw(
+      loansInstance,
+      id,
+      amountToWithdraw,
+      web3State
+    );
     setWithdrawing(false);
     setSuccess(res);
   };

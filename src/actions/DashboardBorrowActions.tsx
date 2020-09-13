@@ -1,10 +1,12 @@
 /** Imports */
 import { useContext } from "react";
+import Web3 from "web3";
 import {
   AppContext,
   AppContextState,
   TellerTokens,
-  BaseTokens
+  BaseTokens,
+  Web3State
 } from "../context/app";
 import {
   DashboardContext,
@@ -13,13 +15,13 @@ import {
 import { loanRepayment, depositCollateral, withdrawCollateral } from "../models/LoansInterfaceContract";
 
 /** Methods */
-export const repayLoan = async (id: string, totalOwedAmount: number) => {
-  const { state, updateAppState } = useContext(AppContext);
-  const { web3State } = state;
-  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-    TellerTokens.tDAI
-  ];
-  const borrower = state.web3State.address;
+export const repayLoan = async (
+  loansInstance: any,
+  id: string,
+  totalOwedAmount: number,
+  web3State: Web3State
+) => {
+  const borrower = web3State.address;
   const response = await loanRepayment(
     loansInstance,
     Number(id),
@@ -32,13 +34,13 @@ export const repayLoan = async (id: string, totalOwedAmount: number) => {
   return true;
 };
 
-export const loanDeposit = async (id: string, amountToDeposit: number) => {
-  const { state, updateAppState } = useContext(AppContext);
-  const { web3State } = state;
-  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-    TellerTokens.tDAI
-  ];
-  const borrower = state.web3State.address;
+export const loanDeposit = async (
+  loansInstance: any,
+  id: string,
+  amountToDeposit: number,
+  web3State: Web3State
+) => {
+  const borrower = web3State.address;
   const response = await depositCollateral(
     loansInstance,
     borrower,
@@ -52,13 +54,13 @@ export const loanDeposit = async (id: string, amountToDeposit: number) => {
   return true;
 };
 
-export const loanWithdraw = async (id: string, amountToWithdraw: number) => {
-  const { state, updateAppState } = useContext(AppContext);
-  const { web3State } = state;
-  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-    TellerTokens.tDAI
-  ];
-  const borrower = state.web3State.address;
+export const loanWithdraw = async (
+  loansInstance: any,
+  id: string,
+  amountToWithdraw: number,
+  web3State: Web3State
+) => {
+  const borrower = web3State.address;
   const response = await withdrawCollateral(
     loansInstance,
     Number(id),

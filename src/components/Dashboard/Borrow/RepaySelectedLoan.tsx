@@ -6,6 +6,11 @@ import { repayLoan } from "../../../actions/DashboardBorrowActions";
 import FormValidationWarning from "../../UI/FormValidationWarning";
 import { BorrowRepayContext } from "../../../context/dashboardContext";
 import ViewContractLink from "../ViewContractLink";
+import { 
+  AppContext,
+  BaseTokens,
+  TellerTokens
+} from "../../../context/app";
 
 const RepaySelectedLoan = () => {
   const {
@@ -28,11 +33,24 @@ const RepaySelectedLoan = () => {
     currentCollateralPercent,
     collateralAmount,
   } = selectedLoan;
+  const { state } = useContext(AppContext);
+  const { web3State } = state;
+  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+    TellerTokens.tDAI
+  ];
 
-  const onRepayLoan = async (id: string, totalOwedAmount: number) => {
+  const onRepayLoan = async (
+    id: string,
+    totalOwedAmount: number
+  ) => {
     setRepaying(true);
     setSelectedLoan(null);
-    const res = await repayLoan(id, totalOwedAmount);
+    const res = await repayLoan(
+      loansInstance,
+      id,
+      totalOwedAmount,
+      web3State
+    );
     setRepaying(false);
     setRepaySuccess(res);
   };
