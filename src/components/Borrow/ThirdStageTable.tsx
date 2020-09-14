@@ -42,7 +42,7 @@ const ThirdStageTable = () => {
           <div className="font-medium"> {loanType} </div>
         </TableRow>
       </div>
-      <div className="table border-thin my-5">
+      <div className="table border-thin my-4">
         <TableRow title="Collateral amount">
           <CollateralAmountSelection />
         </TableRow>

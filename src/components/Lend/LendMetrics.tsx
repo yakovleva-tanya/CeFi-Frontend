@@ -20,12 +20,14 @@ const LendMetrics = () => {
     : "-";
   // TODO: this should update based on the selected ATM type.
   const supplyAPY = tokenData
-    ? `${Math.round(tokenData[selectedCurrency].supplyAPY * 10000) / 100}%`
+    ? `${tokenData[selectedCurrency].supplyAPY.toFixed(2)}%`
     : "-";
 
-  const walletBalance = `${demoData.walletBalances[selectedCurrency].toFixed(
-    2
-  )} ${selectedCurrency}`;
+  const walletBalance = state.web3State.address
+    ? `${demoData.walletBalances[selectedCurrency].toFixed(
+        2
+      )} ${selectedCurrency}`
+    : "-";
 
   const convertedCurrency = mapLendingTokensToTellerTokens(selectedCurrency);
 

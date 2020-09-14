@@ -100,9 +100,9 @@ export default function useAppContext() {
     setUpdates(state, updateAppState);
   }, [state.web3State?.network, state.web3State.address]);
 
-  React.useEffect(() => {
-    getTokenData(state, updateAppState);
-  }, []);
+  // React.useEffect(() => {
+  //   getTokenData(state, updateAppState);
+  // }, []);
 
   return [state, updateAppState];
 }

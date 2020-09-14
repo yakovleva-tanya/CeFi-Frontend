@@ -14,14 +14,18 @@ import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
-import { AppContext } from "../../../context/app";
+import { AppContext, AppContextState } from "../../../context/app";
+import { StatusTypes } from "../../../context/types";
+
 import { calculateCollateralPercent } from "../../../actions/HelperFunctions";
 import eth from "../../../../dist/assets/eth-logo.svg";
 import link from "../../../../dist/assets/link-logo.png";
+import CollateralAmountSelection from "../../Borrow/CollateralAmountSelection";
 
 const DepositMainSection = () => {
-  const { state } = useContext(AppContext);
-  const { loans } = useContext(DashboardContext);
+  const { state, updateAppState } = useContext(AppContext);
+  const loans = state.demoData.loans;
+
   const {
     setSuccess,
     setDepositing,
@@ -36,18 +40,32 @@ const DepositMainSection = () => {
   } = useContext(BorrowDepositContext);
 
   const currentLoans = loans.filter((loan: any) => {
-    return loan.status != "repaid";
+    return loan.status != "Closed" && loan.totalCollateralDepositsAmount > 0;
   });
 
-  const deposit = async () => {
+  const deposit = async (selectedLoan: LoanInterface, amount: number) => {
     setDepositing(true);
-    await loanDeposit();
+    setSelectedLoan(null);
+    setCollateral(0);
+    setNewCollateralPercent(0);
+
+    updateAppState((st: AppContextState) => {
+      const filteredLoans = st.demoData.loans.filter((loan: LoanInterface) => {
+        return loan.id != selectedLoan.id;
+      });
+      const walletBalances = st.demoData.walletBalances;
+      walletBalances[selectedLoan.token] -= amount;
+      selectedLoan.totalCollateralDepositsAmount += amount;
+      const loans = [...filteredLoans, selectedLoan];
+      const demoData = { ...st.demoData, walletBalances, loans };
+      return { ...st, demoData };
+    });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     setDepositing(false);
     setSuccess(true);
   };
-
   return (
-    <div>
+    <div className="my-4">
       {selectedLoan &&
         (addCollateralSubmenu ? (
           <SubmenuCard
@@ -116,7 +134,7 @@ const DepositMainSection = () => {
                 </div>
               </TableRow>
               <BR />
-              <TableRow title="Current collateral %">
+              <TableRow title="Collateral %">
                 <div className="font-medium">
                   {selectedLoan.currentCollateralPercent.toFixed(2)}%
                 </div>
@@ -124,7 +142,7 @@ const DepositMainSection = () => {
               <BR />
               <TableRow title="Collateral amount">
                 <div className="font-medium">
-                  {selectedLoan.totalCollateralDepositsAmount}{" "}
+                  {selectedLoan.collateralAmount}{" "}
                   {selectedLoan.collateralToken}
                 </div>
               </TableRow>
@@ -148,45 +166,71 @@ const DepositMainSection = () => {
             </div>
             <ViewContractLink link={selectedLoan.transactionHash} />
             <div>
-              <PrimaryButton text="Deposit" onClick={() => deposit()} />
+              <PrimaryButton
+                text="Deposit"
+                onClick={() => deposit(selectedLoan, collateral)}
+              />
             </div>
           </div>
         ))}
-
       {!selectedLoan && (
-        <div>
-          <div className="text-gray">
+        <div className="my-2">
+          <div className="text-gray mb-4">
             Deposit additional collateral for an outstanding loan
           </div>
-          <div className="table border-thin mb-4 mt-3">
-            {currentLoans.map((loan: LoanInterface) => {
-              const percentFromLiquidaton =
-                loan.currentCollateralPercent - loan.terms.collateralRatio;
-              return (
-                <div
-                  key={loan.id}
-                  style={
-                    Math.round(percentFromLiquidaton) < 0
-                      ? { border: "1px solid #FC5A5A" }
-                      : {}
-                  }
-                >
-                  <TableRow
-                    title={`${Math.round(
-                      percentFromLiquidaton
-                    )}%  from liquidation`}
+          <div className="table mb-4">
+            {currentLoans
+              .map((loan: any) => {
+                loan.percentFromLiquidation =
+                  loan.currentCollateralPercent - loan.terms.collateralRatio;
+                return loan;
+              })
+              .sort((a: any, b: any) => {
+                return a.percentFromLiquidation - b.percentFromLiquidation;
+              })
+              .map((loan: any, i: number) => {
+                const percentFromLiquidaton = loan.percentFromLiquidation;
+                const borderRadius =
+                  i === 0
+                    ? "4px 4px 0px 0px"
+                    : i === currentLoans.length - 1
+                    ? " 0px 0px 4px 4px"
+                    : "0px";
+                const borderTop = i > 0 ? "none" : "1px solid #D7DAE2";
+                return (
+                  <div
+                    key={loan.id}
+                    style={
+                      Math.round(percentFromLiquidaton) < 0
+                        ? {
+                            border: "1px solid #FC5A5A",
+                            borderRadius: `${borderRadius}`,
+                            marginTop: "-1px",
+                          }
+                        : {
+                            border: "1px solid #D7DAE2",
+                            borderTop: `${borderTop}`,
+                            borderRadius: `${borderRadius}`,
+                          }
+                    }
                   >
-                    <CustomSubmenuLink
-                      title={`${loan.collateralAmount} ${loan.collateralToken}`}
-                      onClickAction={() => {
-                        setSelectedLoan(loan);
-                      }}
-                    />
-                  </TableRow>
-                  <BR />
-                </div>
-              );
-            })}
+                    <TableRow
+                      title={`${Math.round(
+                        percentFromLiquidaton
+                      )}% from liquidation`}
+                    >
+                      <CustomSubmenuLink
+                        title={`${loan.collateralAmount.toFixed(2)} ${
+                          loan.collateralToken
+                        }`}
+                        onClickAction={() => {
+                          setSelectedLoan(loan);
+                        }}
+                      />
+                    </TableRow>
+                  </div>
+                );
+              })}
           </div>
         </div>
       )}
