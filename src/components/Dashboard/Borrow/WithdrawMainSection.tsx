@@ -54,7 +54,7 @@ const WithdrawMainSection = () => {
       const walletBalances = st.demoData.walletBalances;
       walletBalances[selectedLoan.token] += amount;
       const newLoan = selectedLoan;
-      newLoan.totalCollateralWithdrawalsAmount +=amount;
+      newLoan.totalCollateralWithdrawalsAmount += amount;
       const loans = [...filteredLoans, newLoan];
       const demoData = { ...st.demoData, walletBalances, loans };
       return { ...st, demoData };
@@ -135,11 +135,13 @@ const WithdrawMainSection = () => {
                       state.tokenData,
                       {
                         ...selectedLoan,
-                        collateralAmount: maxWithdrawAmount,
+                        collateralAmount:
+                          selectedLoan.collateralAmount - maxWithdrawAmount,
                       }
                     );
                     setNewCollateralPercent(newCollateralPercent);
                   }
+
                   setWithdrawAmount(value);
                 }}
               />
