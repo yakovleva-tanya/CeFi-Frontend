@@ -31,6 +31,7 @@ const RepaySelectedLoan = () => {
     timeTillExpires,
     currentCollateralPercent,
     collateralAmount,
+    loanType,
   } = selectedLoan;
 
   const onRepayLoan = async (selectedLoan: LoanInterface) => {
@@ -78,14 +79,14 @@ const RepaySelectedLoan = () => {
         </TableRow>
         <BR />
         <TableRow title="Loan type">
-          <div className="font-medium">-</div>
+          <div className="font-medium">{loanType}</div>
         </TableRow>
         <BR />
         <TableRow title="Liquidation %">
           <div className="font-medium">{terms.collateralRatio} %</div>
         </TableRow>
         <BR />
-        <TableRow title="Current Collateral %">
+        <TableRow title="Collateral %">
           <div className="font-medium">
             {currentCollateralPercent.toFixed(2)} %
           </div>

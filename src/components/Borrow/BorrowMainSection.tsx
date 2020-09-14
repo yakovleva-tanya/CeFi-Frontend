@@ -10,7 +10,7 @@ import "./borrow.scss";
 import { BorrowPageContext } from "../../context/borrowContext";
 
 const BorrowMainSection = () => {
-  const { stage, borrowProcessState } = useContext(BorrowPageContext);
+  const { stage, setStage, borrowProcessState } = useContext(BorrowPageContext);
 
   const showWarning = (s: number) => {
     borrowProcessState.setStageChangeWarning(s);
@@ -25,6 +25,10 @@ const BorrowMainSection = () => {
           goBack={
             stage === 0
               ? null
+              : stage === 1
+              ? () => {
+                  setStage(0);
+                }
               : () => {
                   showWarning(stage - 1);
                 }

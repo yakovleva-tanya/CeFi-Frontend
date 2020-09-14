@@ -72,7 +72,8 @@ export const NavLoginButton = () => {
         </a>
       ) : (
         <div className="menu-button login-button text-lg py-3 px-4 mr-0">
-          {truncate.apply(loggedIn, [6])}
+          0x1d7...7b95
+          {/* {truncate.apply(loggedIn, [6])} */}
         </div>
       )}
     </span>

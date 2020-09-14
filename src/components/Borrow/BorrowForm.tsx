@@ -6,7 +6,7 @@ import ThirdStageTable from "./ThirdStageTable";
 import PrimaryButton from "../UI/PrimaryButton";
 import LoginButton from "../LoginButton/LoginButton";
 import Submenu from "./Submenu";
-import LoanSelectCard from './LoanSelectedCard';
+import LoanSelectCard from "./LoanSelectedCard";
 
 import "./borrow.scss";
 
@@ -89,6 +89,7 @@ const BorrowForm = () => {
         collateralPercent,
         lendWith,
         collateralAmount,
+        loanType,
       } = borrowRequest;
       const loans = st.demoData.loans;
       const time = Date.now();
@@ -114,8 +115,10 @@ const BorrowForm = () => {
         totalOwedAmount: loanSize,
         collateralDeposits: [{ amount: 0 }],
         totalCollateralDepositsAmount: collateralAmount,
+        collateralAmount:collateralAmount,
         collateralWithdrawns: [],
         totalCollateralWithdrawalsAmount: 0,
+        loanType: loanType,
       });
       const walletBalances = st.demoData.walletBalances;
       walletBalances[collateralWith] -= collateralAmount;
@@ -143,6 +146,7 @@ const BorrowForm = () => {
 
   const isSecured = Boolean(borrowRequest.loanType === "Secured");
   const plaidConnected = state?.plaid?.loggedIn;
+
   return (
     <div>
       {submenu ? (
@@ -158,12 +162,13 @@ const BorrowForm = () => {
                   setStage(stage + 1);
                   setBorrowRequest({
                     ...borrowRequest,
+                    collateralPercent: 0,
                     loanType: "Unsecured",
                   });
                 }}
                 title="Unsecured loan"
                 subTitle="Apply for an unsecured loan by connecting your bank account."
-                logos={['compound']}
+                logos={["compound"]}
               />
               <LoanSelectCard
                 className="mt-4"
@@ -171,12 +176,13 @@ const BorrowForm = () => {
                   setStage(stage + 1);
                   setBorrowRequest({
                     ...borrowRequest,
+                    collateralPercent: 150,
                     loanType: "Secured",
                   });
                 }}
                 title="Secured loan"
                 subTitle="Apply for a secured loan, no bank account needed."
-                logos={['compound', 'uniswap']}
+                logos={["compound", "uniswap"]}
               />
             </div>
           )}
@@ -186,11 +192,13 @@ const BorrowForm = () => {
               {loggedIn ? (
                 <PrimaryButton
                   text="Request terms"
-                  disabled={isSecured ? false : Boolean(!plaidConnected)}
+                  //disabled={isSecured ? false : Boolean(!plaidConnected)}
                   onClick={() => {
                     //Get LoanTerms
                     setLoanTerms({
                       ...loanTerms,
+                      interestRate:
+                        borrowRequest.loanType === "Secured" ? 200 : 17,
                       minCollateralNeeded: borrowRequest.collateralPercent,
                     });
                     setStage(stage + 1);

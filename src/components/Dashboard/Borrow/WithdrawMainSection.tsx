@@ -28,6 +28,9 @@ const WithdrawMainSection = () => {
   const [warning, setWarning] = useState("");
   const { state, updateAppState } = useContext(AppContext);
   const loans = state.demoData.loans;
+  const filteredLoans = loans.filter((loan: LoanInterface) => {
+    return loan.collateralAmount !== 0;
+  });
 
   const {
     setSuccess,
@@ -44,21 +47,21 @@ const WithdrawMainSection = () => {
 
   const withdraw = async (selectedLoan: LoanInterface, amount: number) => {
     setWithdrawing(true);
-    setSelectedLoan(null);
-    setWithdrawAmount(0);
-    setNewCollateralPercent(0);
-
     updateAppState((st: AppContextState) => {
       const filteredLoans = st.demoData.loans.filter((loan: LoanInterface) => {
         return loan.id != selectedLoan.id;
       });
       const walletBalances = st.demoData.walletBalances;
       walletBalances[selectedLoan.token] += amount;
-      selectedLoan.totalCollateralDepositsAmount -= amount;
-      const loans = [...filteredLoans, selectedLoan];
+      const newLoan = selectedLoan;
+      newLoan.totalCollateralWithdrawalsAmount +=amount;
+      const loans = [...filteredLoans, newLoan];
       const demoData = { ...st.demoData, walletBalances, loans };
       return { ...st, demoData };
     });
+    setSelectedLoan(null);
+    setWithdrawAmount(0);
+    setNewCollateralPercent(0);
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setWithdrawing(false);
     setSuccess(true);
@@ -74,7 +77,7 @@ const WithdrawMainSection = () => {
   }
 
   return (
-    <div className ="my-4">
+    <div className="my-4">
       {selectedLoan &&
         (withdrawCollateralSubmenu ? (
           <SubmenuCard
@@ -169,7 +172,7 @@ const WithdrawMainSection = () => {
                 <BR />
                 <TableRow title="Collateral amount">
                   <div className="font-medium">
-                    {selectedLoan.totalCollateralDepositsAmount}{" "}
+                    {selectedLoan.collateralAmount}{" "}
                     {selectedLoan.collateralToken}
                   </div>
                 </TableRow>
@@ -192,7 +195,7 @@ const WithdrawMainSection = () => {
                   <BR />
                   <TableRow title="Collateral amount">
                     <div className="font-medium">
-                      {selectedLoan.totalCollateralDepositsAmount}{" "}
+                      {selectedLoan.collateralAmount}{" "}
                       {selectedLoan.collateralToken}
                     </div>
                   </TableRow>
@@ -219,7 +222,13 @@ const WithdrawMainSection = () => {
             <div>
               <PrimaryButton
                 text="Withdraw"
-                onClick={() => withdraw(selectedLoan, withdrawAmount)}
+                onClick={() => {
+                  let amount = withdrawAmount;
+                  if (selectedLoan.status === "Closed") {
+                    amount = selectedLoan.collateralAmount;
+                  }
+                  withdraw(selectedLoan, amount);
+                }}
               />
             </div>
           </div>
@@ -230,7 +239,7 @@ const WithdrawMainSection = () => {
             Select the loan you want to withdraw collateral from.
           </div>
           <div className="table border-thin mb-4 mt-3">
-            {loans
+            {filteredLoans
               .sort((a: any, b: any) => {
                 return b.status - a.status;
               })
@@ -241,13 +250,13 @@ const WithdrawMainSection = () => {
                       title={loan.status === "Closed" ? "Repaid" : "Open"}
                     >
                       <CustomSubmenuLink
-                        title={`${loan.totalCollateralDepositsAmount} ${loan.collateralToken}`}
+                        title={`${loan.collateralAmount} ${loan.collateralToken}`}
                         onClickAction={() => {
                           setSelectedLoan(loan);
                         }}
                       />
                     </TableRow>
-                    {i !== loans.length - 1 && <BR />}
+                    {i !== filteredLoans.length - 1 && <BR />}
                   </div>
                 );
               })}

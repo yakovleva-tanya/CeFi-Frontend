@@ -40,7 +40,7 @@ const DepositMainSection = () => {
   } = useContext(BorrowDepositContext);
 
   const currentLoans = loans.filter((loan: any) => {
-    return loan.status != "Repaid";
+    return loan.status != "Closed" && loan.totalCollateralDepositsAmount > 0;
   });
 
   const deposit = async (selectedLoan: LoanInterface, amount: number) => {
@@ -134,7 +134,7 @@ const DepositMainSection = () => {
                 </div>
               </TableRow>
               <BR />
-              <TableRow title="Current collateral %">
+              <TableRow title="Collateral %">
                 <div className="font-medium">
                   {selectedLoan.currentCollateralPercent.toFixed(2)}%
                 </div>
@@ -142,7 +142,7 @@ const DepositMainSection = () => {
               <BR />
               <TableRow title="Collateral amount">
                 <div className="font-medium">
-                  {selectedLoan.totalCollateralDepositsAmount}{" "}
+                  {selectedLoan.collateralAmount}{" "}
                   {selectedLoan.collateralToken}
                 </div>
               </TableRow>
@@ -196,6 +196,7 @@ const DepositMainSection = () => {
                     : i === currentLoans.length - 1
                     ? " 0px 0px 4px 4px"
                     : "0px";
+                const borderTop = i > 0 ? "none" : "1px solid #D7DAE2";
                 return (
                   <div
                     key={loan.id}
@@ -208,7 +209,7 @@ const DepositMainSection = () => {
                           }
                         : {
                             border: "1px solid #D7DAE2",
-                            borderTopStyle: "none",
+                            borderTop: `${borderTop}`,
                             borderRadius: `${borderRadius}`,
                           }
                     }
