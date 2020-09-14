@@ -19,7 +19,23 @@ function truncate(n: number) {
 }
 
 export async function web3FromProvider(updateAppState: Function) {
+  const wallets = [
+    { walletName: "metamask", preferred: true },
+    { walletName: "walletConnect", preferred: true, infuraKey: process.env.INFURA_API_KEY },
+    { 
+      walletName: "walletLink",
+      rpcUrl: process.env.RPC_URL,
+      label: "Coinbase",
+      appName: "Teller Finance",
+      preferred: true 
+    },
+    { walletName: "fortmatic", preferred: true },
+    { walletName: "portis", preferred: true }
+  ]
   const onboard = Onboard({
+    walletSelect: {
+      wallets: wallets
+    },
     ...BlockNativeOptions,
     subscriptions: {
       network: async (network: any) => {
@@ -50,8 +66,8 @@ export async function web3FromProvider(updateAppState: Function) {
           web3State.address = address;
           return { ...st, web3State };
         });
-      },
-    },
+      }
+    }
   });
   await onboard.walletSelect();
   await onboard.walletCheck();
