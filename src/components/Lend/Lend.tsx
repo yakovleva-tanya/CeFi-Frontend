@@ -1,18 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AppContext, AppContextState } from "../../context/app";
-
 import { Formik } from "formik";
 import {demoCompleteSupply} from "../../actions/lendTokens";
-
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-
 import SuccessScreen from "../SuccessScreen/SuccessScreen";
 import CurrencyDropdown from "./CurrencyDropdown";
 import SubmitApproveButton from "./SubmitApproveButton";
 import LendMetrics from "./LendMetrics";
 import LendAmountInput from "./LendAmountInput";
-
 import Card from "../UI/Card";
 import BR from "../UI/BR";
 import TableRow from "../UI/TableRow";
@@ -44,7 +40,7 @@ const Lend = () => {
   const network = state.web3State?.network || "";
   const initialSupplyValues = { amount: "0.00" };
 
-  const balance = state.teller?.userWalletBalance;
+  const balance = state.demoData.walletBalances;
 
   useEffect(() => {
     if (!balance) return;

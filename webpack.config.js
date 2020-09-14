@@ -66,9 +66,7 @@ module.exports = {
         'process.env.PLAID_ENV': `'${process.env.PLAID_ENV}'`,
         'process.env.PLAID_KEY': `'${process.env.PLAID_KEY}'`,
         'process.env.SERVER_URL': `'${process.env.SERVER_URL}'`,
-        'process.env.DATA_PROVIDERS_URLS_BANK_INFO': `'${process.env.DATA_PROVIDERS_URLS_BANK_INFO}'`,
-        'process.env.INFURA_API_KEY': `'${process.env.INFURA_API_KEY}'`,
-        'process.env.RPC_URL': `'${process.env.RPC_URL}'`,
+        'process.env.DATA_PROVIDERS_URLS_BANK_INFO': `'${process.env.DATA_PROVIDERS_URLS_BANK_INFO}'`
       }),
     ],
 
@@ -84,3 +82,4 @@ module.exports = {
         "wyre": "Wyre"
     }
 };
+

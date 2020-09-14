@@ -14,7 +14,9 @@ const DashboardNav = () => {
               <BR />
             </div>
             {Object.keys(navigationMap[section]).map((subsection) => {
-              const linkDisabled = Boolean(section === "SPEND");
+              const linkDisabled = Boolean(
+                section === "SPEND" && subsection === "Uniswap"
+              );
               return (
                 <div
                   key={subsection}

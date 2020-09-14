@@ -59,12 +59,12 @@ const ClaimMainSection = () => {
     setAssetClaimed("");
   };
   return (
-    <div>
+    <div className = "my-2">
       <div className="text-gray mb-2">
         Select an asset to redeem your APY to date.
       </div>
       <div className="border-thin my-4">
-        {Object.keys(assets).map((currency) => {
+        {Object.keys(assets).map((currency, i) => {
           const amount = assets[currency];
           const title = `${amount} ${currency}`;
           return (
@@ -97,7 +97,7 @@ const ClaimMainSection = () => {
                   approved={assetClaimed === currency}
                 />
               </TableRow>
-              <BR />
+              {i !== Object.keys(assets).length - 1 && <BR />}
             </div>
           );
         })}

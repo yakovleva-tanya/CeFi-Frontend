@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   DashboardContext,
   UseCompoundContext,
@@ -17,9 +17,15 @@ import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
+import { AppContext, AppContextState } from "../../../context/app";
+import FormValidationWarning from "../../UI/FormValidationWarning";
 
 const UseCompoundMainSection = () => {
+  const { state, updateAppState } = useContext(AppContext);
   const { loans } = useContext(DashboardContext);
+  const [maxDepositWarning, setMaxDepositWarning] = useState("");
+  const [maxWithdrawWarning, setMaxWithdrawWarning] = useState("");
+
   const {
     setSuccess,
     setWithdrawing,
@@ -35,6 +41,16 @@ const UseCompoundMainSection = () => {
 
   const withdraw = async () => {
     setWithdrawing(true);
+    updateAppState((st: AppContextState) => {
+      const filteredLoans = st.demoData.loans.filter((loan: LoanInterface) => {
+        return loan.id != selectedLoan.id;
+      });
+      const newLoan = selectedLoan;
+      newLoan.compound.supplied -= amount;
+      const loans = [...filteredLoans, newLoan];
+      const demoData = { ...st.demoData, loans };
+      return { ...st, demoData };
+    });
     const res = await compoundWithdraw(amount);
     setSuccessMessage("Withdraw accepted");
     setWithdrawing(false);
@@ -43,13 +59,50 @@ const UseCompoundMainSection = () => {
 
   const supply = async () => {
     setSupplying(true);
+    updateAppState((st: AppContextState) => {
+      const filteredLoans = st.demoData.loans.filter((loan: LoanInterface) => {
+        return loan.id != selectedLoan.id;
+      });
+      const newLoan = selectedLoan;
+      newLoan.compound.supplied += amount;
+      const loans = [...filteredLoans, newLoan];
+      const demoData = { ...st.demoData, loans };
+      return { ...st, demoData };
+    });
     const res = await compoundSupply(amount);
     setSuccessMessage("Deposit accepted");
     setSupplying(false);
     setSuccess(res);
   };
+  const activeLoans = loans.filter((loan: LoanInterface) => {
+    return loan.status !== "Closed";
+  });
+
+  useEffect(() => {
+    if (!selectedLoan) return;
+    if (
+      amount >
+      selectedLoan.totalOwedAmount - selectedLoan.compound.supplied
+    ) {
+      setMaxDepositWarning(
+        `You cannot supply more than ${
+          selectedLoan.totalOwedAmount - selectedLoan.compound.supplied
+        } ${selectedLoan.token}.`
+      );
+    } else {
+      setMaxDepositWarning("");
+    }
+    if (amount > selectedLoan.compound.supplied) {
+      setMaxWithdrawWarning(
+        `You cannot withdraw more than ${selectedLoan.compound.supplied} ${selectedLoan.token}.`
+      );
+    } else {
+      setMaxWithdrawWarning("");
+    }
+  }, [amount]);
+
   return (
-    <div>
+    <div className="my-4">
       {selectedLoan &&
         (amountSubmenu ? (
           <SubmenuCard
@@ -99,20 +152,22 @@ const UseCompoundMainSection = () => {
             <div className="table border-thin mb-4 mt-3">
               <TableRow title="Loan amount">
                 <div className="font-medium">
-                  {`${selectedLoan.amountBorrowed} ${selectedLoan.token}`}
+                  {`${selectedLoan.totalOwedAmount} ${selectedLoan.token}`}
                 </div>
               </TableRow>
               <BR />
               <TableRow title={`Supplied ${selectedLoan.token}`}>
-                <div className="font-medium">{`0 ${selectedLoan.token}`}</div>
+                <div className="font-medium">{`${selectedLoan.compound.supplied} ${selectedLoan.token}`}</div>
               </TableRow>
               <BR />
               <TableRow title="APY">
-                <div className="font-medium">0.26%</div>
+                <div className="font-medium">
+                  {state.tokenData[selectedLoan.token].supplyAPY}%
+                </div>
               </TableRow>
               <BR />
               <TableRow title={`${selectedLoan.token} earned`}>
-                <div className="font-medium">{`0 ${selectedLoan.token}`}</div>
+                <div className="font-medium">{`${selectedLoan.compound.earned} ${selectedLoan.token}`}</div>
               </TableRow>
               <BR />
               <TableRow title="Amount">
@@ -125,15 +180,32 @@ const UseCompoundMainSection = () => {
               </TableRow>
             </div>
             <ViewContractLink link={selectedLoan.transactionHash} />
+            {maxDepositWarning && (
+              <FormValidationWarning message={maxDepositWarning} />
+            )}
+            {maxWithdrawWarning && (
+              <FormValidationWarning message={maxWithdrawWarning} />
+            )}
             <div className="d-flex flex-row justify-content-between">
               <div>
-                <PrimaryButton text="Withdraw" onClick={() => withdraw()} />
+                <PrimaryButton
+                  text="Withdraw"
+                  onClick={() => {
+                    if (!maxWithdrawWarning) {
+                      withdraw();
+                    }
+                  }}
+                />
               </div>
               <div
-                onClick={() => supply()}
+                onClick={() => {
+                  if (!maxDepositWarning) {
+                    supply();
+                  }
+                }}
                 className="font-medium text-lg mt-4 py-3 pointer"
                 style={{
-                  backgroundColor: "#5DEDCA",
+                  backgroundColor: "#00D395",
                   borderRadius: "4px",
                   color: "white",
                   minWidth: "152px",
@@ -145,23 +217,23 @@ const UseCompoundMainSection = () => {
           </div>
         ))}
       {!selectedLoan && (
-        <div>
-          <div className="text-gray">
+        <div className="my-2">
+          <div className="text-gray mb-4">
             Select the loan you want to withdraw into
           </div>
           <div className="table border-thin mb-4 mt-3">
-            {loans.map((loan: LoanInterface) => {
+            {activeLoans.map((loan: LoanInterface, i: number) => {
               return (
                 <div key={loan.id}>
                   <TableRow title={`ID ${loan.id}`}>
                     <CustomSubmenuLink
-                      title={`${loan.amountBorrowed} ${loan.token}`}
+                      title={`${loan.compound.supplied} ${loan.token}`}
                       onClickAction={() => {
                         setSelectedLoan(loan);
                       }}
                     />
                   </TableRow>
-                  <BR />
+                  {activeLoans.length - 1 !== i && <BR />}
                 </div>
               );
             })}

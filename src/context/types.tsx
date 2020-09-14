@@ -21,6 +21,8 @@ export interface LoanInterface {
   timeTillExpires?: number;
   currentCollateralPercent?: number;
   collateralAmount?: number;
+  loanType?: string;
+  compound?: any
 }
 
 export interface CollateralWithdrawInterface {
