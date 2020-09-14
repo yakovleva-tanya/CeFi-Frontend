@@ -53,6 +53,7 @@ const WithdrawMainSection = () => {
   const borrower = state.web3State.address;
 
   const withdraw = async () => {
+    setWithdrawing(true);
     const response = await withdrawCollateral(
       loansInstance,
       Number(selectedLoan.id),
@@ -60,7 +61,6 @@ const WithdrawMainSection = () => {
       borrower
     );
     console.log(response);
-    setWithdrawing(true);
     const res = await loanWithdraw();
     setWithdrawing(false);
     setSuccess(res);
