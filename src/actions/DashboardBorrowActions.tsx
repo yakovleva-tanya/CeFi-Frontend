@@ -29,7 +29,6 @@ export const repayLoan = async (
     borrower
   );
   console.log(response);
-  await new Promise((resolve) => setTimeout(resolve, 2000));
   console.log("repaid ", id);
   return true;
 };
@@ -49,7 +48,6 @@ export const loanDeposit = async (
     web3State
   );
   console.log(response);
-  await new Promise((resolve) => setTimeout(resolve, 2000));
   console.log("deposited ");
   return true;
 };
@@ -67,7 +65,7 @@ export const loanWithdraw = async (
     amountToWithdraw.toString(),
     borrower
   );
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  console.log(response);
   console.log("withdrawn ");
   return true;
 };
