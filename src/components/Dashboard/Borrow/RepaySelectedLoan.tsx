@@ -131,7 +131,7 @@ const RepaySelectedLoan = () => {
       <ViewContractLink link={transactionHash} />
       {statusName !== "Repaid" && (
         <div>
-          <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." />
+          {/* <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." /> */}
           <PrimaryButton
             text="Repay Loan"
             onClick={() => onRepayLoan(selectedLoan)}

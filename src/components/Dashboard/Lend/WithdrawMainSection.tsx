@@ -44,40 +44,6 @@ const WithdrawMainSection = () => {
 
   const clearSigns = (value: string) => value.replace(/[^0-9.]/g, "");
 
-  const onSubmitMock = async () => {
-    setWithdrawing(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setWithdrawing(false);
-    setSuccess(true);
-  };
-  const onSubmit = async (selectedCurrency: string, selectedAmount: string) => {
-    try {
-      setWithdrawing(true);
-      const value = `${convertFromUSD(parseFloat(selectedAmount))}`;
-      await withdraw({
-        selectedCurrency,
-        selectedAmount: value,
-        primaryAddress,
-        updateAppState,
-        contracts,
-      } as WithdrawRequest);
-      setSuccess(true);
-    } catch (error) {
-      updateAppState((st: AppContextState) => {
-        const errorModal = {
-          show: true,
-          message:
-            "An error occurred during the withdrawal process. Please try again.",
-          title: "Error",
-        };
-        return { ...st, errorModal };
-      });
-      setSuccess(false);
-    } finally {
-      setWithdrawing(false);
-    }
-  };
-
   const priceValue = tokenData
     ? Math.round(
         (parseFloat(clearSigns(selectedAmount)) /
@@ -86,12 +52,17 @@ const WithdrawMainSection = () => {
       ) / 100
     : 0;
 
-  const price = tokenData ? `${priceValue} ${selectedCurrency}` : "-";
-  const tellerTokens = mapLendingTokensToTellerTokens(selectedCurrency);
+  const price = tokenData
+    ? `${isNaN(priceValue) ? 0 : priceValue} ${selectedCurrency}`
+    : "-";
 
   const maxValue = {
-    USDC: convertFromUSD(demoData.deposits["USDC"]),
-    DAI: convertFromUSD(demoData.deposits["DAI"]),
+    USDC: isNaN(convertFromUSD(demoData.deposits["USDC"]))
+      ? 0
+      : convertFromUSD(demoData.deposits["USDC"]),
+    DAI: isNaN(convertFromUSD(demoData.deposits["DAI"]))
+      ? 0
+      : convertFromUSD(demoData.deposits["DAI"]),
   };
 
   useEffect(() => {
@@ -105,7 +76,7 @@ const WithdrawMainSection = () => {
   }, [selectedCurrency, selectedAmount]);
 
   return (
-    <div className = "my-2">
+    <div className="my-2">
       <div className="text-gray mb-2">
         Select an asset to withdraw your deposit to date
       </div>
@@ -116,10 +87,6 @@ const WithdrawMainSection = () => {
           const split = value.split(".");
           if (split[1] && split[1].length > 2) {
             value = `${split[0]}.${split[1].substring(0, 2)}`;
-          }
-
-          if (isNaN(value)) {
-            value = "0.00";
           }
           setSelectedAmount(value);
         }}
@@ -138,7 +105,11 @@ const WithdrawMainSection = () => {
         className="mx-auto py-1 px-3 my-4 border-thin pointer text-black"
         style={{ width: "85px" }}
         onClick={() => {
-          setSelectedAmount(maxValue[selectedCurrency].toFixed(2));
+          let value = maxValue[selectedCurrency];
+          if (isNaN(value)) {
+            value = 0;
+          }
+          setSelectedAmount(value.toFixed(2));
         }}
       >
         Max
