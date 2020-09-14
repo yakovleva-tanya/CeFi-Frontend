@@ -115,10 +115,14 @@ const BorrowForm = () => {
         totalOwedAmount: loanSize,
         collateralDeposits: [{ amount: 0 }],
         totalCollateralDepositsAmount: collateralAmount,
-        collateralAmount:collateralAmount,
+        collateralAmount: collateralAmount,
         collateralWithdrawns: [],
         totalCollateralWithdrawalsAmount: 0,
         loanType: loanType,
+        compound: {
+          supplied: 0,
+          earned: 0,
+        },
       });
       const walletBalances = st.demoData.walletBalances;
       walletBalances[collateralWith] -= collateralAmount;

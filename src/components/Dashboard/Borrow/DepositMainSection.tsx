@@ -136,7 +136,7 @@ const DepositMainSection = () => {
               <BR />
               <TableRow title="Collateral %">
                 <div className="font-medium">
-                  {selectedLoan.currentCollateralPercent.toFixed(2)}%
+                  {Math.round(selectedLoan.currentCollateralPercent)}%
                 </div>
               </TableRow>
               <BR />

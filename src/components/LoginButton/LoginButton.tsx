@@ -22,12 +22,12 @@ export async function web3FromProvider(updateAppState: Function) {
   const wallets = [
     { walletName: "metamask", preferred: true },
     { walletName: "walletConnect", preferred: true, infuraKey: process.env.INFURA_API_KEY },
-    { 
+    {
       walletName: "walletLink",
       rpcUrl: process.env.RPC_URL,
       label: "Coinbase",
       appName: "Teller Finance",
-      preferred: true 
+      preferred: true
     },
     { walletName: "fortmatic", preferred: true },
     { walletName: "portis", preferred: true }
