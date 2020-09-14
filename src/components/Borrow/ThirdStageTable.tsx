@@ -80,6 +80,7 @@ const CollateralApproveButton = () => {
           TellerTokens.tDAI
         ];
         try {
+          setApproveLoading(true);
           const borrower = state.web3State.address;
           const amountToBorrow = borrowRequest.loanSize;
           const response = await approveToken(
@@ -89,7 +90,6 @@ const CollateralApproveButton = () => {
             amountToBorrow
           );
           console.log(response);
-          setApproveLoading(true);
           await new Promise((resolve) => setTimeout(resolve, 1000));
           setBorrowRequest({
             ...borrowRequest,
@@ -107,13 +107,6 @@ const CollateralApproveButton = () => {
           return { ...st, errorModal };
         });
         }
-        setApproveLoading(true);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        setBorrowRequest({
-          ...borrowRequest,
-          approved: true,
-        });
-        setApproveLoading(false);
       }}
       disabled={false}
       loading={approveLoading}
