@@ -189,7 +189,7 @@ const WithdrawMainSection = () => {
                   <BR />
                   <TableRow title="Current Collateral %">
                     <div className="font-medium">
-                      {selectedLoan.currentCollateralPercent.toFixed(2)} %
+                      {Math.round(selectedLoan.currentCollateralPercent)} %
                     </div>
                   </TableRow>
                   <BR />
@@ -212,7 +212,7 @@ const WithdrawMainSection = () => {
                   <BR />
                   <TableRow title="New collateral %">
                     <div className="font-medium">
-                      {newCollateralPercent ? `${newCollateralPercent}%` : "-"}
+                      {newCollateralPercent ? `${Math.round(newCollateralPercent)}%` : "-"}
                     </div>
                   </TableRow>
                 </div>
