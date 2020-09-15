@@ -4,11 +4,11 @@ import { loansTestData } from "../context/testdata";
 
 const getUrl = (network: string) => {
   if (network === "3") {
-    return "https://thegraph.com/explorer/subgraph/salazarguille/teller-protocol-subgraph-ropsten";
+    return "https://api.thegraph.com/subgraphs/name/salazarguille/teller-protocol-subgraph-ropsten";
   } else if (network === "4") {
-    return "https://thegraph.com/explorer/subgraph/salazarguille/teller-protocol-subgraph-rinkeby";
+    return "https://api.thegraph.com/subgraphs/name/salazarguille/teller-protocol-subgraph-rinkeby";
   } else
-    return "https://thegraph.com/explorer/subgraph/teller-protocol/subgraph-mainnet";
+    return "https://api.thegraph.com/subgraphs/name/salazarguille/teller-protocol-subgraph-mainnet";
 };
 
 const loansQuery = (address: string) => `
