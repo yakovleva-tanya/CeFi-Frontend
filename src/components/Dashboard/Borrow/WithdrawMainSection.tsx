@@ -50,18 +50,21 @@ const WithdrawMainSection = () => {
   const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
     TellerTokens.tDAI
   ];
+
   const borrower = state.web3State.address;
 
-  const withdraw = async () => {
+  const withdraw = async (
+    id: string,
+    amountToWithdraw: number
+  ) => {
     setWithdrawing(true);
-    const response = await withdrawCollateral(
+    const res = await loanWithdraw(
       loansInstance,
-      Number(selectedLoan.id),
-      withdrawAmount.toString(),
-      borrower
+      id,
+      amountToWithdraw,
+      web3State
     );
-    console.log(response);
-    const res = await loanWithdraw();
+
     setWithdrawing(false);
     setSuccess(res);
   };
@@ -218,7 +221,7 @@ const WithdrawMainSection = () => {
             )}
             <ViewContractLink link={selectedLoan.transactionHash} />
             <div>
-              <PrimaryButton text="Withdraw" onClick={() => withdraw()} />
+              <PrimaryButton text="Withdraw" onClick={() => withdraw(selectedLoan.id, withdrawAmount)} />
             </div>
           </div>
         ))}

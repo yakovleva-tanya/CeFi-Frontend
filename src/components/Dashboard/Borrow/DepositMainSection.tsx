@@ -14,7 +14,12 @@ import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
-import { AppContext } from "../../../context/app";
+import {
+  AppContext,
+  BaseTokens,
+  TellerState,
+  TellerTokens
+} from "../../../context/app";
 import { calculateCollateralPercent } from "../../../actions/HelperFunctions";
 import eth from "../../../../dist/assets/eth-logo.svg";
 import link from "../../../../dist/assets/link-logo.png";
@@ -34,14 +39,26 @@ const DepositMainSection = () => {
     setNewCollateralPercent,
     newCollateralPercent,
   } = useContext(BorrowDepositContext);
+  const { web3State } = state;
+  const{ loansInstance } = state.teller.contracts[BaseTokens.ETH][
+    TellerTokens.tDAI
+  ];
 
   const currentLoans = loans.filter((loan: any) => {
     return loan.status != "repaid";
   });
 
-  const deposit = async () => {
+  const deposit = async (
+    id: string,
+    amountToDeposit: number
+  ) => {
     setDepositing(true);
-    await loanDeposit();
+    await loanDeposit(
+      loansInstance,
+      id,
+      amountToDeposit,
+      web3State
+    );
     setDepositing(false);
     setSuccess(true);
   };
@@ -148,7 +165,7 @@ const DepositMainSection = () => {
             </div>
             <ViewContractLink link={selectedLoan.transactionHash} />
             <div>
-              <PrimaryButton text="Deposit" onClick={() => deposit()} />
+              <PrimaryButton text="Deposit" onClick={() => deposit(selectedLoan.id, collateral)} />
             </div>
           </div>
         ))}

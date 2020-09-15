@@ -193,7 +193,7 @@ export async function withdrawCollateral(
  * @param {string} amountToRepay The payment amount 
  * @param {string} borrowerAddress The address of the loan borrower
  */
-export async function repayLoan(
+export async function loanRepayment(
   loansInterface: any,
   loanId: number,
   amountToRepay: string,
