@@ -16,8 +16,8 @@ import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
 import { 
   AppContext,
-  BaseTokens,
   TellerTokens,
+  BaseTokens
 } from "../../../context/app";
 import {
   calculateCollateralPercent,
@@ -27,6 +27,8 @@ import FormValidationWarning from "../../UI/FormValidationWarning";
 
 import eth from "../../../../dist/assets/eth-logo.svg";
 import link from "../../../../dist/assets/link-logo.png";
+
+import { withdrawCollateral } from "../../../models/LoansInterfaceContract";
 
 const WithdrawMainSection = () => {
   const [warning, setWarning] = useState("");
@@ -49,6 +51,8 @@ const WithdrawMainSection = () => {
     TellerTokens.tDAI
   ];
 
+  const borrower = state.web3State.address;
+
   const withdraw = async (
     id: string,
     amountToWithdraw: number
@@ -60,6 +64,7 @@ const WithdrawMainSection = () => {
       amountToWithdraw,
       web3State
     );
+
     setWithdrawing(false);
     setSuccess(res);
   };

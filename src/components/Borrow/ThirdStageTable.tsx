@@ -4,6 +4,13 @@ import BR from "../UI/BR";
 import { CustomSubmitButton } from "../UI/CustomSubmitButton";
 import { BorrowPageContext } from "../../context/borrowContext";
 import CollateralAmountSelection from "./CollateralAmountSelection";
+import { 
+  AppContext,
+  AppContextState,
+  TellerTokens,
+  BaseTokens
+} from "../../context/app";
+import { approveToken, depositCollateral } from "../../models/LoansInterfaceContract";
 
 const ThirdStageTable = () => {
   const { borrowRequest, loanTerms } = useContext(BorrowPageContext);
@@ -64,16 +71,42 @@ export default ThirdStageTable;
 const CollateralApproveButton = () => {
   const [approveLoading, setApproveLoading] = useState(false);
   const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
+  const { state, updateAppState } = useContext(AppContext);
   return (
     <CustomSubmitButton
       onClickAction={async () => {
-        setApproveLoading(true);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        setBorrowRequest({
-          ...borrowRequest,
-          approved: true,
+        const { web3State } = state;
+        const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+          TellerTokens.tDAI
+        ];
+        try {
+          setApproveLoading(true);
+          const borrower = state.web3State.address;
+          const amountToBorrow = borrowRequest.loanSize;
+          const response = await approveToken(
+            loansInstance,
+            web3State,
+            borrower,
+            amountToBorrow
+          );
+          console.log(response);
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          setBorrowRequest({
+            ...borrowRequest,
+            approved: true,
+          });
+          setApproveLoading(false);
+        } catch (err) {
+          console.log(err);
+          updateAppState((st: AppContextState) => {
+            const errorModal = {
+              show: true,
+              message:
+                "An error occurred during the loan creation process. Please try again.", title: "Error",
+            };
+          return { ...st, errorModal };
         });
-        setApproveLoading(false);
+        }
       }}
       disabled={false}
       loading={approveLoading}
@@ -86,9 +119,49 @@ const CollateralApproveButton = () => {
 const CollateralTransferButton = () => {
   const [transferLoading, setTransferLoading] = useState(false);
   const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
+  const { state, updateAppState } = useContext(AppContext);
   return (
     <CustomSubmitButton
       onClickAction={async () => {
+        const { web3State } = state;
+        const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+          TellerTokens.tDAI
+        ];
+        try {
+          const borrower = state.web3State.address;
+          const borrowerLoans = await loansInstance.getBorrowerLoans(borrower);
+          if (borrowerLoans.length == 0) {
+            return false;
+          } else {
+            const loanId = borrowerLoans[borrowerLoans.length - 1];
+            const amountToDeposit = borrowRequest.collateralAmount.toString();
+            const response = await depositCollateral(
+              loansInstance,
+              borrower,
+              loanId,
+              amountToDeposit,
+              web3State
+            );
+            console.log(response);
+            setTransferLoading(true);
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            setBorrowRequest({
+              ...borrowRequest,
+              transferred: true,
+            });
+            setTransferLoading(false);
+          }
+        } catch (err) {
+          console.log(err);
+          updateAppState((st: AppContextState) => {
+            const errorModal = {
+              show: true,
+              message:
+                "An error occurred while taking out the loan. Please try again.", title: "Error",
+            };
+            return { ...st, errorModal };
+          });
+        }
         setTransferLoading(true);
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setBorrowRequest({
@@ -96,6 +169,7 @@ const CollateralTransferButton = () => {
           transferred: true,
         });
         setTransferLoading(false);
+        return false;
       }}
       disabled={!borrowRequest.approved}
       loading={transferLoading}
