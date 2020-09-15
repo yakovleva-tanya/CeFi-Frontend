@@ -21,6 +21,8 @@ export interface LoanInterface {
   timeTillExpires?: number;
   currentCollateralPercent?: number;
   collateralAmount?: number;
+  loanType?: string;
+  compound?: any
 }
 
 export interface CollateralWithdrawInterface {
@@ -80,7 +82,8 @@ export interface BorrowRequest {
 
 export interface LoanTerms {
   interestRate: number;
-  minCollateralNeeded: number;
+  collateralRatio: number;
+  maxLoanAmount: number;
 }
 
 export interface BorrowProcessInterface {

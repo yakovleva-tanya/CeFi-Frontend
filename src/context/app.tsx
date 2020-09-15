@@ -1,7 +1,5 @@
 import * as React from "react";
 import Plaid, { PlaidTransaction } from "./../models/Plaid";
-import { AssetReport } from "plaid";
-import { CollateralAdjustType } from "../components/CollateralAdjustModal";
 
 interface ErrorModal {
   show: boolean;

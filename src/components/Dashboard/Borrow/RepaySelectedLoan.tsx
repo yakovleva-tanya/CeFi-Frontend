@@ -6,11 +6,7 @@ import { repayLoan } from "../../../actions/DashboardBorrowActions";
 import FormValidationWarning from "../../UI/FormValidationWarning";
 import { BorrowRepayContext } from "../../../context/dashboardContext";
 import ViewContractLink from "../ViewContractLink";
-import { 
-  AppContext,
-  BaseTokens,
-  TellerTokens
-} from "../../../context/app";
+import { AppContext, BaseTokens, TellerTokens } from "../../../context/app";
 
 const RepaySelectedLoan = () => {
   const {
@@ -32,6 +28,7 @@ const RepaySelectedLoan = () => {
     timeTillExpires,
     currentCollateralPercent,
     collateralAmount,
+    loanType,
   } = selectedLoan;
   const { state } = useContext(AppContext);
   const { web3State } = state;
@@ -39,18 +36,10 @@ const RepaySelectedLoan = () => {
     TellerTokens.tDAI
   ];
 
-  const onRepayLoan = async (
-    id: string,
-    totalOwedAmount: number
-  ) => {
+  const onRepayLoan = async (id: string, totalOwedAmount: number) => {
     setRepaying(true);
     setSelectedLoan(null);
-    const res = await repayLoan(
-      loansInstance,
-      id,
-      totalOwedAmount,
-      web3State
-    );
+    const res = await repayLoan(loansInstance, id, totalOwedAmount, web3State);
     setRepaying(false);
     setRepaySuccess(res);
   };
@@ -75,14 +64,14 @@ const RepaySelectedLoan = () => {
         </TableRow>
         <BR />
         <TableRow title="Loan type">
-          <div className="font-medium">-</div>
+          <div className="font-medium">{loanType}</div>
         </TableRow>
         <BR />
         <TableRow title="Liquidation %">
           <div className="font-medium">{terms.collateralRatio} %</div>
         </TableRow>
         <BR />
-        <TableRow title="Current Collateral %">
+        <TableRow title="Collateral %">
           <div className="font-medium">
             {currentCollateralPercent.toFixed(2)} %
           </div>
@@ -127,8 +116,11 @@ const RepaySelectedLoan = () => {
       <ViewContractLink link={transactionHash} />
       {statusName !== "Repaid" && (
         <div>
-          <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." />
-          <PrimaryButton text="Repay Loan" onClick={() => onRepayLoan(id, totalOwedAmount)} />
+          {/* <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." /> */}
+          <PrimaryButton
+            text="Repay Loan"
+            onClick={() => onRepayLoan(id, totalOwedAmount)}
+          />
         </div>
       )}
     </div>
