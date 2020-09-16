@@ -1,0 +1,507 @@
+{
+  "contractName": "InitializeableDynamicProxyMock",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "Upgraded",
+      "type": "event"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "__isInitialized",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "implementation",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "settingsAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "aLogicName",
+          "type": "bytes32"
+        }
+      ],
+      "name": "initializeProxy",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "settings",
+      "outputs": [
+        {
+          "internalType": "contract SettingsInterface",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "externalLogicName",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "name",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"constant\":true,\"inputs\":[],\"name\":\"__isInitialized\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"externalLogicName\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"name\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"aLogicName\",\"type\":\"bytes32\"}],\"name\":\"initializeProxy\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"settings\",\"outputs\":[{\"internalType\":\"contract SettingsInterface\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"implementation()\":{\"return\":\"Address of the current implementation\"},\"initializeProxy(address,bytes32)\":{\"params\":{\"aLogicName\":\"the logic name to use.\",\"settingsAddress\":\"the settings contract address to use.\"}},\"settings()\":{\"details\":\"This address should NOT change over the time. See details in the _setSettings(...) function.\"}}},\"userdoc\":{\"methods\":{\"__isInitialized()\":{\"notice\":\"It returns if the proxy was initialized.Uses double underscore (__) to avoid any collision in implementation contracts.\"},\"implementation()\":{\"notice\":\"Returns the current implementation.\"},\"initializeProxy(address,bytes32)\":{\"notice\":\"It initializes this proxy instance with a settings contract and a logic name.\"},\"settings()\":{\"notice\":\"The gets the settings contract address from the SETTINGS_SLOT.\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/mock/base/InitializeableDynamicProxyMock.sol\":\"InitializeableDynamicProxyMock\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/BaseDynamicProxy.sol\":{\"keccak256\":\"0x2ca742c7aaf1598a5c8fb46065a3621f12f206602ac2c99239cdfce1a597d6fa\",\"urls\":[\"bzz-raw://306b66e976d251f89f4e27fc6ee88ecce640aeddb89c9f9971f7ee3a506e4288\",\"dweb:/ipfs/QmZ4R5o1dmZKvXdy1m5xn95DiwP3NfAMk12vmwDkWEekfR\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/BaseProxy.sol\":{\"keccak256\":\"0x11d3058b613d46bef5b3a7bfe6fa9594102be247b32ac534e5d99c629b0fa83e\",\"urls\":[\"bzz-raw://c8cc3b7b971127b779827fc448ce8d7b08c2eaa2e63e4b815f17a6c29d96c999\",\"dweb:/ipfs/QmagGrpfWjBWQ7fFDyER2ic56apw5qoDLYcfwmadE6khAg\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/BaseUpgradeable.sol\":{\"keccak256\":\"0x0f0baf7e7aa38b47e749a28ab674cc94a97ca92244a9b2e919c372c1b06546cf\",\"urls\":[\"bzz-raw://4b05a358a1273734f3143d46309239b36c9dd933a7011b8bc408fb040c6c8486\",\"dweb:/ipfs/QmPrUGETWEMAafXcU528oW6A9rBDCy5qqS24xEYLntevYU\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/InitializeableDynamicProxy.sol\":{\"keccak256\":\"0xa2140a230d4478aaac46fda5fda500d0b5fcfd5de0452cdaae1e305f3ca24240\",\"urls\":[\"bzz-raw://e4881f00f0fd7adc55f6c2cd3fc7f546f8a7531cbe75b014cd8276c2fc797532\",\"dweb:/ipfs/QmeLouKxzBQpPzqZUNQV61Yj1dRiTeT22MjGXQQPhVMMqB\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowFactoryInterface.sol\":{\"keccak256\":\"0xb5b2225e4f6db57d59d5292f542acc0675e9f95b3e3094d9be4cf6ec079cb86e\",\"urls\":[\"bzz-raw://f0c822f79ebb3f775b4fea591a5555c3efacba6719d4adbab83571dd35f059e3\",\"dweb:/ipfs/QmYiHmtPJsJD67g7Pk7kM72hsHS7BVVJtciKjCoUioW4gS\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/InterestValidatorInterface.sol\":{\"keccak256\":\"0x91250ee3c1d73b5d1720f7b41f18072eb347d73e4d3de464537ece49e1fa1d93\",\"urls\":[\"bzz-raw://f11ce1d70152f6d19f9c23788b4458631df3fd748a52849b899183ce2dabc52b\",\"dweb:/ipfs/QmaNQybwKYW5BfT3h6z6P1SSUwYEyXQviisYjUr7cHLzQR\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol\":{\"keccak256\":\"0x871da1c39455ad829fdff0eb86a3d069e041f03b9dfab82136719c2c2923b926\",\"urls\":[\"bzz-raw://aca54977104d1152ecfecf39465a34148236b1d973a339c442963dabf68dd05b\",\"dweb:/ipfs/QmeKnxn9hB3aLqgWPLFhCEuxySTUF1LA1tbCo8tGyhppxV\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/MarketsStateInterface.sol\":{\"keccak256\":\"0xf51bd2d361d9cf448f2c2a5bb37c2699b0d9605a8f1b6a8719f90d8f536f2a05\",\"urls\":[\"bzz-raw://415a4444e8f9aca25132f492b226b8d500081a4ba5be8e45b401a68e73e1895b\",\"dweb:/ipfs/QmUPGgnqUjidxeEpkgu4yYzhfuykgtNKehEwbps97nAAzZ\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol\":{\"keccak256\":\"0x4331fd21591542fda69505ce457c03f9ef66f2b8fea50db669864f517c4f95a1\",\"urls\":[\"bzz-raw://3cd373c888a2b4f6d1a93f540e9a0f4982316f743c0891d310a5e712c0f8eb78\",\"dweb:/ipfs/QmYA6Z3HFYj8MZSJwKP7NjawaD5TehE6Lmtx2VbTfqEHfb\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/SettingsInterface.sol\":{\"keccak256\":\"0xe6e8bac5c0ba6e8d1e1416ac4303be41e8290f4a25f69b7e799ef6ef63434de4\",\"urls\":[\"bzz-raw://a2368205a629bb19220cda5c34a1077856a0c477f08409fd1f9759778dec6b96\",\"dweb:/ipfs/QmX55YjR6Rq1ZUwdoUtLjcH7ZtPQsXu9mb4F6xmuWPVq3H\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/mock/base/InitializeableDynamicProxyMock.sol\":{\"keccak256\":\"0xe3b146ed65e05f1ba43087b40504ccc56a99ef89a856c67886d53ef8fe785620\",\"urls\":[\"bzz-raw://9590a0ce60ef6b3eb58628ed269b2872eca97709f7d80fe194877a7ba801f395\",\"dweb:/ipfs/QmRGGd9F8GgkVv4HwfsYdkms3oZemeXKnnJENa5D2HHnYD\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol\":{\"keccak256\":\"0xed52aaafc7e15756431c0c847e5f7e1d52578b0f3b7f8b02674ec5d5d5a44c29\",\"urls\":[\"bzz-raw://76821662fa9a0918b355bc969deadef055737d90067658791dbc13e843958b64\",\"dweb:/ipfs/QmQzKEJiQjxRyNED8aABw62KQys3StiGwEnMXiF8P8ZQcV\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/settings/IATMSettings.sol\":{\"keccak256\":\"0xc5453e6f1a43327a37db250dedb65561c4deb0f3eb3cad490a64fc56e0b6f7b7\",\"urls\":[\"bzz-raw://f6edcab27eebecb576c9a884a173a1a5fcf0c129c76b992ec77ca24518d92f91\",\"dweb:/ipfs/QmW3q6w39dg9RnxsQdfrFVudmiZh5asRnkWQVkrap9hnJf\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AddressLib.sol\":{\"keccak256\":\"0x083fed047aac1bdf656da0bbfa6a9c655659ee953d808ebb0ef68c3dbf7bb806\",\"urls\":[\"bzz-raw://0a7c7f60dc65ae2aa25c6d9dfd728ea1c1ef3cdde3d102104fbb8406304d13a6\",\"dweb:/ipfs/QmRKAxNd7THDSujiYX3AqQh8jckewKt64To41fERUe8upB\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AssetSettingsLib.sol\":{\"keccak256\":\"0x9c67a3de3bb62fdfbd5c116016e0693300bb9d71fe055bb6aa12da305aba3bf4\",\"urls\":[\"bzz-raw://a3c9ffdd1496a6192abb62b72625e5778db231656f2c8fffd09a83d089996aa6\",\"dweb:/ipfs/QmevJ5ojFaqG363CrnJZ9x3YvGMWKfUaFoUVbCsaSzqPfe\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionLib.sol\":{\"keccak256\":\"0xf4caad9e4d96afe2721124eaf7203bb4e3a97beb3664c63297c4e68523f5bd65\",\"urls\":[\"bzz-raw://dcd6f564423c2cf83f3a56120f43eb6fd9f6e852cbb615be657f89e5114debf4\",\"dweb:/ipfs/QmRZStVoa5KbYRCHpzC7h998NnRhbFHfUZ71TRTiLzMTcX\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionsConsts.sol\":{\"keccak256\":\"0xe49711d0c8193559f76dc5f399344c8f5f5e6a8b99bf78c6bcfd9aa1c456c306\",\"urls\":[\"bzz-raw://c6432c082145470691dfde04bf5c4220ccc32a5dccf6520c3122e47e470e6c22\",\"dweb:/ipfs/Qmd97DA5SB3d8Cuwf5M6vLtfDLHYXrMj5d3cXkYPP7iPpU\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/MarketStateLib.sol\":{\"keccak256\":\"0x760fff7588382659571b8fd078b5e332e010d7e97278895fc226e8ed551cb0c6\",\"urls\":[\"bzz-raw://ff9cf8b14a780c989b2f641bf8faaf8066e586245ede58196274f8f03789c0d4\",\"dweb:/ipfs/QmVnRsrQFuRXM1c4NFVz1iUaAywq73uHVsUzemn1x5fVgF\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/PlatformSettingsLib.sol\":{\"keccak256\":\"0x0c6a7e0de89e1017166ef4f593b33c8d0bfc6bcf3cd3db0bb5c1610ce260b659\",\"urls\":[\"bzz-raw://926108ace9152ed12d86a74ccb98d8c0aa698bd48fd3b4bfedacf976a8dd59d3\",\"dweb:/ipfs/QmVYjChMWZJdpPoBNheHMfyoTVsAarfLJ6SxPHhEsd6kUB\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/SettingsConsts.sol\":{\"keccak256\":\"0xa1d17d7507cae083530ce51d4c503ca657ddecf3d3fc23cec9c566d7253e59e6\",\"urls\":[\"bzz-raw://6f14f64aa1d37bef1d4e7051f1733cbe52a1d5af9165faaf4b0336a68c6eb239\",\"dweb:/ipfs/QmcJE8USECc54etjpCBUGTCF5VvMLqLjo9DbkQ64Xf2R4T\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0x9574ec7b6ec8d2072b6276a0873ec2e27fc8262ed61ccbb7a3ffc20ac7dfc323\",\"urls\":[\"bzz-raw://25ba0147fb05f281e7d0b601f116e805d563a516223041ff5660b43a5f448385\",\"dweb:/ipfs/QmcvfSjqEZpd7gfXFvBm39sV8RFtzJA81X59StgMgdc21t\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"@openzeppelin/contracts-ethereum-package/contracts/utils/Address.sol\":{\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\",\"urls\":[\"bzz-raw://03335b7b07c7c8c8d613cfdd8ec39a0b5ec133ee510bf2fe6cc5a496767bef4b\",\"dweb:/ipfs/Qmebp4nzPja645c9yXSdJkGq96oU3am3LUnG2K3R7XxyKf\"]},\"@openzeppelin/upgrades/contracts/upgradeability/BaseUpgradeabilityProxy.sol\":{\"keccak256\":\"0x1b37f808dc0a45976ad23aa53908c485a74a4d9fbd03066a5ab399c46436e570\",\"urls\":[\"bzz-raw://de04959e1261bbc2ee53a88b98469a888a2f2fa49c07ea87a5d646a8fe438558\",\"dweb:/ipfs/QmUmYQaNnAMfvbfKLniFLHyBzsH77bCMf9NpNSfndfuqWh\"]},\"@openzeppelin/upgrades/contracts/upgradeability/Proxy.sol\":{\"keccak256\":\"0xd8074ae5fa7ee6384ca8196a896612fb044bbf4ff4b7336d03cd97845000ac21\",\"urls\":[\"bzz-raw://3a111e1dc777d80e6c2ad41c6ff2bfb3ae8f61658fd6580ddf9ba9ab0d25a354\",\"dweb:/ipfs/QmSfwvUqqiownzHeMmUiYkejWs6FXR2KLtHQnSzP6FivTj\"]},\"@openzeppelin/upgrades/contracts/utils/Address.sol\":{\"keccak256\":\"0x7be7f8e4c08bc70ff9815e3f11c569f42aa3c447b5bc61fd75fb5cec97f63a9f\",\"urls\":[\"bzz-raw://f301a9226d637e1593916ba2de7b0b28c35f2adc3ca8526289fe1eedafa83bc2\",\"dweb:/ipfs/QmPb991LE8nyvhB4BkX46P1Pan2ijH9tfqWwLAz65VUUKs\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610683806100206000396000f3fe60806040526004361061004a5760003560e01c80635c60da1b146100545780638e5f339414610085578063ac606a86146100ae578063b329b45a146100d5578063e06174e41461010e575b610052610123565b005b34801561006057600080fd5b5061006961013d565b604080516001600160a01b039092168252519081900360200190f35b34801561009157600080fd5b5061009a61014d565b604080519115158252519081900360200190f35b3480156100ba57600080fd5b506100c3610168565b60408051918252519081900360200190f35b3480156100e157600080fd5b50610052600480360360408110156100f857600080fd5b506001600160a01b038135169060200135610172565b34801561011a57600080fd5b506100696101e2565b61012b61013b565b61013b610136610213565b610239565b565b6000610147610213565b90505b90565b6000806101586101e2565b6001600160a01b03161415905090565b600061014761025d565b61017a61014d565b156101cc576040805162461bcd60e51b815260206004820152601d60248201527f44594e5f50524f58595f414c52454144595f494e495449414c495a4544000000604482015290519081900360640190fd5b6101d58261028f565b6101de81610349565b5050565b6040805177426173655570677261646561626c652e73657474696e677360401b815290519081900360180190205490565b600061021d61014d565b156102315761022a6104f6565b905061014a565b61022a6105df565b3660008037600080366000845af43d6000803e808015610258573d6000f35b3d6000fd5b6040805178426173655570677261646561626c652e6c6f6769634e616d6560381b815290519081900360190190205490565b6102a861029a6101e2565b6001600160a01b0316610604565b156102b257610346565b6102c4816001600160a01b0316610612565b610315576040805162461bcd60e51b815260206004820152601b60248201527f53455454494e47535f4d5553545f42455f415f434f4e54524143540000000000604482015290519081900360640190fd5b6040805177426173655570677261646561626c652e73657474696e677360401b815290519081900360180190208190555b50565b61035161025d565b1561039c576040805162461bcd60e51b81526020600482015260166024820152751313d1d250d7d390535157d053149150511657d4d15560521b604482015290519081900360640190fd5b6103a46101e2565b6001600160a01b031663ea23cb7c6040518163ffffffff1660e01b815260040160206040518083038186803b1580156103dc57600080fd5b505afa1580156103f0573d6000803e3d6000fd5b505050506040513d602081101561040657600080fd5b50516040805163b28f5abb60e01b81526004810184905290516001600160a01b039092169163b28f5abb91602480820192602092909190829003018186803b15801561045157600080fd5b505afa158015610465573d6000803e3d6000fd5b505050506040513d602081101561047b57600080fd5b50516104c5576040805162461bcd60e51b81526020600482015260146024820152731313d1d250d7d390535157d393d517d1561254d560621b604482015290519081900360640190fd5b6040805178426173655570677261646561626c652e6c6f6769634e616d6560381b8152905190819003601901902055565b60006105006101e2565b6001600160a01b031663ea23cb7c6040518163ffffffff1660e01b815260040160206040518083038186803b15801561053857600080fd5b505afa15801561054c573d6000803e3d6000fd5b505050506040513d602081101561056257600080fd5b50516001600160a01b03166373f1fcf661057a61025d565b6040518263ffffffff1660e01b81526004018082815260200191505060206040518083038186803b1580156105ae57600080fd5b505afa1580156105c2573d6000803e3d6000fd5b505050506040513d60208110156105d857600080fd5b5051905090565b7f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc5490565b6001600160a01b0316151590565b6000813f7fc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a47081811480159061064657508115155b94935050505056fea265627a7a72315820f5938969a80120983a745e47239d30d328b8c492e53ce3721cb24537e7db526164736f6c63430005110032",
+  "deployedBytecode": "0x60806040526004361061004a5760003560e01c80635c60da1b146100545780638e5f339414610085578063ac606a86146100ae578063b329b45a146100d5578063e06174e41461010e575b610052610123565b005b34801561006057600080fd5b5061006961013d565b604080516001600160a01b039092168252519081900360200190f35b34801561009157600080fd5b5061009a61014d565b604080519115158252519081900360200190f35b3480156100ba57600080fd5b506100c3610168565b60408051918252519081900360200190f35b3480156100e157600080fd5b50610052600480360360408110156100f857600080fd5b506001600160a01b038135169060200135610172565b34801561011a57600080fd5b506100696101e2565b61012b61013b565b61013b610136610213565b610239565b565b6000610147610213565b90505b90565b6000806101586101e2565b6001600160a01b03161415905090565b600061014761025d565b61017a61014d565b156101cc576040805162461bcd60e51b815260206004820152601d60248201527f44594e5f50524f58595f414c52454144595f494e495449414c495a4544000000604482015290519081900360640190fd5b6101d58261028f565b6101de81610349565b5050565b6040805177426173655570677261646561626c652e73657474696e677360401b815290519081900360180190205490565b600061021d61014d565b156102315761022a6104f6565b905061014a565b61022a6105df565b3660008037600080366000845af43d6000803e808015610258573d6000f35b3d6000fd5b6040805178426173655570677261646561626c652e6c6f6769634e616d6560381b815290519081900360190190205490565b6102a861029a6101e2565b6001600160a01b0316610604565b156102b257610346565b6102c4816001600160a01b0316610612565b610315576040805162461bcd60e51b815260206004820152601b60248201527f53455454494e47535f4d5553545f42455f415f434f4e54524143540000000000604482015290519081900360640190fd5b6040805177426173655570677261646561626c652e73657474696e677360401b815290519081900360180190208190555b50565b61035161025d565b1561039c576040805162461bcd60e51b81526020600482015260166024820152751313d1d250d7d390535157d053149150511657d4d15560521b604482015290519081900360640190fd5b6103a46101e2565b6001600160a01b031663ea23cb7c6040518163ffffffff1660e01b815260040160206040518083038186803b1580156103dc57600080fd5b505afa1580156103f0573d6000803e3d6000fd5b505050506040513d602081101561040657600080fd5b50516040805163b28f5abb60e01b81526004810184905290516001600160a01b039092169163b28f5abb91602480820192602092909190829003018186803b15801561045157600080fd5b505afa158015610465573d6000803e3d6000fd5b505050506040513d602081101561047b57600080fd5b50516104c5576040805162461bcd60e51b81526020600482015260146024820152731313d1d250d7d390535157d393d517d1561254d560621b604482015290519081900360640190fd5b6040805178426173655570677261646561626c652e6c6f6769634e616d6560381b8152905190819003601901902055565b60006105006101e2565b6001600160a01b031663ea23cb7c6040518163ffffffff1660e01b815260040160206040518083038186803b15801561053857600080fd5b505afa15801561054c573d6000803e3d6000fd5b505050506040513d602081101561056257600080fd5b50516001600160a01b03166373f1fcf661057a61025d565b6040518263ffffffff1660e01b81526004018082815260200191505060206040518083038186803b1580156105ae57600080fd5b505afa1580156105c2573d6000803e3d6000fd5b505050506040513d60208110156105d857600080fd5b5051905090565b7f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc5490565b6001600160a01b0316151590565b6000813f7fc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a47081811480159061064657508115155b94935050505056fea265627a7a72315820f5938969a80120983a745e47239d30d328b8c492e53ce3721cb24537e7db526164736f6c63430005110032",
+  "sourceMap": "78:179:60:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;78:179:60;;;;;;;",
+  "deployedSourceMap": "78:179:60:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;453:11:134;:9;:11::i;:::-;78:179:60;570:99:10;;8:9:-1;5:2;;;30:1;27;20:12;5:2;570:99:10;;;:::i;:::-;;;;-1:-1:-1;;;;;570:99:10;;;;;;;;;;;;;;1167:113:17;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1167:113:17;;;:::i;:::-;;;;;;;;;;;;;;;;;;154:101:60;;8:9:-1;5:2;;;30:1;27;20:12;5:2;154:101:60;;;:::i;:::-;;;;;;;;;;;;;;;;763:229:17;;8:9:-1;5:2;;;30:1;27;20:12;5:2;763:229:17;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;763:229:17;;;;;;;;:::i;1259:263:11:-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1259:263:11;;;:::i;1952:90:134:-;1988:15;:13;:15::i;:::-;2009:28;2019:17;:15;:17::i;:::-;2009:9;:28::i;:::-;1952:90::o;570:99:10:-;619:7;645:17;:15;:17::i;:::-;638:24;;570:99;;:::o;1167:113:17:-;1215:4;;1246:10;:8;:10::i;:::-;-1:-1:-1;;;;;1238:35:17;;;1231:42;;1167:113;:::o;154:101:60:-;206:12;237:11;:9;:11::i;763:229:17:-;859:17;:15;:17::i;:::-;858:18;850:60;;;;;-1:-1:-1;;;850:60:17;;;;;;;;;;;;;;;;;;;;;;;;;;;;921:29;934:15;921:12;:29::i;:::-;960:25;974:10;960:13;:25::i;:::-;763:229;;:::o;1259:263:11:-;555:37;;;-1:-1:-1;;;555:37:11;;;;;;;;;;;;1443:11;1259:263;:::o;1405:243:17:-;1455:7;1478:17;:15;:17::i;:::-;1474:168;;;1518:34;:32;:34::i;:::-;1511:41;;;;1474:168;1590:41;:39;:41::i;878:731:134:-;1180:12;1177:1;1174;1161:32;1370:1;1367;1353:12;1350:1;1334:14;1329:3;1316:56;1434:14;1431:1;1428;1413:36;1464:6;1519:36;;;;1582:14;1579:1;1572:25;1519:36;1538:14;1535:1;1528:25;1865:166:11;731:38;;;-1:-1:-1;;;731:38:11;;;;;;;;;;;;2004:11;;1982:43::o;2374:410::-;2525:32;2533:10;:8;:10::i;:::-;-1:-1:-1;;;;;2525:30:11;;:32::i;:::-;2521:69;;;2573:7;;2521:69;2607:28;:15;-1:-1:-1;;;;;2607:26:11;;:28::i;:::-;2599:68;;;;;-1:-1:-1;;;2599:68:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;555:37;;;-1:-1:-1;;;555:37:11;;;;;;;;;;;;2739:29;;;2725:53;;:::o;3151:439::-;3298:11;:9;:11::i;:::-;:17;3290:52;;;;;-1:-1:-1;;;3290:52:11;;;;;;;;;;;;-1:-1:-1;;;3290:52:11;;;;;;;;;;;;;;;3373:10;:8;:10::i;:::-;-1:-1:-1;;;;;3373:27:11;;:29;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3373:29:11;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;3373:29:11;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;3373:29:11;:57;;;-1:-1:-1;;;3373:57:11;;;;;;;;;;-1:-1:-1;;;;;3373:45:11;;;;;;:57;;;;;:29;;:57;;;;;;;;:45;:57;;;5:2:-1;;;;30:1;27;20:12;5:2;3373:57:11;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;3373:57:11;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;3373:57:11;3352:124;;;;;-1:-1:-1;;;3352:124:11;;;;;;;;;;;;-1:-1:-1;;;3352:124:11;;;;;;;;;;;;;;;731:38;;;-1:-1:-1;;;731:38:11;;;;;;;;;;;;3550:24;3536:48::o;418:148:8:-;468:7;494:10;:8;:10::i;:::-;-1:-1:-1;;;;;494:27:8;;:29;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;494:29:8;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;494:29:8;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;494:29:8;-1:-1:-1;;;;;494:52:8;;547:11;:9;:11::i;:::-;494:65;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;494:65:8;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;494:65:8;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;494:65:8;;-1:-1:-1;418:148:8;:::o;958:156:133:-;778:66;1093:11;;1077:33::o;1288:108:101:-;-1:-1:-1;;;;;1368:21:101;;;;1288:108::o;686:610:129:-;746:4;1207:20;;1052:66;1246:23;;;;;;:42;;-1:-1:-1;1273:15:129;;;1246:42;1238:51;686:610;-1:-1:-1;;;;686:610:129:o",
+  "source": "pragma solidity 0.5.17;\n\nimport \"../../base/InitializeableDynamicProxy.sol\";\n\ncontract InitializeableDynamicProxyMock is InitializeableDynamicProxy {\n    function externalLogicName() external view returns (bytes32 name) {\n        return logicName();\n    }\n}\n",
+  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/mock/base/InitializeableDynamicProxyMock.sol",
+  "ast": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/mock/base/InitializeableDynamicProxyMock.sol",
+    "exportedSymbols": {
+      "InitializeableDynamicProxyMock": [
+        11764
+      ]
+    },
+    "id": 11765,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11751,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:60"
+      },
+      {
+        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/InitializeableDynamicProxy.sol",
+        "file": "../../base/InitializeableDynamicProxy.sol",
+        "id": 11752,
+        "nodeType": "ImportDirective",
+        "scope": 11765,
+        "sourceUnit": 3940,
+        "src": "25:51:60",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 11753,
+              "name": "InitializeableDynamicProxy",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3939,
+              "src": "121:26:60",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_InitializeableDynamicProxy_$3939",
+                "typeString": "contract InitializeableDynamicProxy"
+              }
+            },
+            "id": 11754,
+            "nodeType": "InheritanceSpecifier",
+            "src": "121:26:60"
+          }
+        ],
+        "contractDependencies": [
+          2367,
+          2516,
+          2634,
+          3939,
+          20993,
+          21031
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 11764,
+        "linearizedBaseContracts": [
+          11764,
+          3939,
+          20993,
+          2367,
+          2516,
+          21031,
+          2634
+        ],
+        "name": "InitializeableDynamicProxyMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 11762,
+              "nodeType": "Block",
+              "src": "220:35:60",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 11759,
+                      "name": "logicName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2576,
+                      "src": "237:9:60",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_bytes32_$",
+                        "typeString": "function () view returns (bytes32)"
+                      }
+                    },
+                    "id": 11760,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "237:11:60",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "functionReturnParameters": 11758,
+                  "id": 11761,
+                  "nodeType": "Return",
+                  "src": "230:18:60"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 11763,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "externalLogicName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11755,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "180:2:60"
+            },
+            "returnParameters": {
+              "id": 11758,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11757,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11763,
+                  "src": "206:12:60",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 11756,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "206:7:60",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "205:14:60"
+            },
+            "scope": 11764,
+            "src": "154:101:60",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11765,
+        "src": "78:179:60"
+      }
+    ],
+    "src": "0:258:60"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/mock/base/InitializeableDynamicProxyMock.sol",
+    "exportedSymbols": {
+      "InitializeableDynamicProxyMock": [
+        11764
+      ]
+    },
+    "id": 11765,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11751,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:60"
+      },
+      {
+        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/InitializeableDynamicProxy.sol",
+        "file": "../../base/InitializeableDynamicProxy.sol",
+        "id": 11752,
+        "nodeType": "ImportDirective",
+        "scope": 11765,
+        "sourceUnit": 3940,
+        "src": "25:51:60",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 11753,
+              "name": "InitializeableDynamicProxy",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3939,
+              "src": "121:26:60",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_InitializeableDynamicProxy_$3939",
+                "typeString": "contract InitializeableDynamicProxy"
+              }
+            },
+            "id": 11754,
+            "nodeType": "InheritanceSpecifier",
+            "src": "121:26:60"
+          }
+        ],
+        "contractDependencies": [
+          2367,
+          2516,
+          2634,
+          3939,
+          20993,
+          21031
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 11764,
+        "linearizedBaseContracts": [
+          11764,
+          3939,
+          20993,
+          2367,
+          2516,
+          21031,
+          2634
+        ],
+        "name": "InitializeableDynamicProxyMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 11762,
+              "nodeType": "Block",
+              "src": "220:35:60",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 11759,
+                      "name": "logicName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2576,
+                      "src": "237:9:60",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_bytes32_$",
+                        "typeString": "function () view returns (bytes32)"
+                      }
+                    },
+                    "id": 11760,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "237:11:60",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "functionReturnParameters": 11758,
+                  "id": 11761,
+                  "nodeType": "Return",
+                  "src": "230:18:60"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 11763,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "externalLogicName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11755,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "180:2:60"
+            },
+            "returnParameters": {
+              "id": 11758,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11757,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11763,
+                  "src": "206:12:60",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 11756,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "206:7:60",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "205:14:60"
+            },
+            "scope": 11764,
+            "src": "154:101:60",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11765,
+        "src": "78:179:60"
+      }
+    ],
+    "src": "0:258:60"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-09-15T23:09:49.899Z",
+  "devdoc": {
+    "methods": {
+      "implementation()": {
+        "return": "Address of the current implementation"
+      },
+      "initializeProxy(address,bytes32)": {
+        "params": {
+          "aLogicName": "the logic name to use.",
+          "settingsAddress": "the settings contract address to use."
+        }
+      },
+      "settings()": {
+        "details": "This address should NOT change over the time. See details in the _setSettings(...) function."
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "__isInitialized()": {
+        "notice": "It returns if the proxy was initialized.Uses double underscore (__) to avoid any collision in implementation contracts."
+      },
+      "implementation()": {
+        "notice": "Returns the current implementation."
+      },
+      "initializeProxy(address,bytes32)": {
+        "notice": "It initializes this proxy instance with a settings contract and a logic name."
+      },
+      "settings()": {
+        "notice": "The gets the settings contract address from the SETTINGS_SLOT."
+      }
+    }
+  }
+}

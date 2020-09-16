@@ -57,16 +57,21 @@ const WithdrawMainSection = () => {
     id: string,
     amountToWithdraw: number
   ) => {
-    setWithdrawing(true);
-    const res = await loanWithdraw(
-      loansInstance,
-      id,
-      amountToWithdraw,
-      web3State
-    );
-
-    setWithdrawing(false);
-    setSuccess(res);
+    try {
+      setWithdrawing(true);
+      const res = await loanWithdraw(
+        loansInstance,
+        id,
+        amountToWithdraw,
+        web3State
+      );
+      setWithdrawing(false);
+      setSuccess(res);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+    
   };
 
   const getExpiryDateString = (date: number) => {

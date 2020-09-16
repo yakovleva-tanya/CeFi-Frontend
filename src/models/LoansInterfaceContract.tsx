@@ -76,20 +76,19 @@ export async function createLoanWithTerms(
   borrowerAddress: string
 ) {
   const bnAmount = convertToBN(collateralAmount);
+  console.log("ADD>>", borrowerAddress);
   return new Promise((resolve, reject) => loansInterface.methods
     .createLoanWithTerms(
       loanRequest,
-      loanResponses,
+      [loanResponses, loanResponses],
       bnAmount
     )
-    .send( { from: borrowerAddress })
+    .send( { from: borrowerAddress, value: bnAmount })
     .on('transactionHash', Notify.hash)
     .on('receipt', resolve)
     .on('error', reject)
   );  
 }
-
-// erc20.approve(loansInterface)
 
 /**
  * Deposits collateral into a created loan
@@ -170,7 +169,7 @@ export async function withdrawCollateral(
   // Get total collateral of loan
   const loanCollateral = await loansInterface.methods.getCollateralInfo(loanId);
   // Check if withdrawl amount is not greater than total collateral
-  if (bnAmount > loanCollateral[0]) {
+  if (bnAmount >= loanCollateral[0]) {
     return
   } else {
     return new Promise((resolve, reject) => loansInterface.methods

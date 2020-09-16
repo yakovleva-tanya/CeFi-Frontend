@@ -153,55 +153,34 @@
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "cTokenAddress",
-          "type": "address"
-        }
-      ],
-      "name": "balance",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"dappAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"cToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"cTokenBalance\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"underlyingToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"underlyingBalance\",\"type\":\"uint256\"}],\"name\":\"CompoundLended\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"dappAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"cToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"cTokenBalance\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"underlyingToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"underlyingBalance\",\"type\":\"uint256\"}],\"name\":\"CompoundRedeemed\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"cTokenAddress\",\"type\":\"address\"}],\"name\":\"balance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"cTokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"lend\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"cTokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"redeem\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"cTokenAddress\",\"type\":\"address\"}],\"name\":\"redeemAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"balance(address)\":{\"params\":{\"cTokenAddress\":\"token address.\"},\"return\":\"this contract's balance.\"},\"lend(address,uint256)\":{\"params\":{\"amount\":\"amount of tokens to mint. \",\"cTokenAddress\":\"address of the token.\"}},\"redeem(address,uint256)\":{\"params\":{\"amount\":\"amount of underlying tokens to redeem.\",\"cTokenAddress\":\"address of the token.\"}},\"redeemAll(address)\":{\"params\":{\"cTokenAddress\":\"address of the token.\"}}}},\"userdoc\":{\"methods\":{\"balance(address)\":{\"notice\":\"Returns this contract's balance for the specified token.\"},\"lend(address,uint256)\":{\"notice\":\"To lend we first have to approve the cToken to access the token balance then mint. \"},\"redeem(address,uint256)\":{\"notice\":\"This function calls Compound redeemUnderlying().\"},\"redeemAll(address)\":{\"notice\":\"This function redeems complete token balance.\"}},\"notice\":\"Compound dApp interface. \"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/ICompound.sol\":\"ICompound\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/ICompound.sol\":{\"keccak256\":\"0xbce680e354278deaadbeecd7746047961256fa569b76ef3f539c0b43b564bc7c\",\"urls\":[\"bzz-raw://0f599372421772da2838513a08023dd0db6b2ca3765501ce4bb6b8cbe242d8be\",\"dweb:/ipfs/QmPHSvZmuJj1m5ku5XiZufjyuminmvyHfgQg5ruTwvb7bF\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"dappAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"cToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"cTokenBalance\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"underlyingToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"underlyingBalance\",\"type\":\"uint256\"}],\"name\":\"CompoundLended\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"dappAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"cToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"cTokenBalance\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"underlyingToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"underlyingBalance\",\"type\":\"uint256\"}],\"name\":\"CompoundRedeemed\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"cTokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"lend\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"cTokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"redeem\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"cTokenAddress\",\"type\":\"address\"}],\"name\":\"redeemAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"lend(address,uint256)\":{\"params\":{\"amount\":\"amount of tokens to mint. \",\"cTokenAddress\":\"address of the token.\"}},\"redeem(address,uint256)\":{\"params\":{\"amount\":\"amount of underlying tokens to redeem.\",\"cTokenAddress\":\"address of the token.\"}},\"redeemAll(address)\":{\"params\":{\"cTokenAddress\":\"address of the token.\"}}}},\"userdoc\":{\"methods\":{\"lend(address,uint256)\":{\"notice\":\"To lend we first have to approve the cToken to access the token balance then mint. \"},\"redeem(address,uint256)\":{\"notice\":\"This function calls Compound redeemUnderlying().\"},\"redeemAll(address)\":{\"notice\":\"This function redeems complete token balance.\"}},\"notice\":\"Compound dApp interface. \"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/ICompound.sol\":\"ICompound\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/ICompound.sol\":{\"keccak256\":\"0x13d6a38ce2f985ca4799cdec69433da930793811e659d781c50e6e7429b81b75\",\"urls\":[\"bzz-raw://2c03966b2403dbbb916e0d48044d698962a21d2891ff0c9552eba9f36cc93c8d\",\"dweb:/ipfs/QmfTThXkiEhFtqQXKQvYHkYxxSaTPPJS2igYpLJ1ZbqvQ6\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.17;\n\n/**\n    @notice Compound dApp interface. \n\n    @author develop@teller.finance\n */\ninterface ICompound {\n    /**\n        @notice To lend we first have to approve the cToken to access the token balance then mint. \n        @param cTokenAddress address of the token.\n        @param amount amount of tokens to mint. \n    */\n    function lend(address cTokenAddress, uint256 amount) external;\n\n    /**\n        @notice This function calls Compound redeemUnderlying().\n        @param cTokenAddress address of the token.\n        @param amount amount of underlying tokens to redeem.\n    */\n    function redeem(address cTokenAddress, uint256 amount) external;\n\n    /**\n        @notice This function redeems complete token balance.\n        @param cTokenAddress address of the token.\n    */\n    function redeemAll(address cTokenAddress) external;\n\n    /**\n        @notice Returns this contract's balance for the specified token.\n        @param cTokenAddress token address.\n        @return this contract's balance.\n     */\n    function balance(address cTokenAddress) external view returns (uint256);\n\n    /**\n        @notice This event is emitted every time Compound lend is invoked successfully.\n        @param sender the sender of this transaction.\n        @param dappAddress address of the compound app.\n        @param amount amount of cTokens to Lend.\n        @param cToken compound token address.\n        @param cTokenBalance cTokens balance after Lend.\n        @param underlyingToken address of the underlying token.\n        @param underlyingBalance underlying token balance after Lend. \n     */\n    event CompoundLended(\n        address indexed sender,\n        address indexed dappAddress,\n        uint256 amount,\n        address indexed cToken,\n        uint256 cTokenBalance,\n        address underlyingToken,\n        uint256 underlyingBalance\n    );\n\n    /**\n        @notice This event is emitted every time Compound redeem is invoked successfully.\n        @param sender the sender of this transaction.\n        @param dappAddress address of the compound app.\n        @param amount amount of cTokens to Redeem.\n        @param cToken compound token address.\n        @param cTokenBalance cTokens balance after Redeem.\n        @param underlyingToken address of the underlying token.\n        @param underlyingBalance underlying token balance after Redeem. \n     */\n    event CompoundRedeemed(\n        address indexed sender,\n        address indexed dappAddress,\n        uint256 amount,\n        address indexed cToken,\n        uint256 cTokenBalance,\n        address underlyingToken,\n        uint256 underlyingBalance\n    );\n}\n",
+  "source": "pragma solidity 0.5.17;\n\n/**\n    @notice Compound dApp interface. \n\n    @author develop@teller.finance\n */\ninterface ICompound {\n    /**\n        @notice To lend we first have to approve the cToken to access the token balance then mint. \n        @param cTokenAddress address of the token.\n        @param amount amount of tokens to mint. \n    */\n    function lend(address cTokenAddress, uint256 amount) external;\n\n    /**\n        @notice This function calls Compound redeemUnderlying().\n        @param cTokenAddress address of the token.\n        @param amount amount of underlying tokens to redeem.\n    */\n    function redeem(address cTokenAddress, uint256 amount) external;\n\n    /**\n        @notice This function redeems complete token balance.\n        @param cTokenAddress address of the token.\n    */\n    function redeemAll(address cTokenAddress) external;\n\n    /**\n        @notice This event is emitted every time Compound lend is invoked successfully.\n        @param sender the sender of this transaction.\n        @param dappAddress address of the compound app.\n        @param amount amount of cTokens to Lend.\n        @param cToken compound token address.\n        @param cTokenBalance cTokens balance after Lend.\n        @param underlyingToken address of the underlying token.\n        @param underlyingBalance underlying token balance after Lend. \n     */\n    event CompoundLended(\n        address indexed sender,\n        address indexed dappAddress,\n        uint256 amount,\n        address indexed cToken,\n        uint256 cTokenBalance,\n        address underlyingToken,\n        uint256 underlyingBalance\n    );\n\n    /**\n        @notice This event is emitted every time Compound redeem is invoked successfully.\n        @param sender the sender of this transaction.\n        @param dappAddress address of the compound app.\n        @param amount amount of cTokens to Redeem.\n        @param cToken compound token address.\n        @param cTokenBalance cTokens balance after Redeem.\n        @param underlyingToken address of the underlying token.\n        @param underlyingBalance underlying token balance after Redeem. \n     */\n    event CompoundRedeemed(\n        address indexed sender,\n        address indexed dappAddress,\n        uint256 amount,\n        address indexed cToken,\n        uint256 cTokenBalance,\n        address underlyingToken,\n        uint256 underlyingBalance\n    );\n}\n",
   "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/ICompound.sol",
   "ast": {
     "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/ICompound.sol",
     "exportedSymbols": {
       "ICompound": [
-        10009
+        9593
       ]
     },
-    "id": 10010,
+    "id": 9594,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 9950,
+        "id": 9541,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:39"
+        "src": "0:23:35"
       },
       {
         "baseContracts": [],
@@ -209,9 +188,9 @@
         "contractKind": "interface",
         "documentation": "@notice Compound dApp interface. \n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10009,
+        "id": 9593,
         "linearizedBaseContracts": [
-          10009
+          9593
         ],
         "name": "ICompound",
         "nodeType": "ContractDefinition",
@@ -219,23 +198,23 @@
           {
             "body": null,
             "documentation": "@notice To lend we first have to approve the cToken to access the token balance then mint. \n@param cTokenAddress address of the token.\n@param amount amount of tokens to mint. ",
-            "id": 9957,
+            "id": 9548,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "lend",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9955,
+              "id": 9546,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9952,
+                  "id": 9543,
                   "name": "cTokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9957,
-                  "src": "362:21:39",
+                  "scope": 9548,
+                  "src": "362:21:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -243,10 +222,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9951,
+                    "id": 9542,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "362:7:39",
+                    "src": "362:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -258,11 +237,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 9954,
+                  "id": 9545,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9957,
-                  "src": "385:14:39",
+                  "scope": 9548,
+                  "src": "385:14:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -270,10 +249,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9953,
+                    "id": 9544,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "385:7:39",
+                    "src": "385:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -283,16 +262,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "361:39:39"
+              "src": "361:39:35"
             },
             "returnParameters": {
-              "id": 9956,
+              "id": 9547,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "409:0:39"
+              "src": "409:0:35"
             },
-            "scope": 10009,
-            "src": "348:62:39",
+            "scope": 9593,
+            "src": "348:62:35",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -300,23 +279,23 @@
           {
             "body": null,
             "documentation": "@notice This function calls Compound redeemUnderlying().\n@param cTokenAddress address of the token.\n@param amount amount of underlying tokens to redeem.",
-            "id": 9964,
+            "id": 9555,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "redeem",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9962,
+              "id": 9553,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9959,
+                  "id": 9550,
                   "name": "cTokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9964,
-                  "src": "624:21:39",
+                  "scope": 9555,
+                  "src": "624:21:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -324,10 +303,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9958,
+                    "id": 9549,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "624:7:39",
+                    "src": "624:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -339,11 +318,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 9961,
+                  "id": 9552,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9964,
-                  "src": "647:14:39",
+                  "scope": 9555,
+                  "src": "647:14:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -351,10 +330,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9960,
+                    "id": 9551,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "647:7:39",
+                    "src": "647:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -364,16 +343,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "623:39:39"
+              "src": "623:39:35"
             },
             "returnParameters": {
-              "id": 9963,
+              "id": 9554,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "671:0:39"
+              "src": "671:0:35"
             },
-            "scope": 10009,
-            "src": "608:64:39",
+            "scope": 9593,
+            "src": "608:64:35",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -381,23 +360,23 @@
           {
             "body": null,
             "documentation": "@notice This function redeems complete token balance.\n@param cTokenAddress address of the token.",
-            "id": 9969,
+            "id": 9560,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "redeemAll",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9967,
+              "id": 9558,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9966,
+                  "id": 9557,
                   "name": "cTokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9969,
-                  "src": "825:21:39",
+                  "scope": 9560,
+                  "src": "825:21:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -405,10 +384,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9965,
+                    "id": 9556,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "825:7:39",
+                    "src": "825:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -419,120 +398,38 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "824:23:39"
+              "src": "824:23:35"
             },
             "returnParameters": {
-              "id": 9968,
+              "id": 9559,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "856:0:39"
+              "src": "856:0:35"
             },
-            "scope": 10009,
-            "src": "806:51:39",
+            "scope": 9593,
+            "src": "806:51:35",
             "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice Returns this contract's balance for the specified token.\n@param cTokenAddress token address.\n@return this contract's balance.",
-            "id": 9976,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "balance",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 9972,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 9971,
-                  "name": "cTokenAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "1054:21:39",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 9970,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1054:7:39",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1053:23:39"
-            },
-            "returnParameters": {
-              "id": 9975,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 9974,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "1100:7:39",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 9973,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1100:7:39",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1099:9:39"
-            },
-            "scope": 10009,
-            "src": "1037:72:39",
-            "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted every time Compound lend is invoked successfully.\n@param sender the sender of this transaction.\n@param dappAddress address of the compound app.\n@param amount amount of cTokens to Lend.\n@param cToken compound token address.\n@param cTokenBalance cTokens balance after Lend.\n@param underlyingToken address of the underlying token.\n@param underlyingBalance underlying token balance after Lend. ",
-            "id": 9992,
+            "id": 9576,
             "name": "CompoundLended",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 9991,
+              "id": 9575,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9978,
+                  "id": 9562,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1646:22:39",
+                  "scope": 9576,
+                  "src": "1394:22:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -540,10 +437,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9977,
+                    "id": 9561,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1646:7:39",
+                    "src": "1394:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -555,12 +452,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9980,
+                  "id": 9564,
                   "indexed": true,
                   "name": "dappAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1678:27:39",
+                  "scope": 9576,
+                  "src": "1426:27:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -568,10 +465,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9979,
+                    "id": 9563,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1678:7:39",
+                    "src": "1426:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -583,12 +480,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9982,
+                  "id": 9566,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1715:14:39",
+                  "scope": 9576,
+                  "src": "1463:14:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -596,10 +493,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9981,
+                    "id": 9565,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1715:7:39",
+                    "src": "1463:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -610,12 +507,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9984,
+                  "id": 9568,
                   "indexed": true,
                   "name": "cToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1739:22:39",
+                  "scope": 9576,
+                  "src": "1487:22:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -623,10 +520,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9983,
+                    "id": 9567,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1739:7:39",
+                    "src": "1487:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -638,12 +535,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9986,
+                  "id": 9570,
                   "indexed": false,
                   "name": "cTokenBalance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1771:21:39",
+                  "scope": 9576,
+                  "src": "1519:21:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -651,10 +548,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9985,
+                    "id": 9569,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1771:7:39",
+                    "src": "1519:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -665,12 +562,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9988,
+                  "id": 9572,
                   "indexed": false,
                   "name": "underlyingToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1802:23:39",
+                  "scope": 9576,
+                  "src": "1550:23:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -678,10 +575,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9987,
+                    "id": 9571,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1802:7:39",
+                    "src": "1550:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -693,12 +590,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9990,
+                  "id": 9574,
                   "indexed": false,
                   "name": "underlyingBalance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1835:25:39",
+                  "scope": 9576,
+                  "src": "1583:25:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -706,10 +603,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9989,
+                    "id": 9573,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1835:7:39",
+                    "src": "1583:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -719,28 +616,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1636:230:39"
+              "src": "1384:230:35"
             },
-            "src": "1616:251:39"
+            "src": "1364:251:35"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted every time Compound redeem is invoked successfully.\n@param sender the sender of this transaction.\n@param dappAddress address of the compound app.\n@param amount amount of cTokens to Redeem.\n@param cToken compound token address.\n@param cTokenBalance cTokens balance after Redeem.\n@param underlyingToken address of the underlying token.\n@param underlyingBalance underlying token balance after Redeem. ",
-            "id": 10008,
+            "id": 9592,
             "name": "CompoundRedeemed",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10007,
+              "id": 9591,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9994,
+                  "id": 9578,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2414:22:39",
+                  "scope": 9592,
+                  "src": "2162:22:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -748,10 +645,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9993,
+                    "id": 9577,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2414:7:39",
+                    "src": "2162:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -763,12 +660,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9996,
+                  "id": 9580,
                   "indexed": true,
                   "name": "dappAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2446:27:39",
+                  "scope": 9592,
+                  "src": "2194:27:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -776,10 +673,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9995,
+                    "id": 9579,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2446:7:39",
+                    "src": "2194:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -791,12 +688,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9998,
+                  "id": 9582,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2483:14:39",
+                  "scope": 9592,
+                  "src": "2231:14:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -804,10 +701,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9997,
+                    "id": 9581,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2483:7:39",
+                    "src": "2231:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -818,12 +715,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10000,
+                  "id": 9584,
                   "indexed": true,
                   "name": "cToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2507:22:39",
+                  "scope": 9592,
+                  "src": "2255:22:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -831,10 +728,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9999,
+                    "id": 9583,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2507:7:39",
+                    "src": "2255:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -846,12 +743,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10002,
+                  "id": 9586,
                   "indexed": false,
                   "name": "cTokenBalance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2539:21:39",
+                  "scope": 9592,
+                  "src": "2287:21:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -859,10 +756,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10001,
+                    "id": 9585,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2539:7:39",
+                    "src": "2287:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -873,12 +770,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10004,
+                  "id": 9588,
                   "indexed": false,
                   "name": "underlyingToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2570:23:39",
+                  "scope": 9592,
+                  "src": "2318:23:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -886,10 +783,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10003,
+                    "id": 9587,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2570:7:39",
+                    "src": "2318:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -901,12 +798,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10006,
+                  "id": 9590,
                   "indexed": false,
                   "name": "underlyingBalance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2603:25:39",
+                  "scope": 9592,
+                  "src": "2351:25:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -914,10 +811,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10005,
+                    "id": 9589,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2603:7:39",
+                    "src": "2351:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -927,36 +824,36 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2404:230:39"
+              "src": "2152:230:35"
             },
-            "src": "2382:253:39"
+            "src": "2130:253:35"
           }
         ],
-        "scope": 10010,
-        "src": "107:2530:39"
+        "scope": 9594,
+        "src": "107:2278:35"
       }
     ],
-    "src": "0:2638:39"
+    "src": "0:2386:35"
   },
   "legacyAST": {
     "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/ICompound.sol",
     "exportedSymbols": {
       "ICompound": [
-        10009
+        9593
       ]
     },
-    "id": 10010,
+    "id": 9594,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 9950,
+        "id": 9541,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:39"
+        "src": "0:23:35"
       },
       {
         "baseContracts": [],
@@ -964,9 +861,9 @@
         "contractKind": "interface",
         "documentation": "@notice Compound dApp interface. \n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10009,
+        "id": 9593,
         "linearizedBaseContracts": [
-          10009
+          9593
         ],
         "name": "ICompound",
         "nodeType": "ContractDefinition",
@@ -974,23 +871,23 @@
           {
             "body": null,
             "documentation": "@notice To lend we first have to approve the cToken to access the token balance then mint. \n@param cTokenAddress address of the token.\n@param amount amount of tokens to mint. ",
-            "id": 9957,
+            "id": 9548,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "lend",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9955,
+              "id": 9546,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9952,
+                  "id": 9543,
                   "name": "cTokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9957,
-                  "src": "362:21:39",
+                  "scope": 9548,
+                  "src": "362:21:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -998,10 +895,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9951,
+                    "id": 9542,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "362:7:39",
+                    "src": "362:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1013,11 +910,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 9954,
+                  "id": 9545,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9957,
-                  "src": "385:14:39",
+                  "scope": 9548,
+                  "src": "385:14:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1025,10 +922,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9953,
+                    "id": 9544,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "385:7:39",
+                    "src": "385:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1038,16 +935,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "361:39:39"
+              "src": "361:39:35"
             },
             "returnParameters": {
-              "id": 9956,
+              "id": 9547,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "409:0:39"
+              "src": "409:0:35"
             },
-            "scope": 10009,
-            "src": "348:62:39",
+            "scope": 9593,
+            "src": "348:62:35",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1055,23 +952,23 @@
           {
             "body": null,
             "documentation": "@notice This function calls Compound redeemUnderlying().\n@param cTokenAddress address of the token.\n@param amount amount of underlying tokens to redeem.",
-            "id": 9964,
+            "id": 9555,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "redeem",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9962,
+              "id": 9553,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9959,
+                  "id": 9550,
                   "name": "cTokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9964,
-                  "src": "624:21:39",
+                  "scope": 9555,
+                  "src": "624:21:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1079,10 +976,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9958,
+                    "id": 9549,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "624:7:39",
+                    "src": "624:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1094,11 +991,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 9961,
+                  "id": 9552,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9964,
-                  "src": "647:14:39",
+                  "scope": 9555,
+                  "src": "647:14:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1106,10 +1003,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9960,
+                    "id": 9551,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "647:7:39",
+                    "src": "647:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1119,16 +1016,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "623:39:39"
+              "src": "623:39:35"
             },
             "returnParameters": {
-              "id": 9963,
+              "id": 9554,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "671:0:39"
+              "src": "671:0:35"
             },
-            "scope": 10009,
-            "src": "608:64:39",
+            "scope": 9593,
+            "src": "608:64:35",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1136,23 +1033,23 @@
           {
             "body": null,
             "documentation": "@notice This function redeems complete token balance.\n@param cTokenAddress address of the token.",
-            "id": 9969,
+            "id": 9560,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "redeemAll",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9967,
+              "id": 9558,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9966,
+                  "id": 9557,
                   "name": "cTokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9969,
-                  "src": "825:21:39",
+                  "scope": 9560,
+                  "src": "825:21:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1160,10 +1057,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9965,
+                    "id": 9556,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "825:7:39",
+                    "src": "825:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1174,120 +1071,38 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "824:23:39"
+              "src": "824:23:35"
             },
             "returnParameters": {
-              "id": 9968,
+              "id": 9559,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "856:0:39"
+              "src": "856:0:35"
             },
-            "scope": 10009,
-            "src": "806:51:39",
+            "scope": 9593,
+            "src": "806:51:35",
             "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice Returns this contract's balance for the specified token.\n@param cTokenAddress token address.\n@return this contract's balance.",
-            "id": 9976,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "balance",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 9972,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 9971,
-                  "name": "cTokenAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "1054:21:39",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 9970,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1054:7:39",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1053:23:39"
-            },
-            "returnParameters": {
-              "id": 9975,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 9974,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "1100:7:39",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 9973,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1100:7:39",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1099:9:39"
-            },
-            "scope": 10009,
-            "src": "1037:72:39",
-            "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted every time Compound lend is invoked successfully.\n@param sender the sender of this transaction.\n@param dappAddress address of the compound app.\n@param amount amount of cTokens to Lend.\n@param cToken compound token address.\n@param cTokenBalance cTokens balance after Lend.\n@param underlyingToken address of the underlying token.\n@param underlyingBalance underlying token balance after Lend. ",
-            "id": 9992,
+            "id": 9576,
             "name": "CompoundLended",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 9991,
+              "id": 9575,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9978,
+                  "id": 9562,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1646:22:39",
+                  "scope": 9576,
+                  "src": "1394:22:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1295,10 +1110,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9977,
+                    "id": 9561,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1646:7:39",
+                    "src": "1394:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1310,12 +1125,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9980,
+                  "id": 9564,
                   "indexed": true,
                   "name": "dappAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1678:27:39",
+                  "scope": 9576,
+                  "src": "1426:27:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1323,10 +1138,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9979,
+                    "id": 9563,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1678:7:39",
+                    "src": "1426:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1338,12 +1153,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9982,
+                  "id": 9566,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1715:14:39",
+                  "scope": 9576,
+                  "src": "1463:14:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1351,10 +1166,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9981,
+                    "id": 9565,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1715:7:39",
+                    "src": "1463:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1365,12 +1180,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9984,
+                  "id": 9568,
                   "indexed": true,
                   "name": "cToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1739:22:39",
+                  "scope": 9576,
+                  "src": "1487:22:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1378,10 +1193,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9983,
+                    "id": 9567,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1739:7:39",
+                    "src": "1487:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1393,12 +1208,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9986,
+                  "id": 9570,
                   "indexed": false,
                   "name": "cTokenBalance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1771:21:39",
+                  "scope": 9576,
+                  "src": "1519:21:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1406,10 +1221,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9985,
+                    "id": 9569,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1771:7:39",
+                    "src": "1519:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1420,12 +1235,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9988,
+                  "id": 9572,
                   "indexed": false,
                   "name": "underlyingToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1802:23:39",
+                  "scope": 9576,
+                  "src": "1550:23:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1433,10 +1248,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9987,
+                    "id": 9571,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1802:7:39",
+                    "src": "1550:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1448,12 +1263,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9990,
+                  "id": 9574,
                   "indexed": false,
                   "name": "underlyingBalance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9992,
-                  "src": "1835:25:39",
+                  "scope": 9576,
+                  "src": "1583:25:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1461,10 +1276,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9989,
+                    "id": 9573,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1835:7:39",
+                    "src": "1583:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1474,28 +1289,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1636:230:39"
+              "src": "1384:230:35"
             },
-            "src": "1616:251:39"
+            "src": "1364:251:35"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted every time Compound redeem is invoked successfully.\n@param sender the sender of this transaction.\n@param dappAddress address of the compound app.\n@param amount amount of cTokens to Redeem.\n@param cToken compound token address.\n@param cTokenBalance cTokens balance after Redeem.\n@param underlyingToken address of the underlying token.\n@param underlyingBalance underlying token balance after Redeem. ",
-            "id": 10008,
+            "id": 9592,
             "name": "CompoundRedeemed",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10007,
+              "id": 9591,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9994,
+                  "id": 9578,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2414:22:39",
+                  "scope": 9592,
+                  "src": "2162:22:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1503,10 +1318,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9993,
+                    "id": 9577,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2414:7:39",
+                    "src": "2162:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1518,12 +1333,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9996,
+                  "id": 9580,
                   "indexed": true,
                   "name": "dappAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2446:27:39",
+                  "scope": 9592,
+                  "src": "2194:27:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1531,10 +1346,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9995,
+                    "id": 9579,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2446:7:39",
+                    "src": "2194:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1546,12 +1361,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9998,
+                  "id": 9582,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2483:14:39",
+                  "scope": 9592,
+                  "src": "2231:14:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1559,10 +1374,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9997,
+                    "id": 9581,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2483:7:39",
+                    "src": "2231:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1573,12 +1388,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10000,
+                  "id": 9584,
                   "indexed": true,
                   "name": "cToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2507:22:39",
+                  "scope": 9592,
+                  "src": "2255:22:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1586,10 +1401,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9999,
+                    "id": 9583,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2507:7:39",
+                    "src": "2255:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1601,12 +1416,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10002,
+                  "id": 9586,
                   "indexed": false,
                   "name": "cTokenBalance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2539:21:39",
+                  "scope": 9592,
+                  "src": "2287:21:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1614,10 +1429,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10001,
+                    "id": 9585,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2539:7:39",
+                    "src": "2287:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1628,12 +1443,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10004,
+                  "id": 9588,
                   "indexed": false,
                   "name": "underlyingToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2570:23:39",
+                  "scope": 9592,
+                  "src": "2318:23:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1641,10 +1456,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10003,
+                    "id": 9587,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2570:7:39",
+                    "src": "2318:7:35",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1656,12 +1471,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10006,
+                  "id": 9590,
                   "indexed": false,
                   "name": "underlyingBalance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10008,
-                  "src": "2603:25:39",
+                  "scope": 9592,
+                  "src": "2351:25:35",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1669,10 +1484,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10005,
+                    "id": 9589,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2603:7:39",
+                    "src": "2351:7:35",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1682,16 +1497,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2404:230:39"
+              "src": "2152:230:35"
             },
-            "src": "2382:253:39"
+            "src": "2130:253:35"
           }
         ],
-        "scope": 10010,
-        "src": "107:2530:39"
+        "scope": 9594,
+        "src": "107:2278:35"
       }
     ],
-    "src": "0:2638:39"
+    "src": "0:2386:35"
   },
   "compiler": {
     "name": "solc",
@@ -1699,16 +1514,10 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-06T02:15:12.181Z",
+  "updatedAt": "2020-09-15T21:09:31.251Z",
   "devdoc": {
     "author": "develop@teller.finance",
     "methods": {
-      "balance(address)": {
-        "params": {
-          "cTokenAddress": "token address."
-        },
-        "return": "this contract's balance."
-      },
       "lend(address,uint256)": {
         "params": {
           "amount": "amount of tokens to mint. ",
@@ -1730,9 +1539,6 @@
   },
   "userdoc": {
     "methods": {
-      "balance(address)": {
-        "notice": "Returns this contract's balance for the specified token."
-      },
       "lend(address,uint256)": {
         "notice": "To lend we first have to approve the cToken to access the token balance then mint. "
       },

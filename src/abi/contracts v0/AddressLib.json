@@ -1,0 +1,3258 @@
+{
+  "contractName": "AddressLib",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "ADDRESS_EMPTY",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"ADDRESS_EMPTY\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"details\":\"Utility library of inline functions on addresses\",\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AddressLib.sol\":\"AddressLib\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AddressLib.sol\":{\"keccak256\":\"0x083fed047aac1bdf656da0bbfa6a9c655659ee953d808ebb0ef68c3dbf7bb806\",\"urls\":[\"bzz-raw://0a7c7f60dc65ae2aa25c6d9dfd728ea1c1ef3cdde3d102104fbb8406304d13a6\",\"dweb:/ipfs/QmRKAxNd7THDSujiYX3AqQh8jckewKt64To41fERUe8upB\"]}},\"version\":1}",
+  "bytecode": "0x6094610024600b82828239805160001a607314601757fe5b30600052607381538281f3fe730000000000000000000000000000000000000000301460806040526004361060335760003560e01c8063738156fb146038575b600080fd5b603e605a565b604080516001600160a01b039092168252519081900360200190f35b60008156fea265627a7a72315820dc85570251b0c2183776882d5f0280a4a35f6119ab8072f9caca5449c032b5c064736f6c63430005110032",
+  "deployedBytecode": "0x730000000000000000000000000000000000000000301460806040526004361060335760003560e01c8063738156fb146038575b600080fd5b603e605a565b604080516001600160a01b039092168252519081900360200190f35b60008156fea265627a7a72315820dc85570251b0c2183776882d5f0280a4a35f6119ab8072f9caca5449c032b5c064736f6c63430005110032",
+  "sourceMap": "127:2807:104:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
+  "deployedSourceMap": "127:2807:104:-;;;;;;;;;;;;;;;;;;;;;;;;152:52;;;:::i;:::-;;;;-1:-1:-1;;;;;152:52:104;;;;;;;;;;;;;;;200:3;152:52;:::o",
+  "source": "pragma solidity 0.5.17;\n\n/**\n * @dev Utility library of inline functions on addresses\n *\n * @author develop@teller.finance\n */\nlibrary AddressLib {\n    address public constant ADDRESS_EMPTY = address(0x0);\n\n    /**\n     * @dev Checks if this address is all 0s\n     * @param self The address this function was called on\n     * @return boolean\n     */\n    function isEmpty(address self) internal pure returns (bool) {\n        return self == ADDRESS_EMPTY;\n    }\n\n    /**\n     * @dev Checks if this address is the same as another address\n     * @param self The address this function was called on\n     * @param other Address to check against itself\n     * @return boolean\n     */\n    function isEqualTo(address self, address other) internal pure returns (bool) {\n        return self == other;\n    }\n\n    /**\n     * @dev Checks if this address is different to another address\n     * @param self The address this function was called on\n     * @param other Address to check against itself\n     * @return boolean\n     */\n    function isNotEqualTo(address self, address other) internal pure returns (bool) {\n        return self != other;\n    }\n\n    /**\n     * @dev Checks if this address is not all 0s\n     * @param self The address this function was called on\n     * @return boolean\n     */\n    function isNotEmpty(address self) internal pure returns (bool) {\n        return self != ADDRESS_EMPTY;\n    }\n\n    /**\n     * @dev Throws an error if address is all 0s\n     * @param self The address this function was called on\n     * @param message Error message if address is all 0s\n     */\n    function requireNotEmpty(address self, string memory message) internal pure {\n        require(isNotEmpty(self), message);\n    }\n\n    /**\n     * @dev Throws an error if address is not all 0s\n     * @param self The address this function was called on\n     * @param message Error message if address is not all 0s\n     */\n    function requireEmpty(address self, string memory message) internal pure {\n        require(isEmpty(self), message);\n    }\n\n    /**\n     * @dev Throws an error if address is not the same as another address\n     * @param self The address this function was called on\n     * @param other The address to check against itself\n     * @param message Error message if addresses are not the same\n     */\n    function requireEqualTo(\n        address self,\n        address other,\n        string memory message\n    ) internal pure {\n        require(isEqualTo(self, other), message);\n    }\n\n    /**\n     * @dev Throws an error if address is the same as another address\n     * @param self The address this function was called on\n     * @param other The address to check against itself\n     * @param message Error message if addresses are the same\n     */\n    function requireNotEqualTo(\n        address self,\n        address other,\n        string memory message\n    ) internal pure {\n        require(isNotEqualTo(self, other), message);\n    }\n}\n",
+  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AddressLib.sol",
+  "ast": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AddressLib.sol",
+    "exportedSymbols": {
+      "AddressLib": [
+        16687
+      ]
+    },
+    "id": 16688,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 16563,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:104"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "documentation": "@dev Utility library of inline functions on addresses\n * @author develop@teller.finance",
+        "fullyImplemented": true,
+        "id": 16687,
+        "linearizedBaseContracts": [
+          16687
+        ],
+        "name": "AddressLib",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 16568,
+            "name": "ADDRESS_EMPTY",
+            "nodeType": "VariableDeclaration",
+            "scope": 16687,
+            "src": "152:52:104",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 16564,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "152:7:104",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "arguments": [
+                {
+                  "argumentTypes": null,
+                  "hexValue": "307830",
+                  "id": 16566,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "number",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "200:3:104",
+                  "subdenomination": null,
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_rational_0_by_1",
+                    "typeString": "int_const 0"
+                  },
+                  "value": "0x0"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_rational_0_by_1",
+                    "typeString": "int_const 0"
+                  }
+                ],
+                "id": 16565,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "lValueRequested": false,
+                "nodeType": "ElementaryTypeNameExpression",
+                "src": "192:7:104",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_address_$",
+                  "typeString": "type(address)"
+                },
+                "typeName": "address"
+              },
+              "id": 16567,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "typeConversion",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "192:12:104",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 16579,
+              "nodeType": "Block",
+              "src": "414:45:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 16577,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 16575,
+                      "name": "self",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16570,
+                      "src": "431:4:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 16576,
+                      "name": "ADDRESS_EMPTY",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16568,
+                      "src": "439:13:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "431:21:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 16574,
+                  "id": 16578,
+                  "nodeType": "Return",
+                  "src": "424:28:104"
+                }
+              ]
+            },
+            "documentation": "@dev Checks if this address is all 0s\n@param self The address this function was called on\n@return boolean",
+            "id": 16580,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isEmpty",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16571,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16570,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16580,
+                  "src": "371:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16569,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "371:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "370:14:104"
+            },
+            "returnParameters": {
+              "id": 16574,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16573,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16580,
+                  "src": "408:4:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16572,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "408:4:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "407:6:104"
+            },
+            "scope": 16687,
+            "src": "354:105:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16593,
+              "nodeType": "Block",
+              "src": "758:37:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 16591,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 16589,
+                      "name": "self",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16582,
+                      "src": "775:4:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 16590,
+                      "name": "other",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16584,
+                      "src": "783:5:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "775:13:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 16588,
+                  "id": 16592,
+                  "nodeType": "Return",
+                  "src": "768:20:104"
+                }
+              ]
+            },
+            "documentation": "@dev Checks if this address is the same as another address\n@param self The address this function was called on\n@param other Address to check against itself\n@return boolean",
+            "id": 16594,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isEqualTo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16585,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16582,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16594,
+                  "src": "700:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16581,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "700:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16584,
+                  "name": "other",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16594,
+                  "src": "714:13:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16583,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "714:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "699:29:104"
+            },
+            "returnParameters": {
+              "id": 16588,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16587,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16594,
+                  "src": "752:4:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16586,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "752:4:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "751:6:104"
+            },
+            "scope": 16687,
+            "src": "681:114:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16607,
+              "nodeType": "Block",
+              "src": "1098:37:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 16605,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 16603,
+                      "name": "self",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16596,
+                      "src": "1115:4:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "!=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 16604,
+                      "name": "other",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16598,
+                      "src": "1123:5:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1115:13:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 16602,
+                  "id": 16606,
+                  "nodeType": "Return",
+                  "src": "1108:20:104"
+                }
+              ]
+            },
+            "documentation": "@dev Checks if this address is different to another address\n@param self The address this function was called on\n@param other Address to check against itself\n@return boolean",
+            "id": 16608,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isNotEqualTo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16599,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16596,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16608,
+                  "src": "1040:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16595,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1040:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16598,
+                  "name": "other",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16608,
+                  "src": "1054:13:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16597,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1054:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1039:29:104"
+            },
+            "returnParameters": {
+              "id": 16602,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16601,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16608,
+                  "src": "1092:4:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16600,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1092:4:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1091:6:104"
+            },
+            "scope": 16687,
+            "src": "1018:117:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16619,
+              "nodeType": "Block",
+              "src": "1351:45:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 16617,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 16615,
+                      "name": "self",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16610,
+                      "src": "1368:4:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "!=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 16616,
+                      "name": "ADDRESS_EMPTY",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16568,
+                      "src": "1376:13:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1368:21:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 16614,
+                  "id": 16618,
+                  "nodeType": "Return",
+                  "src": "1361:28:104"
+                }
+              ]
+            },
+            "documentation": "@dev Checks if this address is not all 0s\n@param self The address this function was called on\n@return boolean",
+            "id": 16620,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isNotEmpty",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16611,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16610,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16620,
+                  "src": "1308:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16609,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1308:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1307:14:104"
+            },
+            "returnParameters": {
+              "id": 16614,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16613,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16620,
+                  "src": "1345:4:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16612,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1345:4:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1344:6:104"
+            },
+            "scope": 16687,
+            "src": "1288:108:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16634,
+              "nodeType": "Block",
+              "src": "1659:51:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 16629,
+                            "name": "self",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16622,
+                            "src": "1688:4:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 16628,
+                          "name": "isNotEmpty",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16620,
+                          "src": "1677:10:104",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) pure returns (bool)"
+                          }
+                        },
+                        "id": 16630,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1677:16:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 16631,
+                        "name": "message",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16624,
+                        "src": "1695:7:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 16627,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        21470,
+                        21471
+                      ],
+                      "referencedDeclaration": 21471,
+                      "src": "1669:7:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 16632,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1669:34:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16633,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1669:34:104"
+                }
+              ]
+            },
+            "documentation": "@dev Throws an error if address is all 0s\n@param self The address this function was called on\n@param message Error message if address is all 0s",
+            "id": 16635,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requireNotEmpty",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16625,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16622,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16635,
+                  "src": "1608:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16621,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1608:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16624,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16635,
+                  "src": "1622:21:104",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16623,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1622:6:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1607:37:104"
+            },
+            "returnParameters": {
+              "id": 16626,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1659:0:104"
+            },
+            "scope": 16687,
+            "src": "1583:127:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16649,
+              "nodeType": "Block",
+              "src": "1978:48:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 16644,
+                            "name": "self",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16637,
+                            "src": "2004:4:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 16643,
+                          "name": "isEmpty",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16580,
+                          "src": "1996:7:104",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) pure returns (bool)"
+                          }
+                        },
+                        "id": 16645,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1996:13:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 16646,
+                        "name": "message",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16639,
+                        "src": "2011:7:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 16642,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        21470,
+                        21471
+                      ],
+                      "referencedDeclaration": 21471,
+                      "src": "1988:7:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 16647,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1988:31:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16648,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1988:31:104"
+                }
+              ]
+            },
+            "documentation": "@dev Throws an error if address is not all 0s\n@param self The address this function was called on\n@param message Error message if address is not all 0s",
+            "id": 16650,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requireEmpty",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16640,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16637,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16650,
+                  "src": "1927:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16636,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1927:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16639,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16650,
+                  "src": "1941:21:104",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16638,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1941:6:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1926:37:104"
+            },
+            "returnParameters": {
+              "id": 16641,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1978:0:104"
+            },
+            "scope": 16687,
+            "src": "1905:121:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16667,
+              "nodeType": "Block",
+              "src": "2423:57:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 16661,
+                            "name": "self",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16652,
+                            "src": "2451:4:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 16662,
+                            "name": "other",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16654,
+                            "src": "2457:5:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 16660,
+                          "name": "isEqualTo",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16594,
+                          "src": "2441:9:104",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_address_$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address,address) pure returns (bool)"
+                          }
+                        },
+                        "id": 16663,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2441:22:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 16664,
+                        "name": "message",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16656,
+                        "src": "2465:7:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 16659,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        21470,
+                        21471
+                      ],
+                      "referencedDeclaration": 21471,
+                      "src": "2433:7:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 16665,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2433:40:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16666,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2433:40:104"
+                }
+              ]
+            },
+            "documentation": "@dev Throws an error if address is not the same as another address\n@param self The address this function was called on\n@param other The address to check against itself\n@param message Error message if addresses are not the same",
+            "id": 16668,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requireEqualTo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16657,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16652,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16668,
+                  "src": "2336:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16651,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2336:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16654,
+                  "name": "other",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16668,
+                  "src": "2358:13:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16653,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2358:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16656,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16668,
+                  "src": "2381:21:104",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16655,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2381:6:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2326:82:104"
+            },
+            "returnParameters": {
+              "id": 16658,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2423:0:104"
+            },
+            "scope": 16687,
+            "src": "2303:177:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16685,
+              "nodeType": "Block",
+              "src": "2872:60:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 16679,
+                            "name": "self",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16670,
+                            "src": "2903:4:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 16680,
+                            "name": "other",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16672,
+                            "src": "2909:5:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 16678,
+                          "name": "isNotEqualTo",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16608,
+                          "src": "2890:12:104",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_address_$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address,address) pure returns (bool)"
+                          }
+                        },
+                        "id": 16681,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2890:25:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 16682,
+                        "name": "message",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16674,
+                        "src": "2917:7:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 16677,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        21470,
+                        21471
+                      ],
+                      "referencedDeclaration": 21471,
+                      "src": "2882:7:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 16683,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2882:43:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16684,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2882:43:104"
+                }
+              ]
+            },
+            "documentation": "@dev Throws an error if address is the same as another address\n@param self The address this function was called on\n@param other The address to check against itself\n@param message Error message if addresses are the same",
+            "id": 16686,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requireNotEqualTo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16675,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16670,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16686,
+                  "src": "2785:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16669,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2785:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16672,
+                  "name": "other",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16686,
+                  "src": "2807:13:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16671,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2807:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16674,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16686,
+                  "src": "2830:21:104",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16673,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2830:6:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2775:82:104"
+            },
+            "returnParameters": {
+              "id": 16676,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2872:0:104"
+            },
+            "scope": 16687,
+            "src": "2749:183:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 16688,
+        "src": "127:2807:104"
+      }
+    ],
+    "src": "0:2935:104"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AddressLib.sol",
+    "exportedSymbols": {
+      "AddressLib": [
+        16687
+      ]
+    },
+    "id": 16688,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 16563,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:104"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "documentation": "@dev Utility library of inline functions on addresses\n * @author develop@teller.finance",
+        "fullyImplemented": true,
+        "id": 16687,
+        "linearizedBaseContracts": [
+          16687
+        ],
+        "name": "AddressLib",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 16568,
+            "name": "ADDRESS_EMPTY",
+            "nodeType": "VariableDeclaration",
+            "scope": 16687,
+            "src": "152:52:104",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 16564,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "152:7:104",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "arguments": [
+                {
+                  "argumentTypes": null,
+                  "hexValue": "307830",
+                  "id": 16566,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "number",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "200:3:104",
+                  "subdenomination": null,
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_rational_0_by_1",
+                    "typeString": "int_const 0"
+                  },
+                  "value": "0x0"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_rational_0_by_1",
+                    "typeString": "int_const 0"
+                  }
+                ],
+                "id": 16565,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "lValueRequested": false,
+                "nodeType": "ElementaryTypeNameExpression",
+                "src": "192:7:104",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_address_$",
+                  "typeString": "type(address)"
+                },
+                "typeName": "address"
+              },
+              "id": 16567,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "typeConversion",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "192:12:104",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 16579,
+              "nodeType": "Block",
+              "src": "414:45:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 16577,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 16575,
+                      "name": "self",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16570,
+                      "src": "431:4:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 16576,
+                      "name": "ADDRESS_EMPTY",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16568,
+                      "src": "439:13:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "431:21:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 16574,
+                  "id": 16578,
+                  "nodeType": "Return",
+                  "src": "424:28:104"
+                }
+              ]
+            },
+            "documentation": "@dev Checks if this address is all 0s\n@param self The address this function was called on\n@return boolean",
+            "id": 16580,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isEmpty",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16571,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16570,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16580,
+                  "src": "371:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16569,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "371:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "370:14:104"
+            },
+            "returnParameters": {
+              "id": 16574,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16573,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16580,
+                  "src": "408:4:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16572,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "408:4:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "407:6:104"
+            },
+            "scope": 16687,
+            "src": "354:105:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16593,
+              "nodeType": "Block",
+              "src": "758:37:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 16591,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 16589,
+                      "name": "self",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16582,
+                      "src": "775:4:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 16590,
+                      "name": "other",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16584,
+                      "src": "783:5:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "775:13:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 16588,
+                  "id": 16592,
+                  "nodeType": "Return",
+                  "src": "768:20:104"
+                }
+              ]
+            },
+            "documentation": "@dev Checks if this address is the same as another address\n@param self The address this function was called on\n@param other Address to check against itself\n@return boolean",
+            "id": 16594,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isEqualTo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16585,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16582,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16594,
+                  "src": "700:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16581,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "700:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16584,
+                  "name": "other",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16594,
+                  "src": "714:13:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16583,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "714:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "699:29:104"
+            },
+            "returnParameters": {
+              "id": 16588,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16587,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16594,
+                  "src": "752:4:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16586,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "752:4:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "751:6:104"
+            },
+            "scope": 16687,
+            "src": "681:114:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16607,
+              "nodeType": "Block",
+              "src": "1098:37:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 16605,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 16603,
+                      "name": "self",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16596,
+                      "src": "1115:4:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "!=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 16604,
+                      "name": "other",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16598,
+                      "src": "1123:5:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1115:13:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 16602,
+                  "id": 16606,
+                  "nodeType": "Return",
+                  "src": "1108:20:104"
+                }
+              ]
+            },
+            "documentation": "@dev Checks if this address is different to another address\n@param self The address this function was called on\n@param other Address to check against itself\n@return boolean",
+            "id": 16608,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isNotEqualTo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16599,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16596,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16608,
+                  "src": "1040:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16595,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1040:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16598,
+                  "name": "other",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16608,
+                  "src": "1054:13:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16597,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1054:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1039:29:104"
+            },
+            "returnParameters": {
+              "id": 16602,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16601,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16608,
+                  "src": "1092:4:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16600,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1092:4:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1091:6:104"
+            },
+            "scope": 16687,
+            "src": "1018:117:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16619,
+              "nodeType": "Block",
+              "src": "1351:45:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 16617,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 16615,
+                      "name": "self",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16610,
+                      "src": "1368:4:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "!=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 16616,
+                      "name": "ADDRESS_EMPTY",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16568,
+                      "src": "1376:13:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1368:21:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 16614,
+                  "id": 16618,
+                  "nodeType": "Return",
+                  "src": "1361:28:104"
+                }
+              ]
+            },
+            "documentation": "@dev Checks if this address is not all 0s\n@param self The address this function was called on\n@return boolean",
+            "id": 16620,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isNotEmpty",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16611,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16610,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16620,
+                  "src": "1308:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16609,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1308:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1307:14:104"
+            },
+            "returnParameters": {
+              "id": 16614,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16613,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16620,
+                  "src": "1345:4:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16612,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1345:4:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1344:6:104"
+            },
+            "scope": 16687,
+            "src": "1288:108:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16634,
+              "nodeType": "Block",
+              "src": "1659:51:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 16629,
+                            "name": "self",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16622,
+                            "src": "1688:4:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 16628,
+                          "name": "isNotEmpty",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16620,
+                          "src": "1677:10:104",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) pure returns (bool)"
+                          }
+                        },
+                        "id": 16630,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1677:16:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 16631,
+                        "name": "message",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16624,
+                        "src": "1695:7:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 16627,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        21470,
+                        21471
+                      ],
+                      "referencedDeclaration": 21471,
+                      "src": "1669:7:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 16632,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1669:34:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16633,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1669:34:104"
+                }
+              ]
+            },
+            "documentation": "@dev Throws an error if address is all 0s\n@param self The address this function was called on\n@param message Error message if address is all 0s",
+            "id": 16635,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requireNotEmpty",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16625,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16622,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16635,
+                  "src": "1608:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16621,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1608:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16624,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16635,
+                  "src": "1622:21:104",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16623,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1622:6:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1607:37:104"
+            },
+            "returnParameters": {
+              "id": 16626,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1659:0:104"
+            },
+            "scope": 16687,
+            "src": "1583:127:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16649,
+              "nodeType": "Block",
+              "src": "1978:48:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 16644,
+                            "name": "self",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16637,
+                            "src": "2004:4:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 16643,
+                          "name": "isEmpty",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16580,
+                          "src": "1996:7:104",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) pure returns (bool)"
+                          }
+                        },
+                        "id": 16645,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1996:13:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 16646,
+                        "name": "message",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16639,
+                        "src": "2011:7:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 16642,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        21470,
+                        21471
+                      ],
+                      "referencedDeclaration": 21471,
+                      "src": "1988:7:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 16647,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1988:31:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16648,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1988:31:104"
+                }
+              ]
+            },
+            "documentation": "@dev Throws an error if address is not all 0s\n@param self The address this function was called on\n@param message Error message if address is not all 0s",
+            "id": 16650,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requireEmpty",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16640,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16637,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16650,
+                  "src": "1927:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16636,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1927:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16639,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16650,
+                  "src": "1941:21:104",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16638,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1941:6:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1926:37:104"
+            },
+            "returnParameters": {
+              "id": 16641,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1978:0:104"
+            },
+            "scope": 16687,
+            "src": "1905:121:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16667,
+              "nodeType": "Block",
+              "src": "2423:57:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 16661,
+                            "name": "self",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16652,
+                            "src": "2451:4:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 16662,
+                            "name": "other",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16654,
+                            "src": "2457:5:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 16660,
+                          "name": "isEqualTo",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16594,
+                          "src": "2441:9:104",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_address_$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address,address) pure returns (bool)"
+                          }
+                        },
+                        "id": 16663,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2441:22:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 16664,
+                        "name": "message",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16656,
+                        "src": "2465:7:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 16659,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        21470,
+                        21471
+                      ],
+                      "referencedDeclaration": 21471,
+                      "src": "2433:7:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 16665,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2433:40:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16666,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2433:40:104"
+                }
+              ]
+            },
+            "documentation": "@dev Throws an error if address is not the same as another address\n@param self The address this function was called on\n@param other The address to check against itself\n@param message Error message if addresses are not the same",
+            "id": 16668,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requireEqualTo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16657,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16652,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16668,
+                  "src": "2336:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16651,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2336:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16654,
+                  "name": "other",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16668,
+                  "src": "2358:13:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16653,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2358:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16656,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16668,
+                  "src": "2381:21:104",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16655,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2381:6:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2326:82:104"
+            },
+            "returnParameters": {
+              "id": 16658,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2423:0:104"
+            },
+            "scope": 16687,
+            "src": "2303:177:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16685,
+              "nodeType": "Block",
+              "src": "2872:60:104",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 16679,
+                            "name": "self",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16670,
+                            "src": "2903:4:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 16680,
+                            "name": "other",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16672,
+                            "src": "2909:5:104",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 16678,
+                          "name": "isNotEqualTo",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16608,
+                          "src": "2890:12:104",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_address_$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address,address) pure returns (bool)"
+                          }
+                        },
+                        "id": 16681,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2890:25:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 16682,
+                        "name": "message",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16674,
+                        "src": "2917:7:104",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 16677,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        21470,
+                        21471
+                      ],
+                      "referencedDeclaration": 21471,
+                      "src": "2882:7:104",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 16683,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2882:43:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16684,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2882:43:104"
+                }
+              ]
+            },
+            "documentation": "@dev Throws an error if address is the same as another address\n@param self The address this function was called on\n@param other The address to check against itself\n@param message Error message if addresses are the same",
+            "id": 16686,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requireNotEqualTo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16675,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16670,
+                  "name": "self",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16686,
+                  "src": "2785:12:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16669,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2785:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16672,
+                  "name": "other",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16686,
+                  "src": "2807:13:104",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16671,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2807:7:104",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16674,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16686,
+                  "src": "2830:21:104",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16673,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2830:6:104",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2775:82:104"
+            },
+            "returnParameters": {
+              "id": 16676,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2872:0:104"
+            },
+            "scope": 16687,
+            "src": "2749:183:104",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 16688,
+        "src": "127:2807:104"
+      }
+    ],
+    "src": "0:2935:104"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-09-06T02:15:12.639Z",
+  "devdoc": {
+    "author": "develop@teller.finance",
+    "details": "Utility library of inline functions on addresses",
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

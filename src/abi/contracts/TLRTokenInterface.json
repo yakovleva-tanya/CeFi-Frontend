@@ -45,13 +45,13 @@
         {
           "indexed": false,
           "internalType": "address",
-          "name": "beneficiary",
+          "name": "account",
           "type": "address"
         },
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "amount",
+          "name": "unvestedTokens",
           "type": "uint256"
         },
         {
@@ -289,25 +289,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newCap\",\"type\":\"uint256\"}],\"name\":\"NewCap\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"}],\"name\":\"NewVesting\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"}],\"name\":\"RevokeVesting\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"Snapshot\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"VestingClaimed\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"snapshotId\",\"type\":\"uint256\"}],\"name\":\"balanceOfAt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"symbol\",\"type\":\"string\"},{\"internalType\":\"uint8\",\"name\":\"decimals\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"cap\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxVestingPerWallet\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"atm\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"mint\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"cliff\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vestingTime\",\"type\":\"uint256\"}],\"name\":\"mintVesting\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"vestingId\",\"type\":\"uint256\"}],\"name\":\"revokeVesting\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newcap\",\"type\":\"uint256\"}],\"name\":\"setCap\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"snapshotId\",\"type\":\"uint256\"}],\"name\":\"totalSupplyAt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"withdrawVested\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"balanceOfAt(address,uint256)\":{\"params\":{\"account\":\"The account which is being queried\",\"snapshotId\":\"The id of the snapshot being queried\"}},\"initialize(string,string,uint8,uint256,uint256,address,address)\":{\"params\":{\"atm\":\"The ATMGovernance address for this token\",\"cap\":\"The maximum number of tokens available\",\"decimals\":\"The amount of decimals for token\",\"maxVestingPerWallet\":\"The maximum number of times a wallet can mint their vesting\",\"name\":\"The name of the token\",\"settingsAddress\":\"The ATMSettings address\",\"symbol\":\"The symbol of the token\"}},\"mint(address,uint256)\":{\"params\":{\"account\":\"The account to mint tokens for\",\"amount\":\"The amount of tokens to mint\"},\"return\":\"true if successful\"},\"mintVesting(address,uint256,uint256,uint256)\":{\"params\":{\"account\":\"The account which tokens will be assigned to\",\"amount\":\"The amount of tokens to be assigned\",\"cliff\":\"The length of time (in seconds) after which the tokens will start vesting\",\"vestingTime\":\"The length of the vesting period (in seconds)\"}},\"revokeVesting(address,uint256)\":{\"params\":{\"account\":\"The account for which vesting is to be revoked\",\"vestingId\":\"The Id of the vesting being revoked     \"}},\"setCap(uint256)\":{\"params\":{\"newcap\":\"The new capped amount of tokens\"}},\"totalSupplyAt(uint256)\":{\"params\":{\"snapshotId\":\"The id of the snapshot being queried\"}}}},\"userdoc\":{\"methods\":{\"balanceOfAt(address,uint256)\":{\"notice\":\"Returns the balance of an account at the time a snapshot was created\"},\"initialize(string,string,uint8,uint256,uint256,address,address)\":{\"notice\":\"It initializes this token instance.\"},\"mint(address,uint256)\":{\"notice\":\"Increase account supply of specified token amount\"},\"mintVesting(address,uint256,uint256,uint256)\":{\"notice\":\"Creates `amount` tokens and assigns them to `account`, increasing the total supply.     * Includes a vesting period before address is allowed to use tokens     * Emits a {Transfer} event with `from` set to the zero address.     * Requirements     * - `to` cannot be the zero address.\"},\"revokeVesting(address,uint256)\":{\"notice\":\"Revokes the amount vested to an account\"},\"setCap(uint256)\":{\"notice\":\"Sets a new cap on the token's total supply.\"},\"totalSupplyAt(uint256)\":{\"notice\":\"Returns the total supply at the time a snapshot was created\"},\"withdrawVested()\":{\"notice\":\"Withdrawl of tokens upon completion of vesting period     \"}},\"notice\":\"This interface defines the available functions and events for the TLR Token\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenInterface.sol\":\"TLRTokenInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenInterface.sol\":{\"keccak256\":\"0x7fa099877fc475b1f160421522aeb512cdae9816847996be6fb918c9df9eb080\",\"urls\":[\"bzz-raw://9ebbebe489599f062995587b1f18c109fcb7c5f83c93ce9acc7125cb46697b79\",\"dweb:/ipfs/QmZBcNfF3e2fYeMWg4Y1Uscby8xxZtwNebEBfjw5qpyiSY\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newCap\",\"type\":\"uint256\"}],\"name\":\"NewCap\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"}],\"name\":\"NewVesting\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"unvestedTokens\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"}],\"name\":\"RevokeVesting\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"Snapshot\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"VestingClaimed\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"snapshotId\",\"type\":\"uint256\"}],\"name\":\"balanceOfAt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"symbol\",\"type\":\"string\"},{\"internalType\":\"uint8\",\"name\":\"decimals\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"cap\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxVestingPerWallet\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"atm\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"mint\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"cliff\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vestingTime\",\"type\":\"uint256\"}],\"name\":\"mintVesting\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"vestingId\",\"type\":\"uint256\"}],\"name\":\"revokeVesting\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newcap\",\"type\":\"uint256\"}],\"name\":\"setCap\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"snapshotId\",\"type\":\"uint256\"}],\"name\":\"totalSupplyAt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"withdrawVested\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"balanceOfAt(address,uint256)\":{\"params\":{\"account\":\"The account which is being queried\",\"snapshotId\":\"The id of the snapshot being queried\"}},\"initialize(string,string,uint8,uint256,uint256,address,address)\":{\"params\":{\"atm\":\"The ATMGovernance address for this token\",\"cap\":\"The maximum number of tokens available\",\"decimals\":\"The amount of decimals for token\",\"maxVestingPerWallet\":\"The maximum number of times a wallet can mint their vesting\",\"name\":\"The name of the token\",\"settingsAddress\":\"The ATMSettings address\",\"symbol\":\"The symbol of the token\"}},\"mint(address,uint256)\":{\"params\":{\"account\":\"The account to mint tokens for\",\"amount\":\"The amount of tokens to mint\"},\"return\":\"true if successful\"},\"mintVesting(address,uint256,uint256,uint256)\":{\"params\":{\"account\":\"The account which tokens will be assigned to\",\"amount\":\"The amount of tokens to be assigned\",\"cliff\":\"The length of time (in seconds) after which the tokens will start vesting\",\"vestingTime\":\"The length of the vesting period (in seconds)\"}},\"revokeVesting(address,uint256)\":{\"params\":{\"account\":\"The account for which vesting is to be revoked\",\"vestingId\":\"The Id of the vesting being revoked     \"}},\"setCap(uint256)\":{\"params\":{\"newcap\":\"The new capped amount of tokens\"}},\"totalSupplyAt(uint256)\":{\"params\":{\"snapshotId\":\"The id of the snapshot being queried\"}}}},\"userdoc\":{\"methods\":{\"balanceOfAt(address,uint256)\":{\"notice\":\"Returns the balance of an account at the time a snapshot was created\"},\"initialize(string,string,uint8,uint256,uint256,address,address)\":{\"notice\":\"It initializes this token instance.\"},\"mint(address,uint256)\":{\"notice\":\"Increase account supply of specified token amount\"},\"mintVesting(address,uint256,uint256,uint256)\":{\"notice\":\"Creates `amount` tokens and assigns them to `account`, increasing the total supply.     * Includes a vesting period before address is allowed to use tokens     * Emits a {Transfer} event with `from` set to the zero address.     * Requirements     * - `to` cannot be the zero address.\"},\"revokeVesting(address,uint256)\":{\"notice\":\"Revokes the amount vested to an account\"},\"setCap(uint256)\":{\"notice\":\"Sets a new cap on the token's total supply.\"},\"totalSupplyAt(uint256)\":{\"notice\":\"Returns the total supply at the time a snapshot was created\"},\"withdrawVested()\":{\"notice\":\"Withdrawl of tokens upon completion of vesting period     \"}},\"notice\":\"This interface defines the available functions and events for the TLR Token\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenInterface.sol\":\"TLRTokenInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenInterface.sol\":{\"keccak256\":\"0x87c9bc5db3bcd2c1cd06b6ace1bb95edee8eaec54f303d409157691042b993c3\",\"urls\":[\"bzz-raw://cd17c8a880faf0fb1a51afa81b8034a0b7f449c691f71217ba9b6b55178e4615\",\"dweb:/ipfs/QmY5KmiSg7CpMGDz9jsZS9yUsRGe82JbsYa1NfmFYP8AM9\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.17;\n\n/*****************************************************************************************************/\n/**                                             WARNING                                             **/\n/**                                  THIS CONTRACT IS UPGRADEABLE!                                  **/\n/**  ---------------------------------------------------------------------------------------------  **/\n/**  Do NOT change the order of or PREPEND any storage variables to this or new versions of this    **/\n/**  contract as this will cause the the storage slots to be overwritten on the proxy contract!!    **/\n/**                                                                                                 **/\n/**  Visit https://docs.openzeppelin.com/upgrades/2.6/proxies#upgrading-via-the-proxy-pattern for   **/\n/**  more information.                                                                              **/\n/*****************************************************************************************************/\n/**\n    @notice This interface defines the available functions and events for the TLR Token\n\n    @author develop@teller.finance\n */\ninterface TLRTokenInterface {\n    /* Events */\n\n    /**\n        @notice Emitted when a new supply cap has been set\n        @param newCap The new supply cap \n      */\n    event NewCap(uint256 newCap);\n\n    /**\n        @notice Emitted when an address has been granted a vesting schedule\n        @param beneficiary The account address being granted the tokens\n        @param amount The amount of tokens being granted\n        @param deadline The length of time before when the tokens can be claimed\n     */\n    event NewVesting(address beneficiary, uint256 amount, uint256 deadline);\n\n    /**\n        @notice Emitted when a vested amount has been claimed\n        @param beneficiary The address claiming the vested amount\n        @param amount The amount that was claimed\n     */\n    event VestingClaimed(address beneficiary, uint256 amount);\n\n    /**\n        @notice Emitted when an account has had its vesting revoked\n        @param beneficiary The account which had its vesting revoked\n        @param amount The amount being revoked\n        @param deadline The previously set vesting deadline \n     */\n    event RevokeVesting(address beneficiary, uint256 amount, uint256 deadline);\n\n    /**\n    @notice Emitted when a snapshot is created\n    @param id The id of the created snapshot\n    */\n    event Snapshot(uint256 id);\n\n    /* External Functions */\n\n    /**\n     * @notice Sets a new cap on the token's total supply.\n     * @param newcap The new capped amount of tokens\n     */\n    function setCap(uint256 newcap) external;\n\n    /**\n     * @notice Increase account supply of specified token amount\n     * @param account The account to mint tokens for\n     * @param amount The amount of tokens to mint\n     * @return true if successful\n     */\n    function mint(address account, uint256 amount) external returns (bool);\n\n    /** @notice Creates `amount` tokens and assigns them to `account`, increasing\n     * the total supply.\n     *\n     * Includes a vesting period before address is allowed to use tokens\n     *\n     * Emits a {Transfer} event with `from` set to the zero address.\n     *\n     * Requirements\n     *\n     * - `to` cannot be the zero address.\n     *\n     * @param account The account which tokens will be assigned to\n     * @param amount The amount of tokens to be assigned\n     * @param cliff The length of time (in seconds) after which the tokens will start vesting\n     * @param vestingTime The length of the vesting period (in seconds)\n     */\n    function mintVesting(\n        address account,\n        uint256 amount,\n        uint256 cliff,\n        uint256 vestingTime\n    ) external;\n\n    /**\n     * @notice Revokes the amount vested to an account\n     * @param account The account for which vesting is to be revoked\n     * @param vestingId The Id of the vesting being revoked\n     *\n     */\n    function revokeVesting(address account, uint256 vestingId) external;\n\n    /**\n     *  @notice Withdrawl of tokens upon completion of vesting period\n     *\n     */\n    function withdrawVested() external;\n\n    /**\n        @notice Returns the balance of an account at the time a snapshot was created\n        @param account The account which is being queried\n        @param snapshotId The id of the snapshot being queried\n     */\n    function balanceOfAt(address account, uint256 snapshotId)\n        external\n        view\n        returns (uint256);\n\n    /**\n        @notice Returns the total supply at the time a snapshot was created\n        @param snapshotId The id of the snapshot being queried\n     */\n    function totalSupplyAt(uint256 snapshotId) external view returns (uint256);\n\n    /**\n        @notice It initializes this token instance.\n        @param name The name of the token\n        @param symbol The symbol of the token\n        @param decimals The amount of decimals for token\n        @param cap The maximum number of tokens available\n        @param maxVestingPerWallet The maximum number of times a wallet can mint their vesting\n        @param settingsAddress The ATMSettings address\n        @param atm The ATMGovernance address for this token\n     */\n    function initialize(\n        string calldata name,\n        string calldata symbol,\n        uint8 decimals,\n        uint256 cap,\n        uint256 maxVestingPerWallet,\n        address settingsAddress,\n        address atm\n    ) external;\n}\n",
+  "source": "pragma solidity 0.5.17;\n\n/*****************************************************************************************************/\n/**                                             WARNING                                             **/\n/**                                  THIS CONTRACT IS UPGRADEABLE!                                  **/\n/**  ---------------------------------------------------------------------------------------------  **/\n/**  Do NOT change the order of or PREPEND any storage variables to this or new versions of this    **/\n/**  contract as this will cause the the storage slots to be overwritten on the proxy contract!!    **/\n/**                                                                                                 **/\n/**  Visit https://docs.openzeppelin.com/upgrades/2.6/proxies#upgrading-via-the-proxy-pattern for   **/\n/**  more information.                                                                              **/\n/*****************************************************************************************************/\n/**\n    @notice This interface defines the available functions and events for the TLR Token\n\n    @author develop@teller.finance\n */\ninterface TLRTokenInterface {\n    /* Events */\n\n    /**\n        @notice Emitted when a new supply cap has been set\n        @param newCap The new supply cap \n      */\n    event NewCap(uint256 newCap);\n\n    /**\n        @notice Emitted when an address has been granted a vesting schedule\n        @param beneficiary The account address being granted the tokens\n        @param amount The amount of tokens being granted\n        @param deadline The length of time before when the tokens can be claimed\n     */\n    event NewVesting(address beneficiary, uint256 amount, uint256 deadline);\n\n    /**\n        @notice Emitted when a vested amount has been claimed\n        @param beneficiary The address claiming the vested amount\n        @param amount The amount that was claimed\n     */\n    event VestingClaimed(address beneficiary, uint256 amount);\n\n    /**\n        @notice Emitted when an account has had its vesting revoked\n        @param account The account which had its vesting revoked\n        @param unvestedTokens The amount of tokens being revoked\n        @param deadline The previously set vesting deadline \n     */\n    event RevokeVesting(address account, uint256 unvestedTokens, uint256 deadline);\n\n    /**\n    @notice Emitted when a snapshot is created\n    @param id The id of the created snapshot\n    */\n    event Snapshot(uint256 id);\n\n    /* External Functions */\n\n    /**\n     * @notice Sets a new cap on the token's total supply.\n     * @param newcap The new capped amount of tokens\n     */\n    function setCap(uint256 newcap) external;\n\n    /**\n     * @notice Increase account supply of specified token amount\n     * @param account The account to mint tokens for\n     * @param amount The amount of tokens to mint\n     * @return true if successful\n     */\n    function mint(address account, uint256 amount) external returns (bool);\n\n    /** @notice Creates `amount` tokens and assigns them to `account`, increasing\n     * the total supply.\n     *\n     * Includes a vesting period before address is allowed to use tokens\n     *\n     * Emits a {Transfer} event with `from` set to the zero address.\n     *\n     * Requirements\n     *\n     * - `to` cannot be the zero address.\n     *\n     * @param account The account which tokens will be assigned to\n     * @param amount The amount of tokens to be assigned\n     * @param cliff The length of time (in seconds) after which the tokens will start vesting\n     * @param vestingTime The length of the vesting period (in seconds)\n     */\n    function mintVesting(\n        address account,\n        uint256 amount,\n        uint256 cliff,\n        uint256 vestingTime\n    ) external;\n\n    /**\n     * @notice Revokes the amount vested to an account\n     * @param account The account for which vesting is to be revoked\n     * @param vestingId The Id of the vesting being revoked\n     *\n     */\n    function revokeVesting(address account, uint256 vestingId) external;\n\n    /**\n     *  @notice Withdrawl of tokens upon completion of vesting period\n     *\n     */\n    function withdrawVested() external;\n\n    /**\n        @notice Returns the balance of an account at the time a snapshot was created\n        @param account The account which is being queried\n        @param snapshotId The id of the snapshot being queried\n     */\n    function balanceOfAt(address account, uint256 snapshotId)\n        external\n        view\n        returns (uint256);\n\n    /**\n        @notice Returns the total supply at the time a snapshot was created\n        @param snapshotId The id of the snapshot being queried\n     */\n    function totalSupplyAt(uint256 snapshotId) external view returns (uint256);\n\n    /**\n        @notice It initializes this token instance.\n        @param name The name of the token\n        @param symbol The symbol of the token\n        @param decimals The amount of decimals for token\n        @param cap The maximum number of tokens available\n        @param maxVestingPerWallet The maximum number of times a wallet can mint their vesting\n        @param settingsAddress The ATMSettings address\n        @param atm The ATMGovernance address for this token\n     */\n    function initialize(\n        string calldata name,\n        string calldata symbol,\n        uint8 decimals,\n        uint256 cap,\n        uint256 maxVestingPerWallet,\n        address settingsAddress,\n        address atm\n    ) external;\n}\n",
   "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenInterface.sol",
   "ast": {
     "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenInterface.sol",
     "exportedSymbols": {
       "TLRTokenInterface": [
-        2104
+        2197
       ]
     },
-    "id": 2105,
+    "id": 2198,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2005,
+        "id": 2098,
         "literals": [
           "solidity",
           "0.5",
@@ -322,9 +322,9 @@
         "contractKind": "interface",
         "documentation": "@notice This interface defines the available functions and events for the TLR Token\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 2104,
+        "id": 2197,
         "linearizedBaseContracts": [
-          2104
+          2197
         ],
         "name": "TLRTokenInterface",
         "nodeType": "ContractDefinition",
@@ -332,20 +332,20 @@
           {
             "anonymous": false,
             "documentation": "@notice Emitted when a new supply cap has been set\n@param newCap The new supply cap ",
-            "id": 2009,
+            "id": 2102,
             "name": "NewCap",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2008,
+              "id": 2101,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2007,
+                  "id": 2100,
                   "indexed": false,
                   "name": "newCap",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2009,
+                  "scope": 2102,
                   "src": "1380:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -354,7 +354,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2006,
+                    "id": 2099,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1380:7:6",
@@ -374,20 +374,20 @@
           {
             "anonymous": false,
             "documentation": "@notice Emitted when an address has been granted a vesting schedule\n@param beneficiary The account address being granted the tokens\n@param amount The amount of tokens being granted\n@param deadline The length of time before when the tokens can be claimed",
-            "id": 2017,
+            "id": 2110,
             "name": "NewVesting",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2016,
+              "id": 2109,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2011,
+                  "id": 2104,
                   "indexed": false,
                   "name": "beneficiary",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2017,
+                  "scope": 2110,
                   "src": "1721:19:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -396,7 +396,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2010,
+                    "id": 2103,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1721:7:6",
@@ -411,11 +411,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2013,
+                  "id": 2106,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2017,
+                  "scope": 2110,
                   "src": "1742:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -424,7 +424,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2012,
+                    "id": 2105,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1742:7:6",
@@ -438,11 +438,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2015,
+                  "id": 2108,
                   "indexed": false,
                   "name": "deadline",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2017,
+                  "scope": 2110,
                   "src": "1758:16:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -451,7 +451,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2014,
+                    "id": 2107,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1758:7:6",
@@ -471,20 +471,20 @@
           {
             "anonymous": false,
             "documentation": "@notice Emitted when a vested amount has been claimed\n@param beneficiary The address claiming the vested amount\n@param amount The amount that was claimed",
-            "id": 2023,
+            "id": 2116,
             "name": "VestingClaimed",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2022,
+              "id": 2115,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2019,
+                  "id": 2112,
                   "indexed": false,
                   "name": "beneficiary",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2023,
+                  "scope": 2116,
                   "src": "1997:19:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -493,7 +493,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2018,
+                    "id": 2111,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1997:7:6",
@@ -508,11 +508,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2021,
+                  "id": 2114,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2023,
+                  "scope": 2116,
                   "src": "2018:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -521,7 +521,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2020,
+                    "id": 2113,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2018:7:6",
@@ -540,22 +540,22 @@
           },
           {
             "anonymous": false,
-            "documentation": "@notice Emitted when an account has had its vesting revoked\n@param beneficiary The account which had its vesting revoked\n@param amount The amount being revoked\n@param deadline The previously set vesting deadline ",
-            "id": 2031,
+            "documentation": "@notice Emitted when an account has had its vesting revoked\n@param account The account which had its vesting revoked\n@param unvestedTokens The amount of tokens being revoked\n@param deadline The previously set vesting deadline ",
+            "id": 2124,
             "name": "RevokeVesting",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2030,
+              "id": 2123,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2025,
+                  "id": 2118,
                   "indexed": false,
-                  "name": "beneficiary",
+                  "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2031,
-                  "src": "2321:19:6",
+                  "scope": 2124,
+                  "src": "2335:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -563,10 +563,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2024,
+                    "id": 2117,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2321:7:6",
+                    "src": "2335:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -578,12 +578,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2027,
+                  "id": 2120,
                   "indexed": false,
-                  "name": "amount",
+                  "name": "unvestedTokens",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2031,
-                  "src": "2342:14:6",
+                  "scope": 2124,
+                  "src": "2352:22:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -591,10 +591,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2026,
+                    "id": 2119,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2342:7:6",
+                    "src": "2352:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -605,12 +605,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2029,
+                  "id": 2122,
                   "indexed": false,
                   "name": "deadline",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2031,
-                  "src": "2358:16:6",
+                  "scope": 2124,
+                  "src": "2376:16:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -618,10 +618,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2028,
+                    "id": 2121,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2358:7:6",
+                    "src": "2376:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -631,28 +631,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2320:55:6"
+              "src": "2334:59:6"
             },
-            "src": "2301:75:6"
+            "src": "2315:79:6"
           },
           {
             "anonymous": false,
             "documentation": "@notice Emitted when a snapshot is created\n@param id The id of the created snapshot",
-            "id": 2035,
+            "id": 2128,
             "name": "Snapshot",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2034,
+              "id": 2127,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2033,
+                  "id": 2126,
                   "indexed": false,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2035,
-                  "src": "2504:10:6",
+                  "scope": 2128,
+                  "src": "2522:10:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -660,10 +660,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2032,
+                    "id": 2125,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2504:7:6",
+                    "src": "2522:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -673,30 +673,30 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2503:12:6"
+              "src": "2521:12:6"
             },
-            "src": "2489:27:6"
+            "src": "2507:27:6"
           },
           {
             "body": null,
             "documentation": "@notice Sets a new cap on the token's total supply.\n@param newcap The new capped amount of tokens",
-            "id": 2040,
+            "id": 2133,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setCap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2038,
+              "id": 2131,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2037,
+                  "id": 2130,
                   "name": "newcap",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2040,
-                  "src": "2696:14:6",
+                  "scope": 2133,
+                  "src": "2714:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -704,10 +704,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2036,
+                    "id": 2129,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2696:7:6",
+                    "src": "2714:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -717,16 +717,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2695:16:6"
+              "src": "2713:16:6"
             },
             "returnParameters": {
-              "id": 2039,
+              "id": 2132,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2720:0:6"
+              "src": "2738:0:6"
             },
-            "scope": 2104,
-            "src": "2680:41:6",
+            "scope": 2197,
+            "src": "2698:41:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -734,23 +734,23 @@
           {
             "body": null,
             "documentation": "@notice Increase account supply of specified token amount\n@param account The account to mint tokens for\n@param amount The amount of tokens to mint\n@return true if successful",
-            "id": 2049,
+            "id": 2142,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "mint",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2045,
+              "id": 2138,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2042,
+                  "id": 2135,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2049,
-                  "src": "2959:15:6",
+                  "scope": 2142,
+                  "src": "2977:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -758,10 +758,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2041,
+                    "id": 2134,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2959:7:6",
+                    "src": "2977:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -773,11 +773,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2044,
+                  "id": 2137,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2049,
-                  "src": "2976:14:6",
+                  "scope": 2142,
+                  "src": "2994:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -785,10 +785,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2043,
+                    "id": 2136,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2976:7:6",
+                    "src": "2994:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -798,19 +798,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2958:33:6"
+              "src": "2976:33:6"
             },
             "returnParameters": {
-              "id": 2048,
+              "id": 2141,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2047,
+                  "id": 2140,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2049,
-                  "src": "3010:4:6",
+                  "scope": 2142,
+                  "src": "3028:4:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -818,10 +818,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2046,
+                    "id": 2139,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3010:4:6",
+                    "src": "3028:4:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -831,10 +831,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3009:6:6"
+              "src": "3027:6:6"
             },
-            "scope": 2104,
-            "src": "2945:71:6",
+            "scope": 2197,
+            "src": "2963:71:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -842,23 +842,23 @@
           {
             "body": null,
             "documentation": "@notice Creates `amount` tokens and assigns them to `account`, increasing\nthe total supply.\n     * Includes a vesting period before address is allowed to use tokens\n     * Emits a {Transfer} event with `from` set to the zero address.\n     * Requirements\n     * - `to` cannot be the zero address.\n     * @param account The account which tokens will be assigned to\n@param amount The amount of tokens to be assigned\n@param cliff The length of time (in seconds) after which the tokens will start vesting\n@param vestingTime The length of the vesting period (in seconds)",
-            "id": 2060,
+            "id": 2153,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "mintVesting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2058,
+              "id": 2151,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2051,
+                  "id": 2144,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2060,
-                  "src": "3696:15:6",
+                  "scope": 2153,
+                  "src": "3714:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -866,10 +866,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2050,
+                    "id": 2143,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3696:7:6",
+                    "src": "3714:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -881,11 +881,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2053,
+                  "id": 2146,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2060,
-                  "src": "3721:14:6",
+                  "scope": 2153,
+                  "src": "3739:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -893,10 +893,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2052,
+                    "id": 2145,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3721:7:6",
+                    "src": "3739:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -907,11 +907,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2055,
+                  "id": 2148,
                   "name": "cliff",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2060,
-                  "src": "3745:13:6",
+                  "scope": 2153,
+                  "src": "3763:13:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -919,10 +919,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2054,
+                    "id": 2147,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3745:7:6",
+                    "src": "3763:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -933,11 +933,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2057,
+                  "id": 2150,
                   "name": "vestingTime",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2060,
-                  "src": "3768:19:6",
+                  "scope": 2153,
+                  "src": "3786:19:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -945,10 +945,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2056,
+                    "id": 2149,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3768:7:6",
+                    "src": "3786:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -958,16 +958,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3686:107:6"
+              "src": "3704:107:6"
             },
             "returnParameters": {
-              "id": 2059,
+              "id": 2152,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3802:0:6"
+              "src": "3820:0:6"
             },
-            "scope": 2104,
-            "src": "3666:137:6",
+            "scope": 2197,
+            "src": "3684:137:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -975,23 +975,23 @@
           {
             "body": null,
             "documentation": "@notice Revokes the amount vested to an account\n@param account The account for which vesting is to be revoked\n@param vestingId The Id of the vesting being revoked\n     ",
-            "id": 2067,
+            "id": 2160,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "revokeVesting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2065,
+              "id": 2158,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2062,
+                  "id": 2155,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2067,
-                  "src": "4039:15:6",
+                  "scope": 2160,
+                  "src": "4057:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -999,10 +999,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2061,
+                    "id": 2154,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4039:7:6",
+                    "src": "4057:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1014,11 +1014,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2064,
+                  "id": 2157,
                   "name": "vestingId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2067,
-                  "src": "4056:17:6",
+                  "scope": 2160,
+                  "src": "4074:17:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1026,10 +1026,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2063,
+                    "id": 2156,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4056:7:6",
+                    "src": "4074:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1039,16 +1039,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4038:36:6"
+              "src": "4056:36:6"
             },
             "returnParameters": {
-              "id": 2066,
+              "id": 2159,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4083:0:6"
+              "src": "4101:0:6"
             },
-            "scope": 2104,
-            "src": "4016:68:6",
+            "scope": 2197,
+            "src": "4034:68:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1056,26 +1056,26 @@
           {
             "body": null,
             "documentation": " @notice Withdrawl of tokens upon completion of vesting period\n     ",
-            "id": 2070,
+            "id": 2163,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdrawVested",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2068,
+              "id": 2161,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4206:2:6"
+              "src": "4224:2:6"
             },
             "returnParameters": {
-              "id": 2069,
+              "id": 2162,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4217:0:6"
+              "src": "4235:0:6"
             },
-            "scope": 2104,
-            "src": "4183:35:6",
+            "scope": 2197,
+            "src": "4201:35:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1083,23 +1083,23 @@
           {
             "body": null,
             "documentation": "@notice Returns the balance of an account at the time a snapshot was created\n@param account The account which is being queried\n@param snapshotId The id of the snapshot being queried",
-            "id": 2079,
+            "id": 2172,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "balanceOfAt",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2075,
+              "id": 2168,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2072,
+                  "id": 2165,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2079,
-                  "src": "4467:15:6",
+                  "scope": 2172,
+                  "src": "4485:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1107,10 +1107,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2071,
+                    "id": 2164,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4467:7:6",
+                    "src": "4485:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1122,11 +1122,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2074,
+                  "id": 2167,
                   "name": "snapshotId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2079,
-                  "src": "4484:18:6",
+                  "scope": 2172,
+                  "src": "4502:18:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1134,10 +1134,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2073,
+                    "id": 2166,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4484:7:6",
+                    "src": "4502:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1147,19 +1147,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4466:37:6"
+              "src": "4484:37:6"
             },
             "returnParameters": {
-              "id": 2078,
+              "id": 2171,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2077,
+                  "id": 2170,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2079,
-                  "src": "4551:7:6",
+                  "scope": 2172,
+                  "src": "4569:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1167,10 +1167,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2076,
+                    "id": 2169,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4551:7:6",
+                    "src": "4569:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1180,10 +1180,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4550:9:6"
+              "src": "4568:9:6"
             },
-            "scope": 2104,
-            "src": "4446:114:6",
+            "scope": 2197,
+            "src": "4464:114:6",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1191,23 +1191,23 @@
           {
             "body": null,
             "documentation": "@notice Returns the total supply at the time a snapshot was created\n@param snapshotId The id of the snapshot being queried",
-            "id": 2086,
+            "id": 2179,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "totalSupplyAt",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2082,
+              "id": 2175,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2081,
+                  "id": 2174,
                   "name": "snapshotId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2086,
-                  "src": "4744:18:6",
+                  "scope": 2179,
+                  "src": "4762:18:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1215,10 +1215,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2080,
+                    "id": 2173,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4744:7:6",
+                    "src": "4762:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1228,19 +1228,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4743:20:6"
+              "src": "4761:20:6"
             },
             "returnParameters": {
-              "id": 2085,
+              "id": 2178,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2084,
+                  "id": 2177,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2086,
-                  "src": "4787:7:6",
+                  "scope": 2179,
+                  "src": "4805:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1248,10 +1248,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2083,
+                    "id": 2176,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4787:7:6",
+                    "src": "4805:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1261,10 +1261,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4786:9:6"
+              "src": "4804:9:6"
             },
-            "scope": 2104,
-            "src": "4721:75:6",
+            "scope": 2197,
+            "src": "4739:75:6",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1272,23 +1272,23 @@
           {
             "body": null,
             "documentation": "@notice It initializes this token instance.\n@param name The name of the token\n@param symbol The symbol of the token\n@param decimals The amount of decimals for token\n@param cap The maximum number of tokens available\n@param maxVestingPerWallet The maximum number of times a wallet can mint their vesting\n@param settingsAddress The ATMSettings address\n@param atm The ATMGovernance address for this token",
-            "id": 2103,
+            "id": 2196,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2101,
+              "id": 2194,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2088,
+                  "id": 2181,
                   "name": "name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5312:20:6",
+                  "scope": 2196,
+                  "src": "5330:20:6",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -1296,10 +1296,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2087,
+                    "id": 2180,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5312:6:6",
+                    "src": "5330:6:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -1310,11 +1310,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2090,
+                  "id": 2183,
                   "name": "symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5342:22:6",
+                  "scope": 2196,
+                  "src": "5360:22:6",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -1322,10 +1322,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2089,
+                    "id": 2182,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5342:6:6",
+                    "src": "5360:6:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -1336,11 +1336,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2092,
+                  "id": 2185,
                   "name": "decimals",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5374:14:6",
+                  "scope": 2196,
+                  "src": "5392:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1348,10 +1348,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 2091,
+                    "id": 2184,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5374:5:6",
+                    "src": "5392:5:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -1362,11 +1362,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2094,
+                  "id": 2187,
                   "name": "cap",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5398:11:6",
+                  "scope": 2196,
+                  "src": "5416:11:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1374,10 +1374,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2093,
+                    "id": 2186,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5398:7:6",
+                    "src": "5416:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1388,11 +1388,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2096,
+                  "id": 2189,
                   "name": "maxVestingPerWallet",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5419:27:6",
+                  "scope": 2196,
+                  "src": "5437:27:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1400,10 +1400,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2095,
+                    "id": 2188,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5419:7:6",
+                    "src": "5437:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1414,11 +1414,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2098,
+                  "id": 2191,
                   "name": "settingsAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5456:23:6",
+                  "scope": 2196,
+                  "src": "5474:23:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1426,10 +1426,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2097,
+                    "id": 2190,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5456:7:6",
+                    "src": "5474:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1441,11 +1441,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2100,
+                  "id": 2193,
                   "name": "atm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5489:11:6",
+                  "scope": 2196,
+                  "src": "5507:11:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1453,10 +1453,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2099,
+                    "id": 2192,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5489:7:6",
+                    "src": "5507:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1467,39 +1467,39 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "5302:204:6"
+              "src": "5320:204:6"
             },
             "returnParameters": {
-              "id": 2102,
+              "id": 2195,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "5515:0:6"
+              "src": "5533:0:6"
             },
-            "scope": 2104,
-            "src": "5283:233:6",
+            "scope": 2197,
+            "src": "5301:233:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 2105,
-        "src": "1197:4321:6"
+        "scope": 2198,
+        "src": "1197:4339:6"
       }
     ],
-    "src": "0:5519:6"
+    "src": "0:5537:6"
   },
   "legacyAST": {
     "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/atm/TLRTokenInterface.sol",
     "exportedSymbols": {
       "TLRTokenInterface": [
-        2104
+        2197
       ]
     },
-    "id": 2105,
+    "id": 2198,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2005,
+        "id": 2098,
         "literals": [
           "solidity",
           "0.5",
@@ -1514,9 +1514,9 @@
         "contractKind": "interface",
         "documentation": "@notice This interface defines the available functions and events for the TLR Token\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 2104,
+        "id": 2197,
         "linearizedBaseContracts": [
-          2104
+          2197
         ],
         "name": "TLRTokenInterface",
         "nodeType": "ContractDefinition",
@@ -1524,20 +1524,20 @@
           {
             "anonymous": false,
             "documentation": "@notice Emitted when a new supply cap has been set\n@param newCap The new supply cap ",
-            "id": 2009,
+            "id": 2102,
             "name": "NewCap",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2008,
+              "id": 2101,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2007,
+                  "id": 2100,
                   "indexed": false,
                   "name": "newCap",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2009,
+                  "scope": 2102,
                   "src": "1380:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1546,7 +1546,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2006,
+                    "id": 2099,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1380:7:6",
@@ -1566,20 +1566,20 @@
           {
             "anonymous": false,
             "documentation": "@notice Emitted when an address has been granted a vesting schedule\n@param beneficiary The account address being granted the tokens\n@param amount The amount of tokens being granted\n@param deadline The length of time before when the tokens can be claimed",
-            "id": 2017,
+            "id": 2110,
             "name": "NewVesting",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2016,
+              "id": 2109,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2011,
+                  "id": 2104,
                   "indexed": false,
                   "name": "beneficiary",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2017,
+                  "scope": 2110,
                   "src": "1721:19:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1588,7 +1588,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2010,
+                    "id": 2103,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1721:7:6",
@@ -1603,11 +1603,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2013,
+                  "id": 2106,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2017,
+                  "scope": 2110,
                   "src": "1742:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1616,7 +1616,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2012,
+                    "id": 2105,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1742:7:6",
@@ -1630,11 +1630,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2015,
+                  "id": 2108,
                   "indexed": false,
                   "name": "deadline",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2017,
+                  "scope": 2110,
                   "src": "1758:16:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1643,7 +1643,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2014,
+                    "id": 2107,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1758:7:6",
@@ -1663,20 +1663,20 @@
           {
             "anonymous": false,
             "documentation": "@notice Emitted when a vested amount has been claimed\n@param beneficiary The address claiming the vested amount\n@param amount The amount that was claimed",
-            "id": 2023,
+            "id": 2116,
             "name": "VestingClaimed",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2022,
+              "id": 2115,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2019,
+                  "id": 2112,
                   "indexed": false,
                   "name": "beneficiary",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2023,
+                  "scope": 2116,
                   "src": "1997:19:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1685,7 +1685,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2018,
+                    "id": 2111,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1997:7:6",
@@ -1700,11 +1700,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2021,
+                  "id": 2114,
                   "indexed": false,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2023,
+                  "scope": 2116,
                   "src": "2018:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1713,7 +1713,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2020,
+                    "id": 2113,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2018:7:6",
@@ -1732,22 +1732,22 @@
           },
           {
             "anonymous": false,
-            "documentation": "@notice Emitted when an account has had its vesting revoked\n@param beneficiary The account which had its vesting revoked\n@param amount The amount being revoked\n@param deadline The previously set vesting deadline ",
-            "id": 2031,
+            "documentation": "@notice Emitted when an account has had its vesting revoked\n@param account The account which had its vesting revoked\n@param unvestedTokens The amount of tokens being revoked\n@param deadline The previously set vesting deadline ",
+            "id": 2124,
             "name": "RevokeVesting",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2030,
+              "id": 2123,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2025,
+                  "id": 2118,
                   "indexed": false,
-                  "name": "beneficiary",
+                  "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2031,
-                  "src": "2321:19:6",
+                  "scope": 2124,
+                  "src": "2335:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1755,10 +1755,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2024,
+                    "id": 2117,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2321:7:6",
+                    "src": "2335:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1770,12 +1770,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2027,
+                  "id": 2120,
                   "indexed": false,
-                  "name": "amount",
+                  "name": "unvestedTokens",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2031,
-                  "src": "2342:14:6",
+                  "scope": 2124,
+                  "src": "2352:22:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1783,10 +1783,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2026,
+                    "id": 2119,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2342:7:6",
+                    "src": "2352:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1797,12 +1797,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2029,
+                  "id": 2122,
                   "indexed": false,
                   "name": "deadline",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2031,
-                  "src": "2358:16:6",
+                  "scope": 2124,
+                  "src": "2376:16:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1810,10 +1810,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2028,
+                    "id": 2121,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2358:7:6",
+                    "src": "2376:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1823,28 +1823,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2320:55:6"
+              "src": "2334:59:6"
             },
-            "src": "2301:75:6"
+            "src": "2315:79:6"
           },
           {
             "anonymous": false,
             "documentation": "@notice Emitted when a snapshot is created\n@param id The id of the created snapshot",
-            "id": 2035,
+            "id": 2128,
             "name": "Snapshot",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2034,
+              "id": 2127,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2033,
+                  "id": 2126,
                   "indexed": false,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2035,
-                  "src": "2504:10:6",
+                  "scope": 2128,
+                  "src": "2522:10:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1852,10 +1852,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2032,
+                    "id": 2125,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2504:7:6",
+                    "src": "2522:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1865,30 +1865,30 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2503:12:6"
+              "src": "2521:12:6"
             },
-            "src": "2489:27:6"
+            "src": "2507:27:6"
           },
           {
             "body": null,
             "documentation": "@notice Sets a new cap on the token's total supply.\n@param newcap The new capped amount of tokens",
-            "id": 2040,
+            "id": 2133,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setCap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2038,
+              "id": 2131,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2037,
+                  "id": 2130,
                   "name": "newcap",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2040,
-                  "src": "2696:14:6",
+                  "scope": 2133,
+                  "src": "2714:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1896,10 +1896,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2036,
+                    "id": 2129,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2696:7:6",
+                    "src": "2714:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1909,16 +1909,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2695:16:6"
+              "src": "2713:16:6"
             },
             "returnParameters": {
-              "id": 2039,
+              "id": 2132,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2720:0:6"
+              "src": "2738:0:6"
             },
-            "scope": 2104,
-            "src": "2680:41:6",
+            "scope": 2197,
+            "src": "2698:41:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1926,23 +1926,23 @@
           {
             "body": null,
             "documentation": "@notice Increase account supply of specified token amount\n@param account The account to mint tokens for\n@param amount The amount of tokens to mint\n@return true if successful",
-            "id": 2049,
+            "id": 2142,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "mint",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2045,
+              "id": 2138,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2042,
+                  "id": 2135,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2049,
-                  "src": "2959:15:6",
+                  "scope": 2142,
+                  "src": "2977:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1950,10 +1950,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2041,
+                    "id": 2134,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2959:7:6",
+                    "src": "2977:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1965,11 +1965,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2044,
+                  "id": 2137,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2049,
-                  "src": "2976:14:6",
+                  "scope": 2142,
+                  "src": "2994:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1977,10 +1977,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2043,
+                    "id": 2136,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2976:7:6",
+                    "src": "2994:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1990,19 +1990,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2958:33:6"
+              "src": "2976:33:6"
             },
             "returnParameters": {
-              "id": 2048,
+              "id": 2141,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2047,
+                  "id": 2140,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2049,
-                  "src": "3010:4:6",
+                  "scope": 2142,
+                  "src": "3028:4:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2010,10 +2010,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2046,
+                    "id": 2139,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3010:4:6",
+                    "src": "3028:4:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2023,10 +2023,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3009:6:6"
+              "src": "3027:6:6"
             },
-            "scope": 2104,
-            "src": "2945:71:6",
+            "scope": 2197,
+            "src": "2963:71:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2034,23 +2034,23 @@
           {
             "body": null,
             "documentation": "@notice Creates `amount` tokens and assigns them to `account`, increasing\nthe total supply.\n     * Includes a vesting period before address is allowed to use tokens\n     * Emits a {Transfer} event with `from` set to the zero address.\n     * Requirements\n     * - `to` cannot be the zero address.\n     * @param account The account which tokens will be assigned to\n@param amount The amount of tokens to be assigned\n@param cliff The length of time (in seconds) after which the tokens will start vesting\n@param vestingTime The length of the vesting period (in seconds)",
-            "id": 2060,
+            "id": 2153,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "mintVesting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2058,
+              "id": 2151,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2051,
+                  "id": 2144,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2060,
-                  "src": "3696:15:6",
+                  "scope": 2153,
+                  "src": "3714:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2058,10 +2058,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2050,
+                    "id": 2143,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3696:7:6",
+                    "src": "3714:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2073,11 +2073,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2053,
+                  "id": 2146,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2060,
-                  "src": "3721:14:6",
+                  "scope": 2153,
+                  "src": "3739:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2085,10 +2085,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2052,
+                    "id": 2145,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3721:7:6",
+                    "src": "3739:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2099,11 +2099,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2055,
+                  "id": 2148,
                   "name": "cliff",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2060,
-                  "src": "3745:13:6",
+                  "scope": 2153,
+                  "src": "3763:13:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2111,10 +2111,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2054,
+                    "id": 2147,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3745:7:6",
+                    "src": "3763:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2125,11 +2125,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2057,
+                  "id": 2150,
                   "name": "vestingTime",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2060,
-                  "src": "3768:19:6",
+                  "scope": 2153,
+                  "src": "3786:19:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2137,10 +2137,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2056,
+                    "id": 2149,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3768:7:6",
+                    "src": "3786:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2150,16 +2150,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3686:107:6"
+              "src": "3704:107:6"
             },
             "returnParameters": {
-              "id": 2059,
+              "id": 2152,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3802:0:6"
+              "src": "3820:0:6"
             },
-            "scope": 2104,
-            "src": "3666:137:6",
+            "scope": 2197,
+            "src": "3684:137:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2167,23 +2167,23 @@
           {
             "body": null,
             "documentation": "@notice Revokes the amount vested to an account\n@param account The account for which vesting is to be revoked\n@param vestingId The Id of the vesting being revoked\n     ",
-            "id": 2067,
+            "id": 2160,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "revokeVesting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2065,
+              "id": 2158,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2062,
+                  "id": 2155,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2067,
-                  "src": "4039:15:6",
+                  "scope": 2160,
+                  "src": "4057:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2191,10 +2191,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2061,
+                    "id": 2154,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4039:7:6",
+                    "src": "4057:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2206,11 +2206,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2064,
+                  "id": 2157,
                   "name": "vestingId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2067,
-                  "src": "4056:17:6",
+                  "scope": 2160,
+                  "src": "4074:17:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2218,10 +2218,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2063,
+                    "id": 2156,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4056:7:6",
+                    "src": "4074:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2231,16 +2231,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4038:36:6"
+              "src": "4056:36:6"
             },
             "returnParameters": {
-              "id": 2066,
+              "id": 2159,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4083:0:6"
+              "src": "4101:0:6"
             },
-            "scope": 2104,
-            "src": "4016:68:6",
+            "scope": 2197,
+            "src": "4034:68:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2248,26 +2248,26 @@
           {
             "body": null,
             "documentation": " @notice Withdrawl of tokens upon completion of vesting period\n     ",
-            "id": 2070,
+            "id": 2163,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdrawVested",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2068,
+              "id": 2161,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4206:2:6"
+              "src": "4224:2:6"
             },
             "returnParameters": {
-              "id": 2069,
+              "id": 2162,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4217:0:6"
+              "src": "4235:0:6"
             },
-            "scope": 2104,
-            "src": "4183:35:6",
+            "scope": 2197,
+            "src": "4201:35:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2275,23 +2275,23 @@
           {
             "body": null,
             "documentation": "@notice Returns the balance of an account at the time a snapshot was created\n@param account The account which is being queried\n@param snapshotId The id of the snapshot being queried",
-            "id": 2079,
+            "id": 2172,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "balanceOfAt",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2075,
+              "id": 2168,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2072,
+                  "id": 2165,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2079,
-                  "src": "4467:15:6",
+                  "scope": 2172,
+                  "src": "4485:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2299,10 +2299,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2071,
+                    "id": 2164,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4467:7:6",
+                    "src": "4485:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2314,11 +2314,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2074,
+                  "id": 2167,
                   "name": "snapshotId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2079,
-                  "src": "4484:18:6",
+                  "scope": 2172,
+                  "src": "4502:18:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2326,10 +2326,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2073,
+                    "id": 2166,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4484:7:6",
+                    "src": "4502:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2339,19 +2339,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4466:37:6"
+              "src": "4484:37:6"
             },
             "returnParameters": {
-              "id": 2078,
+              "id": 2171,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2077,
+                  "id": 2170,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2079,
-                  "src": "4551:7:6",
+                  "scope": 2172,
+                  "src": "4569:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2359,10 +2359,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2076,
+                    "id": 2169,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4551:7:6",
+                    "src": "4569:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2372,10 +2372,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4550:9:6"
+              "src": "4568:9:6"
             },
-            "scope": 2104,
-            "src": "4446:114:6",
+            "scope": 2197,
+            "src": "4464:114:6",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2383,23 +2383,23 @@
           {
             "body": null,
             "documentation": "@notice Returns the total supply at the time a snapshot was created\n@param snapshotId The id of the snapshot being queried",
-            "id": 2086,
+            "id": 2179,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "totalSupplyAt",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2082,
+              "id": 2175,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2081,
+                  "id": 2174,
                   "name": "snapshotId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2086,
-                  "src": "4744:18:6",
+                  "scope": 2179,
+                  "src": "4762:18:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2407,10 +2407,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2080,
+                    "id": 2173,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4744:7:6",
+                    "src": "4762:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2420,19 +2420,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4743:20:6"
+              "src": "4761:20:6"
             },
             "returnParameters": {
-              "id": 2085,
+              "id": 2178,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2084,
+                  "id": 2177,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2086,
-                  "src": "4787:7:6",
+                  "scope": 2179,
+                  "src": "4805:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2440,10 +2440,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2083,
+                    "id": 2176,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4787:7:6",
+                    "src": "4805:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2453,10 +2453,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4786:9:6"
+              "src": "4804:9:6"
             },
-            "scope": 2104,
-            "src": "4721:75:6",
+            "scope": 2197,
+            "src": "4739:75:6",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2464,23 +2464,23 @@
           {
             "body": null,
             "documentation": "@notice It initializes this token instance.\n@param name The name of the token\n@param symbol The symbol of the token\n@param decimals The amount of decimals for token\n@param cap The maximum number of tokens available\n@param maxVestingPerWallet The maximum number of times a wallet can mint their vesting\n@param settingsAddress The ATMSettings address\n@param atm The ATMGovernance address for this token",
-            "id": 2103,
+            "id": 2196,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2101,
+              "id": 2194,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2088,
+                  "id": 2181,
                   "name": "name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5312:20:6",
+                  "scope": 2196,
+                  "src": "5330:20:6",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -2488,10 +2488,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2087,
+                    "id": 2180,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5312:6:6",
+                    "src": "5330:6:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -2502,11 +2502,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2090,
+                  "id": 2183,
                   "name": "symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5342:22:6",
+                  "scope": 2196,
+                  "src": "5360:22:6",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -2514,10 +2514,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2089,
+                    "id": 2182,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5342:6:6",
+                    "src": "5360:6:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -2528,11 +2528,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2092,
+                  "id": 2185,
                   "name": "decimals",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5374:14:6",
+                  "scope": 2196,
+                  "src": "5392:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2540,10 +2540,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 2091,
+                    "id": 2184,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5374:5:6",
+                    "src": "5392:5:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -2554,11 +2554,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2094,
+                  "id": 2187,
                   "name": "cap",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5398:11:6",
+                  "scope": 2196,
+                  "src": "5416:11:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2566,10 +2566,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2093,
+                    "id": 2186,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5398:7:6",
+                    "src": "5416:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2580,11 +2580,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2096,
+                  "id": 2189,
                   "name": "maxVestingPerWallet",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5419:27:6",
+                  "scope": 2196,
+                  "src": "5437:27:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2592,10 +2592,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2095,
+                    "id": 2188,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5419:7:6",
+                    "src": "5437:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2606,11 +2606,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2098,
+                  "id": 2191,
                   "name": "settingsAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5456:23:6",
+                  "scope": 2196,
+                  "src": "5474:23:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2618,10 +2618,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2097,
+                    "id": 2190,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5456:7:6",
+                    "src": "5474:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2633,11 +2633,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2100,
+                  "id": 2193,
                   "name": "atm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2103,
-                  "src": "5489:11:6",
+                  "scope": 2196,
+                  "src": "5507:11:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2645,10 +2645,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2099,
+                    "id": 2192,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5489:7:6",
+                    "src": "5507:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2659,26 +2659,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "5302:204:6"
+              "src": "5320:204:6"
             },
             "returnParameters": {
-              "id": 2102,
+              "id": 2195,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "5515:0:6"
+              "src": "5533:0:6"
             },
-            "scope": 2104,
-            "src": "5283:233:6",
+            "scope": 2197,
+            "src": "5301:233:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 2105,
-        "src": "1197:4321:6"
+        "scope": 2198,
+        "src": "1197:4339:6"
       }
     ],
-    "src": "0:5519:6"
+    "src": "0:5537:6"
   },
   "compiler": {
     "name": "solc",
@@ -2686,7 +2686,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-09T18:28:56.761Z",
+  "updatedAt": "2020-09-15T21:09:31.037Z",
   "devdoc": {
     "author": "develop@teller.finance",
     "methods": {

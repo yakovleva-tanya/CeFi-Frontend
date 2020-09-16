@@ -50,7 +50,7 @@ const defaultBorrowRequest = {
   loanType: "Secured",
   bankConnected: false,
   lendWith: AvailableLendingTokens.DAI,
-  collateralAmount: null as null,
+  collateralAmount: 1,
   approved: false,
   transferred: false,
 };

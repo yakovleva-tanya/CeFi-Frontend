@@ -347,7 +347,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"atm\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"ATMPaused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"atm\",\"type\":\"address\"}],\"name\":\"ATMUnpaused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"oldAtm\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"MarketToAtmRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"atm\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"MarketToAtmSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"oldAtm\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAtm\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"MarketToAtmUpdated\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"}],\"name\":\"getATMForMarket\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"atmAddress\",\"type\":\"address\"}],\"name\":\"isATMForMarket\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"atmAddress\",\"type\":\"address\"}],\"name\":\"isATMPaused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"atmAddress\",\"type\":\"address\"}],\"name\":\"pauseATM\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"}],\"name\":\"removeATMToMarket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"atmAddress\",\"type\":\"address\"}],\"name\":\"setATMToMarket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"settings\",\"outputs\":[{\"internalType\":\"contract SettingsInterface\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"atmAddress\",\"type\":\"address\"}],\"name\":\"unpauseATM\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"newAtmAddress\",\"type\":\"address\"}],\"name\":\"updateATMToMarket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"getATMForMarket(address,address)\":{\"params\":{\"borrowedToken\":\"borrowed token address.\",\"collateralToken\":\"collateral token address.\"},\"return\":\"the ATM address configured for a given market.\"},\"initialize(address)\":{\"params\":{\"settingsAddress\":\"settings address.\"}},\"isATMForMarket(address,address,address)\":{\"params\":{\"atmAddress\":\"ATM address to test.\",\"borrowedToken\":\"borrowed token address.\",\"collateralToken\":\"collateral token address.\"},\"return\":\"true if the ATM is configured for the market. Otherwise it returns false.\"},\"isATMPaused(address)\":{\"params\":{\"atmAddress\":\"ATM address to test.\"},\"return\":\"true if ATM is paused. Otherwise it returns false.\"},\"pauseATM(address)\":{\"params\":{\"atmAddress\":\"ATM address to pause.\"}},\"removeATMToMarket(address,address)\":{\"params\":{\"borrowedToken\":\"borrowed token address.\",\"collateralToken\":\"collateral token address.\"}},\"setATMToMarket(address,address,address)\":{\"params\":{\"atmAddress\":\"ATM address to set.\",\"borrowedToken\":\"borrowed token address.\",\"collateralToken\":\"collateral token address.\"}},\"unpauseATM(address)\":{\"params\":{\"atmAddress\":\"ATM address to unpause.\"}},\"updateATMToMarket(address,address,address)\":{\"params\":{\"borrowedToken\":\"borrowed token address.\",\"collateralToken\":\"collateral token address.\",\"newAtmAddress\":\"the new ATM address to update.\"}}}},\"userdoc\":{\"methods\":{\"getATMForMarket(address,address)\":{\"notice\":\"Gets the ATM configured for a given market (borrowed token and collateral token).\"},\"initialize(address)\":{\"notice\":\"It initializes this ATM Settings instance.\"},\"isATMForMarket(address,address,address)\":{\"notice\":\"Tests whether an ATM is configured for a given market (borrowed token and collateral token) or not.\"},\"isATMPaused(address)\":{\"notice\":\"Gets whether an ATM is paused or not.\"},\"pauseATM(address)\":{\"notice\":\"It pauses an given ATM.\"},\"removeATMToMarket(address,address)\":{\"notice\":\"Removes the ATM address for a given market (borrowed token and collateral token).\"},\"setATMToMarket(address,address,address)\":{\"notice\":\"Sets an ATM for a given market (borrowed token and collateral token).\"},\"settings()\":{\"notice\":\"It represents the protocol Settings contract.\"},\"unpauseATM(address)\":{\"notice\":\"It unpauses an given ATM.\"},\"updateATMToMarket(address,address,address)\":{\"notice\":\"Updates a new ATM for a given market (borrowed token and collateral token).\"}},\"notice\":\"It manages the settings for the ATMs.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/settings/IATMSettings.sol\":\"IATMSettings\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowFactoryInterface.sol\":{\"keccak256\":\"0xb5b2225e4f6db57d59d5292f542acc0675e9f95b3e3094d9be4cf6ec079cb86e\",\"urls\":[\"bzz-raw://f0c822f79ebb3f775b4fea591a5555c3efacba6719d4adbab83571dd35f059e3\",\"dweb:/ipfs/QmYiHmtPJsJD67g7Pk7kM72hsHS7BVVJtciKjCoUioW4gS\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/InterestValidatorInterface.sol\":{\"keccak256\":\"0x91250ee3c1d73b5d1720f7b41f18072eb347d73e4d3de464537ece49e1fa1d93\",\"urls\":[\"bzz-raw://f11ce1d70152f6d19f9c23788b4458631df3fd748a52849b899183ce2dabc52b\",\"dweb:/ipfs/QmaNQybwKYW5BfT3h6z6P1SSUwYEyXQviisYjUr7cHLzQR\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol\":{\"keccak256\":\"0xd8a98393b51d4533d7515d82c4640ff5cb4c5d84ec154be20ae2d70244c6bd8e\",\"urls\":[\"bzz-raw://19a1d2b6aa47db3488c4ce2531a4a82d79cc66b089ecebb3d06bc9a6c2ca2c04\",\"dweb:/ipfs/QmY1rhfogBfWyu4Bs3dbwrXjYvkvLLnwgi5hLuRcMgtjDy\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/MarketsStateInterface.sol\":{\"keccak256\":\"0xf51bd2d361d9cf448f2c2a5bb37c2699b0d9605a8f1b6a8719f90d8f536f2a05\",\"urls\":[\"bzz-raw://415a4444e8f9aca25132f492b226b8d500081a4ba5be8e45b401a68e73e1895b\",\"dweb:/ipfs/QmUPGgnqUjidxeEpkgu4yYzhfuykgtNKehEwbps97nAAzZ\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol\":{\"keccak256\":\"0x4331fd21591542fda69505ce457c03f9ef66f2b8fea50db669864f517c4f95a1\",\"urls\":[\"bzz-raw://3cd373c888a2b4f6d1a93f540e9a0f4982316f743c0891d310a5e712c0f8eb78\",\"dweb:/ipfs/QmYA6Z3HFYj8MZSJwKP7NjawaD5TehE6Lmtx2VbTfqEHfb\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/SettingsInterface.sol\":{\"keccak256\":\"0xb2b1050602a2c4b8fac7053462a7a71c4a8ac91ffa7622dc003b07867dd2d04a\",\"urls\":[\"bzz-raw://2d38d083992ace8e9b361e763c1ba8ec35dc6604a1829fb09df8750a1c517d78\",\"dweb:/ipfs/QmQjba8A9c4q3AmEJf7GMytSyFPdG5rniSvL7Kw8QrUEoT\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol\":{\"keccak256\":\"0xa6f747fa1fecfef304721bc5b95ff34f1057ffeebd096d72051c013191879388\",\"urls\":[\"bzz-raw://27a99f0483fd2950126fd56cca827bab0cb3635e4512380acd65f161960906eb\",\"dweb:/ipfs/QmUR6GkPEpzqo4G76eeTNDLgxi3M4P7G338Jr4uoCQqrx9\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/settings/IATMSettings.sol\":{\"keccak256\":\"0xc5453e6f1a43327a37db250dedb65561c4deb0f3eb3cad490a64fc56e0b6f7b7\",\"urls\":[\"bzz-raw://f6edcab27eebecb576c9a884a173a1a5fcf0c129c76b992ec77ca24518d92f91\",\"dweb:/ipfs/QmW3q6w39dg9RnxsQdfrFVudmiZh5asRnkWQVkrap9hnJf\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AddressLib.sol\":{\"keccak256\":\"0x083fed047aac1bdf656da0bbfa6a9c655659ee953d808ebb0ef68c3dbf7bb806\",\"urls\":[\"bzz-raw://0a7c7f60dc65ae2aa25c6d9dfd728ea1c1ef3cdde3d102104fbb8406304d13a6\",\"dweb:/ipfs/QmRKAxNd7THDSujiYX3AqQh8jckewKt64To41fERUe8upB\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AssetSettingsLib.sol\":{\"keccak256\":\"0x9c67a3de3bb62fdfbd5c116016e0693300bb9d71fe055bb6aa12da305aba3bf4\",\"urls\":[\"bzz-raw://a3c9ffdd1496a6192abb62b72625e5778db231656f2c8fffd09a83d089996aa6\",\"dweb:/ipfs/QmevJ5ojFaqG363CrnJZ9x3YvGMWKfUaFoUVbCsaSzqPfe\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionLib.sol\":{\"keccak256\":\"0xf4caad9e4d96afe2721124eaf7203bb4e3a97beb3664c63297c4e68523f5bd65\",\"urls\":[\"bzz-raw://dcd6f564423c2cf83f3a56120f43eb6fd9f6e852cbb615be657f89e5114debf4\",\"dweb:/ipfs/QmRZStVoa5KbYRCHpzC7h998NnRhbFHfUZ71TRTiLzMTcX\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionsConsts.sol\":{\"keccak256\":\"0xe49711d0c8193559f76dc5f399344c8f5f5e6a8b99bf78c6bcfd9aa1c456c306\",\"urls\":[\"bzz-raw://c6432c082145470691dfde04bf5c4220ccc32a5dccf6520c3122e47e470e6c22\",\"dweb:/ipfs/Qmd97DA5SB3d8Cuwf5M6vLtfDLHYXrMj5d3cXkYPP7iPpU\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/MarketStateLib.sol\":{\"keccak256\":\"0x8212e9e0d7c8d79d53087c5fb4735374f50cf6644c27b13e5faba5344c9b2087\",\"urls\":[\"bzz-raw://68b3d876f4e6569b57abfe9e7e69675a362a9d45f92c51b3a3a089d1c226817b\",\"dweb:/ipfs/QmSirrURGaLUYVkSeedjsrzF1kFB7gsuoHBpmWb9ed8eZt\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/PlatformSettingsLib.sol\":{\"keccak256\":\"0x0c6a7e0de89e1017166ef4f593b33c8d0bfc6bcf3cd3db0bb5c1610ce260b659\",\"urls\":[\"bzz-raw://926108ace9152ed12d86a74ccb98d8c0aa698bd48fd3b4bfedacf976a8dd59d3\",\"dweb:/ipfs/QmVYjChMWZJdpPoBNheHMfyoTVsAarfLJ6SxPHhEsd6kUB\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0xbe70455cee756e9498c220e13c1550d163a4cbcb09e8afe2f0ee94f717c80315\",\"urls\":[\"bzz-raw://0ad4a0a6394e560e40da2fee213381db0184878c29078b2f570eaacf116bb855\",\"dweb:/ipfs/QmTF87YYagh3WrxNZyi2uxhzcxyGsdtJCLu9nwmXGGaoMz\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"@openzeppelin/contracts-ethereum-package/contracts/utils/Address.sol\":{\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\",\"urls\":[\"bzz-raw://03335b7b07c7c8c8d613cfdd8ec39a0b5ec133ee510bf2fe6cc5a496767bef4b\",\"dweb:/ipfs/Qmebp4nzPja645c9yXSdJkGq96oU3am3LUnG2K3R7XxyKf\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"atm\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"ATMPaused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"atm\",\"type\":\"address\"}],\"name\":\"ATMUnpaused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"oldAtm\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"MarketToAtmRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"atm\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"MarketToAtmSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"oldAtm\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAtm\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"MarketToAtmUpdated\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"}],\"name\":\"getATMForMarket\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"atmAddress\",\"type\":\"address\"}],\"name\":\"isATMForMarket\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"atmAddress\",\"type\":\"address\"}],\"name\":\"isATMPaused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"atmAddress\",\"type\":\"address\"}],\"name\":\"pauseATM\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"}],\"name\":\"removeATMToMarket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"atmAddress\",\"type\":\"address\"}],\"name\":\"setATMToMarket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"settings\",\"outputs\":[{\"internalType\":\"contract SettingsInterface\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"atmAddress\",\"type\":\"address\"}],\"name\":\"unpauseATM\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"newAtmAddress\",\"type\":\"address\"}],\"name\":\"updateATMToMarket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"getATMForMarket(address,address)\":{\"params\":{\"borrowedToken\":\"borrowed token address.\",\"collateralToken\":\"collateral token address.\"},\"return\":\"the ATM address configured for a given market.\"},\"initialize(address)\":{\"params\":{\"settingsAddress\":\"settings address.\"}},\"isATMForMarket(address,address,address)\":{\"params\":{\"atmAddress\":\"ATM address to test.\",\"borrowedToken\":\"borrowed token address.\",\"collateralToken\":\"collateral token address.\"},\"return\":\"true if the ATM is configured for the market. Otherwise it returns false.\"},\"isATMPaused(address)\":{\"params\":{\"atmAddress\":\"ATM address to test.\"},\"return\":\"true if ATM is paused. Otherwise it returns false.\"},\"pauseATM(address)\":{\"params\":{\"atmAddress\":\"ATM address to pause.\"}},\"removeATMToMarket(address,address)\":{\"params\":{\"borrowedToken\":\"borrowed token address.\",\"collateralToken\":\"collateral token address.\"}},\"setATMToMarket(address,address,address)\":{\"params\":{\"atmAddress\":\"ATM address to set.\",\"borrowedToken\":\"borrowed token address.\",\"collateralToken\":\"collateral token address.\"}},\"unpauseATM(address)\":{\"params\":{\"atmAddress\":\"ATM address to unpause.\"}},\"updateATMToMarket(address,address,address)\":{\"params\":{\"borrowedToken\":\"borrowed token address.\",\"collateralToken\":\"collateral token address.\",\"newAtmAddress\":\"the new ATM address to update.\"}}}},\"userdoc\":{\"methods\":{\"getATMForMarket(address,address)\":{\"notice\":\"Gets the ATM configured for a given market (borrowed token and collateral token).\"},\"initialize(address)\":{\"notice\":\"It initializes this ATM Settings instance.\"},\"isATMForMarket(address,address,address)\":{\"notice\":\"Tests whether an ATM is configured for a given market (borrowed token and collateral token) or not.\"},\"isATMPaused(address)\":{\"notice\":\"Gets whether an ATM is paused or not.\"},\"pauseATM(address)\":{\"notice\":\"It pauses an given ATM.\"},\"removeATMToMarket(address,address)\":{\"notice\":\"Removes the ATM address for a given market (borrowed token and collateral token).\"},\"setATMToMarket(address,address,address)\":{\"notice\":\"Sets an ATM for a given market (borrowed token and collateral token).\"},\"settings()\":{\"notice\":\"It represents the protocol Settings contract.\"},\"unpauseATM(address)\":{\"notice\":\"It unpauses an given ATM.\"},\"updateATMToMarket(address,address,address)\":{\"notice\":\"Updates a new ATM for a given market (borrowed token and collateral token).\"}},\"notice\":\"It manages the settings for the ATMs.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/settings/IATMSettings.sol\":\"IATMSettings\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowFactoryInterface.sol\":{\"keccak256\":\"0xb5b2225e4f6db57d59d5292f542acc0675e9f95b3e3094d9be4cf6ec079cb86e\",\"urls\":[\"bzz-raw://f0c822f79ebb3f775b4fea591a5555c3efacba6719d4adbab83571dd35f059e3\",\"dweb:/ipfs/QmYiHmtPJsJD67g7Pk7kM72hsHS7BVVJtciKjCoUioW4gS\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/InterestValidatorInterface.sol\":{\"keccak256\":\"0x91250ee3c1d73b5d1720f7b41f18072eb347d73e4d3de464537ece49e1fa1d93\",\"urls\":[\"bzz-raw://f11ce1d70152f6d19f9c23788b4458631df3fd748a52849b899183ce2dabc52b\",\"dweb:/ipfs/QmaNQybwKYW5BfT3h6z6P1SSUwYEyXQviisYjUr7cHLzQR\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol\":{\"keccak256\":\"0x871da1c39455ad829fdff0eb86a3d069e041f03b9dfab82136719c2c2923b926\",\"urls\":[\"bzz-raw://aca54977104d1152ecfecf39465a34148236b1d973a339c442963dabf68dd05b\",\"dweb:/ipfs/QmeKnxn9hB3aLqgWPLFhCEuxySTUF1LA1tbCo8tGyhppxV\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/MarketsStateInterface.sol\":{\"keccak256\":\"0xf51bd2d361d9cf448f2c2a5bb37c2699b0d9605a8f1b6a8719f90d8f536f2a05\",\"urls\":[\"bzz-raw://415a4444e8f9aca25132f492b226b8d500081a4ba5be8e45b401a68e73e1895b\",\"dweb:/ipfs/QmUPGgnqUjidxeEpkgu4yYzhfuykgtNKehEwbps97nAAzZ\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol\":{\"keccak256\":\"0x4331fd21591542fda69505ce457c03f9ef66f2b8fea50db669864f517c4f95a1\",\"urls\":[\"bzz-raw://3cd373c888a2b4f6d1a93f540e9a0f4982316f743c0891d310a5e712c0f8eb78\",\"dweb:/ipfs/QmYA6Z3HFYj8MZSJwKP7NjawaD5TehE6Lmtx2VbTfqEHfb\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/SettingsInterface.sol\":{\"keccak256\":\"0xe6e8bac5c0ba6e8d1e1416ac4303be41e8290f4a25f69b7e799ef6ef63434de4\",\"urls\":[\"bzz-raw://a2368205a629bb19220cda5c34a1077856a0c477f08409fd1f9759778dec6b96\",\"dweb:/ipfs/QmX55YjR6Rq1ZUwdoUtLjcH7ZtPQsXu9mb4F6xmuWPVq3H\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol\":{\"keccak256\":\"0xed52aaafc7e15756431c0c847e5f7e1d52578b0f3b7f8b02674ec5d5d5a44c29\",\"urls\":[\"bzz-raw://76821662fa9a0918b355bc969deadef055737d90067658791dbc13e843958b64\",\"dweb:/ipfs/QmQzKEJiQjxRyNED8aABw62KQys3StiGwEnMXiF8P8ZQcV\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/settings/IATMSettings.sol\":{\"keccak256\":\"0xc5453e6f1a43327a37db250dedb65561c4deb0f3eb3cad490a64fc56e0b6f7b7\",\"urls\":[\"bzz-raw://f6edcab27eebecb576c9a884a173a1a5fcf0c129c76b992ec77ca24518d92f91\",\"dweb:/ipfs/QmW3q6w39dg9RnxsQdfrFVudmiZh5asRnkWQVkrap9hnJf\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AddressLib.sol\":{\"keccak256\":\"0x083fed047aac1bdf656da0bbfa6a9c655659ee953d808ebb0ef68c3dbf7bb806\",\"urls\":[\"bzz-raw://0a7c7f60dc65ae2aa25c6d9dfd728ea1c1ef3cdde3d102104fbb8406304d13a6\",\"dweb:/ipfs/QmRKAxNd7THDSujiYX3AqQh8jckewKt64To41fERUe8upB\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/AssetSettingsLib.sol\":{\"keccak256\":\"0x9c67a3de3bb62fdfbd5c116016e0693300bb9d71fe055bb6aa12da305aba3bf4\",\"urls\":[\"bzz-raw://a3c9ffdd1496a6192abb62b72625e5778db231656f2c8fffd09a83d089996aa6\",\"dweb:/ipfs/QmevJ5ojFaqG363CrnJZ9x3YvGMWKfUaFoUVbCsaSzqPfe\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionLib.sol\":{\"keccak256\":\"0xf4caad9e4d96afe2721124eaf7203bb4e3a97beb3664c63297c4e68523f5bd65\",\"urls\":[\"bzz-raw://dcd6f564423c2cf83f3a56120f43eb6fd9f6e852cbb615be657f89e5114debf4\",\"dweb:/ipfs/QmRZStVoa5KbYRCHpzC7h998NnRhbFHfUZ71TRTiLzMTcX\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionsConsts.sol\":{\"keccak256\":\"0xe49711d0c8193559f76dc5f399344c8f5f5e6a8b99bf78c6bcfd9aa1c456c306\",\"urls\":[\"bzz-raw://c6432c082145470691dfde04bf5c4220ccc32a5dccf6520c3122e47e470e6c22\",\"dweb:/ipfs/Qmd97DA5SB3d8Cuwf5M6vLtfDLHYXrMj5d3cXkYPP7iPpU\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/MarketStateLib.sol\":{\"keccak256\":\"0x760fff7588382659571b8fd078b5e332e010d7e97278895fc226e8ed551cb0c6\",\"urls\":[\"bzz-raw://ff9cf8b14a780c989b2f641bf8faaf8066e586245ede58196274f8f03789c0d4\",\"dweb:/ipfs/QmVnRsrQFuRXM1c4NFVz1iUaAywq73uHVsUzemn1x5fVgF\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/PlatformSettingsLib.sol\":{\"keccak256\":\"0x0c6a7e0de89e1017166ef4f593b33c8d0bfc6bcf3cd3db0bb5c1610ce260b659\",\"urls\":[\"bzz-raw://926108ace9152ed12d86a74ccb98d8c0aa698bd48fd3b4bfedacf976a8dd59d3\",\"dweb:/ipfs/QmVYjChMWZJdpPoBNheHMfyoTVsAarfLJ6SxPHhEsd6kUB\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/SettingsConsts.sol\":{\"keccak256\":\"0xa1d17d7507cae083530ce51d4c503ca657ddecf3d3fc23cec9c566d7253e59e6\",\"urls\":[\"bzz-raw://6f14f64aa1d37bef1d4e7051f1733cbe52a1d5af9165faaf4b0336a68c6eb239\",\"dweb:/ipfs/QmcJE8USECc54etjpCBUGTCF5VvMLqLjo9DbkQ64Xf2R4T\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0x9574ec7b6ec8d2072b6276a0873ec2e27fc8262ed61ccbb7a3ffc20ac7dfc323\",\"urls\":[\"bzz-raw://25ba0147fb05f281e7d0b601f116e805d563a516223041ff5660b43a5f448385\",\"dweb:/ipfs/QmcvfSjqEZpd7gfXFvBm39sV8RFtzJA81X59StgMgdc21t\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"@openzeppelin/contracts-ethereum-package/contracts/utils/Address.sol\":{\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\",\"urls\":[\"bzz-raw://03335b7b07c7c8c8d613cfdd8ec39a0b5ec133ee510bf2fe6cc5a496767bef4b\",\"dweb:/ipfs/Qmebp4nzPja645c9yXSdJkGq96oU3am3LUnG2K3R7XxyKf\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
@@ -358,30 +358,30 @@
     "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/settings/IATMSettings.sol",
     "exportedSymbols": {
       "IATMSettings": [
-        16366
+        15944
       ]
     },
-    "id": 16367,
+    "id": 15945,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 16248,
+        "id": 15826,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:102"
+        "src": "0:23:99"
       },
       {
         "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/SettingsInterface.sol",
         "file": "../interfaces/SettingsInterface.sol",
-        "id": 16249,
+        "id": 15827,
         "nodeType": "ImportDirective",
-        "scope": 16367,
-        "sourceUnit": 11432,
-        "src": "25:45:102",
+        "scope": 15945,
+        "sourceUnit": 11064,
+        "src": "25:45:99",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -391,9 +391,9 @@
         "contractKind": "interface",
         "documentation": "@notice It manages the settings for the ATMs.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 16366,
+        "id": 15944,
         "linearizedBaseContracts": [
-          16366
+          15944
         ],
         "name": "IATMSettings",
         "nodeType": "ContractDefinition",
@@ -401,21 +401,21 @@
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an ATM is paused.\n@param atm paused ATM address.\n@param account address that paused the ATM.",
-            "id": 16255,
+            "id": 15833,
             "name": "ATMPaused",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 16254,
+              "id": 15832,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16251,
+                  "id": 15829,
                   "indexed": true,
                   "name": "atm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16255,
-                  "src": "437:19:102",
+                  "scope": 15833,
+                  "src": "437:19:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -423,10 +423,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16250,
+                    "id": 15828,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "437:7:102",
+                    "src": "437:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -438,12 +438,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16253,
+                  "id": 15831,
                   "indexed": true,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16255,
-                  "src": "458:23:102",
+                  "scope": 15833,
+                  "src": "458:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -451,10 +451,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16252,
+                    "id": 15830,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "458:7:102",
+                    "src": "458:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -465,28 +465,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "436:46:102"
+              "src": "436:46:99"
             },
-            "src": "421:62:102"
+            "src": "421:62:99"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an ATM is unpaused.\n@param atm unpaused ATM address.\n@param account address that unpaused the ATM.",
-            "id": 16261,
+            "id": 15839,
             "name": "ATMUnpaused",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 16260,
+              "id": 15838,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16257,
+                  "id": 15835,
                   "indexed": true,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16261,
-                  "src": "681:23:102",
+                  "scope": 15839,
+                  "src": "681:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -494,10 +494,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16256,
+                    "id": 15834,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "681:7:102",
+                    "src": "681:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -509,12 +509,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16259,
+                  "id": 15837,
                   "indexed": true,
                   "name": "atm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16261,
-                  "src": "706:19:102",
+                  "scope": 15839,
+                  "src": "706:19:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -522,10 +522,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16258,
+                    "id": 15836,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "706:7:102",
+                    "src": "706:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -536,28 +536,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "680:46:102"
+              "src": "680:46:99"
             },
-            "src": "663:64:102"
+            "src": "663:64:99"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when the setting for a Market/ATM is set.\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param atm ATM address to set in the given market.\n@param account address that set the setting.",
-            "id": 16271,
+            "id": 15849,
             "name": "MarketToAtmSet",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 16270,
+              "id": 15848,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16263,
+                  "id": 15841,
                   "indexed": true,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16271,
-                  "src": "1081:29:102",
+                  "scope": 15849,
+                  "src": "1081:29:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -565,10 +565,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16262,
+                    "id": 15840,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1081:7:102",
+                    "src": "1081:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -580,12 +580,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16265,
+                  "id": 15843,
                   "indexed": true,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16271,
-                  "src": "1120:31:102",
+                  "scope": 15849,
+                  "src": "1120:31:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -593,10 +593,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16264,
+                    "id": 15842,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1120:7:102",
+                    "src": "1120:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -608,12 +608,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16267,
+                  "id": 15845,
                   "indexed": true,
                   "name": "atm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16271,
-                  "src": "1161:19:102",
+                  "scope": 15849,
+                  "src": "1161:19:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -621,10 +621,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16266,
+                    "id": 15844,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1161:7:102",
+                    "src": "1161:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -636,12 +636,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16269,
+                  "id": 15847,
                   "indexed": false,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16271,
-                  "src": "1190:15:102",
+                  "scope": 15849,
+                  "src": "1190:15:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -649,10 +649,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16268,
+                    "id": 15846,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1190:7:102",
+                    "src": "1190:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -663,28 +663,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1071:140:102"
+              "src": "1071:140:99"
             },
-            "src": "1051:161:102"
+            "src": "1051:161:99"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when the setting for a Market/ATM is updated.\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param oldAtm the old ATM address in the given market.\n@param newAtm the new ATM address in the given market.\n@param account address that updated the setting.",
-            "id": 16283,
+            "id": 15861,
             "name": "MarketToAtmUpdated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 16282,
+              "id": 15860,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16273,
+                  "id": 15851,
                   "indexed": true,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16283,
-                  "src": "1645:29:102",
+                  "scope": 15861,
+                  "src": "1645:29:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -692,10 +692,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16272,
+                    "id": 15850,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1645:7:102",
+                    "src": "1645:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -707,12 +707,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16275,
+                  "id": 15853,
                   "indexed": true,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16283,
-                  "src": "1684:31:102",
+                  "scope": 15861,
+                  "src": "1684:31:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -720,10 +720,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16274,
+                    "id": 15852,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1684:7:102",
+                    "src": "1684:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -735,12 +735,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16277,
+                  "id": 15855,
                   "indexed": true,
                   "name": "oldAtm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16283,
-                  "src": "1725:22:102",
+                  "scope": 15861,
+                  "src": "1725:22:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -748,10 +748,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16276,
+                    "id": 15854,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1725:7:102",
+                    "src": "1725:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -763,12 +763,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16279,
+                  "id": 15857,
                   "indexed": false,
                   "name": "newAtm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16283,
-                  "src": "1757:14:102",
+                  "scope": 15861,
+                  "src": "1757:14:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -776,10 +776,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16278,
+                    "id": 15856,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1757:7:102",
+                    "src": "1757:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -791,12 +791,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16281,
+                  "id": 15859,
                   "indexed": false,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16283,
-                  "src": "1781:15:102",
+                  "scope": 15861,
+                  "src": "1781:15:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -804,10 +804,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16280,
+                    "id": 15858,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1781:7:102",
+                    "src": "1781:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -818,28 +818,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1635:167:102"
+              "src": "1635:167:99"
             },
-            "src": "1611:192:102"
+            "src": "1611:192:99"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when the setting for a Market/ATM is removed.\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param oldAtm last ATM address in the given market.\n@param account address that removed the setting.",
-            "id": 16293,
+            "id": 15871,
             "name": "MarketToAtmRemoved",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 16292,
+              "id": 15870,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16285,
+                  "id": 15863,
                   "indexed": true,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16293,
-                  "src": "2170:29:102",
+                  "scope": 15871,
+                  "src": "2170:29:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -847,10 +847,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16284,
+                    "id": 15862,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2170:7:102",
+                    "src": "2170:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -862,12 +862,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16287,
+                  "id": 15865,
                   "indexed": true,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16293,
-                  "src": "2209:31:102",
+                  "scope": 15871,
+                  "src": "2209:31:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -875,10 +875,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16286,
+                    "id": 15864,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2209:7:102",
+                    "src": "2209:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -890,12 +890,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16289,
+                  "id": 15867,
                   "indexed": true,
                   "name": "oldAtm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16293,
-                  "src": "2250:22:102",
+                  "scope": 15871,
+                  "src": "2250:22:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -903,10 +903,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16288,
+                    "id": 15866,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2250:7:102",
+                    "src": "2250:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -918,12 +918,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16291,
+                  "id": 15869,
                   "indexed": false,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16293,
-                  "src": "2282:15:102",
+                  "scope": 15871,
+                  "src": "2282:15:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -931,10 +931,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16290,
+                    "id": 15868,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2282:7:102",
+                    "src": "2282:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -945,51 +945,51 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2160:143:102"
+              "src": "2160:143:99"
             },
-            "src": "2136:168:102"
+            "src": "2136:168:99"
           },
           {
             "body": null,
             "documentation": "@notice It represents the protocol Settings contract.",
-            "id": 16298,
+            "id": 15876,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "settings",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16294,
+              "id": 15872,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2508:2:102"
+              "src": "2508:2:99"
             },
             "returnParameters": {
-              "id": 16297,
+              "id": 15875,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16296,
+                  "id": 15874,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16298,
-                  "src": "2534:17:102",
+                  "scope": 15876,
+                  "src": "2534:17:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_SettingsInterface_$11431",
+                    "typeIdentifier": "t_contract$_SettingsInterface_$11063",
                     "typeString": "contract SettingsInterface"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 16295,
+                    "id": 15873,
                     "name": "SettingsInterface",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 11431,
-                    "src": "2534:17:102",
+                    "referencedDeclaration": 11063,
+                    "src": "2534:17:99",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_SettingsInterface_$11431",
+                      "typeIdentifier": "t_contract$_SettingsInterface_$11063",
                       "typeString": "contract SettingsInterface"
                     }
                   },
@@ -997,10 +997,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2533:19:102"
+              "src": "2533:19:99"
             },
-            "scope": 16366,
-            "src": "2491:62:102",
+            "scope": 15944,
+            "src": "2491:62:99",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1008,23 +1008,23 @@
           {
             "body": null,
             "documentation": "@notice It pauses an given ATM.\n@param atmAddress ATM address to pause.",
-            "id": 16303,
+            "id": 15881,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "pauseATM",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16301,
+              "id": 15879,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16300,
+                  "id": 15878,
                   "name": "atmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16303,
-                  "src": "2681:18:102",
+                  "scope": 15881,
+                  "src": "2681:18:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1032,10 +1032,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16299,
+                    "id": 15877,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2681:7:102",
+                    "src": "2681:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1046,16 +1046,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2680:20:102"
+              "src": "2680:20:99"
             },
             "returnParameters": {
-              "id": 16302,
+              "id": 15880,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2709:0:102"
+              "src": "2709:0:99"
             },
-            "scope": 16366,
-            "src": "2663:47:102",
+            "scope": 15944,
+            "src": "2663:47:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1063,23 +1063,23 @@
           {
             "body": null,
             "documentation": "@notice It unpauses an given ATM.\n@param atmAddress ATM address to unpause.",
-            "id": 16308,
+            "id": 15886,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "unpauseATM",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16306,
+              "id": 15884,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16305,
+                  "id": 15883,
                   "name": "atmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16308,
-                  "src": "2844:18:102",
+                  "scope": 15886,
+                  "src": "2844:18:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1087,10 +1087,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16304,
+                    "id": 15882,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2844:7:102",
+                    "src": "2844:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1101,16 +1101,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2843:20:102"
+              "src": "2843:20:99"
             },
             "returnParameters": {
-              "id": 16307,
+              "id": 15885,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2872:0:102"
+              "src": "2872:0:99"
             },
-            "scope": 16366,
-            "src": "2824:49:102",
+            "scope": 15944,
+            "src": "2824:49:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1118,23 +1118,23 @@
           {
             "body": null,
             "documentation": "@notice Gets whether an ATM is paused or not.\n@param atmAddress ATM address to test.\n@return true if ATM is paused. Otherwise it returns false.",
-            "id": 16315,
+            "id": 15893,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isATMPaused",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16311,
+              "id": 15889,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16310,
+                  "id": 15888,
                   "name": "atmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16315,
-                  "src": "3084:18:102",
+                  "scope": 15893,
+                  "src": "3084:18:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1142,10 +1142,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16309,
+                    "id": 15887,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3084:7:102",
+                    "src": "3084:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1156,19 +1156,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3083:20:102"
+              "src": "3083:20:99"
             },
             "returnParameters": {
-              "id": 16314,
+              "id": 15892,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16313,
+                  "id": 15891,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16315,
-                  "src": "3127:4:102",
+                  "scope": 15893,
+                  "src": "3127:4:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1176,10 +1176,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 16312,
+                    "id": 15890,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3127:4:102",
+                    "src": "3127:4:99",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1189,10 +1189,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3126:6:102"
+              "src": "3126:6:99"
             },
-            "scope": 16366,
-            "src": "3063:70:102",
+            "scope": 15944,
+            "src": "3063:70:99",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1200,23 +1200,23 @@
           {
             "body": null,
             "documentation": "@notice Sets an ATM for a given market (borrowed token and collateral token).\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param atmAddress ATM address to set.",
-            "id": 16324,
+            "id": 15902,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setATMToMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16322,
+              "id": 15900,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16317,
+                  "id": 15895,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16324,
-                  "src": "3430:21:102",
+                  "scope": 15902,
+                  "src": "3430:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1224,10 +1224,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16316,
+                    "id": 15894,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3430:7:102",
+                    "src": "3430:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1239,11 +1239,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16319,
+                  "id": 15897,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16324,
-                  "src": "3461:23:102",
+                  "scope": 15902,
+                  "src": "3461:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1251,10 +1251,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16318,
+                    "id": 15896,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3461:7:102",
+                    "src": "3461:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1266,11 +1266,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16321,
+                  "id": 15899,
                   "name": "atmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16324,
-                  "src": "3494:18:102",
+                  "scope": 15902,
+                  "src": "3494:18:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1278,10 +1278,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16320,
+                    "id": 15898,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3494:7:102",
+                    "src": "3494:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1292,16 +1292,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3420:98:102"
+              "src": "3420:98:99"
             },
             "returnParameters": {
-              "id": 16323,
+              "id": 15901,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3527:0:102"
+              "src": "3527:0:99"
             },
-            "scope": 16366,
-            "src": "3397:131:102",
+            "scope": 15944,
+            "src": "3397:131:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1309,23 +1309,23 @@
           {
             "body": null,
             "documentation": "@notice Updates a new ATM for a given market (borrowed token and collateral token).\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param newAtmAddress the new ATM address to update.",
-            "id": 16333,
+            "id": 15911,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateATMToMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16331,
+              "id": 15909,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16326,
+                  "id": 15904,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16333,
-                  "src": "3848:21:102",
+                  "scope": 15911,
+                  "src": "3848:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1333,10 +1333,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16325,
+                    "id": 15903,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3848:7:102",
+                    "src": "3848:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1348,11 +1348,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16328,
+                  "id": 15906,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16333,
-                  "src": "3879:23:102",
+                  "scope": 15911,
+                  "src": "3879:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1360,10 +1360,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16327,
+                    "id": 15905,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3879:7:102",
+                    "src": "3879:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1375,11 +1375,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16330,
+                  "id": 15908,
                   "name": "newAtmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16333,
-                  "src": "3912:21:102",
+                  "scope": 15911,
+                  "src": "3912:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1387,10 +1387,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16329,
+                    "id": 15907,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3912:7:102",
+                    "src": "3912:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1401,16 +1401,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3838:101:102"
+              "src": "3838:101:99"
             },
             "returnParameters": {
-              "id": 16332,
+              "id": 15910,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3948:0:102"
+              "src": "3948:0:99"
             },
-            "scope": 16366,
-            "src": "3812:137:102",
+            "scope": 15944,
+            "src": "3812:137:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1418,23 +1418,23 @@
           {
             "body": null,
             "documentation": "@notice Removes the ATM address for a given market (borrowed token and collateral token).\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.",
-            "id": 16340,
+            "id": 15918,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "removeATMToMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16338,
+              "id": 15916,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16335,
+                  "id": 15913,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16340,
-                  "src": "4206:21:102",
+                  "scope": 15918,
+                  "src": "4206:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1442,10 +1442,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16334,
+                    "id": 15912,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4206:7:102",
+                    "src": "4206:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1457,11 +1457,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16337,
+                  "id": 15915,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16340,
-                  "src": "4229:23:102",
+                  "scope": 15918,
+                  "src": "4229:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1469,10 +1469,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16336,
+                    "id": 15914,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4229:7:102",
+                    "src": "4229:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1483,16 +1483,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4205:48:102"
+              "src": "4205:48:99"
             },
             "returnParameters": {
-              "id": 16339,
+              "id": 15917,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4262:0:102"
+              "src": "4262:0:99"
             },
-            "scope": 16366,
-            "src": "4179:84:102",
+            "scope": 15944,
+            "src": "4179:84:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1500,23 +1500,23 @@
           {
             "body": null,
             "documentation": "@notice Gets the ATM configured for a given market (borrowed token and collateral token).\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@return the ATM address configured for a given market.",
-            "id": 16349,
+            "id": 15927,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getATMForMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16345,
+              "id": 15923,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16342,
+                  "id": 15920,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16349,
-                  "src": "4581:21:102",
+                  "scope": 15927,
+                  "src": "4581:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1524,10 +1524,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16341,
+                    "id": 15919,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4581:7:102",
+                    "src": "4581:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1539,11 +1539,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16344,
+                  "id": 15922,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16349,
-                  "src": "4604:23:102",
+                  "scope": 15927,
+                  "src": "4604:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1551,10 +1551,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16343,
+                    "id": 15921,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4604:7:102",
+                    "src": "4604:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1565,19 +1565,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4580:48:102"
+              "src": "4580:48:99"
             },
             "returnParameters": {
-              "id": 16348,
+              "id": 15926,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16347,
+                  "id": 15925,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16349,
-                  "src": "4676:7:102",
+                  "scope": 15927,
+                  "src": "4676:7:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1585,10 +1585,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16346,
+                    "id": 15924,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4676:7:102",
+                    "src": "4676:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1599,10 +1599,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4675:9:102"
+              "src": "4675:9:99"
             },
-            "scope": 16366,
-            "src": "4556:129:102",
+            "scope": 15944,
+            "src": "4556:129:99",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1610,23 +1610,23 @@
           {
             "body": null,
             "documentation": "@notice Tests whether an ATM is configured for a given market (borrowed token and collateral token) or not.\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param atmAddress ATM address to test.\n@return true if the ATM is configured for the market. Otherwise it returns false.",
-            "id": 16360,
+            "id": 15938,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isATMForMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16356,
+              "id": 15934,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16351,
+                  "id": 15929,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16360,
-                  "src": "5103:21:102",
+                  "scope": 15938,
+                  "src": "5103:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1634,10 +1634,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16350,
+                    "id": 15928,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5103:7:102",
+                    "src": "5103:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1649,11 +1649,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16353,
+                  "id": 15931,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16360,
-                  "src": "5134:23:102",
+                  "scope": 15938,
+                  "src": "5134:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1661,10 +1661,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16352,
+                    "id": 15930,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5134:7:102",
+                    "src": "5134:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1676,11 +1676,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16355,
+                  "id": 15933,
                   "name": "atmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16360,
-                  "src": "5167:18:102",
+                  "scope": 15938,
+                  "src": "5167:18:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1688,10 +1688,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16354,
+                    "id": 15932,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5167:7:102",
+                    "src": "5167:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1702,19 +1702,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "5093:98:102"
+              "src": "5093:98:99"
             },
             "returnParameters": {
-              "id": 16359,
+              "id": 15937,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16358,
+                  "id": 15936,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16360,
-                  "src": "5215:4:102",
+                  "scope": 15938,
+                  "src": "5215:4:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1722,10 +1722,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 16357,
+                    "id": 15935,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5215:4:102",
+                    "src": "5215:4:99",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1735,10 +1735,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "5214:6:102"
+              "src": "5214:6:99"
             },
-            "scope": 16366,
-            "src": "5070:151:102",
+            "scope": 15944,
+            "src": "5070:151:99",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1746,23 +1746,23 @@
           {
             "body": null,
             "documentation": "@notice It initializes this ATM Settings instance.\n@param settingsAddress settings address.",
-            "id": 16365,
+            "id": 15943,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16363,
+              "id": 15941,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16362,
+                  "id": 15940,
                   "name": "settingsAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16365,
-                  "src": "5371:23:102",
+                  "scope": 15943,
+                  "src": "5371:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1770,10 +1770,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16361,
+                    "id": 15939,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5371:7:102",
+                    "src": "5371:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1784,55 +1784,55 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "5370:25:102"
+              "src": "5370:25:99"
             },
             "returnParameters": {
-              "id": 16364,
+              "id": 15942,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "5404:0:102"
+              "src": "5404:0:99"
             },
-            "scope": 16366,
-            "src": "5351:54:102",
+            "scope": 15944,
+            "src": "5351:54:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 16367,
-        "src": "205:5202:102"
+        "scope": 15945,
+        "src": "205:5202:99"
       }
     ],
-    "src": "0:5408:102"
+    "src": "0:5408:99"
   },
   "legacyAST": {
     "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/settings/IATMSettings.sol",
     "exportedSymbols": {
       "IATMSettings": [
-        16366
+        15944
       ]
     },
-    "id": 16367,
+    "id": 15945,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 16248,
+        "id": 15826,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:102"
+        "src": "0:23:99"
       },
       {
         "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/SettingsInterface.sol",
         "file": "../interfaces/SettingsInterface.sol",
-        "id": 16249,
+        "id": 15827,
         "nodeType": "ImportDirective",
-        "scope": 16367,
-        "sourceUnit": 11432,
-        "src": "25:45:102",
+        "scope": 15945,
+        "sourceUnit": 11064,
+        "src": "25:45:99",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -1842,9 +1842,9 @@
         "contractKind": "interface",
         "documentation": "@notice It manages the settings for the ATMs.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 16366,
+        "id": 15944,
         "linearizedBaseContracts": [
-          16366
+          15944
         ],
         "name": "IATMSettings",
         "nodeType": "ContractDefinition",
@@ -1852,21 +1852,21 @@
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an ATM is paused.\n@param atm paused ATM address.\n@param account address that paused the ATM.",
-            "id": 16255,
+            "id": 15833,
             "name": "ATMPaused",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 16254,
+              "id": 15832,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16251,
+                  "id": 15829,
                   "indexed": true,
                   "name": "atm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16255,
-                  "src": "437:19:102",
+                  "scope": 15833,
+                  "src": "437:19:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1874,10 +1874,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16250,
+                    "id": 15828,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "437:7:102",
+                    "src": "437:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1889,12 +1889,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16253,
+                  "id": 15831,
                   "indexed": true,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16255,
-                  "src": "458:23:102",
+                  "scope": 15833,
+                  "src": "458:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1902,10 +1902,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16252,
+                    "id": 15830,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "458:7:102",
+                    "src": "458:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1916,28 +1916,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "436:46:102"
+              "src": "436:46:99"
             },
-            "src": "421:62:102"
+            "src": "421:62:99"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an ATM is unpaused.\n@param atm unpaused ATM address.\n@param account address that unpaused the ATM.",
-            "id": 16261,
+            "id": 15839,
             "name": "ATMUnpaused",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 16260,
+              "id": 15838,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16257,
+                  "id": 15835,
                   "indexed": true,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16261,
-                  "src": "681:23:102",
+                  "scope": 15839,
+                  "src": "681:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1945,10 +1945,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16256,
+                    "id": 15834,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "681:7:102",
+                    "src": "681:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1960,12 +1960,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16259,
+                  "id": 15837,
                   "indexed": true,
                   "name": "atm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16261,
-                  "src": "706:19:102",
+                  "scope": 15839,
+                  "src": "706:19:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1973,10 +1973,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16258,
+                    "id": 15836,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "706:7:102",
+                    "src": "706:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1987,28 +1987,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "680:46:102"
+              "src": "680:46:99"
             },
-            "src": "663:64:102"
+            "src": "663:64:99"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when the setting for a Market/ATM is set.\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param atm ATM address to set in the given market.\n@param account address that set the setting.",
-            "id": 16271,
+            "id": 15849,
             "name": "MarketToAtmSet",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 16270,
+              "id": 15848,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16263,
+                  "id": 15841,
                   "indexed": true,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16271,
-                  "src": "1081:29:102",
+                  "scope": 15849,
+                  "src": "1081:29:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2016,10 +2016,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16262,
+                    "id": 15840,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1081:7:102",
+                    "src": "1081:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2031,12 +2031,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16265,
+                  "id": 15843,
                   "indexed": true,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16271,
-                  "src": "1120:31:102",
+                  "scope": 15849,
+                  "src": "1120:31:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2044,10 +2044,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16264,
+                    "id": 15842,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1120:7:102",
+                    "src": "1120:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2059,12 +2059,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16267,
+                  "id": 15845,
                   "indexed": true,
                   "name": "atm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16271,
-                  "src": "1161:19:102",
+                  "scope": 15849,
+                  "src": "1161:19:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2072,10 +2072,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16266,
+                    "id": 15844,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1161:7:102",
+                    "src": "1161:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2087,12 +2087,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16269,
+                  "id": 15847,
                   "indexed": false,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16271,
-                  "src": "1190:15:102",
+                  "scope": 15849,
+                  "src": "1190:15:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2100,10 +2100,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16268,
+                    "id": 15846,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1190:7:102",
+                    "src": "1190:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2114,28 +2114,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1071:140:102"
+              "src": "1071:140:99"
             },
-            "src": "1051:161:102"
+            "src": "1051:161:99"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when the setting for a Market/ATM is updated.\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param oldAtm the old ATM address in the given market.\n@param newAtm the new ATM address in the given market.\n@param account address that updated the setting.",
-            "id": 16283,
+            "id": 15861,
             "name": "MarketToAtmUpdated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 16282,
+              "id": 15860,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16273,
+                  "id": 15851,
                   "indexed": true,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16283,
-                  "src": "1645:29:102",
+                  "scope": 15861,
+                  "src": "1645:29:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2143,10 +2143,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16272,
+                    "id": 15850,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1645:7:102",
+                    "src": "1645:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2158,12 +2158,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16275,
+                  "id": 15853,
                   "indexed": true,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16283,
-                  "src": "1684:31:102",
+                  "scope": 15861,
+                  "src": "1684:31:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2171,10 +2171,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16274,
+                    "id": 15852,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1684:7:102",
+                    "src": "1684:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2186,12 +2186,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16277,
+                  "id": 15855,
                   "indexed": true,
                   "name": "oldAtm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16283,
-                  "src": "1725:22:102",
+                  "scope": 15861,
+                  "src": "1725:22:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2199,10 +2199,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16276,
+                    "id": 15854,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1725:7:102",
+                    "src": "1725:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2214,12 +2214,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16279,
+                  "id": 15857,
                   "indexed": false,
                   "name": "newAtm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16283,
-                  "src": "1757:14:102",
+                  "scope": 15861,
+                  "src": "1757:14:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2227,10 +2227,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16278,
+                    "id": 15856,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1757:7:102",
+                    "src": "1757:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2242,12 +2242,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16281,
+                  "id": 15859,
                   "indexed": false,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16283,
-                  "src": "1781:15:102",
+                  "scope": 15861,
+                  "src": "1781:15:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2255,10 +2255,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16280,
+                    "id": 15858,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1781:7:102",
+                    "src": "1781:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2269,28 +2269,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1635:167:102"
+              "src": "1635:167:99"
             },
-            "src": "1611:192:102"
+            "src": "1611:192:99"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when the setting for a Market/ATM is removed.\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param oldAtm last ATM address in the given market.\n@param account address that removed the setting.",
-            "id": 16293,
+            "id": 15871,
             "name": "MarketToAtmRemoved",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 16292,
+              "id": 15870,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16285,
+                  "id": 15863,
                   "indexed": true,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16293,
-                  "src": "2170:29:102",
+                  "scope": 15871,
+                  "src": "2170:29:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2298,10 +2298,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16284,
+                    "id": 15862,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2170:7:102",
+                    "src": "2170:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2313,12 +2313,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16287,
+                  "id": 15865,
                   "indexed": true,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16293,
-                  "src": "2209:31:102",
+                  "scope": 15871,
+                  "src": "2209:31:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2326,10 +2326,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16286,
+                    "id": 15864,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2209:7:102",
+                    "src": "2209:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2341,12 +2341,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16289,
+                  "id": 15867,
                   "indexed": true,
                   "name": "oldAtm",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16293,
-                  "src": "2250:22:102",
+                  "scope": 15871,
+                  "src": "2250:22:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2354,10 +2354,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16288,
+                    "id": 15866,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2250:7:102",
+                    "src": "2250:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2369,12 +2369,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 16291,
+                  "id": 15869,
                   "indexed": false,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16293,
-                  "src": "2282:15:102",
+                  "scope": 15871,
+                  "src": "2282:15:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2382,10 +2382,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16290,
+                    "id": 15868,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2282:7:102",
+                    "src": "2282:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2396,51 +2396,51 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2160:143:102"
+              "src": "2160:143:99"
             },
-            "src": "2136:168:102"
+            "src": "2136:168:99"
           },
           {
             "body": null,
             "documentation": "@notice It represents the protocol Settings contract.",
-            "id": 16298,
+            "id": 15876,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "settings",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16294,
+              "id": 15872,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2508:2:102"
+              "src": "2508:2:99"
             },
             "returnParameters": {
-              "id": 16297,
+              "id": 15875,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16296,
+                  "id": 15874,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16298,
-                  "src": "2534:17:102",
+                  "scope": 15876,
+                  "src": "2534:17:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_SettingsInterface_$11431",
+                    "typeIdentifier": "t_contract$_SettingsInterface_$11063",
                     "typeString": "contract SettingsInterface"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 16295,
+                    "id": 15873,
                     "name": "SettingsInterface",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 11431,
-                    "src": "2534:17:102",
+                    "referencedDeclaration": 11063,
+                    "src": "2534:17:99",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_SettingsInterface_$11431",
+                      "typeIdentifier": "t_contract$_SettingsInterface_$11063",
                       "typeString": "contract SettingsInterface"
                     }
                   },
@@ -2448,10 +2448,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2533:19:102"
+              "src": "2533:19:99"
             },
-            "scope": 16366,
-            "src": "2491:62:102",
+            "scope": 15944,
+            "src": "2491:62:99",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2459,23 +2459,23 @@
           {
             "body": null,
             "documentation": "@notice It pauses an given ATM.\n@param atmAddress ATM address to pause.",
-            "id": 16303,
+            "id": 15881,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "pauseATM",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16301,
+              "id": 15879,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16300,
+                  "id": 15878,
                   "name": "atmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16303,
-                  "src": "2681:18:102",
+                  "scope": 15881,
+                  "src": "2681:18:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2483,10 +2483,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16299,
+                    "id": 15877,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2681:7:102",
+                    "src": "2681:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2497,16 +2497,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2680:20:102"
+              "src": "2680:20:99"
             },
             "returnParameters": {
-              "id": 16302,
+              "id": 15880,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2709:0:102"
+              "src": "2709:0:99"
             },
-            "scope": 16366,
-            "src": "2663:47:102",
+            "scope": 15944,
+            "src": "2663:47:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2514,23 +2514,23 @@
           {
             "body": null,
             "documentation": "@notice It unpauses an given ATM.\n@param atmAddress ATM address to unpause.",
-            "id": 16308,
+            "id": 15886,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "unpauseATM",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16306,
+              "id": 15884,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16305,
+                  "id": 15883,
                   "name": "atmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16308,
-                  "src": "2844:18:102",
+                  "scope": 15886,
+                  "src": "2844:18:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2538,10 +2538,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16304,
+                    "id": 15882,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2844:7:102",
+                    "src": "2844:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2552,16 +2552,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2843:20:102"
+              "src": "2843:20:99"
             },
             "returnParameters": {
-              "id": 16307,
+              "id": 15885,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2872:0:102"
+              "src": "2872:0:99"
             },
-            "scope": 16366,
-            "src": "2824:49:102",
+            "scope": 15944,
+            "src": "2824:49:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2569,23 +2569,23 @@
           {
             "body": null,
             "documentation": "@notice Gets whether an ATM is paused or not.\n@param atmAddress ATM address to test.\n@return true if ATM is paused. Otherwise it returns false.",
-            "id": 16315,
+            "id": 15893,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isATMPaused",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16311,
+              "id": 15889,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16310,
+                  "id": 15888,
                   "name": "atmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16315,
-                  "src": "3084:18:102",
+                  "scope": 15893,
+                  "src": "3084:18:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2593,10 +2593,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16309,
+                    "id": 15887,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3084:7:102",
+                    "src": "3084:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2607,19 +2607,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3083:20:102"
+              "src": "3083:20:99"
             },
             "returnParameters": {
-              "id": 16314,
+              "id": 15892,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16313,
+                  "id": 15891,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16315,
-                  "src": "3127:4:102",
+                  "scope": 15893,
+                  "src": "3127:4:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2627,10 +2627,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 16312,
+                    "id": 15890,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3127:4:102",
+                    "src": "3127:4:99",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2640,10 +2640,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3126:6:102"
+              "src": "3126:6:99"
             },
-            "scope": 16366,
-            "src": "3063:70:102",
+            "scope": 15944,
+            "src": "3063:70:99",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2651,23 +2651,23 @@
           {
             "body": null,
             "documentation": "@notice Sets an ATM for a given market (borrowed token and collateral token).\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param atmAddress ATM address to set.",
-            "id": 16324,
+            "id": 15902,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setATMToMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16322,
+              "id": 15900,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16317,
+                  "id": 15895,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16324,
-                  "src": "3430:21:102",
+                  "scope": 15902,
+                  "src": "3430:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2675,10 +2675,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16316,
+                    "id": 15894,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3430:7:102",
+                    "src": "3430:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2690,11 +2690,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16319,
+                  "id": 15897,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16324,
-                  "src": "3461:23:102",
+                  "scope": 15902,
+                  "src": "3461:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2702,10 +2702,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16318,
+                    "id": 15896,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3461:7:102",
+                    "src": "3461:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2717,11 +2717,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16321,
+                  "id": 15899,
                   "name": "atmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16324,
-                  "src": "3494:18:102",
+                  "scope": 15902,
+                  "src": "3494:18:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2729,10 +2729,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16320,
+                    "id": 15898,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3494:7:102",
+                    "src": "3494:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2743,16 +2743,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3420:98:102"
+              "src": "3420:98:99"
             },
             "returnParameters": {
-              "id": 16323,
+              "id": 15901,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3527:0:102"
+              "src": "3527:0:99"
             },
-            "scope": 16366,
-            "src": "3397:131:102",
+            "scope": 15944,
+            "src": "3397:131:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2760,23 +2760,23 @@
           {
             "body": null,
             "documentation": "@notice Updates a new ATM for a given market (borrowed token and collateral token).\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param newAtmAddress the new ATM address to update.",
-            "id": 16333,
+            "id": 15911,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateATMToMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16331,
+              "id": 15909,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16326,
+                  "id": 15904,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16333,
-                  "src": "3848:21:102",
+                  "scope": 15911,
+                  "src": "3848:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2784,10 +2784,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16325,
+                    "id": 15903,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3848:7:102",
+                    "src": "3848:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2799,11 +2799,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16328,
+                  "id": 15906,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16333,
-                  "src": "3879:23:102",
+                  "scope": 15911,
+                  "src": "3879:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2811,10 +2811,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16327,
+                    "id": 15905,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3879:7:102",
+                    "src": "3879:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2826,11 +2826,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16330,
+                  "id": 15908,
                   "name": "newAtmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16333,
-                  "src": "3912:21:102",
+                  "scope": 15911,
+                  "src": "3912:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2838,10 +2838,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16329,
+                    "id": 15907,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3912:7:102",
+                    "src": "3912:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2852,16 +2852,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3838:101:102"
+              "src": "3838:101:99"
             },
             "returnParameters": {
-              "id": 16332,
+              "id": 15910,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3948:0:102"
+              "src": "3948:0:99"
             },
-            "scope": 16366,
-            "src": "3812:137:102",
+            "scope": 15944,
+            "src": "3812:137:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2869,23 +2869,23 @@
           {
             "body": null,
             "documentation": "@notice Removes the ATM address for a given market (borrowed token and collateral token).\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.",
-            "id": 16340,
+            "id": 15918,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "removeATMToMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16338,
+              "id": 15916,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16335,
+                  "id": 15913,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16340,
-                  "src": "4206:21:102",
+                  "scope": 15918,
+                  "src": "4206:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2893,10 +2893,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16334,
+                    "id": 15912,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4206:7:102",
+                    "src": "4206:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2908,11 +2908,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16337,
+                  "id": 15915,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16340,
-                  "src": "4229:23:102",
+                  "scope": 15918,
+                  "src": "4229:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2920,10 +2920,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16336,
+                    "id": 15914,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4229:7:102",
+                    "src": "4229:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2934,16 +2934,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4205:48:102"
+              "src": "4205:48:99"
             },
             "returnParameters": {
-              "id": 16339,
+              "id": 15917,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4262:0:102"
+              "src": "4262:0:99"
             },
-            "scope": 16366,
-            "src": "4179:84:102",
+            "scope": 15944,
+            "src": "4179:84:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2951,23 +2951,23 @@
           {
             "body": null,
             "documentation": "@notice Gets the ATM configured for a given market (borrowed token and collateral token).\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@return the ATM address configured for a given market.",
-            "id": 16349,
+            "id": 15927,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getATMForMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16345,
+              "id": 15923,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16342,
+                  "id": 15920,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16349,
-                  "src": "4581:21:102",
+                  "scope": 15927,
+                  "src": "4581:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2975,10 +2975,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16341,
+                    "id": 15919,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4581:7:102",
+                    "src": "4581:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2990,11 +2990,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16344,
+                  "id": 15922,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16349,
-                  "src": "4604:23:102",
+                  "scope": 15927,
+                  "src": "4604:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3002,10 +3002,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16343,
+                    "id": 15921,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4604:7:102",
+                    "src": "4604:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3016,19 +3016,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4580:48:102"
+              "src": "4580:48:99"
             },
             "returnParameters": {
-              "id": 16348,
+              "id": 15926,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16347,
+                  "id": 15925,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16349,
-                  "src": "4676:7:102",
+                  "scope": 15927,
+                  "src": "4676:7:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3036,10 +3036,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16346,
+                    "id": 15924,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4676:7:102",
+                    "src": "4676:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3050,10 +3050,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4675:9:102"
+              "src": "4675:9:99"
             },
-            "scope": 16366,
-            "src": "4556:129:102",
+            "scope": 15944,
+            "src": "4556:129:99",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -3061,23 +3061,23 @@
           {
             "body": null,
             "documentation": "@notice Tests whether an ATM is configured for a given market (borrowed token and collateral token) or not.\n@param borrowedToken borrowed token address.\n@param collateralToken collateral token address.\n@param atmAddress ATM address to test.\n@return true if the ATM is configured for the market. Otherwise it returns false.",
-            "id": 16360,
+            "id": 15938,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isATMForMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16356,
+              "id": 15934,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16351,
+                  "id": 15929,
                   "name": "borrowedToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16360,
-                  "src": "5103:21:102",
+                  "scope": 15938,
+                  "src": "5103:21:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3085,10 +3085,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16350,
+                    "id": 15928,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5103:7:102",
+                    "src": "5103:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3100,11 +3100,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16353,
+                  "id": 15931,
                   "name": "collateralToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16360,
-                  "src": "5134:23:102",
+                  "scope": 15938,
+                  "src": "5134:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3112,10 +3112,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16352,
+                    "id": 15930,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5134:7:102",
+                    "src": "5134:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3127,11 +3127,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16355,
+                  "id": 15933,
                   "name": "atmAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16360,
-                  "src": "5167:18:102",
+                  "scope": 15938,
+                  "src": "5167:18:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3139,10 +3139,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16354,
+                    "id": 15932,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5167:7:102",
+                    "src": "5167:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3153,19 +3153,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "5093:98:102"
+              "src": "5093:98:99"
             },
             "returnParameters": {
-              "id": 16359,
+              "id": 15937,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16358,
+                  "id": 15936,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16360,
-                  "src": "5215:4:102",
+                  "scope": 15938,
+                  "src": "5215:4:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3173,10 +3173,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 16357,
+                    "id": 15935,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5215:4:102",
+                    "src": "5215:4:99",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -3186,10 +3186,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "5214:6:102"
+              "src": "5214:6:99"
             },
-            "scope": 16366,
-            "src": "5070:151:102",
+            "scope": 15944,
+            "src": "5070:151:99",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -3197,23 +3197,23 @@
           {
             "body": null,
             "documentation": "@notice It initializes this ATM Settings instance.\n@param settingsAddress settings address.",
-            "id": 16365,
+            "id": 15943,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 16363,
+              "id": 15941,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16362,
+                  "id": 15940,
                   "name": "settingsAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 16365,
-                  "src": "5371:23:102",
+                  "scope": 15943,
+                  "src": "5371:23:99",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3221,10 +3221,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 16361,
+                    "id": 15939,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "5371:7:102",
+                    "src": "5371:7:99",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3235,26 +3235,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "5370:25:102"
+              "src": "5370:25:99"
             },
             "returnParameters": {
-              "id": 16364,
+              "id": 15942,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "5404:0:102"
+              "src": "5404:0:99"
             },
-            "scope": 16366,
-            "src": "5351:54:102",
+            "scope": 15944,
+            "src": "5351:54:99",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 16367,
-        "src": "205:5202:102"
+        "scope": 15945,
+        "src": "205:5202:99"
       }
     ],
-    "src": "0:5408:102"
+    "src": "0:5408:99"
   },
   "compiler": {
     "name": "solc",
@@ -3262,7 +3262,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-06T02:15:12.631Z",
+  "updatedAt": "2020-09-15T23:09:49.997Z",
   "devdoc": {
     "author": "develop@teller.finance",
     "methods": {

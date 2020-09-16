@@ -24,7 +24,7 @@ import {
 
 import { sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
-import { getNonce } from "../../models/DataProviders";
+import { getNonce, createPlaidLinkToken } from "../../models/DataProviders";
 import { createLoanWithTerms, takeOutLoan } from "../../models/LoansInterfaceContract";
 
 const BorrowForm = () => {
@@ -53,6 +53,9 @@ const BorrowForm = () => {
         web3State
       );
       const nonceDataResponse = await getNonce();
+      const dataLinkToken = await createPlaidLinkToken(state.web3State.address);
+      // const nonceDataResponse = 33;
+      console.log("NONCE>>>", nonceDataResponse);
       const lendingApplication = LendingApplicationMap(
         borrowRequest,
         dataProviderResponse.bankInfo,
@@ -61,7 +64,7 @@ const BorrowForm = () => {
         web3State
       );
       const response = await sendLendingApplication(lendingApplication);
-      console.log(response.data);
+      console.log("TERMS>>>", response.data);
       return true;
     } catch (err) {
       console.log(err);
@@ -137,16 +140,43 @@ const BorrowForm = () => {
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
     ];
+
+    console.log('loan...', loansInstance.options.address)
+    const loanRequest = {
+      borrower: state.web3State.address,
+      recipient: state.web3State.address,
+      consensusAddress: loansInstance.options.address,
+      requestNonce: 33,
+      amount: borrowRequest.loanSize,
+      duration: borrowRequest.loanTerm,
+      requestTime: Date.now()
+    };
+    const resTime = Math.floor(Date.now()/1000) + 10;
+    const loanResponse = {
+      signer: "0x5AA2a57550a393Eef5a2025cc31F00cB7095B464",
+      consensusAddress: "0x5AA2a57550a393Eef5a2025cc31F00cB7095B464",
+      responseTime: resTime,
+      interestRate: 30,
+      collateralRatio: 150,
+      maxLoanAmount: 100,
+      signature: {
+        signerNonce: 33,
+        v: 10,
+        r: "0x7465737400000000000000000000000000000000000000000000000000000000",
+        s: "0x7465737400000000000000000000000000000000000000000000000000000000"
+      }
+    }
     try {
       const collateral = borrowRequest.collateralAmount.toString();
       const response = await createLoanWithTerms(
-        borrowRequest,
-        loanTerms,
+        loanRequest,
+        loanResponse,
         loansInstance,
         collateral,
         state.web3State.address
       );
       console.log(response);
+      console.log('req', borrowRequest);
       setSubmitting(true);
       //Accept loan terms
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -219,10 +249,17 @@ const BorrowForm = () => {
                   disabled={isSecured ? false : Boolean(!plaidConnected)}
                   onClick={() => {
                     //Get LoanTerms
-                    setLoanTerms({
-                      ...loanTerms,
-                      minCollateralNeeded: borrowRequest.collateralPercent,
-                    });
+                    const newLoanTerms = {
+                      borrower: state.web3State.address,
+                      recipient: state.web3State.address,
+                      collateralRatio: borrowRequest.collateralPercent,
+                      interestRate:
+                        borrowRequest.loanType === "Secured" ? 200 : 17,
+                      maxLoanAmount: borrowRequest.loanSize,
+                      duration: borrowRequest.loanTerm
+                    };
+                    requestLoan();
+                    setLoanTerms(newLoanTerms);
                     setStage(stage + 1);
                   }}
                 />
