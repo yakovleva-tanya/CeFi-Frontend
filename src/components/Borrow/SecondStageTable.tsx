@@ -5,8 +5,8 @@ import { BorrowPageContext } from "../../context/borrowContext";
 
 const SecondStageTable = () => {
   const { borrowRequest, loanTerms } = useContext(BorrowPageContext);
-  const { loanSize, lendWith, loanType, loanTerm } = borrowRequest;
-  const { interestRate, minCollateralNeeded } = loanTerms;
+  const { lendWith, loanType, loanTerm } = borrowRequest;
+  const { interestRate, collateralRatio, maxLoanAmount} = loanTerms;
 
   return (
     <div>
@@ -16,16 +16,16 @@ const SecondStageTable = () => {
           <div className="font-medium"> {interestRate} % </div>
         </TableRow>
         <BR />
-        {minCollateralNeeded > 0 && (
+        {collateralRatio > 0 && (
           <div>
             <TableRow title="Collateral ratio">
-              <div className="font-medium">{minCollateralNeeded} % </div>
+              <div className="font-medium">{collateralRatio} % </div>
             </TableRow>
             <BR />
           </div>
         )}
         <TableRow title="Loan size">
-          <div className="font-medium">{`${loanSize} ${lendWith}`}</div>
+          <div className="font-medium">{`${maxLoanAmount} ${lendWith}`}</div>
         </TableRow>
         <BR />
         <TableRow title="Loan term">

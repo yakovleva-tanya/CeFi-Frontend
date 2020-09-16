@@ -6,7 +6,7 @@ import ThirdStageTable from "./ThirdStageTable";
 import PrimaryButton from "../UI/PrimaryButton";
 import LoginButton from "../LoginButton/LoginButton";
 import Submenu from "./Submenu";
-import LoanSelectCard from './LoanSelectedCard';
+import LoanSelectCard from "./LoanSelectedCard";
 
 import "./borrow.scss";
 
@@ -25,7 +25,10 @@ import {
 import { sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
 import { getNonce } from "../../models/DataProviders";
-import { createLoanWithTerms, takeOutLoan } from "../../models/LoansInterfaceContract";
+import {
+  createLoanWithTerms,
+  takeOutLoan,
+} from "../../models/LoansInterfaceContract";
 
 const BorrowForm = () => {
   const {
@@ -40,9 +43,10 @@ const BorrowForm = () => {
   } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
   const { setRequesting, setSuccess, setSubmitting } = borrowProcessState;
+  const { web3State } = state;
 
   const requestLoan = async () => {
-    const { dataProviderResponse, web3State } = state;
+    const { dataProviderResponse } = state;
     //TODO: this should update based on the selected ATM type.
     const { lendingPool } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
@@ -60,27 +64,27 @@ const BorrowForm = () => {
         tokenDecimals,
         web3State
       );
-      const response = await sendLendingApplication(lendingApplication);
-      console.log(response.data);
-      return true;
+      const response: any = await sendLendingApplication(lendingApplication);
+      console.log({ response });
+      return loanTerms;
     } catch (err) {
-      console.log(err);
-      updateAppState((st: AppContextState) => {
-        const errorModal = {
-          show: true,
-          message:
-            "An error occurred during the borrowing process. Please try again.",
-          title: "Error",
-        };
-        return { ...st, errorModal };
-      });
-      return false;
+      console.log({ err });
+      // updateAppState((st: AppContextState) => {
+      //   const errorModal = {
+      //     show: true,
+      //     message:
+      //       "An error occurred during the borrowing process. Please try again.",
+      //     title: "Error",
+      //   };
+      //   return { ...st, errorModal };
+      // });
+      return null;
     }
   };
 
   const loggedIn = state.web3State?.address || "";
   const onRequestLoan = async () => {
-    const { web3State } = state;
+    setRequesting(true);
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
     ];
@@ -88,22 +92,21 @@ const BorrowForm = () => {
       const borrower = state.web3State.address;
       const borrowerLoans = await loansInstance.getBorrowerLoans(borrower);
       if (borrowerLoans.length == 0) {
+        setRequesting(false);
         return false;
       } else {
-        const loanId = borrowerLoans[borrowerLoans.length -1];
-        const amountToBorrow = borrowRequest.loanSize.toString();
+        const loanId = borrowerLoans[borrowerLoans.length - 1];
+        const amountToBorrow = loanTerms.maxLoanAmount.toString();
         const response = await takeOutLoan(
-        loansInstance,
-        loanId,
-        amountToBorrow,
-        borrower
-      );
-      console.log(response);
-      setSubmitting(true);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setSubmitting(false);
-      setStage(stage + 1);
-      return true;
+          loansInstance,
+          loanId,
+          amountToBorrow,
+          borrower
+        );
+        console.log(response);
+        setRequesting(false);
+        setStage(stage + 1);
+        return true;
       }
     } catch (err) {
       console.log(err);
@@ -111,20 +114,14 @@ const BorrowForm = () => {
         const errorModal = {
           show: true,
           message:
-            "An error occurred while taking out the loan. Please try again.", title: "Error",
+            "An error occurred while taking out the loan. Please try again.",
+          title: "Error",
         };
         return { ...st, errorModal };
       });
-      setSubmitting(true);
-      //Accept loan terms
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setSubmitting(false);
+      setRequesting(false);
       return false;
     }
-    setRequesting(true);
-    const res = await requestLoan();
-    setRequesting(false);
-    setSuccess(res);
   };
   const onRequestLoanMock = async () => {
     setRequesting(true);
@@ -132,12 +129,18 @@ const BorrowForm = () => {
     setRequesting(false);
     setSuccess(true);
   };
+  const onAcceptTermsMock = async () => {
+    setSubmitting(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setSubmitting(false);
+    setStage(stage + 1);
+  };
   const onAcceptTerms = async () => {
-    const { web3State } = state;
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
     ];
     try {
+      setSubmitting(true);
       const collateral = borrowRequest.collateralAmount.toString();
       const response = await createLoanWithTerms(
         borrowRequest,
@@ -147,9 +150,6 @@ const BorrowForm = () => {
         state.web3State.address
       );
       console.log(response);
-      setSubmitting(true);
-      //Accept loan terms
-      await new Promise((resolve) => setTimeout(resolve, 2000));
       setSubmitting(false);
       setStage(stage + 1);
       return true;
@@ -159,13 +159,11 @@ const BorrowForm = () => {
         const errorModal = {
           show: true,
           message:
-            "An error occurred during the loan creation process. Please try again.", title: "Error",
+            "An error occurred during the loan creation process. Please try again.",
+          title: "Error",
         };
         return { ...st, errorModal };
       });
-      setSubmitting(true);
-      //Accept loan terms
-      await new Promise((resolve) => setTimeout(resolve, 2000));
       setSubmitting(false);
       return false;
     }
@@ -188,12 +186,13 @@ const BorrowForm = () => {
                   setStage(stage + 1);
                   setBorrowRequest({
                     ...borrowRequest,
+                    collateralPercent: 0,
                     loanType: "Unsecured",
                   });
                 }}
                 title="Unsecured loan"
                 subTitle="Apply for an unsecured loan by connecting your bank account."
-                logos={['compound']}
+                logos={["compound"]}
               />
               <LoanSelectCard
                 className="mt-4"
@@ -201,12 +200,13 @@ const BorrowForm = () => {
                   setStage(stage + 1);
                   setBorrowRequest({
                     ...borrowRequest,
+                    collateralPercent: 150,
                     loanType: "Secured",
                   });
                 }}
                 title="Secured loan"
                 subTitle="Apply for a secured loan, no bank account needed."
-                logos={['compound', 'uniswap']}
+                logos={["compound", "uniswap"]}
               />
             </div>
           )}
@@ -218,11 +218,21 @@ const BorrowForm = () => {
                   text="Request terms"
                   disabled={isSecured ? false : Boolean(!plaidConnected)}
                   onClick={() => {
-                    //Get LoanTerms
-                    setLoanTerms({
-                      ...loanTerms,
-                      minCollateralNeeded: borrowRequest.collateralPercent,
-                    });
+                    const newLoanTerms = {
+                      maxLoanAmount: borrowRequest.loanSize,
+                      interestRate:
+                        borrowRequest.loanType === "Secured" ? 200 : 17,
+                      collateralRatio: borrowRequest.collateralPercent,
+                    };
+                    requestLoan();
+                    // if (res) {
+                    //   newLoanTerms = {
+                    //     maxLoanAmount: res.maxLoanAmount,
+                    //     interestRate: res.interestRate,
+                    //     collateralRatio: res.collateralRatio,
+                    //   };
+                    // }
+                    setLoanTerms(newLoanTerms);
                     setStage(stage + 1);
                   }}
                 />
@@ -234,7 +244,14 @@ const BorrowForm = () => {
           {stage === 2 && (
             <div>
               <SecondStageTable />
-              <PrimaryButton text="Accept terms" onClick={onAcceptTerms} />
+              <PrimaryButton
+                text="Accept terms"
+                onClick={
+                  process.env.INTEGRATIONS_DISABLED === "true"
+                    ? onAcceptTermsMock
+                    : onAcceptTerms
+                }
+              />
             </div>
           )}
           {stage === 3 && (

@@ -50,18 +50,20 @@ const defaultBorrowRequest = {
   loanType: "Secured",
   bankConnected: false,
   lendWith: AvailableLendingTokens.DAI,
-  collateralAmount: null as null,
+  collateralAmount: 0,
   approved: false,
   transferred: false,
 };
 const mockLoanTerms = {
   interestRate: 20,
-  minCollateralNeeded: 100,
+  collateralRatio: 100,
+  maxLoanAmount: 100,
 };
 
 const LoanTerms = {
   interestRate: null as null,
-  minCollateralNeeded: null as null,
+  collateralRatio: null as null,
+  maxLoanAmount: null as null,
 };
 
 export const BorrowPageContext = createContext<BorrowPageContextInterface>({
