@@ -20,6 +20,8 @@ import LoansInterface = require("./../abi/contracts/LoansInterface.json");
 import ERC20Interface = require("./../abi/contracts/ERC20.json");
 import LenderInterface = require("./../abi/contracts/Lenders.json");
 import LendingPoolInterface = require("./../abi/contracts/LendingPoolInterface.json");
+import ChainLinkPairAggregator = require("./../abi/contracts/ChainlinkPairAggregator.json");
+import TTokenInterface = require("./../abi/contracts/TTokenInterface.json");
 import { globalDecimals, allContractAddresses } from "./../util/constants";
 
 /**
@@ -45,7 +47,7 @@ async function setupTellerContracts(
   )
 
   const tToken = new web3State.web3.eth.Contract(
-    ERC20Interface.abi,
+    TTokenInterface.abi,
     tTokenAddress,
     {}
   );
