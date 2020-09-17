@@ -1,7 +1,6 @@
 const { request } = require("graphql-request");
 import { LoanInterface } from "../context/types";
 import { loansTestData } from "../context/testdata";
-import FetchTokenData from "./FetchTokenData";
 
 const getUrl = (network: string) => {
   if (network === "3") {
@@ -56,36 +55,23 @@ const loansQuery = (address: string) => `
   }
 `;
 
-const tokenData = async () => {
-  const tokens = await FetchTokenData();
-  const collateralRates: any = {
-  ETH: tokens.ETH.price,
-  LINK: tokens.LINK.price
-}
-  const tokenRates: any = {
-    DAI: tokens.DAI.price,
-    USDC: tokens.USDC.price
-  }
-}
 //TODO fetch real rates
-// const collateralRates: any = {
-//   ETH: 441.25,
-//   LINK: 14.92,
-// };
-// const tokenRates: any = {
-//   DAI: 1.01,
-//   USDC: 0.99,
-// };
+const collateralRates: any = {
+  ETH: 441.25,
+  LINK: 14.92,
+};
+const tokenRates: any = {
+  DAI: 1.01,
+  USDC: 0.99,
+};
 const FetchLoans = async (network: string, address: string) => {
   const currentTime = Date.now();
   try {
-    const url = getUrl(network);
+    const url ="" //getUrl(network);
     const query = loansQuery(address);
 
     //fetch loans
     const res = loansTestData;
-    const result = await request(url, query);
-    console.log("LOANS_GQL>>>", result);
 
     const loans: Array<LoanInterface> = res.map((loan: LoanInterface) => {
       loan.collateralAmount =

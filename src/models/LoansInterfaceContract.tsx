@@ -76,6 +76,7 @@ export async function createLoanWithTerms(
   borrowerAddress: string
 ) {
   const bnAmount = convertToBN(collateralAmount);
+  console.log("ADD>>", borrowerAddress);
   return new Promise((resolve, reject) => loansInterface.methods
     .createLoanWithTerms(
       loanRequest,
