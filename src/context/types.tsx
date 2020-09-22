@@ -66,7 +66,7 @@ export interface LendPageContextInterface {
 }
 
 export interface BorrowRequest {
-  loanSize: number;
+  loanSize: string;
   loanTerm: number;
   collateralWith: BaseTokens;
   collateralPercent: number;

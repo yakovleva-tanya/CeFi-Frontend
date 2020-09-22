@@ -17,18 +17,15 @@ const DAYS = 86400; // Seconds per day
 export const LendingApplicationMap = (
   borrowRequest: BorrowRequest,
   bankInfoResponse: BankInfoResponseInterface | null,
-  nonceDataResponse: any,
   tokenDecimals: number,
   web3State: Web3State
 ): LendingApplication => {
-  const nonce = nonceDataResponse.data?.nonce;
-  const nonceSignature = nonceDataResponse.data?.nonceSignature;
   const lendingApplication = {
     borrowedAsset: borrowRequest.lendWith,
     collateralAsset: borrowRequest.collateralWith,
-    requestedLoanSize: borrowRequest.loanSize * tokenDecimals,
+    requestedLoanSize: (Number(borrowRequest.loanSize) * tokenDecimals).toString(),
     loanTermLength: borrowRequest.loanTerm * DAYS,
-    collateralPercentEntered: borrowRequest.collateralPercent / 100,
+    collateralRatioEntered: borrowRequest.collateralPercent / 100,
     loanUse: borrowRequest.loanType.toUpperCase(),
     ethereumWallet: web3State.address,
     assetReportStringified:
@@ -36,14 +33,12 @@ export const LendingApplicationMap = (
       JSON.stringify(bankInfoResponse.assetReportStringified),
     assetReportSignature:
       bankInfoResponse && bankInfoResponse.assetReportSignature,
-    nonce,
-    nonceSignature,
   };
   return lendingApplication as LendingApplication;
 };
 
 const defaultBorrowRequest = {
-  loanSize: 100,
+  loanSize: "100",
   loanTerm: 1,
   collateralWith: BaseTokens.ETH,
   collateralPercent: 150,

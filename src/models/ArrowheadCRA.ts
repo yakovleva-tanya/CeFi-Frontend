@@ -12,15 +12,13 @@ import { craURLs } from './../util/constants';
 export interface LendingApplication {
   borrowedAsset: string;
   collateralAsset: string;
-  requestedLoanSize: number;
+  requestedLoanSize: string;
   loanTermLength: number;
-  collateralPercentEntered: number;
+  collateralRatioEntered: number;
   loanUse: string;
   assetReportStringified?: string;
   assetReportSignature?: string; 
   ethereumWallet?: string;
-  nonce: string;
-  nonceSignature: string;
 };
 
 /**
@@ -36,3 +34,17 @@ export const sendLendingApplication = (lendingApplication: LendingApplication) =
     params: lendingApplication
   }
 }); 
+
+/**
+ * Get Loan Terms
+ */
+export const getLoanTerms = (lendingApplication: LendingApplication) => axios({
+  method: 'post',
+  url: craURLs.arrowhead,
+  data: {
+    jsonrpc: '2.0',
+    method: 'arrowheadCRA',
+    id: 1,
+    params: lendingApplication
+  }
+})

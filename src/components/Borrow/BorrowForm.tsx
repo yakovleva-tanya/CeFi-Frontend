@@ -22,7 +22,7 @@ import {
   LendingApplicationMap,
 } from "../../context/borrowContext";
 
-import { sendLendingApplication } from "../../models/ArrowheadCRA";
+import { getLoanTerms, sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
 import { getNonce, createPlaidLinkToken } from "../../models/DataProviders";
 import { createLoanWithTerms, takeOutLoan } from "../../models/LoansInterfaceContract";
@@ -52,19 +52,18 @@ const BorrowForm = () => {
         lendingPool,
         web3State
       );
-      const nonceDataResponse = await getNonce();
-      const dataLinkToken = await createPlaidLinkToken(state.web3State.address);
+      // const nonceDataResponse = await getNonce();
       // const nonceDataResponse = 33;
-      console.log("NONCE>>>", nonceDataResponse);
       const lendingApplication = LendingApplicationMap(
         borrowRequest,
         dataProviderResponse.bankInfo,
-        nonceDataResponse,
         tokenDecimals,
         web3State
       );
-      const response = await sendLendingApplication(lendingApplication);
-      console.log("TERMS>>>", response.data);
+      console.log("APPLICATION>>>", lendingApplication);
+      const terms = await getLoanTerms(lendingApplication);
+      // const response = await sendLendingApplication(lendingApplication);
+      console.log("TERMS>>>", terms.data);
       return true;
     } catch (err) {
       console.log(err);
@@ -147,7 +146,7 @@ const BorrowForm = () => {
       recipient: state.web3State.address,
       consensusAddress: loansInstance.options.address,
       requestNonce: 33,
-      amount: borrowRequest.loanSize,
+      amount: borrowRequest.loanSize.toString(),
       duration: borrowRequest.loanTerm,
       requestTime: Date.now()
     };
