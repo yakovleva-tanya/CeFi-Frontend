@@ -22,9 +22,8 @@ import {
   LendingApplicationMap,
 } from "../../context/borrowContext";
 
-import { getLoanTerms, sendLendingApplication } from "../../models/ArrowheadCRA";
+import { sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
-import { getNonce, createPlaidLinkToken } from "../../models/DataProviders";
 import { createLoanWithTerms, takeOutLoan } from "../../models/LoansInterfaceContract";
 
 const BorrowForm = () => {
@@ -52,8 +51,6 @@ const BorrowForm = () => {
         lendingPool,
         web3State
       );
-      // const nonceDataResponse = await getNonce();
-      // const nonceDataResponse = 33;
       const lendingApplication = LendingApplicationMap(
         borrowRequest,
         dataProviderResponse.bankInfo,
@@ -61,9 +58,20 @@ const BorrowForm = () => {
         web3State
       );
       console.log("APPLICATION>>>", lendingApplication);
-      const terms = await getLoanTerms(lendingApplication);
-      // const response = await sendLendingApplication(lendingApplication);
+      const terms = await sendLendingApplication(lendingApplication);
       console.log("TERMS>>>", terms.data);
+      const response = terms.data.result.result.response;
+      const loanResponse = {
+        collateralRatio: response.collateralRatio,
+        consensusAddress: response.consensusAddress,
+        interestRate: response.interestRate,
+        minCollateralNeeded: "100",
+        maxLoanAmount: response.maxLoanAmount,
+        nonce: response.nonce,
+        signature: response.signature
+      };
+      setLoanTerms(loanResponse);
+      console.log('STORED_TERMS<>', loanTerms);
       return true;
     } catch (err) {
       console.log(err);
@@ -81,8 +89,8 @@ const BorrowForm = () => {
   };
 
   const loggedIn = state.web3State?.address || "";
+
   const onRequestLoan = async () => {
-    const { web3State } = state;
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
     ];
@@ -128,24 +136,24 @@ const BorrowForm = () => {
     setRequesting(false);
     setSuccess(res);
   };
+
   const onRequestLoanMock = async () => {
     setRequesting(true);
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setRequesting(false);
     setSuccess(true);
   };
+
   const onAcceptTerms = async () => {
-    const { web3State } = state;
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
     ];
-
     console.log('loan...', loansInstance.options.address)
     const loanRequest = {
       borrower: state.web3State.address,
       recipient: state.web3State.address,
-      consensusAddress: loansInstance.options.address,
-      requestNonce: 33,
+      consensusAddress: loanTerms.consensusAddress,
+      requestNonce: loanTerms.nonce,
       amount: borrowRequest.loanSize.toString(),
       duration: borrowRequest.loanTerm,
       requestTime: Date.now()
@@ -169,7 +177,7 @@ const BorrowForm = () => {
       const collateral = borrowRequest.collateralAmount.toString();
       const response = await createLoanWithTerms(
         loanRequest,
-        loanResponse,
+        loanTerms,
         loansInstance,
         collateral,
         state.web3State.address

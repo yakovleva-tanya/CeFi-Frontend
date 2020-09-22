@@ -24,21 +24,21 @@ export interface LendingApplication {
 /**
  * Send bank information to the Arrowhead CRA.
  */
-export const sendLendingApplication = (lendingApplication: LendingApplication) => axios({
-  method: 'post',
-  url: craURLs.arrowhead,
-  data: {
-    id: 1,
-    jsonrpc: '2.0',
-    method: 'arrowheadCRA',
-    params: lendingApplication
-  }
-}); 
+// export const sendLendingApplication = (lendingApplication: LendingApplication) => axios({
+//   method: 'post',
+//   url: craURLs.arrowhead,
+//   data: {
+//     id: 1,
+//     jsonrpc: '2.0',
+//     method: 'arrowheadCRA',
+//     params: lendingApplication
+//   }
+// }); 
 
 /**
  * Get Loan Terms
  */
-export const getLoanTerms = (lendingApplication: LendingApplication) => axios({
+export const sendLendingApplication = (lendingApplication: LendingApplication) => axios({
   method: 'post',
   url: craURLs.arrowhead,
   data: {

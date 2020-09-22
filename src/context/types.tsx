@@ -79,8 +79,13 @@ export interface BorrowRequest {
 }
 
 export interface LoanTerms {
+  collateralRatio: number;
+  consensusAddress: string;
   interestRate: number;
   minCollateralNeeded: number;
+  maxLoanAmount: number;
+  nonce: number;
+  signature: any;
 }
 
 export interface BorrowProcessInterface {
