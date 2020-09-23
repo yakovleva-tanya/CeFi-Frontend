@@ -8,9 +8,7 @@ import {
   claimInterest,
   collectInterest,
 } from "../../../actions/DashboardLendActions";
-import {
-  LendClaimContext,
-} from "../../../context/dashboardContext";
+import { LendClaimContext } from "../../../context/dashboardContext";
 
 const ClaimMainSection = () => {
   const {
@@ -28,7 +26,7 @@ const ClaimMainSection = () => {
   const assets = [
     { currency: "DAI", amount: 100 },
     { currency: "USDC", amount: 204 },
-    { currency: "TRL", amount: 12 },
+    { currency: "TLR", amount: 12 },
     { currency: "COMP", amount: 20 },
   ];
 

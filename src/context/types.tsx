@@ -180,7 +180,24 @@ export interface UseCompoundStateInterface {
   successMessage: string;
   setSuccessMessage: Function;
 }
-export interface UniswapStateInterface {}
+
+interface UniswapValue {
+  amount: string;
+  currency: string;
+}
+export interface UniswapStateInterface {
+  selectedLoan: null | LoanInterface;
+  setSelectedLoan: Function;
+  success: Boolean;
+  setSuccess: Function;
+  values: any;
+  setValues: Function;
+  swapExchangeRate: Boolean;
+  setSwapExchangeRate: Function;
+  options: Array<string>;
+  tokenSelectionDropdown: any;
+  setTokenSelectionDropdown: Function;
+}
 
 export interface TokenInterface {
   supplyAPY: string;
