@@ -14,8 +14,8 @@ import FetchTokenData from "../models/FetchTokenData";
 
 const setAddress = async (state: AppContextState, updateAppState: Function) => {
   const { web3State } = state;
-  const accounts = await web3State.web3.eth.getAccounts();
-  web3State.address = accounts[0];
+  // const accounts = await web3State.web3.eth.getAccounts();
+  // web3State.address = accounts[0];
   updateAppState((st: AppContextState) => {
     return { ...st, web3State };
   });
@@ -27,7 +27,7 @@ const setBlockNumber = async (
 ) => {
   const { web3State } = state;
   if (web3State.network === "unknown") return;
-  const blockNumber = await web3State.web3.eth.getBlockNumber();
+  const blockNumber = await web3State.web3.blockNumber;
   web3State.blockNumber = blockNumber;
   updateAppState((st: AppContextState) => {
     return { ...st, web3State };
@@ -38,9 +38,9 @@ const mergeSignInContracts = async (
   state: AppContextState,
   updateAppState: Function
 ) => {
-  const networkId = await state.web3State.web3.eth.getChainId();
+  const networkId = await state.web3State.web3.network;
 
-  if (networkId !== 1 && networkId !== 3) {
+  if (Number(networkId) !== 1 && Number(networkId) !== 3) {
     const teller = AppContextDefault.state.teller;
     updateAppState((st: AppContextState) => ({
       ...st,
@@ -86,13 +86,28 @@ const setUpdates = async (state: AppContextState, updateAppState: Function) => {
   await mergeSignInContracts(state, updateAppState);
   await setBlockNumber(state, updateAppState);
 };
+
+const getCircularReplacer = () => {
+  const seen = new WeakSet();
+  return (key: any, value: any) => {
+    if (typeof value === "object" && value !== null) {
+      if (seen.has(value)) {
+        return;
+      }
+      seen.add(value);
+    }
+    return value;
+  };
+};
+
 /**
  * Implements the app context hook.
  * @function useAppContext
  * @memberof AppContextHook
  */
 export default function useAppContext() {
-  const [state, updateAppState] = React.useState(AppContextDefault.state);
+  const stored = JSON.parse(localStorage.getItem('storedState'));
+  const [state, updateAppState] = React.useState(stored || AppContextDefault.state);
 
   React.useEffect(() => {
     if (!state.web3State.network) return;
@@ -103,6 +118,8 @@ export default function useAppContext() {
   React.useEffect(() => {
     getTokenData(state, updateAppState);
   }, []);
+
+  localStorage.setItem("storedState", JSON.stringify(state, getCircularReplacer()));
 
   return [state, updateAppState];
 }
