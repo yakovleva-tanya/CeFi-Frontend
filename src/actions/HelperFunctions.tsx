@@ -19,15 +19,18 @@ export const getMaxWithdrawAmount = (
   tokenData: TokenDataInterface,
   loan: LoanInterface
 ) => {
-  return (
+  let maxAmount =
     Math.round(
       (loan.collateralAmount -
         ((loan.terms.collateralRatio / 100) *
           (loan.totalOwedAmount * parseFloat(tokenData[loan.token].price))) /
           parseFloat(tokenData[loan.collateralToken].price)) *
         100
-    ) / 100
-  );
+    ) / 100;
+  if (maxAmount < 0) {
+    maxAmount = 0;
+  }
+  return maxAmount;
 };
 export const getEtherscanLink = (hash: string, network: string) => {
   if (network == "4") return `https://rinkeby.etherscan.io/tx/${hash}`;

@@ -26,19 +26,19 @@ const Borrow = () => {
     <Container>
       {true && (
         <WarningModal
-          show={stageChangeWarning}
-          text="Going back will result in having to submit another transaction approval and cost additional gas fees. Are you sure you want to proceed?"
+          show={stageChangeWarning !== null}
+          text="Changes to terms will require an approval transaction and accrue additional gas fees. Would you like to proceed?"
           proceed={() => {
-            setStage(stage - 1);
-            setStageChangeWarning(false);
+            setStage(stageChangeWarning);
+            setStageChangeWarning(null);
           }}
           cancel={() => {
-            setStageChangeWarning(false);
+            setStageChangeWarning(null);
           }}
         />
       )}
       {isSubmitting && <ProcessingScreen link="" title="Submitting terms" />}
-      {isRequesting && <ProcessingScreen link="" title="Requesting Loan" />}
+      {isRequesting && <ProcessingScreen link="" title="Requesting loan" />}
       {success && (
         <SuccessScreen
           title="Loan accepted"

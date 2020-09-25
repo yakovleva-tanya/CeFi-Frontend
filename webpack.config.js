@@ -6,6 +6,7 @@ module.exports = {
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
     },
     mode: `${process.env.NODE_ENV}`,
 
@@ -52,7 +53,9 @@ module.exports = {
             },
         ]
     },
-
+    devServer: {
+      historyApiFallback: true,
+    },
     plugins: [
       new webpack.DefinePlugin({
         'process.env.CRA_URLS_ARROWHEAD': `'${process.env.CRA_URLS_ARROWHEAD}'`,
@@ -66,7 +69,9 @@ module.exports = {
         'process.env.PLAID_ENV': `'${process.env.PLAID_ENV}'`,
         'process.env.PLAID_KEY': `'${process.env.PLAID_KEY}'`,
         'process.env.SERVER_URL': `'${process.env.SERVER_URL}'`,
-        'process.env.DATA_PROVIDERS_URLS_BANK_INFO': `'${process.env.DATA_PROVIDERS_URLS_BANK_INFO}'`
+        'process.env.DATA_PROVIDERS_URLS_BANK_INFO': `'${process.env.DATA_PROVIDERS_URLS_BANK_INFO}'`,
+        'process.env.INFURA_API_KEY': `'${process.env.INFURA_API_KEY}'`,
+        'process.env.RPC_URL': `'${process.env.RPC_URL}'`,
       }),
     ],
 

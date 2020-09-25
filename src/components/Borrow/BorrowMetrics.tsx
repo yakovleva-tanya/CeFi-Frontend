@@ -4,19 +4,17 @@ import { BorrowPageContext } from "../../context/borrowContext";
 import { AppContext, mapLendingTokensToTellerTokens } from "../../context/app";
 import ConnectPlaid from "./../../actions/ConnectPlaid";
 
-import Arrow from "../UI/Arrow";
 import Card from "../UI/Card";
 import Metric from "../UI/Metric";
-import BR from "../UI/BR";
+import ProTip from "./ProTip";
 
 import "./borrow.scss";
 
 const BorrowMetrics = () => {
-  const { borrowRequest, stage } = useContext(BorrowPageContext);
-  const { state, updateAppState } = useContext(AppContext);
+  const { borrowRequest } = useContext(BorrowPageContext);
+  const { state } = useContext(AppContext);
 
-  const { tokenData, teller, web3State } = state;
-  const address = web3State?.address;
+  const { tokenData, teller } = state;
   const { lendWith, collateralWith } = borrowRequest;
 
   const assetPrice = tokenData
@@ -38,33 +36,16 @@ const BorrowMetrics = () => {
       : "-";
 
   return (
-    <Card className="metrics-card" title="Summary">
-      <Metric title="Asset price" value={assetPrice} />
-      <Metric title="Wallet balance" value={walletBalance} />
-      <Metric title="Collateral available" value={collateralAvailable} />
-        <div>
-          <div className="metrics-div">
-            <BR />
-          </div>
-          <Metric
-            title="Pro tip"
-            value="Connect to your bank account to reduce collateral ratios."
-          />
-          <div
-            className={`${
-              address ? "pointer" : "disabled"
-            } text-lg font-medium`}
-            onClick={() => {
-              if (address) {
-                ConnectPlaid(updateAppState, address)();
-              }
-            }}
-          >
-            <u className="mr-2">Connect accounts</u>
-            <Arrow direction="right" />
-          </div>
-        </div>
-    </Card>
+    <div className="d-flex flex-column">
+      <Card className="metrics-card" title="Summary">
+        <Metric title="Asset price" value={assetPrice} />
+        <Metric title="Wallet balance" value={walletBalance} />
+        <Metric title="Collateral available" value={collateralAvailable} />
+      </Card>
+      <Card className="metrics-card my-1" title="Pro tip">
+        <ProTip />
+      </Card>
+    </div>
   );
 };
 

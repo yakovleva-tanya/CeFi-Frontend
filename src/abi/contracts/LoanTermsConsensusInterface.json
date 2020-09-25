@@ -1,0 +1,1631 @@
+{
+  "contractName": "LoanTermsConsensusInterface",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "borrower",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "requestNonce",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "interestRate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "collateralRatio",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "maxLoanAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "TermsAccepted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "signer",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "borrower",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "requestNonce",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "interestRate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "collateralRatio",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "maxLoanAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "TermsSubmitted",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address payable",
+              "name": "borrower",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "consensusAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "requestNonce",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "duration",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "requestTime",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TellerCommon.LoanRequest",
+          "name": "request",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "signer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "consensusAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "responseTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "interestRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "collateralRatio",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxLoanAmount",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "signerNonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint8",
+                  "name": "v",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "r",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "s",
+                  "type": "bytes32"
+                }
+              ],
+              "internalType": "struct TellerCommon.Signature",
+              "name": "signature",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct TellerCommon.LoanResponse[]",
+          "name": "responses",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "processRequest",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "aCallerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "aSettingAddress",
+          "type": "address"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"requestNonce\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"interestRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"collateralRatio\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maxLoanAmount\",\"type\":\"uint256\"}],\"name\":\"TermsAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"requestNonce\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"interestRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"collateralRatio\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maxLoanAmount\",\"type\":\"uint256\"}],\"name\":\"TermsSubmitted\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"aCallerAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"aSettingAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address payable\",\"name\":\"borrower\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"consensusAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"requestNonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"duration\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"requestTime\",\"type\":\"uint256\"}],\"internalType\":\"struct TellerCommon.LoanRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"consensusAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"responseTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"interestRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"collateralRatio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxLoanAmount\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"signerNonce\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"internalType\":\"struct TellerCommon.Signature\",\"name\":\"signature\",\"type\":\"tuple\"}],\"internalType\":\"struct TellerCommon.LoanResponse[]\",\"name\":\"responses\",\"type\":\"tuple[]\"}],\"name\":\"processRequest\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"initialize(address,address,address)\":{\"details\":\"The caller address is the loans address for the loan terms consensus implementation.\",\"params\":{\"aCallerAddress\":\"the contract that will call it.\",\"aSettingAddress\":\"the settings contract address.\",\"owner\":\"the owner address.\"}},\"processRequest((address,address,address,uint256,uint256,uint256,uint256),(address,address,uint256,uint256,uint256,uint256,(uint256,uint8,bytes32,bytes32))[])\":{\"params\":{\"request\":\"Struct of the protocol loan request\",\"responses\":\"List of structs of the protocol loan responses\"},\"return\":\"uint256 Interest rateuint256 Collateral ratiouint256 Maximum loan amount\"}}},\"userdoc\":{\"methods\":{\"initialize(address,address,address)\":{\"notice\":\"It initializes this loan terms consensus contract.\"},\"processRequest((address,address,address,uint256,uint256,uint256,uint256),(address,address,uint256,uint256,uint256,uint256,(uint256,uint8,bytes32,bytes32))[])\":{\"notice\":\"Processes the loan request\"}},\"notice\":\"This interface defines the function to process the loan terms through the Teller protocol\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LoanTermsConsensusInterface.sol\":\"LoanTermsConsensusInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LoanTermsConsensusInterface.sol\":{\"keccak256\":\"0x93381688f1f920d3c445cd373603eb0aedea609c1827d4341a504ffc9f05e53a\",\"urls\":[\"bzz-raw://bb98e5e3728055be581c59ca924e7e194f81332dd8cdaf527c07ffd35d93b64c\",\"dweb:/ipfs/QmSccwLhRNdgF5x6f1fwF77pHyWJrCDAsaCqKCECpa4FsD\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0xbe70455cee756e9498c220e13c1550d163a4cbcb09e8afe2f0ee94f717c80315\",\"urls\":[\"bzz-raw://0ad4a0a6394e560e40da2fee213381db0184878c29078b2f570eaacf116bb855\",\"dweb:/ipfs/QmTF87YYagh3WrxNZyi2uxhzcxyGsdtJCLu9nwmXGGaoMz\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.5.17;\npragma experimental ABIEncoderV2;\n\nimport \"../util/TellerCommon.sol\";\n\n/**\n    @notice This interface defines the function to process the loan terms through the Teller protocol\n\n    @author develop@teller.finance\n */\ninterface LoanTermsConsensusInterface {\n    /**\n        @notice This event is emitted when the loan terms have been submitted\n        @param signer Account address of the signatory\n        @param borrower Account address of the borrowing party\n        @param requestNonce Nonce used for authentication of the loan request\n        @param interestRate Interest rate submitted in the loan request\n        @param collateralRatio Ratio of collateral submitted for the loan\n        @param maxLoanAmount Maximum loan amount that can be taken out\n     */\n    event TermsSubmitted(\n        address indexed signer,\n        address indexed borrower,\n        uint256 indexed requestNonce,\n        uint256 interestRate,\n        uint256 collateralRatio,\n        uint256 maxLoanAmount\n    );\n\n    /**\n        @notice This event is emitted when the loan terms have been accepted\n        @param borrower Account address of the borrowing party\n        @param requestNonce Accepted interest rate for the loan\n        @param collateralRatio Ratio of collateral needed for the loan\n        @param maxLoanAmount Maximum loan amount that the borrower can take out\n     */\n    event TermsAccepted(\n        address indexed borrower,\n        uint256 indexed requestNonce,\n        uint256 interestRate,\n        uint256 collateralRatio,\n        uint256 maxLoanAmount\n    );\n\n    /**\n        @notice Processes the loan request\n        @param request Struct of the protocol loan request\n        @param responses List of structs of the protocol loan responses\n        @return uint256 Interest rate\n        @return uint256 Collateral ratio\n        @return uint256 Maximum loan amount\n     */\n    function processRequest(\n        TellerCommon.LoanRequest calldata request,\n        TellerCommon.LoanResponse[] calldata responses\n    )\n        external\n        returns (\n            uint256,\n            uint256,\n            uint256\n        );\n\n    /**\n        @notice It initializes this loan terms consensus contract.\n        @dev The caller address is the loans address for the loan terms consensus implementation.\n        @param owner the owner address.\n        @param aCallerAddress the contract that will call it.\n        @param aSettingAddress the settings contract address.\n     */\n    function initialize(\n        address owner,\n        address aCallerAddress,\n        address aSettingAddress\n    ) external;\n}\n",
+  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LoanTermsConsensusInterface.sol",
+  "ast": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LoanTermsConsensusInterface.sol",
+    "exportedSymbols": {
+      "LoanTermsConsensusInterface": [
+        10634
+      ]
+    },
+    "id": 10635,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10582,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:48"
+      },
+      {
+        "id": 10583,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "24:33:48"
+      },
+      {
+        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol",
+        "file": "../util/TellerCommon.sol",
+        "id": 10584,
+        "nodeType": "ImportDirective",
+        "scope": 10635,
+        "sourceUnit": 17991,
+        "src": "59:34:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "@notice This interface defines the function to process the loan terms through the Teller protocol\n@author develop@teller.finance",
+        "fullyImplemented": false,
+        "id": 10634,
+        "linearizedBaseContracts": [
+          10634
+        ],
+        "name": "LoanTermsConsensusInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when the loan terms have been submitted\n@param signer Account address of the signatory\n@param borrower Account address of the borrowing party\n@param requestNonce Nonce used for authentication of the loan request\n@param interestRate Interest rate submitted in the loan request\n@param collateralRatio Ratio of collateral submitted for the loan\n@param maxLoanAmount Maximum loan amount that can be taken out",
+            "id": 10598,
+            "name": "TermsSubmitted",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10597,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10586,
+                  "indexed": true,
+                  "name": "signer",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "822:22:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10585,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "822:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10588,
+                  "indexed": true,
+                  "name": "borrower",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "854:24:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10587,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "854:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10590,
+                  "indexed": true,
+                  "name": "requestNonce",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "888:28:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10589,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "888:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10592,
+                  "indexed": false,
+                  "name": "interestRate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "926:20:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10591,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "926:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10594,
+                  "indexed": false,
+                  "name": "collateralRatio",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "956:23:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10593,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "956:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10596,
+                  "indexed": false,
+                  "name": "maxLoanAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "989:21:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10595,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "989:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "812:204:48"
+            },
+            "src": "792:225:48"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when the loan terms have been accepted\n@param borrower Account address of the borrowing party\n@param requestNonce Accepted interest rate for the loan\n@param collateralRatio Ratio of collateral needed for the loan\n@param maxLoanAmount Maximum loan amount that the borrower can take out",
+            "id": 10610,
+            "name": "TermsAccepted",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10609,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10600,
+                  "indexed": true,
+                  "name": "borrower",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10610,
+                  "src": "1423:24:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10599,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1423:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10602,
+                  "indexed": true,
+                  "name": "requestNonce",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10610,
+                  "src": "1457:28:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10601,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1457:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10604,
+                  "indexed": false,
+                  "name": "interestRate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10610,
+                  "src": "1495:20:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10603,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1495:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10606,
+                  "indexed": false,
+                  "name": "collateralRatio",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10610,
+                  "src": "1525:23:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10605,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1525:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10608,
+                  "indexed": false,
+                  "name": "maxLoanAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10610,
+                  "src": "1558:21:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10607,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1558:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1413:172:48"
+            },
+            "src": "1394:192:48"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Processes the loan request\n@param request Struct of the protocol loan request\n@param responses List of structs of the protocol loan responses\n@return uint256 Interest rate\n@return uint256 Collateral ratio\n@return uint256 Maximum loan amount",
+            "id": 10624,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "processRequest",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10616,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10612,
+                  "name": "request",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10624,
+                  "src": "1938:41:48",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_LoanRequest_$17882_calldata_ptr",
+                    "typeString": "struct TellerCommon.LoanRequest"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 10611,
+                    "name": "TellerCommon.LoanRequest",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17882,
+                    "src": "1938:24:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_LoanRequest_$17882_storage_ptr",
+                      "typeString": "struct TellerCommon.LoanRequest"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10615,
+                  "name": "responses",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10624,
+                  "src": "1989:46:48",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_LoanResponse_$17897_calldata_$dyn_calldata_ptr",
+                    "typeString": "struct TellerCommon.LoanResponse[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 10613,
+                      "name": "TellerCommon.LoanResponse",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 17897,
+                      "src": "1989:25:48",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_LoanResponse_$17897_storage_ptr",
+                        "typeString": "struct TellerCommon.LoanResponse"
+                      }
+                    },
+                    "id": 10614,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1989:27:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_LoanResponse_$17897_storage_$dyn_storage_ptr",
+                      "typeString": "struct TellerCommon.LoanResponse[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1928:113:48"
+            },
+            "returnParameters": {
+              "id": 10623,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10618,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10624,
+                  "src": "2089:7:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10617,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2089:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10620,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10624,
+                  "src": "2110:7:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10619,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2110:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10622,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10624,
+                  "src": "2131:7:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10621,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2131:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2075:73:48"
+            },
+            "scope": 10634,
+            "src": "1905:244:48",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It initializes this loan terms consensus contract.\n@dev The caller address is the loans address for the loan terms consensus implementation.\n@param owner the owner address.\n@param aCallerAddress the contract that will call it.\n@param aSettingAddress the settings contract address.",
+            "id": 10633,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10631,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10626,
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10633,
+                  "src": "2529:13:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10625,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2529:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10628,
+                  "name": "aCallerAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10633,
+                  "src": "2552:22:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10627,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2552:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10630,
+                  "name": "aSettingAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10633,
+                  "src": "2584:23:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10629,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2584:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2519:94:48"
+            },
+            "returnParameters": {
+              "id": 10632,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2622:0:48"
+            },
+            "scope": 10634,
+            "src": "2500:123:48",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 10635,
+        "src": "241:2384:48"
+      }
+    ],
+    "src": "0:2626:48"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LoanTermsConsensusInterface.sol",
+    "exportedSymbols": {
+      "LoanTermsConsensusInterface": [
+        10634
+      ]
+    },
+    "id": 10635,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10582,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:48"
+      },
+      {
+        "id": 10583,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "24:33:48"
+      },
+      {
+        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol",
+        "file": "../util/TellerCommon.sol",
+        "id": 10584,
+        "nodeType": "ImportDirective",
+        "scope": 10635,
+        "sourceUnit": 17991,
+        "src": "59:34:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "@notice This interface defines the function to process the loan terms through the Teller protocol\n@author develop@teller.finance",
+        "fullyImplemented": false,
+        "id": 10634,
+        "linearizedBaseContracts": [
+          10634
+        ],
+        "name": "LoanTermsConsensusInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when the loan terms have been submitted\n@param signer Account address of the signatory\n@param borrower Account address of the borrowing party\n@param requestNonce Nonce used for authentication of the loan request\n@param interestRate Interest rate submitted in the loan request\n@param collateralRatio Ratio of collateral submitted for the loan\n@param maxLoanAmount Maximum loan amount that can be taken out",
+            "id": 10598,
+            "name": "TermsSubmitted",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10597,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10586,
+                  "indexed": true,
+                  "name": "signer",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "822:22:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10585,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "822:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10588,
+                  "indexed": true,
+                  "name": "borrower",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "854:24:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10587,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "854:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10590,
+                  "indexed": true,
+                  "name": "requestNonce",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "888:28:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10589,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "888:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10592,
+                  "indexed": false,
+                  "name": "interestRate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "926:20:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10591,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "926:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10594,
+                  "indexed": false,
+                  "name": "collateralRatio",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "956:23:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10593,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "956:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10596,
+                  "indexed": false,
+                  "name": "maxLoanAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10598,
+                  "src": "989:21:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10595,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "989:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "812:204:48"
+            },
+            "src": "792:225:48"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when the loan terms have been accepted\n@param borrower Account address of the borrowing party\n@param requestNonce Accepted interest rate for the loan\n@param collateralRatio Ratio of collateral needed for the loan\n@param maxLoanAmount Maximum loan amount that the borrower can take out",
+            "id": 10610,
+            "name": "TermsAccepted",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10609,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10600,
+                  "indexed": true,
+                  "name": "borrower",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10610,
+                  "src": "1423:24:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10599,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1423:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10602,
+                  "indexed": true,
+                  "name": "requestNonce",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10610,
+                  "src": "1457:28:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10601,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1457:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10604,
+                  "indexed": false,
+                  "name": "interestRate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10610,
+                  "src": "1495:20:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10603,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1495:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10606,
+                  "indexed": false,
+                  "name": "collateralRatio",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10610,
+                  "src": "1525:23:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10605,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1525:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10608,
+                  "indexed": false,
+                  "name": "maxLoanAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10610,
+                  "src": "1558:21:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10607,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1558:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1413:172:48"
+            },
+            "src": "1394:192:48"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Processes the loan request\n@param request Struct of the protocol loan request\n@param responses List of structs of the protocol loan responses\n@return uint256 Interest rate\n@return uint256 Collateral ratio\n@return uint256 Maximum loan amount",
+            "id": 10624,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "processRequest",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10616,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10612,
+                  "name": "request",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10624,
+                  "src": "1938:41:48",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_LoanRequest_$17882_calldata_ptr",
+                    "typeString": "struct TellerCommon.LoanRequest"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 10611,
+                    "name": "TellerCommon.LoanRequest",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17882,
+                    "src": "1938:24:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_LoanRequest_$17882_storage_ptr",
+                      "typeString": "struct TellerCommon.LoanRequest"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10615,
+                  "name": "responses",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10624,
+                  "src": "1989:46:48",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_LoanResponse_$17897_calldata_$dyn_calldata_ptr",
+                    "typeString": "struct TellerCommon.LoanResponse[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 10613,
+                      "name": "TellerCommon.LoanResponse",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 17897,
+                      "src": "1989:25:48",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_LoanResponse_$17897_storage_ptr",
+                        "typeString": "struct TellerCommon.LoanResponse"
+                      }
+                    },
+                    "id": 10614,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1989:27:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_LoanResponse_$17897_storage_$dyn_storage_ptr",
+                      "typeString": "struct TellerCommon.LoanResponse[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1928:113:48"
+            },
+            "returnParameters": {
+              "id": 10623,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10618,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10624,
+                  "src": "2089:7:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10617,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2089:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10620,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10624,
+                  "src": "2110:7:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10619,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2110:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10622,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10624,
+                  "src": "2131:7:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10621,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2131:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2075:73:48"
+            },
+            "scope": 10634,
+            "src": "1905:244:48",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It initializes this loan terms consensus contract.\n@dev The caller address is the loans address for the loan terms consensus implementation.\n@param owner the owner address.\n@param aCallerAddress the contract that will call it.\n@param aSettingAddress the settings contract address.",
+            "id": 10633,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10631,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10626,
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10633,
+                  "src": "2529:13:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10625,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2529:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10628,
+                  "name": "aCallerAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10633,
+                  "src": "2552:22:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10627,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2552:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10630,
+                  "name": "aSettingAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10633,
+                  "src": "2584:23:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10629,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2584:7:48",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2519:94:48"
+            },
+            "returnParameters": {
+              "id": 10632,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2622:0:48"
+            },
+            "scope": 10634,
+            "src": "2500:123:48",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 10635,
+        "src": "241:2384:48"
+      }
+    ],
+    "src": "0:2626:48"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-09-06T02:15:12.380Z",
+  "devdoc": {
+    "author": "develop@teller.finance",
+    "methods": {
+      "initialize(address,address,address)": {
+        "details": "The caller address is the loans address for the loan terms consensus implementation.",
+        "params": {
+          "aCallerAddress": "the contract that will call it.",
+          "aSettingAddress": "the settings contract address.",
+          "owner": "the owner address."
+        }
+      },
+      "processRequest((address,address,address,uint256,uint256,uint256,uint256),(address,address,uint256,uint256,uint256,uint256,(uint256,uint8,bytes32,bytes32))[])": {
+        "params": {
+          "request": "Struct of the protocol loan request",
+          "responses": "List of structs of the protocol loan responses"
+        },
+        "return": "uint256 Interest rateuint256 Collateral ratiouint256 Maximum loan amount"
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "initialize(address,address,address)": {
+        "notice": "It initializes this loan terms consensus contract."
+      },
+      "processRequest((address,address,address,uint256,uint256,uint256,uint256),(address,address,uint256,uint256,uint256,uint256,(uint256,uint8,bytes32,bytes32))[])": {
+        "notice": "Processes the loan request"
+      }
+    },
+    "notice": "This interface defines the function to process the loan terms through the Teller protocol"
+  }
+}

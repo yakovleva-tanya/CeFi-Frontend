@@ -11,7 +11,7 @@ import { globalDecimals } from './../util/constants';
 
 import { allContractAddresses } from "../util/constants";
 
-import { redeemZDai } from '../models/Contracts';
+import { redeemTDai } from '../models/Contracts';
 
 
 export const claimInterest = async (currency: string) => {
@@ -63,7 +63,7 @@ export const withdraw = async ({
     .on('receipt', resolve)
     .on('error', reject)
   );
-  await redeemZDai(selectedAmount, primaryAddress, lendingPool);
+  await redeemTDai(selectedAmount, primaryAddress, lendingPool);
   const balanceSt = await tToken.methods.balanceOf(primaryAddress).call();
   const decimals = await tToken.methods.decimals().call();
   const balance = parseFloat(balanceSt) / parseFloat(decimals);

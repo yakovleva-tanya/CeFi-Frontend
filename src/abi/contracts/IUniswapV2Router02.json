@@ -1,0 +1,1457 @@
+{
+  "contractName": "IUniswapV2Router02",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amountIn",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountOutMin",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address[]",
+          "name": "path",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapExactTokensForTokens",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "amounts",
+          "type": "uint256[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amountIn",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountOutMin",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address[]",
+          "name": "path",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapExactTokensForETH",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "amounts",
+          "type": "uint256[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amountOutMin",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address[]",
+          "name": "path",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapExactETHForTokens",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "amounts",
+          "type": "uint256[]"
+        }
+      ],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amountOutMin\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"path\",\"type\":\"address[]\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"}],\"name\":\"swapExactETHForTokens\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amountOutMin\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"path\",\"type\":\"address[]\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"}],\"name\":\"swapExactTokensForETH\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amountOutMin\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"path\",\"type\":\"address[]\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"}],\"name\":\"swapExactTokensForTokens\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"swapExactETHForTokens(uint256,address[],address,uint256)\":{\"params\":{\"amountOutMin\":\"The minimum amount of output tokens that must be received for the transaction not to revert.\",\"deadline\":\"Unix timestamp after which the transaction will revert.\",\"path\":\"An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\",\"to\":\"Recipient of the output tokens.\"},\"return\":\"amounts The input token amount and all subsequent output token amounts.\"},\"swapExactTokensForETH(uint256,uint256,address[],address,uint256)\":{\"details\":\"If the to address is a smart contract, it must have the ability to receive ETH.\",\"params\":{\"amountIn\":\"The amount of input tokens to send.\",\"amountOutMin\":\"The minimum amount of output tokens that must be received for the transaction not to revert.\",\"deadline\":\"Unix timestamp after which the transaction will revert.\",\"path\":\"An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\",\"to\":\"Recipient of the ETH.\"},\"return\":\"amounts The input token amount and all subsequent output token amounts.\"},\"swapExactTokensForTokens(uint256,uint256,address[],address,uint256)\":{\"details\":\"msg.sender should have already given the router an allowance of at least amountIn on the input token.\",\"params\":{\"amountIn\":\"The amount of input tokens to send.\",\"amountOutMin\":\"The minimum amount of output tokens that must be received for the transaction not to revert.\",\"deadline\":\"Unix timestamp after which the transaction will revert.\",\"path\":\"An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\",\"to\":\"Recipient of the output tokens.\"},\"return\":\"amounts The input token amount and all subsequent output token amounts.\"}}},\"userdoc\":{\"methods\":{\"swapExactETHForTokens(uint256,address[],address,uint256)\":{\"notice\":\"Swaps an exact amount of ETH for as many output tokens as possible, along the route determined by the path. The first element of path must be WETH, the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\"},\"swapExactTokensForETH(uint256,uint256,address[],address,uint256)\":{\"notice\":\"Swaps an exact amount of tokens for as much ETH as possible, along the route determined by the path. The first element of path is the input token, the last must be WETH, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\"},\"swapExactTokensForTokens(uint256,uint256,address[],address,uint256)\":{\"notice\":\"Swaps an exact amount of input tokens for as many output tokens as possible, along the route determined by the path. The first element of path is the input token, the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\"}},\"notice\":\"This interface defines the different functions available for a UniswapV2Router.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/uniswap/IUniswapV2Router02.sol\":\"IUniswapV2Router02\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/uniswap/IUniswapV2Router02.sol\":{\"keccak256\":\"0x538c2a7d631f21222cbf2d84896ccf435cf62052b3d56cdece620acea3ac643f\",\"urls\":[\"bzz-raw://a155fc2d1c3ed03053d29bdb8f726ece865bdf3b220ad444dbb8aa279054bffa\",\"dweb:/ipfs/QmNnZWKzXGQ2UpH2tjvmFmV1EQXoWRmnLVZxr86yxGfRAW\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.5.17;\n\n/**\n    @notice This interface defines the different functions available for a UniswapV2Router.\n    @author develop@teller.finance\n */\ninterface IUniswapV2Router02 {\n    /**\n        @notice Swaps an exact amount of input tokens for as many output tokens as possible, along the route determined by the path. The first element of path is the input token, the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\n        @param amountIn The amount of input tokens to send.\n        @param amountOutMin The minimum amount of output tokens that must be received for the transaction not to revert.\n        @param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n        @param to Recipient of the output tokens.\n        @param deadline Unix timestamp after which the transaction will revert.\n        @return amounts The input token amount and all subsequent output token amounts.\n        @dev msg.sender should have already given the router an allowance of at least amountIn on the input token.\n     */\n    function swapExactTokensForTokens(\n        uint256 amountIn,\n        uint256 amountOutMin,\n        address[] calldata path,\n        address to,\n        uint256 deadline\n    ) external returns (uint256[] memory amounts);\n\n    /**\n        @notice Swaps an exact amount of tokens for as much ETH as possible, along the route determined by the path. The first element of path is the input token, the last must be WETH, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\n        @param amountIn The amount of input tokens to send.\n        @param amountOutMin The minimum amount of output tokens that must be received for the transaction not to revert.\n        @param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n        @param to Recipient of the ETH.\n        @param deadline Unix timestamp after which the transaction will revert.\n        @return amounts The input token amount and all subsequent output token amounts.\n        @dev If the to address is a smart contract, it must have the ability to receive ETH.\n     */\n    function swapExactTokensForETH(\n        uint256 amountIn,\n        uint256 amountOutMin,\n        address[] calldata path,\n        address to,\n        uint256 deadline\n    ) external returns (uint256[] memory amounts);\n\n    /**\n        @notice Swaps an exact amount of ETH for as many output tokens as possible, along the route determined by the path. The first element of path must be WETH, the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\n        @param amountOutMin The minimum amount of output tokens that must be received for the transaction not to revert.\n        @param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n        @param to Recipient of the output tokens.\n        @param deadline Unix timestamp after which the transaction will revert.\n        @return amounts The input token amount and all subsequent output token amounts.\n     */\n    function swapExactETHForTokens(\n        uint256 amountOutMin,\n        address[] calldata path,\n        address to,\n        uint256 deadline\n    ) external payable returns (uint256[] memory amounts);\n}\n",
+  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/uniswap/IUniswapV2Router02.sol",
+  "ast": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/uniswap/IUniswapV2Router02.sol",
+    "exportedSymbols": {
+      "IUniswapV2Router02": [
+        15470
+      ]
+    },
+    "id": 15471,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 15420,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:98"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "@notice This interface defines the different functions available for a UniswapV2Router.\n@author develop@teller.finance",
+        "fullyImplemented": false,
+        "id": 15470,
+        "linearizedBaseContracts": [
+          15470
+        ],
+        "name": "IUniswapV2Router02",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@notice Swaps an exact amount of input tokens for as many output tokens as possible, along the route determined by the path. The first element of path is the input token, the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\n@param amountIn The amount of input tokens to send.\n@param amountOutMin The minimum amount of output tokens that must be received for the transaction not to revert.\n@param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n@param to Recipient of the output tokens.\n@param deadline Unix timestamp after which the transaction will revert.\n@return amounts The input token amount and all subsequent output token amounts.\n@dev msg.sender should have already given the router an allowance of at least amountIn on the input token.",
+            "id": 15437,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "swapExactTokensForTokens",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15432,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15422,
+                  "name": "amountIn",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1253:16:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15421,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1253:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15424,
+                  "name": "amountOutMin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1279:20:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15423,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1279:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15427,
+                  "name": "path",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1309:23:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15425,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1309:7:98",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 15426,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1309:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15429,
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1342:10:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15428,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1342:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15431,
+                  "name": "deadline",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1362:16:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15430,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1362:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1243:141:98"
+            },
+            "returnParameters": {
+              "id": 15436,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15435,
+                  "name": "amounts",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1403:24:98",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15433,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1403:7:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15434,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1403:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1402:26:98"
+            },
+            "scope": 15470,
+            "src": "1210:219:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Swaps an exact amount of tokens for as much ETH as possible, along the route determined by the path. The first element of path is the input token, the last must be WETH, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\n@param amountIn The amount of input tokens to send.\n@param amountOutMin The minimum amount of output tokens that must be received for the transaction not to revert.\n@param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n@param to Recipient of the ETH.\n@param deadline Unix timestamp after which the transaction will revert.\n@return amounts The input token amount and all subsequent output token amounts.\n@dev If the to address is a smart contract, it must have the ability to receive ETH.",
+            "id": 15454,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "swapExactTokensForETH",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15449,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15439,
+                  "name": "amountIn",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2435:16:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15438,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2435:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15441,
+                  "name": "amountOutMin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2461:20:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15440,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2461:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15444,
+                  "name": "path",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2491:23:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15442,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2491:7:98",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 15443,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2491:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15446,
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2524:10:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15445,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2524:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15448,
+                  "name": "deadline",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2544:16:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15447,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2544:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2425:141:98"
+            },
+            "returnParameters": {
+              "id": 15453,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15452,
+                  "name": "amounts",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2585:24:98",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15450,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2585:7:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15451,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2585:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2584:26:98"
+            },
+            "scope": 15470,
+            "src": "2395:216:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Swaps an exact amount of ETH for as many output tokens as possible, along the route determined by the path. The first element of path must be WETH, the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\n@param amountOutMin The minimum amount of output tokens that must be received for the transaction not to revert.\n@param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n@param to Recipient of the output tokens.\n@param deadline Unix timestamp after which the transaction will revert.\n@return amounts The input token amount and all subsequent output token amounts.",
+            "id": 15469,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "swapExactETHForTokens",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15464,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15456,
+                  "name": "amountOutMin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15469,
+                  "src": "3482:20:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15455,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3482:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15459,
+                  "name": "path",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15469,
+                  "src": "3512:23:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15457,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3512:7:98",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 15458,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3512:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15461,
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15469,
+                  "src": "3545:10:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15460,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3545:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15463,
+                  "name": "deadline",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15469,
+                  "src": "3565:16:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15462,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3565:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3472:115:98"
+            },
+            "returnParameters": {
+              "id": 15468,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15467,
+                  "name": "amounts",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15469,
+                  "src": "3614:24:98",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15465,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3614:7:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15466,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3614:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3613:26:98"
+            },
+            "scope": 15470,
+            "src": "3442:198:98",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 15471,
+        "src": "160:3482:98"
+      }
+    ],
+    "src": "0:3643:98"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/uniswap/IUniswapV2Router02.sol",
+    "exportedSymbols": {
+      "IUniswapV2Router02": [
+        15470
+      ]
+    },
+    "id": 15471,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 15420,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:98"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "@notice This interface defines the different functions available for a UniswapV2Router.\n@author develop@teller.finance",
+        "fullyImplemented": false,
+        "id": 15470,
+        "linearizedBaseContracts": [
+          15470
+        ],
+        "name": "IUniswapV2Router02",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@notice Swaps an exact amount of input tokens for as many output tokens as possible, along the route determined by the path. The first element of path is the input token, the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\n@param amountIn The amount of input tokens to send.\n@param amountOutMin The minimum amount of output tokens that must be received for the transaction not to revert.\n@param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n@param to Recipient of the output tokens.\n@param deadline Unix timestamp after which the transaction will revert.\n@return amounts The input token amount and all subsequent output token amounts.\n@dev msg.sender should have already given the router an allowance of at least amountIn on the input token.",
+            "id": 15437,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "swapExactTokensForTokens",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15432,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15422,
+                  "name": "amountIn",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1253:16:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15421,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1253:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15424,
+                  "name": "amountOutMin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1279:20:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15423,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1279:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15427,
+                  "name": "path",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1309:23:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15425,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1309:7:98",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 15426,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1309:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15429,
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1342:10:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15428,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1342:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15431,
+                  "name": "deadline",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1362:16:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15430,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1362:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1243:141:98"
+            },
+            "returnParameters": {
+              "id": 15436,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15435,
+                  "name": "amounts",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15437,
+                  "src": "1403:24:98",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15433,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1403:7:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15434,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1403:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1402:26:98"
+            },
+            "scope": 15470,
+            "src": "1210:219:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Swaps an exact amount of tokens for as much ETH as possible, along the route determined by the path. The first element of path is the input token, the last must be WETH, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\n@param amountIn The amount of input tokens to send.\n@param amountOutMin The minimum amount of output tokens that must be received for the transaction not to revert.\n@param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n@param to Recipient of the ETH.\n@param deadline Unix timestamp after which the transaction will revert.\n@return amounts The input token amount and all subsequent output token amounts.\n@dev If the to address is a smart contract, it must have the ability to receive ETH.",
+            "id": 15454,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "swapExactTokensForETH",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15449,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15439,
+                  "name": "amountIn",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2435:16:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15438,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2435:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15441,
+                  "name": "amountOutMin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2461:20:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15440,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2461:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15444,
+                  "name": "path",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2491:23:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15442,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2491:7:98",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 15443,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2491:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15446,
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2524:10:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15445,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2524:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15448,
+                  "name": "deadline",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2544:16:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15447,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2544:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2425:141:98"
+            },
+            "returnParameters": {
+              "id": 15453,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15452,
+                  "name": "amounts",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15454,
+                  "src": "2585:24:98",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15450,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2585:7:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15451,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2585:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2584:26:98"
+            },
+            "scope": 15470,
+            "src": "2395:216:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Swaps an exact amount of ETH for as many output tokens as possible, along the route determined by the path. The first element of path must be WETH, the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).\n@param amountOutMin The minimum amount of output tokens that must be received for the transaction not to revert.\n@param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n@param to Recipient of the output tokens.\n@param deadline Unix timestamp after which the transaction will revert.\n@return amounts The input token amount and all subsequent output token amounts.",
+            "id": 15469,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "swapExactETHForTokens",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15464,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15456,
+                  "name": "amountOutMin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15469,
+                  "src": "3482:20:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15455,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3482:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15459,
+                  "name": "path",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15469,
+                  "src": "3512:23:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15457,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3512:7:98",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 15458,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3512:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15461,
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15469,
+                  "src": "3545:10:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15460,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3545:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15463,
+                  "name": "deadline",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15469,
+                  "src": "3565:16:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15462,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3565:7:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3472:115:98"
+            },
+            "returnParameters": {
+              "id": 15468,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15467,
+                  "name": "amounts",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15469,
+                  "src": "3614:24:98",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15465,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3614:7:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15466,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3614:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3613:26:98"
+            },
+            "scope": 15470,
+            "src": "3442:198:98",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 15471,
+        "src": "160:3482:98"
+      }
+    ],
+    "src": "0:3643:98"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-09-03T04:12:17.949Z",
+  "devdoc": {
+    "author": "develop@teller.finance",
+    "methods": {
+      "swapExactETHForTokens(uint256,address[],address,uint256)": {
+        "params": {
+          "amountOutMin": "The minimum amount of output tokens that must be received for the transaction not to revert.",
+          "deadline": "Unix timestamp after which the transaction will revert.",
+          "path": "An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.",
+          "to": "Recipient of the output tokens."
+        },
+        "return": "amounts The input token amount and all subsequent output token amounts."
+      },
+      "swapExactTokensForETH(uint256,uint256,address[],address,uint256)": {
+        "details": "If the to address is a smart contract, it must have the ability to receive ETH.",
+        "params": {
+          "amountIn": "The amount of input tokens to send.",
+          "amountOutMin": "The minimum amount of output tokens that must be received for the transaction not to revert.",
+          "deadline": "Unix timestamp after which the transaction will revert.",
+          "path": "An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.",
+          "to": "Recipient of the ETH."
+        },
+        "return": "amounts The input token amount and all subsequent output token amounts."
+      },
+      "swapExactTokensForTokens(uint256,uint256,address[],address,uint256)": {
+        "details": "msg.sender should have already given the router an allowance of at least amountIn on the input token.",
+        "params": {
+          "amountIn": "The amount of input tokens to send.",
+          "amountOutMin": "The minimum amount of output tokens that must be received for the transaction not to revert.",
+          "deadline": "Unix timestamp after which the transaction will revert.",
+          "path": "An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.",
+          "to": "Recipient of the output tokens."
+        },
+        "return": "amounts The input token amount and all subsequent output token amounts."
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "swapExactETHForTokens(uint256,address[],address,uint256)": {
+        "notice": "Swaps an exact amount of ETH for as many output tokens as possible, along the route determined by the path. The first element of path must be WETH, the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist)."
+      },
+      "swapExactTokensForETH(uint256,uint256,address[],address,uint256)": {
+        "notice": "Swaps an exact amount of tokens for as much ETH as possible, along the route determined by the path. The first element of path is the input token, the last must be WETH, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist)."
+      },
+      "swapExactTokensForTokens(uint256,uint256,address[],address,uint256)": {
+        "notice": "Swaps an exact amount of input tokens for as many output tokens as possible, along the route determined by the path. The first element of path is the input token, the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist)."
+      }
+    },
+    "notice": "This interface defines the different functions available for a UniswapV2Router."
+  }
+}

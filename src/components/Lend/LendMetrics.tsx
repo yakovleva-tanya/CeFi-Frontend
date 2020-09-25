@@ -46,10 +46,10 @@ const LendMetrics = () => {
   return (
     <Card className="metrics-card" title="Summary">
       <Metric title="Deposit APY" value={supplyAPY} />
-      <Metric title="Asset price" value={`${price}`} />
+      <Metric title="Asset price" value={price} />
       <Metric title="Wallet balance" value={walletBalance} />
-      <Metric title="Balance supplied" value={suppliedBalance} />
-      <Metric title="Earned balance" values={[`${ATM} TLR`, `${COMP} COMP`]} />
+      {/* <Metric title="Balance supplied" value={suppliedBalance} />
+      <Metric title="Earned balance" values={[`${ATM} TLR`, `${COMP} COMP`]} /> */}
     </Card>
   );
 };

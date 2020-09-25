@@ -13,7 +13,7 @@ import LoanSizeSelection from "./LoanSizeSelection";
 
 const FirstStageTable = () => {
   const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
-
+  const isSecured = Boolean(borrowRequest.loanType === "Secured");
   return (
     <div>
       <div className="table border-thin my-5">
@@ -51,18 +51,8 @@ const FirstStageTable = () => {
           />
         </TableRow>
         <BR />
-        <TableRow title="Bank (optional)">
+        <TableRow title={`Bank ${isSecured ? "(optional)" : ""}`}>
           <ConnectPlaidButton />
-        </TableRow>
-        <BR />
-        <TableRow title="Loan type">
-          <CustomDropdown
-            options={["Secured", "Unsecured"]}
-            selected={borrowRequest.loanType}
-            handleSelect={(eventKey: any) => {
-              setBorrowRequest({ ...borrowRequest, loanType: eventKey });
-            }}
-          />
         </TableRow>
         <BR />
         <TableRow title="Collateral percent">
@@ -83,13 +73,12 @@ const ConnectPlaidButton = () => {
   const [loading, setLoading] = useState(false);
   const onClickAction = async () => {
     setLoading(true);
-    await ConnectPlaid(updateAppState, address)();
-    setLoading(false);
+    await ConnectPlaid(updateAppState, address, setLoading)();
   };
 
   return (
     <CustomSubmitButton
-      disabled = {!address}
+      disabled={!address}
       loading={loading}
       onClickAction={onClickAction}
       approved={!!plaidConnected}

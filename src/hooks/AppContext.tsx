@@ -14,6 +14,7 @@ import FetchTokenData from "../models/FetchTokenData";
 
 const setAddress = async (state: AppContextState, updateAppState: Function) => {
   const { web3State } = state;
+  console.log(web3State.web3.blockNumber);
   const accounts = await web3State.web3.eth.getAccounts();
   web3State.address = accounts[0];
   updateAppState((st: AppContextState) => {
@@ -40,7 +41,7 @@ const mergeSignInContracts = async (
 ) => {
   const networkId = await state.web3State.web3.eth.getChainId();
 
-  if (networkId !== 1 && networkId !== 3) {
+  if (Number(networkId) !== 1 && Number(networkId) !== 3) {
     const teller = AppContextDefault.state.teller;
     updateAppState((st: AppContextState) => ({
       ...st,
@@ -81,19 +82,41 @@ const getTokenData = async (
     console.log(err);
   }
 };
+
 const setUpdates = async (state: AppContextState, updateAppState: Function) => {
   await setAddress(state, updateAppState);
   await mergeSignInContracts(state, updateAppState);
   await setBlockNumber(state, updateAppState);
+  console.log({ state });
 };
+
+const getCircularReplacer = () => {
+  const seen = new WeakSet();
+  return (key: any, value: any) => {
+    if (typeof value === "object" && value !== null) {
+      if (seen.has(value)) {
+        return;
+      }
+      seen.add(value);
+    }
+    return value;
+  };
+};
+
 /**
  * Implements the app context hook.
  * @function useAppContext
  * @memberof AppContextHook
  */
-export default function useAppContext() {
-  const [state, updateAppState] = React.useState(AppContextDefault.state);
 
+export default function useAppContext() {
+  const stored = JSON.parse(localStorage.getItem("storedState"));
+  // const [state, updateAppState] = React.useState(
+  //   stored || AppContextDefault.state
+  // );
+  const [state, updateAppState] = React.useState(
+    AppContextDefault.state
+  );
   React.useEffect(() => {
     if (!state.web3State.network) return;
     if (!state.web3State.web3) return;
@@ -103,6 +126,11 @@ export default function useAppContext() {
   React.useEffect(() => {
     getTokenData(state, updateAppState);
   }, []);
+
+  // localStorage.setItem(
+  //   "storedState",
+  //   JSON.stringify(state, getCircularReplacer())
+  // );
 
   return [state, updateAppState];
 }

@@ -9,7 +9,7 @@ import {
 import {
   ContextProps,
   BorrowRequest,
-  BorrowPageContextInterface,
+  BorrowPageContextInterface
 } from "./types";
 
 const DAYS = 86400; // Seconds per day
@@ -50,37 +50,45 @@ const defaultBorrowRequest = {
   loanType: "Secured",
   bankConnected: false,
   lendWith: AvailableLendingTokens.DAI,
-  collateralAmount: null as null,
+  collateralAmount: 0,
   approved: false,
   transferred: false,
 };
 const mockLoanTerms = {
   interestRate: 20,
-  minCollateralNeeded: 100,
+  collateralRatio: 100,
+  maxLoanAmount: 100,
+};
+
+const LoanTerms = {
+  interestRate: null as null,
+  collateralRatio: null as null,
+  maxLoanAmount: null as null,
 };
 
 export const BorrowPageContext = createContext<BorrowPageContextInterface>({
-  stage: 1,
+  stage: 0,
   setStage: () => {},
-  submenu: null,
+  submenu: null as null,
   setSubmenu: () => {},
   borrowRequest: defaultBorrowRequest,
   setBorrowRequest: () => {},
-  loanTerms: mockLoanTerms,
+  loanTerms: LoanTerms,
   setLoanTerms: () => {},
   borrowProcessState: null,
+
 });
 
 const BorrowPageContextProvider = ({ children }: ContextProps) => {
-  const [stage, setStage] = useState(1);
-  const [submenu, setSubmenu] = useState(null);
+  const [stage, setStage] = useState(0);
+  const [submenu, setSubmenu] = useState(null as null);
   const [borrowRequest, setBorrowRequest] = useState(defaultBorrowRequest);
-  const [loanTerms, setLoanTerms] = useState(mockLoanTerms);
+  const [loanTerms, setLoanTerms] = useState(LoanTerms);
 
   const [success, setSuccess] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
   const [isRequesting, setRequesting] = useState(false);
-  const [stageChangeWarning, setStageChangeWarning] = useState(false);
+  const [stageChangeWarning, setStageChangeWarning] = useState(null);
 
   const borrowProcessState = {
     success,

@@ -14,17 +14,26 @@ import SubmenuCard from "../../UI/SubmenuCard";
 import CustomInput from "../../UI/CustomInput";
 import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
-import { AppContext } from "../../../context/app";
+import { AppContext, TellerTokens, BaseTokens } from "../../../context/app";
 import {
   calculateCollateralPercent,
   getMaxWithdrawAmount,
 } from "../../../actions/HelperFunctions";
 import FormValidationWarning from "../../UI/FormValidationWarning";
 
+import eth from "../../../../dist/assets/eth-logo.svg";
+import link from "../../../../dist/assets/link-logo.png";
+
+import { withdrawCollateral } from "../../../models/LoansInterfaceContract";
+
 const WithdrawMainSection = () => {
   const [warning, setWarning] = useState("");
   const { state } = useContext(AppContext);
   const { loans } = useContext(DashboardContext);
+  const filteredLoans = loans.filter((loan: LoanInterface) => {
+    return loan.collateralAmount !== 0;
+  });
+
   const {
     setSuccess,
     setWithdrawing,
@@ -37,10 +46,24 @@ const WithdrawMainSection = () => {
     setNewCollateralPercent,
     newCollateralPercent,
   } = useContext(BorrowWithdrawContext);
+  const { web3State } = state;
+  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+    TellerTokens.tDAI
+  ];
 
-  const withdraw = async () => {
+  const borrower = state.web3State.address;
+
+  const withdraw = async (id: string, amountToWithdraw: number) => {
     setWithdrawing(true);
-    const res = await loanWithdraw();
+    let res;
+    if (process.env.INTEGRATIONS_DISABLED === "false") {
+      res = await loanWithdraw(loansInstance, id, amountToWithdraw, web3State);
+    } else {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      res = true;
+    }
+    setWithdrawAmount(0);
+    setNewCollateralPercent(0);
     setWithdrawing(false);
     setSuccess(res);
   };
@@ -52,10 +75,9 @@ const WithdrawMainSection = () => {
   let maxWithdrawAmount = 0;
   if (selectedLoan) {
     maxWithdrawAmount = getMaxWithdrawAmount(state.tokenData, selectedLoan);
-    console.log(maxWithdrawAmount);
   }
   return (
-    <div>
+    <div className="my-4">
       {selectedLoan &&
         (withdrawCollateralSubmenu ? (
           <SubmenuCard
@@ -64,8 +86,14 @@ const WithdrawMainSection = () => {
               setWithdrawCollateralSubmenu(false);
             }}
           >
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column align-items-center">
               <FormValidationWarning message={warning} />
+              {selectedLoan.collateralToken === "LINK" && (
+                <img className="my-2" src={link} height="20" width="20" />
+              )}
+              {selectedLoan.collateralToken === "ETH" && (
+                <img className="my-2" src={eth} height="20" width="20" />
+              )}
               <CustomInput
                 onChangeFunction={(e: any) => {
                   let value = e.target.value.replace(/[^0-9.]/g, "");
@@ -107,7 +135,8 @@ const WithdrawMainSection = () => {
                       state.tokenData,
                       {
                         ...selectedLoan,
-                        collateralAmount: maxWithdrawAmount,
+                        collateralAmount:
+                          selectedLoan.collateralAmount - maxWithdrawAmount,
                       }
                     );
                     setNewCollateralPercent(newCollateralPercent);
@@ -124,7 +153,7 @@ const WithdrawMainSection = () => {
                   setWithdrawCollateralSubmenu(false);
                 }}
               >
-                Submit
+                Enter
               </div>
             </div>
           </SubmenuCard>
@@ -144,7 +173,7 @@ const WithdrawMainSection = () => {
                 <BR />
                 <TableRow title="Collateral amount">
                   <div className="font-medium">
-                    {selectedLoan.totalCollateralDepositsAmount}{" "}
+                    {selectedLoan.collateralAmount}{" "}
                     {selectedLoan.collateralToken}
                   </div>
                 </TableRow>
@@ -161,13 +190,13 @@ const WithdrawMainSection = () => {
                   <BR />
                   <TableRow title="Current Collateral %">
                     <div className="font-medium">
-                      {selectedLoan.currentCollateralPercent.toFixed(2)} %
+                      {Math.round(selectedLoan.currentCollateralPercent)} %
                     </div>
                   </TableRow>
                   <BR />
                   <TableRow title="Collateral amount">
                     <div className="font-medium">
-                      {selectedLoan.totalCollateralDepositsAmount}{" "}
+                      {selectedLoan.collateralAmount}{" "}
                       {selectedLoan.collateralToken}
                     </div>
                   </TableRow>
@@ -184,7 +213,9 @@ const WithdrawMainSection = () => {
                   <BR />
                   <TableRow title="New collateral %">
                     <div className="font-medium">
-                      {newCollateralPercent ? `${newCollateralPercent}%` : "-"}
+                      {newCollateralPercent
+                        ? `${Math.round(newCollateralPercent)}%`
+                        : "-"}
                     </div>
                   </TableRow>
                 </div>
@@ -192,52 +223,46 @@ const WithdrawMainSection = () => {
             )}
             <ViewContractLink link={selectedLoan.transactionHash} />
             <div>
-              <PrimaryButton text="Withdraw" onClick={() => withdraw()} />
+              <PrimaryButton
+                text="Withdraw"
+                onClick={() => {
+                  let amount = withdrawAmount;
+                  if (selectedLoan.status === "Closed") {
+                    amount = selectedLoan.collateralAmount;
+                  }
+                  withdraw(selectedLoan.id, amount);
+                }}
+              />
             </div>
           </div>
         ))}
       {!selectedLoan && (
-        <div>
-          <div className="text-gray">
-            Select the loan you want to withdraw into
+        <div className="my-2">
+          <div className="text-gray mb-4">
+            Select the loan you want to withdraw collateral from.
           </div>
           <div className="table border-thin mb-4 mt-3">
-            {loans.map((loan: LoanInterface) => {
-              if (loan.status !== "Closed") {
-                return;
-              }
-              return (
-                <div key={loan.id}>
-                  <TableRow title="Repaid">
-                    <CustomSubmenuLink
-                      title={`${loan.totalCollateralDepositsAmount} ${loan.collateralToken}`}
-                      onClickAction={() => {
-                        setSelectedLoan(loan);
-                      }}
-                    />
-                  </TableRow>
-                  <BR />
-                </div>
-              );
-            })}
-            {loans.map((loan: any) => {
-              if (loan.status === "Closed") {
-                return;
-              }
-              return (
-                <div key={loan.id}>
-                  <TableRow title="Open">
-                    <CustomSubmenuLink
-                      title={`${loan.totalCollateralDepositsAmount} ${loan.collateralToken}`}
-                      onClickAction={() => {
-                        setSelectedLoan(loan);
-                      }}
-                    />
-                  </TableRow>
-                  <BR />
-                </div>
-              );
-            })}
+            {filteredLoans
+              .sort((a: any, b: any) => {
+                return b.status - a.status;
+              })
+              .map((loan: any, i: number) => {
+                return (
+                  <div key={loan.id}>
+                    <TableRow
+                      title={loan.status === "Closed" ? "Repaid" : "Open"}
+                    >
+                      <CustomSubmenuLink
+                        title={`${loan.collateralAmount} ${loan.collateralToken}`}
+                        onClickAction={() => {
+                          setSelectedLoan(loan);
+                        }}
+                      />
+                    </TableRow>
+                    {i !== filteredLoans.length - 1 && <BR />}
+                  </div>
+                );
+              })}
           </div>
         </div>
       )}
