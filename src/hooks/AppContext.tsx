@@ -14,7 +14,6 @@ import FetchTokenData from "../models/FetchTokenData";
 
 const setAddress = async (state: AppContextState, updateAppState: Function) => {
   const { web3State } = state;
-  console.log(web3State.web3.blockNumber);
   const accounts = await web3State.web3.eth.getAccounts();
   web3State.address = accounts[0];
   updateAppState((st: AppContextState) => {
@@ -87,21 +86,20 @@ const setUpdates = async (state: AppContextState, updateAppState: Function) => {
   await setAddress(state, updateAppState);
   await mergeSignInContracts(state, updateAppState);
   await setBlockNumber(state, updateAppState);
-  console.log({ state });
 };
 
-const getCircularReplacer = () => {
-  const seen = new WeakSet();
-  return (key: any, value: any) => {
-    if (typeof value === "object" && value !== null) {
-      if (seen.has(value)) {
-        return;
-      }
-      seen.add(value);
-    }
-    return value;
-  };
-};
+// const getCircularReplacer = () => {
+//   const seen = new WeakSet();
+//   return (key: any, value: any) => {
+//     if (typeof value === "object" && value !== null) {
+//       if (seen.has(value)) {
+//         return;
+//       }
+//       seen.add(value);
+//     }
+//     return value;
+//   };
+// };
 
 /**
  * Implements the app context hook.
@@ -110,7 +108,7 @@ const getCircularReplacer = () => {
  */
 
 export default function useAppContext() {
-  const stored = JSON.parse(localStorage.getItem("storedState"));
+  // const stored = JSON.parse(localStorage.getItem("storedState"));
   // const [state, updateAppState] = React.useState(
   //   stored || AppContextDefault.state
   // );

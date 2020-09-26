@@ -17,7 +17,7 @@ const UniswapForm = () => {
 
   return (
     <div className="d-flex flex-column">
-      {teller && (
+      {teller && teller.userWalletBalance && (
         <>
           <UniswapTopRow />
           <UniswapArrow />

@@ -43,9 +43,10 @@ const UniswapTopRow = () => {
       userWalletBalance ? userWalletBalance[first.currency].toFixed(2) : "-"
     }`;
   }, [userWalletBalance, first.currency]);
+
   const onMaxClick = () => {
     const newValues = { ...values };
-    (newValues.first.amount = userWalletBalance[first.currency].toFixed(2)),
+    (newValues.first.amount = userWalletBalance[first.currency]),
       setValues(newValues);
   };
   const onDropdownClick = () => {
@@ -65,7 +66,9 @@ const UniswapTopRow = () => {
         <div className="d-flex flex-column align-items-start">
           <div className="text-lightest-gray mb-1">From</div>
           <NumberInput
-            className="text-left text-lg font-medium"
+            className={`text-left text-lg font-medium  ${
+              second && userWalletBalance ? "text-black" : "text-gray"
+            }`}
             value={first.amount}
             setValue={setInputValue}
           />

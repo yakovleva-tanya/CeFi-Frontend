@@ -11,13 +11,16 @@ import { UniswapContext } from "../../../context/dashboardContext";
 const UniswapLoansList = () => {
   const { loans } = useContext(DashboardContext);
   const { setSelectedLoan } = useContext(UniswapContext);
+  const securedLoans = loans.filter((loan: LoanInterface) => {
+    return loan.loanType === "Secured" && loan.status !== "Closed";
+  });
 
   return (
     <div>
       <div>Earn interest by supplying to Uniswap.</div>
       <div className="table border-thin mb-4 mt-3">
-        {loans &&
-          loans.map((loan: LoanInterface) => {
+        {securedLoans &&
+          securedLoans.map((loan: LoanInterface, i: any) => {
             return (
               <div key={loan.id}>
                 <TableRow title={`ID ${loan.id}`}>
@@ -28,7 +31,7 @@ const UniswapLoansList = () => {
                     }}
                   />
                 </TableRow>
-                <BR />
+                {securedLoans.length - 1 !== i && <BR />}
               </div>
             );
           })}

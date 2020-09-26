@@ -4,6 +4,7 @@ import { exchangeCurrency } from "../../../actions/HelperFunctions";
 import { AppContext } from "../../../context/app";
 import { UniswapContext } from "../../../context/dashboardContext";
 import CurrencyIcon from "../../UI/CurrencyIcon";
+import dropdownWhite from "../../../../dist/assets/arrow-down-white.svg";
 import dropdown from "../../../../dist/assets/arrow-down.svg";
 
 const UniswapBottomRow = () => {
@@ -38,13 +39,14 @@ const UniswapBottomRow = () => {
     newValues.first.amount = secondAmount;
     setValues(newValues);
   };
+
   const BalanceString = useMemo(() => {
     return `Balance: ${
       second
         ? userWalletBalance
           ? userWalletBalance[second.currency].toFixed(2)
           : "-"
-        : "0.00"
+        : "0"
     }`;
   }, [userWalletBalance, second]);
 
@@ -54,8 +56,10 @@ const UniswapBottomRow = () => {
         <div className="d-flex flex-column align-items-start">
           <div className="text-lightest-gray mb-1">To</div>
           <NumberInput
-            className="text-left text-lg font-medium"
-            value={second ? second.amount : "0.00"}
+            className={`text-left text-lg font-medium ${
+              second && userWalletBalance ? "text-black" : "text-gray"
+            }`}
+            value={second ? second.amount : "0"}
             setValue={setInputValue}
           />
         </div>
@@ -74,9 +78,12 @@ const UniswapBottomRow = () => {
                 <img height={14} src={dropdown} />
               </>
             ) : (
-              <div className="border-thin px-2 py-1 d-flex flex-row align-items-center">
+              <div
+                className="border-thin px-2 py-1 d-flex flex-row align-items-center"
+                style={{ backgroundColor: "#8B7CF1", color: "white" }}
+              >
                 <div className="mr-3">Select a token</div>
-                <img height={14} src={dropdown} />
+                <img height={14} src={dropdownWhite} />
               </div>
             )}
           </div>

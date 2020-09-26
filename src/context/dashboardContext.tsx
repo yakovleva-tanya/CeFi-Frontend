@@ -387,7 +387,7 @@ export const UniswapContextProvider = ({ children }: ContextProps) => {
   const [success, setSuccess] = useState(false);
   const [values, setValues] = useState({
     first: {
-      amount: "0.00",
+      amount: "0",
       currency: options[0],
     },
     second: null,

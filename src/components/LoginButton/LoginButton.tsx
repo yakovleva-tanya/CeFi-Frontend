@@ -55,7 +55,6 @@ export async function web3FromProvider(updateAppState: Function) {
       },
       wallet: async (wallet: any) => {
         const web3 = new Web3(wallet.provider);
-        console.log(wallet.provider);
         const web3State = {
           type: Web3Type.BlockNative,
           web3,

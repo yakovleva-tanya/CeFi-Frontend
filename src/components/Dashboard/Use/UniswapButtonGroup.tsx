@@ -13,7 +13,7 @@ const UniswapButtonGroup = () => {
 
   return (
     <>
-      <div className="d-flex flex-row justify-content-end">
+      <div className="d-flex flex-row justify-content-center">
         {parseInt(values.first.amount) == 0 ? (
           <PrimaryButton variant="secondary" text="Enter an amount" />
         ) : !values.second ? (

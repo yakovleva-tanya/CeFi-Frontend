@@ -20,6 +20,9 @@ import LoansInterface = require("./../abi/contracts/LoansInterface.json");
 import ERC20Interface = require("./../abi/contracts/ERC20.json");
 import LenderInterface = require("./../abi/contracts/Lenders.json");
 import LendingPoolInterface = require("./../abi/contracts/LendingPoolInterface.json");
+import UniswapInterface = require("./../abi/contracts/Uniswap.json");
+import EscrowInterface = require("./../abi/contracts/Escrow.json");
+
 import { globalDecimals, allContractAddresses } from "./../util/constants";
 
 /**
@@ -31,7 +34,9 @@ async function setupTellerContracts(
   loansInstanceAddress: string,
   primaryAccount: string,
   collateralAddress: string,
-  tTokenAddress: string
+  tTokenAddress: string,
+  esscrowAddress: string,
+  uniswapAddress: string
 ): Promise<ATMData> {
   const lendingPool = new web3State.web3.eth.Contract(
     LendingPoolInterface.abi,
@@ -71,6 +76,17 @@ async function setupTellerContracts(
     .call();
   const userBorrowedBalance = parseFloat(borrowedBalanceStr) / globalDecimals;
 
+  const escrow = new web3State.web3.eth.Contract(
+    EscrowInterface.abi,
+    esscrowAddress,
+    {}
+  );
+  const web3UniswapContract = new web3State.web3.eth.Contract(
+    UniswapInterface.abi,
+    uniswapAddress,
+    {}
+  );
+
   return {
     lendingPool,
     lendingPoolAddress,
@@ -83,6 +99,8 @@ async function setupTellerContracts(
     suppliedBalance,
     userCollateralBalance,
     userBorrowedBalance,
+    escrow,
+    web3UniswapContract,
   };
 }
 
@@ -118,10 +136,9 @@ async function getWalletBalance(
   const ethBalanceStr = await web3State.web3.eth.getBalance(primaryAccount);
 
   const ETH = parseFloat(ethBalanceStr) / globalDecimals;
-  console.log({ ETH });
 
   return {
-    DAI,
+    DAI: 10,
     USDC,
     ETH,
     LINK,
@@ -160,7 +177,9 @@ export default async (
       contractAddresses.ETH_Loans_tDAI_Proxy,
       primaryAccount,
       contractAddresses.tokens.DAI,
-      contractAddresses.TDAI
+      contractAddresses.TDAI,
+      contractAddresses.Escrow,
+      contractAddresses.Uniswap
     );
 
     const userWalletBalance = await getWalletBalance(
