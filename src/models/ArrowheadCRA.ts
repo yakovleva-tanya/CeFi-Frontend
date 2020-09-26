@@ -12,7 +12,7 @@ import { craURLs } from './../util/constants';
 export interface LendingApplication {
   borrowedAsset: string;
   collateralAsset: string;
-  requestedLoanSize: string;
+  requestedLoanSize: number;
   loanTermLength: number;
   collateralRatioEntered: number;
   loanUse: string;

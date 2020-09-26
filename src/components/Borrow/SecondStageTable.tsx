@@ -19,7 +19,7 @@ const SecondStageTable = () => {
         {minCollateralNeeded > 0 && (
           <div>
             <TableRow title="Collateral ratio">
-              <div className="font-medium">{minCollateralNeeded} % </div>
+              <div className="font-medium">{minCollateralNeeded}</div>
             </TableRow>
             <BR />
           </div>

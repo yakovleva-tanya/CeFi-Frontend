@@ -3,11 +3,12 @@ import ERC20 = require('./../abi/contracts/ERC20Detailed.json');
 import { Web3State } from './../context/app';
 import { globalDecimals } from './../util/constants';
 
+import { BigNumber } from "@ethersproject/bignumber";
 /**
  * Converts a given amount into a BN instance
  * @param {string} amount The amount to be converted
  */
-function convertToBN(
+export function convertToBN(
   amount: string
 ) {
   const result = (parseFloat(amount) * globalDecimals).toLocaleString('fullwide', { useGrouping: false });
@@ -76,18 +77,22 @@ export async function createLoanWithTerms(
   borrowerAddress: string
 ) {
   const bnAmount = convertToBN(collateralAmount);
-  console.log("ADD>>", borrowerAddress);
+  console.log("bnAmount: ", bnAmount);
+  console.log("request: ", loanRequest);
+  console.log("response: ", loanResponses);
+  console.log("collateral: ", collateralAmount, ' |BN| ', bnAmount);
+  console.log('borrower: ', borrowerAddress);
   return new Promise((resolve, reject) => loansInterface.methods
     .createLoanWithTerms(
       loanRequest,
-      [loanResponses, loanResponses],
+      [loanResponses.loanResponse1, loanResponses.loanResponse2],
       bnAmount
     )
-    .send( { from: borrowerAddress, value: bnAmount })
+    .send({ from: borrowerAddress, value: bnAmount })
     .on('transactionHash', Notify.hash)
     .on('receipt', resolve)
     .on('error', reject)
-  );  
+  );
 }
 
 /**

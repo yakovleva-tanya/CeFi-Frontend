@@ -82,7 +82,7 @@ const CollateralApproveButton = () => {
         try {
           setApproveLoading(true);
           const borrower = state.web3State.address;
-          const amountToBorrow = Number(borrowRequest.loanSize);
+          const amountToBorrow = borrowRequest.loanSize;
           const response = await approveToken(
             loansInstance,
             web3State,

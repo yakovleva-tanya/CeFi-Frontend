@@ -66,7 +66,7 @@ export interface LendPageContextInterface {
 }
 
 export interface BorrowRequest {
-  loanSize: string;
+  loanSize: number;
   loanTerm: number;
   collateralWith: BaseTokens;
   collateralPercent: number;
@@ -76,16 +76,25 @@ export interface BorrowRequest {
   collateralAmount: null | number;
   approved: boolean;
   transferred: boolean;
+  requestTime: number;
+}
+
+export interface Signature {
+  signerNonce: number;
+  r: string;
+  s: string;
+  v: string;
 }
 
 export interface LoanTerms {
   collateralRatio: number;
   consensusAddress: string;
+  responseTime: number;
   interestRate: number;
   minCollateralNeeded: number;
-  maxLoanAmount: number;
+  maxLoanAmount: string;
   nonce: number;
-  signature: any;
+  signature: Signature;
 }
 
 export interface BorrowProcessInterface {

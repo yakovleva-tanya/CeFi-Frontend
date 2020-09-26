@@ -23,7 +23,7 @@ export const LendingApplicationMap = (
   const lendingApplication = {
     borrowedAsset: borrowRequest.lendWith,
     collateralAsset: borrowRequest.collateralWith,
-    requestedLoanSize: (Number(borrowRequest.loanSize) * tokenDecimals).toString(),
+    requestedLoanSize: borrowRequest.loanSize,
     loanTermLength: borrowRequest.loanTerm * DAYS,
     collateralRatioEntered: borrowRequest.collateralPercent / 100,
     loanUse: borrowRequest.loanType.toUpperCase(),
@@ -33,12 +33,14 @@ export const LendingApplicationMap = (
       JSON.stringify(bankInfoResponse.assetReportStringified),
     assetReportSignature:
       bankInfoResponse && bankInfoResponse.assetReportSignature,
+    blockNumber: web3State.blockNumber,
+    requestTime: Date.now()
   };
   return lendingApplication as LendingApplication;
 };
 
 const defaultBorrowRequest = {
-  loanSize: "100",
+  loanSize: 100,
   loanTerm: 1,
   collateralWith: BaseTokens.ETH,
   collateralPercent: 150,
@@ -48,6 +50,7 @@ const defaultBorrowRequest = {
   collateralAmount: 1,
   approved: false,
   transferred: false,
+  requestTime: Math.floor(Date.now()/1000)
 };
 const mockLoanTerms = {
   interestRate: 20,
@@ -57,6 +60,7 @@ const mockLoanTerms = {
 const LoanTerms = {
   collateralRatio: null as null,
   consensusAddress: null as null,
+  responseTime: null as null,
   interestRate: null as null,
   minCollateralNeeded: null as null,
   maxLoanAmount: null as null,
@@ -74,7 +78,6 @@ export const BorrowPageContext = createContext<BorrowPageContextInterface>({
   loanTerms: LoanTerms,
   setLoanTerms: () => {},
   borrowProcessState: null,
-
 });
 
 const BorrowPageContextProvider = ({ children }: ContextProps) => {
