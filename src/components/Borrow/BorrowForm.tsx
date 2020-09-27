@@ -8,6 +8,8 @@ import LoginButton from "../LoginButton/LoginButton";
 import Submenu from "./Submenu";
 import LoanSelectCard from './LoanSelectedCard';
 
+import { BigNumber } from "@ethersproject/bignumber";
+
 import "./borrow.scss";
 
 import {
@@ -184,37 +186,39 @@ const BorrowForm = () => {
       borrower: state.web3State.address,
       recipient: state.web3State.address,
       consensusAddress: loanTerms.consensusAddress,
-      requestNonce: loanTerms.nonce,
-      amount: borrowRequest.loanSize,
-      duration: borrowRequest.loanTerm,
-      requestTime: borrowRequest.requestTime
+      requestNonce: convertToBN(loanTerms.nonce.toString()),
+      amount: convertToBN(borrowRequest.loanSize.toString()),
+      duration: convertToBN(borrowRequest.loanTerm.toString()),
+      requestTime: convertToBN(borrowRequest.requestTime.toString())
     };
     const resTime = Math.floor(Date.now()/1000) + 10;
     const loanResponses = {
       loanResponse1: {
       signer: "0x925082d9878D0A1F7630a0EF73E22fF3fb0ae38f",
       consensusAddress: loanTerms.consensusAddress,
-      responseTime: loanTerms.responseTime,
+      responseTime: web3State.web3.utils.fromAscii(loanTerms.responseTime.toString()),
       interestRate: convertToBN(loanTerms.interestRate.toString()),
       collateralRatio: convertToBN(loanTerms.collateralRatio.toString()),
       maxLoanAmount: convertToBN(loanTerms.maxLoanAmount.toString()),
       signature: {
+        signerNonce: convertToBN(loanTerms.nonce.toString()),
         r: web3State.web3.utils.fromAscii(loanTerms.signature.r),
         s: web3State.web3.utils.fromAscii(loanTerms.signature.s),
-        v: Number(loanTerms.signature.v)
+        v: web3State.web3.utils.fromAscii(loanTerms.signature.v)
         }
       },
       loanResponse2: {
         signer: "0x925082d9878D0A1F7630a0EF73E22fF3fb0ae38f",
         consensusAddress: loanTerms.consensusAddress,
-        responseTime: loanTerms.responseTime,
+        responseTime: web3State.web3.utils.fromAscii(loanTerms.responseTime.toString()),
         interestRate: convertToBN(loanTerms.interestRate.toString()),
         collateralRatio: convertToBN(loanTerms.collateralRatio.toString()),
         maxLoanAmount: convertToBN(loanTerms.maxLoanAmount.toString()),
         signature: {
+          signerNonce: convertToBN(loanTerms.nonce.toString()),
           r: web3State.web3.utils.fromAscii(loanTerms.signature.r),
           s: web3State.web3.utils.fromAscii(loanTerms.signature.s),
-          v: Number(loanTerms.signature.v)
+          v: web3State.web3.utils.fromAscii(loanTerms.signature.v)
         }
       }
     }
@@ -226,7 +230,7 @@ const BorrowForm = () => {
         loanRequest,
         loanResponses,
         loansInstance,
-        collateral,
+        convertToBN(collateral),
         state.web3State.address
       );
       console.log("CREATE_RESPONSE<>", response);

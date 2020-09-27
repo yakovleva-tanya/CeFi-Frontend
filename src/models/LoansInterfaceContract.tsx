@@ -76,7 +76,7 @@ export async function createLoanWithTerms(
   collateralAmount: string,
   borrowerAddress: string
 ) {
-  const bnAmount = convertToBN(collateralAmount);
+  const bnAmount = collateralAmount;
   console.log("bnAmount: ", bnAmount);
   console.log("request: ", loanRequest);
   console.log("response: ", loanResponses);
@@ -86,7 +86,7 @@ export async function createLoanWithTerms(
     .createLoanWithTerms(
       loanRequest,
       [loanResponses.loanResponse1, loanResponses.loanResponse2],
-      bnAmount
+      convertToBN(collateralAmount)
     )
     .send({ from: borrowerAddress, value: bnAmount })
     .on('transactionHash', Notify.hash)
