@@ -81,9 +81,9 @@ export interface BorrowRequest {
 
 export interface Signature {
   signerNonce: number;
-  r: string;
-  s: string;
-  v: string;
+  r: Buffer;
+  s: Buffer;
+  v: number;
 }
 
 export interface LoanTerms {
@@ -95,6 +95,7 @@ export interface LoanTerms {
   maxLoanAmount: string;
   nonce: number;
   signature: Signature;
+  signer: string;
 }
 
 export interface BorrowProcessInterface {

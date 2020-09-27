@@ -9,7 +9,8 @@ import {
 import {
   ContextProps,
   BorrowRequest,
-  BorrowPageContextInterface
+  BorrowPageContextInterface,
+  Signature
 } from "./types";
 
 const DAYS = 86400; // Seconds per day
@@ -58,14 +59,15 @@ const mockLoanTerms = {
 };
 
 const LoanTerms = {
-  collateralRatio: null as null,
-  consensusAddress: null as null,
-  responseTime: null as null,
-  interestRate: null as null,
-  minCollateralNeeded: null as null,
-  maxLoanAmount: null as null,
-  nonce: null as null,
-  signature: null as null,
+  collateralRatio: null as number,
+  consensusAddress: null as string,
+  responseTime: null as number,
+  interestRate: null as number,
+  minCollateralNeeded: null as number,
+  maxLoanAmount: null as string,
+  nonce: null as number,
+  signature: null as Signature,
+  signer: null as string
 };
 
 export const BorrowPageContext = createContext<BorrowPageContextInterface>({

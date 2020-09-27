@@ -8,7 +8,7 @@ import LoginButton from "../LoginButton/LoginButton";
 import Submenu from "./Submenu";
 import LoanSelectCard from './LoanSelectedCard';
 
-import { BigNumber } from "@ethersproject/bignumber";
+import FetchTokenData from '../../models/FetchTokenData';
 
 import "./borrow.scss";
 
@@ -43,22 +43,6 @@ const BorrowForm = () => {
   const { state, updateAppState } = useContext(AppContext);
   const { setRequesting, setSuccess, setSubmitting } = borrowProcessState;
 
-  const createLoan = async (lRequest: any, lResponse: any, collateral: any) => {
-    const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-      TellerTokens.tDAI
-    ];
-    const bnAmount = convertToBN(collateral);
-    const value = bnAmount;
-    console.log('CHEC<>', lRequest, lResponse, bnAmount);
-    const test = await loansInstance.methods
-      .createLoanWithTerms(
-        lRequest,
-        [lResponse.loanResponse1, lResponse.loanResponse2],
-        bnAmount
-      ).send({ from: state.web3State.address, value: value });
-    console.log("TEST<>", test);
-  }
-
   const requestLoan = async () => {
     const { dataProviderResponse, web3State } = state;
     //TODO: this should update based on the selected ATM type.
@@ -85,21 +69,26 @@ const BorrowForm = () => {
       console.log("TERMS>>>", terms.data);
       const response = terms.data.result.response;
       const signature = terms.data.result.signature;
+      
+      const tokenData = await FetchTokenData();
+      const minCollateral =  (Number(tokenData.DAI.price)*borrowRequest.loanSize*response.collateralRatio)/(Number(tokenData.ETH.price));
+      
       const resTime = Math.floor(Date.now()/1000) + 10;
       const loanResponse = {
         collateralRatio: response.collateralRatio.toFixed(2),
         consensusAddress: response.consensusAddress,
-        responseTime: resTime,
-        interestRate: (response.interestRate * 100).toFixed(2),
-        minCollateralNeeded: response.collateralRatio,
-        maxLoanAmount: response.maxLoanAmount,
-        nonce: response.nonce,
+        responseTime: Number(resTime),
+        interestRate: response.interestRate.toFixed(3),
+        minCollateralNeeded: minCollateral,
+        maxLoanAmount: convertToBN(response.maxLoanAmount),
+        nonce: convertToBN(response.nonce),
         signature: {
-          signerNonce: response.nonce,
-          r: signature.r,
-          s: signature.s,
-          v: signature.v
-        }
+          signerNonce: convertToBN(response.nonce),
+          r: Buffer.from(signature.r),
+          s: Buffer.from(signature.s, 'hex'),
+          v: Number(signature.v)
+        },
+        signer: "0x925082d9878D0A1F7630a0EF73E22fF3fb0ae38f"
       };
       setLoanTerms(loanResponse);
       return true;
@@ -162,10 +151,6 @@ const BorrowForm = () => {
       setSubmitting(false);
       return false;
     }
-    setRequesting(true);
-    const res = await requestLoan();
-    setRequesting(false);
-    setSuccess(res);
   };
 
   const onRequestLoanMock = async () => {
@@ -188,49 +173,25 @@ const BorrowForm = () => {
       consensusAddress: loanTerms.consensusAddress,
       requestNonce: convertToBN(loanTerms.nonce.toString()),
       amount: convertToBN(borrowRequest.loanSize.toString()),
-      duration: convertToBN(borrowRequest.loanTerm.toString()),
+      duration: borrowRequest.loanTerm,
       requestTime: convertToBN(borrowRequest.requestTime.toString())
     };
-    const resTime = Math.floor(Date.now()/1000) + 10;
     const loanResponses = {
-      loanResponse1: {
-      signer: "0x925082d9878D0A1F7630a0EF73E22fF3fb0ae38f",
+      signer: loanTerms.signer,
       consensusAddress: loanTerms.consensusAddress,
-      responseTime: web3State.web3.utils.fromAscii(loanTerms.responseTime.toString()),
+      responseTime: convertToBN(loanTerms.responseTime.toString()),
       interestRate: convertToBN(loanTerms.interestRate.toString()),
       collateralRatio: convertToBN(loanTerms.collateralRatio.toString()),
       maxLoanAmount: convertToBN(loanTerms.maxLoanAmount.toString()),
-      signature: {
-        signerNonce: convertToBN(loanTerms.nonce.toString()),
-        r: loanTerms.signature.r,
-        s: loanTerms.signature.s,
-        v: Buffer.from('0x'+loanTerms.signature.v, 'hex')
-        }
-      },
-      loanResponse2: {
-        signer: "0x925082d9878D0A1F7630a0EF73E22fF3fb0ae38f",
-        consensusAddress: loanTerms.consensusAddress,
-        responseTime: web3State.web3.utils.fromAscii(loanTerms.responseTime.toString()),
-        interestRate: convertToBN(loanTerms.interestRate.toString()),
-        collateralRatio: convertToBN(loanTerms.collateralRatio.toString()),
-        maxLoanAmount: convertToBN(loanTerms.maxLoanAmount.toString()),
-        signature: {
-          signerNonce: convertToBN(loanTerms.nonce.toString()),
-          r: loanTerms.signature.r,
-          s: loanTerms.signature.s,
-          v: Buffer.from('0x'+loanTerms.signature.v, 'hex')
-        }
+      signature: loanTerms.signature
       }
-    }
     try {
-      //const collateral = borrowRequest.collateralAmount.toString();
-      const collateral = (borrowRequest.loanSize * loanTerms.collateralRatio).toString();
-      // const response = await createLoan(loanRequest, loanResponses, collateral);
+      const collateral = loanTerms.minCollateralNeeded.toString();
       const response = await createLoanWithTerms(
         loanRequest,
         loanResponses,
         loansInstance,
-        convertToBN(collateral),
+        collateral,
         state.web3State.address
       );
       console.log("CREATE_RESPONSE<>", response);
