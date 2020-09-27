@@ -202,9 +202,9 @@ const BorrowForm = () => {
       maxLoanAmount: convertToBN(loanTerms.maxLoanAmount.toString()),
       signature: {
         signerNonce: convertToBN(loanTerms.nonce.toString()),
-        r: web3State.web3.utils.fromAscii(loanTerms.signature.r),
-        s: web3State.web3.utils.fromAscii(loanTerms.signature.s),
-        v: web3State.web3.utils.fromAscii(loanTerms.signature.v)
+        r: loanTerms.signature.r,
+        s: loanTerms.signature.s,
+        v: Buffer.from('0x'+loanTerms.signature.v, 'hex')
         }
       },
       loanResponse2: {
@@ -216,9 +216,9 @@ const BorrowForm = () => {
         maxLoanAmount: convertToBN(loanTerms.maxLoanAmount.toString()),
         signature: {
           signerNonce: convertToBN(loanTerms.nonce.toString()),
-          r: web3State.web3.utils.fromAscii(loanTerms.signature.r),
-          s: web3State.web3.utils.fromAscii(loanTerms.signature.s),
-          v: web3State.web3.utils.fromAscii(loanTerms.signature.v)
+          r: loanTerms.signature.r,
+          s: loanTerms.signature.s,
+          v: Buffer.from('0x'+loanTerms.signature.v, 'hex')
         }
       }
     }
