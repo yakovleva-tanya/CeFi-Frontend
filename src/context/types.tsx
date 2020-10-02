@@ -22,7 +22,7 @@ export interface LoanInterface {
   currentCollateralPercent?: number;
   collateralAmount?: number;
   loanType?: string;
-  compound?: any
+  compound?: any;
 }
 
 export interface CollateralWithdrawInterface {
@@ -191,15 +191,19 @@ interface UniswapValue {
 export interface UniswapStateInterface {
   selectedLoan: null | LoanInterface;
   setSelectedLoan: Function;
-  success: Boolean;
+  success: Boolean | null;
   setSuccess: Function;
-  values: any;
-  setValues: Function;
-  swapExchangeRate: Boolean;
-  setSwapExchangeRate: Function;
+  trade: any;
+  setTrade: Function;
   options: Array<string>;
   tokenSelectionDropdown: any;
   setTokenSelectionDropdown: Function;
+  isExactIn: Boolean;
+  setIsExactIn: Function;
+  swapValues: any;
+  setSwapValues: Function;
+  values: any;
+  setValues: Function;
 }
 
 export interface TokenInterface {

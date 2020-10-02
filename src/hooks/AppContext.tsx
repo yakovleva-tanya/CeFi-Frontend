@@ -112,9 +112,7 @@ export default function useAppContext() {
   // const [state, updateAppState] = React.useState(
   //   stored || AppContextDefault.state
   // );
-  const [state, updateAppState] = React.useState(
-    AppContextDefault.state
-  );
+  const [state, updateAppState] = React.useState(AppContextDefault.state);
   React.useEffect(() => {
     if (!state.web3State.network) return;
     if (!state.web3State.web3) return;

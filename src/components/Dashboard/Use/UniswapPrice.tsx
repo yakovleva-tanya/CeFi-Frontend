@@ -1,40 +1,28 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 
 import repeatArrow from "../../../../dist/assets/repeat-arrows.svg";
-
-import { AppContext } from "../../../context/app";
-import { UniswapContext } from "../../../context/dashboardContext";
+import { UniswapContext } from "../../../context/uniswapContext";
+import { formatExecutionPrice } from "../../../actions/Trades";
 
 const UniswapPrice = () => {
-  const { state } = useContext(AppContext);
-  const { tokenData } = state;
-  const { values, setSwapExchangeRate, swapExchangeRate } = useContext(
-    UniswapContext
-  );
-  const { first, second } = values;
-
-  const exchangeRate = useMemo(() => {
-    const rate =
-      tokenData[first.currency].price / tokenData[second.currency].price;
-    return swapExchangeRate ? rate : 1 / rate;
-  }, [first.currency, second.currency, swapExchangeRate]);
-
+  const { trade } = useContext(UniswapContext);
+  const [isInverted, setIsInverted] = useState(false);
+  const getExecutionPrice = () => formatExecutionPrice(trade, isInverted);
+  const executionPrice = useMemo(() => {
+    return getExecutionPrice();
+  }, [trade, isInverted]);
   return (
     <>
       <div className="d-flex justify-content-between mt-2 p-4">
         <div className="text-lightest-gray">Price</div>
         <div className="d-flex flex-row align-items-center">
-          <div className="text-lightest-gray mr-1">{`${exchangeRate} ${
-            swapExchangeRate ? values.first.currency : values.second.currency
-          } per ${
-            swapExchangeRate ? values.second.currency : values.first.currency
-          }`}</div>
+          <div className="text-lightest-gray mr-1">{executionPrice}</div>
           <img
             src={repeatArrow}
             height={14}
             className="pointer"
             onClick={() => {
-              setSwapExchangeRate(!swapExchangeRate);
+              setIsInverted(!isInverted);
             }}
           />
         </div>

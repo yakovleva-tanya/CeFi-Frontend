@@ -23,7 +23,7 @@ export const onBlurFormat = (value: string) => {
   if (isNaN(newValue)) {
     newValue = 0;
   }
-  return newValue.toFixed(2);
+  return newValue;
 };
 
 const NumberInput = ({

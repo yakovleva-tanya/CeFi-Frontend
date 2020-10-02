@@ -160,12 +160,12 @@ export const allContractAddresses = {
       USDC: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
       // See https://etherscan.io/token/0x514910771af9ca656af840dff83e8264ecf986ca
       LINK: "0x514910771af9ca656af840dff83e8264ecf986ca",
-      SNX: "",
-      MKR: "",
-      YFI: "",
-      LEND: "",
-      wBTC: "",
-      USDT: "",
+      SNX: "0x41Cb82934a671f52379A96AF034674945Ff03d3b",
+      MKR: "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
+      YFI: "0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e",
+      LEND: "0x80fB784B7eD66730e8b1DBd9820aFD29931aab03",
+      wBTC: "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+      USDT: "0xdac17f958d2ee523a2206206994597c13d831ec7",
     },
   },
 };

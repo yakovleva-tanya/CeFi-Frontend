@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import SuccessScreen from "../../SuccessScreen/SuccessScreen";
 
-import { UniswapContext } from "../../../context/dashboardContext";
+import { UniswapContext } from "../../../context/uniswapContext";
 
 const UniswapSuccessScreen = () => {
   const { setSuccess } = useContext(UniswapContext);

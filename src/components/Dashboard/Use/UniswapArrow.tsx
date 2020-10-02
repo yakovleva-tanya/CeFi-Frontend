@@ -3,13 +3,19 @@ import React, { useContext } from "react";
 import disabledArrow from "../../../../dist/assets/full-gray-arrow-down.svg";
 import activeArrow from "../../../../dist/assets/full-primary-arrow-down.svg";
 
-import { UniswapContext } from "../../../context/dashboardContext";
+import { UniswapContext } from "../../../context/uniswapContext";
 
 const UniswapArrow = () => {
-  const { values } = useContext(UniswapContext);
+  const { trade, isExactIn, setIsExactIn } = useContext(UniswapContext);
+
   return (
-    <div className="mt-2">
-      <img height={14} src={values.second ? activeArrow : disabledArrow} />
+    <div
+      className="mt-2"
+      onClick={() => {
+        //setIsExactIn(!isExactIn);
+      }}
+    >
+      <img height={14} src={trade ? activeArrow : disabledArrow} />
     </div>
   );
 };

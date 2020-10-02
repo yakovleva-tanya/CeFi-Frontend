@@ -11,7 +11,6 @@ import {
   BorrowDepositStateInterface,
   BorrowWithdrawStateInterface,
   UseCompoundStateInterface,
-  UniswapStateInterface,
 } from "./types";
 import { AvailableLendingTokens } from "./app";
 
@@ -351,64 +350,5 @@ export const UseCompoundContextProvider = ({ children }: ContextProps) => {
     <UseCompoundContext.Provider value={state}>
       {children}
     </UseCompoundContext.Provider>
-  );
-};
-
-//USE-UNISWAP
-
-const defaultUniswapState: UniswapStateInterface = {
-  selectedLoan: null as null,
-  setSelectedLoan: () => {},
-  success: false,
-  setSuccess: () => {},
-  values: null,
-  setValues: () => {},
-  swapExchangeRate: null,
-  setSwapExchangeRate: () => {},
-  options: null,
-  tokenSelectionDropdown: null,
-  setTokenSelectionDropdown: () => {},
-};
-export const UniswapContext = React.createContext(defaultUniswapState);
-export const UniswapContextProvider = ({ children }: ContextProps) => {
-  const options = [
-    "DAI",
-    "SNX",
-    "MKR",
-    "LINK",
-    "YFI",
-    "LEND",
-    "ETH",
-    "wBTC",
-    "USDT",
-    "USDC",
-  ];
-  const [selectedLoan, setSelectedLoan] = useState<null | LoanInterface>(null);
-  const [success, setSuccess] = useState(false);
-  const [values, setValues] = useState({
-    first: {
-      amount: "0",
-      currency: options[0],
-    },
-    second: null,
-  });
-  const [swapExchangeRate, setSwapExchangeRate] = useState(false);
-  const [tokenSelectionDropdown, setTokenSelectionDropdown] = useState(null);
-
-  const state = {
-    selectedLoan,
-    setSelectedLoan,
-    success,
-    setSuccess,
-    values,
-    setValues,
-    swapExchangeRate,
-    setSwapExchangeRate,
-    options,
-    tokenSelectionDropdown,
-    setTokenSelectionDropdown,
-  };
-  return (
-    <UniswapContext.Provider value={state}>{children}</UniswapContext.Provider>
   );
 };

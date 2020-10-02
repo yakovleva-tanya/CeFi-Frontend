@@ -6,11 +6,10 @@ import UniswapForm from "./UniswapForm";
 import UniswapSuccessScreen from "./UniswapSuccessScreen";
 import UniswapLoansList from "./UniswapLoansList";
 
-import { UniswapContext } from "../../../context/dashboardContext";
+import { UniswapContext } from "../../../context/uniswapContext";
 import SubmenuCard from "../../UI/SubmenuCard";
 import CurrencyIcon from "../../UI/CurrencyIcon";
 import { AppContext } from "../../../context/app";
-import { exchangeCurrency } from "../../../actions/HelperFunctions";
 
 const UniswapLogo = () => {
   return <img className="mr-3" src={logo} height="31" />;
@@ -55,14 +54,14 @@ export default UniswapMainSection;
 
 const UniswapTokenDropdown = () => {
   const {
-    values,
-    setValues,
     tokenSelectionDropdown,
     setTokenSelectionDropdown,
+    values,
+    setValues,
   } = useContext(UniswapContext);
-  const { tokens, type } = tokenSelectionDropdown;
+  const { tokens } = tokenSelectionDropdown;
   const { state } = useContext(AppContext);
-  const { teller, tokenData } = state;
+  const { teller } = state;
   const { userWalletBalance } = teller;
 
   return (
@@ -74,29 +73,21 @@ const UniswapTokenDropdown = () => {
       className=""
     >
       {tokens.map((token: string) => {
+        const balance = userWalletBalance
+          ? userWalletBalance[token].toFixed(2)
+          : "-";
         return (
           <div
             key={token}
             className="text-lg font-medium d-flex flex-row justify-content-between align-items-center mb-4 pointer"
             onClick={() => {
-              if (type === "First" && token !== values.first.currency) {
-                setValues({ ...values, first: { currency: token, amount: 0 } });
+              const newValues = { ...values };
+              if (tokenSelectionDropdown.type === "First") {
+                newValues.input.token = token;
+              } else {
+                newValues.output.token = token;
               }
-              if (
-                type === "Second" &&
-                (!values.second || token !== values.second.currency)
-              ) {
-                const amount = exchangeCurrency(
-                  parseFloat(values.first.amount),
-                  values.first.currency,
-                  tokenData,
-                  token
-                );
-                setValues({
-                  ...values,
-                  second: { currency: token, amount },
-                });
-              }
+              setValues(newValues);
               setTokenSelectionDropdown(null);
             }}
           >
@@ -104,9 +95,7 @@ const UniswapTokenDropdown = () => {
               <CurrencyIcon currency={token} className="mr-2" />
               <div>{token}</div>
             </div>
-            <div>
-              {userWalletBalance ? userWalletBalance[token].toFixed(2) : ""}
-            </div>
+            <div>{balance}</div>
           </div>
         );
       })}

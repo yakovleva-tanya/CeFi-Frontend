@@ -6,7 +6,7 @@ import BR from "../../UI/BR";
 
 import { LoanInterface } from "../../../context/types";
 import { DashboardContext } from "../../../context/dashboardContext";
-import { UniswapContext } from "../../../context/dashboardContext";
+import { UniswapContext } from "../../../context/uniswapContext";
 
 const UniswapLoansList = () => {
   const { loans } = useContext(DashboardContext);

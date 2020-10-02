@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 
-import UniswapBottomRow from "./UniswapBottomRow";
-import UniswapTopRow from "./UniswapTopRow";
+import UniswapOutputField from "./UniswapOutputField";
+import UniswapInputField from "./UniswapInputField";
 import UniswapButtonGroup from "./UniswapButtonGroup";
 import UniswapPrice from "./UniswapPrice";
 import UniswapMetrics from "./UniswapMetrics";
 import UniswapArrow from "./UniswapArrow";
 
 import { AppContext } from "../../../context/app";
-import { UniswapContext } from "../../../context/dashboardContext";
+import { UniswapContext } from "../../../context/uniswapContext";
 
 const UniswapForm = () => {
-  const { values } = useContext(UniswapContext);
+  const { trade } = useContext(UniswapContext);
   const { state } = useContext(AppContext);
   const { teller } = state;
 
@@ -19,12 +19,12 @@ const UniswapForm = () => {
     <div className="d-flex flex-column">
       {teller && teller.userWalletBalance && (
         <>
-          <UniswapTopRow />
+          <UniswapInputField />
           <UniswapArrow />
-          <UniswapBottomRow />
-          {values.second && <UniswapPrice />}
+          <UniswapOutputField />
+          {trade && <UniswapPrice />}
           <UniswapButtonGroup />
-          {values.second && <UniswapMetrics />}
+          {trade && <UniswapMetrics />}
         </>
       )}
     </div>
