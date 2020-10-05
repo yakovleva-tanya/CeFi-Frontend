@@ -214,13 +214,13 @@ export interface TokenDataInterface {
   [key: string]: TokenInterface;
 }
 export enum PageTypes {
-  "Lend-Redeem" = "Lend-Redeem",
-  "Lend-Withdraw" = "Lend-Withdraw",
-  "Borrow-Repay" = "Borrow-Repay",
-  "Borrow-Deposit" = "Borrow-Deposit",
-  "Borrow-Withdraw" = "Borrow-Withdraw",
-  "Spend-Compound" = "Spend-Compound",
-  "Spend-Uniswap" = "Spend-Uniswap",
+  "deposit-redeem" = "deposit-redeem",
+  "deposit-withdraw" = "deposit-withdraw",
+  "borrow-repay" = "borrow-repay",
+  "borrow-deposit" = "borrow-deposit",
+  "borrow-withdraw" = "borrow-withdraw",
+  "spend-compound" = "spend-Compound",
+  "spend-uniswap" = "spend-uniswap",
 }
 
 export enum StatusTypes {

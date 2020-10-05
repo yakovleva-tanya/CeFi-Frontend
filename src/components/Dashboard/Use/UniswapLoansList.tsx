@@ -11,9 +11,11 @@ import { UniswapContext } from "../../../context/uniswapContext";
 const UniswapLoansList = () => {
   const { loans } = useContext(DashboardContext);
   const { setSelectedLoan } = useContext(UniswapContext);
-  const securedLoans = loans.filter((loan: LoanInterface) => {
-    return loan.loanType === "Secured" && loan.status !== "Closed";
-  });
+  const securedLoans = loans
+    ? loans.filter((loan: LoanInterface) => {
+        return loan.loanType === "Secured" && loan.status !== "Closed";
+      })
+    : null;
 
   return (
     <div>

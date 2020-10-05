@@ -27,7 +27,7 @@ const SuccessScreen = ({
         </div>
         <div className="text-5xl font-medium">{title}</div>
         <div className="text-gray m-3">{message}</div>
-        <Link to="/dashboard">
+        <Link to="/dashboard/borrow-repay">
           <PrimaryButton onClick={onButtonClick} text={CTA} />
         </Link>
       </div>
