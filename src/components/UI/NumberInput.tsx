@@ -5,6 +5,7 @@ type numberInputProps = {
   setValue: Function;
   decimals?: number;
   className?: string;
+  style?: any;
 };
 
 export const numberInputEnforcer = (value: string, decimals: number = 4) => {
@@ -31,9 +32,11 @@ const NumberInput = ({
   setValue,
   decimals = 4,
   className = "",
+  style = {},
 }: numberInputProps) => {
   return (
     <input
+      style={style}
       className={`input ${className}`}
       value={value}
       onChange={(e) => {

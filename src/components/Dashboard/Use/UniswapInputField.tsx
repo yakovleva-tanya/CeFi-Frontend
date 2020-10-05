@@ -39,7 +39,7 @@ const UniswapInputField = () => {
     setTokenSelectionDropdown({
       tokens: values.output.token
         ? options.filter((option: any) => {
-            return option != values.input.token;
+            return option != values.output.token;
           })
         : options,
       type: "First",
@@ -49,11 +49,12 @@ const UniswapInputField = () => {
   return (
     <>
       <div className="d-flex border-thin justify-content-between p-4 mt-3">
-        <div className="d-flex flex-column align-items-start">
+        <div className="d-flex flex-grow flex-column align-items-start">
           <div className="text-lightest-gray mb-1">
             From {trade && !isExactIn && " (estimated)"}
           </div>
           <NumberInput
+            style={{ width:'100%' }}
             className={`text-left text-lg font-medium  ${
               values.output.token && userWalletBalance
                 ? "text-black"

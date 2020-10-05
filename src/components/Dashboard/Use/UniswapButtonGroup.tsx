@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 
 import PrimaryButton from "../../UI/PrimaryButton";
 
@@ -15,8 +15,12 @@ const UniswapButtonGroup = () => {
   const { teller } = state;
   const { userWalletBalance } = teller;
   const { input } = values;
-  const priceImpact = computeTradePriceBreakdown(trade).priceImpactWithoutFee;
-  const impactSeverity = warningSeverity(priceImpact);
+  const priceImpact = useMemo(() => {
+    return computeTradePriceBreakdown(trade).priceImpactWithoutFee;
+  }, [trade]);
+  const impactSeverity = useMemo(() => {
+    return warningSeverity(priceImpact);
+  }, [priceImpact]);
 
   return (
     <>

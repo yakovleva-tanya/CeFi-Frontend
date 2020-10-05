@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useMemo } from "react";
 import { UniswapContext } from "../../../context/uniswapContext";
 import {
   computeSlippageAdjustedAmounts,
@@ -36,7 +36,9 @@ const UniswapMetrics = () => {
     getTradeMetrics();
   }, [trade]);
   const { maximumSold, priceImpactWithoutFee, realizedLPFee, path } = metrics;
-  const severity = warningSeverity(priceImpactWithoutFee);
+  const severity = useMemo(() => {
+    return warningSeverity(priceImpactWithoutFee);
+  }, [priceImpactWithoutFee]);
 
   return (
     <>
@@ -81,15 +83,14 @@ const UniswapMetrics = () => {
         <div className=" d-flex justify-content-between">
           <div className="text-lightest-gray">Route</div>
           <div className="font-medium d-flex flex-row text-right">
-            {path.length > 2 &&
-              path.map((e: any, i) => {
-                return (
-                  <div key={e} className="d-flex flex-row text-right">
-                    <div className="pr-2">{e}</div>
-                    <div className="pr-2">{i < path.length - 1 && ">"}</div>
-                  </div>
-                );
-              })}
+            {path.map((e: any, i) => {
+              return (
+                <div key={e} className="d-flex flex-row text-right">
+                  <div className="pr-2">{e}</div>
+                  <div className="pr-2">{i < path.length - 1 && ">"}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

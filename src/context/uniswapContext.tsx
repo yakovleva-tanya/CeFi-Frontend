@@ -2,7 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { ContextProps, LoanInterface, UniswapStateInterface } from "./types";
-import { getBestTradeExactIn, getBestTradeExactOut } from "../actions/Trades";
+import {
+  getBestTradeExactIn,
+  getBestTradeExactOut,
+  getPairs,
+} from "../actions/Trades";
 
 const defaultUniswapState: UniswapStateInterface = {
   selectedLoan: null,
@@ -54,6 +58,15 @@ export const UniswapContextProvider = ({ children }: ContextProps) => {
   const [swapValues, setSwapValues] = useState(defaultSwapValues);
   const [values, setValues] = useState(defaultValues);
   const { input, output } = values;
+  const [pairs, setPairs] = useState(null);
+  useEffect(() => {
+    if (pairs != null) return;
+    const getPairsData = async () => {
+      const pairsData = await getPairs();
+      setPairs(pairsData);
+    };
+    getPairsData();
+  }, []);
 
   useEffect(() => {
     const selectedAmount = isExactIn ? input.amount : output.amount;
@@ -75,13 +88,15 @@ export const UniswapContextProvider = ({ children }: ContextProps) => {
         trade = await getBestTradeExactIn(
           swapValues.tokenIn,
           swapValues.tokenOut,
-          swapValues.selectedAmount
+          swapValues.selectedAmount,
+          pairs
         );
       } else {
         trade = await getBestTradeExactOut(
           swapValues.tokenIn,
           swapValues.tokenOut,
-          swapValues.selectedAmount
+          swapValues.selectedAmount,
+          pairs
         );
       }
       setTrade(trade);

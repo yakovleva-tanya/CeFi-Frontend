@@ -17,7 +17,7 @@ const UniswapLoansList = () => {
 
   return (
     <div>
-      <div>Earn interest by supplying to Uniswap.</div>
+      <div>Swap your assets with Uniswap</div>
       <div className="table border-thin mb-4 mt-3">
         {securedLoans &&
           securedLoans.map((loan: LoanInterface, i: any) => {

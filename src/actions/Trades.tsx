@@ -105,7 +105,7 @@ const fetchReserves = async () => {
   return data;
 };
 
-const getPairs = async () => {
+export const getPairs = async () => {
   const pairCombinations = await getPairCombinations();
   const reserves = await fetchReserves();
   const validPairs: Pair[] = [];
@@ -117,8 +117,8 @@ const getPairs = async () => {
     if (reserve0 * reserve1 === 0) return;
     const decimals0 = 10 ** token0.decimals;
     const decimals1 = 10 ** token1.decimals;
-    const reserve0BigInt = BigInt(Math.round(reserve0 * decimals0));
-    const reserve1BigInt = BigInt(Math.round(reserve1 * decimals1));
+    const reserve0BigInt = BigInt(Math.round(Math.round(reserve0 * decimals0)));
+    const reserve1BigInt = BigInt(Math.round(Math.round(reserve1 * decimals1)));
 
     const newPair = new Pair(
       new TokenAmount(token0, reserve0BigInt),
@@ -132,29 +132,38 @@ const getPairs = async () => {
 export const getBestTradeExactIn = async (
   currencyIn: string,
   currencyOut: string,
-  amountIn: number
+  amountIn: number,
+  pairs: any
 ) => {
-  const pairs = await getPairs();
-  const decimals = 10 ** tokenKeys[currencyIn].decimals;
-  const bestTrade = await Trade.bestTradeExactIn(
-    pairs,
-    new TokenAmount(tokenKeys[currencyIn], BigInt(amountIn * decimals)),
-    tokenKeys[currencyOut],
-    { maxHops: 3 }
-  );
-  return bestTrade[0];
+  try {
+    const decimals = 10 ** tokenKeys[currencyIn].decimals;
+    const bestTrade = await Trade.bestTradeExactIn(
+      pairs,
+      new TokenAmount(tokenKeys[currencyIn], BigInt(Math.round(amountIn * decimals))),
+      tokenKeys[currencyOut],
+      { maxHops: 3 }
+    );
+    console.log(bestTrade[0]);
+    return bestTrade[0];
+  } catch (err) {
+    console.log(err);
+  }
 };
+
 export const getBestTradeExactOut = async (
   currencyIn: string,
   currencyOut: string,
-  amountOut: number
+  amountOut: number,
+  pairs: any
 ) => {
-  const pairs = await getPairs();
   const decimals = 10 ** tokenKeys[currencyOut].decimals;
   const bestTrade = await Trade.bestTradeExactOut(
     pairs,
     tokenKeys[currencyIn],
-    new TokenAmount(tokenKeys[currencyOut], BigInt(amountOut * decimals)),
+    new TokenAmount(
+      tokenKeys[currencyOut],
+      BigInt(Math.round(amountOut * decimals))
+    ),
     { maxHops: 3 }
   );
   return bestTrade[0];

@@ -47,7 +47,19 @@ const UniswapOutputField = () => {
           <div className="text-lightest-gray mb-1">
             To {trade && isExactIn && "(estimated)"}
           </div>
-          <NumberInput
+          <div
+            className={`text-left text-lg font-medium ${
+              output.token && userWalletBalance ? "text-black" : "text-gray"
+            }`}
+            style={{ cursor: "default" }}
+          >
+            {isExactIn
+              ? trade
+                ? trade.outputAmount.toSignificant(4)
+                : "0"
+              : output.amount || "0"}
+          </div>
+          {/* <NumberInput
             className={`text-left text-lg font-medium ${
               output.token && userWalletBalance ? "text-black" : "text-gray"
             }`}
@@ -66,7 +78,7 @@ const UniswapOutputField = () => {
               newValues.output.amount = e;
               setValues(newValues);
             }}
-          />
+          /> */}
         </div>
         <div className="d-flex flex-column align-items-end">
           <div className="text-lightest-gray mb-1 font-medium">
