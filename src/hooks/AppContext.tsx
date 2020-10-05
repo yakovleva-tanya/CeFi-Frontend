@@ -35,7 +35,6 @@ const setBlockNumber = async (
   const subscription = web3State.web3.eth
     .subscribe("newBlockHeaders", function (error: any, result: any) {
       if (!error) {
-        console.log({ result });
         return;
       }
       console.error(error);
