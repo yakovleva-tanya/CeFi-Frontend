@@ -6,7 +6,6 @@ import Withdraw from "./Withdraw";
 
 const Lend = () => {
   const { onPage } = useContext(DashboardContext);
-  console.log(onPage);
   const subSection = onPage.split("-")[1];
   return (
     <Card

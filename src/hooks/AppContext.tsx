@@ -32,6 +32,22 @@ const setBlockNumber = async (
   updateAppState((st: AppContextState) => {
     return { ...st, web3State };
   });
+  const subscription = web3State.web3.eth
+    .subscribe("newBlockHeaders", function (error: any, result: any) {
+      if (!error) {
+        console.log({ result });
+        return;
+      }
+      console.error(error);
+    })
+    .on("connected", function (subscriptionId: any) {})
+    .on("data", function (blockHeader: any) {
+      web3State.blockNumber = blockHeader.number;
+      updateAppState((st: AppContextState) => {
+        return { ...st, web3State };
+      });
+    })
+    .on("error", console.error);
 };
 
 const mergeSignInContracts = async (

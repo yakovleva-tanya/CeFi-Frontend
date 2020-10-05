@@ -143,7 +143,6 @@ export const getBestTradeExactIn = async (
       tokenKeys[currencyOut],
       { maxHops: 3 }
     );
-    console.log(bestTrade[0]);
     return bestTrade[0];
   } catch (err) {
     console.log(err);

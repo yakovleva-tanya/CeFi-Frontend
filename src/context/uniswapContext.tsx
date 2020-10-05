@@ -1,12 +1,13 @@
 //USE-UNISWAP
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ContextProps, LoanInterface, UniswapStateInterface } from "./types";
 import {
   getBestTradeExactIn,
   getBestTradeExactOut,
   getPairs,
 } from "../actions/Trades";
+import { AppContext } from "./app";
 
 const defaultUniswapState: UniswapStateInterface = {
   selectedLoan: null,
@@ -59,21 +60,23 @@ export const UniswapContextProvider = ({ children }: ContextProps) => {
   const [values, setValues] = useState(defaultValues);
   const { input, output } = values;
   const [pairs, setPairs] = useState(null);
+  const { state } = useContext(AppContext);
+  const latestBlock = state.web3State.blockNumber;
+
   useEffect(() => {
-    if (pairs != null) return;
     const getPairsData = async () => {
       const pairsData = await getPairs();
       setPairs(pairsData);
     };
     getPairsData();
-  }, []);
+  }, [latestBlock]);
 
   useEffect(() => {
     const selectedAmount = isExactIn ? input.amount : output.amount;
     const tokenIn = isExactIn ? input.token : output.token;
     const tokenOut = isExactIn ? output.token : input.token;
     setSwapValues({ selectedAmount, tokenIn, tokenOut });
-  }, [values, isExactIn]);
+  }, [values, isExactIn, latestBlock]);
 
   useEffect(() => {
     if (
