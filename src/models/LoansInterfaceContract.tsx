@@ -2,8 +2,8 @@ import Notify from "./Web3Notify";
 import ERC20 = require('./../abi/contracts/ERC20Detailed.json');
 import { Web3State } from './../context/app';
 import { globalDecimals } from './../util/constants';
+import FetchTokenData from './FetchTokenData';
 
-import { BigNumber } from "@ethersproject/bignumber";
 /**
  * Converts a given amount into a BN instance
  * @param {string} amount The amount to be converted
@@ -66,26 +66,59 @@ export async function approveToken(
  * @param {*} loanRequest The Teller protocol loan request
  * @param {*} loanResponses The list of the Teller protocol loan responses
  * @param {*} loansInterface Teller protocol's loansInterface contract
- * @param {string} collateralAmount The amount of collateral required for the loan
  * @param {string} borrowerAddress The wallet address of the borrower
  */
 export async function createLoanWithTerms(
   loanRequest: any,
   loanResponses: any,
   loansInterface: any,
-  collateralAmount: string,
   borrowerAddress: string
 ) {
-  const bnAmount = convertToBN(collateralAmount);
-  console.log("bnAmount: ", bnAmount);
-  console.log("request: ", loanRequest);
-  console.log("response: ", loanResponses);
-  console.log("collateral: ", collateralAmount, ' |BN| ', bnAmount);
-  console.log('borrower: ', borrowerAddress);
+  // Get token prices
+  const tokenData = await FetchTokenData();
+  const token = tokenData[loanRequest.collateralWith];
+  console.log('PRICE<>', token.price);
+
+  // Caculate collatreal required based on collateral token price
+  const collateral = loanRequest.loanSize / Number(token.price);
+  const bnAmount = convertToBN(collateral.toString());
+  
+  // Format request
+  const request = {
+    borrower: borrowerAddress,
+    recipient: borrowerAddress,
+    consensusAddress: loanResponses[0].consensusAddress,
+    amount: convertToBN(loanRequest.loanSize.toString()),
+    duration: Number(loanRequest.loanTerm.toString()),
+    requestTime: convertToBN(loanRequest.requestTime.toString()),
+    requestNonce: Number(loanRequest.requestNonce.toString()),
+  }
+  
+  // Format response
+  // const response = {
+  //   collateralRatio: loanResponses.collateralRatio,
+  //   consensusAddress: loanResponses.consensusAddress,
+  //   responseTime: loanResponses.responseTime,
+  //   interestRate: loanResponses.interestRate,
+  //   minCollateralRatio: loanResponses.minCollateralRatio,
+  //   maxLoanAmount: loanResponses.maxLoanAmount,
+  //   signature: {
+  //     signerNonce: loanResponses.signature.signerNonce,
+  //     r: loanResponses.signature.r.data,
+  //     s: loanResponses.signature.s.data,
+  //     v: loanResponses.signature.v.data,
+  //   },
+  //   signer: loanResponses.signer
+  // }
+  
+  console.log("REQ<>", request);
+  console.log("RES<>", loanResponses);
+
+  // Create loan terms
   return new Promise((resolve, reject) => loansInterface.methods
     .createLoanWithTerms(
-      loanRequest,
-      [loanResponses],
+      request,
+      loanResponses,
       bnAmount
     )
     .send({ from: borrowerAddress, value: bnAmount })

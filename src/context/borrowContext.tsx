@@ -12,6 +12,7 @@ import {
   BorrowPageContextInterface,
   Signature
 } from "./types";
+import { _nonce } from '../util/nonce';
 
 const DAYS = 86400; // Seconds per day
 
@@ -24,9 +25,9 @@ export const LendingApplicationMap = (
   const lendingApplication = {
     borrowedAsset: borrowRequest.lendWith,
     collateralAsset: borrowRequest.collateralWith,
-    requestedLoanSize: borrowRequest.loanSize,
-    loanTermLength: borrowRequest.loanTerm * DAYS,
-    collateralRatioEntered: borrowRequest.collateralPercent / 100,
+    requestedLoanSize: String(borrowRequest.loanSize * 1e18),
+    loanTermLength: String(borrowRequest.loanTerm * DAYS),
+    collateralRatioEntered: String(borrowRequest.collateralPercent * 100),
     loanUse: borrowRequest.loanType.toUpperCase(),
     ethereumWallet: web3State.address,
     assetReportStringified:
@@ -34,8 +35,7 @@ export const LendingApplicationMap = (
       JSON.stringify(bankInfoResponse.assetReportStringified),
     assetReportSignature:
       bankInfoResponse && bankInfoResponse.assetReportSignature,
-    blockNumber: web3State.blockNumber,
-    requestTime: Date.now()
+    requestTime: String(Math.floor(Date.now())),
   };
   return lendingApplication as LendingApplication;
 };
@@ -51,7 +51,10 @@ const defaultBorrowRequest = {
   collateralAmount: 1,
   approved: false,
   transferred: false,
-  requestTime: Math.floor(Date.now()/1000)
+  requestTime: Math.floor(Date.now()/1000),
+  requestNonce: 1,
+  requestHash: 'C5D2460186F7233C927E7DB2DCC703C0E500B653CA82273B7BFAD8045D85A470 [xdJGAYb3IzySfn2y3McDwOUAtlPKgic7e/rYBF2FpHA=]',
+  borrowerAddress: ''
 };
 const mockLoanTerms = {
   interestRate: 20,
@@ -64,8 +67,7 @@ const LoanTerms = {
   responseTime: null as number,
   interestRate: null as number,
   minCollateralNeeded: null as number,
-  maxLoanAmount: null as string,
-  nonce: null as number,
+  maxLoanAmount: null as number,
   signature: null as Signature,
   signer: null as string
 };
@@ -77,7 +79,7 @@ export const BorrowPageContext = createContext<BorrowPageContextInterface>({
   setSubmenu: () => {},
   borrowRequest: defaultBorrowRequest,
   setBorrowRequest: () => {},
-  loanTerms: LoanTerms,
+  loanTerms: null as any,
   setLoanTerms: () => {},
   borrowProcessState: null,
 });

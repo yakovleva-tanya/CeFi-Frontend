@@ -12,9 +12,9 @@ import { craURLs } from './../util/constants';
 export interface LendingApplication {
   borrowedAsset: string;
   collateralAsset: string;
-  requestedLoanSize: number;
-  loanTermLength: number;
-  collateralRatioEntered: number;
+  requestedLoanSize: string;
+  loanTermLength: string;
+  collateralRatioEntered: string;
   loanUse: string;
   assetReportStringified?: string;
   assetReportSignature?: string; 
@@ -22,25 +22,11 @@ export interface LendingApplication {
 };
 
 /**
- * Send bank information to the Arrowhead CRA.
+ * Send information to the Arrowhead CRA & Get Loan Terms
  */
-// export const sendLendingApplication = (lendingApplication: LendingApplication) => axios({
-//   method: 'post',
-//   url: craURLs.arrowhead,
-//   data: {
-//     id: 1,
-//     jsonrpc: '2.0',
-//     method: 'arrowheadCRA',
-//     params: lendingApplication
-//   }
-// }); 
-
-/**
- * Get Loan Terms
- */
-export const sendLendingApplication = (lendingApplication: LendingApplication) => axios({
+export const sendLendingApplication = (lendingApplication: LendingApplication, craURL: string) => axios({
   method: 'post',
-  url: craURLs.arrowhead,
+  url: craURL,
   data: {
     jsonrpc: '2.0',
     method: 'arrowheadCRA',
@@ -48,3 +34,30 @@ export const sendLendingApplication = (lendingApplication: LendingApplication) =
     params: lendingApplication
   }
 })
+
+/**
+ * Arrowhead CRA requests
+ */
+export const arrowheadCRA = async (lendingApplication: LendingApplication) => {
+  const responses = [];
+  for(var i = 0; i < Object.keys(craURLs.arrowhead).length; i++) {
+    let response = await sendLendingApplication(lendingApplication, craURLs.arrowhead[i]);
+    let result = {
+      collateralRatio: response.data.result.collateralRatio,
+      consensusAddress: response.data.result.consensusAddress,
+      responseTime: response.data.result.responseTime,
+      interestRate: response.data.result.interestRate,
+      minCollateralRatio: response.data.result.minCollateralRatio,
+      maxLoanAmount: response.data.result.maxLoanAmount,
+      signature: {
+        signerNonce: response.data.result.signature.signerNonce,
+        r: response.data.result.signature.r.data,
+        s: response.data.result.signature.s.data,
+        v: response.data.result.signature.v.data,
+      },
+      signer: response.data.result.signer
+    }
+    responses.push(result);
+  }
+  return responses;
+}

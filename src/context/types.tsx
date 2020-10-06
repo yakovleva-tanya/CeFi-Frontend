@@ -77,6 +77,9 @@ export interface BorrowRequest {
   approved: boolean;
   transferred: boolean;
   requestTime: number;
+  requestNonce: number;
+  requestHash: any;
+  borrowerAddress: string;
 }
 
 export interface Signature {
@@ -92,8 +95,7 @@ export interface LoanTerms {
   responseTime: number;
   interestRate: number;
   minCollateralNeeded: number;
-  maxLoanAmount: string;
-  nonce: number;
+  maxLoanAmount: number;
   signature: Signature;
   signer: string;
 }

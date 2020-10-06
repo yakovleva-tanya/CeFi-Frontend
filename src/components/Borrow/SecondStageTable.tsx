@@ -13,7 +13,7 @@ const SecondStageTable = () => {
       <div className="mt-5">Your loan terms have been calculated</div>
       <div className="table border-thin my-5">
         <TableRow title="Interest rate">
-          <div className="font-medium"> {interestRate * 100} % </div>
+          <div className="font-medium"> {Number(interestRate) / 100} % </div>
         </TableRow>
         <BR />
         {minCollateralNeeded > 0 && (
