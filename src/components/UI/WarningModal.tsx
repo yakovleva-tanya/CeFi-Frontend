@@ -5,16 +5,20 @@ import "./WarningModal.scss";
 
 type WarningModalProps = {
   show: boolean;
-  proceed: Function;
-  cancel: Function;
-  text: string
+  proceed: Function | null;
+  cancel: Function | null;
+  text: string;
+  header?: string;
+  content?: React.ReactNode | null;
 };
 
 const WarningModal = ({
   show,
   proceed,
   cancel,
-  text
+  text,
+  header = "Hold Up",
+  content = null,
 }: WarningModalProps) => {
   return (
     <Modal
@@ -24,33 +28,36 @@ const WarningModal = ({
       className="warning-modal"
     >
       <Modal.Header className="d-flex flex-row justify-content-center py-4">
-        <div className="text-2xl font-medium text-center">Hold Up</div>
+        <div className="text-2xl font-medium text-center">{header}</div>
       </Modal.Header>
       <Modal.Body className="modal-body text-center py-5 m-auto">
-        <div className="mb-5 opacity-80">
-          {text}
-        </div>
+        <div className="mb-5 opacity-80">{text}</div>
+        {content}
         <div className="d-flex flex-row justify-content-center">
-          <Button
-            onClick={() => {
-              cancel();
-            }}
-            style={{ backgroundColor: "#FC5A5A" }}
-            className="modal-button py-2 mx-3 text-lg"
-            variant="danger"
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={() => {
-              proceed();
-            }}
-            className="modal-button py-2 mx-3 text-lg"
-            variant="success"
-            style={{ backgroundColor: "#82C43C" }}
-          >
-            Yes
-          </Button>
+          {cancel && (
+            <Button
+              onClick={() => {
+                cancel();
+              }}
+              style={{ backgroundColor: "#FC5A5A" }}
+              className="modal-button py-2 mx-3 text-lg"
+              variant="danger"
+            >
+              Cancel
+            </Button>
+          )}
+          {proceed && (
+            <Button
+              onClick={() => {
+                proceed();
+              }}
+              className="modal-button py-2 mx-3 text-lg"
+              variant="success"
+              style={{ backgroundColor: "#82C43C" }}
+            >
+              Yes
+            </Button>
+          )}
         </div>
       </Modal.Body>
     </Modal>

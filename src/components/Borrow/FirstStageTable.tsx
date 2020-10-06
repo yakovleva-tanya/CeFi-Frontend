@@ -10,6 +10,7 @@ import { BorrowPageContext } from "../../context/borrowContext";
 import LoanTermSelection from "./LoanTermSelection";
 import CollateralPercentSelection from "./CollateralPercentSelection";
 import LoanSizeSelection from "./LoanSizeSelection";
+import WarningModal from "../UI/WarningModal";
 
 const FirstStageTable = () => {
   const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
@@ -55,6 +56,10 @@ const FirstStageTable = () => {
           <ConnectPlaidButton />
         </TableRow>
         <BR />
+        <TableRow title={`Bloom`}>
+          <ConnectBloomButton />
+        </TableRow>
+        <BR />
         <TableRow title="Collateral percent">
           <CollateralPercentSelection />
         </TableRow>
@@ -85,4 +90,46 @@ const ConnectPlaidButton = () => {
       text="Connect"
     />
   );
+};
+
+const ConnectBloomButton = () => {
+  const { state } = useContext(AppContext);
+  const [bloomConnected, setBloomConnected] = useState(false);
+  const [bloomModal, setBloomModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const address = state?.web3State?.address;
+  const onClickAction = async () => {
+    setLoading(true);
+    setBloomModal(true);
+    setLoading(false);
+  };
+
+  return (
+    <>
+      {bloomModal && (
+        <WarningModal
+          show={bloomModal}
+          proceed={null as null}
+          cancel={() => {
+            setBloomModal(false);
+          }}
+          text="Scan the QR code below with the Bloom app to get 10% off your interest rate. By connecting, you are submitting your email and ID document to Teller."
+          header="Connect your BloomID"
+          content={<BloomQR />}
+        />
+      )}
+      <CustomSubmitButton
+        disabled={!address}
+        loading={loading}
+        onClickAction={onClickAction}
+        approved={!!bloomConnected}
+        text="Connect"
+      />
+    </>
+  );
+};
+
+const BloomQR = () => {
+  return <div className="p-4 border-thin m-4">BloomQR</div>;
 };
