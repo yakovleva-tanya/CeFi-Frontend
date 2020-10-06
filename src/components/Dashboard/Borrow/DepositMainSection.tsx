@@ -44,14 +44,15 @@ const DepositMainSection = () => {
     TellerTokens.tDAI
   ];
 
-  const currentLoans = loans.filter((loan: any) => {
-    return loan.status != "Closed" && loan.totalCollateralDepositsAmount > 0;
-  });
+  const currentLoans = loans
+    ? loans.filter((loan: any) => {
+        return (
+          loan.status != "Closed" && loan.totalCollateralDepositsAmount > 0
+        );
+      })
+    : null;
 
-  const deposit = async (
-    id: string,
-    amountToDeposit: number
-  ) => {
+  const deposit = async (id: string, amountToDeposit: number) => {
     setDepositing(true);
     if (process.env.INTEGRATIONS_DISABLED === "false") {
       await loanDeposit(loansInstance, id, amountToDeposit, web3State);
@@ -165,7 +166,10 @@ const DepositMainSection = () => {
             </div>
             <ViewContractLink link={selectedLoan.transactionHash} />
             <div>
-              <PrimaryButton text="Deposit" onClick={() => deposit(selectedLoan.id, collateral)} />
+              <PrimaryButton
+                text="Deposit"
+                onClick={() => deposit(selectedLoan.id, collateral)}
+              />
             </div>
           </div>
         ))}
@@ -176,58 +180,59 @@ const DepositMainSection = () => {
             Deposit additional collateral for an outstanding loan
           </div>
           <div className="table mb-4">
-            {currentLoans
-              .map((loan: any) => {
-                loan.percentFromLiquidation =
-                  loan.currentCollateralPercent - loan.terms.collateralRatio;
-                return loan;
-              })
-              .sort((a: any, b: any) => {
-                return a.percentFromLiquidation - b.percentFromLiquidation;
-              })
-              .map((loan: any, i: number) => {
-                const percentFromLiquidaton = loan.percentFromLiquidation;
-                const borderRadius =
-                  i === 0
-                    ? "4px 4px 0px 0px"
-                    : i === currentLoans.length - 1
-                    ? " 0px 0px 4px 4px"
-                    : "0px";
-                const borderTop = i > 0 ? "none" : "1px solid #D7DAE2";
-                return (
-                  <div
-                    key={loan.id}
-                    style={
-                      Math.round(percentFromLiquidaton) < 0
-                        ? {
-                            border: "1px solid #FC5A5A",
-                            borderRadius: `${borderRadius}`,
-                            marginTop: "-1px",
-                          }
-                        : {
-                            border: "1px solid #D7DAE2",
-                            borderTop: `${borderTop}`,
-                            borderRadius: `${borderRadius}`,
-                          }
-                    }
-                  >
-                    <TableRow
-                      title={`${Math.round(
-                        percentFromLiquidaton
-                      )}% from liquidation`}
+            {currentLoans &&
+              currentLoans
+                .map((loan: any) => {
+                  loan.percentFromLiquidation =
+                    loan.currentCollateralPercent - loan.terms.collateralRatio;
+                  return loan;
+                })
+                .sort((a: any, b: any) => {
+                  return a.percentFromLiquidation - b.percentFromLiquidation;
+                })
+                .map((loan: any, i: number) => {
+                  const percentFromLiquidaton = loan.percentFromLiquidation;
+                  const borderRadius =
+                    i === 0
+                      ? "4px 4px 0px 0px"
+                      : i === currentLoans.length - 1
+                      ? " 0px 0px 4px 4px"
+                      : "0px";
+                  const borderTop = i > 0 ? "none" : "1px solid #D7DAE2";
+                  return (
+                    <div
+                      key={loan.id}
+                      style={
+                        Math.round(percentFromLiquidaton) < 0
+                          ? {
+                              border: "1px solid #FC5A5A",
+                              borderRadius: `${borderRadius}`,
+                              marginTop: "-1px",
+                            }
+                          : {
+                              border: "1px solid #D7DAE2",
+                              borderTop: `${borderTop}`,
+                              borderRadius: `${borderRadius}`,
+                            }
+                      }
                     >
-                      <CustomSubmenuLink
-                        title={`${loan.collateralAmount.toFixed(2)} ${
-                          loan.collateralToken
-                        }`}
-                        onClickAction={() => {
-                          setSelectedLoan(loan);
-                        }}
-                      />
-                    </TableRow>
-                  </div>
-                );
-              })}
+                      <TableRow
+                        title={`${Math.round(
+                          percentFromLiquidaton
+                        )}% from liquidation`}
+                      >
+                        <CustomSubmenuLink
+                          title={`${loan.collateralAmount.toFixed(2)} ${
+                            loan.collateralToken
+                          }`}
+                          onClickAction={() => {
+                            setSelectedLoan(loan);
+                          }}
+                        />
+                      </TableRow>
+                    </div>
+                  );
+                })}
           </div>
         </div>
       )}

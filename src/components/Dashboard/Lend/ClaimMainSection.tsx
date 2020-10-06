@@ -9,7 +9,6 @@ import {
   collectInterest,
 } from "../../../actions/DashboardLendActions";
 import { LendClaimContext } from "../../../context/dashboardContext";
-import { AppContext, AppContextState } from "../../../context/app";
 
 const ClaimMainSection = () => {
   const {

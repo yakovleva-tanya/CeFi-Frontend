@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useMemo } from "react";
 
 import {
   DashboardContext,
@@ -30,9 +30,16 @@ const WithdrawMainSection = () => {
   const [warning, setWarning] = useState("");
   const { state } = useContext(AppContext);
   const { loans } = useContext(DashboardContext);
-  const filteredLoans = loans.filter((loan: LoanInterface) => {
-    return loan.collateralAmount !== 0;
-  });
+
+  const filteredLoans = useMemo(() => {
+    if (loans)
+      return loans.filter((loan: LoanInterface) => {
+        return loan.collateralAmount !== 0;
+      });
+    else {
+      return null;
+    }
+  }, [loans]);
 
   const {
     setSuccess,
@@ -50,8 +57,6 @@ const WithdrawMainSection = () => {
   const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
     TellerTokens.tDAI
   ];
-
-  const borrower = state.web3State.address;
 
   const withdraw = async (id: string, amountToWithdraw: number) => {
     setWithdrawing(true);
@@ -242,27 +247,28 @@ const WithdrawMainSection = () => {
             Select the loan you want to withdraw collateral from.
           </div>
           <div className="table border-thin mb-4 mt-3">
-            {filteredLoans
-              .sort((a: any, b: any) => {
-                return b.status - a.status;
-              })
-              .map((loan: any, i: number) => {
-                return (
-                  <div key={loan.id}>
-                    <TableRow
-                      title={loan.status === "Closed" ? "Repaid" : "Open"}
-                    >
-                      <CustomSubmenuLink
-                        title={`${loan.collateralAmount} ${loan.collateralToken}`}
-                        onClickAction={() => {
-                          setSelectedLoan(loan);
-                        }}
-                      />
-                    </TableRow>
-                    {i !== filteredLoans.length - 1 && <BR />}
-                  </div>
-                );
-              })}
+            {filteredLoans &&
+              filteredLoans
+                .sort((a: any, b: any) => {
+                  return b.status - a.status;
+                })
+                .map((loan: any, i: number) => {
+                  return (
+                    <div key={loan.id}>
+                      <TableRow
+                        title={loan.status === "Closed" ? "Repaid" : "Open"}
+                      >
+                        <CustomSubmenuLink
+                          title={`${loan.collateralAmount} ${loan.collateralToken}`}
+                          onClickAction={() => {
+                            setSelectedLoan(loan);
+                          }}
+                        />
+                      </TableRow>
+                      {i !== filteredLoans.length - 1 && <BR />}
+                    </div>
+                  );
+                })}
           </div>
         </div>
       )}

@@ -2,12 +2,7 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import "./navigation.scss";
 import teller_logo from "../../../dist/assets/teller_logo.svg";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import { NavLoginButton } from "./../LoginButton/LoginButton";
 
 type NavProps = {
@@ -29,7 +24,11 @@ const NavigationLink = ({ to, name }: NavProps) => {
 
 const HiddenNavbar = () => {
   return (
-    <Navbar bg="transparent" expand="lg" className="p-4 nav-bar justify-content-between container-wrapper">
+    <Navbar
+      bg="transparent"
+      expand="lg"
+      className="p-4 nav-bar justify-content-between container-wrapper"
+    >
       <Navbar.Brand>
         <img
           alt=""
@@ -40,9 +39,9 @@ const HiddenNavbar = () => {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse className="justify-content-end navbar-links">
-        <NavigationLink to="lend" name="Deposit" />
+        <NavigationLink to="deposit" name="Deposit" />
         <NavigationLink to="borrow" name="Borrow" />
-        <NavigationLink to="dashboard" name="Dashboard" />
+        <NavigationLink to="dashboard/deposit-redeem" name="Dashboard" />
         <NavLoginButton />
       </Navbar.Collapse>
     </Navbar>
@@ -51,7 +50,11 @@ const HiddenNavbar = () => {
 
 const ProdNavbar = () => {
   return (
-    <Navbar bg="transparent" expand="lg" className="font-medium p-4 nav-bar justify-content-between container-wrapper">
+    <Navbar
+      bg="transparent"
+      expand="lg"
+      className="font-medium p-4 nav-bar justify-content-between container-wrapper"
+    >
       <Navbar.Brand>
         <img
           alt=""
@@ -70,7 +73,11 @@ const ProdNavbar = () => {
 const Navigation = () => {
   return (
     <div>
-      { process.env.NODE_ENV === "development"? <HiddenNavbar /> : <ProdNavbar /> }
+      {process.env.NODE_ENV === "development" ? (
+        <HiddenNavbar />
+      ) : (
+        <ProdNavbar />
+      )}
     </div>
   );
 };
