@@ -24,7 +24,7 @@ const WarningModal = ({
     <Modal
       show={show}
       centered
-      style={{ backgroundColor: "rgba(22, 88, 124, 0.36)" }}
+      style={{ backgroundColor: "rgba(22,88,124, 0.7)" }}
       className="warning-modal"
     >
       <Modal.Header className="d-flex flex-row justify-content-center py-4">
