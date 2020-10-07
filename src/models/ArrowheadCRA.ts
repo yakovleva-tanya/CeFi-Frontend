@@ -8,6 +8,7 @@
 
 import axios from 'axios';
 import { craURLs } from './../util/constants';
+import { convertToBN } from '../models/LoansInterfaceContract';
 
 export interface LendingApplication {
   borrowedAsset: string;
@@ -47,17 +48,16 @@ export const arrowheadCRA = async (lendingApplication: LendingApplication) => {
       consensusAddress: response.data.result.consensusAddress,
       responseTime: response.data.result.responseTime,
       interestRate: response.data.result.interestRate,
-      minCollateralRatio: response.data.result.minCollateralRatio,
       maxLoanAmount: response.data.result.maxLoanAmount,
       signature: {
         signerNonce: response.data.result.signature.signerNonce,
-        r: response.data.result.signature.r.data,
-        s: response.data.result.signature.s.data,
-        v: response.data.result.signature.v.data,
+        r: response.data.result.signature.r,
+        s: response.data.result.signature.s,
+        v: Number("0x"+response.data.result.signature.v),
       },
       signer: response.data.result.signer
     }
-    responses.push(result);
+    responses.push(response.data.result);
   }
   return responses;
 }

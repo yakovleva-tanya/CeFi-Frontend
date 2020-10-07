@@ -87,29 +87,12 @@ export async function createLoanWithTerms(
   const request = {
     borrower: borrowerAddress,
     recipient: borrowerAddress,
-    consensusAddress: loanResponses[0].consensusAddress,
+    consensusAddress: "0xb5c3196E3967D51493a48AF08F589B684421C7e2",
     amount: convertToBN(loanRequest.loanSize.toString()),
     duration: Number(loanRequest.loanTerm.toString()),
     requestTime: convertToBN(loanRequest.requestTime.toString()),
-    requestNonce: Number(loanRequest.requestNonce.toString()),
+    requestNonce: Number(loanRequest.requestNonce.toString())+1,
   }
-  
-  // Format response
-  // const response = {
-  //   collateralRatio: loanResponses.collateralRatio,
-  //   consensusAddress: loanResponses.consensusAddress,
-  //   responseTime: loanResponses.responseTime,
-  //   interestRate: loanResponses.interestRate,
-  //   minCollateralRatio: loanResponses.minCollateralRatio,
-  //   maxLoanAmount: loanResponses.maxLoanAmount,
-  //   signature: {
-  //     signerNonce: loanResponses.signature.signerNonce,
-  //     r: loanResponses.signature.r.data,
-  //     s: loanResponses.signature.s.data,
-  //     v: loanResponses.signature.v.data,
-  //   },
-  //   signer: loanResponses.signer
-  // }
   
   console.log("REQ<>", request);
   console.log("RES<>", loanResponses);
