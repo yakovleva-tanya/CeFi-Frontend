@@ -29,7 +29,11 @@ const NavigationLink = ({ to, name }: NavProps) => {
 
 const HiddenNavbar = () => {
   return (
-    <Navbar bg="transparent" expand="lg" className="p-4 nav-bar justify-content-between container-wrapper">
+    <Navbar
+      bg="transparent"
+      expand="md"
+      className="p-4 nav-bar justify-content-between align-items-center container-wrapper"
+    >
       <Navbar.Brand>
         <img
           alt=""
@@ -40,10 +44,12 @@ const HiddenNavbar = () => {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse className="justify-content-end navbar-links">
-        <NavigationLink to="lend" name="Deposit" />
-        <NavigationLink to="borrow" name="Borrow" />
-        <NavigationLink to="dashboard" name="Dashboard" />
-        <NavLoginButton />
+        <div className="justify-content-end align-items-center d-flex flex-row flex-wrap ">
+          <NavigationLink to="lend" name="Deposit" />
+          <NavigationLink to="borrow" name="Borrow" />
+          <NavigationLink to="dashboard" name="Dashboard" />
+          <NavLoginButton />
+        </div>
       </Navbar.Collapse>
     </Navbar>
   );
@@ -51,7 +57,11 @@ const HiddenNavbar = () => {
 
 const ProdNavbar = () => {
   return (
-    <Navbar bg="transparent" expand="lg" className="font-medium p-4 nav-bar justify-content-between container-wrapper">
+    <Navbar
+      bg="transparent"
+      expand="lg"
+      className="font-medium p-4 nav-bar justify-content-between container-wrapper"
+    >
       <Navbar.Brand>
         <img
           alt=""
@@ -70,7 +80,11 @@ const ProdNavbar = () => {
 const Navigation = () => {
   return (
     <div>
-      { process.env.NODE_ENV === "development"? <HiddenNavbar /> : <ProdNavbar /> }
+      {process.env.NODE_ENV === "development" ? (
+        <HiddenNavbar />
+      ) : (
+        <ProdNavbar />
+      )}
     </div>
   );
 };
