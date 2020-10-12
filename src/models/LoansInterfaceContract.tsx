@@ -87,16 +87,17 @@ export async function createLoanWithTerms(
   const request = {
     borrower: borrowerAddress,
     recipient: borrowerAddress,
-    consensusAddress: "0xb5c3196E3967D51493a48AF08F589B684421C7e2",
+    consensusAddress: "0x8e6520bb28765AAA1c766063e820e8Dc80A416DD",
     amount: convertToBN(loanRequest.loanSize.toString()),
     duration: Number(loanRequest.loanTerm.toString()),
     requestTime: convertToBN(loanRequest.requestTime.toString()),
     requestNonce: Number(loanRequest.requestNonce.toString())+1,
   }
   
-  console.log("REQ<>", request);
-  console.log("RES<>", loanResponses);
-
+  console.log("REQUEST<>", request);
+  console.log("RESPONSES<>", loanResponses);
+  console.log("LOANS_ADDRESS<>", loansInterface._address);
+  console.log("BN<>", bnAmount);
   // Create loan terms
   return new Promise((resolve, reject) => loansInterface.methods
     .createLoanWithTerms(

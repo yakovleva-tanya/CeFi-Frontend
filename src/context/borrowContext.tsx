@@ -35,7 +35,7 @@ export const LendingApplicationMap = (
       JSON.stringify(bankInfoResponse.assetReportStringified),
     assetReportSignature:
       bankInfoResponse && bankInfoResponse.assetReportSignature,
-    requestTime: String(Math.floor(Date.now())),
+    requestTime: String(Math.floor(Date.now()/1000 - 100)),
   };
   return lendingApplication as LendingApplication;
 };

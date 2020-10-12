@@ -8,7 +8,7 @@
 
 import axios from 'axios';
 import { craURLs } from './../util/constants';
-import { convertToBN } from '../models/LoansInterfaceContract';
+import { fromRpcSig, bufferToHex } from "ethereumjs-util";
 
 export interface LendingApplication {
   borrowedAsset: string;
@@ -26,6 +26,10 @@ export interface LendingApplication {
  * Send information to the Arrowhead CRA & Get Loan Terms
  */
 export const sendLendingApplication = (lendingApplication: LendingApplication, craURL: string) => axios({
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
   method: 'post',
   url: craURL,
   data: {
@@ -43,21 +47,24 @@ export const arrowheadCRA = async (lendingApplication: LendingApplication) => {
   const responses = [];
   for(var i = 0; i < Object.keys(craURLs.arrowhead).length; i++) {
     let response = await sendLendingApplication(lendingApplication, craURLs.arrowhead[i]);
-    let result = {
+    const sig = response.data.result.signature;
+    const { r, s, v } = fromRpcSig(sig);
+    const result = {
       collateralRatio: response.data.result.collateralRatio,
       consensusAddress: response.data.result.consensusAddress,
-      responseTime: response.data.result.responseTime,
       interestRate: response.data.result.interestRate,
       maxLoanAmount: response.data.result.maxLoanAmount,
-      signature: {
-        signerNonce: response.data.result.signature.signerNonce,
-        r: response.data.result.signature.r,
-        s: response.data.result.signature.s,
-        v: Number("0x"+response.data.result.signature.v),
+      requestHash: response.data.result.requestHash,
+      responseTime: response.data.result.responseTime,
+      signature: {​​​
+        r: bufferToHex(r),
+        s: bufferToHex(s),
+        v: String(v),
+        signerNonce: response.data.result.signerNonce
       },
       signer: response.data.result.signer
     }
-    responses.push(response.data.result);
+    responses.push(result);
   }
   return responses;
 }
