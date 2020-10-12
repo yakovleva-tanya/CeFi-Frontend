@@ -17,7 +17,32 @@
           "type": "address"
         }
       ],
-      "name": "DAppRemoved",
+      "name": "DappRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "dapp",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "unsecured",
+          "type": "bool"
+        }
+      ],
+      "name": "DappUpdated",
       "type": "event"
     },
     {
@@ -65,9 +90,15 @@
           "internalType": "address",
           "name": "dapp",
           "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "unsecured",
+          "type": "bool"
         }
       ],
-      "name": "NewDAppAdded",
+      "name": "NewDappAdded",
       "type": "event"
     },
     {
@@ -79,12 +110,24 @@
           "type": "address"
         }
       ],
-      "name": "isDapp",
+      "name": "dapps",
       "outputs": [
         {
-          "internalType": "bool",
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "exists",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "unsecured",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct TellerCommon.Dapp",
           "name": "",
-          "type": "bool"
+          "type": "tuple"
         }
       ],
       "payable": false,
@@ -124,9 +167,34 @@
           "internalType": "address",
           "name": "dapp",
           "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "unsecured",
+          "type": "bool"
         }
       ],
       "name": "addDapp",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "dapp",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "unsecured",
+          "type": "bool"
+        }
+      ],
+      "name": "updateDapp",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
@@ -178,32 +246,52 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"}],\"name\":\"DAppRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"loansAddress\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"loanID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"escrowAddress\",\"type\":\"address\"}],\"name\":\"EscrowCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"}],\"name\":\"NewDAppAdded\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"}],\"name\":\"addDapp\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"loanID\",\"type\":\"uint256\"}],\"name\":\"createEscrow\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getDapps\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"}],\"name\":\"isDapp\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"}],\"name\":\"removeDapp\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"addDapp(address)\":{\"params\":{\"dapp\":\"address to add in this factory.\"}},\"createEscrow(address,uint256)\":{\"params\":{\"borrower\":\"borrower address associated to the loan.\",\"loanID\":\"loan id to associate to the new escrow instance.\"},\"return\":\"the new escrow instance.\"},\"getDapps()\":{\"return\":\"an array of dapps (addresses).\"},\"initialize(address)\":{\"params\":{\"settingsAddress\":\"the settings contract address.\"}},\"isDapp(address)\":{\"params\":{\"dapp\":\"dapp address to test.\"},\"return\":\"true if the dapp address already exists. Otherwise it returns false.\"},\"removeDapp(address)\":{\"params\":{\"dapp\":\"address to remove.\"}}}},\"userdoc\":{\"methods\":{\"addDapp(address)\":{\"notice\":\"It adds a new dapp to the factory.\"},\"createEscrow(address,uint256)\":{\"notice\":\"It creates an Escrow contract for a given loan id.\"},\"getDapps()\":{\"notice\":\"Gets all the dapps in the factory.\"},\"initialize(address)\":{\"notice\":\"It initializes this escrow contract factory instance.\"},\"isDapp(address)\":{\"notice\":\"It tests whether a dapp address exists in the factory or not.\"},\"removeDapp(address)\":{\"notice\":\"It removes a current dapp from the factory.\"}},\"notice\":\"This interface defines the functions to manage the Escrow contracts associated to borrowers and loans.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowFactoryInterface.sol\":\"EscrowFactoryInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowFactoryInterface.sol\":{\"keccak256\":\"0xb5b2225e4f6db57d59d5292f542acc0675e9f95b3e3094d9be4cf6ec079cb86e\",\"urls\":[\"bzz-raw://f0c822f79ebb3f775b4fea591a5555c3efacba6719d4adbab83571dd35f059e3\",\"dweb:/ipfs/QmYiHmtPJsJD67g7Pk7kM72hsHS7BVVJtciKjCoUioW4gS\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"}],\"name\":\"DappRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"unsecured\",\"type\":\"bool\"}],\"name\":\"DappUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"loansAddress\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"loanID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"escrowAddress\",\"type\":\"address\"}],\"name\":\"EscrowCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"unsecured\",\"type\":\"bool\"}],\"name\":\"NewDappAdded\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"unsecured\",\"type\":\"bool\"}],\"name\":\"addDapp\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"loanID\",\"type\":\"uint256\"}],\"name\":\"createEscrow\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"}],\"name\":\"dapps\",\"outputs\":[{\"components\":[{\"internalType\":\"bool\",\"name\":\"exists\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"unsecured\",\"type\":\"bool\"}],\"internalType\":\"struct TellerCommon.Dapp\",\"name\":\"\",\"type\":\"tuple\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getDapps\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"}],\"name\":\"removeDapp\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"dapp\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"unsecured\",\"type\":\"bool\"}],\"name\":\"updateDapp\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"addDapp(address,bool)\":{\"params\":{\"dapp\":\"address to add in this factory.\",\"unsecured\":\"boolean to describe in the dapp is allowed to be used with unsecured loans.\"}},\"createEscrow(address,uint256)\":{\"params\":{\"borrower\":\"borrower address associated to the loan.\",\"loanID\":\"loan id to associate to the new escrow instance.\"},\"return\":\"the new escrow instance.\"},\"dapps(address)\":{\"params\":{\"dapp\":\"dapp address.\"},\"return\":\"TellerCommon.Dapp dapp configuration.\"},\"getDapps()\":{\"return\":\"an array of dapps (addresses).\"},\"initialize(address)\":{\"params\":{\"settingsAddress\":\"the settings contract address.\"}},\"removeDapp(address)\":{\"params\":{\"dapp\":\"address to remove.\"}},\"updateDapp(address,bool)\":{\"params\":{\"dapp\":\"address to add in this factory.\",\"unsecured\":\"boolean that describes if the dapp can be used by with an unsecured loan.\"}}}},\"userdoc\":{\"methods\":{\"addDapp(address,bool)\":{\"notice\":\"It adds a new dapp to the factory.\"},\"createEscrow(address,uint256)\":{\"notice\":\"It creates an Escrow contract for a given loan id.\"},\"dapps(address)\":{\"notice\":\"It gets a dapp configuration based its contract address.\"},\"getDapps()\":{\"notice\":\"Gets all the dapps in the factory.\"},\"initialize(address)\":{\"notice\":\"It initializes this escrow contract factory instance.\"},\"removeDapp(address)\":{\"notice\":\"It removes a current dapp from the factory.\"},\"updateDapp(address,bool)\":{\"notice\":\"It updates a dapp configuration.\"}},\"notice\":\"This interface defines the functions to manage the Escrow contracts associated to borrowers and loans.\"}},\"settings\":{\"compilationTarget\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/EscrowFactoryInterface.sol\":\"EscrowFactoryInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/EscrowFactoryInterface.sol\":{\"keccak256\":\"0x2f54118d65cd07ffb7a476768412b60cfacb12c6dc161b43e1c443d1d01563a2\",\"urls\":[\"bzz-raw://e56918727ce72a8526fbb96671fa4693d0b66bca321d3c93921ced6daecc69c5\",\"dweb:/ipfs/QmUeJuNbhZic68Fsv6fw9zJ5RAJXnvjsno4HfnPajZkrLp\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0x61d5a58019963b5b4394aa040d8661167da0aef0912cc7133dbc917a38a74698\",\"urls\":[\"bzz-raw://f2a48c517cbebc7ca530aced250a5389cba74ca1d16137b3b38116b1afd428b9\",\"dweb:/ipfs/QmcReNoiEiR3wvVVwwY6u6fQMTZivYtBn7uhMm3ud219Di\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.17;\n\n/**\n    @notice This interface defines the functions to manage the Escrow contracts associated to borrowers and loans.\n\n    @author develop@teller.finance\n */\ninterface EscrowFactoryInterface {\n    /**\n        @notice It tests whether a dapp address exists in the factory or not.\n        @param dapp dapp address to test.\n        @return true if the dapp address already exists. Otherwise it returns false.\n     */\n    function isDapp(address dapp) external view returns (bool);\n\n    /**\n        @notice It creates an Escrow contract for a given loan id.\n        @param borrower borrower address associated to the loan.\n        @param loanID loan id to associate to the new escrow instance.\n        @return the new escrow instance.\n     */\n    function createEscrow(address borrower, uint256 loanID) external returns (address);\n\n    /**\n        @notice It adds a new dapp to the factory.\n        @param dapp address to add in this factory.\n     */\n    function addDapp(address dapp) external;\n\n    /**\n        @notice It removes a current dapp from the factory.\n        @param dapp address to remove.\n     */\n    function removeDapp(address dapp) external;\n\n    /**\n        @notice Gets all the dapps in the factory.\n        @return an array of dapps (addresses).\n     */\n    function getDapps() external view returns (address[] memory);\n\n    /**\n        @notice It initializes this escrow contract factory instance.\n        @param settingsAddress the settings contract address.\n     */\n    function initialize(address settingsAddress) external;\n\n    /**\n        @notice This event is emitted when a new Escrow contract is created.\n        @param borrower address associated to the new escrow.\n        @param loansAddress loans contract address.\n        @param loanID loan id associated to the borrower and escrow contract.\n        @param escrowAddress the new escrow contract address.\n     */\n    event EscrowCreated(\n        address indexed borrower,\n        address indexed loansAddress,\n        uint256 indexed loanID,\n        address escrowAddress\n    );\n\n    /**\n        @notice This event is emitted when a new dapp is added to the factory.\n        @param sender address.\n        @param dapp address addded to the factory.\n     */\n    event NewDAppAdded(address indexed sender, address indexed dapp);\n\n    /**\n        @notice This event is emitted when a current dapp is removed from the factory.\n        @param sender address.\n        @param dapp address removed from the factory.\n     */\n    event DAppRemoved(address indexed sender, address indexed dapp);\n}\n",
-  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowFactoryInterface.sol",
+  "source": "pragma solidity 0.5.17;\npragma experimental ABIEncoderV2;\n\nimport \"../util/TellerCommon.sol\";\n\n/**\n    @notice This interface defines the functions to manage the Escrow contracts associated to borrowers and loans.\n\n    @author develop@teller.finance\n */\ninterface EscrowFactoryInterface {\n    /**\n        @notice It gets a dapp configuration based its contract address.\n        @param dapp dapp address.\n        @return TellerCommon.Dapp dapp configuration.\n     */\n    function dapps(address dapp) external view returns (TellerCommon.Dapp memory);\n\n    /**\n        @notice It creates an Escrow contract for a given loan id.\n        @param borrower borrower address associated to the loan.\n        @param loanID loan id to associate to the new escrow instance.\n        @return the new escrow instance.\n     */\n    function createEscrow(address borrower, uint256 loanID) external returns (address);\n\n    /**\n        @notice It adds a new dapp to the factory.\n        @param dapp address to add in this factory.\n        @param unsecured boolean to describe in the dapp is allowed to be used with unsecured loans.\n     */\n    function addDapp(address dapp, bool unsecured) external;\n\n    /**\n        @notice It updates a dapp configuration.\n        @param dapp address to add in this factory.\n        @param unsecured boolean that describes if the dapp can be used by with an unsecured loan.\n     */\n    function updateDapp(address dapp, bool unsecured) external;\n\n    /**\n        @notice It removes a current dapp from the factory.\n        @param dapp address to remove.\n     */\n    function removeDapp(address dapp) external;\n\n    /**\n        @notice Gets all the dapps in the factory.\n        @return an array of dapps (addresses).\n     */\n    function getDapps() external view returns (address[] memory);\n\n    /**\n        @notice It initializes this escrow contract factory instance.\n        @param settingsAddress the settings contract address.\n     */\n    function initialize(address settingsAddress) external;\n\n    /**\n        @notice This event is emitted when a new Escrow contract is created.\n        @param borrower address associated to the new escrow.\n        @param loansAddress loans contract address.\n        @param loanID loan id associated to the borrower and escrow contract.\n        @param escrowAddress the new escrow contract address.\n     */\n    event EscrowCreated(\n        address indexed borrower,\n        address indexed loansAddress,\n        uint256 indexed loanID,\n        address escrowAddress\n    );\n\n    /**\n        @notice This event is emitted when a new dapp is added to the factory.\n        @param sender address.\n        @param dapp address added to the factory.\n        @param unsecured boolean that describes if the dapp can be used by with an unsecured loan.\n     */\n    event NewDappAdded(address indexed sender, address indexed dapp, bool unsecured);\n\n    /**\n        @notice This event is emitted when a dapp is updated.\n        @param sender address.\n        @param dapp address of dapp contract.\n        @param unsecured boolean that describes if the dapp can be used by with an unsecured loan.\n     */\n    event DappUpdated(address indexed sender, address indexed dapp, bool unsecured);\n\n    /**\n        @notice This event is emitted when a current dapp is removed from the factory.\n        @param sender address.\n        @param dapp address removed from the factory.\n     */\n    event DappRemoved(address indexed sender, address indexed dapp);\n}\n",
+  "sourcePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/EscrowFactoryInterface.sol",
   "ast": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowFactoryInterface.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/EscrowFactoryInterface.sol",
     "exportedSymbols": {
       "EscrowFactoryInterface": [
-        10337
+        10310
       ]
     },
-    "id": 10338,
+    "id": 10311,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10277,
+        "id": 10229,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:42"
+        "src": "0:23:39"
+      },
+      {
+        "id": 10230,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "24:33:39"
+      },
+      {
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol",
+        "file": "../util/TellerCommon.sol",
+        "id": 10231,
+        "nodeType": "ImportDirective",
+        "scope": 10311,
+        "sourceUnit": 18425,
+        "src": "59:34:39",
+        "symbolAliases": [],
+        "unitAlias": ""
       },
       {
         "baseContracts": [],
@@ -211,33 +299,561 @@
         "contractKind": "interface",
         "documentation": "@notice This interface defines the functions to manage the Escrow contracts associated to borrowers and loans.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10337,
+        "id": 10310,
         "linearizedBaseContracts": [
-          10337
+          10310
         ],
         "name": "EscrowFactoryInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
-            "documentation": "@notice It tests whether a dapp address exists in the factory or not.\n@param dapp dapp address to test.\n@return true if the dapp address already exists. Otherwise it returns false.",
-            "id": 10284,
+            "documentation": "@notice It gets a dapp configuration based its contract address.\n@param dapp dapp address.\n@return TellerCommon.Dapp dapp configuration.",
+            "id": 10238,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "isDapp",
+            "name": "dapps",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10280,
+              "id": 10234,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10233,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10238,
+                  "src": "485:12:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10232,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "485:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "484:14:39"
+            },
+            "returnParameters": {
+              "id": 10237,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10236,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10238,
+                  "src": "522:24:39",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Dapp_$18380_memory_ptr",
+                    "typeString": "struct TellerCommon.Dapp"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 10235,
+                    "name": "TellerCommon.Dapp",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18380,
+                    "src": "522:17:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Dapp_$18380_storage_ptr",
+                      "typeString": "struct TellerCommon.Dapp"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "521:26:39"
+            },
+            "scope": 10310,
+            "src": "470:78:39",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It creates an Escrow contract for a given loan id.\n@param borrower borrower address associated to the loan.\n@param loanID loan id to associate to the new escrow instance.\n@return the new escrow instance.",
+            "id": 10247,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createEscrow",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10243,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10240,
+                  "name": "borrower",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10247,
+                  "src": "836:16:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10239,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "836:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10242,
+                  "name": "loanID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10247,
+                  "src": "854:14:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10241,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "854:7:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "835:34:39"
+            },
+            "returnParameters": {
+              "id": 10246,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10245,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10247,
+                  "src": "888:7:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10244,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "888:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "887:9:39"
+            },
+            "scope": 10310,
+            "src": "814:83:39",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It adds a new dapp to the factory.\n@param dapp address to add in this factory.\n@param unsecured boolean to describe in the dapp is allowed to be used with unsecured loans.",
+            "id": 10254,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addDapp",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10252,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10249,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10254,
+                  "src": "1140:12:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10248,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1140:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10251,
+                  "name": "unsecured",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10254,
+                  "src": "1154:14:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10250,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1154:4:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1139:30:39"
+            },
+            "returnParameters": {
+              "id": 10253,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1178:0:39"
+            },
+            "scope": 10310,
+            "src": "1123:56:39",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It updates a dapp configuration.\n@param dapp address to add in this factory.\n@param unsecured boolean that describes if the dapp can be used by with an unsecured loan.",
+            "id": 10261,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateDapp",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10259,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10256,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10261,
+                  "src": "1421:12:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10255,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1421:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10258,
+                  "name": "unsecured",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10261,
+                  "src": "1435:14:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10257,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1435:4:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1420:30:39"
+            },
+            "returnParameters": {
+              "id": 10260,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1459:0:39"
+            },
+            "scope": 10310,
+            "src": "1401:59:39",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It removes a current dapp from the factory.\n@param dapp address to remove.",
+            "id": 10266,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeDapp",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10264,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10263,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10266,
+                  "src": "1601:12:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10262,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1601:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1600:14:39"
+            },
+            "returnParameters": {
+              "id": 10265,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1623:0:39"
+            },
+            "scope": 10310,
+            "src": "1581:43:39",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Gets all the dapps in the factory.\n@return an array of dapps (addresses).",
+            "id": 10272,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDapps",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10267,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1761:2:39"
+            },
+            "returnParameters": {
+              "id": 10271,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10270,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10272,
+                  "src": "1787:16:39",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 10268,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1787:7:39",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 10269,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1787:9:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1786:18:39"
+            },
+            "scope": 10310,
+            "src": "1744:61:39",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It initializes this escrow contract factory instance.\n@param settingsAddress the settings contract address.",
+            "id": 10277,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10275,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10274,
+                  "name": "settingsAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10277,
+                  "src": "1979:23:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10273,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1979:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1978:25:39"
+            },
+            "returnParameters": {
+              "id": 10276,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2012:0:39"
+            },
+            "scope": 10310,
+            "src": "1959:54:39",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when a new Escrow contract is created.\n@param borrower address associated to the new escrow.\n@param loansAddress loans contract address.\n@param loanID loan id associated to the borrower and escrow contract.\n@param escrowAddress the new escrow contract address.",
+            "id": 10287,
+            "name": "EscrowCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10286,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
                   "id": 10279,
-                  "name": "dapp",
+                  "indexed": true,
+                  "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10284,
-                  "src": "460:12:42",
+                  "scope": 10287,
+                  "src": "2395:24:39",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -248,89 +864,7 @@
                     "id": 10278,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "460:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "459:14:42"
-            },
-            "returnParameters": {
-              "id": 10283,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10282,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10284,
-                  "src": "497:4:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 10281,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "497:4:42",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "496:6:42"
-            },
-            "scope": 10337,
-            "src": "444:59:42",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It creates an Escrow contract for a given loan id.\n@param borrower borrower address associated to the loan.\n@param loanID loan id to associate to the new escrow instance.\n@return the new escrow instance.",
-            "id": 10293,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "createEscrow",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 10289,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10286,
-                  "name": "borrower",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10293,
-                  "src": "791:16:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10285,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "791:7:42",
+                    "src": "2395:7:39",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -342,11 +876,40 @@
                 },
                 {
                   "constant": false,
-                  "id": 10288,
+                  "id": 10281,
+                  "indexed": true,
+                  "name": "loansAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10287,
+                  "src": "2429:28:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10280,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2429:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10283,
+                  "indexed": true,
                   "name": "loanID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10293,
-                  "src": "809:14:42",
+                  "scope": 10287,
+                  "src": "2467:22:39",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -354,10 +917,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10287,
+                    "id": 10282,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "809:7:42",
+                    "src": "2467:7:39",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -365,21 +928,86 @@
                   },
                   "value": null,
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10285,
+                  "indexed": false,
+                  "name": "escrowAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10287,
+                  "src": "2499:21:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10284,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2499:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
                 }
               ],
-              "src": "790:34:42"
+              "src": "2385:141:39"
             },
-            "returnParameters": {
-              "id": 10292,
+            "src": "2366:161:39"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when a new dapp is added to the factory.\n@param sender address.\n@param dapp address added to the factory.\n@param unsecured boolean that describes if the dapp can be used by with an unsecured loan.",
+            "id": 10295,
+            "name": "NewDappAdded",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10294,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10291,
-                  "name": "",
+                  "id": 10289,
+                  "indexed": true,
+                  "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10293,
-                  "src": "843:7:42",
+                  "scope": 10295,
+                  "src": "2827:22:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10288,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2827:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10291,
+                  "indexed": true,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10295,
+                  "src": "2851:20:39",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -390,7 +1018,7 @@
                     "id": 10290,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "843:7:42",
+                    "src": "2851:7:39",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -399,36 +1027,57 @@
                   },
                   "value": null,
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10293,
+                  "indexed": false,
+                  "name": "unsecured",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10295,
+                  "src": "2873:14:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10292,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2873:4:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
                 }
               ],
-              "src": "842:9:42"
+              "src": "2826:62:39"
             },
-            "scope": 10337,
-            "src": "769:83:42",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
+            "src": "2808:81:39"
           },
           {
-            "body": null,
-            "documentation": "@notice It adds a new dapp to the factory.\n@param dapp address to add in this factory.",
-            "id": 10298,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "addDapp",
-            "nodeType": "FunctionDefinition",
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when a dapp is updated.\n@param sender address.\n@param dapp address of dapp contract.\n@param unsecured boolean that describes if the dapp can be used by with an unsecured loan.",
+            "id": 10303,
+            "name": "DappUpdated",
+            "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10296,
+              "id": 10302,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10295,
-                  "name": "dapp",
+                  "id": 10297,
+                  "indexed": true,
+                  "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10298,
-                  "src": "994:12:42",
+                  "scope": 10303,
+                  "src": "3167:22:39",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -436,10 +1085,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10294,
+                    "id": 10296,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "994:7:42",
+                    "src": "3167:7:39",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -448,42 +1097,15 @@
                   },
                   "value": null,
                   "visibility": "internal"
-                }
-              ],
-              "src": "993:14:42"
-            },
-            "returnParameters": {
-              "id": 10297,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1016:0:42"
-            },
-            "scope": 10337,
-            "src": "977:40:42",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It removes a current dapp from the factory.\n@param dapp address to remove.",
-            "id": 10303,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "removeDapp",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 10301,
-              "nodeType": "ParameterList",
-              "parameters": [
+                },
                 {
                   "constant": false,
-                  "id": 10300,
+                  "id": 10299,
+                  "indexed": true,
                   "name": "dapp",
                   "nodeType": "VariableDeclaration",
                   "scope": 10303,
-                  "src": "1158:12:42",
+                  "src": "3191:20:39",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -491,10 +1113,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10299,
+                    "id": 10298,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1158:7:42",
+                    "src": "3191:7:39",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -503,118 +1125,96 @@
                   },
                   "value": null,
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10301,
+                  "indexed": false,
+                  "name": "unsecured",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10303,
+                  "src": "3213:14:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10300,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3213:4:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
                 }
               ],
-              "src": "1157:14:42"
+              "src": "3166:62:39"
             },
-            "returnParameters": {
-              "id": 10302,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1180:0:42"
-            },
-            "scope": 10337,
-            "src": "1138:43:42",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
+            "src": "3149:80:39"
           },
           {
-            "body": null,
-            "documentation": "@notice Gets all the dapps in the factory.\n@return an array of dapps (addresses).",
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when a current dapp is removed from the factory.\n@param sender address.\n@param dapp address removed from the factory.",
             "id": 10309,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getDapps",
-            "nodeType": "FunctionDefinition",
+            "name": "DappRemoved",
+            "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10304,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1318:2:42"
-            },
-            "returnParameters": {
               "id": 10308,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10307,
-                  "name": "",
+                  "id": 10305,
+                  "indexed": true,
+                  "name": "sender",
                   "nodeType": "VariableDeclaration",
                   "scope": 10309,
-                  "src": "1344:16:42",
+                  "src": "3441:22:39",
                   "stateVariable": false,
-                  "storageLocation": "memory",
+                  "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
-                    "typeString": "address[]"
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
                   },
                   "typeName": {
-                    "baseType": {
-                      "id": 10305,
-                      "name": "address",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "1344:7:42",
-                      "stateMutability": "nonpayable",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
+                    "id": 10304,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3441:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10307,
+                  "indexed": true,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10309,
+                  "src": "3465:20:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
                     "id": 10306,
-                    "length": null,
-                    "nodeType": "ArrayTypeName",
-                    "src": "1344:9:42",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
-                      "typeString": "address[]"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1343:18:42"
-            },
-            "scope": 10337,
-            "src": "1301:61:42",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It initializes this escrow contract factory instance.\n@param settingsAddress the settings contract address.",
-            "id": 10314,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "initialize",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 10312,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10311,
-                  "name": "settingsAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10314,
-                  "src": "1536:23:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10310,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1536:7:42",
+                    "src": "3465:7:39",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -625,314 +1225,56 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1535:25:42"
+              "src": "3440:46:39"
             },
-            "returnParameters": {
-              "id": 10313,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1569:0:42"
-            },
-            "scope": 10337,
-            "src": "1516:54:42",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "anonymous": false,
-            "documentation": "@notice This event is emitted when a new Escrow contract is created.\n@param borrower address associated to the new escrow.\n@param loansAddress loans contract address.\n@param loanID loan id associated to the borrower and escrow contract.\n@param escrowAddress the new escrow contract address.",
-            "id": 10324,
-            "name": "EscrowCreated",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 10323,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10316,
-                  "indexed": true,
-                  "name": "borrower",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10324,
-                  "src": "1952:24:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10315,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1952:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10318,
-                  "indexed": true,
-                  "name": "loansAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10324,
-                  "src": "1986:28:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10317,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1986:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10320,
-                  "indexed": true,
-                  "name": "loanID",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10324,
-                  "src": "2024:22:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 10319,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2024:7:42",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10322,
-                  "indexed": false,
-                  "name": "escrowAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10324,
-                  "src": "2056:21:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10321,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2056:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1942:141:42"
-            },
-            "src": "1923:161:42"
-          },
-          {
-            "anonymous": false,
-            "documentation": "@notice This event is emitted when a new dapp is added to the factory.\n@param sender address.\n@param dapp address addded to the factory.",
-            "id": 10330,
-            "name": "NewDAppAdded",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 10329,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10326,
-                  "indexed": true,
-                  "name": "sender",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10330,
-                  "src": "2286:22:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10325,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2286:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10328,
-                  "indexed": true,
-                  "name": "dapp",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10330,
-                  "src": "2310:20:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10327,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2310:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2285:46:42"
-            },
-            "src": "2267:65:42"
-          },
-          {
-            "anonymous": false,
-            "documentation": "@notice This event is emitted when a current dapp is removed from the factory.\n@param sender address.\n@param dapp address removed from the factory.",
-            "id": 10336,
-            "name": "DAppRemoved",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 10335,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10332,
-                  "indexed": true,
-                  "name": "sender",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10336,
-                  "src": "2544:22:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10331,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2544:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10334,
-                  "indexed": true,
-                  "name": "dapp",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10336,
-                  "src": "2568:20:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10333,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2568:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2543:46:42"
-            },
-            "src": "2526:64:42"
+            "src": "3423:64:39"
           }
         ],
-        "scope": 10338,
-        "src": "184:2408:42"
+        "scope": 10311,
+        "src": "254:3235:39"
       }
     ],
-    "src": "0:2593:42"
+    "src": "0:3490:39"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/EscrowFactoryInterface.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/EscrowFactoryInterface.sol",
     "exportedSymbols": {
       "EscrowFactoryInterface": [
-        10337
+        10310
       ]
     },
-    "id": 10338,
+    "id": 10311,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10277,
+        "id": 10229,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:42"
+        "src": "0:23:39"
+      },
+      {
+        "id": 10230,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "24:33:39"
+      },
+      {
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol",
+        "file": "../util/TellerCommon.sol",
+        "id": 10231,
+        "nodeType": "ImportDirective",
+        "scope": 10311,
+        "sourceUnit": 18425,
+        "src": "59:34:39",
+        "symbolAliases": [],
+        "unitAlias": ""
       },
       {
         "baseContracts": [],
@@ -940,33 +1282,561 @@
         "contractKind": "interface",
         "documentation": "@notice This interface defines the functions to manage the Escrow contracts associated to borrowers and loans.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10337,
+        "id": 10310,
         "linearizedBaseContracts": [
-          10337
+          10310
         ],
         "name": "EscrowFactoryInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
-            "documentation": "@notice It tests whether a dapp address exists in the factory or not.\n@param dapp dapp address to test.\n@return true if the dapp address already exists. Otherwise it returns false.",
-            "id": 10284,
+            "documentation": "@notice It gets a dapp configuration based its contract address.\n@param dapp dapp address.\n@return TellerCommon.Dapp dapp configuration.",
+            "id": 10238,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "isDapp",
+            "name": "dapps",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10280,
+              "id": 10234,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10233,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10238,
+                  "src": "485:12:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10232,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "485:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "484:14:39"
+            },
+            "returnParameters": {
+              "id": 10237,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10236,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10238,
+                  "src": "522:24:39",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Dapp_$18380_memory_ptr",
+                    "typeString": "struct TellerCommon.Dapp"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 10235,
+                    "name": "TellerCommon.Dapp",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18380,
+                    "src": "522:17:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Dapp_$18380_storage_ptr",
+                      "typeString": "struct TellerCommon.Dapp"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "521:26:39"
+            },
+            "scope": 10310,
+            "src": "470:78:39",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It creates an Escrow contract for a given loan id.\n@param borrower borrower address associated to the loan.\n@param loanID loan id to associate to the new escrow instance.\n@return the new escrow instance.",
+            "id": 10247,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createEscrow",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10243,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10240,
+                  "name": "borrower",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10247,
+                  "src": "836:16:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10239,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "836:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10242,
+                  "name": "loanID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10247,
+                  "src": "854:14:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10241,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "854:7:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "835:34:39"
+            },
+            "returnParameters": {
+              "id": 10246,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10245,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10247,
+                  "src": "888:7:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10244,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "888:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "887:9:39"
+            },
+            "scope": 10310,
+            "src": "814:83:39",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It adds a new dapp to the factory.\n@param dapp address to add in this factory.\n@param unsecured boolean to describe in the dapp is allowed to be used with unsecured loans.",
+            "id": 10254,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addDapp",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10252,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10249,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10254,
+                  "src": "1140:12:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10248,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1140:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10251,
+                  "name": "unsecured",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10254,
+                  "src": "1154:14:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10250,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1154:4:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1139:30:39"
+            },
+            "returnParameters": {
+              "id": 10253,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1178:0:39"
+            },
+            "scope": 10310,
+            "src": "1123:56:39",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It updates a dapp configuration.\n@param dapp address to add in this factory.\n@param unsecured boolean that describes if the dapp can be used by with an unsecured loan.",
+            "id": 10261,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateDapp",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10259,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10256,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10261,
+                  "src": "1421:12:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10255,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1421:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10258,
+                  "name": "unsecured",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10261,
+                  "src": "1435:14:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10257,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1435:4:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1420:30:39"
+            },
+            "returnParameters": {
+              "id": 10260,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1459:0:39"
+            },
+            "scope": 10310,
+            "src": "1401:59:39",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It removes a current dapp from the factory.\n@param dapp address to remove.",
+            "id": 10266,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeDapp",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10264,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10263,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10266,
+                  "src": "1601:12:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10262,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1601:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1600:14:39"
+            },
+            "returnParameters": {
+              "id": 10265,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1623:0:39"
+            },
+            "scope": 10310,
+            "src": "1581:43:39",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Gets all the dapps in the factory.\n@return an array of dapps (addresses).",
+            "id": 10272,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDapps",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10267,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1761:2:39"
+            },
+            "returnParameters": {
+              "id": 10271,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10270,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10272,
+                  "src": "1787:16:39",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 10268,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1787:7:39",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 10269,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1787:9:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1786:18:39"
+            },
+            "scope": 10310,
+            "src": "1744:61:39",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It initializes this escrow contract factory instance.\n@param settingsAddress the settings contract address.",
+            "id": 10277,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10275,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10274,
+                  "name": "settingsAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10277,
+                  "src": "1979:23:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10273,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1979:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1978:25:39"
+            },
+            "returnParameters": {
+              "id": 10276,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2012:0:39"
+            },
+            "scope": 10310,
+            "src": "1959:54:39",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when a new Escrow contract is created.\n@param borrower address associated to the new escrow.\n@param loansAddress loans contract address.\n@param loanID loan id associated to the borrower and escrow contract.\n@param escrowAddress the new escrow contract address.",
+            "id": 10287,
+            "name": "EscrowCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10286,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
                   "id": 10279,
-                  "name": "dapp",
+                  "indexed": true,
+                  "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10284,
-                  "src": "460:12:42",
+                  "scope": 10287,
+                  "src": "2395:24:39",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -977,89 +1847,7 @@
                     "id": 10278,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "460:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "459:14:42"
-            },
-            "returnParameters": {
-              "id": 10283,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10282,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10284,
-                  "src": "497:4:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 10281,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "497:4:42",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "496:6:42"
-            },
-            "scope": 10337,
-            "src": "444:59:42",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It creates an Escrow contract for a given loan id.\n@param borrower borrower address associated to the loan.\n@param loanID loan id to associate to the new escrow instance.\n@return the new escrow instance.",
-            "id": 10293,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "createEscrow",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 10289,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10286,
-                  "name": "borrower",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10293,
-                  "src": "791:16:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10285,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "791:7:42",
+                    "src": "2395:7:39",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1071,11 +1859,40 @@
                 },
                 {
                   "constant": false,
-                  "id": 10288,
+                  "id": 10281,
+                  "indexed": true,
+                  "name": "loansAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10287,
+                  "src": "2429:28:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10280,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2429:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10283,
+                  "indexed": true,
                   "name": "loanID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10293,
-                  "src": "809:14:42",
+                  "scope": 10287,
+                  "src": "2467:22:39",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1083,10 +1900,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10287,
+                    "id": 10282,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "809:7:42",
+                    "src": "2467:7:39",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1094,21 +1911,86 @@
                   },
                   "value": null,
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10285,
+                  "indexed": false,
+                  "name": "escrowAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10287,
+                  "src": "2499:21:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10284,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2499:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
                 }
               ],
-              "src": "790:34:42"
+              "src": "2385:141:39"
             },
-            "returnParameters": {
-              "id": 10292,
+            "src": "2366:161:39"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when a new dapp is added to the factory.\n@param sender address.\n@param dapp address added to the factory.\n@param unsecured boolean that describes if the dapp can be used by with an unsecured loan.",
+            "id": 10295,
+            "name": "NewDappAdded",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10294,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10291,
-                  "name": "",
+                  "id": 10289,
+                  "indexed": true,
+                  "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10293,
-                  "src": "843:7:42",
+                  "scope": 10295,
+                  "src": "2827:22:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10288,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2827:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10291,
+                  "indexed": true,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10295,
+                  "src": "2851:20:39",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1119,7 +2001,7 @@
                     "id": 10290,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "843:7:42",
+                    "src": "2851:7:39",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1128,36 +2010,57 @@
                   },
                   "value": null,
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10293,
+                  "indexed": false,
+                  "name": "unsecured",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10295,
+                  "src": "2873:14:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10292,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2873:4:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
                 }
               ],
-              "src": "842:9:42"
+              "src": "2826:62:39"
             },
-            "scope": 10337,
-            "src": "769:83:42",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
+            "src": "2808:81:39"
           },
           {
-            "body": null,
-            "documentation": "@notice It adds a new dapp to the factory.\n@param dapp address to add in this factory.",
-            "id": 10298,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "addDapp",
-            "nodeType": "FunctionDefinition",
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when a dapp is updated.\n@param sender address.\n@param dapp address of dapp contract.\n@param unsecured boolean that describes if the dapp can be used by with an unsecured loan.",
+            "id": 10303,
+            "name": "DappUpdated",
+            "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10296,
+              "id": 10302,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10295,
-                  "name": "dapp",
+                  "id": 10297,
+                  "indexed": true,
+                  "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10298,
-                  "src": "994:12:42",
+                  "scope": 10303,
+                  "src": "3167:22:39",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1165,10 +2068,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10294,
+                    "id": 10296,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "994:7:42",
+                    "src": "3167:7:39",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1177,42 +2080,15 @@
                   },
                   "value": null,
                   "visibility": "internal"
-                }
-              ],
-              "src": "993:14:42"
-            },
-            "returnParameters": {
-              "id": 10297,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1016:0:42"
-            },
-            "scope": 10337,
-            "src": "977:40:42",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It removes a current dapp from the factory.\n@param dapp address to remove.",
-            "id": 10303,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "removeDapp",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 10301,
-              "nodeType": "ParameterList",
-              "parameters": [
+                },
                 {
                   "constant": false,
-                  "id": 10300,
+                  "id": 10299,
+                  "indexed": true,
                   "name": "dapp",
                   "nodeType": "VariableDeclaration",
                   "scope": 10303,
-                  "src": "1158:12:42",
+                  "src": "3191:20:39",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1220,10 +2096,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10299,
+                    "id": 10298,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1158:7:42",
+                    "src": "3191:7:39",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1232,118 +2108,96 @@
                   },
                   "value": null,
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10301,
+                  "indexed": false,
+                  "name": "unsecured",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10303,
+                  "src": "3213:14:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10300,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3213:4:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
                 }
               ],
-              "src": "1157:14:42"
+              "src": "3166:62:39"
             },
-            "returnParameters": {
-              "id": 10302,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1180:0:42"
-            },
-            "scope": 10337,
-            "src": "1138:43:42",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
+            "src": "3149:80:39"
           },
           {
-            "body": null,
-            "documentation": "@notice Gets all the dapps in the factory.\n@return an array of dapps (addresses).",
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when a current dapp is removed from the factory.\n@param sender address.\n@param dapp address removed from the factory.",
             "id": 10309,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getDapps",
-            "nodeType": "FunctionDefinition",
+            "name": "DappRemoved",
+            "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10304,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1318:2:42"
-            },
-            "returnParameters": {
               "id": 10308,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10307,
-                  "name": "",
+                  "id": 10305,
+                  "indexed": true,
+                  "name": "sender",
                   "nodeType": "VariableDeclaration",
                   "scope": 10309,
-                  "src": "1344:16:42",
+                  "src": "3441:22:39",
                   "stateVariable": false,
-                  "storageLocation": "memory",
+                  "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
-                    "typeString": "address[]"
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
                   },
                   "typeName": {
-                    "baseType": {
-                      "id": 10305,
-                      "name": "address",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "1344:7:42",
-                      "stateMutability": "nonpayable",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
+                    "id": 10304,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3441:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10307,
+                  "indexed": true,
+                  "name": "dapp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10309,
+                  "src": "3465:20:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
                     "id": 10306,
-                    "length": null,
-                    "nodeType": "ArrayTypeName",
-                    "src": "1344:9:42",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
-                      "typeString": "address[]"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1343:18:42"
-            },
-            "scope": 10337,
-            "src": "1301:61:42",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It initializes this escrow contract factory instance.\n@param settingsAddress the settings contract address.",
-            "id": 10314,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "initialize",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 10312,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10311,
-                  "name": "settingsAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10314,
-                  "src": "1536:23:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10310,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1536:7:42",
+                    "src": "3465:7:39",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1354,308 +2208,31 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1535:25:42"
+              "src": "3440:46:39"
             },
-            "returnParameters": {
-              "id": 10313,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1569:0:42"
-            },
-            "scope": 10337,
-            "src": "1516:54:42",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "anonymous": false,
-            "documentation": "@notice This event is emitted when a new Escrow contract is created.\n@param borrower address associated to the new escrow.\n@param loansAddress loans contract address.\n@param loanID loan id associated to the borrower and escrow contract.\n@param escrowAddress the new escrow contract address.",
-            "id": 10324,
-            "name": "EscrowCreated",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 10323,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10316,
-                  "indexed": true,
-                  "name": "borrower",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10324,
-                  "src": "1952:24:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10315,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1952:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10318,
-                  "indexed": true,
-                  "name": "loansAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10324,
-                  "src": "1986:28:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10317,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1986:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10320,
-                  "indexed": true,
-                  "name": "loanID",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10324,
-                  "src": "2024:22:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 10319,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2024:7:42",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10322,
-                  "indexed": false,
-                  "name": "escrowAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10324,
-                  "src": "2056:21:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10321,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2056:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1942:141:42"
-            },
-            "src": "1923:161:42"
-          },
-          {
-            "anonymous": false,
-            "documentation": "@notice This event is emitted when a new dapp is added to the factory.\n@param sender address.\n@param dapp address addded to the factory.",
-            "id": 10330,
-            "name": "NewDAppAdded",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 10329,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10326,
-                  "indexed": true,
-                  "name": "sender",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10330,
-                  "src": "2286:22:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10325,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2286:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10328,
-                  "indexed": true,
-                  "name": "dapp",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10330,
-                  "src": "2310:20:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10327,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2310:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2285:46:42"
-            },
-            "src": "2267:65:42"
-          },
-          {
-            "anonymous": false,
-            "documentation": "@notice This event is emitted when a current dapp is removed from the factory.\n@param sender address.\n@param dapp address removed from the factory.",
-            "id": 10336,
-            "name": "DAppRemoved",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 10335,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10332,
-                  "indexed": true,
-                  "name": "sender",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10336,
-                  "src": "2544:22:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10331,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2544:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10334,
-                  "indexed": true,
-                  "name": "dapp",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10336,
-                  "src": "2568:20:42",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10333,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2568:7:42",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2543:46:42"
-            },
-            "src": "2526:64:42"
+            "src": "3423:64:39"
           }
         ],
-        "scope": 10338,
-        "src": "184:2408:42"
+        "scope": 10311,
+        "src": "254:3235:39"
       }
     ],
-    "src": "0:2593:42"
+    "src": "0:3490:39"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.17+commit.d19bba13.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-06T02:15:12.362Z",
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2020-10-12T14:23:11.493Z",
   "devdoc": {
     "author": "develop@teller.finance",
     "methods": {
-      "addDapp(address)": {
+      "addDapp(address,bool)": {
         "params": {
-          "dapp": "address to add in this factory."
+          "dapp": "address to add in this factory.",
+          "unsecured": "boolean to describe in the dapp is allowed to be used with unsecured loans."
         }
       },
       "createEscrow(address,uint256)": {
@@ -1665,6 +2242,12 @@
         },
         "return": "the new escrow instance."
       },
+      "dapps(address)": {
+        "params": {
+          "dapp": "dapp address."
+        },
+        "return": "TellerCommon.Dapp dapp configuration."
+      },
       "getDapps()": {
         "return": "an array of dapps (addresses)."
       },
@@ -1673,26 +2256,29 @@
           "settingsAddress": "the settings contract address."
         }
       },
-      "isDapp(address)": {
-        "params": {
-          "dapp": "dapp address to test."
-        },
-        "return": "true if the dapp address already exists. Otherwise it returns false."
-      },
       "removeDapp(address)": {
         "params": {
           "dapp": "address to remove."
+        }
+      },
+      "updateDapp(address,bool)": {
+        "params": {
+          "dapp": "address to add in this factory.",
+          "unsecured": "boolean that describes if the dapp can be used by with an unsecured loan."
         }
       }
     }
   },
   "userdoc": {
     "methods": {
-      "addDapp(address)": {
+      "addDapp(address,bool)": {
         "notice": "It adds a new dapp to the factory."
       },
       "createEscrow(address,uint256)": {
         "notice": "It creates an Escrow contract for a given loan id."
+      },
+      "dapps(address)": {
+        "notice": "It gets a dapp configuration based its contract address."
       },
       "getDapps()": {
         "notice": "Gets all the dapps in the factory."
@@ -1700,11 +2286,11 @@
       "initialize(address)": {
         "notice": "It initializes this escrow contract factory instance."
       },
-      "isDapp(address)": {
-        "notice": "It tests whether a dapp address exists in the factory or not."
-      },
       "removeDapp(address)": {
         "notice": "It removes a current dapp from the factory."
+      },
+      "updateDapp(address,bool)": {
+        "notice": "It updates a dapp configuration."
       }
     },
     "notice": "This interface defines the functions to manage the Escrow contracts associated to borrowers and loans."

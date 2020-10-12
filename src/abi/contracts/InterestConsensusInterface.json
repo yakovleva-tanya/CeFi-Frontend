@@ -202,50 +202,50 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"requestNonce\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"interest\",\"type\":\"uint256\"}],\"name\":\"InterestAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"requestNonce\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"interest\",\"type\":\"uint256\"}],\"name\":\"InterestSubmitted\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"aCallerAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"aSettingAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"consensusAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"requestNonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"requestTime\",\"type\":\"uint256\"}],\"internalType\":\"struct TellerCommon.InterestRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"consensusAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"responseTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"interest\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"signerNonce\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"internalType\":\"struct TellerCommon.Signature\",\"name\":\"signature\",\"type\":\"tuple\"}],\"internalType\":\"struct TellerCommon.InterestResponse[]\",\"name\":\"responses\",\"type\":\"tuple[]\"}],\"name\":\"processRequest\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"initialize(address,address,address)\":{\"details\":\"The caller address is the lenders address for the interest consensus implementation.\",\"params\":{\"aCallerAddress\":\"the contract that will call it.\",\"aSettingAddress\":\"the settings contract address.\",\"owner\":\"the owner address.\"}},\"processRequest((address,address,uint256,uint256,uint256,uint256),(address,address,uint256,uint256,(uint256,uint8,bytes32,bytes32))[])\":{\"params\":{\"request\":\"the interest request sent by the lender.\",\"responses\":\"all node responses to process.\"},\"return\":\"the consensus interest.\"}}},\"userdoc\":{\"methods\":{\"initialize(address,address,address)\":{\"notice\":\"It initializes this interest consensus contract.\"},\"processRequest((address,address,uint256,uint256,uint256,uint256),(address,address,uint256,uint256,(uint256,uint8,bytes32,bytes32))[])\":{\"notice\":\"It processes all the node responses for a request in order to get a consensus value.\"}},\"notice\":\"This interface defines the functions to process node responses and get consensus in the lender interest.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/InterestConsensusInterface.sol\":\"InterestConsensusInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/InterestConsensusInterface.sol\":{\"keccak256\":\"0x843bc3bd97e5c68de6751aae4cbf5517ad3515cec4633dc516b6329682a2c95f\",\"urls\":[\"bzz-raw://3495eb94eb8afb3ead1b00e871867907e091e959a7eec0654e365b1c4957c239\",\"dweb:/ipfs/QmYbMgpjc8hHzU7RSovMaat6agG4D7PE5k65UD7CGxXYL7\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0x9574ec7b6ec8d2072b6276a0873ec2e27fc8262ed61ccbb7a3ffc20ac7dfc323\",\"urls\":[\"bzz-raw://25ba0147fb05f281e7d0b601f116e805d563a516223041ff5660b43a5f448385\",\"dweb:/ipfs/QmcvfSjqEZpd7gfXFvBm39sV8RFtzJA81X59StgMgdc21t\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"requestNonce\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"interest\",\"type\":\"uint256\"}],\"name\":\"InterestAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"requestNonce\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"interest\",\"type\":\"uint256\"}],\"name\":\"InterestSubmitted\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"aCallerAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"aSettingAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"consensusAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"requestNonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"requestTime\",\"type\":\"uint256\"}],\"internalType\":\"struct TellerCommon.InterestRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"consensusAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"responseTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"interest\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"signerNonce\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"internalType\":\"struct TellerCommon.Signature\",\"name\":\"signature\",\"type\":\"tuple\"}],\"internalType\":\"struct TellerCommon.InterestResponse[]\",\"name\":\"responses\",\"type\":\"tuple[]\"}],\"name\":\"processRequest\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"initialize(address,address,address)\":{\"details\":\"The caller address is the lenders address for the interest consensus implementation.\",\"params\":{\"aCallerAddress\":\"the contract that will call it.\",\"aSettingAddress\":\"the settings contract address.\",\"owner\":\"the owner address.\"}},\"processRequest((address,address,uint256,uint256,uint256,uint256),(address,address,uint256,uint256,(uint256,uint8,bytes32,bytes32))[])\":{\"params\":{\"request\":\"the interest request sent by the lender.\",\"responses\":\"all node responses to process.\"},\"return\":\"the consensus interest.\"}}},\"userdoc\":{\"methods\":{\"initialize(address,address,address)\":{\"notice\":\"It initializes this interest consensus contract.\"},\"processRequest((address,address,uint256,uint256,uint256,uint256),(address,address,uint256,uint256,(uint256,uint8,bytes32,bytes32))[])\":{\"notice\":\"It processes all the node responses for a request in order to get a consensus value.\"}},\"notice\":\"This interface defines the functions to process node responses and get consensus in the lender interest.\"}},\"settings\":{\"compilationTarget\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/InterestConsensusInterface.sol\":\"InterestConsensusInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/InterestConsensusInterface.sol\":{\"keccak256\":\"0x843bc3bd97e5c68de6751aae4cbf5517ad3515cec4633dc516b6329682a2c95f\",\"urls\":[\"bzz-raw://3495eb94eb8afb3ead1b00e871867907e091e959a7eec0654e365b1c4957c239\",\"dweb:/ipfs/QmYbMgpjc8hHzU7RSovMaat6agG4D7PE5k65UD7CGxXYL7\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0x61d5a58019963b5b4394aa040d8661167da0aef0912cc7133dbc917a38a74698\",\"urls\":[\"bzz-raw://f2a48c517cbebc7ca530aced250a5389cba74ca1d16137b3b38116b1afd428b9\",\"dweb:/ipfs/QmcReNoiEiR3wvVVwwY6u6fQMTZivYtBn7uhMm3ud219Di\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.5.17;\npragma experimental ABIEncoderV2;\n\nimport \"../util/TellerCommon.sol\";\n\n/**\n    @notice This interface defines the functions to process node responses and get consensus in the lender interest.\n\n    @author develop@teller.finance\n */\ninterface InterestConsensusInterface {\n    /**\n        @notice This event is emitted when an interest response is submitted or processed.\n        @param signer node signer\n        @param lender address.\n        @param requestNonce request nonce.\n        @param endTime request end time.\n        @param interest value in  the node response.\n     */\n    event InterestSubmitted(\n        address indexed signer,\n        address indexed lender,\n        uint256 requestNonce,\n        uint256 endTime,\n        uint256 interest\n    );\n\n    /**\n        @notice This event is emitted when an interest value is accepted as consensus.\n        @param lender address.\n        @param requestNonce request nonce.\n        @param endTime request end time.\n        @param interest consensus interest value.\n     */\n    event InterestAccepted(\n        address indexed lender,\n        uint256 requestNonce,\n        uint256 endTime,\n        uint256 interest\n    );\n\n    /**\n        @notice It processes all the node responses for a request in order to get a consensus value.\n        @param request the interest request sent by the lender.\n        @param responses all node responses to process.\n        @return the consensus interest.\n     */\n    function processRequest(\n        TellerCommon.InterestRequest calldata request,\n        TellerCommon.InterestResponse[] calldata responses\n    ) external returns (uint256);\n\n    /**\n        @notice It initializes this interest consensus contract.\n        @dev The caller address is the lenders address for the interest consensus implementation.\n        @param owner the owner address.\n        @param aCallerAddress the contract that will call it.\n        @param aSettingAddress the settings contract address.\n     */\n    function initialize(\n        address owner,\n        address aCallerAddress,\n        address aSettingAddress\n    ) external;\n}\n",
-  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/InterestConsensusInterface.sol",
+  "sourcePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/InterestConsensusInterface.sol",
   "ast": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/InterestConsensusInterface.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/InterestConsensusInterface.sol",
     "exportedSymbols": {
       "InterestConsensusInterface": [
-        10006
+        10410
       ]
     },
-    "id": 10007,
+    "id": 10411,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 9962,
+        "id": 10366,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:40"
+        "src": "0:23:42"
       },
       {
-        "id": 9963,
+        "id": 10367,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "24:33:40"
+        "src": "24:33:42"
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol",
         "file": "../util/TellerCommon.sol",
-        "id": 9964,
+        "id": 10368,
         "nodeType": "ImportDirective",
-        "scope": 10007,
-        "sourceUnit": 17606,
-        "src": "59:34:40",
+        "scope": 10411,
+        "sourceUnit": 18425,
+        "src": "59:34:42",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -255,9 +255,9 @@
         "contractKind": "interface",
         "documentation": "@notice This interface defines the functions to process node responses and get consensus in the lender interest.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10006,
+        "id": 10410,
         "linearizedBaseContracts": [
-          10006
+          10410
         ],
         "name": "InterestConsensusInterface",
         "nodeType": "ContractDefinition",
@@ -265,21 +265,21 @@
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an interest response is submitted or processed.\n@param signer node signer\n@param lender address.\n@param requestNonce request nonce.\n@param endTime request end time.\n@param interest value in  the node response.",
-            "id": 9976,
+            "id": 10380,
             "name": "InterestSubmitted",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 9975,
+              "id": 10379,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9966,
+                  "id": 10370,
                   "indexed": true,
                   "name": "signer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "641:22:40",
+                  "scope": 10380,
+                  "src": "641:22:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -287,10 +287,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9965,
+                    "id": 10369,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "641:7:40",
+                    "src": "641:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -302,12 +302,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9968,
+                  "id": 10372,
                   "indexed": true,
                   "name": "lender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "673:22:40",
+                  "scope": 10380,
+                  "src": "673:22:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -315,10 +315,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9967,
+                    "id": 10371,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "673:7:40",
+                    "src": "673:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -330,12 +330,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9970,
+                  "id": 10374,
                   "indexed": false,
                   "name": "requestNonce",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "705:20:40",
+                  "scope": 10380,
+                  "src": "705:20:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -343,10 +343,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9969,
+                    "id": 10373,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "705:7:40",
+                    "src": "705:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -357,12 +357,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9972,
+                  "id": 10376,
                   "indexed": false,
                   "name": "endTime",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "735:15:40",
+                  "scope": 10380,
+                  "src": "735:15:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -370,10 +370,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9971,
+                    "id": 10375,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "735:7:40",
+                    "src": "735:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -384,12 +384,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9974,
+                  "id": 10378,
                   "indexed": false,
                   "name": "interest",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "760:16:40",
+                  "scope": 10380,
+                  "src": "760:16:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -397,10 +397,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9973,
+                    "id": 10377,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "760:7:40",
+                    "src": "760:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -410,28 +410,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "631:151:40"
+              "src": "631:151:42"
             },
-            "src": "608:175:40"
+            "src": "608:175:42"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an interest value is accepted as consensus.\n@param lender address.\n@param requestNonce request nonce.\n@param endTime request end time.\n@param interest consensus interest value.",
-            "id": 9986,
+            "id": 10390,
             "name": "InterestAccepted",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 9985,
+              "id": 10389,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9978,
+                  "id": 10382,
                   "indexed": true,
                   "name": "lender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9986,
-                  "src": "1089:22:40",
+                  "scope": 10390,
+                  "src": "1089:22:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -439,10 +439,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9977,
+                    "id": 10381,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1089:7:40",
+                    "src": "1089:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -454,12 +454,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9980,
+                  "id": 10384,
                   "indexed": false,
                   "name": "requestNonce",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9986,
-                  "src": "1121:20:40",
+                  "scope": 10390,
+                  "src": "1121:20:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -467,10 +467,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9979,
+                    "id": 10383,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1121:7:40",
+                    "src": "1121:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -481,12 +481,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9982,
+                  "id": 10386,
                   "indexed": false,
                   "name": "endTime",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9986,
-                  "src": "1151:15:40",
+                  "scope": 10390,
+                  "src": "1151:15:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -494,10 +494,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9981,
+                    "id": 10385,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1151:7:40",
+                    "src": "1151:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -508,12 +508,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9984,
+                  "id": 10388,
                   "indexed": false,
                   "name": "interest",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9986,
-                  "src": "1176:16:40",
+                  "scope": 10390,
+                  "src": "1176:16:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -521,10 +521,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9983,
+                    "id": 10387,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1176:7:40",
+                    "src": "1176:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -534,45 +534,45 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1079:119:40"
+              "src": "1079:119:42"
             },
-            "src": "1057:142:40"
+            "src": "1057:142:42"
           },
           {
             "body": null,
             "documentation": "@notice It processes all the node responses for a request in order to get a consensus value.\n@param request the interest request sent by the lender.\n@param responses all node responses to process.\n@return the consensus interest.",
-            "id": 9996,
+            "id": 10400,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "processRequest",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9992,
+              "id": 10396,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9988,
+                  "id": 10392,
                   "name": "request",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9996,
-                  "src": "1515:45:40",
+                  "scope": 10400,
+                  "src": "1515:45:42",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_InterestRequest_$17466_calldata_ptr",
+                    "typeIdentifier": "t_struct$_InterestRequest_$18271_calldata_ptr",
                     "typeString": "struct TellerCommon.InterestRequest"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 9987,
+                    "id": 10391,
                     "name": "TellerCommon.InterestRequest",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 17466,
-                    "src": "1515:28:40",
+                    "referencedDeclaration": 18271,
+                    "src": "1515:28:42",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_InterestRequest_$17466_storage_ptr",
+                      "typeIdentifier": "t_struct$_InterestRequest_$18271_storage_ptr",
                       "typeString": "struct TellerCommon.InterestRequest"
                     }
                   },
@@ -581,36 +581,36 @@
                 },
                 {
                   "constant": false,
-                  "id": 9991,
+                  "id": 10395,
                   "name": "responses",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9996,
-                  "src": "1570:50:40",
+                  "scope": 10400,
+                  "src": "1570:50:42",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_InterestResponse_$17477_calldata_$dyn_calldata_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_InterestResponse_$18282_calldata_$dyn_calldata_ptr",
                     "typeString": "struct TellerCommon.InterestResponse[]"
                   },
                   "typeName": {
                     "baseType": {
                       "contractScope": null,
-                      "id": 9989,
+                      "id": 10393,
                       "name": "TellerCommon.InterestResponse",
                       "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 17477,
-                      "src": "1570:29:40",
+                      "referencedDeclaration": 18282,
+                      "src": "1570:29:42",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_InterestResponse_$17477_storage_ptr",
+                        "typeIdentifier": "t_struct$_InterestResponse_$18282_storage_ptr",
                         "typeString": "struct TellerCommon.InterestResponse"
                       }
                     },
-                    "id": 9990,
+                    "id": 10394,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1570:31:40",
+                    "src": "1570:31:42",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_InterestResponse_$17477_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_InterestResponse_$18282_storage_$dyn_storage_ptr",
                       "typeString": "struct TellerCommon.InterestResponse[]"
                     }
                   },
@@ -618,19 +618,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1505:121:40"
+              "src": "1505:121:42"
             },
             "returnParameters": {
-              "id": 9995,
+              "id": 10399,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9994,
+                  "id": 10398,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9996,
-                  "src": "1645:7:40",
+                  "scope": 10400,
+                  "src": "1645:7:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -638,10 +638,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9993,
+                    "id": 10397,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1645:7:40",
+                    "src": "1645:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -651,10 +651,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1644:9:40"
+              "src": "1644:9:42"
             },
-            "scope": 10006,
-            "src": "1482:172:40",
+            "scope": 10410,
+            "src": "1482:172:42",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -662,23 +662,23 @@
           {
             "body": null,
             "documentation": "@notice It initializes this interest consensus contract.\n@dev The caller address is the lenders address for the interest consensus implementation.\n@param owner the owner address.\n@param aCallerAddress the contract that will call it.\n@param aSettingAddress the settings contract address.",
-            "id": 10005,
+            "id": 10409,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10003,
+              "id": 10407,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9998,
+                  "id": 10402,
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10005,
-                  "src": "2032:13:40",
+                  "scope": 10409,
+                  "src": "2032:13:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -686,10 +686,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9997,
+                    "id": 10401,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2032:7:40",
+                    "src": "2032:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -701,11 +701,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10000,
+                  "id": 10404,
                   "name": "aCallerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10005,
-                  "src": "2055:22:40",
+                  "scope": 10409,
+                  "src": "2055:22:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -713,10 +713,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9999,
+                    "id": 10403,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2055:7:40",
+                    "src": "2055:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -728,11 +728,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10002,
+                  "id": 10406,
                   "name": "aSettingAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10005,
-                  "src": "2087:23:40",
+                  "scope": 10409,
+                  "src": "2087:23:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -740,10 +740,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10001,
+                    "id": 10405,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2087:7:40",
+                    "src": "2087:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -754,64 +754,64 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2022:94:40"
+              "src": "2022:94:42"
             },
             "returnParameters": {
-              "id": 10004,
+              "id": 10408,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2125:0:40"
+              "src": "2125:0:42"
             },
-            "scope": 10006,
-            "src": "2003:123:40",
+            "scope": 10410,
+            "src": "2003:123:42",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 10007,
-        "src": "256:1872:40"
+        "scope": 10411,
+        "src": "256:1872:42"
       }
     ],
-    "src": "0:2129:40"
+    "src": "0:2129:42"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/InterestConsensusInterface.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/InterestConsensusInterface.sol",
     "exportedSymbols": {
       "InterestConsensusInterface": [
-        10006
+        10410
       ]
     },
-    "id": 10007,
+    "id": 10411,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 9962,
+        "id": 10366,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:40"
+        "src": "0:23:42"
       },
       {
-        "id": 9963,
+        "id": 10367,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "24:33:40"
+        "src": "24:33:42"
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol",
         "file": "../util/TellerCommon.sol",
-        "id": 9964,
+        "id": 10368,
         "nodeType": "ImportDirective",
-        "scope": 10007,
-        "sourceUnit": 17606,
-        "src": "59:34:40",
+        "scope": 10411,
+        "sourceUnit": 18425,
+        "src": "59:34:42",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -821,9 +821,9 @@
         "contractKind": "interface",
         "documentation": "@notice This interface defines the functions to process node responses and get consensus in the lender interest.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10006,
+        "id": 10410,
         "linearizedBaseContracts": [
-          10006
+          10410
         ],
         "name": "InterestConsensusInterface",
         "nodeType": "ContractDefinition",
@@ -831,21 +831,21 @@
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an interest response is submitted or processed.\n@param signer node signer\n@param lender address.\n@param requestNonce request nonce.\n@param endTime request end time.\n@param interest value in  the node response.",
-            "id": 9976,
+            "id": 10380,
             "name": "InterestSubmitted",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 9975,
+              "id": 10379,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9966,
+                  "id": 10370,
                   "indexed": true,
                   "name": "signer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "641:22:40",
+                  "scope": 10380,
+                  "src": "641:22:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -853,10 +853,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9965,
+                    "id": 10369,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "641:7:40",
+                    "src": "641:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -868,12 +868,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9968,
+                  "id": 10372,
                   "indexed": true,
                   "name": "lender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "673:22:40",
+                  "scope": 10380,
+                  "src": "673:22:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -881,10 +881,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9967,
+                    "id": 10371,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "673:7:40",
+                    "src": "673:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -896,12 +896,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9970,
+                  "id": 10374,
                   "indexed": false,
                   "name": "requestNonce",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "705:20:40",
+                  "scope": 10380,
+                  "src": "705:20:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -909,10 +909,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9969,
+                    "id": 10373,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "705:7:40",
+                    "src": "705:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -923,12 +923,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9972,
+                  "id": 10376,
                   "indexed": false,
                   "name": "endTime",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "735:15:40",
+                  "scope": 10380,
+                  "src": "735:15:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -936,10 +936,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9971,
+                    "id": 10375,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "735:7:40",
+                    "src": "735:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -950,12 +950,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9974,
+                  "id": 10378,
                   "indexed": false,
                   "name": "interest",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9976,
-                  "src": "760:16:40",
+                  "scope": 10380,
+                  "src": "760:16:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -963,10 +963,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9973,
+                    "id": 10377,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "760:7:40",
+                    "src": "760:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -976,28 +976,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "631:151:40"
+              "src": "631:151:42"
             },
-            "src": "608:175:40"
+            "src": "608:175:42"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when an interest value is accepted as consensus.\n@param lender address.\n@param requestNonce request nonce.\n@param endTime request end time.\n@param interest consensus interest value.",
-            "id": 9986,
+            "id": 10390,
             "name": "InterestAccepted",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 9985,
+              "id": 10389,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9978,
+                  "id": 10382,
                   "indexed": true,
                   "name": "lender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9986,
-                  "src": "1089:22:40",
+                  "scope": 10390,
+                  "src": "1089:22:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1005,10 +1005,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9977,
+                    "id": 10381,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1089:7:40",
+                    "src": "1089:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1020,12 +1020,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9980,
+                  "id": 10384,
                   "indexed": false,
                   "name": "requestNonce",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9986,
-                  "src": "1121:20:40",
+                  "scope": 10390,
+                  "src": "1121:20:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1033,10 +1033,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9979,
+                    "id": 10383,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1121:7:40",
+                    "src": "1121:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1047,12 +1047,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9982,
+                  "id": 10386,
                   "indexed": false,
                   "name": "endTime",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9986,
-                  "src": "1151:15:40",
+                  "scope": 10390,
+                  "src": "1151:15:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1060,10 +1060,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9981,
+                    "id": 10385,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1151:7:40",
+                    "src": "1151:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1074,12 +1074,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 9984,
+                  "id": 10388,
                   "indexed": false,
                   "name": "interest",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9986,
-                  "src": "1176:16:40",
+                  "scope": 10390,
+                  "src": "1176:16:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1087,10 +1087,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9983,
+                    "id": 10387,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1176:7:40",
+                    "src": "1176:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1100,45 +1100,45 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1079:119:40"
+              "src": "1079:119:42"
             },
-            "src": "1057:142:40"
+            "src": "1057:142:42"
           },
           {
             "body": null,
             "documentation": "@notice It processes all the node responses for a request in order to get a consensus value.\n@param request the interest request sent by the lender.\n@param responses all node responses to process.\n@return the consensus interest.",
-            "id": 9996,
+            "id": 10400,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "processRequest",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9992,
+              "id": 10396,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9988,
+                  "id": 10392,
                   "name": "request",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9996,
-                  "src": "1515:45:40",
+                  "scope": 10400,
+                  "src": "1515:45:42",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_InterestRequest_$17466_calldata_ptr",
+                    "typeIdentifier": "t_struct$_InterestRequest_$18271_calldata_ptr",
                     "typeString": "struct TellerCommon.InterestRequest"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 9987,
+                    "id": 10391,
                     "name": "TellerCommon.InterestRequest",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 17466,
-                    "src": "1515:28:40",
+                    "referencedDeclaration": 18271,
+                    "src": "1515:28:42",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_InterestRequest_$17466_storage_ptr",
+                      "typeIdentifier": "t_struct$_InterestRequest_$18271_storage_ptr",
                       "typeString": "struct TellerCommon.InterestRequest"
                     }
                   },
@@ -1147,36 +1147,36 @@
                 },
                 {
                   "constant": false,
-                  "id": 9991,
+                  "id": 10395,
                   "name": "responses",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9996,
-                  "src": "1570:50:40",
+                  "scope": 10400,
+                  "src": "1570:50:42",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_InterestResponse_$17477_calldata_$dyn_calldata_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_InterestResponse_$18282_calldata_$dyn_calldata_ptr",
                     "typeString": "struct TellerCommon.InterestResponse[]"
                   },
                   "typeName": {
                     "baseType": {
                       "contractScope": null,
-                      "id": 9989,
+                      "id": 10393,
                       "name": "TellerCommon.InterestResponse",
                       "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 17477,
-                      "src": "1570:29:40",
+                      "referencedDeclaration": 18282,
+                      "src": "1570:29:42",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_InterestResponse_$17477_storage_ptr",
+                        "typeIdentifier": "t_struct$_InterestResponse_$18282_storage_ptr",
                         "typeString": "struct TellerCommon.InterestResponse"
                       }
                     },
-                    "id": 9990,
+                    "id": 10394,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1570:31:40",
+                    "src": "1570:31:42",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_InterestResponse_$17477_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_InterestResponse_$18282_storage_$dyn_storage_ptr",
                       "typeString": "struct TellerCommon.InterestResponse[]"
                     }
                   },
@@ -1184,19 +1184,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1505:121:40"
+              "src": "1505:121:42"
             },
             "returnParameters": {
-              "id": 9995,
+              "id": 10399,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9994,
+                  "id": 10398,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9996,
-                  "src": "1645:7:40",
+                  "scope": 10400,
+                  "src": "1645:7:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1204,10 +1204,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 9993,
+                    "id": 10397,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1645:7:40",
+                    "src": "1645:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1217,10 +1217,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1644:9:40"
+              "src": "1644:9:42"
             },
-            "scope": 10006,
-            "src": "1482:172:40",
+            "scope": 10410,
+            "src": "1482:172:42",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1228,23 +1228,23 @@
           {
             "body": null,
             "documentation": "@notice It initializes this interest consensus contract.\n@dev The caller address is the lenders address for the interest consensus implementation.\n@param owner the owner address.\n@param aCallerAddress the contract that will call it.\n@param aSettingAddress the settings contract address.",
-            "id": 10005,
+            "id": 10409,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10003,
+              "id": 10407,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9998,
+                  "id": 10402,
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10005,
-                  "src": "2032:13:40",
+                  "scope": 10409,
+                  "src": "2032:13:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1252,10 +1252,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9997,
+                    "id": 10401,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2032:7:40",
+                    "src": "2032:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1267,11 +1267,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10000,
+                  "id": 10404,
                   "name": "aCallerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10005,
-                  "src": "2055:22:40",
+                  "scope": 10409,
+                  "src": "2055:22:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1279,10 +1279,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9999,
+                    "id": 10403,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2055:7:40",
+                    "src": "2055:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1294,11 +1294,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10002,
+                  "id": 10406,
                   "name": "aSettingAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10005,
-                  "src": "2087:23:40",
+                  "scope": 10409,
+                  "src": "2087:23:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1306,10 +1306,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10001,
+                    "id": 10405,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2087:7:40",
+                    "src": "2087:7:42",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1320,34 +1320,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2022:94:40"
+              "src": "2022:94:42"
             },
             "returnParameters": {
-              "id": 10004,
+              "id": 10408,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2125:0:40"
+              "src": "2125:0:42"
             },
-            "scope": 10006,
-            "src": "2003:123:40",
+            "scope": 10410,
+            "src": "2003:123:42",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 10007,
-        "src": "256:1872:40"
+        "scope": 10411,
+        "src": "256:1872:42"
       }
     ],
-    "src": "0:2129:40"
+    "src": "0:2129:42"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.17+commit.d19bba13.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-15T21:09:31.264Z",
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2020-10-12T14:23:11.495Z",
   "devdoc": {
     "author": "develop@teller.finance",
     "methods": {

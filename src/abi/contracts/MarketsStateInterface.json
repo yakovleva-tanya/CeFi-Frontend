@@ -277,50 +277,50 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addWhitelisted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"decreaseSupply\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"}],\"name\":\"getMarket\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"totalSupplied\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalRepaid\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalBorrowed\",\"type\":\"uint256\"}],\"internalType\":\"struct MarketStateLib.MarketState\",\"name\":\"\",\"type\":\"tuple\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"}],\"name\":\"getSupplyToDebt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"loanAmount\",\"type\":\"uint256\"}],\"name\":\"getSupplyToDebtFor\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"increaseBorrow\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"increaseRepayment\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"increaseSupply\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isWhitelisted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeWhitelisted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceWhitelisted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"decreaseSupply(address,address,uint256)\":{\"params\":{\"amount\":\"amount to decrease.\",\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"}},\"getMarket(address,address)\":{\"params\":{\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"},\"return\":\"the current market state.\"},\"getSupplyToDebt(address,address)\":{\"params\":{\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"},\"return\":\"the supply-to-debt ratio value.\"},\"getSupplyToDebtFor(address,address,uint256)\":{\"params\":{\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\",\"loanAmount\":\"a new loan amount to consider in the ratio.\"},\"return\":\"the supply-to-debt ratio value.\"},\"increaseBorrow(address,address,uint256)\":{\"params\":{\"amount\":\"amount to add.\",\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"}},\"increaseRepayment(address,address,uint256)\":{\"params\":{\"amount\":\"amount to add.\",\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"}},\"increaseSupply(address,address,uint256)\":{\"params\":{\"amount\":\"amount to add.\",\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"}}}},\"userdoc\":{\"methods\":{\"decreaseSupply(address,address,uint256)\":{\"notice\":\"It decreases the supply amount for a given market.This function is called every new withdraw (Lenders) is done.\"},\"getMarket(address,address)\":{\"notice\":\"It gets the current market state.\"},\"getSupplyToDebt(address,address)\":{\"notice\":\"It gets the current supply-to-debt (StD) ratio for a given market.\"},\"getSupplyToDebtFor(address,address,uint256)\":{\"notice\":\"It gets the supply-to-debt (StD) ratio for a given market, including a new loan amount.\"},\"increaseBorrow(address,address,uint256)\":{\"notice\":\"It increases the borrowed amount for a given market.This function is called every new loan is taken out.\"},\"increaseRepayment(address,address,uint256)\":{\"notice\":\"It increases the repayment amount for a given market.This function is called every new repayment is received.\"},\"increaseSupply(address,address,uint256)\":{\"notice\":\"It increases the supply amount for a given market.This function is called every new deposit (Lenders) is received.\"}},\"notice\":\"This interface defines the function to store and get data from different markets.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/MarketsStateInterface.sol\":\"MarketsStateInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/MarketsStateInterface.sol\":{\"keccak256\":\"0xf51bd2d361d9cf448f2c2a5bb37c2699b0d9605a8f1b6a8719f90d8f536f2a05\",\"urls\":[\"bzz-raw://415a4444e8f9aca25132f492b226b8d500081a4ba5be8e45b401a68e73e1895b\",\"dweb:/ipfs/QmUPGgnqUjidxeEpkgu4yYzhfuykgtNKehEwbps97nAAzZ\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/MarketStateLib.sol\":{\"keccak256\":\"0x760fff7588382659571b8fd078b5e332e010d7e97278895fc226e8ed551cb0c6\",\"urls\":[\"bzz-raw://ff9cf8b14a780c989b2f641bf8faaf8066e586245ede58196274f8f03789c0d4\",\"dweb:/ipfs/QmVnRsrQFuRXM1c4NFVz1iUaAywq73uHVsUzemn1x5fVgF\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addWhitelisted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"decreaseSupply\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"}],\"name\":\"getMarket\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"totalSupplied\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalRepaid\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalBorrowed\",\"type\":\"uint256\"}],\"internalType\":\"struct MarketStateLib.MarketState\",\"name\":\"\",\"type\":\"tuple\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"}],\"name\":\"getSupplyToDebt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"loanAmount\",\"type\":\"uint256\"}],\"name\":\"getSupplyToDebtFor\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"increaseBorrow\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"increaseRepayment\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"borrowedAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"increaseSupply\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isWhitelisted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeWhitelisted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceWhitelisted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"decreaseSupply(address,address,uint256)\":{\"params\":{\"amount\":\"amount to decrease.\",\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"}},\"getMarket(address,address)\":{\"params\":{\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"},\"return\":\"the current market state.\"},\"getSupplyToDebt(address,address)\":{\"params\":{\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"},\"return\":\"the supply-to-debt ratio value.\"},\"getSupplyToDebtFor(address,address,uint256)\":{\"params\":{\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\",\"loanAmount\":\"a new loan amount to consider in the ratio.\"},\"return\":\"the supply-to-debt ratio value.\"},\"increaseBorrow(address,address,uint256)\":{\"params\":{\"amount\":\"amount to add.\",\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"}},\"increaseRepayment(address,address,uint256)\":{\"params\":{\"amount\":\"amount to add.\",\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"}},\"increaseSupply(address,address,uint256)\":{\"params\":{\"amount\":\"amount to add.\",\"borrowedAsset\":\"borrowed asset address.\",\"collateralAsset\":\"collateral asset address.\"}}}},\"userdoc\":{\"methods\":{\"decreaseSupply(address,address,uint256)\":{\"notice\":\"It decreases the supply amount for a given market.This function is called every new withdraw (Lenders) is done.\"},\"getMarket(address,address)\":{\"notice\":\"It gets the current market state.\"},\"getSupplyToDebt(address,address)\":{\"notice\":\"It gets the current supply-to-debt (StD) ratio for a given market.\"},\"getSupplyToDebtFor(address,address,uint256)\":{\"notice\":\"It gets the supply-to-debt (StD) ratio for a given market, including a new loan amount.\"},\"increaseBorrow(address,address,uint256)\":{\"notice\":\"It increases the borrowed amount for a given market.This function is called every new loan is taken out.\"},\"increaseRepayment(address,address,uint256)\":{\"notice\":\"It increases the repayment amount for a given market.This function is called every new repayment is received.\"},\"increaseSupply(address,address,uint256)\":{\"notice\":\"It increases the supply amount for a given market.This function is called every new deposit (Lenders) is received.\"}},\"notice\":\"This interface defines the function to store and get data from different markets.\"}},\"settings\":{\"compilationTarget\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/MarketsStateInterface.sol\":\"MarketsStateInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/MarketsStateInterface.sol\":{\"keccak256\":\"0xf51bd2d361d9cf448f2c2a5bb37c2699b0d9605a8f1b6a8719f90d8f536f2a05\",\"urls\":[\"bzz-raw://415a4444e8f9aca25132f492b226b8d500081a4ba5be8e45b401a68e73e1895b\",\"dweb:/ipfs/QmUPGgnqUjidxeEpkgu4yYzhfuykgtNKehEwbps97nAAzZ\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/MarketStateLib.sol\":{\"keccak256\":\"0x760fff7588382659571b8fd078b5e332e010d7e97278895fc226e8ed551cb0c6\",\"urls\":[\"bzz-raw://ff9cf8b14a780c989b2f641bf8faaf8066e586245ede58196274f8f03789c0d4\",\"dweb:/ipfs/QmVnRsrQFuRXM1c4NFVz1iUaAywq73uHVsUzemn1x5fVgF\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.5.17;\npragma experimental ABIEncoderV2;\n\nimport \"../util/MarketStateLib.sol\";\n\n/**\n    @notice This interface defines the function to store and get data from different markets.\n\n    @author develop@teller.finance\n */\ninterface MarketsStateInterface {\n    /**\n        @notice It increases the repayment amount for a given market.\n        @notice This function is called every new repayment is received.\n        @param borrowedAsset borrowed asset address.\n        @param collateralAsset collateral asset address.\n        @param amount amount to add.\n     */\n    function increaseRepayment(\n        address borrowedAsset,\n        address collateralAsset,\n        uint256 amount\n    ) external;\n\n    /**\n        @notice It increases the supply amount for a given market.\n        @notice This function is called every new deposit (Lenders) is received.\n        @param borrowedAsset borrowed asset address.\n        @param collateralAsset collateral asset address.\n        @param amount amount to add.\n     */\n    function increaseSupply(\n        address borrowedAsset,\n        address collateralAsset,\n        uint256 amount\n    ) external;\n\n    /**\n        @notice It decreases the supply amount for a given market.\n        @notice This function is called every new withdraw (Lenders) is done.\n        @param borrowedAsset borrowed asset address.\n        @param collateralAsset collateral asset address.\n        @param amount amount to decrease.\n     */\n    function decreaseSupply(\n        address borrowedAsset,\n        address collateralAsset,\n        uint256 amount\n    ) external;\n\n    /**\n        @notice It increases the borrowed amount for a given market.\n        @notice This function is called every new loan is taken out.\n        @param borrowedAsset borrowed asset address.\n        @param collateralAsset collateral asset address.\n        @param amount amount to add.\n     */\n    function increaseBorrow(\n        address borrowedAsset,\n        address collateralAsset,\n        uint256 amount\n    ) external;\n\n    /**\n        @notice It gets the current supply-to-debt (StD) ratio for a given market.\n        @param borrowedAsset borrowed asset address.\n        @param collateralAsset collateral asset address.\n        @return the supply-to-debt ratio value.\n     */\n    function getSupplyToDebt(address borrowedAsset, address collateralAsset)\n        external\n        view\n        returns (uint256);\n\n    /**\n        @notice It gets the supply-to-debt (StD) ratio for a given market, including a new loan amount.\n        @param borrowedAsset borrowed asset address.\n        @param collateralAsset collateral asset address.\n        @param loanAmount a new loan amount to consider in the ratio.\n        @return the supply-to-debt ratio value.\n     */\n    function getSupplyToDebtFor(\n        address borrowedAsset,\n        address collateralAsset,\n        uint256 loanAmount\n    ) external view returns (uint256);\n\n    /**\n        @notice It gets the current market state.\n        @param borrowedAsset borrowed asset address.\n        @param collateralAsset collateral asset address.\n        @return the current market state.\n     */\n    function getMarket(address borrowedAsset, address collateralAsset)\n        external\n        view\n        returns (MarketStateLib.MarketState memory);\n\n    function isWhitelisted(address account) external view returns (bool);\n\n    function addWhitelisted(address account) external;\n\n    function removeWhitelisted(address account) external;\n\n    function renounceWhitelisted() external;\n\n    function initialize(address settingsAddress) external;\n}\n",
-  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/MarketsStateInterface.sol",
+  "sourcePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/MarketsStateInterface.sol",
   "ast": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/MarketsStateInterface.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/MarketsStateInterface.sol",
     "exportedSymbols": {
       "MarketsStateInterface": [
-        10742
+        11159
       ]
     },
-    "id": 10743,
+    "id": 11160,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10649,
+        "id": 11066,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:48"
+        "src": "0:23:50"
       },
       {
-        "id": 10650,
+        "id": 11067,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "24:33:48"
+        "src": "24:33:50"
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/MarketStateLib.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/MarketStateLib.sol",
         "file": "../util/MarketStateLib.sol",
-        "id": 10651,
+        "id": 11068,
         "nodeType": "ImportDirective",
-        "scope": 10743,
-        "sourceUnit": 17003,
-        "src": "59:36:48",
+        "scope": 11160,
+        "sourceUnit": 17825,
+        "src": "59:36:50",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -330,9 +330,9 @@
         "contractKind": "interface",
         "documentation": "@notice This interface defines the function to store and get data from different markets.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10742,
+        "id": 11159,
         "linearizedBaseContracts": [
-          10742
+          11159
         ],
         "name": "MarketsStateInterface",
         "nodeType": "ContractDefinition",
@@ -340,23 +340,23 @@
           {
             "body": null,
             "documentation": "@notice It increases the repayment amount for a given market.\n@notice This function is called every new repayment is received.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@param amount amount to add.",
-            "id": 10660,
+            "id": 11077,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "increaseRepayment",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10658,
+              "id": 11075,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10653,
+                  "id": 11070,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10660,
-                  "src": "615:21:48",
+                  "scope": 11077,
+                  "src": "615:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -364,10 +364,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10652,
+                    "id": 11069,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "615:7:48",
+                    "src": "615:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -379,11 +379,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10655,
+                  "id": 11072,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10660,
-                  "src": "646:23:48",
+                  "scope": 11077,
+                  "src": "646:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -391,10 +391,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10654,
+                    "id": 11071,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "646:7:48",
+                    "src": "646:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -406,11 +406,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10657,
+                  "id": 11074,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10660,
-                  "src": "679:14:48",
+                  "scope": 11077,
+                  "src": "679:14:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -418,10 +418,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10656,
+                    "id": 11073,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "679:7:48",
+                    "src": "679:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -431,16 +431,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "605:94:48"
+              "src": "605:94:50"
             },
             "returnParameters": {
-              "id": 10659,
+              "id": 11076,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "708:0:48"
+              "src": "708:0:50"
             },
-            "scope": 10742,
-            "src": "579:130:48",
+            "scope": 11159,
+            "src": "579:130:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -448,23 +448,23 @@
           {
             "body": null,
             "documentation": "@notice It increases the supply amount for a given market.\n@notice This function is called every new deposit (Lenders) is received.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@param amount amount to add.",
-            "id": 10669,
+            "id": 11086,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "increaseSupply",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10667,
+              "id": 11084,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10662,
+                  "id": 11079,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10669,
-                  "src": "1059:21:48",
+                  "scope": 11086,
+                  "src": "1059:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -472,10 +472,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10661,
+                    "id": 11078,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1059:7:48",
+                    "src": "1059:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -487,11 +487,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10664,
+                  "id": 11081,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10669,
-                  "src": "1090:23:48",
+                  "scope": 11086,
+                  "src": "1090:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -499,10 +499,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10663,
+                    "id": 11080,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1090:7:48",
+                    "src": "1090:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -514,11 +514,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10666,
+                  "id": 11083,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10669,
-                  "src": "1123:14:48",
+                  "scope": 11086,
+                  "src": "1123:14:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -526,10 +526,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10665,
+                    "id": 11082,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1123:7:48",
+                    "src": "1123:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -539,16 +539,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1049:94:48"
+              "src": "1049:94:50"
             },
             "returnParameters": {
-              "id": 10668,
+              "id": 11085,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1152:0:48"
+              "src": "1152:0:50"
             },
-            "scope": 10742,
-            "src": "1026:127:48",
+            "scope": 11159,
+            "src": "1026:127:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -556,23 +556,23 @@
           {
             "body": null,
             "documentation": "@notice It decreases the supply amount for a given market.\n@notice This function is called every new withdraw (Lenders) is done.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@param amount amount to decrease.",
-            "id": 10678,
+            "id": 11095,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "decreaseSupply",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10676,
+              "id": 11093,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10671,
+                  "id": 11088,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10678,
-                  "src": "1505:21:48",
+                  "scope": 11095,
+                  "src": "1505:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -580,10 +580,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10670,
+                    "id": 11087,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1505:7:48",
+                    "src": "1505:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -595,11 +595,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10673,
+                  "id": 11090,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10678,
-                  "src": "1536:23:48",
+                  "scope": 11095,
+                  "src": "1536:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -607,10 +607,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10672,
+                    "id": 11089,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1536:7:48",
+                    "src": "1536:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -622,11 +622,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10675,
+                  "id": 11092,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10678,
-                  "src": "1569:14:48",
+                  "scope": 11095,
+                  "src": "1569:14:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -634,10 +634,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10674,
+                    "id": 11091,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1569:7:48",
+                    "src": "1569:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -647,16 +647,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1495:94:48"
+              "src": "1495:94:50"
             },
             "returnParameters": {
-              "id": 10677,
+              "id": 11094,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1598:0:48"
+              "src": "1598:0:50"
             },
-            "scope": 10742,
-            "src": "1472:127:48",
+            "scope": 11159,
+            "src": "1472:127:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -664,23 +664,23 @@
           {
             "body": null,
             "documentation": "@notice It increases the borrowed amount for a given market.\n@notice This function is called every new loan is taken out.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@param amount amount to add.",
-            "id": 10687,
+            "id": 11104,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "increaseBorrow",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10685,
+              "id": 11102,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10680,
+                  "id": 11097,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10687,
-                  "src": "1939:21:48",
+                  "scope": 11104,
+                  "src": "1939:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -688,10 +688,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10679,
+                    "id": 11096,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1939:7:48",
+                    "src": "1939:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -703,11 +703,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10682,
+                  "id": 11099,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10687,
-                  "src": "1970:23:48",
+                  "scope": 11104,
+                  "src": "1970:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -715,10 +715,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10681,
+                    "id": 11098,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1970:7:48",
+                    "src": "1970:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -730,11 +730,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10684,
+                  "id": 11101,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10687,
-                  "src": "2003:14:48",
+                  "scope": 11104,
+                  "src": "2003:14:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -742,10 +742,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10683,
+                    "id": 11100,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2003:7:48",
+                    "src": "2003:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -755,16 +755,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1929:94:48"
+              "src": "1929:94:50"
             },
             "returnParameters": {
-              "id": 10686,
+              "id": 11103,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2032:0:48"
+              "src": "2032:0:50"
             },
-            "scope": 10742,
-            "src": "1906:127:48",
+            "scope": 11159,
+            "src": "1906:127:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -772,23 +772,23 @@
           {
             "body": null,
             "documentation": "@notice It gets the current supply-to-debt (StD) ratio for a given market.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@return the supply-to-debt ratio value.",
-            "id": 10696,
+            "id": 11113,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSupplyToDebt",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10692,
+              "id": 11109,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10689,
+                  "id": 11106,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10696,
-                  "src": "2321:21:48",
+                  "scope": 11113,
+                  "src": "2321:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -796,10 +796,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10688,
+                    "id": 11105,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2321:7:48",
+                    "src": "2321:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -811,11 +811,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10691,
+                  "id": 11108,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10696,
-                  "src": "2344:23:48",
+                  "scope": 11113,
+                  "src": "2344:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -823,10 +823,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10690,
+                    "id": 11107,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2344:7:48",
+                    "src": "2344:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -837,19 +837,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2320:48:48"
+              "src": "2320:48:50"
             },
             "returnParameters": {
-              "id": 10695,
+              "id": 11112,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10694,
+                  "id": 11111,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10696,
-                  "src": "2416:7:48",
+                  "scope": 11113,
+                  "src": "2416:7:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -857,10 +857,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10693,
+                    "id": 11110,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2416:7:48",
+                    "src": "2416:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -870,10 +870,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2415:9:48"
+              "src": "2415:9:50"
             },
-            "scope": 10742,
-            "src": "2296:129:48",
+            "scope": 11159,
+            "src": "2296:129:50",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -881,23 +881,23 @@
           {
             "body": null,
             "documentation": "@notice It gets the supply-to-debt (StD) ratio for a given market, including a new loan amount.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@param loanAmount a new loan amount to consider in the ratio.\n@return the supply-to-debt ratio value.",
-            "id": 10707,
+            "id": 11124,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSupplyToDebtFor",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10703,
+              "id": 11120,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10698,
+                  "id": 11115,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10707,
-                  "src": "2816:21:48",
+                  "scope": 11124,
+                  "src": "2816:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -905,10 +905,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10697,
+                    "id": 11114,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2816:7:48",
+                    "src": "2816:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -920,11 +920,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10700,
+                  "id": 11117,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10707,
-                  "src": "2847:23:48",
+                  "scope": 11124,
+                  "src": "2847:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -932,10 +932,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10699,
+                    "id": 11116,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2847:7:48",
+                    "src": "2847:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -947,11 +947,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10702,
+                  "id": 11119,
                   "name": "loanAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10707,
-                  "src": "2880:18:48",
+                  "scope": 11124,
+                  "src": "2880:18:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -959,10 +959,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10701,
+                    "id": 11118,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2880:7:48",
+                    "src": "2880:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -972,19 +972,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2806:98:48"
+              "src": "2806:98:50"
             },
             "returnParameters": {
-              "id": 10706,
+              "id": 11123,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10705,
+                  "id": 11122,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10707,
-                  "src": "2928:7:48",
+                  "scope": 11124,
+                  "src": "2928:7:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -992,10 +992,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10704,
+                    "id": 11121,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2928:7:48",
+                    "src": "2928:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1005,10 +1005,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2927:9:48"
+              "src": "2927:9:50"
             },
-            "scope": 10742,
-            "src": "2779:158:48",
+            "scope": 11159,
+            "src": "2779:158:50",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1016,23 +1016,23 @@
           {
             "body": null,
             "documentation": "@notice It gets the current market state.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@return the current market state.",
-            "id": 10716,
+            "id": 11133,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10712,
+              "id": 11129,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10709,
+                  "id": 11126,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10716,
-                  "src": "3180:21:48",
+                  "scope": 11133,
+                  "src": "3180:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1040,10 +1040,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10708,
+                    "id": 11125,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3180:7:48",
+                    "src": "3180:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1055,11 +1055,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10711,
+                  "id": 11128,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10716,
-                  "src": "3203:23:48",
+                  "scope": 11133,
+                  "src": "3203:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1067,10 +1067,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10710,
+                    "id": 11127,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3203:7:48",
+                    "src": "3203:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1081,34 +1081,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3179:48:48"
+              "src": "3179:48:50"
             },
             "returnParameters": {
-              "id": 10715,
+              "id": 11132,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10714,
+                  "id": 11131,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10716,
-                  "src": "3275:33:48",
+                  "scope": 11133,
+                  "src": "3275:33:50",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_MarketState_$16849_memory_ptr",
+                    "typeIdentifier": "t_struct$_MarketState_$17671_memory_ptr",
                     "typeString": "struct MarketStateLib.MarketState"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 10713,
+                    "id": 11130,
                     "name": "MarketStateLib.MarketState",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 16849,
-                    "src": "3275:26:48",
+                    "referencedDeclaration": 17671,
+                    "src": "3275:26:50",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_MarketState_$16849_storage_ptr",
+                      "typeIdentifier": "t_struct$_MarketState_$17671_storage_ptr",
                       "typeString": "struct MarketStateLib.MarketState"
                     }
                   },
@@ -1116,10 +1116,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3274:35:48"
+              "src": "3274:35:50"
             },
-            "scope": 10742,
-            "src": "3161:149:48",
+            "scope": 11159,
+            "src": "3161:149:50",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1127,23 +1127,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 10723,
+            "id": 11140,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isWhitelisted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10719,
+              "id": 11136,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10718,
+                  "id": 11135,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10723,
-                  "src": "3339:15:48",
+                  "scope": 11140,
+                  "src": "3339:15:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1151,10 +1151,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10717,
+                    "id": 11134,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3339:7:48",
+                    "src": "3339:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1165,19 +1165,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3338:17:48"
+              "src": "3338:17:50"
             },
             "returnParameters": {
-              "id": 10722,
+              "id": 11139,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10721,
+                  "id": 11138,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10723,
-                  "src": "3379:4:48",
+                  "scope": 11140,
+                  "src": "3379:4:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1185,10 +1185,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 10720,
+                    "id": 11137,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3379:4:48",
+                    "src": "3379:4:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1198,10 +1198,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3378:6:48"
+              "src": "3378:6:50"
             },
-            "scope": 10742,
-            "src": "3316:69:48",
+            "scope": 11159,
+            "src": "3316:69:50",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1209,23 +1209,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 10728,
+            "id": 11145,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addWhitelisted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10726,
+              "id": 11143,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10725,
+                  "id": 11142,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10728,
-                  "src": "3415:15:48",
+                  "scope": 11145,
+                  "src": "3415:15:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1233,10 +1233,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10724,
+                    "id": 11141,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3415:7:48",
+                    "src": "3415:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1247,16 +1247,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3414:17:48"
+              "src": "3414:17:50"
             },
             "returnParameters": {
-              "id": 10727,
+              "id": 11144,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3440:0:48"
+              "src": "3440:0:50"
             },
-            "scope": 10742,
-            "src": "3391:50:48",
+            "scope": 11159,
+            "src": "3391:50:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1264,23 +1264,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 10733,
+            "id": 11150,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "removeWhitelisted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10731,
+              "id": 11148,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10730,
+                  "id": 11147,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10733,
-                  "src": "3474:15:48",
+                  "scope": 11150,
+                  "src": "3474:15:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1288,10 +1288,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10729,
+                    "id": 11146,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3474:7:48",
+                    "src": "3474:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1302,16 +1302,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3473:17:48"
+              "src": "3473:17:50"
             },
             "returnParameters": {
-              "id": 10732,
+              "id": 11149,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3499:0:48"
+              "src": "3499:0:50"
             },
-            "scope": 10742,
-            "src": "3447:53:48",
+            "scope": 11159,
+            "src": "3447:53:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1319,26 +1319,26 @@
           {
             "body": null,
             "documentation": null,
-            "id": 10736,
+            "id": 11153,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "renounceWhitelisted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10734,
+              "id": 11151,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3534:2:48"
+              "src": "3534:2:50"
             },
             "returnParameters": {
-              "id": 10735,
+              "id": 11152,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3545:0:48"
+              "src": "3545:0:50"
             },
-            "scope": 10742,
-            "src": "3506:40:48",
+            "scope": 11159,
+            "src": "3506:40:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1346,23 +1346,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 10741,
+            "id": 11158,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10739,
+              "id": 11156,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10738,
+                  "id": 11155,
                   "name": "settingsAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10741,
-                  "src": "3572:23:48",
+                  "scope": 11158,
+                  "src": "3572:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1370,10 +1370,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10737,
+                    "id": 11154,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3572:7:48",
+                    "src": "3572:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1384,64 +1384,64 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3571:25:48"
+              "src": "3571:25:50"
             },
             "returnParameters": {
-              "id": 10740,
+              "id": 11157,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3605:0:48"
+              "src": "3605:0:50"
             },
-            "scope": 10742,
-            "src": "3552:54:48",
+            "scope": 11159,
+            "src": "3552:54:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 10743,
-        "src": "235:3373:48"
+        "scope": 11160,
+        "src": "235:3373:50"
       }
     ],
-    "src": "0:3609:48"
+    "src": "0:3609:50"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/MarketsStateInterface.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/MarketsStateInterface.sol",
     "exportedSymbols": {
       "MarketsStateInterface": [
-        10742
+        11159
       ]
     },
-    "id": 10743,
+    "id": 11160,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10649,
+        "id": 11066,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:48"
+        "src": "0:23:50"
       },
       {
-        "id": 10650,
+        "id": 11067,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "24:33:48"
+        "src": "24:33:50"
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/MarketStateLib.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/MarketStateLib.sol",
         "file": "../util/MarketStateLib.sol",
-        "id": 10651,
+        "id": 11068,
         "nodeType": "ImportDirective",
-        "scope": 10743,
-        "sourceUnit": 17003,
-        "src": "59:36:48",
+        "scope": 11160,
+        "sourceUnit": 17825,
+        "src": "59:36:50",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -1451,9 +1451,9 @@
         "contractKind": "interface",
         "documentation": "@notice This interface defines the function to store and get data from different markets.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10742,
+        "id": 11159,
         "linearizedBaseContracts": [
-          10742
+          11159
         ],
         "name": "MarketsStateInterface",
         "nodeType": "ContractDefinition",
@@ -1461,23 +1461,23 @@
           {
             "body": null,
             "documentation": "@notice It increases the repayment amount for a given market.\n@notice This function is called every new repayment is received.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@param amount amount to add.",
-            "id": 10660,
+            "id": 11077,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "increaseRepayment",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10658,
+              "id": 11075,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10653,
+                  "id": 11070,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10660,
-                  "src": "615:21:48",
+                  "scope": 11077,
+                  "src": "615:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1485,10 +1485,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10652,
+                    "id": 11069,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "615:7:48",
+                    "src": "615:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1500,11 +1500,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10655,
+                  "id": 11072,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10660,
-                  "src": "646:23:48",
+                  "scope": 11077,
+                  "src": "646:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1512,10 +1512,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10654,
+                    "id": 11071,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "646:7:48",
+                    "src": "646:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1527,11 +1527,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10657,
+                  "id": 11074,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10660,
-                  "src": "679:14:48",
+                  "scope": 11077,
+                  "src": "679:14:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1539,10 +1539,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10656,
+                    "id": 11073,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "679:7:48",
+                    "src": "679:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1552,16 +1552,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "605:94:48"
+              "src": "605:94:50"
             },
             "returnParameters": {
-              "id": 10659,
+              "id": 11076,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "708:0:48"
+              "src": "708:0:50"
             },
-            "scope": 10742,
-            "src": "579:130:48",
+            "scope": 11159,
+            "src": "579:130:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1569,23 +1569,23 @@
           {
             "body": null,
             "documentation": "@notice It increases the supply amount for a given market.\n@notice This function is called every new deposit (Lenders) is received.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@param amount amount to add.",
-            "id": 10669,
+            "id": 11086,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "increaseSupply",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10667,
+              "id": 11084,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10662,
+                  "id": 11079,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10669,
-                  "src": "1059:21:48",
+                  "scope": 11086,
+                  "src": "1059:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1593,10 +1593,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10661,
+                    "id": 11078,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1059:7:48",
+                    "src": "1059:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1608,11 +1608,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10664,
+                  "id": 11081,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10669,
-                  "src": "1090:23:48",
+                  "scope": 11086,
+                  "src": "1090:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1620,10 +1620,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10663,
+                    "id": 11080,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1090:7:48",
+                    "src": "1090:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1635,11 +1635,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10666,
+                  "id": 11083,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10669,
-                  "src": "1123:14:48",
+                  "scope": 11086,
+                  "src": "1123:14:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1647,10 +1647,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10665,
+                    "id": 11082,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1123:7:48",
+                    "src": "1123:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1660,16 +1660,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1049:94:48"
+              "src": "1049:94:50"
             },
             "returnParameters": {
-              "id": 10668,
+              "id": 11085,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1152:0:48"
+              "src": "1152:0:50"
             },
-            "scope": 10742,
-            "src": "1026:127:48",
+            "scope": 11159,
+            "src": "1026:127:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1677,23 +1677,23 @@
           {
             "body": null,
             "documentation": "@notice It decreases the supply amount for a given market.\n@notice This function is called every new withdraw (Lenders) is done.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@param amount amount to decrease.",
-            "id": 10678,
+            "id": 11095,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "decreaseSupply",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10676,
+              "id": 11093,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10671,
+                  "id": 11088,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10678,
-                  "src": "1505:21:48",
+                  "scope": 11095,
+                  "src": "1505:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1701,10 +1701,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10670,
+                    "id": 11087,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1505:7:48",
+                    "src": "1505:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1716,11 +1716,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10673,
+                  "id": 11090,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10678,
-                  "src": "1536:23:48",
+                  "scope": 11095,
+                  "src": "1536:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1728,10 +1728,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10672,
+                    "id": 11089,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1536:7:48",
+                    "src": "1536:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1743,11 +1743,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10675,
+                  "id": 11092,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10678,
-                  "src": "1569:14:48",
+                  "scope": 11095,
+                  "src": "1569:14:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1755,10 +1755,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10674,
+                    "id": 11091,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1569:7:48",
+                    "src": "1569:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1768,16 +1768,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1495:94:48"
+              "src": "1495:94:50"
             },
             "returnParameters": {
-              "id": 10677,
+              "id": 11094,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1598:0:48"
+              "src": "1598:0:50"
             },
-            "scope": 10742,
-            "src": "1472:127:48",
+            "scope": 11159,
+            "src": "1472:127:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1785,23 +1785,23 @@
           {
             "body": null,
             "documentation": "@notice It increases the borrowed amount for a given market.\n@notice This function is called every new loan is taken out.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@param amount amount to add.",
-            "id": 10687,
+            "id": 11104,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "increaseBorrow",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10685,
+              "id": 11102,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10680,
+                  "id": 11097,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10687,
-                  "src": "1939:21:48",
+                  "scope": 11104,
+                  "src": "1939:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1809,10 +1809,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10679,
+                    "id": 11096,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1939:7:48",
+                    "src": "1939:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1824,11 +1824,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10682,
+                  "id": 11099,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10687,
-                  "src": "1970:23:48",
+                  "scope": 11104,
+                  "src": "1970:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1836,10 +1836,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10681,
+                    "id": 11098,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1970:7:48",
+                    "src": "1970:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1851,11 +1851,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10684,
+                  "id": 11101,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10687,
-                  "src": "2003:14:48",
+                  "scope": 11104,
+                  "src": "2003:14:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1863,10 +1863,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10683,
+                    "id": 11100,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2003:7:48",
+                    "src": "2003:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1876,16 +1876,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1929:94:48"
+              "src": "1929:94:50"
             },
             "returnParameters": {
-              "id": 10686,
+              "id": 11103,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2032:0:48"
+              "src": "2032:0:50"
             },
-            "scope": 10742,
-            "src": "1906:127:48",
+            "scope": 11159,
+            "src": "1906:127:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1893,23 +1893,23 @@
           {
             "body": null,
             "documentation": "@notice It gets the current supply-to-debt (StD) ratio for a given market.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@return the supply-to-debt ratio value.",
-            "id": 10696,
+            "id": 11113,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSupplyToDebt",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10692,
+              "id": 11109,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10689,
+                  "id": 11106,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10696,
-                  "src": "2321:21:48",
+                  "scope": 11113,
+                  "src": "2321:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1917,10 +1917,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10688,
+                    "id": 11105,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2321:7:48",
+                    "src": "2321:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1932,11 +1932,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10691,
+                  "id": 11108,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10696,
-                  "src": "2344:23:48",
+                  "scope": 11113,
+                  "src": "2344:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1944,10 +1944,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10690,
+                    "id": 11107,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2344:7:48",
+                    "src": "2344:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1958,19 +1958,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2320:48:48"
+              "src": "2320:48:50"
             },
             "returnParameters": {
-              "id": 10695,
+              "id": 11112,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10694,
+                  "id": 11111,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10696,
-                  "src": "2416:7:48",
+                  "scope": 11113,
+                  "src": "2416:7:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1978,10 +1978,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10693,
+                    "id": 11110,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2416:7:48",
+                    "src": "2416:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1991,10 +1991,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2415:9:48"
+              "src": "2415:9:50"
             },
-            "scope": 10742,
-            "src": "2296:129:48",
+            "scope": 11159,
+            "src": "2296:129:50",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2002,23 +2002,23 @@
           {
             "body": null,
             "documentation": "@notice It gets the supply-to-debt (StD) ratio for a given market, including a new loan amount.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@param loanAmount a new loan amount to consider in the ratio.\n@return the supply-to-debt ratio value.",
-            "id": 10707,
+            "id": 11124,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSupplyToDebtFor",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10703,
+              "id": 11120,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10698,
+                  "id": 11115,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10707,
-                  "src": "2816:21:48",
+                  "scope": 11124,
+                  "src": "2816:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2026,10 +2026,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10697,
+                    "id": 11114,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2816:7:48",
+                    "src": "2816:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2041,11 +2041,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10700,
+                  "id": 11117,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10707,
-                  "src": "2847:23:48",
+                  "scope": 11124,
+                  "src": "2847:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2053,10 +2053,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10699,
+                    "id": 11116,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2847:7:48",
+                    "src": "2847:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2068,11 +2068,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10702,
+                  "id": 11119,
                   "name": "loanAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10707,
-                  "src": "2880:18:48",
+                  "scope": 11124,
+                  "src": "2880:18:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2080,10 +2080,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10701,
+                    "id": 11118,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2880:7:48",
+                    "src": "2880:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2093,19 +2093,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2806:98:48"
+              "src": "2806:98:50"
             },
             "returnParameters": {
-              "id": 10706,
+              "id": 11123,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10705,
+                  "id": 11122,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10707,
-                  "src": "2928:7:48",
+                  "scope": 11124,
+                  "src": "2928:7:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2113,10 +2113,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10704,
+                    "id": 11121,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2928:7:48",
+                    "src": "2928:7:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2126,10 +2126,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2927:9:48"
+              "src": "2927:9:50"
             },
-            "scope": 10742,
-            "src": "2779:158:48",
+            "scope": 11159,
+            "src": "2779:158:50",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2137,23 +2137,23 @@
           {
             "body": null,
             "documentation": "@notice It gets the current market state.\n@param borrowedAsset borrowed asset address.\n@param collateralAsset collateral asset address.\n@return the current market state.",
-            "id": 10716,
+            "id": 11133,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getMarket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10712,
+              "id": 11129,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10709,
+                  "id": 11126,
                   "name": "borrowedAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10716,
-                  "src": "3180:21:48",
+                  "scope": 11133,
+                  "src": "3180:21:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2161,10 +2161,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10708,
+                    "id": 11125,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3180:7:48",
+                    "src": "3180:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2176,11 +2176,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10711,
+                  "id": 11128,
                   "name": "collateralAsset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10716,
-                  "src": "3203:23:48",
+                  "scope": 11133,
+                  "src": "3203:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2188,10 +2188,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10710,
+                    "id": 11127,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3203:7:48",
+                    "src": "3203:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2202,34 +2202,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3179:48:48"
+              "src": "3179:48:50"
             },
             "returnParameters": {
-              "id": 10715,
+              "id": 11132,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10714,
+                  "id": 11131,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10716,
-                  "src": "3275:33:48",
+                  "scope": 11133,
+                  "src": "3275:33:50",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_MarketState_$16849_memory_ptr",
+                    "typeIdentifier": "t_struct$_MarketState_$17671_memory_ptr",
                     "typeString": "struct MarketStateLib.MarketState"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 10713,
+                    "id": 11130,
                     "name": "MarketStateLib.MarketState",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 16849,
-                    "src": "3275:26:48",
+                    "referencedDeclaration": 17671,
+                    "src": "3275:26:50",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_MarketState_$16849_storage_ptr",
+                      "typeIdentifier": "t_struct$_MarketState_$17671_storage_ptr",
                       "typeString": "struct MarketStateLib.MarketState"
                     }
                   },
@@ -2237,10 +2237,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3274:35:48"
+              "src": "3274:35:50"
             },
-            "scope": 10742,
-            "src": "3161:149:48",
+            "scope": 11159,
+            "src": "3161:149:50",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2248,23 +2248,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 10723,
+            "id": 11140,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isWhitelisted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10719,
+              "id": 11136,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10718,
+                  "id": 11135,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10723,
-                  "src": "3339:15:48",
+                  "scope": 11140,
+                  "src": "3339:15:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2272,10 +2272,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10717,
+                    "id": 11134,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3339:7:48",
+                    "src": "3339:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2286,19 +2286,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3338:17:48"
+              "src": "3338:17:50"
             },
             "returnParameters": {
-              "id": 10722,
+              "id": 11139,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10721,
+                  "id": 11138,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10723,
-                  "src": "3379:4:48",
+                  "scope": 11140,
+                  "src": "3379:4:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2306,10 +2306,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 10720,
+                    "id": 11137,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3379:4:48",
+                    "src": "3379:4:50",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2319,10 +2319,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3378:6:48"
+              "src": "3378:6:50"
             },
-            "scope": 10742,
-            "src": "3316:69:48",
+            "scope": 11159,
+            "src": "3316:69:50",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2330,23 +2330,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 10728,
+            "id": 11145,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addWhitelisted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10726,
+              "id": 11143,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10725,
+                  "id": 11142,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10728,
-                  "src": "3415:15:48",
+                  "scope": 11145,
+                  "src": "3415:15:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2354,10 +2354,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10724,
+                    "id": 11141,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3415:7:48",
+                    "src": "3415:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2368,16 +2368,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3414:17:48"
+              "src": "3414:17:50"
             },
             "returnParameters": {
-              "id": 10727,
+              "id": 11144,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3440:0:48"
+              "src": "3440:0:50"
             },
-            "scope": 10742,
-            "src": "3391:50:48",
+            "scope": 11159,
+            "src": "3391:50:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2385,23 +2385,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 10733,
+            "id": 11150,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "removeWhitelisted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10731,
+              "id": 11148,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10730,
+                  "id": 11147,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10733,
-                  "src": "3474:15:48",
+                  "scope": 11150,
+                  "src": "3474:15:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2409,10 +2409,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10729,
+                    "id": 11146,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3474:7:48",
+                    "src": "3474:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2423,16 +2423,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3473:17:48"
+              "src": "3473:17:50"
             },
             "returnParameters": {
-              "id": 10732,
+              "id": 11149,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3499:0:48"
+              "src": "3499:0:50"
             },
-            "scope": 10742,
-            "src": "3447:53:48",
+            "scope": 11159,
+            "src": "3447:53:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2440,26 +2440,26 @@
           {
             "body": null,
             "documentation": null,
-            "id": 10736,
+            "id": 11153,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "renounceWhitelisted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10734,
+              "id": 11151,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3534:2:48"
+              "src": "3534:2:50"
             },
             "returnParameters": {
-              "id": 10735,
+              "id": 11152,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3545:0:48"
+              "src": "3545:0:50"
             },
-            "scope": 10742,
-            "src": "3506:40:48",
+            "scope": 11159,
+            "src": "3506:40:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2467,23 +2467,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 10741,
+            "id": 11158,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10739,
+              "id": 11156,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10738,
+                  "id": 11155,
                   "name": "settingsAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10741,
-                  "src": "3572:23:48",
+                  "scope": 11158,
+                  "src": "3572:23:50",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2491,10 +2491,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10737,
+                    "id": 11154,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3572:7:48",
+                    "src": "3572:7:50",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2505,34 +2505,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3571:25:48"
+              "src": "3571:25:50"
             },
             "returnParameters": {
-              "id": 10740,
+              "id": 11157,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3605:0:48"
+              "src": "3605:0:50"
             },
-            "scope": 10742,
-            "src": "3552:54:48",
+            "scope": 11159,
+            "src": "3552:54:50",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 10743,
-        "src": "235:3373:48"
+        "scope": 11160,
+        "src": "235:3373:50"
       }
     ],
-    "src": "0:3609:48"
+    "src": "0:3609:50"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.17+commit.d19bba13.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-15T23:09:49.864Z",
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2020-10-12T14:23:11.502Z",
   "devdoc": {
     "author": "develop@teller.finance",
     "methods": {
