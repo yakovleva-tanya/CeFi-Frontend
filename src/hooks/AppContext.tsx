@@ -56,7 +56,7 @@ const mergeSignInContracts = async (
   const networkId = await state.web3State.web3.eth.getChainId();
 
   if (Number(networkId) !== 1 && Number(networkId) !== 3) {
-    const teller = AppContextDefault.state.teller;
+    const teller = AppContextDefault.state.teller
     updateAppState((st: AppContextState) => ({
       ...st,
       teller,

@@ -89,9 +89,9 @@ const CollateralApproveButton = () => {
     <CustomSubmitButton
       onClickAction={async () => {
         const { web3State } = state;
-        const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-          TellerTokens.tDAI
-        ];
+        const { loansInstance } = state.teller
+          ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+          : null;
         try {
           setApproveLoading(true);
           const borrower = state.web3State.address;
@@ -152,9 +152,9 @@ const CollateralTransferButton = () => {
         }
 
         const { web3State } = state;
-        const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-          TellerTokens.tDAI
-        ];
+        const { loansInstance } = state.teller
+          ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+          : null;
         try {
           const borrower = state.web3State.address;
           const borrowerLoans = await loansInstance.getBorrowerLoans(borrower);
