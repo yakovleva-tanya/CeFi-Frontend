@@ -33,10 +33,10 @@ export const LendingApplicationMap = (
     assetReportStringified:
       bankInfoResponse &&
       JSON.stringify(bankInfoResponse.assetReportStringified),
-    assetReportSignature:
+      assetReportSignature:
       bankInfoResponse && bankInfoResponse.assetReportSignature,
-    requestTime: String(Math.floor(Date.now()/1000 - 100)),
-  };
+      requestTime: String(Math.floor(Date.now()/1000 - 100)),
+    };
   return lendingApplication as LendingApplication;
 };
 

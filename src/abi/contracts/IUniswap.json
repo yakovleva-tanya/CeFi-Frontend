@@ -7,25 +7,13 @@
         {
           "indexed": true,
           "internalType": "address",
-          "name": "from",
+          "name": "sourceToken",
           "type": "address"
         },
         {
           "indexed": true,
           "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "sourceElement",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "receivedElement",
+          "name": "destinationToken",
           "type": "address"
         },
         {
@@ -37,7 +25,7 @@
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "receivedAmount",
+          "name": "destinationAmount",
           "type": "uint256"
         }
       ],
@@ -47,16 +35,6 @@
     {
       "constant": false,
       "inputs": [
-        {
-          "internalType": "address",
-          "name": "canonicalWeth",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "routerAddress",
-          "type": "address"
-        },
         {
           "internalType": "address[]",
           "name": "path",
@@ -80,32 +58,32 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sourceElement\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"receivedElement\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"sourceAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"receivedAmount\",\"type\":\"uint256\"}],\"name\":\"UniswapSwapped\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"canonicalWeth\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"routerAddress\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"path\",\"type\":\"address[]\"},{\"internalType\":\"uint256\",\"name\":\"sourceAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"minDestination\",\"type\":\"uint256\"}],\"name\":\"swap\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"swap(address,address,address[],uint256,uint256)\":{\"details\":\"This function mainly invokes 3 Uniswap external functions: https://uniswap.org/docs/v2/smart-contracts/router02/#swapexactethfortokens https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensforeth https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensfortokens\",\"params\":{\"canonicalWeth\":\"address of the canonical WETH in the current network.\",\"minDestination\":\"The minimum amount of output tokens that must be received for the transaction not to revert.\",\"path\":\"An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\",\"routerAddress\":\"address of the Uniswap Router.\",\"sourceAmount\":\"amount of source element (ETH or Tokens) to swap.\"}}}},\"userdoc\":{\"methods\":{\"swap(address,address,address[],uint256,uint256)\":{\"notice\":\"Swaps ETH/Tokens for Tokens/ETH using the Uniswap protocol.\"}},\"notice\":\"This defines the functions available to use in the Uniswap Dapp.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/IUniswap.sol\":\"IUniswap\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/IUniswap.sol\":{\"keccak256\":\"0xc6028054a5cd60c87efd06457238bb48f8c958b04dcf9fe9d869a41323a7b5da\",\"urls\":[\"bzz-raw://a952975bd36ca7ef5655fdb2ed2e8ae108926dcc6b02e73facf789e1fbb05d17\",\"dweb:/ipfs/QmbxdpE6jiHUoosDvbjPNryasw2Faykeg3deRkgTJm6v6d\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sourceToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"destinationToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"sourceAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"destinationAmount\",\"type\":\"uint256\"}],\"name\":\"UniswapSwapped\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"path\",\"type\":\"address[]\"},{\"internalType\":\"uint256\",\"name\":\"sourceAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"minDestination\",\"type\":\"uint256\"}],\"name\":\"swap\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"swap(address[],uint256,uint256)\":{\"details\":\"This function mainly invokes 3 Uniswap external functions: https://uniswap.org/docs/v2/smart-contracts/router02/#swapexactethfortokens https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensforeth https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensfortokens\",\"params\":{\"minDestination\":\"The minimum amount of output tokens that must be received for the transaction not to revert.\",\"path\":\"An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\",\"sourceAmount\":\"amount of source token to swap.\"}}}},\"userdoc\":{\"methods\":{\"swap(address[],uint256,uint256)\":{\"notice\":\"Swaps tokens using the Uniswap protocol.\"}},\"notice\":\"This defines the functions available to use in the Uniswap Dapp.\"}},\"settings\":{\"compilationTarget\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/base/escrow/dapps/IUniswap.sol\":\"IUniswap\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/base/escrow/dapps/IUniswap.sol\":{\"keccak256\":\"0xfbd948fdcf67ec8eaf68f79b3a809912a729889a4e95cb97a66c59209d8db844\",\"urls\":[\"bzz-raw://ca0dc3136f5ad23efd2128122d21298337eae237982603966e007fc964314523\",\"dweb:/ipfs/QmdxevQ13oGy6E7GdAm7nFgghvfiQcMMAsxiJTUy1GFgBQ\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.17;\n\n/**\n    @notice This defines the functions available to use in the Uniswap Dapp.\n    @author develop@teller.finance\n */\ninterface IUniswap {\n    /**\n        @notice Swaps ETH/Tokens for Tokens/ETH using the Uniswap protocol.\n        @param canonicalWeth address of the canonical WETH in the current network.\n        @param routerAddress address of the Uniswap Router.\n        @param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n        @param sourceAmount amount of source element (ETH or Tokens) to swap.\n        @param minDestination The minimum amount of output tokens that must be received for the transaction not to revert.\n        @dev This function mainly invokes 3 Uniswap external functions:\n            https://uniswap.org/docs/v2/smart-contracts/router02/#swapexactethfortokens\n            https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensforeth\n            https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensfortokens\n     */\n    function swap(\n        address canonicalWeth,\n        address routerAddress,\n        address[] calldata path,\n        uint256 sourceAmount,\n        uint256 minDestination\n    ) external;\n\n    /**\n        @notice Event emmitted every time a successful swap has taken place. \n        @param from address where source element will be deducted.\n        @param to destination address where elements will be sent to.\n        @param sourceElement source element (ETH or Token) address.\n        @param receivedElement received element (ETH or Token) address.\n        @param sourceAmount element (ETH or Token) amount sent.\n        @param receivedAmount element (ETH or Token) amount received.\n     */\n    event UniswapSwapped(\n        address indexed from,\n        address indexed to,\n        address indexed sourceElement,\n        address receivedElement,\n        uint256 sourceAmount,\n        uint256 receivedAmount\n    );\n}\n",
-  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/IUniswap.sol",
+  "source": "pragma solidity 0.5.17;\n\n/**\n    @notice This defines the functions available to use in the Uniswap Dapp.\n    @author develop@teller.finance\n */\ninterface IUniswap {\n    /**\n        @notice Swaps tokens using the Uniswap protocol.\n        @param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n        @param sourceAmount amount of source token to swap.\n        @param minDestination The minimum amount of output tokens that must be received for the transaction not to revert.\n        @dev This function mainly invokes 3 Uniswap external functions:\n            https://uniswap.org/docs/v2/smart-contracts/router02/#swapexactethfortokens\n            https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensforeth\n            https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensfortokens\n     */\n    function swap(\n        address[] calldata path,\n        uint256 sourceAmount,\n        uint256 minDestination\n    ) external;\n\n    /**\n        @notice Event emmitted every time a successful swap has taken place. \n        @param sourceToken source token address.\n        @param destinationToken destination address.\n        @param sourceAmount source amount sent.\n        @param destinationAmount destination amount received.\n     */\n    event UniswapSwapped(\n        address indexed sourceToken,\n        address indexed destinationToken,\n        uint256 sourceAmount,\n        uint256 destinationAmount\n    );\n}\n",
+  "sourcePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/base/escrow/dapps/IUniswap.sol",
   "ast": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/IUniswap.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/base/escrow/dapps/IUniswap.sol",
     "exportedSymbols": {
       "IUniswap": [
-        10040
+        10045
       ]
     },
-    "id": 10041,
+    "id": 10046,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10011,
+        "id": 10024,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:40"
+        "src": "0:23:37"
       },
       {
         "baseContracts": [],
@@ -113,87 +91,33 @@
         "contractKind": "interface",
         "documentation": "@notice This defines the functions available to use in the Uniswap Dapp.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10040,
+        "id": 10045,
         "linearizedBaseContracts": [
-          10040
+          10045
         ],
         "name": "IUniswap",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
-            "documentation": "@notice Swaps ETH/Tokens for Tokens/ETH using the Uniswap protocol.\n@param canonicalWeth address of the canonical WETH in the current network.\n@param routerAddress address of the Uniswap Router.\n@param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n@param sourceAmount amount of source element (ETH or Tokens) to swap.\n@param minDestination The minimum amount of output tokens that must be received for the transaction not to revert.\n@dev This function mainly invokes 3 Uniswap external functions:\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexactethfortokens\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensforeth\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensfortokens",
-            "id": 10025,
+            "documentation": "@notice Swaps tokens using the Uniswap protocol.\n@param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n@param sourceAmount amount of source token to swap.\n@param minDestination The minimum amount of output tokens that must be received for the transaction not to revert.\n@dev This function mainly invokes 3 Uniswap external functions:\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexactethfortokens\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensforeth\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensfortokens",
+            "id": 10034,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "swap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10023,
+              "id": 10032,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10013,
-                  "name": "canonicalWeth",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10025,
-                  "src": "1119:21:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10012,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1119:7:40",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10015,
-                  "name": "routerAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10025,
-                  "src": "1150:21:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10014,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1150:7:40",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10018,
+                  "id": 10027,
                   "name": "path",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10025,
-                  "src": "1181:23:40",
+                  "scope": 10034,
+                  "src": "939:23:37",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -202,20 +126,20 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 10016,
+                      "id": 10025,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1181:7:40",
+                      "src": "939:7:37",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "id": 10017,
+                    "id": 10026,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1181:9:40",
+                    "src": "939:9:37",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
@@ -226,132 +150,25 @@
                 },
                 {
                   "constant": false,
-                  "id": 10020,
+                  "id": 10029,
                   "name": "sourceAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10025,
-                  "src": "1214:20:40",
+                  "scope": 10034,
+                  "src": "972:20:37",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 10019,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1214:7:40",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10022,
-                  "name": "minDestination",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10025,
-                  "src": "1244:22:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 10021,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1244:7:40",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1109:163:40"
-            },
-            "returnParameters": {
-              "id": 10024,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1281:0:40"
-            },
-            "scope": 10040,
-            "src": "1096:186:40",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "anonymous": false,
-            "documentation": "@notice Event emmitted every time a successful swap has taken place. \n@param from address where source element will be deducted.\n@param to destination address where elements will be sent to.\n@param sourceElement source element (ETH or Token) address.\n@param receivedElement received element (ETH or Token) address.\n@param sourceAmount element (ETH or Token) amount sent.\n@param receivedAmount element (ETH or Token) amount received.",
-            "id": 10039,
-            "name": "UniswapSwapped",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 10038,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10027,
-                  "indexed": true,
-                  "name": "from",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1823:20:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10026,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1823:7:40",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10029,
-                  "indexed": true,
-                  "name": "to",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1853:18:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
                   },
                   "typeName": {
                     "id": 10028,
-                    "name": "address",
+                    "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1853:7:40",
-                    "stateMutability": "nonpayable",
+                    "src": "972:7:37",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     }
                   },
                   "value": null,
@@ -360,105 +177,21 @@
                 {
                   "constant": false,
                   "id": 10031,
-                  "indexed": true,
-                  "name": "sourceElement",
+                  "name": "minDestination",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1881:29:40",
+                  "scope": 10034,
+                  "src": "1002:22:37",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   },
                   "typeName": {
                     "id": 10030,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1881:7:40",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10033,
-                  "indexed": false,
-                  "name": "receivedElement",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1920:23:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10032,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1920:7:40",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10035,
-                  "indexed": false,
-                  "name": "sourceAmount",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1953:20:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 10034,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1953:7:40",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10037,
-                  "indexed": false,
-                  "name": "receivedAmount",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1983:22:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 10036,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1983:7:40",
+                    "src": "1002:7:37",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -468,36 +201,171 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1813:198:40"
+              "src": "929:101:37"
             },
-            "src": "1793:219:40"
+            "returnParameters": {
+              "id": 10033,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1039:0:37"
+            },
+            "scope": 10045,
+            "src": "916:124:37",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Event emmitted every time a successful swap has taken place. \n@param sourceToken source token address.\n@param destinationToken destination address.\n@param sourceAmount source amount sent.\n@param destinationAmount destination amount received.",
+            "id": 10044,
+            "name": "UniswapSwapped",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10043,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10036,
+                  "indexed": true,
+                  "name": "sourceToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10044,
+                  "src": "1382:27:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10035,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1382:7:37",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10038,
+                  "indexed": true,
+                  "name": "destinationToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10044,
+                  "src": "1419:32:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10037,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1419:7:37",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10040,
+                  "indexed": false,
+                  "name": "sourceAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10044,
+                  "src": "1461:20:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10039,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1461:7:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10042,
+                  "indexed": false,
+                  "name": "destinationAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10044,
+                  "src": "1491:25:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10041,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1491:7:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1372:150:37"
+            },
+            "src": "1352:171:37"
           }
         ],
-        "scope": 10041,
-        "src": "145:1869:40"
+        "scope": 10046,
+        "src": "145:1380:37"
       }
     ],
-    "src": "0:2015:40"
+    "src": "0:1526:37"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/base/escrow/dapps/IUniswap.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/base/escrow/dapps/IUniswap.sol",
     "exportedSymbols": {
       "IUniswap": [
-        10040
+        10045
       ]
     },
-    "id": 10041,
+    "id": 10046,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10011,
+        "id": 10024,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:40"
+        "src": "0:23:37"
       },
       {
         "baseContracts": [],
@@ -505,87 +373,33 @@
         "contractKind": "interface",
         "documentation": "@notice This defines the functions available to use in the Uniswap Dapp.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10040,
+        "id": 10045,
         "linearizedBaseContracts": [
-          10040
+          10045
         ],
         "name": "IUniswap",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
-            "documentation": "@notice Swaps ETH/Tokens for Tokens/ETH using the Uniswap protocol.\n@param canonicalWeth address of the canonical WETH in the current network.\n@param routerAddress address of the Uniswap Router.\n@param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n@param sourceAmount amount of source element (ETH or Tokens) to swap.\n@param minDestination The minimum amount of output tokens that must be received for the transaction not to revert.\n@dev This function mainly invokes 3 Uniswap external functions:\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexactethfortokens\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensforeth\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensfortokens",
-            "id": 10025,
+            "documentation": "@notice Swaps tokens using the Uniswap protocol.\n@param path An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.\n@param sourceAmount amount of source token to swap.\n@param minDestination The minimum amount of output tokens that must be received for the transaction not to revert.\n@dev This function mainly invokes 3 Uniswap external functions:\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexactethfortokens\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensforeth\nhttps://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensfortokens",
+            "id": 10034,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "swap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10023,
+              "id": 10032,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10013,
-                  "name": "canonicalWeth",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10025,
-                  "src": "1119:21:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10012,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1119:7:40",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10015,
-                  "name": "routerAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10025,
-                  "src": "1150:21:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10014,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1150:7:40",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10018,
+                  "id": 10027,
                   "name": "path",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10025,
-                  "src": "1181:23:40",
+                  "scope": 10034,
+                  "src": "939:23:37",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -594,20 +408,20 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 10016,
+                      "id": 10025,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1181:7:40",
+                      "src": "939:7:37",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "id": 10017,
+                    "id": 10026,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1181:9:40",
+                    "src": "939:9:37",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
@@ -618,132 +432,25 @@
                 },
                 {
                   "constant": false,
-                  "id": 10020,
+                  "id": 10029,
                   "name": "sourceAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10025,
-                  "src": "1214:20:40",
+                  "scope": 10034,
+                  "src": "972:20:37",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 10019,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1214:7:40",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10022,
-                  "name": "minDestination",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10025,
-                  "src": "1244:22:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 10021,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1244:7:40",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1109:163:40"
-            },
-            "returnParameters": {
-              "id": 10024,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1281:0:40"
-            },
-            "scope": 10040,
-            "src": "1096:186:40",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "anonymous": false,
-            "documentation": "@notice Event emmitted every time a successful swap has taken place. \n@param from address where source element will be deducted.\n@param to destination address where elements will be sent to.\n@param sourceElement source element (ETH or Token) address.\n@param receivedElement received element (ETH or Token) address.\n@param sourceAmount element (ETH or Token) amount sent.\n@param receivedAmount element (ETH or Token) amount received.",
-            "id": 10039,
-            "name": "UniswapSwapped",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 10038,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 10027,
-                  "indexed": true,
-                  "name": "from",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1823:20:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10026,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1823:7:40",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10029,
-                  "indexed": true,
-                  "name": "to",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1853:18:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
                   },
                   "typeName": {
                     "id": 10028,
-                    "name": "address",
+                    "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1853:7:40",
-                    "stateMutability": "nonpayable",
+                    "src": "972:7:37",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     }
                   },
                   "value": null,
@@ -752,105 +459,21 @@
                 {
                   "constant": false,
                   "id": 10031,
-                  "indexed": true,
-                  "name": "sourceElement",
+                  "name": "minDestination",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1881:29:40",
+                  "scope": 10034,
+                  "src": "1002:22:37",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   },
                   "typeName": {
                     "id": 10030,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1881:7:40",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10033,
-                  "indexed": false,
-                  "name": "receivedElement",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1920:23:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 10032,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1920:7:40",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10035,
-                  "indexed": false,
-                  "name": "sourceAmount",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1953:20:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 10034,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1953:7:40",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 10037,
-                  "indexed": false,
-                  "name": "receivedAmount",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 10039,
-                  "src": "1983:22:40",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 10036,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1983:7:40",
+                    "src": "1002:7:37",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -860,43 +483,176 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1813:198:40"
+              "src": "929:101:37"
             },
-            "src": "1793:219:40"
+            "returnParameters": {
+              "id": 10033,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1039:0:37"
+            },
+            "scope": 10045,
+            "src": "916:124:37",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Event emmitted every time a successful swap has taken place. \n@param sourceToken source token address.\n@param destinationToken destination address.\n@param sourceAmount source amount sent.\n@param destinationAmount destination amount received.",
+            "id": 10044,
+            "name": "UniswapSwapped",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10043,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10036,
+                  "indexed": true,
+                  "name": "sourceToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10044,
+                  "src": "1382:27:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10035,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1382:7:37",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10038,
+                  "indexed": true,
+                  "name": "destinationToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10044,
+                  "src": "1419:32:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10037,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1419:7:37",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10040,
+                  "indexed": false,
+                  "name": "sourceAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10044,
+                  "src": "1461:20:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10039,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1461:7:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10042,
+                  "indexed": false,
+                  "name": "destinationAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10044,
+                  "src": "1491:25:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10041,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1491:7:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1372:150:37"
+            },
+            "src": "1352:171:37"
           }
         ],
-        "scope": 10041,
-        "src": "145:1869:40"
+        "scope": 10046,
+        "src": "145:1380:37"
       }
     ],
-    "src": "0:2015:40"
+    "src": "0:1526:37"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.17+commit.d19bba13.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-06T02:15:12.183Z",
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2020-10-12T14:23:11.489Z",
   "devdoc": {
     "author": "develop@teller.finance",
     "methods": {
-      "swap(address,address,address[],uint256,uint256)": {
+      "swap(address[],uint256,uint256)": {
         "details": "This function mainly invokes 3 Uniswap external functions: https://uniswap.org/docs/v2/smart-contracts/router02/#swapexactethfortokens https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensforeth https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensfortokens",
         "params": {
-          "canonicalWeth": "address of the canonical WETH in the current network.",
           "minDestination": "The minimum amount of output tokens that must be received for the transaction not to revert.",
           "path": "An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.",
-          "routerAddress": "address of the Uniswap Router.",
-          "sourceAmount": "amount of source element (ETH or Tokens) to swap."
+          "sourceAmount": "amount of source token to swap."
         }
       }
     }
   },
   "userdoc": {
     "methods": {
-      "swap(address,address,address[],uint256,uint256)": {
-        "notice": "Swaps ETH/Tokens for Tokens/ETH using the Uniswap protocol."
+      "swap(address[],uint256,uint256)": {
+        "notice": "Swaps tokens using the Uniswap protocol."
       }
     },
     "notice": "This defines the functions available to use in the Uniswap Dapp."

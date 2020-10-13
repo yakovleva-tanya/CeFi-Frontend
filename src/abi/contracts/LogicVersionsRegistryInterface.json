@@ -299,72 +299,72 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"logic\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"version\",\"type\":\"uint256\"}],\"name\":\"LogicVersionCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"lastLogic\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"lastVersion\",\"type\":\"uint256\"}],\"name\":\"LogicVersionRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldLogic\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newLogic\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"oldVersion\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newVersion\",\"type\":\"uint256\"}],\"name\":\"LogicVersionUpdated\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[],\"name\":\"consts\",\"outputs\":[{\"internalType\":\"contract LogicVersionsConsts\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"logic\",\"type\":\"address\"}],\"name\":\"createLogicVersion\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"logic\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"}],\"internalType\":\"struct TellerCommon.LogicVersionRequest[]\",\"name\":\"newLogicVersions\",\"type\":\"tuple[]\"}],\"name\":\"createLogicVersions\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"}],\"name\":\"getLogicVersion\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"logic\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"version\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"exists\",\"type\":\"bool\"}],\"internalType\":\"struct LogicVersionLib.LogicVersion\",\"name\":\"\",\"type\":\"tuple\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"}],\"name\":\"getLogicVersionAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"}],\"name\":\"hasLogicVersion\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"}],\"name\":\"removeLogicVersion\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"newLogic\",\"type\":\"address\"}],\"name\":\"updateLogicAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"createLogicVersion(bytes32,address)\":{\"params\":{\"logic\":\"the logic address value for the given logic name.\",\"logicName\":\"logic name to create.\"}},\"createLogicVersions((address,bytes32)[])\":{\"params\":{\"newLogicVersions\":\"lists of the new logic versions to create.\"}},\"getLogicVersion(bytes32)\":{\"params\":{\"logicName\":\"to get.\"},\"return\":\"the current logic version.\"},\"getLogicVersionAddress(bytes32)\":{\"params\":{\"logicName\":\"to get.\"},\"return\":\"the current logic address.\"},\"hasLogicVersion(bytes32)\":{\"params\":{\"logicName\":\"logic name to test.\"},\"return\":\"true if the logic version is already configured. Otherwise it returns false.\"},\"initialize(address)\":{\"params\":{\"settingsAddress\":\"the settings contract address.\"}},\"removeLogicVersion(bytes32)\":{\"params\":{\"logicName\":\"logic name to remove.\"}},\"updateLogicAddress(bytes32,address)\":{\"params\":{\"logicName\":\"logic name to update.\",\"newLogic\":\"the new logic address to set.\"}}}},\"userdoc\":{\"methods\":{\"consts()\":{\"notice\":\"External Functions \"},\"createLogicVersion(bytes32,address)\":{\"notice\":\"It creates a new logic version given a logic name and address.\"},\"createLogicVersions((address,bytes32)[])\":{\"notice\":\"It creates multiple logic versions.\"},\"getLogicVersion(bytes32)\":{\"notice\":\"It gets the current logic version for a given logic name.\"},\"getLogicVersionAddress(bytes32)\":{\"notice\":\"It gets the current logic address for a given logic name.\"},\"hasLogicVersion(bytes32)\":{\"notice\":\"It tests whether a logic name is already configured.\"},\"initialize(address)\":{\"notice\":\"It initializes this logic versions registry contract instance.\"},\"removeLogicVersion(bytes32)\":{\"notice\":\"It removes a current logic version given a logic name.\"},\"updateLogicAddress(bytes32,address)\":{\"notice\":\"It update a current logic address given a logic name.\"}},\"notice\":\"It defines all the functions to manage the logic contract versions.\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol\":\"LogicVersionsRegistryInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol\":{\"keccak256\":\"0x871da1c39455ad829fdff0eb86a3d069e041f03b9dfab82136719c2c2923b926\",\"urls\":[\"bzz-raw://aca54977104d1152ecfecf39465a34148236b1d973a339c442963dabf68dd05b\",\"dweb:/ipfs/QmeKnxn9hB3aLqgWPLFhCEuxySTUF1LA1tbCo8tGyhppxV\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionLib.sol\":{\"keccak256\":\"0xf4caad9e4d96afe2721124eaf7203bb4e3a97beb3664c63297c4e68523f5bd65\",\"urls\":[\"bzz-raw://dcd6f564423c2cf83f3a56120f43eb6fd9f6e852cbb615be657f89e5114debf4\",\"dweb:/ipfs/QmRZStVoa5KbYRCHpzC7h998NnRhbFHfUZ71TRTiLzMTcX\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionsConsts.sol\":{\"keccak256\":\"0xe49711d0c8193559f76dc5f399344c8f5f5e6a8b99bf78c6bcfd9aa1c456c306\",\"urls\":[\"bzz-raw://c6432c082145470691dfde04bf5c4220ccc32a5dccf6520c3122e47e470e6c22\",\"dweb:/ipfs/Qmd97DA5SB3d8Cuwf5M6vLtfDLHYXrMj5d3cXkYPP7iPpU\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0x9574ec7b6ec8d2072b6276a0873ec2e27fc8262ed61ccbb7a3ffc20ac7dfc323\",\"urls\":[\"bzz-raw://25ba0147fb05f281e7d0b601f116e805d563a516223041ff5660b43a5f448385\",\"dweb:/ipfs/QmcvfSjqEZpd7gfXFvBm39sV8RFtzJA81X59StgMgdc21t\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"@openzeppelin/contracts-ethereum-package/contracts/utils/Address.sol\":{\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\",\"urls\":[\"bzz-raw://03335b7b07c7c8c8d613cfdd8ec39a0b5ec133ee510bf2fe6cc5a496767bef4b\",\"dweb:/ipfs/Qmebp4nzPja645c9yXSdJkGq96oU3am3LUnG2K3R7XxyKf\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"logic\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"version\",\"type\":\"uint256\"}],\"name\":\"LogicVersionCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"lastLogic\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"lastVersion\",\"type\":\"uint256\"}],\"name\":\"LogicVersionRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldLogic\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newLogic\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"oldVersion\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newVersion\",\"type\":\"uint256\"}],\"name\":\"LogicVersionUpdated\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[],\"name\":\"consts\",\"outputs\":[{\"internalType\":\"contract LogicVersionsConsts\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"logic\",\"type\":\"address\"}],\"name\":\"createLogicVersion\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"logic\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"}],\"internalType\":\"struct TellerCommon.LogicVersionRequest[]\",\"name\":\"newLogicVersions\",\"type\":\"tuple[]\"}],\"name\":\"createLogicVersions\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"}],\"name\":\"getLogicVersion\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"logic\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"version\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"exists\",\"type\":\"bool\"}],\"internalType\":\"struct LogicVersionLib.LogicVersion\",\"name\":\"\",\"type\":\"tuple\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"}],\"name\":\"getLogicVersionAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"}],\"name\":\"hasLogicVersion\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"}],\"name\":\"removeLogicVersion\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"logicName\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"newLogic\",\"type\":\"address\"}],\"name\":\"updateLogicAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"createLogicVersion(bytes32,address)\":{\"params\":{\"logic\":\"the logic address value for the given logic name.\",\"logicName\":\"logic name to create.\"}},\"createLogicVersions((address,bytes32)[])\":{\"params\":{\"newLogicVersions\":\"lists of the new logic versions to create.\"}},\"getLogicVersion(bytes32)\":{\"params\":{\"logicName\":\"to get.\"},\"return\":\"the current logic version.\"},\"getLogicVersionAddress(bytes32)\":{\"params\":{\"logicName\":\"to get.\"},\"return\":\"the current logic address.\"},\"hasLogicVersion(bytes32)\":{\"params\":{\"logicName\":\"logic name to test.\"},\"return\":\"true if the logic version is already configured. Otherwise it returns false.\"},\"initialize(address)\":{\"params\":{\"settingsAddress\":\"the settings contract address.\"}},\"removeLogicVersion(bytes32)\":{\"params\":{\"logicName\":\"logic name to remove.\"}},\"updateLogicAddress(bytes32,address)\":{\"params\":{\"logicName\":\"logic name to update.\",\"newLogic\":\"the new logic address to set.\"}}}},\"userdoc\":{\"methods\":{\"consts()\":{\"notice\":\"External Functions \"},\"createLogicVersion(bytes32,address)\":{\"notice\":\"It creates a new logic version given a logic name and address.\"},\"createLogicVersions((address,bytes32)[])\":{\"notice\":\"It creates multiple logic versions.\"},\"getLogicVersion(bytes32)\":{\"notice\":\"It gets the current logic version for a given logic name.\"},\"getLogicVersionAddress(bytes32)\":{\"notice\":\"It gets the current logic address for a given logic name.\"},\"hasLogicVersion(bytes32)\":{\"notice\":\"It tests whether a logic name is already configured.\"},\"initialize(address)\":{\"notice\":\"It initializes this logic versions registry contract instance.\"},\"removeLogicVersion(bytes32)\":{\"notice\":\"It removes a current logic version given a logic name.\"},\"updateLogicAddress(bytes32,address)\":{\"notice\":\"It update a current logic address given a logic name.\"}},\"notice\":\"It defines all the functions to manage the logic contract versions.\"}},\"settings\":{\"compilationTarget\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol\":\"LogicVersionsRegistryInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol\":{\"keccak256\":\"0x871da1c39455ad829fdff0eb86a3d069e041f03b9dfab82136719c2c2923b926\",\"urls\":[\"bzz-raw://aca54977104d1152ecfecf39465a34148236b1d973a339c442963dabf68dd05b\",\"dweb:/ipfs/QmeKnxn9hB3aLqgWPLFhCEuxySTUF1LA1tbCo8tGyhppxV\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/LogicVersionLib.sol\":{\"keccak256\":\"0xf4caad9e4d96afe2721124eaf7203bb4e3a97beb3664c63297c4e68523f5bd65\",\"urls\":[\"bzz-raw://dcd6f564423c2cf83f3a56120f43eb6fd9f6e852cbb615be657f89e5114debf4\",\"dweb:/ipfs/QmRZStVoa5KbYRCHpzC7h998NnRhbFHfUZ71TRTiLzMTcX\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/LogicVersionsConsts.sol\":{\"keccak256\":\"0xe49711d0c8193559f76dc5f399344c8f5f5e6a8b99bf78c6bcfd9aa1c456c306\",\"urls\":[\"bzz-raw://c6432c082145470691dfde04bf5c4220ccc32a5dccf6520c3122e47e470e6c22\",\"dweb:/ipfs/Qmd97DA5SB3d8Cuwf5M6vLtfDLHYXrMj5d3cXkYPP7iPpU\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0x61d5a58019963b5b4394aa040d8661167da0aef0912cc7133dbc917a38a74698\",\"urls\":[\"bzz-raw://f2a48c517cbebc7ca530aced250a5389cba74ca1d16137b3b38116b1afd428b9\",\"dweb:/ipfs/QmcReNoiEiR3wvVVwwY6u6fQMTZivYtBn7uhMm3ud219Di\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"@openzeppelin/contracts-ethereum-package/contracts/utils/Address.sol\":{\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\",\"urls\":[\"bzz-raw://03335b7b07c7c8c8d613cfdd8ec39a0b5ec133ee510bf2fe6cc5a496767bef4b\",\"dweb:/ipfs/Qmebp4nzPja645c9yXSdJkGq96oU3am3LUnG2K3R7XxyKf\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.5.17;\npragma experimental ABIEncoderV2;\n\n// Commons\nimport \"../util/LogicVersionLib.sol\";\nimport \"../util/LogicVersionsConsts.sol\";\nimport \"../util/TellerCommon.sol\";\n\n/**\n    @notice It defines all the functions to manage the logic contract versions.\n\n    @author develop@teller.finance\n */\ninterface LogicVersionsRegistryInterface {\n    /**\n        @notice This event is emitted when a new logic version is created.\n        @param logicName new logic name.\n        @param sender address that created it.\n        @param logic address where the logic is.\n        @param version initial version for the logic address.\n     */\n    event LogicVersionCreated(\n        bytes32 indexed logicName,\n        address indexed sender,\n        address indexed logic,\n        uint256 version\n    );\n\n    /**\n        @notice This event is emitted when a current logic version is removed.\n        @param logicName new logic name.\n        @param sender address that removed it.\n        @param lastLogic last logic address where the logic was.\n        @param lastVersion last version for the logic address.\n     */\n    event LogicVersionRemoved(\n        bytes32 indexed logicName,\n        address indexed sender,\n        address lastLogic,\n        uint256 lastVersion\n    );\n\n    /**\n        @notice This event is emitted when a new logic version is updated.\n        @param logicName new logic name.\n        @param sender address that updated it.\n        @param oldLogic the old logic address.\n        @param newLogic the new logic address.\n        @param oldVersion the old version.\n        @param newVersion the new version.\n     */\n    event LogicVersionUpdated(\n        bytes32 indexed logicName,\n        address indexed sender,\n        address oldLogic,\n        address newLogic,\n        uint256 oldVersion,\n        uint256 newVersion\n    );\n\n    /** External Functions */\n\n    function consts() external returns (LogicVersionsConsts);\n\n    /**\n        @notice It creates a new logic version given a logic name and address.\n        @param logicName logic name to create.\n        @param logic the logic address value for the given logic name.\n     */\n    function createLogicVersion(bytes32 logicName, address logic) external;\n\n    /**\n        @notice It creates multiple logic versions.\n        @param newLogicVersions lists of the new logic versions to create.\n     */\n    function createLogicVersions(\n        TellerCommon.LogicVersionRequest[] calldata newLogicVersions\n    ) external;\n\n    /**\n        @notice It update a current logic address given a logic name.\n        @param logicName logic name to update.\n        @param newLogic the new logic address to set.\n     */\n    function updateLogicAddress(bytes32 logicName, address newLogic) external;\n\n    /**\n        @notice It removes a current logic version given a logic name.\n        @param logicName logic name to remove.\n     */\n    function removeLogicVersion(bytes32 logicName) external;\n\n    /**\n        @notice It gets the current logic version for a given logic name.\n        @param logicName to get.\n        @return the current logic version.\n     */\n    function getLogicVersion(bytes32 logicName)\n        external\n        view\n        returns (LogicVersionLib.LogicVersion memory);\n\n    /**\n        @notice It gets the current logic address for a given logic name.\n        @param logicName to get.\n        @return the current logic address.\n     */\n    function getLogicVersionAddress(bytes32 logicName) external view returns (address);\n\n    /**\n        @notice It tests whether a logic name is already configured.\n        @param logicName logic name to test.\n        @return true if the logic version is already configured. Otherwise it returns false.\n     */\n    function hasLogicVersion(bytes32 logicName) external view returns (bool);\n\n    /**\n        @notice It initializes this logic versions registry contract instance.\n        @param settingsAddress the settings contract address.\n     */\n    function initialize(address settingsAddress) external;\n}\n",
-  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol",
+  "sourcePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol",
   "ast": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol",
     "exportedSymbols": {
       "LogicVersionsRegistryInterface": [
-        10563
+        10983
       ]
     },
-    "id": 10564,
+    "id": 10984,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10468,
+        "id": 10888,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:46"
+        "src": "0:23:48"
       },
       {
-        "id": 10469,
+        "id": 10889,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "24:33:46"
+        "src": "24:33:48"
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionLib.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/LogicVersionLib.sol",
         "file": "../util/LogicVersionLib.sol",
-        "id": 10470,
+        "id": 10890,
         "nodeType": "ImportDirective",
-        "scope": 10564,
-        "sourceUnit": 16812,
-        "src": "70:37:46",
+        "scope": 10984,
+        "sourceUnit": 17602,
+        "src": "70:37:48",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionsConsts.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/LogicVersionsConsts.sol",
         "file": "../util/LogicVersionsConsts.sol",
-        "id": 10471,
+        "id": 10891,
         "nodeType": "ImportDirective",
-        "scope": 10564,
-        "sourceUnit": 16866,
-        "src": "108:41:46",
+        "scope": 10984,
+        "sourceUnit": 17656,
+        "src": "108:41:48",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol",
         "file": "../util/TellerCommon.sol",
-        "id": 10472,
+        "id": 10892,
         "nodeType": "ImportDirective",
-        "scope": 10564,
-        "sourceUnit": 17606,
-        "src": "150:34:46",
+        "scope": 10984,
+        "sourceUnit": 18425,
+        "src": "150:34:48",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -374,9 +374,9 @@
         "contractKind": "interface",
         "documentation": "@notice It defines all the functions to manage the logic contract versions.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10563,
+        "id": 10983,
         "linearizedBaseContracts": [
-          10563
+          10983
         ],
         "name": "LogicVersionsRegistryInterface",
         "nodeType": "ContractDefinition",
@@ -384,21 +384,21 @@
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when a new logic version is created.\n@param logicName new logic name.\n@param sender address that created it.\n@param logic address where the logic is.\n@param version initial version for the logic address.",
-            "id": 10482,
+            "id": 10902,
             "name": "LogicVersionCreated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10481,
+              "id": 10901,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10474,
+                  "id": 10894,
                   "indexed": true,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10482,
-                  "src": "682:25:46",
+                  "scope": 10902,
+                  "src": "682:25:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -406,10 +406,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10473,
+                    "id": 10893,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "682:7:46",
+                    "src": "682:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -420,12 +420,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10476,
+                  "id": 10896,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10482,
-                  "src": "717:22:46",
+                  "scope": 10902,
+                  "src": "717:22:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -433,10 +433,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10475,
+                    "id": 10895,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "717:7:46",
+                    "src": "717:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -448,12 +448,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10478,
+                  "id": 10898,
                   "indexed": true,
                   "name": "logic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10482,
-                  "src": "749:21:46",
+                  "scope": 10902,
+                  "src": "749:21:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -461,10 +461,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10477,
+                    "id": 10897,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "749:7:46",
+                    "src": "749:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -476,12 +476,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10480,
+                  "id": 10900,
                   "indexed": false,
                   "name": "version",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10482,
-                  "src": "780:15:46",
+                  "scope": 10902,
+                  "src": "780:15:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -489,10 +489,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10479,
+                    "id": 10899,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "780:7:46",
+                    "src": "780:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -502,28 +502,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "672:129:46"
+              "src": "672:129:48"
             },
-            "src": "647:155:46"
+            "src": "647:155:48"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when a current logic version is removed.\n@param logicName new logic name.\n@param sender address that removed it.\n@param lastLogic last logic address where the logic was.\n@param lastVersion last version for the logic address.",
-            "id": 10492,
+            "id": 10912,
             "name": "LogicVersionRemoved",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10491,
+              "id": 10911,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10484,
+                  "id": 10904,
                   "indexed": true,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10492,
-                  "src": "1154:25:46",
+                  "scope": 10912,
+                  "src": "1154:25:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -531,10 +531,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10483,
+                    "id": 10903,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1154:7:46",
+                    "src": "1154:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -545,12 +545,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10486,
+                  "id": 10906,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10492,
-                  "src": "1189:22:46",
+                  "scope": 10912,
+                  "src": "1189:22:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -558,10 +558,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10485,
+                    "id": 10905,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1189:7:46",
+                    "src": "1189:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -573,12 +573,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10488,
+                  "id": 10908,
                   "indexed": false,
                   "name": "lastLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10492,
-                  "src": "1221:17:46",
+                  "scope": 10912,
+                  "src": "1221:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -586,10 +586,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10487,
+                    "id": 10907,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1221:7:46",
+                    "src": "1221:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -601,12 +601,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10490,
+                  "id": 10910,
                   "indexed": false,
                   "name": "lastVersion",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10492,
-                  "src": "1248:19:46",
+                  "scope": 10912,
+                  "src": "1248:19:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -614,10 +614,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10489,
+                    "id": 10909,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1248:7:46",
+                    "src": "1248:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -627,28 +627,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1144:129:46"
+              "src": "1144:129:48"
             },
-            "src": "1119:155:46"
+            "src": "1119:155:48"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when a new logic version is updated.\n@param logicName new logic name.\n@param sender address that updated it.\n@param oldLogic the old logic address.\n@param newLogic the new logic address.\n@param oldVersion the old version.\n@param newVersion the new version.",
-            "id": 10506,
+            "id": 10926,
             "name": "LogicVersionUpdated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10505,
+              "id": 10925,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10494,
+                  "id": 10914,
                   "indexed": true,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1674:25:46",
+                  "scope": 10926,
+                  "src": "1674:25:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -656,10 +656,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10493,
+                    "id": 10913,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1674:7:46",
+                    "src": "1674:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -670,12 +670,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10496,
+                  "id": 10916,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1709:22:46",
+                  "scope": 10926,
+                  "src": "1709:22:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -683,10 +683,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10495,
+                    "id": 10915,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1709:7:46",
+                    "src": "1709:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -698,12 +698,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10498,
+                  "id": 10918,
                   "indexed": false,
                   "name": "oldLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1741:16:46",
+                  "scope": 10926,
+                  "src": "1741:16:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -711,10 +711,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10497,
+                    "id": 10917,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1741:7:46",
+                    "src": "1741:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -726,12 +726,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10500,
+                  "id": 10920,
                   "indexed": false,
                   "name": "newLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1767:16:46",
+                  "scope": 10926,
+                  "src": "1767:16:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -739,10 +739,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10499,
+                    "id": 10919,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1767:7:46",
+                    "src": "1767:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -754,12 +754,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10502,
+                  "id": 10922,
                   "indexed": false,
                   "name": "oldVersion",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1793:18:46",
+                  "scope": 10926,
+                  "src": "1793:18:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -767,10 +767,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10501,
+                    "id": 10921,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1793:7:46",
+                    "src": "1793:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -781,12 +781,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10504,
+                  "id": 10924,
                   "indexed": false,
                   "name": "newVersion",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1821:18:46",
+                  "scope": 10926,
+                  "src": "1821:18:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -794,10 +794,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10503,
+                    "id": 10923,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1821:7:46",
+                    "src": "1821:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -807,51 +807,51 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1664:181:46"
+              "src": "1664:181:48"
             },
-            "src": "1639:207:46"
+            "src": "1639:207:48"
           },
           {
             "body": null,
             "documentation": "External Functions ",
-            "id": 10511,
+            "id": 10931,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "consts",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10507,
+              "id": 10927,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1898:2:46"
+              "src": "1898:2:48"
             },
             "returnParameters": {
-              "id": 10510,
+              "id": 10930,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10509,
+                  "id": 10929,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10511,
-                  "src": "1919:19:46",
+                  "scope": 10931,
+                  "src": "1919:19:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_LogicVersionsConsts_$16865",
+                    "typeIdentifier": "t_contract$_LogicVersionsConsts_$17655",
                     "typeString": "contract LogicVersionsConsts"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 10508,
+                    "id": 10928,
                     "name": "LogicVersionsConsts",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 16865,
-                    "src": "1919:19:46",
+                    "referencedDeclaration": 17655,
+                    "src": "1919:19:48",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_LogicVersionsConsts_$16865",
+                      "typeIdentifier": "t_contract$_LogicVersionsConsts_$17655",
                       "typeString": "contract LogicVersionsConsts"
                     }
                   },
@@ -859,10 +859,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1918:21:46"
+              "src": "1918:21:48"
             },
-            "scope": 10563,
-            "src": "1883:57:46",
+            "scope": 10983,
+            "src": "1883:57:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -870,23 +870,23 @@
           {
             "body": null,
             "documentation": "@notice It creates a new logic version given a logic name and address.\n@param logicName logic name to create.\n@param logic the logic address value for the given logic name.",
-            "id": 10518,
+            "id": 10938,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createLogicVersion",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10516,
+              "id": 10936,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10513,
+                  "id": 10933,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10518,
-                  "src": "2187:17:46",
+                  "scope": 10938,
+                  "src": "2187:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -894,10 +894,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10512,
+                    "id": 10932,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2187:7:46",
+                    "src": "2187:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -908,11 +908,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10515,
+                  "id": 10935,
                   "name": "logic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10518,
-                  "src": "2206:13:46",
+                  "scope": 10938,
+                  "src": "2206:13:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -920,10 +920,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10514,
+                    "id": 10934,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2206:7:46",
+                    "src": "2206:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -934,16 +934,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2186:34:46"
+              "src": "2186:34:48"
             },
             "returnParameters": {
-              "id": 10517,
+              "id": 10937,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2229:0:46"
+              "src": "2229:0:48"
             },
-            "scope": 10563,
-            "src": "2159:71:46",
+            "scope": 10983,
+            "src": "2159:71:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -951,48 +951,48 @@
           {
             "body": null,
             "documentation": "@notice It creates multiple logic versions.\n@param newLogicVersions lists of the new logic versions to create.",
-            "id": 10524,
+            "id": 10944,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createLogicVersions",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10522,
+              "id": 10942,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10521,
+                  "id": 10941,
                   "name": "newLogicVersions",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10524,
-                  "src": "2417:60:46",
+                  "scope": 10944,
+                  "src": "2417:60:48",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_LogicVersionRequest_$17604_calldata_$dyn_calldata_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_LogicVersionRequest_$18423_calldata_$dyn_calldata_ptr",
                     "typeString": "struct TellerCommon.LogicVersionRequest[]"
                   },
                   "typeName": {
                     "baseType": {
                       "contractScope": null,
-                      "id": 10519,
+                      "id": 10939,
                       "name": "TellerCommon.LogicVersionRequest",
                       "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 17604,
-                      "src": "2417:32:46",
+                      "referencedDeclaration": 18423,
+                      "src": "2417:32:48",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_LogicVersionRequest_$17604_storage_ptr",
+                        "typeIdentifier": "t_struct$_LogicVersionRequest_$18423_storage_ptr",
                         "typeString": "struct TellerCommon.LogicVersionRequest"
                       }
                     },
-                    "id": 10520,
+                    "id": 10940,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2417:34:46",
+                    "src": "2417:34:48",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_LogicVersionRequest_$17604_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_LogicVersionRequest_$18423_storage_$dyn_storage_ptr",
                       "typeString": "struct TellerCommon.LogicVersionRequest[]"
                     }
                   },
@@ -1000,16 +1000,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2407:76:46"
+              "src": "2407:76:48"
             },
             "returnParameters": {
-              "id": 10523,
+              "id": 10943,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2492:0:46"
+              "src": "2492:0:48"
             },
-            "scope": 10563,
-            "src": "2379:114:46",
+            "scope": 10983,
+            "src": "2379:114:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1017,23 +1017,23 @@
           {
             "body": null,
             "documentation": "@notice It update a current logic address given a logic name.\n@param logicName logic name to update.\n@param newLogic the new logic address to set.",
-            "id": 10531,
+            "id": 10951,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateLogicAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10529,
+              "id": 10949,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10526,
+                  "id": 10946,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10531,
-                  "src": "2714:17:46",
+                  "scope": 10951,
+                  "src": "2714:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1041,10 +1041,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10525,
+                    "id": 10945,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2714:7:46",
+                    "src": "2714:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1055,11 +1055,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10528,
+                  "id": 10948,
                   "name": "newLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10531,
-                  "src": "2733:16:46",
+                  "scope": 10951,
+                  "src": "2733:16:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1067,10 +1067,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10527,
+                    "id": 10947,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2733:7:46",
+                    "src": "2733:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1081,16 +1081,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2713:37:46"
+              "src": "2713:37:48"
             },
             "returnParameters": {
-              "id": 10530,
+              "id": 10950,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2759:0:46"
+              "src": "2759:0:48"
             },
-            "scope": 10563,
-            "src": "2686:74:46",
+            "scope": 10983,
+            "src": "2686:74:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1098,23 +1098,23 @@
           {
             "body": null,
             "documentation": "@notice It removes a current logic version given a logic name.\n@param logicName logic name to remove.",
-            "id": 10536,
+            "id": 10956,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "removeLogicVersion",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10534,
+              "id": 10954,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10533,
+                  "id": 10953,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10536,
-                  "src": "2928:17:46",
+                  "scope": 10956,
+                  "src": "2928:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1122,10 +1122,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10532,
+                    "id": 10952,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2928:7:46",
+                    "src": "2928:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1135,16 +1135,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2927:19:46"
+              "src": "2927:19:48"
             },
             "returnParameters": {
-              "id": 10535,
+              "id": 10955,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2955:0:46"
+              "src": "2955:0:48"
             },
-            "scope": 10563,
-            "src": "2900:56:46",
+            "scope": 10983,
+            "src": "2900:56:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -1152,23 +1152,23 @@
           {
             "body": null,
             "documentation": "@notice It gets the current logic version for a given logic name.\n@param logicName to get.\n@return the current logic version.",
-            "id": 10543,
+            "id": 10963,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLogicVersion",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10539,
+              "id": 10959,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10538,
+                  "id": 10958,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10543,
-                  "src": "3153:17:46",
+                  "scope": 10963,
+                  "src": "3153:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1176,10 +1176,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10537,
+                    "id": 10957,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3153:7:46",
+                    "src": "3153:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1189,34 +1189,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3152:19:46"
+              "src": "3152:19:48"
             },
             "returnParameters": {
-              "id": 10542,
+              "id": 10962,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10541,
+                  "id": 10961,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10543,
-                  "src": "3219:35:46",
+                  "scope": 10963,
+                  "src": "3219:35:48",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_LogicVersion_$16645_memory_ptr",
+                    "typeIdentifier": "t_struct$_LogicVersion_$17435_memory_ptr",
                     "typeString": "struct LogicVersionLib.LogicVersion"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 10540,
+                    "id": 10960,
                     "name": "LogicVersionLib.LogicVersion",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 16645,
-                    "src": "3219:28:46",
+                    "referencedDeclaration": 17435,
+                    "src": "3219:28:48",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_LogicVersion_$16645_storage_ptr",
+                      "typeIdentifier": "t_struct$_LogicVersion_$17435_storage_ptr",
                       "typeString": "struct LogicVersionLib.LogicVersion"
                     }
                   },
@@ -1224,10 +1224,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3218:37:46"
+              "src": "3218:37:48"
             },
-            "scope": 10563,
-            "src": "3128:128:46",
+            "scope": 10983,
+            "src": "3128:128:48",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1235,23 +1235,23 @@
           {
             "body": null,
             "documentation": "@notice It gets the current logic address for a given logic name.\n@param logicName to get.\n@return the current logic address.",
-            "id": 10550,
+            "id": 10970,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLogicVersionAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10546,
+              "id": 10966,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10545,
+                  "id": 10965,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10550,
-                  "src": "3460:17:46",
+                  "scope": 10970,
+                  "src": "3460:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1259,10 +1259,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10544,
+                    "id": 10964,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3460:7:46",
+                    "src": "3460:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1272,19 +1272,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3459:19:46"
+              "src": "3459:19:48"
             },
             "returnParameters": {
-              "id": 10549,
+              "id": 10969,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10548,
+                  "id": 10968,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10550,
-                  "src": "3502:7:46",
+                  "scope": 10970,
+                  "src": "3502:7:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1292,10 +1292,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10547,
+                    "id": 10967,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3502:7:46",
+                    "src": "3502:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1306,10 +1306,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3501:9:46"
+              "src": "3501:9:48"
             },
-            "scope": 10563,
-            "src": "3428:83:46",
+            "scope": 10983,
+            "src": "3428:83:48",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1317,23 +1317,23 @@
           {
             "body": null,
             "documentation": "@notice It tests whether a logic name is already configured.\n@param logicName logic name to test.\n@return true if the logic version is already configured. Otherwise it returns false.",
-            "id": 10557,
+            "id": 10977,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "hasLogicVersion",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10553,
+              "id": 10973,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10552,
+                  "id": 10972,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10557,
-                  "src": "3765:17:46",
+                  "scope": 10977,
+                  "src": "3765:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1341,10 +1341,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10551,
+                    "id": 10971,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3765:7:46",
+                    "src": "3765:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1354,19 +1354,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3764:19:46"
+              "src": "3764:19:48"
             },
             "returnParameters": {
-              "id": 10556,
+              "id": 10976,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10555,
+                  "id": 10975,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10557,
-                  "src": "3807:4:46",
+                  "scope": 10977,
+                  "src": "3807:4:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1374,10 +1374,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 10554,
+                    "id": 10974,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3807:4:46",
+                    "src": "3807:4:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1387,10 +1387,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3806:6:46"
+              "src": "3806:6:48"
             },
-            "scope": 10563,
-            "src": "3740:73:46",
+            "scope": 10983,
+            "src": "3740:73:48",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -1398,23 +1398,23 @@
           {
             "body": null,
             "documentation": "@notice It initializes this logic versions registry contract instance.\n@param settingsAddress the settings contract address.",
-            "id": 10562,
+            "id": 10982,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10560,
+              "id": 10980,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10559,
+                  "id": 10979,
                   "name": "settingsAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10562,
-                  "src": "3996:23:46",
+                  "scope": 10982,
+                  "src": "3996:23:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1422,10 +1422,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10558,
+                    "id": 10978,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3996:7:46",
+                    "src": "3996:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1436,86 +1436,86 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3995:25:46"
+              "src": "3995:25:48"
             },
             "returnParameters": {
-              "id": 10561,
+              "id": 10981,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4029:0:46"
+              "src": "4029:0:48"
             },
-            "scope": 10563,
-            "src": "3976:54:46",
+            "scope": 10983,
+            "src": "3976:54:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 10564,
-        "src": "310:3722:46"
+        "scope": 10984,
+        "src": "310:3722:48"
       }
     ],
-    "src": "0:4033:46"
+    "src": "0:4033:48"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol",
     "exportedSymbols": {
       "LogicVersionsRegistryInterface": [
-        10563
+        10983
       ]
     },
-    "id": 10564,
+    "id": 10984,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10468,
+        "id": 10888,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:46"
+        "src": "0:23:48"
       },
       {
-        "id": 10469,
+        "id": 10889,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "24:33:46"
+        "src": "24:33:48"
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionLib.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/LogicVersionLib.sol",
         "file": "../util/LogicVersionLib.sol",
-        "id": 10470,
+        "id": 10890,
         "nodeType": "ImportDirective",
-        "scope": 10564,
-        "sourceUnit": 16812,
-        "src": "70:37:46",
+        "scope": 10984,
+        "sourceUnit": 17602,
+        "src": "70:37:48",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/LogicVersionsConsts.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/LogicVersionsConsts.sol",
         "file": "../util/LogicVersionsConsts.sol",
-        "id": 10471,
+        "id": 10891,
         "nodeType": "ImportDirective",
-        "scope": 10564,
-        "sourceUnit": 16866,
-        "src": "108:41:46",
+        "scope": 10984,
+        "sourceUnit": 17656,
+        "src": "108:41:48",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol",
         "file": "../util/TellerCommon.sol",
-        "id": 10472,
+        "id": 10892,
         "nodeType": "ImportDirective",
-        "scope": 10564,
-        "sourceUnit": 17606,
-        "src": "150:34:46",
+        "scope": 10984,
+        "sourceUnit": 18425,
+        "src": "150:34:48",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -1525,9 +1525,9 @@
         "contractKind": "interface",
         "documentation": "@notice It defines all the functions to manage the logic contract versions.\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 10563,
+        "id": 10983,
         "linearizedBaseContracts": [
-          10563
+          10983
         ],
         "name": "LogicVersionsRegistryInterface",
         "nodeType": "ContractDefinition",
@@ -1535,21 +1535,21 @@
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when a new logic version is created.\n@param logicName new logic name.\n@param sender address that created it.\n@param logic address where the logic is.\n@param version initial version for the logic address.",
-            "id": 10482,
+            "id": 10902,
             "name": "LogicVersionCreated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10481,
+              "id": 10901,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10474,
+                  "id": 10894,
                   "indexed": true,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10482,
-                  "src": "682:25:46",
+                  "scope": 10902,
+                  "src": "682:25:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1557,10 +1557,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10473,
+                    "id": 10893,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "682:7:46",
+                    "src": "682:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1571,12 +1571,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10476,
+                  "id": 10896,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10482,
-                  "src": "717:22:46",
+                  "scope": 10902,
+                  "src": "717:22:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1584,10 +1584,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10475,
+                    "id": 10895,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "717:7:46",
+                    "src": "717:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1599,12 +1599,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10478,
+                  "id": 10898,
                   "indexed": true,
                   "name": "logic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10482,
-                  "src": "749:21:46",
+                  "scope": 10902,
+                  "src": "749:21:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1612,10 +1612,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10477,
+                    "id": 10897,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "749:7:46",
+                    "src": "749:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1627,12 +1627,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10480,
+                  "id": 10900,
                   "indexed": false,
                   "name": "version",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10482,
-                  "src": "780:15:46",
+                  "scope": 10902,
+                  "src": "780:15:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1640,10 +1640,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10479,
+                    "id": 10899,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "780:7:46",
+                    "src": "780:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1653,28 +1653,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "672:129:46"
+              "src": "672:129:48"
             },
-            "src": "647:155:46"
+            "src": "647:155:48"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when a current logic version is removed.\n@param logicName new logic name.\n@param sender address that removed it.\n@param lastLogic last logic address where the logic was.\n@param lastVersion last version for the logic address.",
-            "id": 10492,
+            "id": 10912,
             "name": "LogicVersionRemoved",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10491,
+              "id": 10911,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10484,
+                  "id": 10904,
                   "indexed": true,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10492,
-                  "src": "1154:25:46",
+                  "scope": 10912,
+                  "src": "1154:25:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1682,10 +1682,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10483,
+                    "id": 10903,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1154:7:46",
+                    "src": "1154:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1696,12 +1696,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10486,
+                  "id": 10906,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10492,
-                  "src": "1189:22:46",
+                  "scope": 10912,
+                  "src": "1189:22:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1709,10 +1709,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10485,
+                    "id": 10905,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1189:7:46",
+                    "src": "1189:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1724,12 +1724,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10488,
+                  "id": 10908,
                   "indexed": false,
                   "name": "lastLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10492,
-                  "src": "1221:17:46",
+                  "scope": 10912,
+                  "src": "1221:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1737,10 +1737,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10487,
+                    "id": 10907,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1221:7:46",
+                    "src": "1221:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1752,12 +1752,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10490,
+                  "id": 10910,
                   "indexed": false,
                   "name": "lastVersion",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10492,
-                  "src": "1248:19:46",
+                  "scope": 10912,
+                  "src": "1248:19:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1765,10 +1765,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10489,
+                    "id": 10909,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1248:7:46",
+                    "src": "1248:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1778,28 +1778,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1144:129:46"
+              "src": "1144:129:48"
             },
-            "src": "1119:155:46"
+            "src": "1119:155:48"
           },
           {
             "anonymous": false,
             "documentation": "@notice This event is emitted when a new logic version is updated.\n@param logicName new logic name.\n@param sender address that updated it.\n@param oldLogic the old logic address.\n@param newLogic the new logic address.\n@param oldVersion the old version.\n@param newVersion the new version.",
-            "id": 10506,
+            "id": 10926,
             "name": "LogicVersionUpdated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 10505,
+              "id": 10925,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10494,
+                  "id": 10914,
                   "indexed": true,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1674:25:46",
+                  "scope": 10926,
+                  "src": "1674:25:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1807,10 +1807,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10493,
+                    "id": 10913,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1674:7:46",
+                    "src": "1674:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1821,12 +1821,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10496,
+                  "id": 10916,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1709:22:46",
+                  "scope": 10926,
+                  "src": "1709:22:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1834,10 +1834,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10495,
+                    "id": 10915,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1709:7:46",
+                    "src": "1709:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1849,12 +1849,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10498,
+                  "id": 10918,
                   "indexed": false,
                   "name": "oldLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1741:16:46",
+                  "scope": 10926,
+                  "src": "1741:16:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1862,10 +1862,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10497,
+                    "id": 10917,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1741:7:46",
+                    "src": "1741:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1877,12 +1877,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10500,
+                  "id": 10920,
                   "indexed": false,
                   "name": "newLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1767:16:46",
+                  "scope": 10926,
+                  "src": "1767:16:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1890,10 +1890,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10499,
+                    "id": 10919,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1767:7:46",
+                    "src": "1767:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1905,12 +1905,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10502,
+                  "id": 10922,
                   "indexed": false,
                   "name": "oldVersion",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1793:18:46",
+                  "scope": 10926,
+                  "src": "1793:18:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1918,10 +1918,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10501,
+                    "id": 10921,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1793:7:46",
+                    "src": "1793:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1932,12 +1932,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 10504,
+                  "id": 10924,
                   "indexed": false,
                   "name": "newVersion",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10506,
-                  "src": "1821:18:46",
+                  "scope": 10926,
+                  "src": "1821:18:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1945,10 +1945,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10503,
+                    "id": 10923,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1821:7:46",
+                    "src": "1821:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1958,51 +1958,51 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1664:181:46"
+              "src": "1664:181:48"
             },
-            "src": "1639:207:46"
+            "src": "1639:207:48"
           },
           {
             "body": null,
             "documentation": "External Functions ",
-            "id": 10511,
+            "id": 10931,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "consts",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10507,
+              "id": 10927,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1898:2:46"
+              "src": "1898:2:48"
             },
             "returnParameters": {
-              "id": 10510,
+              "id": 10930,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10509,
+                  "id": 10929,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10511,
-                  "src": "1919:19:46",
+                  "scope": 10931,
+                  "src": "1919:19:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_LogicVersionsConsts_$16865",
+                    "typeIdentifier": "t_contract$_LogicVersionsConsts_$17655",
                     "typeString": "contract LogicVersionsConsts"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 10508,
+                    "id": 10928,
                     "name": "LogicVersionsConsts",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 16865,
-                    "src": "1919:19:46",
+                    "referencedDeclaration": 17655,
+                    "src": "1919:19:48",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_LogicVersionsConsts_$16865",
+                      "typeIdentifier": "t_contract$_LogicVersionsConsts_$17655",
                       "typeString": "contract LogicVersionsConsts"
                     }
                   },
@@ -2010,10 +2010,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1918:21:46"
+              "src": "1918:21:48"
             },
-            "scope": 10563,
-            "src": "1883:57:46",
+            "scope": 10983,
+            "src": "1883:57:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2021,23 +2021,23 @@
           {
             "body": null,
             "documentation": "@notice It creates a new logic version given a logic name and address.\n@param logicName logic name to create.\n@param logic the logic address value for the given logic name.",
-            "id": 10518,
+            "id": 10938,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createLogicVersion",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10516,
+              "id": 10936,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10513,
+                  "id": 10933,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10518,
-                  "src": "2187:17:46",
+                  "scope": 10938,
+                  "src": "2187:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2045,10 +2045,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10512,
+                    "id": 10932,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2187:7:46",
+                    "src": "2187:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -2059,11 +2059,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10515,
+                  "id": 10935,
                   "name": "logic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10518,
-                  "src": "2206:13:46",
+                  "scope": 10938,
+                  "src": "2206:13:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2071,10 +2071,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10514,
+                    "id": 10934,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2206:7:46",
+                    "src": "2206:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2085,16 +2085,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2186:34:46"
+              "src": "2186:34:48"
             },
             "returnParameters": {
-              "id": 10517,
+              "id": 10937,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2229:0:46"
+              "src": "2229:0:48"
             },
-            "scope": 10563,
-            "src": "2159:71:46",
+            "scope": 10983,
+            "src": "2159:71:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2102,48 +2102,48 @@
           {
             "body": null,
             "documentation": "@notice It creates multiple logic versions.\n@param newLogicVersions lists of the new logic versions to create.",
-            "id": 10524,
+            "id": 10944,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createLogicVersions",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10522,
+              "id": 10942,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10521,
+                  "id": 10941,
                   "name": "newLogicVersions",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10524,
-                  "src": "2417:60:46",
+                  "scope": 10944,
+                  "src": "2417:60:48",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_LogicVersionRequest_$17604_calldata_$dyn_calldata_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_LogicVersionRequest_$18423_calldata_$dyn_calldata_ptr",
                     "typeString": "struct TellerCommon.LogicVersionRequest[]"
                   },
                   "typeName": {
                     "baseType": {
                       "contractScope": null,
-                      "id": 10519,
+                      "id": 10939,
                       "name": "TellerCommon.LogicVersionRequest",
                       "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 17604,
-                      "src": "2417:32:46",
+                      "referencedDeclaration": 18423,
+                      "src": "2417:32:48",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_LogicVersionRequest_$17604_storage_ptr",
+                        "typeIdentifier": "t_struct$_LogicVersionRequest_$18423_storage_ptr",
                         "typeString": "struct TellerCommon.LogicVersionRequest"
                       }
                     },
-                    "id": 10520,
+                    "id": 10940,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2417:34:46",
+                    "src": "2417:34:48",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_LogicVersionRequest_$17604_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_LogicVersionRequest_$18423_storage_$dyn_storage_ptr",
                       "typeString": "struct TellerCommon.LogicVersionRequest[]"
                     }
                   },
@@ -2151,16 +2151,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2407:76:46"
+              "src": "2407:76:48"
             },
             "returnParameters": {
-              "id": 10523,
+              "id": 10943,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2492:0:46"
+              "src": "2492:0:48"
             },
-            "scope": 10563,
-            "src": "2379:114:46",
+            "scope": 10983,
+            "src": "2379:114:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2168,23 +2168,23 @@
           {
             "body": null,
             "documentation": "@notice It update a current logic address given a logic name.\n@param logicName logic name to update.\n@param newLogic the new logic address to set.",
-            "id": 10531,
+            "id": 10951,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateLogicAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10529,
+              "id": 10949,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10526,
+                  "id": 10946,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10531,
-                  "src": "2714:17:46",
+                  "scope": 10951,
+                  "src": "2714:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2192,10 +2192,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10525,
+                    "id": 10945,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2714:7:46",
+                    "src": "2714:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -2206,11 +2206,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 10528,
+                  "id": 10948,
                   "name": "newLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10531,
-                  "src": "2733:16:46",
+                  "scope": 10951,
+                  "src": "2733:16:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2218,10 +2218,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10527,
+                    "id": 10947,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2733:7:46",
+                    "src": "2733:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2232,16 +2232,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2713:37:46"
+              "src": "2713:37:48"
             },
             "returnParameters": {
-              "id": 10530,
+              "id": 10950,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2759:0:46"
+              "src": "2759:0:48"
             },
-            "scope": 10563,
-            "src": "2686:74:46",
+            "scope": 10983,
+            "src": "2686:74:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2249,23 +2249,23 @@
           {
             "body": null,
             "documentation": "@notice It removes a current logic version given a logic name.\n@param logicName logic name to remove.",
-            "id": 10536,
+            "id": 10956,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "removeLogicVersion",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10534,
+              "id": 10954,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10533,
+                  "id": 10953,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10536,
-                  "src": "2928:17:46",
+                  "scope": 10956,
+                  "src": "2928:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2273,10 +2273,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10532,
+                    "id": 10952,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2928:7:46",
+                    "src": "2928:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -2286,16 +2286,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2927:19:46"
+              "src": "2927:19:48"
             },
             "returnParameters": {
-              "id": 10535,
+              "id": 10955,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2955:0:46"
+              "src": "2955:0:48"
             },
-            "scope": 10563,
-            "src": "2900:56:46",
+            "scope": 10983,
+            "src": "2900:56:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -2303,23 +2303,23 @@
           {
             "body": null,
             "documentation": "@notice It gets the current logic version for a given logic name.\n@param logicName to get.\n@return the current logic version.",
-            "id": 10543,
+            "id": 10963,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLogicVersion",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10539,
+              "id": 10959,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10538,
+                  "id": 10958,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10543,
-                  "src": "3153:17:46",
+                  "scope": 10963,
+                  "src": "3153:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2327,10 +2327,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10537,
+                    "id": 10957,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3153:7:46",
+                    "src": "3153:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -2340,34 +2340,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3152:19:46"
+              "src": "3152:19:48"
             },
             "returnParameters": {
-              "id": 10542,
+              "id": 10962,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10541,
+                  "id": 10961,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10543,
-                  "src": "3219:35:46",
+                  "scope": 10963,
+                  "src": "3219:35:48",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_LogicVersion_$16645_memory_ptr",
+                    "typeIdentifier": "t_struct$_LogicVersion_$17435_memory_ptr",
                     "typeString": "struct LogicVersionLib.LogicVersion"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 10540,
+                    "id": 10960,
                     "name": "LogicVersionLib.LogicVersion",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 16645,
-                    "src": "3219:28:46",
+                    "referencedDeclaration": 17435,
+                    "src": "3219:28:48",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_LogicVersion_$16645_storage_ptr",
+                      "typeIdentifier": "t_struct$_LogicVersion_$17435_storage_ptr",
                       "typeString": "struct LogicVersionLib.LogicVersion"
                     }
                   },
@@ -2375,10 +2375,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3218:37:46"
+              "src": "3218:37:48"
             },
-            "scope": 10563,
-            "src": "3128:128:46",
+            "scope": 10983,
+            "src": "3128:128:48",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2386,23 +2386,23 @@
           {
             "body": null,
             "documentation": "@notice It gets the current logic address for a given logic name.\n@param logicName to get.\n@return the current logic address.",
-            "id": 10550,
+            "id": 10970,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLogicVersionAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10546,
+              "id": 10966,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10545,
+                  "id": 10965,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10550,
-                  "src": "3460:17:46",
+                  "scope": 10970,
+                  "src": "3460:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2410,10 +2410,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10544,
+                    "id": 10964,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3460:7:46",
+                    "src": "3460:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -2423,19 +2423,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3459:19:46"
+              "src": "3459:19:48"
             },
             "returnParameters": {
-              "id": 10549,
+              "id": 10969,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10548,
+                  "id": 10968,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10550,
-                  "src": "3502:7:46",
+                  "scope": 10970,
+                  "src": "3502:7:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2443,10 +2443,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10547,
+                    "id": 10967,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3502:7:46",
+                    "src": "3502:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2457,10 +2457,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3501:9:46"
+              "src": "3501:9:48"
             },
-            "scope": 10563,
-            "src": "3428:83:46",
+            "scope": 10983,
+            "src": "3428:83:48",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2468,23 +2468,23 @@
           {
             "body": null,
             "documentation": "@notice It tests whether a logic name is already configured.\n@param logicName logic name to test.\n@return true if the logic version is already configured. Otherwise it returns false.",
-            "id": 10557,
+            "id": 10977,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "hasLogicVersion",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10553,
+              "id": 10973,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10552,
+                  "id": 10972,
                   "name": "logicName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10557,
-                  "src": "3765:17:46",
+                  "scope": 10977,
+                  "src": "3765:17:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2492,10 +2492,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 10551,
+                    "id": 10971,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3765:7:46",
+                    "src": "3765:7:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -2505,19 +2505,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3764:19:46"
+              "src": "3764:19:48"
             },
             "returnParameters": {
-              "id": 10556,
+              "id": 10976,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10555,
+                  "id": 10975,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10557,
-                  "src": "3807:4:46",
+                  "scope": 10977,
+                  "src": "3807:4:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2525,10 +2525,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 10554,
+                    "id": 10974,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3807:4:46",
+                    "src": "3807:4:48",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2538,10 +2538,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3806:6:46"
+              "src": "3806:6:48"
             },
-            "scope": 10563,
-            "src": "3740:73:46",
+            "scope": 10983,
+            "src": "3740:73:48",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -2549,23 +2549,23 @@
           {
             "body": null,
             "documentation": "@notice It initializes this logic versions registry contract instance.\n@param settingsAddress the settings contract address.",
-            "id": 10562,
+            "id": 10982,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10560,
+              "id": 10980,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10559,
+                  "id": 10979,
                   "name": "settingsAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 10562,
-                  "src": "3996:23:46",
+                  "scope": 10982,
+                  "src": "3996:23:48",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2573,10 +2573,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 10558,
+                    "id": 10978,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3996:7:46",
+                    "src": "3996:7:48",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2587,34 +2587,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3995:25:46"
+              "src": "3995:25:48"
             },
             "returnParameters": {
-              "id": 10561,
+              "id": 10981,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4029:0:46"
+              "src": "4029:0:48"
             },
-            "scope": 10563,
-            "src": "3976:54:46",
+            "scope": 10983,
+            "src": "3976:54:48",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 10564,
-        "src": "310:3722:46"
+        "scope": 10984,
+        "src": "310:3722:48"
       }
     ],
-    "src": "0:4033:46"
+    "src": "0:4033:48"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.17+commit.d19bba13.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-15T21:09:31.284Z",
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2020-10-12T14:23:11.500Z",
   "devdoc": {
     "author": "develop@teller.finance",
     "methods": {
