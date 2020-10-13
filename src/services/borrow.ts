@@ -7,24 +7,20 @@ import { NULL_ADDRESS } from "../util/constants";
 
 export type PBorrow = {
   requestedLoanSize: string; // wei
-  borrowedAsset: "DAI" | "USDC";
-  collateralAsset: "ETH";
+  borrowedAsset: string;
+  collateralAsset: string;
   loanTermLength: string; // seconds
   collateralRatioEntered: string; // 100% === 10000
-  loanUse: "SECURED" | "UNSECURED";
+  loanUse: string;
   ethereumWallet: string;
   assetReportStringified?: string | null;
   assetReportSignature?: string | null;
   requestTime: string // seconds at least 100 in the past
 }
-export type RBorrow = {
-
-}
+export type RBorrow = RArrowheadCRA[];
 
 export type JSONRPCResponse<T> = {
   result: T
-} | {
-  error: string
 }
 
 export type RArrowheadCRA = {
@@ -67,17 +63,18 @@ export type RArrowheadCRA = {
 export function getNodeSignaturesForBorrowing(params: PBorrow, id = 1): Promise<RBorrow> {
   const nodeUrls = ["https://node-tpscrpt.layr1.com", "https://node-saxle.layr1.com"];
   return Promise.all(nodeUrls.map(async (nodeUrl) => {
-    return await Axios.post<JSONRPCResponse<RArrowheadCRA>>(nodeUrl, {
+    const response = await Axios.post<JSONRPCResponse<RArrowheadCRA>>(nodeUrl, {
       jsonrpc: "2.0",
       id,
       method: "arrowheadCRA",
       params
     }, {
       headers: {
-        'Content=Type': "application/json",
+        'Content-Type': "application/json",
         "Accept": "application/json"
       }
-    })
+    });
+    return response.data.result;
   }))
 }
 
@@ -87,9 +84,8 @@ export function submitSignaturesToChainForBorrowing(
   requestNonce: string,
   amount: string,
   collateralAmount: string,
+  loansInstance: any
 ): Promise<void> {
-  const { state } = useContext(AppContext);
-  const { loansInstance } = state.teller.contracts.ETH.tDAI;
 
   return new Promise((resolve, reject)=> {
     loansInstance.methods.createLoanWithTerms(

@@ -30,6 +30,7 @@ import { createLoanWithTerms, takeOutLoan, convertToBN } from "../../models/Loan
 import { hashRequest } from "../../util/hash";
 import { _nonce } from '../../util/nonce';
 import { LoanTerms } from "../../context/types";
+import { getNodeSignaturesForBorrowing, PBorrow, submitSignaturesToChainForBorrowing } from "../../services/borrow";
 const Big = 'big.js'
 
 const BorrowForm = () => {
@@ -75,9 +76,27 @@ const BorrowForm = () => {
         ...borrowRequest,
         requestTime: lendingApplication.requestTime
       })
-      const terms = await arrowheadCRA(lendingApplication);
-      console.log("TERMS>>>", terms);
-      setLoanTerms(terms);
+
+      const nodeResponses = await getNodeSignaturesForBorrowing(
+        lendingApplication as PBorrow 
+      );
+
+      console.log('responses<>', nodeResponses);
+        
+      const receipt = await submitSignaturesToChainForBorrowing(
+        lendingApplication as PBorrow,
+        nodeResponses,
+        '1',
+        lendingApplication.requestedLoanSize,
+        String(0.01 * 1e18),
+        loansInstance
+      );
+
+      console.log('Receipt<>', receipt);
+
+      // const terms = await arrowheadCRA(lendingApplication);
+      // console.log("TERMS>>>", terms);
+      // setLoanTerms(terms);
       return true;
     } catch (err) {
       console.log(err);
