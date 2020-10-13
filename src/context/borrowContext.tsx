@@ -30,12 +30,9 @@ export const LendingApplicationMap = (
     collateralRatioEntered: String(borrowRequest.collateralPercent * 100),
     loanUse: borrowRequest.loanType.toUpperCase(),
     ethereumWallet: web3State.address,
-    assetReportStringified:
-      bankInfoResponse &&
-      JSON.stringify(bankInfoResponse.assetReportStringified),
-      assetReportSignature:
-      bankInfoResponse && bankInfoResponse.assetReportSignature,
-      requestTime: String(Math.floor(Date.now()/1000 - 100)),
+    assetReportStringified: bankInfoResponse && JSON.stringify(bankInfoResponse.assetReportStringified),
+    assetReportSignature: bankInfoResponse && bankInfoResponse.assetReportSignature,
+    requestTime: String(Math.floor(Date.now()/1000 - 100)),
     };
   return lendingApplication as LendingApplication;
 };

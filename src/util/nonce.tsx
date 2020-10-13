@@ -2,7 +2,7 @@ import { gql, ApolloClient, InMemoryCache } from 'apollo-boost';
 import { createHttpLink } from 'apollo-link-http';
 
 // TODO Move to dev secrets
-const tellerSubgraphUrl = "https://api.thegraph.com/subgraphs/name/salazarguille/teller-protocol-subgraph-ropsten";
+const tellerSubgraphUrl = "https://api.thegraph.com/subgraphs/name/salazarguille/teller-protocol-subgraph-rinkeby";
 
 const tellerSubgraphClient = new ApolloClient({
     cache: new InMemoryCache(),

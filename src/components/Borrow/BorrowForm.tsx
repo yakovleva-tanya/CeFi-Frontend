@@ -71,6 +71,10 @@ const BorrowForm = () => {
       );
       console.log("APPLICATION>>>", lendingApplication);
       // const terms = await sendLendingApplication(lendingApplication);
+      setBorrowRequest({
+        ...borrowRequest,
+        requestTime: lendingApplication.requestTime
+      })
       const terms = await arrowheadCRA(lendingApplication);
       console.log("TERMS>>>", terms);
       setLoanTerms(terms);
@@ -149,6 +153,7 @@ const BorrowForm = () => {
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
     ];
+
     const loanTermsList = loanTerms as unknown as LoanTerms[];
     console.log(loanTermsList.length);
     const finalLoanTerms = loanTermsList.map(terms => ({
@@ -166,17 +171,18 @@ const BorrowForm = () => {
       },
       signer: terms.signer,
     }));
-    console.log(finalLoanTerms);
+    console.log('Final loan terms', finalLoanTerms);
 
     try {      
+      console.log('req', borrowRequest);
       const response = await createLoanWithTerms(
         borrowRequest,
-        finalLoanTerms,//loanTerms,
+        loanTerms,
+        //finalLoanTerms,
         loansInstance,
         state.web3State.address
       );
       console.log("CREATE_RESPONSE<>", response);
-      console.log('req', borrowRequest);
       setSubmitting(true);
       //Accept loan terms
       await new Promise((resolve) => setTimeout(resolve, 2000));

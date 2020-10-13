@@ -90,7 +90,6 @@ export async function createLoanWithTerms(
   const request = {
     borrower: borrowerAddress,
     recipient: '0x0000000000000000000000000000000000000000',
-    consensusAddress: "0x8e6520bb28765AAA1c766063e820e8Dc80A416DD",
     //consensusAddress: "0x3282B6468ABc25033e2ecF38C1E7c8eA2C8B4Fae",
     amount: convertToBN(loanRequest.loanSize.toString()),
     duration: Number(loanDurationInSeconds),

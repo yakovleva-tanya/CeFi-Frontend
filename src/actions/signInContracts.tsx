@@ -145,7 +145,7 @@ export default async (
     const contractAddresses =
       network === "1"
         ? allContractAddresses.mainnet
-        : allContractAddresses.ropsten;
+        : allContractAddresses.rinkeby;
     const ETH_DAI = await setupTellerContracts(
       web3State,
       contractAddresses.ETH_LendingPool_tDAI_Proxy,

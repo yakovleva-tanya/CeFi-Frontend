@@ -11,6 +11,7 @@ import { craURLs } from './../util/constants';
 import { fromRpcSig, bufferToHex } from "ethereumjs-util";
 
 export interface LendingApplication {
+  requestTime: any;
   borrowedAsset: string;
   collateralAsset: string;
   requestedLoanSize: string;
@@ -59,7 +60,7 @@ export const arrowheadCRA = async (lendingApplication: LendingApplication) => {
       signature: {​​​
         r: bufferToHex(r),
         s: bufferToHex(s),
-        v: String(v),
+        v: v,
         signerNonce: response.data.result.signerNonce
       },
       signer: response.data.result.signer
