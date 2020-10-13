@@ -5,19 +5,22 @@ import BR from "../UI/BR";
 const DashboardNav = () => {
   const { onPage, setOnPage, navigationMap } = useContext(DashboardContext);
   return (
-    <div className="metrics-card border-thin m-2 p-4">
+    <div className="metrics-card border-thin p-2 my-2 mx-0 m-md-2 p-md-4">
       {Object.keys(navigationMap).map((section) => {
         return (
-          <div className="m-2 mb-5" key={section}>
+          <div
+            className={`m-2 ${section !== "SPEND" ? "mb-5" : ""}`}
+            key={section}
+          >
             <div className="mb-2 text-gray">{section}</div>
-            <div className="mb-2 mr-5">
+            <div className="mb-2 mr-md-5">
               <BR />
             </div>
             {Object.keys(navigationMap[section]).map((subsection) => {
               return (
                 <div
                   key={subsection}
-                  className={`font-medium text-lg mb-1 pointer ${
+                  className={`font-md-medium text-lg mb-1 pointer ${
                     onPage === navigationMap[section][subsection]
                       ? "text-black"
                       : "text-lightest-gray"

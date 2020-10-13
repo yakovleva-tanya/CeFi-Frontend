@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
 import "./navigation.scss";
 import teller_logo from "../../../dist/assets/teller_logo.svg";
 import {
@@ -9,16 +8,19 @@ import {
   NavLink,
 } from "react-router-dom";
 import { NavLoginButton } from "./../LoginButton/LoginButton";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import DashboardNav from "../Dashboard/DashboardNav";
 
 type NavProps = {
   to: string;
   name: string;
+  className?: string;
 };
 
-const NavigationLink = ({ to, name }: NavProps) => {
+const NavigationLink = ({ to, name, className = "" }: NavProps) => {
   return (
     <NavLink
-      className="menu-button text-lg text-lightest-gray"
+      className={`menu-button text-lg text-lightest-gray ${className}`}
       activeClassName="active"
       to={`/${to}`}
     >
@@ -29,29 +31,46 @@ const NavigationLink = ({ to, name }: NavProps) => {
 
 const HiddenNavbar = () => {
   return (
-    <Navbar
-      bg="transparent"
-      expand="md"
-      className="p-4 nav-bar justify-content-between align-items-center container-wrapper"
-    >
-      <Navbar.Brand>
-        <img
-          alt=""
-          src={teller_logo}
-          height="42"
-          className="d-inline-block align-top p-1"
-        />
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse className="justify-content-end navbar-links">
-        <div className="justify-content-end align-items-center d-flex flex-row flex-wrap ">
-          <NavigationLink to="lend" name="Deposit" />
-          <NavigationLink to="borrow" name="Borrow" />
-          <NavigationLink to="dashboard" name="Dashboard" />
-          <NavLoginButton />
-        </div>
-      </Navbar.Collapse>
-    </Navbar>
+    <>
+      <Navbar
+        bg="transparent"
+        collapseOnSelect
+        expand="md"
+        className="p-4 nav-bar justify-content-between align-items-center container-wrapper"
+      >
+        <Navbar.Brand>
+          <img
+            alt=""
+            src={teller_logo}
+            height="42"
+            className="d-inline-block align-top p-1"
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse
+          id="responsive-navbar-nav"
+          className="justify-content-end navbar-links"
+        >
+          <Nav className="align-items-md-center align-items-start border-bottom py-4">
+            <NavigationLink to="lend" name="Deposit" />
+            <NavigationLink to="borrow" name="Borrow" />
+            <NavigationLink
+              to="dashboard"
+              name="Dashboard"
+              className="d-none d-md-inline"
+            />
+            <NavDropdown
+              title="Dashboard"
+              id="collasible-nav-dropdown"
+              className={`d-md-none menu-button text-lg py-0 border-none text-lightest-gray`}
+            >
+              <DashboardNav />
+            </NavDropdown>
+            <NavLoginButton />
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </>
   );
 };
 

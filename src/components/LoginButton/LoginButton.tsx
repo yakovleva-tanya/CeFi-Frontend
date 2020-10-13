@@ -85,7 +85,7 @@ export const NavLoginButton = () => {
     <div className="font-medium login-button menu-button">
       {!loggedIn ? (
         <div
-          className="text-lg my-2 my-md-3 mx-3 mx-md-4"
+          className="text-lg my-3 my-md-3 mx-4 mx-md-4"
           onClick={() => web3FromProvider(updateAppState)}
         >
           Connect Wallet
