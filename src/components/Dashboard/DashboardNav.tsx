@@ -1,6 +1,13 @@
 import React, { useContext } from "react";
 import { DashboardContext } from "../../context/dashboardContext";
 import BR from "../UI/BR";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+  Link,
+} from "react-router-dom";
 
 const DashboardNav = () => {
   const { onPage, setOnPage, navigationMap } = useContext(DashboardContext);
@@ -18,19 +25,29 @@ const DashboardNav = () => {
             </div>
             {Object.keys(navigationMap[section]).map((subsection) => {
               return (
-                <div
+                <Link
+                  style={{ textDecoration: "none" }}
                   key={subsection}
                   className={`font-md-medium text-lg mb-1 pointer ${
                     onPage === navigationMap[section][subsection]
                       ? "text-black"
                       : "text-lightest-gray"
                   }`}
+                  to={`/dashboard/${navigationMap[section][subsection]}`}
                   onClick={() => {
                     setOnPage(navigationMap[section][subsection]);
                   }}
                 >
-                  {subsection}
-                </div>
+                  <div
+                    className={`font-medium text-lg mb-1 pointer ${
+                      onPage === navigationMap[section][subsection]
+                        ? "text-black"
+                        : "text-lightest-gray"
+                    }`}
+                  >
+                    {subsection}
+                  </div>
+                </Link>
               );
             })}
           </div>

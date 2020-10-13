@@ -8,13 +8,16 @@ import {
   AppContext,
   AppContextState,
   TellerTokens,
-  BaseTokens
+  BaseTokens,
 } from "../../context/app";
-import { approveToken, depositCollateral } from "../../models/LoansInterfaceContract";
+import {
+  approveToken,
+  depositCollateral,
+} from "../../models/LoansInterfaceContract";
 
 const ThirdStageTable = () => {
   const { borrowRequest, loanTerms } = useContext(BorrowPageContext);
-  const { loanTerm, loanType, lendWith } = borrowRequest;
+  const { loanTerm, loanType, lendWith, collateralWith } = borrowRequest;
   const { interestRate, collateralRatio, maxLoanAmount } = loanTerms;
   return (
     <div>
@@ -58,10 +61,14 @@ const ThirdStageTable = () => {
             <BR />
           </>
         )}
-        <TableRow title="Approve collateral">
-          <CollateralApproveButton />
-        </TableRow>
-        <BR />
+        {collateralWith !== "ETH" && (
+          <>
+            <TableRow title="Approve collateral">
+              <CollateralApproveButton />
+            </TableRow>
+            <BR />
+          </>
+        )}
         <TableRow title="Deposit collateral">
           <CollateralTransferButton />
         </TableRow>
@@ -187,7 +194,9 @@ const CollateralTransferButton = () => {
           return false;
         }
       }}
-      disabled={!borrowRequest.approved}
+      disabled={
+        borrowRequest.collateralWith === "ETH" ? false : !borrowRequest.approved
+      }
       loading={transferLoading}
       approved={borrowRequest.transferred}
       text="Submit"

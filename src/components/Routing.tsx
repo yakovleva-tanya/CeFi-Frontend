@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Lend from "./../components/Lend/Lend";
 import Borrow from "./../components/Borrow/Borrow";
@@ -22,7 +22,7 @@ export default function Routing() {
         <Navigation />
         <div className="main-content d-flex justify-content-center align-items-center">
           <Switch>
-            <Route path="/lend">
+            <Route path="/deposit">
               <Lend />
             </Route>
             <Route path="/borrow">

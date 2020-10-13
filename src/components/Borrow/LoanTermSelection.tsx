@@ -13,7 +13,7 @@ export const LoanTermSubmenu = () => {
   const [warning, setWarning] = useState("");
 
   const min = 1;
-  const max = 90;
+  const max = 60;
   const sliderValue = (100 / (max - min + 1)) * value;
   const errorMessage = `Please enter a number between ${min}-${max}`;
 

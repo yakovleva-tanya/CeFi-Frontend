@@ -12,11 +12,12 @@ import { AppContext } from "../../context/app";
 import LoginButton from "../LoginButton/LoginButton";
 import { LoanInterface } from "../../context/types";
 import { calculateCollateralPercent } from "../../actions/HelperFunctions";
+import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 
 const Dashboard = () => {
   const { state } = useContext(AppContext);
   const { web3State, tokenData } = state;
-  const { onPage, setLoans } = useContext(DashboardContext);
+  const { setLoans } = useContext(DashboardContext);
 
   const updateLoans = async () => {
     const loans = await FetchLoans(web3State.network, web3State.address);
@@ -30,20 +31,17 @@ const Dashboard = () => {
     setLoans(updatedLoans);
   };
   useEffect(() => {
+    if (!tokenData) return;
     if (!web3State.address) return;
     updateLoans();
-  }, [web3State.address, web3State.network]);
-
-  const section = onPage.split("-")[0];
+  }, [web3State.address, web3State.network, tokenData]);
 
   return (
     <Container>
       {web3State.address && tokenData ? (
         <div className="cards-container">
           <DashboardNav />
-          {section === "Lend" && <Lend />}
-          {section === "Borrow" && <Borrow />}
-          {section === "Spend" && <Use />}
+          <Route path={`/dashboard/:onPage`} component={DashboadContent} />
         </div>
       ) : (
         <div className="d-flex justify-content-center align-items-center flex-column">
@@ -54,7 +52,20 @@ const Dashboard = () => {
     </Container>
   );
 };
-
+const DashboadContent = ({ match }: any) => {
+  const { onPage, setOnPage } = useContext(DashboardContext);
+  const section = onPage.split("-")[0];
+  useEffect(() => {
+    setOnPage(match.params.onPage);
+  }, []);
+  return (
+    <>
+      {section === "deposit" && <Lend />}
+      {section === "borrow" && <Borrow />}
+      {section === "spend" && <Use />}
+    </>
+  );
+};
 const DashboardContextWrapper = () => {
   return (
     <DashboardContextProvider>
