@@ -89,7 +89,7 @@ const HiddenNavbar = () => {
               id="collasible-nav-dropdown"
               className={`d-md-none menu-button text-lg py-0 border-none`}
             >
-              <DashboardNav setExpanded={setExpanded} />
+              <DashboardNav setExpanded={setExpanded} isMobile={true} />
             </NavDropdown>
             <NavLoginButton />
           </Nav>

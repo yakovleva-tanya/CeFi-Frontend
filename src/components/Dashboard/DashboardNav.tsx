@@ -11,9 +11,14 @@ import {
 
 type DashboardNavTyps = {
   className?: string;
-  setExpanded?:Function
+  setExpanded?: Function;
+  isMobile?: boolean;
 };
-const DashboardNav = ({ className = "" , setExpanded=()=>{}}: DashboardNavTyps) => {
+const DashboardNav = ({
+  className = "",
+  setExpanded = () => {},
+  isMobile = false,
+}: DashboardNavTyps) => {
   const { onPage, navigationMap } = useContext(DashboardContext);
   return (
     <div
@@ -35,7 +40,7 @@ const DashboardNav = ({ className = "" , setExpanded=()=>{}}: DashboardNavTyps) 
                   style={{ textDecoration: "none" }}
                   key={subsection}
                   className={`font-md-medium text-lg mb-1 pointer ${
-                    onPage && onPage === navigationMap[section][subsection]
+                    onPage === navigationMap[section][subsection] && !isMobile
                       ? "text-black"
                       : "text-lightest-gray"
                   }`}
@@ -46,7 +51,7 @@ const DashboardNav = ({ className = "" , setExpanded=()=>{}}: DashboardNavTyps) 
                 >
                   <div
                     className={`font-medium text-lg mb-1 pointer ${
-                      onPage && onPage === navigationMap[section][subsection]
+                      onPage === navigationMap[section][subsection] && !isMobile
                         ? "text-black"
                         : "text-lightest-gray"
                     }`}
