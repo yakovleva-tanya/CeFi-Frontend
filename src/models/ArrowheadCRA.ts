@@ -45,8 +45,8 @@ export const sendLendingApplication = (lendingApplication: LendingApplication, c
  */
 export const arrowheadCRA = async (lendingApplication: LendingApplication) => {
   const responses = [];
-  for(var i = 0; i < Object.keys(craURLs.arrowhead).length; i++) {
-    let response = await sendLendingApplication(lendingApplication, craURLs.arrowhead[i]);
+  for(let i = 0; i < Object.keys(craURLs.arrowhead).length; i++) {
+    const response = await sendLendingApplication(lendingApplication, craURLs.arrowhead[i]);
     const sig = response.data.result.signature;
     const { r, s, v } = fromRpcSig(sig);
     const result = {

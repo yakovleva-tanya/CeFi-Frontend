@@ -84,13 +84,17 @@ export async function createLoanWithTerms(
   const bnAmount = convertToBN(collateral.toString());
   
   // Format request
+  const loanDurationInSeconds = parseInt(loanRequest.loanTerm) * 24 * 60 * 60;
+  //console.log(`loanRequest.loanTerm ${loanRequest.loanTerm} => loanDurationInSeconds ${loanDurationInSeconds}`);
+  //console.log(`loanRequest.requestTime ${loanRequest.requestTime}`);
   const request = {
     borrower: borrowerAddress,
-    recipient: borrowerAddress,
+    recipient: '0x0000000000000000000000000000000000000000',
     consensusAddress: "0x8e6520bb28765AAA1c766063e820e8Dc80A416DD",
+    //consensusAddress: "0x3282B6468ABc25033e2ecF38C1E7c8eA2C8B4Fae",
     amount: convertToBN(loanRequest.loanSize.toString()),
-    duration: Number(loanRequest.loanTerm.toString()),
-    requestTime: convertToBN(loanRequest.requestTime.toString()),
+    duration: Number(loanDurationInSeconds),
+    requestTime: loanRequest.requestTime.toString(),
     requestNonce: Number(loanRequest.requestNonce.toString())+1,
   }
   

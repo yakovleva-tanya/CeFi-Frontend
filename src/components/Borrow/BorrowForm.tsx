@@ -29,6 +29,7 @@ import { getLendingPoolDecimals } from "../../models/Contracts";
 import { createLoanWithTerms, takeOutLoan, convertToBN } from "../../models/LoansInterfaceContract";
 import { hashRequest } from "../../util/hash";
 import { _nonce } from '../../util/nonce';
+import { LoanTerms } from "../../context/types";
 const Big = 'big.js'
 
 const BorrowForm = () => {
@@ -56,6 +57,7 @@ const BorrowForm = () => {
         lendingPool,
         web3State
       );
+      console.log('borrowRequest  ', borrowRequest);
       setBorrowRequest({
         ...borrowRequest,
         requestNonce: await _nonce(web3State.address, borrowRequest.lendWith, borrowRequest.collateralWith)
@@ -142,16 +144,34 @@ const BorrowForm = () => {
   };
 
   const onAcceptTerms = async () => {
-    console.log("ACCEPTED_TERMS<>", loanTerms);
+    console.log("ACCEPTED_TERMS<>");
+    console.log(loanTerms);
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
     ];
+    const loanTermsList = loanTerms as unknown as LoanTerms[];
+    console.log(loanTermsList.length);
+    const finalLoanTerms = loanTermsList.map(terms => ({
+      collateralRatio: terms.collateralRatio,
+      consensusAddress: terms.consensusAddress,
+      responseTime: terms.responseTime,
+      interestRate: terms.interestRate,
+      //minCollateralNeeded: terms.minCollateralNeeded,
+      maxLoanAmount: terms.maxLoanAmount,
+      signature: {
+        v: parseInt(terms.signature.v.toString()),
+        s: terms.signature.s,
+        r: terms.signature.r,
+        signerNonce: parseInt(terms.signature.signerNonce.toString()),
+      },
+      signer: terms.signer,
+    }));
+    console.log(finalLoanTerms);
 
-    try {
-      
+    try {      
       const response = await createLoanWithTerms(
         borrowRequest,
-        loanTerms,
+        finalLoanTerms,//loanTerms,
         loansInstance,
         state.web3State.address
       );
