@@ -45,7 +45,7 @@ export interface LoanRepaymentInterface {
 }
 
 export interface DashboardContextInterface {
-  onPage: PageTypes;
+  onPage: PageTypes | null;
   setOnPage: Function;
   navigationMap: NavigationInterface;
   loans: null | Array<LoanInterface>;

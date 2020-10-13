@@ -9,10 +9,16 @@ import {
   Link,
 } from "react-router-dom";
 
-const DashboardNav = () => {
-  const { onPage, setOnPage, navigationMap } = useContext(DashboardContext);
+type DashboardNavTyps = {
+  className?: string;
+  setExpanded?:Function
+};
+const DashboardNav = ({ className = "" , setExpanded=()=>{}}: DashboardNavTyps) => {
+  const { onPage, navigationMap } = useContext(DashboardContext);
   return (
-    <div className="metrics-card border-thin p-2 my-2 mx-0 m-md-2 p-md-4">
+    <div
+      className={`metrics-card border-thin p-2 my-2 mx-0 m-md-2 p-md-4 ${className}`}
+    >
       {Object.keys(navigationMap).map((section) => {
         return (
           <div
@@ -29,18 +35,18 @@ const DashboardNav = () => {
                   style={{ textDecoration: "none" }}
                   key={subsection}
                   className={`font-md-medium text-lg mb-1 pointer ${
-                    onPage === navigationMap[section][subsection]
+                    onPage && onPage === navigationMap[section][subsection]
                       ? "text-black"
                       : "text-lightest-gray"
                   }`}
                   to={`/dashboard/${navigationMap[section][subsection]}`}
                   onClick={() => {
-                    setOnPage(navigationMap[section][subsection]);
+                    setExpanded(false);
                   }}
                 >
                   <div
                     className={`font-medium text-lg mb-1 pointer ${
-                      onPage === navigationMap[section][subsection]
+                      onPage && onPage === navigationMap[section][subsection]
                         ? "text-black"
                         : "text-lightest-gray"
                     }`}

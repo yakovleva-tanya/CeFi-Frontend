@@ -25,7 +25,7 @@ const navigationMap: NavigationInterface = {
 };
 
 const defaultDashboardContext: DashboardContextInterface = {
-  onPage: PageTypes["deposit-redeem"],
+  onPage: null,
   setOnPage: () => {},
   navigationMap: navigationMap,
   setLoans: () => {},
@@ -36,7 +36,7 @@ export const DashboardContext = createContext<DashboardContextInterface>(
 );
 
 const DashboardContextProvider = ({ children }: ContextProps) => {
-  const [onPage, setOnPage] = useState<PageTypes>(PageTypes["deposit-redeem"]);
+  const [onPage, setOnPage] = useState(null);
   const [loans, setLoans] = useState<Array<LoanInterface>>(null);
 
   return (

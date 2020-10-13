@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navigation.scss";
 import teller_logo from "../../../dist/assets/teller_logo.svg";
 import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
@@ -10,11 +10,20 @@ type NavProps = {
   to: string;
   name: string;
   className?: string;
+  onClickAction?: Function;
 };
 
-const NavigationLink = ({ to, name, className = "" }: NavProps) => {
+const NavigationLink = ({
+  to,
+  name,
+  className = "",
+  onClickAction = () => {},
+}: NavProps) => {
   return (
     <NavLink
+      onClick={() => {
+        onClickAction();
+      }}
       className={`menu-button text-lg text-lightest-gray ${className}`}
       activeClassName="active"
       to={`/${to}`}
@@ -25,11 +34,12 @@ const NavigationLink = ({ to, name, className = "" }: NavProps) => {
 };
 
 const HiddenNavbar = () => {
+  const [expanded, setExpanded] = useState(false);
   return (
     <>
       <Navbar
+        expanded={expanded}
         bg="transparent"
-        collapseOnSelect
         expand="md"
         className="p-4 nav-bar justify-content-between align-items-center container-wrapper"
       >
@@ -41,25 +51,45 @@ const HiddenNavbar = () => {
             className="d-inline-block align-top p-1"
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          onClick={() => {
+            setExpanded(!expanded);
+          }}
+        />
         <Navbar.Collapse
           id="responsive-navbar-nav"
           className="justify-content-end navbar-links"
         >
-          <Nav className="align-items-md-center align-items-start border-bottom py-4">
-            <NavigationLink to="lend" name="Deposit" />
-            <NavigationLink to="borrow" name="Borrow" />
+          <Nav className="align-items-md-center align-items-start py-4">
+            <NavigationLink
+              to="lend"
+              name="Deposit"
+              onClickAction={() => {
+                setExpanded(false);
+              }}
+            />
+            <NavigationLink
+              to="borrow"
+              name="Borrow"
+              onClickAction={() => {
+                setExpanded(false);
+              }}
+            />
             <NavigationLink
               to="dashboard"
               name="Dashboard"
               className="d-none d-md-inline"
+              onClickAction={() => {
+                setExpanded(false);
+              }}
             />
             <NavDropdown
               title="Dashboard"
               id="collasible-nav-dropdown"
-              className={`d-md-none menu-button text-lg py-0 border-none text-lightest-gray`}
+              className={`d-md-none menu-button text-lg py-0 border-none`}
             >
-              <DashboardNav />
+              <DashboardNav setExpanded={setExpanded} />
             </NavDropdown>
             <NavLoginButton />
           </Nav>
