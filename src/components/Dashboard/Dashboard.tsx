@@ -13,6 +13,7 @@ import LoginButton from "../LoginButton/LoginButton";
 import { LoanInterface } from "../../context/types";
 import { calculateCollateralPercent } from "../../actions/HelperFunctions";
 import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import copy from "../../copy.json";
 
 const Dashboard = () => {
   const { state } = useContext(AppContext);
@@ -35,6 +36,7 @@ const Dashboard = () => {
     if (!web3State.address) return;
     updateLoans();
   }, [web3State.address, web3State.network, tokenData]);
+  const { loggedOutMessage } = copy.pages.dashboard;
 
   return (
     <Container>
@@ -45,7 +47,7 @@ const Dashboard = () => {
         </div>
       ) : (
         <div className="d-flex justify-content-center align-items-center flex-column">
-          <div>Please connect your wallet to view the dashboard</div>
+          <div>{loggedOutMessage}</div>
           <LoginButton />
         </div>
       )}

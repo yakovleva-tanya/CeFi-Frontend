@@ -69,7 +69,7 @@ const ThirdStageTable = () => {
             <BR />
           </>
         )}
-        <TableRow title="Deposit collateral">
+        <TableRow title={"Deposit collateral"}>
           <CollateralTransferButton />
         </TableRow>
       </div>

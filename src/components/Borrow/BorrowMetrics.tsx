@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 
 import { BorrowPageContext } from "../../context/borrowContext";
-import { AppContext, mapLendingTokensToTellerTokens } from "../../context/app";
-import ConnectPlaid from "./../../actions/ConnectPlaid";
+import { AppContext } from "../../context/app";
 
 import Card from "../UI/Card";
 import Metric from "../UI/Metric";
 import ProTip from "./ProTip";
 
 import "./borrow.scss";
+import copy from "../../copy.json";
 
 const BorrowMetrics = () => {
   const { borrowRequest } = useContext(BorrowPageContext);
@@ -35,12 +35,19 @@ const BorrowMetrics = () => {
         )} ${collateralWith}`
       : "-";
 
+  const {
+    assetPriceTitle,
+    walletBalanceTitle,
+    collateralAvailableTitle,
+    header,
+  } = copy.pages.borrow.metrics;
+
   return (
     <div className="d-flex flex-column">
-      <Card className="metrics-card" title="Summary">
-        <Metric title="Asset price" value={assetPrice} />
-        <Metric title="Wallet balance" value={walletBalance} />
-        <Metric title="Collateral available" value={collateralAvailable} />
+      <Card className="metrics-card" title={header}>
+        <Metric title={assetPriceTitle} value={assetPrice} />
+        <Metric title={walletBalanceTitle} value={walletBalance} />
+        <Metric title={collateralAvailableTitle} value={collateralAvailable} />
       </Card>
       <Card className="metrics-card my-1" title="Pro tip">
         <ProTip />

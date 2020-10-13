@@ -4,7 +4,7 @@ import Card from "../UI/Card";
 import BorrowMetrics from "./BorrowMetrics";
 import StageBar from "./StageBar";
 import BorrowForm from "./BorrowForm";
-
+import copy from "../../copy.json";
 import "./borrow.scss";
 
 import { BorrowPageContext } from "../../context/borrowContext";
@@ -15,13 +15,14 @@ const BorrowMainSection = () => {
   const showWarning = (s: number) => {
     borrowProcessState.setStageChangeWarning(s);
   };
+  const { header } = copy.pages.borrow.main;
 
   return (
     <div className="borrow">
       <div className="cards-container">
         <Card
           className="main-card text-center"
-          title="Borrow"
+          title={header}
           goBack={
             stage === 0
               ? null

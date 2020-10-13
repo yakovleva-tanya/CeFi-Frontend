@@ -29,6 +29,7 @@ import {
   createLoanWithTerms,
   takeOutLoan,
 } from "../../models/LoansInterfaceContract";
+import copy from "../../copy.json";
 
 const BorrowForm = () => {
   const {
@@ -171,6 +172,13 @@ const BorrowForm = () => {
 
   const isSecured = Boolean(borrowRequest.loanType === "Secured");
   const plaidConnected = state?.plaid?.loggedIn;
+
+  const {
+    unsecuredLoanCard,
+    securedLoanCard,
+    description,
+  } = copy.pages.borrow.main.form.step1;
+
   return (
     <div>
       {submenu ? (
@@ -179,7 +187,7 @@ const BorrowForm = () => {
         <div>
           {stage === 0 && (
             <div className="py-3">
-              <div className="mt-5">Select your loan type</div>
+              <div className="mt-5">{description}</div>
               <LoanSelectCard
                 className="mt-4"
                 onClick={() => {
@@ -190,8 +198,8 @@ const BorrowForm = () => {
                     loanType: "Unsecured",
                   });
                 }}
-                title="Unsecured loan"
-                subTitle="Apply for an unsecured loan by connecting your bank account."
+                title={securedLoanCard.title}
+                subTitle={unsecuredLoanCard.description}
                 logos={["compound"]}
               />
               <LoanSelectCard
@@ -204,8 +212,8 @@ const BorrowForm = () => {
                     loanType: "Secured",
                   });
                 }}
-                title="Secured loan"
-                subTitle="Apply for a secured loan, no bank account needed."
+                title={securedLoanCard.title}
+                subTitle={securedLoanCard.description}
                 logos={["compound", "uniswap"]}
               />
             </div>

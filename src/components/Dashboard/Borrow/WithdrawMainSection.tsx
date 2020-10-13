@@ -25,6 +25,7 @@ import eth from "../../../../dist/assets/eth-logo.svg";
 import link from "../../../../dist/assets/link-logo.png";
 
 import { withdrawCollateral } from "../../../models/LoansInterfaceContract";
+import copy from "../../../copy.json";
 
 const WithdrawMainSection = () => {
   const [warning, setWarning] = useState("");
@@ -81,12 +82,14 @@ const WithdrawMainSection = () => {
   if (selectedLoan) {
     maxWithdrawAmount = getMaxWithdrawAmount(state.tokenData, selectedLoan);
   }
+  const { description, header } = copy.pages.dashboard["borrow-withdraw"];
+
   return (
     <div className="my-4">
       {selectedLoan &&
         (withdrawCollateralSubmenu ? (
           <SubmenuCard
-            title="Withdraw collateral"
+            title={header}
             onCloseAction={() => {
               setWithdrawCollateralSubmenu(false);
             }}
@@ -243,9 +246,7 @@ const WithdrawMainSection = () => {
         ))}
       {!selectedLoan && (
         <div className="my-2">
-          <div className="text-gray mb-4">
-            Select the loan you want to withdraw collateral from.
-          </div>
+          <div className="text-gray mb-4">{description}</div>
           <div className="table border-thin mb-4 mt-3">
             {filteredLoans &&
               filteredLoans

@@ -9,6 +9,7 @@ import Web3 from "web3";
 import Onboard from "bnc-onboard";
 import { BlockNativeOptions } from "./../../util/constants";
 import PrimaryButton from "../UI/PrimaryButton";
+import copy from "../../copy.json";
 
 function truncate(n: number) {
   const length = this.length;
@@ -80,7 +81,7 @@ export async function web3FromProvider(updateAppState: Function) {
 export const NavLoginButton = () => {
   const { state, updateAppState } = useContext(AppContext);
   const loggedIn = state.web3State?.address || "";
-
+  const { loginButtonTitle } = copy.CTAs;
   return (
     <span className="font-medium">
       {!loggedIn ? (
@@ -88,7 +89,7 @@ export const NavLoginButton = () => {
           className="menu-button login-button text-lg py-3 px-4 mr-0"
           onClick={() => web3FromProvider(updateAppState)}
         >
-          Connect Wallet
+          {loginButtonTitle}
         </a>
       ) : (
         <div className="menu-button login-button text-lg py-3 px-4 mr-0">

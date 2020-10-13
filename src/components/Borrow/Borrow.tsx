@@ -12,7 +12,7 @@ import BorrowPageContextProvider, {
 } from "../../context/borrowContext";
 
 const Borrow = () => {
-  const { stage, setStage, borrowProcessState } = useContext(BorrowPageContext);
+  const { setStage, borrowProcessState } = useContext(BorrowPageContext);
   const {
     isSubmitting,
     isRequesting,

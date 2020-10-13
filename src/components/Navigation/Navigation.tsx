@@ -4,6 +4,7 @@ import "./navigation.scss";
 import teller_logo from "../../../dist/assets/teller_logo.svg";
 import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import { NavLoginButton } from "./../LoginButton/LoginButton";
+import copy from "../../copy.json";
 
 type NavProps = {
   to: string;
@@ -23,6 +24,8 @@ const NavigationLink = ({ to, name }: NavProps) => {
 };
 
 const HiddenNavbar = () => {
+  const { deposit, borrow, dashboard } = copy.navigation;
+
   return (
     <Navbar
       bg="transparent"
@@ -39,9 +42,9 @@ const HiddenNavbar = () => {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse className="justify-content-end navbar-links">
-        <NavigationLink to="deposit" name="Deposit" />
-        <NavigationLink to="borrow" name="Borrow" />
-        <NavigationLink to="dashboard/deposit-redeem" name="Dashboard" />
+        <NavigationLink to="deposit" name={deposit} />
+        <NavigationLink to="borrow" name={borrow} />
+        <NavigationLink to="dashboard/deposit-redeem" name={dashboard} />
         <NavLoginButton />
       </Navbar.Collapse>
     </Navbar>

@@ -8,6 +8,7 @@ import Card from "../../UI/Card";
 import SuccessScreen from "../../SuccessScreen/SuccessScreen";
 import ProcessingScreen from "../../ProcessingScreen/ProcessingScreen";
 import DepositMainSection from "./DepositMainSection";
+import copy from "../../../copy.json";
 
 const DepositPage = () => {
   const {
@@ -20,11 +21,13 @@ const DepositPage = () => {
   const goBack = () => {
     setSelectedLoan(null);
   };
+  const { header } = copy.pages.dashboard["borrow-deposit"];
+
   return (
     <div>
       <Card
         className="main-card text-center"
-        title={selectedLoan ? `ID ${selectedLoan.id}` : "Deposit collateral"}
+        title={selectedLoan ? `ID ${selectedLoan.id}` : header}
         goBack={selectedLoan ? goBack : null}
         dashboard={true}
       >

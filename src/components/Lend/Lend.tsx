@@ -25,6 +25,7 @@ import "./lend.scss";
 import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
 import { getEtherscanLink } from "../../actions/HelperFunctions";
 import FormValidationWarning from "../UI/FormValidationWarning";
+import copy from "../../copy.json";
 
 const supplyFormValidation = () => {
   const errors = {};
@@ -55,13 +56,15 @@ const Lend = () => {
     }
   }, [selectedAmount, balance]);
 
+  const { depositTitle, approveTitle, CTA } = copy.pages.deposit.main.form;
+  const { header } = copy.pages.deposit.main;
   return (
     <Container>
       {!processing && !transactionHash && (
         <div className="cards-container">
           <Card
             className="main-card text-center align-items-center"
-            title="Supply"
+            title={header}
           >
             <div className="my-3">
               <Formik
@@ -89,18 +92,18 @@ const Lend = () => {
                       handleChange={handleChange}
                     />
                     <div className="table border-thin mt-5 mb-4">
-                      <TableRow title="Deposit">
+                      <TableRow title={depositTitle}>
                         <CurrencyDropdown />
                       </TableRow>
                       <BR />
-                      <TableRow title="Approve">
+                      <TableRow title={approveTitle}>
                         <SubmitApproveButton />
                       </TableRow>
                     </div>
-                    <FormValidationWarning message={amountExceeded}/>
+                    <FormValidationWarning message={amountExceeded} />
                     {loggedIn ? (
                       <PrimaryButton
-                        text="Deposit"
+                        text={CTA}
                         type="submit"
                         disabled={isSubmitting || !tokensApproved}
                       />

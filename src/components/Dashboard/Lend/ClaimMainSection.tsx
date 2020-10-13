@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import PrimaryButton from "../../UI/PrimaryButton";
 import TableRow from "../../UI/TableRow";
 import BR from "../../UI/BR";
@@ -9,6 +9,7 @@ import {
   collectInterest,
 } from "../../../actions/DashboardLendActions";
 import { LendClaimContext } from "../../../context/dashboardContext";
+import copy from "../../../copy.json";
 
 const ClaimMainSection = () => {
   const {
@@ -55,11 +56,16 @@ const ClaimMainSection = () => {
     setSuccess(res);
     setAssetClaimed("");
   };
+  const {
+    description,
+    assetChangeWarningMessage,
+    claimCTA,
+    redeemCTA,
+  } = copy.pages.dashboard["deposit-redeem"];
+
   return (
     <div className="my-2">
-      <div className="text-gray mb-2">
-        Select an asset to redeem your APY to date.
-      </div>
+      <div className="text-gray mb-2">{description}</div>
       <div className="border-thin my-4">
         {Object.keys(assets).map((currency, i) => {
           const amount = assets[currency];
@@ -67,7 +73,7 @@ const ClaimMainSection = () => {
           return (
             <div key={currency}>
               <WarningModal
-                text="Redeeming your APY will submit a transaction and incur gas fees. Costs will be debited from your wallet. Are you sure you want to proceed?"
+                text={assetChangeWarningMessage}
                 show={assetChangeWarning === currency}
                 proceed={async () => {
                   setAssetChangeWarning("");
@@ -79,7 +85,7 @@ const ClaimMainSection = () => {
               />
               <TableRow title={title} currency={currency}>
                 <CustomSubmitButton
-                  text="Claim"
+                  text={claimCTA}
                   onClickAction={() => {
                     if (amount !== 0) {
                       onAssetClaim(currency);
@@ -100,7 +106,7 @@ const ClaimMainSection = () => {
       </div>
       <PrimaryButton
         disabled={!assetClaimed}
-        text="Redeem"
+        text={redeemCTA}
         onClick={processCollectInterest}
       />
     </div>
