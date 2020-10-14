@@ -11,13 +11,13 @@ const swap = async (
     // An array of token addresses. path.length must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity.
     const sourceAmount = trade.inputAmount.raw;
     const minDestination = await computeSlippageAdjustedAmounts(trade);
-
+    console.log({ minDestination });
     const data = web3UniswapContract.methods
       .swap(path, sourceAmount, minDestination)
       .encodeABI();
 
-    console.log({data});
-
+    console.log({ data });
+    console.log(web3UniswapContract.address);
     const dappData = {
       location: web3UniswapContract.address,
       data: data,
