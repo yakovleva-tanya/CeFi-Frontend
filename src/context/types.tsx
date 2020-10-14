@@ -1,3 +1,5 @@
+import { LendingApplication } from "../models/ArrowheadCRA";
+import { PBorrow } from "../services/borrow";
 import { AvailableLendingTokens, BaseTokens } from "./app";
 
 export interface LoanInterface {
@@ -103,6 +105,7 @@ export interface LoanTerms {
   chainId: string;
 }
 
+
 export interface BorrowProcessInterface {
   success: boolean;
   setSuccess: Function;
@@ -123,8 +126,11 @@ export interface BorrowPageContextInterface {
   setBorrowRequest: Function;
   loanTerms: LoanTerms;
   setLoanTerms: Function;
+  lendingApp: PBorrow;
+  setLendingApp: Function;
   borrowProcessState: null | BorrowProcessInterface;
 }
+
 export interface LendClaimStateInterface {
   success: null | boolean;
   setSuccess: Function;

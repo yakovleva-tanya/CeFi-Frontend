@@ -8,8 +8,6 @@ import LoginButton from "../LoginButton/LoginButton";
 import Submenu from "./Submenu";
 import LoanSelectCard from './LoanSelectedCard';
 
-import FetchTokenData from '../../models/FetchTokenData';
-
 import "./borrow.scss";
 
 import {
@@ -24,12 +22,10 @@ import {
   LendingApplicationMap,
 } from "../../context/borrowContext";
 
-// import { sendLendingApplication, arrowheadCRA } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
-import { createLoanWithTerms, takeOutLoan, convertToBN } from "../../models/LoansInterfaceContract";
+import { takeOutLoan } from "../../models/LoansInterfaceContract";
 import { _nonce } from '../../util/nonce';
-import { LoanTerms } from "../../context/types";
-import { getNodeSignaturesForBorrowing, PBorrow, submitSignaturesToChainForBorrowing } from "../../services/borrow";
+import { getNodeSignaturesForBorrowing, PBorrow, RArrowheadCRA, submitSignaturesToChainForBorrowing } from "../../services/borrow";
 const Big = 'big.js'
 
 const BorrowForm = () => {
@@ -42,6 +38,8 @@ const BorrowForm = () => {
     borrowProcessState,
     loanTerms,
     setLoanTerms,
+    lendingApp,
+    setLendingApp
   } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
   const { setRequesting, setSuccess, setSubmitting } = borrowProcessState;
@@ -57,13 +55,7 @@ const BorrowForm = () => {
         lendingPool,
         web3State
       );
-      const reqNonce = Number(await _nonce(web3State.address, borrowRequest.lendWith, borrowRequest.collateralWith));
       console.log('borrowRequest  ', borrowRequest);
-      console.log('nonce', reqNonce);
-      setBorrowRequest({
-        ...borrowRequest,
-        requestNonce: reqNonce
-      });
 
       const lendingApplication = LendingApplicationMap(
         borrowRequest,
@@ -72,7 +64,9 @@ const BorrowForm = () => {
         web3State
       );
       console.log("APPLICATION>>>", lendingApplication);
-      // const terms = await sendLendingApplication(lendingApplication);
+ 
+      setLendingApp(lendingApplication);
+
       setBorrowRequest({
         ...borrowRequest,
         requestTime: lendingApplication.requestTime
@@ -83,23 +77,7 @@ const BorrowForm = () => {
       );
 
       console.log('responses<>', nodeResponses);
-      const strNonce = String(reqNonce + 1);
-      console.log('string nonce', strNonce)
-      console.log('req nonce', reqNonce);
-        
-      // const receipt = await submitSignaturesToChainForBorrowing(
-      //   lendingApplication as PBorrow,
-      //   nodeResponses,
-      //   strNonce,
-      //   lendingApplication.requestedLoanSize,
-      //   String(0.01 * 1e18),
-      //   loansInstance
-      // );
 
-      // console.log('Receipt<>', receipt);
-
-      // const terms = await arrowheadCRA(lendingApplication);
-      // console.log("TERMS>>>", terms);
       setLoanTerms(nodeResponses);
       return true;
     } catch (err) {
@@ -173,41 +151,29 @@ const BorrowForm = () => {
   const onAcceptTerms = async (borrowNonce: any) => {
     console.log("ACCEPTED_TERMS<>");
     console.log(loanTerms);
+    const { web3State } = state;
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
     ];
 
-    // const loanTermsList = loanTerms as unknown as LoanTerms[];
-    // console.log(loanTermsList.length);
-    // const finalLoanTerms = loanTermsList.map(terms => ({
-    //   collateralRatio: terms.collateralRatio,
-    //   consensusAddress: terms.consensusAddress,
-    //   responseTime: terms.responseTime,
-    //   interestRate: terms.interestRate,
-    //   //minCollateralNeeded: terms.minCollateralNeeded,
-    //   maxLoanAmount: terms.maxLoanAmount,
-    //   signature: {
-    //     v: parseInt(terms.signature.v.toString()),
-    //     s: terms.signature.s,
-    //     r: terms.signature.r,
-    //     signerNonce: parseInt(terms.signature.signerNonce.toString()),
-    //   },
-    //   signer: terms.signer,
-    // }));
-    // console.log('Final loan terms', finalLoanTerms);
-
     try {      
-      console.log('req', borrowRequest);
-      // const response = await createLoanWithTerms(
-      //   borrowRequest,
-      //   loanTerms,
-      //   //finalLoanTerms,
-      //   loansInstance,
-      //   state.web3State.address
-      // );
-      // console.log("CREATE_RESPONSE<>", response);
+      console.log('lendingApp', lendingApp);
+
+      const reqNonce = Number(await _nonce(web3State.address, borrowRequest.lendWith, borrowRequest.collateralWith));
       console.log('nodeRes<>', loanTerms);
-      console.log('stored nonce<>', borrowNonce);
+      console.log('stored nonce<>', String(reqNonce));
+
+      const receipt = await submitSignaturesToChainForBorrowing(
+        lendingApp as PBorrow,
+        loanTerms as unknown as RArrowheadCRA[],
+        String(reqNonce + 1),
+        lendingApp.requestedLoanSize,
+        String(0.01 * 1e18),
+        loansInstance
+      );
+
+      console.log('Receipt<>', receipt);
+
       setSubmitting(true);
       //Accept loan terms
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -293,9 +259,7 @@ const BorrowForm = () => {
           {stage === 2 && (
             <div>
               <SecondStageTable />
-              <PrimaryButton text="Accept terms" onClick={async() => {
-                await onAcceptTerms(borrowRequest.requestNonce)
-                }} />
+              <PrimaryButton text="Accept terms" onClick={async() => {await onAcceptTerms(borrowRequest.requestNonce)}} />
             </div>
           )}
           {stage === 3 && (

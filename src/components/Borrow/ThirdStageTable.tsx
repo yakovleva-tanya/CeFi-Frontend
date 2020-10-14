@@ -20,7 +20,7 @@ const ThirdStageTable = () => {
     <div>
       <div className="table border-thin my-5">
         <TableRow title="Interest rate">
-          <div className="font-medium"> {interestRate} % </div>
+          <div className="font-medium"> {String(interestRate)} % </div>
         </TableRow>
         <BR />
         {Number(collateralRatio) > 0 && (

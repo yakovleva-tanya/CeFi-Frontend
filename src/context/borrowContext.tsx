@@ -90,7 +90,7 @@ const LoanTerms = {
   chainId: null as string,
 };
 
-const PBorrow = {
+const LendingApp = {
   requestedLoanSize: null as string,
   borrowedAsset: null as string,
   collateralAsset: null as string,
@@ -101,6 +101,7 @@ const PBorrow = {
   assetReportStringified: null as string,
   assetReportSignature: null as string, 
   requestTime: null as string, // seconds at least 100 in the past
+  requestNonce: null as string
 }
 
 export const BorrowPageContext = createContext<BorrowPageContextInterface>({
@@ -112,6 +113,8 @@ export const BorrowPageContext = createContext<BorrowPageContextInterface>({
   setBorrowRequest: () => {},
   loanTerms: null as any,
   setLoanTerms: () => {},
+  lendingApp: null as any,
+  setLendingApp: () => {},
   borrowProcessState: null,
 });
 
@@ -120,6 +123,7 @@ const BorrowPageContextProvider = ({ children }: ContextProps) => {
   const [submenu, setSubmenu] = useState(null as null);
   const [borrowRequest, setBorrowRequest] = useState(defaultBorrowRequest);
   const [loanTerms, setLoanTerms] = useState(LoanTerms);
+  const [lendingApp, setLendingApp] = useState(LendingApp);
 
   const [success, setSuccess] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
@@ -148,6 +152,8 @@ const BorrowPageContextProvider = ({ children }: ContextProps) => {
         setBorrowRequest,
         loanTerms,
         setLoanTerms,
+        lendingApp,
+        setLendingApp,
         borrowProcessState,
       }}
     >

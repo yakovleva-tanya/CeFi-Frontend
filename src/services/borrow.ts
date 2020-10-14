@@ -16,6 +16,7 @@ export type PBorrow = {
   assetReportStringified?: string | null;
   assetReportSignature?: string | null;
   requestTime: string // seconds at least 100 in the past
+  requestNonce: string
 }
 export type RBorrow = RArrowheadCRA[];
 
