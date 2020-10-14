@@ -1,12 +1,24 @@
+// import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 import { gql, ApolloClient, InMemoryCache } from 'apollo-boost';
 import { createHttpLink } from 'apollo-link-http';
 
 // TODO Move to dev secrets
 const tellerSubgraphUrl = "https://api.thegraph.com/subgraphs/name/salazarguille/teller-protocol-subgraph-rinkeby";
 
+// const tellerSubgraphClient = new ApolloClient({
+//     cache: new InMemoryCache(),
+//     link: createHttpLink({ uri: tellerSubgraphUrl }),
+// });
+
 const tellerSubgraphClient = new ApolloClient({
-    cache: new InMemoryCache(),
-    link: createHttpLink({ uri: tellerSubgraphUrl }),
+  cache: new InMemoryCache(),
+  link: createHttpLink({ uri: tellerSubgraphUrl }),
+  defaultOptions: {
+    query: {
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
+    },
+  },
 });
 
 /**
@@ -23,16 +35,16 @@ export async function _nonce(
     collateralAsset: string,
   ): Promise<number> {
     const query = gql`
-      query borrowerNoncesChanges(
-        $borrower: String!
-        $borrowedAsset: String!
-        $collateralAsset: String!
-      ) {
+      query {
         borrowerNoncesChanges(
           first: 1
-          orderBy: nonce
+          orderBy: timestamp
           orderDirection: desc
-          where: { borrower: $borrower, token: $borrowedAsset, collateralToken: $collateralAsset }
+          where: {
+            borrower: "${borrower}"
+            token: "${borrowedAsset}"
+            collateralToken: "${collateralAsset}"
+          }
         ) {
           nonce
         }
@@ -47,7 +59,7 @@ export async function _nonce(
           collateralAsset,
         },
       });
-      return result.data.nonce ? result.data.nonce : 0;
+      return result.data.borrowerNoncesChanges[0].nonce ? result.data.borrowerNoncesChanges[0].nonce : 0;
     } catch (e) {
       console.log(e);
       return 0;

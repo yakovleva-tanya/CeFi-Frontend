@@ -23,7 +23,7 @@ export const CollateralAmountSubmenu = () => {
   } = borrowRequest;
   const minCollateralAmount =
     Math.round(
-      (Number(loanSize) * loanTerms.minCollateralNeeded * tokenData[lendWith].price) /
+      (Number(loanSize) * Number(loanTerms.minCollateralNeeded) * tokenData[lendWith].price) /
         tokenData[collateralWith].price
     ) / 100;
 
@@ -119,7 +119,7 @@ const CollateralAmountSelection = () => {
 
   const minCollateralAmount =
     Math.round(
-      (Number(loanSize) * loanTerms.minCollateralNeeded * tokenData[lendWith].price) /
+      (Number(loanSize) * Number(loanTerms.minCollateralNeeded) * tokenData[lendWith].price) /
         tokenData[collateralWith].price
     ) / 100;
   const title = `${

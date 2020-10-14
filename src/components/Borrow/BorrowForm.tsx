@@ -24,10 +24,9 @@ import {
   LendingApplicationMap,
 } from "../../context/borrowContext";
 
-import { sendLendingApplication, arrowheadCRA } from "../../models/ArrowheadCRA";
+// import { sendLendingApplication, arrowheadCRA } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
 import { createLoanWithTerms, takeOutLoan, convertToBN } from "../../models/LoansInterfaceContract";
-import { hashRequest } from "../../util/hash";
 import { _nonce } from '../../util/nonce';
 import { LoanTerms } from "../../context/types";
 import { getNodeSignaturesForBorrowing, PBorrow, submitSignaturesToChainForBorrowing } from "../../services/borrow";
@@ -58,10 +57,12 @@ const BorrowForm = () => {
         lendingPool,
         web3State
       );
+      const reqNonce = Number(await _nonce(web3State.address, borrowRequest.lendWith, borrowRequest.collateralWith));
       console.log('borrowRequest  ', borrowRequest);
+      console.log('nonce', reqNonce);
       setBorrowRequest({
         ...borrowRequest,
-        requestNonce: await _nonce(web3State.address, borrowRequest.lendWith, borrowRequest.collateralWith)
+        requestNonce: reqNonce
       });
 
       const lendingApplication = LendingApplicationMap(
@@ -82,11 +83,14 @@ const BorrowForm = () => {
       );
 
       console.log('responses<>', nodeResponses);
+      const strNonce = String(reqNonce + 1);
+      console.log('string nonce', strNonce)
+      console.log('req nonce', reqNonce);
         
       const receipt = await submitSignaturesToChainForBorrowing(
         lendingApplication as PBorrow,
         nodeResponses,
-        '1',
+        strNonce,
         lendingApplication.requestedLoanSize,
         String(0.01 * 1e18),
         loansInstance
@@ -173,35 +177,35 @@ const BorrowForm = () => {
       TellerTokens.tDAI
     ];
 
-    const loanTermsList = loanTerms as unknown as LoanTerms[];
-    console.log(loanTermsList.length);
-    const finalLoanTerms = loanTermsList.map(terms => ({
-      collateralRatio: terms.collateralRatio,
-      consensusAddress: terms.consensusAddress,
-      responseTime: terms.responseTime,
-      interestRate: terms.interestRate,
-      //minCollateralNeeded: terms.minCollateralNeeded,
-      maxLoanAmount: terms.maxLoanAmount,
-      signature: {
-        v: parseInt(terms.signature.v.toString()),
-        s: terms.signature.s,
-        r: terms.signature.r,
-        signerNonce: parseInt(terms.signature.signerNonce.toString()),
-      },
-      signer: terms.signer,
-    }));
-    console.log('Final loan terms', finalLoanTerms);
+    // const loanTermsList = loanTerms as unknown as LoanTerms[];
+    // console.log(loanTermsList.length);
+    // const finalLoanTerms = loanTermsList.map(terms => ({
+    //   collateralRatio: terms.collateralRatio,
+    //   consensusAddress: terms.consensusAddress,
+    //   responseTime: terms.responseTime,
+    //   interestRate: terms.interestRate,
+    //   //minCollateralNeeded: terms.minCollateralNeeded,
+    //   maxLoanAmount: terms.maxLoanAmount,
+    //   signature: {
+    //     v: parseInt(terms.signature.v.toString()),
+    //     s: terms.signature.s,
+    //     r: terms.signature.r,
+    //     signerNonce: parseInt(terms.signature.signerNonce.toString()),
+    //   },
+    //   signer: terms.signer,
+    // }));
+    // console.log('Final loan terms', finalLoanTerms);
 
     try {      
       console.log('req', borrowRequest);
-      const response = await createLoanWithTerms(
-        borrowRequest,
-        loanTerms,
-        //finalLoanTerms,
-        loansInstance,
-        state.web3State.address
-      );
-      console.log("CREATE_RESPONSE<>", response);
+      // const response = await createLoanWithTerms(
+      //   borrowRequest,
+      //   loanTerms,
+      //   //finalLoanTerms,
+      //   loansInstance,
+      //   state.web3State.address
+      // );
+      // console.log("CREATE_RESPONSE<>", response);
       setSubmitting(true);
       //Accept loan terms
       await new Promise((resolve) => setTimeout(resolve, 2000));

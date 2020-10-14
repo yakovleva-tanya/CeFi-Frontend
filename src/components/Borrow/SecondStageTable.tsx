@@ -16,7 +16,7 @@ const SecondStageTable = () => {
           <div className="font-medium"> {Number(interestRate) / 100} % </div>
         </TableRow>
         <BR />
-        {minCollateralNeeded > 0 && (
+        {Number(minCollateralNeeded) > 0 && (
           <div>
             <TableRow title="Collateral ratio">
               <div className="font-medium">{collateralRatio}</div>

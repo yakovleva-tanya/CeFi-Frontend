@@ -15,7 +15,7 @@ import { approveToken, depositCollateral } from "../../models/LoansInterfaceCont
 const ThirdStageTable = () => {
   const { borrowRequest, loanTerms } = useContext(BorrowPageContext);
   const { loanSize, loanTerm, loanType, lendWith } = borrowRequest;
-  const { interestRate, minCollateralNeeded } = loanTerms;
+  const { interestRate, collateralRatio } = loanTerms;
   return (
     <div>
       <div className="table border-thin my-5">
@@ -23,10 +23,10 @@ const ThirdStageTable = () => {
           <div className="font-medium"> {interestRate} % </div>
         </TableRow>
         <BR />
-        {minCollateralNeeded > 0 && (
+        {Number(collateralRatio) > 0 && (
           <div>
             <TableRow title="Collateral ratio">
-              <div className="font-medium"> {minCollateralNeeded} % </div>
+              <div className="font-medium"> {collateralRatio} % </div>
             </TableRow>
             <BR />
           </div>

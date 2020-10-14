@@ -59,14 +59,17 @@ const mockLoanTerms = {
 };
 
 const LoanTerms = {
-  collateralRatio: null as number,
+  collateralRatio: null as string,
   consensusAddress: null as string,
-  responseTime: null as number,
-  interestRate: null as number,
-  minCollateralNeeded: null as number,
-  maxLoanAmount: null as number,
-  signature: null as Signature,
-  signer: null as string
+  responseTime: null as string,
+  interestRate: null as string,
+  requestHash: null as string,
+  minCollateralNeeded: null as string,
+  maxLoanAmount: null as string,
+  signature: null as string,
+  signer: null as string,
+  signerNonce: null as string,
+  chainId: null as string,
 };
 
 export const BorrowPageContext = createContext<BorrowPageContextInterface>({

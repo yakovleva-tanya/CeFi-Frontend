@@ -90,14 +90,17 @@ export interface Signature {
 }
 
 export interface LoanTerms {
-  collateralRatio: number;
+  collateralRatio: string;
   consensusAddress: string;
-  responseTime: number;
-  interestRate: number;
-  minCollateralNeeded: number;
-  maxLoanAmount: number;
-  signature: Signature;
+  responseTime: string;
+  interestRate: string;
+  requestHash: string;
+  minCollateralNeeded: string;
+  maxLoanAmount: string;
+  signature: string;
   signer: string;
+  signerNonce: string;
+  chainId: string;
 }
 
 export interface BorrowProcessInterface {
