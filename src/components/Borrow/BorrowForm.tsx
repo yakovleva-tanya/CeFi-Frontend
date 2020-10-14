@@ -87,20 +87,20 @@ const BorrowForm = () => {
       console.log('string nonce', strNonce)
       console.log('req nonce', reqNonce);
         
-      const receipt = await submitSignaturesToChainForBorrowing(
-        lendingApplication as PBorrow,
-        nodeResponses,
-        strNonce,
-        lendingApplication.requestedLoanSize,
-        String(0.01 * 1e18),
-        loansInstance
-      );
+      // const receipt = await submitSignaturesToChainForBorrowing(
+      //   lendingApplication as PBorrow,
+      //   nodeResponses,
+      //   strNonce,
+      //   lendingApplication.requestedLoanSize,
+      //   String(0.01 * 1e18),
+      //   loansInstance
+      // );
 
-      console.log('Receipt<>', receipt);
+      // console.log('Receipt<>', receipt);
 
       // const terms = await arrowheadCRA(lendingApplication);
       // console.log("TERMS>>>", terms);
-      // setLoanTerms(terms);
+      setLoanTerms(nodeResponses);
       return true;
     } catch (err) {
       console.log(err);
@@ -170,7 +170,7 @@ const BorrowForm = () => {
     setSuccess(true);
   };
 
-  const onAcceptTerms = async () => {
+  const onAcceptTerms = async (borrowNonce: any) => {
     console.log("ACCEPTED_TERMS<>");
     console.log(loanTerms);
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
@@ -206,6 +206,8 @@ const BorrowForm = () => {
       //   state.web3State.address
       // );
       // console.log("CREATE_RESPONSE<>", response);
+      console.log('nodeRes<>', loanTerms);
+      console.log('stored nonce<>', borrowNonce);
       setSubmitting(true);
       //Accept loan terms
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -291,7 +293,9 @@ const BorrowForm = () => {
           {stage === 2 && (
             <div>
               <SecondStageTable />
-              <PrimaryButton text="Accept terms" onClick={onAcceptTerms} />
+              <PrimaryButton text="Accept terms" onClick={async() => {
+                await onAcceptTerms(borrowRequest.requestNonce)
+                }} />
             </div>
           )}
           {stage === 3 && (

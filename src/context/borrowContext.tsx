@@ -53,6 +53,24 @@ const defaultBorrowRequest = {
   requestHash: 'C5D2460186F7233C927E7DB2DCC703C0E500B653CA82273B7BFAD8045D85A470 [xdJGAYb3IzySfn2y3McDwOUAtlPKgic7e/rYBF2FpHA=]',
   borrowerAddress: ''
 };
+
+const BorrowRequest = {
+  loanSize: null as number,
+  loanTerm: null as number,
+  collateralWith: BaseTokens.ETH,
+  collateralPercent: null as number,
+  loanType: null as string,
+  bankConnected: null as boolean,
+  lendWith: AvailableLendingTokens.DAI,
+  collateralAmount: null as number,
+  approved: null as boolean,
+  transferred: null as boolean,
+  requestTime: null as number,
+  requestNonce: null as number,
+  requestHash: null as string,
+  borrowerAddress: null as string
+};
+
 const mockLoanTerms = {
   interestRate: 20,
   minCollateralNeeded: 100,
@@ -71,6 +89,19 @@ const LoanTerms = {
   signerNonce: null as string,
   chainId: null as string,
 };
+
+const PBorrow = {
+  requestedLoanSize: null as string,
+  borrowedAsset: null as string,
+  collateralAsset: null as string,
+  loanTermLength: null as string, // seconds
+  collateralRatioEntered: null as string, // 100% === 10000
+  loanUse: null as string,
+  ethereumWallet: null as string,
+  assetReportStringified: null as string,
+  assetReportSignature: null as string, 
+  requestTime: null as string, // seconds at least 100 in the past
+}
 
 export const BorrowPageContext = createContext<BorrowPageContextInterface>({
   stage: 0,
