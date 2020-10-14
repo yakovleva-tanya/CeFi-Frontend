@@ -45,7 +45,7 @@ const defaultBorrowRequest = {
   loanType: "Secured",
   bankConnected: false,
   lendWith: AvailableLendingTokens.DAI,
-  collateralAmount: 1,
+  collateralAmount: 0,
   approved: false,
   transferred: false,
   requestTime: Math.floor(Date.now()/1000),
@@ -73,17 +73,18 @@ const BorrowRequest = {
 
 const mockLoanTerms = {
   interestRate: 20,
-  minCollateralNeeded: 100,
+  collateralRatio: 100,
+  maxLoanAmount: 100,
 };
 
 const LoanTerms = {
-  collateralRatio: null as string,
+  collateralRatio: null as null,
   consensusAddress: null as string,
   responseTime: null as string,
-  interestRate: null as string,
+  interestRate: null as null,
   requestHash: null as string,
   minCollateralNeeded: null as string,
-  maxLoanAmount: null as string,
+  maxLoanAmount: null as null,
   signature: null as string,
   signer: null as string,
   signerNonce: null as string,

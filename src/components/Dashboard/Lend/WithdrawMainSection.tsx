@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useMemo } from "react";
 import PrimaryButton from "../../UI/PrimaryButton";
 import { CustomDropdown } from "../../UI/CustomDropdown";
 import TableRow from "../../UI/TableRow";
@@ -31,14 +31,14 @@ const WithdrawMainSection = () => {
   const { state, updateAppState } = useContext(AppContext);
   const tokenData = state.tokenData;
   const primaryAddress = state.web3State?.address;
-  const contracts = state.teller.contracts;
+  const contracts = state.teller?.contracts||null;
   const [selectedAmount, setSelectedAmount] = useState("0.00");
 
   const convertFromUSD = (value: number) => {
     return tokenData
       ? Math.round(
-          parseFloat(tokenData[selectedCurrency].price) * value * 10000
-        ) / 10000
+          parseFloat(tokenData[selectedCurrency].price) * value * 100
+        ) / 100
       : value;
   };
 
@@ -83,43 +83,44 @@ const WithdrawMainSection = () => {
     ? Math.round(
         (parseFloat(clearSigns(selectedAmount)) /
           tokenData[selectedCurrency].price) *
-          10000
-      ) / 10000
+          100
+      ) / 100
     : 0;
 
-  const price = tokenData ? `${priceValue} ${selectedCurrency}` : "-";
+  const price = tokenData
+    ? `${isNaN(priceValue) ? 0 : priceValue} ${selectedCurrency}`
+    : "-";
 
-  const tellerTokens = mapLendingTokensToTellerTokens(selectedCurrency);
-
-  const userBalance = convertFromUSD(
-    contracts[BaseTokens.ETH][tellerTokens].suppliedBalance
+  const maxValue = useMemo(
+    () =>
+      contracts[BaseTokens.ETH][
+        mapLendingTokensToTellerTokens(selectedCurrency)
+      ].suppliedBalance,
+    [selectedCurrency]
   );
 
-  const maxValue = `${userBalance}`;
+  useEffect(() => {
+    if (parseFloat(selectedAmount) > maxValue) {
+      setWarningMessage(
+        `Please input amount smaller than ${maxValue}`
+      );
+    } else {
+      setWarningMessage("");
+    }
+  }, [selectedCurrency, selectedAmount]);
 
   return (
-    <div>
-      <div className="text-gray -mx-2">
+    <div className="my-2">
+      <div className="text-gray mb-2">
         Select an asset to withdraw your deposit to date
       </div>
       <FormValidationWarning message={warningMessage} />
-
       <CustomInput
         onChangeFunction={(e: any) => {
           let value = e.target.value.replace(/[^0-9.]/g, "");
           const split = value.split(".");
           if (split[1] && split[1].length > 2) {
             value = `${split[0]}.${split[1].substring(0, 2)}`;
-          }
-          if (
-            parseFloat(value) > parseFloat(maxValue.replace(/[^0-9.]/g, ""))
-          ) {
-            setWarningMessage(`Please input amount smaller than ${maxValue}`);
-          } else {
-            setWarningMessage("");
-          }
-          if (isNaN(value)) {
-            value = "0.00";
           }
           setSelectedAmount(value);
         }}
@@ -138,13 +139,17 @@ const WithdrawMainSection = () => {
         className="mx-auto py-1 px-3 my-4 border-thin pointer text-black"
         style={{ width: "85px" }}
         onClick={() => {
-          setSelectedAmount(maxValue);
+          let value = maxValue;
+          if (isNaN(value)) {
+            value = 0;
+          }
+          setSelectedAmount(value.toFixed(2));
         }}
       >
         Max
       </div>
-      <div className="table border-thin my-5">
-        <TableRow title="Withdraw With">
+      <div className="table border-thin my-4">
+        <TableRow title="Withdraw with">
           <CustomDropdown
             selected={selectedCurrency}
             options={[AvailableLendingTokens.DAI, AvailableLendingTokens.USDC]}

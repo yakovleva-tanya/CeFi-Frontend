@@ -66,6 +66,10 @@ export const CollateralPercentSubmenu = () => {
       <div className="-my-2 d-flex flex-column px-4">
         <div className="mb-4">Enter your desired collateral ratio</div>
         <input
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
           className="input text-5xl font-medium text-black text-center"
           value={value}
           name="amount"

@@ -13,7 +13,7 @@ export const LoanTermSubmenu = () => {
   const [warning, setWarning] = useState("");
 
   const min = 1;
-  const max = 90;
+  const max = 60;
   const sliderValue = (100 / (max - min + 1)) * value;
   const errorMessage = `Please enter a number between ${min}-${max}`;
 
@@ -64,6 +64,10 @@ export const LoanTermSubmenu = () => {
       <div className="-my-2 d-flex flex-column px-4">
         <div className="mb-4">Enter in the duration of your loan term </div>
         <input
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
           className="input text-5xl font-medium text-black text-center"
           value={value}
           name="amount"

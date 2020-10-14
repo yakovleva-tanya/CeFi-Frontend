@@ -8,10 +8,7 @@ import {
   BaseTokens,
   Web3State
 } from "../context/app";
-import {
-  DashboardContext,
-  BorrowRepayContext,
-} from "../context/dashboardContext";
+
 import { loanRepayment, depositCollateral, withdrawCollateral } from "../models/LoansInterfaceContract";
 
 /** Methods */

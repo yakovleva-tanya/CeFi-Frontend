@@ -32,6 +32,21 @@ const setBlockNumber = async (
   updateAppState((st: AppContextState) => {
     return { ...st, web3State };
   });
+  const subscription = web3State.web3.eth
+    .subscribe("newBlockHeaders", function (error: any, result: any) {
+      if (!error) {
+        return;
+      }
+      console.error(error);
+    })
+    .on("connected", function (subscriptionId: any) {})
+    .on("data", function (blockHeader: any) {
+      web3State.blockNumber = blockHeader.number;
+      updateAppState((st: AppContextState) => {
+        return { ...st, web3State };
+      });
+    })
+    .on("error", console.error);
 };
 
 const mergeSignInContracts = async (
@@ -81,19 +96,38 @@ const getTokenData = async (
     console.log(err);
   }
 };
+
 const setUpdates = async (state: AppContextState, updateAppState: Function) => {
   await setAddress(state, updateAppState);
   await mergeSignInContracts(state, updateAppState);
   await setBlockNumber(state, updateAppState);
 };
+
+// const getCircularReplacer = () => {
+//   const seen = new WeakSet();
+//   return (key: any, value: any) => {
+//     if (typeof value === "object" && value !== null) {
+//       if (seen.has(value)) {
+//         return;
+//       }
+//       seen.add(value);
+//     }
+//     return value;
+//   };
+// };
+
 /**
  * Implements the app context hook.
  * @function useAppContext
  * @memberof AppContextHook
  */
-export default function useAppContext() {
-  const [state, updateAppState] = React.useState(AppContextDefault.state);
 
+export default function useAppContext() {
+  // const stored = JSON.parse(localStorage.getItem("storedState"));
+  // const [state, updateAppState] = React.useState(
+  //   stored || AppContextDefault.state
+  // );
+  const [state, updateAppState] = React.useState(AppContextDefault.state);
   React.useEffect(() => {
     if (!state.web3State.network) return;
     if (!state.web3State.web3) return;
@@ -103,6 +137,11 @@ export default function useAppContext() {
   React.useEffect(() => {
     getTokenData(state, updateAppState);
   }, []);
+
+  // localStorage.setItem(
+  //   "storedState",
+  //   JSON.stringify(state, getCircularReplacer())
+  // );
 
   return [state, updateAppState];
 }

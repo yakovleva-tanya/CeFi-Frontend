@@ -1,7 +1,5 @@
 import * as React from "react";
 import Plaid, { PlaidTransaction } from "./../models/Plaid";
-import { AssetReport } from "plaid";
-import { CollateralAdjustType } from "../components/CollateralAdjustModal";
 
 interface ErrorModal {
   show: boolean;
@@ -87,6 +85,8 @@ export interface ATMData {
   userBorrowedBalance: number | null;
   suppliedBalance: number | null;
   userCollateralBalance: number | null;
+  escrow: any | null;
+  web3UniswapContract: any | null;
 }
 
 export type TellerContractsLendingATM = {
@@ -160,6 +160,8 @@ export const AppContextDefault = {
             collateralToken: null as null,
             collateralTokenAddress: null as null,
             userCollateralBalance: null as null,
+            escrow: null as null,
+            web3UniswapContract: null as null,
           },
           tDAI: {
             lendingPool: null as null,
@@ -173,6 +175,8 @@ export const AppContextDefault = {
             collateralToken: null as null,
             collateralTokenAddress: null as null,
             userCollateralBalance: null as null,
+            escrow: null as null,
+            web3UniswapContract: null as null,
           },
         },
         LINK: {
@@ -188,6 +192,8 @@ export const AppContextDefault = {
             collateralToken: null as null,
             collateralTokenAddress: null as null,
             userCollateralBalance: null as null,
+            escrow: null as null,
+            web3UniswapContract: null as null,
           },
           tDAI: {
             lendingPool: null as null,
@@ -201,6 +207,8 @@ export const AppContextDefault = {
             collateralToken: null as null,
             collateralTokenAddress: null as null,
             userCollateralBalance: null as null,
+            escrow: null as null,
+            web3UniswapContract: null as null,
           },
         },
       },

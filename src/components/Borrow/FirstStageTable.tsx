@@ -73,8 +73,7 @@ const ConnectPlaidButton = () => {
   const [loading, setLoading] = useState(false);
   const onClickAction = async () => {
     setLoading(true);
-    await ConnectPlaid(updateAppState, address)();
-    setLoading(false);
+    await ConnectPlaid(updateAppState, address, setLoading)();
   };
 
   return (

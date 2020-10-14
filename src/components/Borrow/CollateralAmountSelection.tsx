@@ -15,27 +15,26 @@ export const CollateralAmountSubmenu = () => {
   );
   const { state } = useContext(AppContext);
   const { tokenData } = state;
-  const {
-    loanSize,
-    collateralAmount,
-    collateralWith,
-    lendWith,
-  } = borrowRequest;
-  const minCollateralAmount =
-    Math.round(
-      (Number(loanSize) * Number(loanTerms.minCollateralNeeded) * tokenData[lendWith].price) /
-        tokenData[collateralWith].price
-    ) / 100;
+  const { collateralAmount, collateralWith, lendWith } = borrowRequest;
+  const loanSize = loanTerms.maxLoanAmount;
+
+  const minCollateralAmount = tokenData
+    ? Math.round(
+        (Number(loanSize) * Number(loanTerms.collateralRatio) * tokenData[lendWith].price) /
+          tokenData[collateralWith].price
+      ) / 100
+    : 0;
 
   const [value, setValue] = useState(collateralAmount || minCollateralAmount);
   const [warning, setWarning] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const percents =
-    Math.round(
-      (value * 10000 * tokenData[collateralWith].price) /
-        (Number(loanSize) * tokenData[lendWith].price)
-    ) / 100;
+  const percents = tokenData
+    ? Math.round(
+        (value * 10000 * tokenData[collateralWith].price) /
+          (Number(loanSize) * tokenData[lendWith].price)
+      ) / 100
+    : 0;
 
   const ModalText =
     "Changes to terms will require an approval transaction and accrue additional gas fees. Would you like to proceed?";
@@ -110,18 +109,19 @@ const CollateralAmountSelection = () => {
   );
   const {
     collateralAmount,
-    loanSize,
     collateralWith,
     lendWith,
   } = borrowRequest;
+  const loanSize = loanTerms.maxLoanAmount;
   const { state } = useContext(AppContext);
   const { tokenData } = state;
 
-  const minCollateralAmount =
-    Math.round(
-      (Number(loanSize) * Number(loanTerms.minCollateralNeeded) * tokenData[lendWith].price) /
-        tokenData[collateralWith].price
-    ) / 100;
+  const minCollateralAmount = tokenData
+    ? Math.round(
+        (Number(loanSize) * Number(loanTerms.collateralRatio) * tokenData[lendWith].price) /
+          tokenData[collateralWith].price
+      ) / 100
+    : 0;
   const title = `${
     collateralAmount ? collateralAmount.toFixed(2) : minCollateralAmount
   } ${collateralWith}`;

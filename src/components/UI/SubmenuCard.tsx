@@ -6,10 +6,16 @@ type CardProps = {
   title: string;
   children: React.ReactNode;
   onCloseAction: Function;
+  className?: string;
 };
-const SubmenuCard = ({ title, children, onCloseAction }: CardProps) => {
+const SubmenuCard = ({
+  title,
+  children,
+  onCloseAction,
+  className = "my-5",
+}: CardProps) => {
   return (
-    <div className="border-thin d-flex flex-column my-5">
+    <div className={`border-thin d-flex flex-column ${className}`}>
       <div className="d-flex justify-content-between align-items-center flex-row flex-1 m-4">
         <Arrow
           onClick={() => {

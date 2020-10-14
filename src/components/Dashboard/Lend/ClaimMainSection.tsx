@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PrimaryButton from "../../UI/PrimaryButton";
 import TableRow from "../../UI/TableRow";
 import BR from "../../UI/BR";
@@ -8,9 +8,7 @@ import {
   claimInterest,
   collectInterest,
 } from "../../../actions/DashboardLendActions";
-import {
-  LendClaimContext,
-} from "../../../context/dashboardContext";
+import { LendClaimContext } from "../../../context/dashboardContext";
 
 const ClaimMainSection = () => {
   const {
@@ -23,14 +21,13 @@ const ClaimMainSection = () => {
     assetClaimed,
     setAssetClaimed,
   } = useContext(LendClaimContext);
-
   //TODO import currencies from wallet
-  const assets = [
-    { currency: "DAI", amount: 100 },
-    { currency: "USDC", amount: 204 },
-    { currency: "TRL", amount: 12 },
-    { currency: "COMP", amount: 20 },
-  ];
+  const assets: any = {
+    DAI: 100,
+    USDC: 204,
+    TLR: 12,
+    COMP: 20,
+  };
 
   const onAssetClaim = (asset: string) => {
     if (assetClaimed) {
@@ -42,6 +39,7 @@ const ClaimMainSection = () => {
   };
 
   const processClaimInterest = async (asset: string) => {
+    if (isClaiming) return;
     setClaiming(asset);
     const res = await claimInterest(asset);
     if (res) {
@@ -55,15 +53,16 @@ const ClaimMainSection = () => {
     const res = await collectInterest(assetClaimed);
     setCollecting(false);
     setSuccess(res);
+    setAssetClaimed("");
   };
   return (
-    <div>
+    <div className="my-2">
       <div className="text-gray mb-2">
         Select an asset to redeem your APY to date.
       </div>
       <div className="border-thin my-4">
-        {assets.map((asset) => {
-          const { currency, amount } = asset;
+        {Object.keys(assets).map((currency, i) => {
+          const amount = assets[currency];
           const title = `${amount} ${currency}`;
           return (
             <div key={currency}>
@@ -81,13 +80,20 @@ const ClaimMainSection = () => {
               <TableRow title={title} currency={currency}>
                 <CustomSubmitButton
                   text="Claim"
-                  onClickAction={() => onAssetClaim(currency)}
-                  disabled={!!assetClaimed && assetClaimed !== currency}
+                  onClickAction={() => {
+                    if (amount !== 0) {
+                      onAssetClaim(currency);
+                    }
+                  }}
+                  disabled={
+                    (!!assetClaimed && assetClaimed !== currency) ||
+                    amount === 0
+                  }
                   loading={isClaiming === currency}
                   approved={assetClaimed === currency}
                 />
               </TableRow>
-              <BR />
+              {i !== Object.keys(assets).length - 1 && <BR />}
             </div>
           );
         })}

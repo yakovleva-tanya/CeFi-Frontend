@@ -21,6 +21,9 @@ import ERC20Interface = require("./../abi/contracts/ERC20.json");
 import LenderInterface = require("./../abi/contracts/Lenders.json");
 import LendingPoolInterface = require("./../abi/contracts/LendingPoolInterface.json");
 import TTokenInterface = require("./../abi/contracts/TTokenInterface.json");
+import UniswapInterface = require("./../abi/contracts/Uniswap.json");
+import EscrowInterface = require("./../abi/contracts/Escrow.json");
+
 import { globalDecimals, allContractAddresses } from "./../util/constants";
 
 /**
@@ -32,7 +35,9 @@ async function setupTellerContracts(
   loansInstanceAddress: string,
   primaryAccount: string,
   collateralAddress: string,
-  tTokenAddress: string
+  tTokenAddress: string,
+  esscrowAddress: string,
+  uniswapAddress: string
 ): Promise<ATMData> {
   const lendingPool = new web3State.web3.eth.Contract(
     LendingPoolInterface.abi,
@@ -42,8 +47,8 @@ async function setupTellerContracts(
 
   const loansInstance = new web3State.web3.eth.Contract(
     LoansInterface.abi,
-    loansInstanceAddress,
-  )
+    loansInstanceAddress
+  );
 
   const tToken = new web3State.web3.eth.Contract(
     TTokenInterface.abi,
@@ -72,6 +77,17 @@ async function setupTellerContracts(
     .call();
   const userBorrowedBalance = parseFloat(borrowedBalanceStr) / globalDecimals;
 
+  const escrow = new web3State.web3.eth.Contract(
+    EscrowInterface.abi,
+    esscrowAddress,
+    {}
+  );
+  const web3UniswapContract = new web3State.web3.eth.Contract(
+    UniswapInterface.abi,
+    uniswapAddress,
+    {}
+  );
+
   return {
     lendingPool,
     lendingPoolAddress,
@@ -84,6 +100,8 @@ async function setupTellerContracts(
     suppliedBalance,
     userCollateralBalance,
     userBorrowedBalance,
+    escrow,
+    web3UniswapContract,
   };
 }
 
@@ -92,14 +110,7 @@ async function getWalletBalance(
   primaryAccount: string,
   contractAddress: any
 ): Promise<any> {
-  const usdc = new web3State.web3.eth.Contract(
-    ERC20Interface.abi,
-    contractAddress.tokens.USDC,
-    {}
-  );
-  const usdcBalanceStr = await usdc.methods.balanceOf(primaryAccount).call();
-  const USDC = parseFloat(usdcBalanceStr) / globalDecimals;
-
+  //Get DAI balance
   const dai = new web3State.web3.eth.Contract(
     ERC20Interface.abi,
     contractAddress.tokens.DAI,
@@ -108,6 +119,20 @@ async function getWalletBalance(
   const daiBalanceStr = await dai.methods.balanceOf(primaryAccount).call();
   const DAI = parseFloat(daiBalanceStr) / globalDecimals;
 
+  //Get USDC balance
+  const usdc = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    contractAddress.tokens.USDC,
+    {}
+  );
+  const usdcBalanceStr = await usdc.methods.balanceOf(primaryAccount).call();
+  const USDC = parseFloat(usdcBalanceStr) / globalDecimals;
+
+  //Get ETH balance
+  const ethBalanceStr = await web3State.web3.eth.getBalance(primaryAccount);
+  const ETH = parseFloat(ethBalanceStr) / globalDecimals;
+
+  //Get LINK balance
   const link = new web3State.web3.eth.Contract(
     ERC20Interface.abi,
     contractAddress.tokens.LINK,
@@ -116,14 +141,73 @@ async function getWalletBalance(
   const linkBalanceStr = await link.methods.balanceOf(primaryAccount).call();
   const LINK = parseFloat(linkBalanceStr) / globalDecimals;
 
-  const ethBalanceStr = await web3State.web3.eth.getBalance(primaryAccount);
-  const ETH = parseFloat(ethBalanceStr) / globalDecimals;
+  //Get SNX balance
+  const snx = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    contractAddress.tokens.SNX,
+    {}
+  );
+  const snxBalanceStr = await snx.methods.balanceOf(primaryAccount).call();
+  const SNX = parseFloat(snxBalanceStr) / globalDecimals;
+  console.log({ SNX });
+
+  //Get MKR balance
+  const mkr = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    contractAddress.tokens.MKR,
+    {}
+  );
+  const mkrBalanceStr = await mkr.methods.balanceOf(primaryAccount).call();
+  const MKR = parseFloat(mkrBalanceStr) / globalDecimals;
+  console.log({ MKR });
+
+  //Get YFI balance
+  const yfi = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    contractAddress.tokens.YFI,
+    {}
+  );
+  const yfiBalanceStr = await yfi.methods.balanceOf(primaryAccount).call();
+  const YFI = parseFloat(yfiBalanceStr) / globalDecimals;
+
+  //Get LEND balance
+  const lend = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    contractAddress.tokens.LEND,
+    {}
+  );
+  const lendBalanceStr = await lend.methods.balanceOf(primaryAccount).call();
+  const LEND = parseFloat(lendBalanceStr) / globalDecimals;
+
+  //Get wBTC balance
+  const wbtc = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    contractAddress.tokens.wBTC,
+    {}
+  );
+  const wBTCBalanceStr = await wbtc.methods.balanceOf(primaryAccount).call();
+  const wBTC = parseFloat(wBTCBalanceStr) / globalDecimals;
+
+  //Get USDT balance
+  const usdt = new web3State.web3.eth.Contract(
+    ERC20Interface.abi,
+    contractAddress.tokens.USDT,
+    {}
+  );
+  const usdtBalanceStr = await usdt.methods.balanceOf(primaryAccount).call();
+  const USDT = parseFloat(usdtBalanceStr) / globalDecimals;
 
   return {
     DAI,
     USDC,
     ETH,
     LINK,
+    SNX,
+    MKR,
+    YFI,
+    LEND,
+    wBTC,
+    USDT,
   };
 }
 /**
@@ -152,7 +236,9 @@ export default async (
       contractAddresses.ETH_Loans_tDAI_Proxy,
       primaryAccount,
       contractAddresses.tokens.DAI,
-      contractAddresses.TDAI
+      contractAddresses.TDAI,
+      contractAddresses.Escrow,
+      contractAddresses.Uniswap
     );
 
     const userWalletBalance = await getWalletBalance(

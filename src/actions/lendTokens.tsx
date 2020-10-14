@@ -41,6 +41,14 @@ const completeSupply = (
   lendingTokens: AvailableLendingTokens,
   selectedAmount: number
 ) => async () => {
+  if (process.env.INTEGRATIONS_DISABLED === "true") {
+    setProcessing("true");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setProcessing("");
+    setTransactionHash("TransactionHash");
+    return;
+  }
+
   const amount = selectedAmount;
   const primaryAddress = state.web3State.address;
   const baseTokens = BaseTokens.ETH; // Currently constant.

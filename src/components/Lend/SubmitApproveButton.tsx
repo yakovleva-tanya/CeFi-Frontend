@@ -21,7 +21,6 @@ const SubmitApproveButton = () => {
   const { state, updateAppState } = useContext(AppContext);
   const [approving, setApproving] = useState(false);
   const loggedIn = state.web3State?.address || "";
-
   const approve = async () => {
     const tellerTokens = mapLendingTokensToTellerTokens(selectedCurrency);
     const primaryAddress = state.web3State.address;
@@ -52,7 +51,12 @@ const SubmitApproveButton = () => {
   const onClickAction = () => {
     if (loggedIn) {
       setApproving(true);
-      approve();
+      if (process.env.INTEGRATIONS_DISABLED === "true") {
+        setTokensApproved(true);
+        setApproving(false);
+      } else {
+        approve();
+      }
     }
   };
   return (

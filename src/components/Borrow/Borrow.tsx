@@ -38,7 +38,7 @@ const Borrow = () => {
         />
       )}
       {isSubmitting && <ProcessingScreen link="" title="Submitting terms" />}
-      {isRequesting && <ProcessingScreen link="" title="Requesting Loan" />}
+      {isRequesting && <ProcessingScreen link="" title="Requesting loan" />}
       {success && (
         <SuccessScreen
           title="Loan accepted"

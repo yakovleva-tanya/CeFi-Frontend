@@ -1,4 +1,4 @@
-export const serverURL = process.env.SERVER_URL || '';
+export const serverURL = process.env.SERVER_URL || "";
 
 export const NULL_ADDRESS = "0x0000000000000000000000000000000000000000";
 
@@ -14,7 +14,6 @@ export const plaidSettings = {
   env: process.env.PLAID_ENV,
   key: process.env.PLAID_KEY,
 };
-
 
 export const allContractAddresses = {
   ropsten: {
@@ -77,13 +76,13 @@ export const allContractAddresses = {
     LINK_InterestConsensus_tUSDC_Proxy: "0x7bC7D6EDD2e26F4d3DEc2e56065A61400fcFb43D",
     LINK_ChainlinkPairAggregator_tUSDC_Proxy: "0x0168CF9b4992b5F38F659C5a3313342AF9EcFbb9",
     tokens: {
-    // DAI used by Compound.finance
-      DAI: '0xc2118d4d90b274016cB7a54c03EF52E6c537D957',
+      // DAI used by Compound.finance
+      DAI: "0xc2118d4d90b274016cB7a54c03EF52E6c537D957",
       // USDC used by Compound.finance
-      USDC: '0x0D9C8723B343A8368BebE0B5E89273fF8D712e3C',
+      USDC: "0x0D9C8723B343A8368BebE0B5E89273fF8D712e3C",
       // LINK Faucet: https://ropsten.chain.link/
-      LINK: '0x20fE562d797A42Dcb3399062AE9546cd06f63280',
-    }
+      LINK: "0x20fE562d797A42Dcb3399062AE9546cd06f63280",
+    },
   },
   rinkeby: {
     LendingPool: "0x82B0636041Bb429F3E442Eaca66D018e9fA244cD",
@@ -152,68 +151,83 @@ export const allContractAddresses = {
     },
   },
   mainnet: {
-    TDAI: '0xa53b393258F91a1f2a53F8838fB773f3638eDC50',
-    TUSDC: '0x4f5e66230f5Bf1e977a0Bc70CFdDDA15A7a0436E',
-    MarketsState: '0x2dbb3CE79D2B30A95e8c4f4c2DD24dC6c45C388c',
-    Settings: '0x64970e2DfE88140C6D0037879795BEBccc6137c2',
-    Settings_Proxy: '0x1D8F58d89C46562D9e6050c8ad0EEc93Dc8A2Db3',
-    ATMSettings: '0xDaDa1F4c355204e92265F0029Aa00A37E07698ea',
-    ATMFactory: '0xCa0BD777b4E96635B7b2C77c7E8BF1432AeB2a26',
-    ATMFactory_Proxy: '0xd115921442914665D0cD245E4548cf2568791fD9',
-    ATMGovernance: '0x3528e573402049A2c3514d31b7469457FA6Edd6a',
-    ATMToken: '0xA3EB5D0EFbC6903B5407a5D2dA21F88056052632',
-    ChainlinkPairAggregator_DAI_ETH: '0x9F8dAE794bB19161c5e8a466F766306E38189873',
-    ChainlinkPairAggregator_USDC_ETH: '0x68408585FE2C879E2C290620eBBbd3d76ee13568',
-    ChainlinkPairAggregator_USD_LINK: '0x0dA781292Daa1D8001d479f2E82BafA3A85BadFe',
-    ETH_LendingPool_tDAI: '0x91AE009fd1275072D877145ab428D7f94b803f5C',
-    ETH_LendingPool_tDAI_Proxy: '0xf44210580573a80F52a39faDFA8983b6593c1a20',
-    ETH_InterestConsensus_tDAI: '0xE27db45A736e5B220844382e8779219475Bb4FC9',
-    ETH_InterestConsensus_tDAI_Proxy: '0x8877C3D1e8C3Bb047A34aFD29326801F5EAD091F',
-    ETH_Lenders_tDAI: '0x1a47f33B10c6312c4b90D2F9c30599A6f65bC777',
-    ETH_Lenders_tDAI_Proxy: '0x61441c68c73B7Adc5af076b4d56050da7a767Ae8',
-    ETH_LoanTermsConsensus_tDAI: '0x3a0eCfeDE617218C4b09a3fF8b2719D9Bf9cCC7d',
-    ETH_LoanTermsConsensus_tDAI_Proxy: '0xE246BE938Ab50A6670F2ADce97A2A303a9aD182c',
-    ETH_Loans_tDAI: '0x37502992cAceCAd4953CE712f3952b0Fb53a93dA',
-    ETH_Loans_tDAI_Proxy: '0xB4Ac9F231D2469769A0a56eee5559Fd4613ed3fB',
-    ETH_LendingPool_tUSDC: '',
-    ETH_LendingPool_tUSDC_Proxy: '',
-    ETH_InterestConsensus_tUSDC: '',
-    ETH_InterestConsensus_tUSDC_Proxy: '',
-    ETH_Lenders_tUSDC: '',
-    ETH_Lenders_tUSDC_Proxy: '',
-    ETH_LoanTermsConsensus_tUSDC: '',
-    ETH_LoanTermsConsensus_tUSDC_Proxy: '',
-    ETH_Loans_tUSDC: '',
-    ETH_Loans_tUSDC_Proxy: '',
-    LINK_LendingPool_tDAI: '',
-    LINK_LendingPool_tDAI_Proxy: '',
-    LINK_InterestConsensus_tDAI: '',
-    LINK_InterestConsensus_tDAI_Proxy: '',
-    LINK_Lenders_tDAI: '',
-    LINK_Lenders_tDAI_Proxy: '',
-    LINK_LoanTermsConsensus_tDAI: '',
-    LINK_LoanTermsConsensus_tDAI_Proxy: '',
-    LINK_Loans_tDAI: '',
-    LINK_Loans_tDAI_Proxy: '',
-    LINK_LendingPool_tUSDC: '0xAB51D53E504459B798F7B68f6E85947D928b6dFA',
-    LINK_LendingPool_tUSDC_Proxy: '0xC2BCE420cdD58a73e76733F0f7D31C5CA156e62D',
-    LINK_InterestConsensus_tUSDC: '0x90bf2D78cf97c446FDCFC15f24790Cff40603622',
-    LINK_InterestConsensus_tUSDC_Proxy: '0x22F1d1C7894Db669F71c692e3356712697C5F622',
-    LINK_Lenders_tUSDC: '0x7DE442f0d9Ba7C1C61E76E676369771bB18865f8',
-    LINK_Lenders_tUSDC_Proxy: '0x5720E10298463D0D7F7037AFf0204321636dABAD',
-    LINK_LoanTermsConsensus_tUSDC: '0xB258A8f04FeA3721b5739af48020c6051CD4Aa49',
-    LINK_LoanTermsConsensus_tUSDC_Proxy: '0xEA786499f00AF3Fa7fDEB974Df8815B068B03e9C',
-    LINK_Loans_tUSDC: '0xd49165870FdE7A359B3816ECd223E4A16De7ED31',
-    LINK_Loans_tUSDC_Proxy: '0xd4ebaA493564f6F1acAA754D2898B6879dB624B7',
+    TDAI: "0xa53b393258F91a1f2a53F8838fB773f3638eDC50",
+    TUSDC: "0x4f5e66230f5Bf1e977a0Bc70CFdDDA15A7a0436E",
+    MarketsState: "0x2dbb3CE79D2B30A95e8c4f4c2DD24dC6c45C388c",
+    Settings: "0x64970e2DfE88140C6D0037879795BEBccc6137c2",
+    Settings_Proxy: "0x1D8F58d89C46562D9e6050c8ad0EEc93Dc8A2Db3",
+    ATMSettings: "0xDaDa1F4c355204e92265F0029Aa00A37E07698ea",
+    ATMFactory: "0xCa0BD777b4E96635B7b2C77c7E8BF1432AeB2a26",
+    ATMFactory_Proxy: "0xd115921442914665D0cD245E4548cf2568791fD9",
+    ATMGovernance: "0x3528e573402049A2c3514d31b7469457FA6Edd6a",
+    ATMToken: "0xA3EB5D0EFbC6903B5407a5D2dA21F88056052632",
+    ChainlinkPairAggregator_DAI_ETH:
+      "0x9F8dAE794bB19161c5e8a466F766306E38189873",
+    ChainlinkPairAggregator_USDC_ETH:
+      "0x68408585FE2C879E2C290620eBBbd3d76ee13568",
+    ChainlinkPairAggregator_USD_LINK:
+      "0x0dA781292Daa1D8001d479f2E82BafA3A85BadFe",
+    ETH_LendingPool_tDAI: "0x91AE009fd1275072D877145ab428D7f94b803f5C",
+    ETH_LendingPool_tDAI_Proxy: "0xf44210580573a80F52a39faDFA8983b6593c1a20",
+    ETH_InterestConsensus_tDAI: "0xE27db45A736e5B220844382e8779219475Bb4FC9",
+    ETH_InterestConsensus_tDAI_Proxy:
+      "0x8877C3D1e8C3Bb047A34aFD29326801F5EAD091F",
+    ETH_Lenders_tDAI: "0x1a47f33B10c6312c4b90D2F9c30599A6f65bC777",
+    ETH_Lenders_tDAI_Proxy: "0x61441c68c73B7Adc5af076b4d56050da7a767Ae8",
+    ETH_LoanTermsConsensus_tDAI: "0x3a0eCfeDE617218C4b09a3fF8b2719D9Bf9cCC7d",
+    ETH_LoanTermsConsensus_tDAI_Proxy:
+      "0xE246BE938Ab50A6670F2ADce97A2A303a9aD182c",
+    ETH_Loans_tDAI: "0x37502992cAceCAd4953CE712f3952b0Fb53a93dA",
+    ETH_Loans_tDAI_Proxy: "0xB4Ac9F231D2469769A0a56eee5559Fd4613ed3fB",
+    ETH_LendingPool_tUSDC: "",
+    ETH_LendingPool_tUSDC_Proxy: "",
+    ETH_InterestConsensus_tUSDC: "",
+    ETH_InterestConsensus_tUSDC_Proxy: "",
+    ETH_Lenders_tUSDC: "",
+    ETH_Lenders_tUSDC_Proxy: "",
+    ETH_LoanTermsConsensus_tUSDC: "",
+    ETH_LoanTermsConsensus_tUSDC_Proxy: "",
+    ETH_Loans_tUSDC: "",
+    ETH_Loans_tUSDC_Proxy: "",
+    LINK_LendingPool_tDAI: "",
+    LINK_LendingPool_tDAI_Proxy: "",
+    LINK_InterestConsensus_tDAI: "",
+    LINK_InterestConsensus_tDAI_Proxy: "",
+    LINK_Lenders_tDAI: "",
+    LINK_Lenders_tDAI_Proxy: "",
+    LINK_LoanTermsConsensus_tDAI: "",
+    LINK_LoanTermsConsensus_tDAI_Proxy: "",
+    LINK_Loans_tDAI: "",
+    LINK_Loans_tDAI_Proxy: "",
+    LINK_LendingPool_tUSDC: "0xAB51D53E504459B798F7B68f6E85947D928b6dFA",
+    LINK_LendingPool_tUSDC_Proxy: "0xC2BCE420cdD58a73e76733F0f7D31C5CA156e62D",
+    LINK_InterestConsensus_tUSDC: "0x90bf2D78cf97c446FDCFC15f24790Cff40603622",
+    LINK_InterestConsensus_tUSDC_Proxy:
+      "0x22F1d1C7894Db669F71c692e3356712697C5F622",
+    LINK_Lenders_tUSDC: "0x7DE442f0d9Ba7C1C61E76E676369771bB18865f8",
+    LINK_Lenders_tUSDC_Proxy: "0x5720E10298463D0D7F7037AFf0204321636dABAD",
+    LINK_LoanTermsConsensus_tUSDC: "0xB258A8f04FeA3721b5739af48020c6051CD4Aa49",
+    LINK_LoanTermsConsensus_tUSDC_Proxy:
+      "0xEA786499f00AF3Fa7fDEB974Df8815B068B03e9C",
+    LINK_Loans_tUSDC: "0xd49165870FdE7A359B3816ECd223E4A16De7ED31",
+    LINK_Loans_tUSDC_Proxy: "0xd4ebaA493564f6F1acAA754D2898B6879dB624B7",
+    Escrow: "",
+    Uniswap: "",
     tokens: {
       // See https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f
-      DAI: '0x6b175474e89094c44da98b954eedeac495271d0f',
+      DAI: "0x6b175474e89094c44da98b954eedeac495271d0f",
       // See https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
-      USDC: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+      USDC: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
       // See https://etherscan.io/token/0x514910771af9ca656af840dff83e8264ecf986ca
-      LINK: '0x514910771af9ca656af840dff83e8264ecf986ca',
-    }
-  }
+      LINK: "0x514910771af9ca656af840dff83e8264ecf986ca",
+      SNX: "0x41Cb82934a671f52379A96AF034674945Ff03d3b",
+      MKR: "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
+      YFI: "0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e",
+      LEND: "0x80fB784B7eD66730e8b1DBd9820aFD29931aab03",
+      wBTC: "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+      USDT: "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    },
+  },
 };
 
 export const dataProvidersURLs = {
@@ -221,7 +235,7 @@ export const dataProvidersURLs = {
 };
 
 export const craURLs = {
-  arrowhead: process.env.CRA_URLS_ARROWHEAD || '',
+  arrowhead: process.env.CRA_URLS_ARROWHEAD || "",
 };
 
 export default {

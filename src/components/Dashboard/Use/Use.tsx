@@ -9,8 +9,8 @@ const Use = () => {
 
   return (
     <div>
-      {subSection == "Compound" && <CompoundFinance />}
-      {subSection == "Uniswap" && <Uniswap />}
+      {subSection == "compound" && <CompoundFinance />}
+      {subSection == "uniswap" && <Uniswap />}
     </div>
   );
 };
