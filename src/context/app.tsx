@@ -85,7 +85,7 @@ export interface ATMData {
   userBorrowedBalance: number | null;
   suppliedBalance: number | null;
   userCollateralBalance: number | null;
-  escrow: any | null;
+  escrowContract: any | null;
   web3UniswapContract: any | null;
 }
 
@@ -160,7 +160,7 @@ export const AppContextDefault = {
             collateralToken: null as null,
             collateralTokenAddress: null as null,
             userCollateralBalance: null as null,
-            escrow: null as null,
+            escrowContract: null as null,
             web3UniswapContract: null as null,
           },
           tDAI: {
@@ -175,7 +175,7 @@ export const AppContextDefault = {
             collateralToken: null as null,
             collateralTokenAddress: null as null,
             userCollateralBalance: null as null,
-            escrow: null as null,
+            escrowContract: null as null,
             web3UniswapContract: null as null,
           },
         },
@@ -192,7 +192,7 @@ export const AppContextDefault = {
             collateralToken: null as null,
             collateralTokenAddress: null as null,
             userCollateralBalance: null as null,
-            escrow: null as null,
+            escrowContract: null as null,
             web3UniswapContract: null as null,
           },
           tDAI: {
@@ -207,7 +207,7 @@ export const AppContextDefault = {
             collateralToken: null as null,
             collateralTokenAddress: null as null,
             userCollateralBalance: null as null,
-            escrow: null as null,
+            escrowContract: null as null,
             web3UniswapContract: null as null,
           },
         },

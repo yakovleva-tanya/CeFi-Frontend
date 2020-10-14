@@ -8,11 +8,13 @@ import {
   computeTradePriceBreakdown,
   warningSeverity,
 } from "../../../actions/Trades";
+import swap from "../../../actions/Swap";
 
 const UniswapButtonGroup = () => {
   const { setSuccess, trade, values } = useContext(UniswapContext);
   const { state } = useContext(AppContext);
   const { teller } = state;
+  const { escrowContract, web3UniswapContract } = state.teller.contracts.ETH.tDAI;
   const { userWalletBalance } = teller;
   const { input } = values;
   const priceImpact = useMemo(() => {
@@ -40,6 +42,7 @@ const UniswapButtonGroup = () => {
           <PrimaryButton
             text={`Swap ${impactSeverity > 3 ? "anyway" : ""}`}
             onClick={() => {
+              swap(escrowContract, web3UniswapContract, trade);
               setSuccess(true);
             }}
           />

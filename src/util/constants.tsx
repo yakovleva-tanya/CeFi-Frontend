@@ -79,8 +79,8 @@ export const allContractAddresses = {
       "0x6E47BA13d4dDfbb0fa97f4B4Bd996c093f574680",
     LINK_Loans_tUSDC: "0x7824E9C34FEad631D696dD7b528ebbDC9e4790D5",
     LINK_Loans_tUSDC_Proxy: "0x0E940E1A9FfB90851D52c8ea6f826483480F307e",
-    Escrow: "",
-    Uniswap: "",
+    Escrow: "0x32F7E00fef68283D8A9b78ea075Ed7539A263337",
+    Uniswap: "0xAb52a75D9921c375aa55AD4d8CEFf0a3D46E2b85",
     tokens: {
       // DAI used by Compound.finance
       DAI: "0xc2118d4d90b274016cB7a54c03EF52E6c537D957",

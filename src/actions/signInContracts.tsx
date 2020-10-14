@@ -76,7 +76,7 @@ async function setupTellerContracts(
     .call();
   const userBorrowedBalance = parseFloat(borrowedBalanceStr) / globalDecimals;
 
-  const escrow = new web3State.web3.eth.Contract(
+  const escrowContract = new web3State.web3.eth.Contract(
     EscrowInterface.abi,
     esscrowAddress,
     {}
@@ -99,7 +99,7 @@ async function setupTellerContracts(
     suppliedBalance,
     userCollateralBalance,
     userBorrowedBalance,
-    escrow,
+    escrowContract,
     web3UniswapContract,
   };
 }
@@ -197,7 +197,7 @@ async function getWalletBalance(
   const USDT = parseFloat(usdtBalanceStr) / globalDecimals;
 
   return {
-    DAI,
+    DAI:100,
     USDC,
     ETH,
     LINK,
