@@ -231,7 +231,7 @@ export const allContractAddresses = {
 };
 
 export const dataProvidersURLs = {
-  bankInfo: process.env.DATA_PROVIDERS_URL || '',
+  bankInfo: process.env.DATA_PROVIDERS_URL_BANK_INFO || '',
 };
 
 export const craURLs = {
