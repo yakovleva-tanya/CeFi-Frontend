@@ -1,16 +1,16 @@
 import Notify from "./Web3Notify";
-import ERC20 = require('./../abi/contracts/ERC20Detailed.json');
-import { Web3State } from './../context/app';
-import { globalDecimals } from './../util/constants';
+import ERC20 = require("./../abi/contracts/ERC20Detailed.json");
+import { Web3State } from "./../context/app";
+import { globalDecimals } from "./../util/constants";
 
 /**
  * Converts a given amount into a BN instance
  * @param {string} amount The amount to be converted
  */
-function convertToBN(
-  amount: string
-) {
-  const result = (parseFloat(amount) * globalDecimals).toLocaleString('fullwide', { useGrouping: false });
+export function convertToBN(amount: string) {
+  const result = (
+    parseFloat(amount) * globalDecimals
+  ).toLocaleString("fullwide", { useGrouping: false });
   return result;
 }
 
@@ -19,11 +19,10 @@ function convertToBN(
  * @param {*} loansInterface Teller protocol's loansInterface contract
  * @param {Web3State} web3State stored web3 state
  */
-async function getCollateralToken(
-  loansInterface: any,
-  web3State: Web3State
-) {
-  const collateralTokenAddress = await loansInterface.methods.collateralToken().call();
+async function getCollateralToken(loansInterface: any, web3State: Web3State) {
+  const collateralTokenAddress = await loansInterface.methods
+    .collateralToken()
+    .call();
   return new web3State.web3.eth.Contract(ERC20.abi, collateralTokenAddress, {});
 }
 
@@ -42,20 +41,25 @@ export async function approveToken(
 ) {
   const collateralToken = await getCollateralToken(loansInterface, web3State);
   const decimals = await collateralToken.methods.decimals().call();
-  const tokenDecimals = 10**parseFloat(decimals)
-  const allowance = await collateralToken.methods.allowance(spenderAddress, loansInterface._address).call();
-  if ((amountToApprove * tokenDecimals) < parseFloat(allowance)) {
-    return
+  const tokenDecimals = 10 ** parseFloat(decimals);
+  const allowance = await collateralToken.methods
+    .allowance(spenderAddress, loansInterface._address)
+    .call();
+  if (amountToApprove * tokenDecimals < parseFloat(allowance)) {
+    return;
   } else {
-    return new Promise((resolve, reject) => collateralToken.methods
-      .approve(
-        loansInterface._address,
-        (10*amountToApprove*tokenDecimals).toLocaleString('fullwide', { useGrouping: false })
-      )
-      .send({ from: spenderAddress })
-      .on('transactionHash', Notify.hash)
-      .on('receipt', resolve)
-      .on('error', reject)
+    return new Promise((resolve, reject) =>
+      collateralToken.methods
+        .approve(
+          loansInterface._address,
+          (10 * amountToApprove * tokenDecimals).toLocaleString("fullwide", {
+            useGrouping: false,
+          })
+        )
+        .send({ from: spenderAddress })
+        .on("transactionHash", Notify.hash)
+        .on("receipt", resolve)
+        .on("error", reject)
     );
   }
 }
@@ -76,17 +80,14 @@ export async function createLoanWithTerms(
   borrowerAddress: string
 ) {
   const bnAmount = convertToBN(collateralAmount);
-  return new Promise((resolve, reject) => loansInterface.methods
-    .createLoanWithTerms(
-      loanRequest,
-      loanResponses,
-      bnAmount
-    )
-    .send( { from: borrowerAddress })
-    .on('transactionHash', Notify.hash)
-    .on('receipt', resolve)
-    .on('error', reject)
-  );  
+  return new Promise((resolve, reject) =>
+    loansInterface.methods
+      .createLoanWithTerms(loanRequest, loanResponses, bnAmount)
+      .send({ from: borrowerAddress })
+      .on("transactionHash", Notify.hash)
+      .on("receipt", resolve)
+      .on("error", reject)
+  );
 }
 
 // erc20.approve(loansInterface)
@@ -109,20 +110,19 @@ export async function depositCollateral(
   const bnAmount = convertToBN(amount);
   const collateralToken = await getCollateralToken(loansInterface, web3State);
   // Check allowance of loansInterface
-  const approvedAmount = await collateralToken.methods.allowance(borrowerAddress, loansInterface._address).call();
+  const approvedAmount = await collateralToken.methods
+    .allowance(borrowerAddress, loansInterface._address)
+    .call();
   if (bnAmount > approvedAmount) {
-    return
+    return;
   } else {
-    return new Promise((resolve, reject) => loansInterface.methods
-      .depositCollateral(
-        borrowerAddress,
-        loanId,
-        bnAmount
-      )
-      .send({ from: borrowerAddress })
-      .on('transactionHash', Notify.hash)
-      .on('receipt', resolve)
-      .on('error', reject)
+    return new Promise((resolve, reject) =>
+      loansInterface.methods
+        .depositCollateral(borrowerAddress, loanId, bnAmount)
+        .send({ from: borrowerAddress })
+        .on("transactionHash", Notify.hash)
+        .on("receipt", resolve)
+        .on("error", reject)
     );
   }
 }
@@ -141,15 +141,13 @@ export async function takeOutLoan(
   borrowerAddress: string
 ) {
   const bnAmount = convertToBN(amountToBorrow);
-  return new Promise((resolve, reject) => loansInterface.methods
-    .takeOutLoan(
-      loanId,
-      bnAmount
-    )
-    .send({ from: borrowerAddress })
-    .on('transactionHash', Notify.hash)
-    .on('receipt', resolve)
-    .on('error', reject)
+  return new Promise((resolve, reject) =>
+    loansInterface.methods
+      .takeOutLoan(loanId, bnAmount)
+      .send({ from: borrowerAddress })
+      .on("transactionHash", Notify.hash)
+      .on("receipt", resolve)
+      .on("error", reject)
   );
 }
 
@@ -171,17 +169,15 @@ export async function withdrawCollateral(
   const loanCollateral = await loansInterface.methods.getCollateralInfo(loanId);
   // Check if withdrawl amount is not greater than total collateral
   if (bnAmount > loanCollateral[0]) {
-    return
+    return;
   } else {
-    return new Promise((resolve, reject) => loansInterface.methods
-      .withdrawCollateral(
-        bnAmount,
-        loanId
-      )
-      .send({ from: borrowerAddress })
-      .on('transactionHash', Notify.hash)
-      .on('receipt', resolve)
-      .on('error', reject)
+    return new Promise((resolve, reject) =>
+      loansInterface.methods
+        .withdrawCollateral(bnAmount, loanId)
+        .send({ from: borrowerAddress })
+        .on("transactionHash", Notify.hash)
+        .on("receipt", resolve)
+        .on("error", reject)
     );
   }
 }
@@ -190,32 +186,32 @@ export async function withdrawCollateral(
  * Makes a payment to a loan
  * @param {*} loansInterface Teller protocol's loanInterface contract
  * @param {number} loanId The ID of the loan for which the payment is being made
- * @param {string} amountToRepay The payment amount 
+ * @param {string} amountToRepay The payment amount
  * @param {string} borrowerAddress The address of the loan borrower
  */
 export async function loanRepayment(
   loansInterface: any,
   loanId: number,
   amountToRepay: string,
-  borrowerAddress: string 
+  borrowerAddress: string
 ) {
   // Get loans linked to address
-  const borrowerLoans = await loansInterface.methods.getBorrowerLoans(borrowerAddress).call();
+  const borrowerLoans = await loansInterface.methods
+    .getBorrowerLoans(borrowerAddress)
+    .call();
   // Check if loanId is linked to the borrower's address
   if (borrowerLoans.includes(loanId)) {
     const bnAmount = convertToBN(amountToRepay);
-    return new Promise((resolve, reject) => loansInterface.methods
-      .repay(
-        bnAmount,
-        loanId
-      )
-      .send({ from: borrowerAddress })
-      .on('transactionHash', Notify.hash)
-      .on('receipt', resolve)
-      .on('error', reject)
-      );
+    return new Promise((resolve, reject) =>
+      loansInterface.methods
+        .repay(bnAmount, loanId)
+        .send({ from: borrowerAddress })
+        .on("transactionHash", Notify.hash)
+        .on("receipt", resolve)
+        .on("error", reject)
+    );
   } else {
-    return
+    return;
   }
 }
 
@@ -230,13 +226,12 @@ export async function liquidateLoan(
   loanId: number,
   liquidatorAddress: string
 ) {
-  return new Promise((resolve, reject) => loansInterface.methods
-    .liquidateLoan(
-      loanId
-    )
-    .send({ from: liquidatorAddress })
-    .on('transactionHash', Notify.hash)
-    .on('receipt', resolve)
-    .on('error', reject)
+  return new Promise((resolve, reject) =>
+    loansInterface.methods
+      .liquidateLoan(loanId)
+      .send({ from: liquidatorAddress })
+      .on("transactionHash", Notify.hash)
+      .on("receipt", resolve)
+      .on("error", reject)
   );
 }
