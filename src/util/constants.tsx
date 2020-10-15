@@ -82,6 +82,13 @@ export const allContractAddresses = {
       USDC: "0x0D9C8723B343A8368BebE0B5E89273fF8D712e3C",
       // LINK Faucet: https://ropsten.chain.link/
       LINK: "0x20fE562d797A42Dcb3399062AE9546cd06f63280",
+      // TODO confirm token addresses
+      SNX: "0x65bAd0f094f2Cce90a2BD757372932CdaF079213",
+      MKR: "0x626e11f94bf498d79b3afcd06cdaf8577f19d794",
+      YFI: "0xbeade56abd45cab4f84b239af784149a29311741",
+      LEND: "0x73317bccdd6186b705c07f8306d5121011f84698",
+      wBTC: "0x06E728D7907C164649427D2ACFD4c81669D453Bf",
+      USDT: "0x7c619efddb1b941ec124508421d0034436ed00c1",
     },
   },
   rinkeby: {
@@ -147,7 +154,14 @@ export const allContractAddresses = {
       ETH: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
       DAI: "0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa",
       USDC: "0x4DBCdF9B62e891a7cec5A2568C3F4FAF9E8Abe2b",
-      LINK: "0x01BE23585060835E02B77ef475b0Cc51aA1e0709"
+      LINK: "0x01BE23585060835E02B77ef475b0Cc51aA1e0709",
+      // TODO confirm token addresses
+      SNX: "0x3cA27cEEDA9A200f50C3Cf3802C6c60d43867977",
+      MKR: "0x65e09e4260d81bc58c585eba67b7a8d71020d4ec",
+      YFI: "0x62289c64a943416205142bdccf1d752792a687e3",
+      LEND: "0x5373cdced6dd1b1cbf3ca2c85b8eab57052df7a4",
+      wBTC: "0x0014f450b8ae7708593f4a46f8fa6e5d50620f96",
+      USDT: "0x1a37dd375096820a5fde14342720102c07100f26",
     },
   },
   mainnet: {

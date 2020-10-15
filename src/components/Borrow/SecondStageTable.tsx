@@ -6,7 +6,7 @@ import { BorrowPageContext } from "../../context/borrowContext";
 const SecondStageTable = () => {
   const { borrowRequest, loanTerms } = useContext(BorrowPageContext);
   const { lendWith, loanType, loanTerm } = borrowRequest;
-  const { interestRate, collateralRatio, maxLoanAmount} = loanTerms;
+  const { interestRate, collateralRatio, maxLoanAmount} = loanTerms[0];
 
   return (
     <div>

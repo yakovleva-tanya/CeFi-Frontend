@@ -18,12 +18,12 @@ import {
 const ThirdStageTable = () => {
   const { borrowRequest, loanTerms } = useContext(BorrowPageContext);
   const { loanTerm, loanType, lendWith, collateralWith } = borrowRequest;
-  const { interestRate, collateralRatio, maxLoanAmount } = loanTerms;
+  const { interestRate, collateralRatio, maxLoanAmount } = loanTerms[0];
   return (
     <div>
       <div className="table border-thin my-5">
         <TableRow title="Interest rate">
-          <div className="font-medium"> {String(interestRate)} % </div>
+          <div className="font-medium"> {interestRate} % </div>
         </TableRow>
         <BR />
         {Number(collateralRatio) > 0 && (
@@ -95,7 +95,7 @@ const CollateralApproveButton = () => {
         try {
           setApproveLoading(true);
           const borrower = state.web3State.address;
-          const amountToBorrow = Number(loanTerms.maxLoanAmount);
+          const amountToBorrow = Number(loanTerms[0].maxLoanAmount);
           if (process.env.INTEGRATIONS_DISABLED === "false") {
             const response = await approveToken(
               loansInstance,

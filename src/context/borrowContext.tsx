@@ -77,7 +77,7 @@ const mockLoanTerms = {
   maxLoanAmount: 100,
 };
 
-const LoanTerms = {
+const LoanTerms = [{
   collateralRatio: null as null,
   consensusAddress: null as string,
   responseTime: null as string,
@@ -89,7 +89,7 @@ const LoanTerms = {
   signer: null as string,
   signerNonce: null as string,
   chainId: null as string,
-};
+}];
 
 const LendingApp = {
   requestedLoanSize: null as string,
@@ -112,7 +112,7 @@ export const BorrowPageContext = createContext<BorrowPageContextInterface>({
   setSubmenu: () => {},
   borrowRequest: defaultBorrowRequest,
   setBorrowRequest: () => {},
-  loanTerms: null as any,
+  loanTerms: null as [],
   setLoanTerms: () => {},
   lendingApp: null as any,
   setLendingApp: () => {},

@@ -16,11 +16,11 @@ export const CollateralAmountSubmenu = () => {
   const { state } = useContext(AppContext);
   const { tokenData } = state;
   const { collateralAmount, collateralWith, lendWith } = borrowRequest;
-  const loanSize = loanTerms.maxLoanAmount;
+  const loanSize = loanTerms[0].maxLoanAmount;
 
   const minCollateralAmount = tokenData
     ? Math.round(
-        (Number(loanSize) * Number(loanTerms.collateralRatio) * tokenData[lendWith].price) /
+        (Number(loanSize) * Number(loanTerms[0].collateralRatio) * tokenData[lendWith].price) /
           tokenData[collateralWith].price
       ) / 100
     : 0;
@@ -112,13 +112,13 @@ const CollateralAmountSelection = () => {
     collateralWith,
     lendWith,
   } = borrowRequest;
-  const loanSize = loanTerms.maxLoanAmount;
+  const loanSize = loanTerms[0].maxLoanAmount;
   const { state } = useContext(AppContext);
   const { tokenData } = state;
 
   const minCollateralAmount = tokenData
     ? Math.round(
-        (Number(loanSize) * Number(loanTerms.collateralRatio) * tokenData[lendWith].price) /
+        (Number(loanSize) * Number(loanTerms[0].collateralRatio) * tokenData[lendWith].price) /
           tokenData[collateralWith].price
       ) / 100
     : 0;

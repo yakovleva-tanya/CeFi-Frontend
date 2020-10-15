@@ -49,7 +49,7 @@ const BorrowForm = () => {
   const requestLoan = async () => {
     const { dataProviderResponse } = state;
     //TODO: this should update based on the selected ATM type.
-    const { lendingPool, loansInstance } = state.teller.contracts[BaseTokens.ETH][
+    const { lendingPool } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
     ];
     try {
@@ -57,7 +57,6 @@ const BorrowForm = () => {
         lendingPool,
         web3State
       );
-      console.log('borrowRequest  ', borrowRequest);
 
       const lendingApplication = LendingApplicationMap(
         borrowRequest,
@@ -65,7 +64,6 @@ const BorrowForm = () => {
         tokenDecimals,
         web3State
       );
-      console.log("APPLICATION>>>", lendingApplication);
  
       setLendingApp(lendingApplication);
 
@@ -77,8 +75,6 @@ const BorrowForm = () => {
       const nodeResponses = await getNodeSignaturesForBorrowing(
         lendingApplication as PBorrow 
       );
-
-      console.log('responses<>', nodeResponses);
 
       setLoanTerms(nodeResponses);
       return true;
@@ -112,7 +108,7 @@ const BorrowForm = () => {
         return false;
       } else {
         const loanId = borrowerLoans[borrowerLoans.length - 1];
-        const amountToBorrow = loanTerms.maxLoanAmount.toString();
+        const amountToBorrow = loanTerms[0].maxLoanAmount.toString();
         const response = await takeOutLoan(
           loansInstance,
           loanId,
@@ -153,8 +149,6 @@ const BorrowForm = () => {
     setStage(stage + 1);
   };
   const onAcceptTerms = async (borrowNonce: any) => {
-    console.log("ACCEPTED_TERMS<>");
-    console.log(loanTerms);
     const { web3State } = state;
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
       TellerTokens.tDAI
@@ -164,8 +158,6 @@ const BorrowForm = () => {
       console.log('lendingApp', lendingApp);
 
       const reqNonce = Number(await _nonce(web3State.address, borrowRequest.lendWith, borrowRequest.collateralWith));
-      console.log('nodeRes<>', loanTerms);
-      console.log('stored nonce<>', String(reqNonce));
 
       const receipt = await submitSignaturesToChainForBorrowing(
         lendingApp as PBorrow,
@@ -175,8 +167,6 @@ const BorrowForm = () => {
         String(0.01 * 1e18),
         loansInstance
       );
-
-      console.log('Receipt<>', receipt);
 
       setSubmitting(true);
       //Accept loan terms

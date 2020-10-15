@@ -126,7 +126,7 @@ export interface BorrowPageContextInterface {
   setSubmenu: Function;
   borrowRequest: BorrowRequest;
   setBorrowRequest: Function;
-  loanTerms: LoanTerms;
+  loanTerms: LoanTerms[];
   setLoanTerms: Function;
   lendingApp: PBorrow;
   setLendingApp: Function;
