@@ -20,7 +20,7 @@ const BorrowMainSection = () => {
     <div className="borrow">
       <div className="cards-container">
         <Card
-          className="main-card text-center"
+          className="main-card text-center w-80"
           title="Borrow"
           goBack={
             stage === 0

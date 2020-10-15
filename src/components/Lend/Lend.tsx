@@ -60,7 +60,7 @@ const Lend = () => {
       {!processing && !transactionHash && (
         <div className="cards-container">
           <Card
-            className="main-card text-center align-items-center"
+            className="main-card text-center align-items-center w-80"
             title="Supply"
           >
             <div className="my-3">

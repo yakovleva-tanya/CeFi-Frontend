@@ -44,7 +44,7 @@ const LendMetrics = () => {
   const ATM = "74.43";
   const COMP = "45.43";
   return (
-    <Card className="metrics-card" title="Summary">
+    <Card className="metrics-card w-80" title="Summary">
       <Metric title="Deposit APY" value={supplyAPY} />
       <Metric title="Asset price" value={price} />
       <Metric title="Wallet balance" value={walletBalance} />

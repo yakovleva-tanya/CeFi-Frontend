@@ -9,7 +9,7 @@ const Lend = () => {
   const subSection = onPage.split("-")[1];
   return (
     <Card
-      className="main-card text-center"
+      className="main-card text-center w-80"
       title={subSection.charAt(0).toUpperCase() + subSection.slice(1)}
       dashboard={true}
     >

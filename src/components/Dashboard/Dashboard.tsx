@@ -44,7 +44,7 @@ const Dashboard = () => {
           <Route path={`/dashboard/:onPage`} component={DashboardContent} />
         </div>
       ) : (
-        <div className="d-flex justify-content-center align-items-center flex-column">
+        <div className="d-flex justify-content-center align-items-center flex-column text-center ">
           <div>Please connect your wallet to view the dashboard</div>
           <LoginButton />
         </div>

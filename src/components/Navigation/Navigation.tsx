@@ -61,7 +61,7 @@ const HiddenNavbar = () => {
           id="responsive-navbar-nav"
           className="justify-content-end navbar-links"
         >
-          <Nav className="align-items-md-center align-items-start py-4">
+          <Nav className="align-items-md-center align-items-start py-md-0 py-4">
             <NavigationLink
               to="lend"
               name="Deposit"
@@ -77,7 +77,7 @@ const HiddenNavbar = () => {
               }}
             />
             <NavigationLink
-              to="dashboard"
+              to="dashboard/deposit-redeem"
               name="Dashboard"
               className="d-none d-md-inline"
               onClickAction={() => {
