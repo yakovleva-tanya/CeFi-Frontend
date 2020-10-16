@@ -20,6 +20,7 @@ import LoansInterface = require("./../abi/contracts/LoansInterface.json");
 import ERC20Interface = require("./../abi/contracts/ERC20.json");
 import LenderInterface = require("./../abi/contracts/Lenders.json");
 import LendingPoolInterface = require("./../abi/contracts/LendingPoolInterface.json");
+import TTokenInterface = require("./../abi/contracts/TTokenInterface.json");
 import UniswapInterface = require("./../abi/contracts/Uniswap.json");
 import EscrowInterface = require("./../abi/contracts/Escrow.json");
 
@@ -50,7 +51,7 @@ async function setupTellerContracts(
   );
 
   const tToken = new web3State.web3.eth.Contract(
-    ERC20Interface.abi,
+    TTokenInterface.abi,
     tTokenAddress,
     {}
   );
@@ -228,7 +229,7 @@ export default async (
     const contractAddresses =
       network === "1"
         ? allContractAddresses.mainnet
-        : allContractAddresses.ropsten;
+        : allContractAddresses.rinkeby;
     const ETH_DAI = await setupTellerContracts(
       web3State,
       contractAddresses.ETH_LendingPool_tDAI_Proxy,
