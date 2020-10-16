@@ -3,7 +3,9 @@ import ERC20 = require('./../abi/contracts/ERC20Detailed.json');
 import { Web3State } from './../context/app';
 import { globalDecimals } from './../util/constants';
 import { FetchTokenData } from './FetchTokenData';
-
+import {
+  BaseTokens,
+} from "../context/app";
 /**
  * Converts a given amount into a BN instance
  * @param {string} amount The amount to be converted
@@ -127,28 +129,31 @@ export async function depositCollateral(
   loansInterface: any,
   borrowerAddress: string,
   loanId: number,
+  collateralWith: BaseTokens,
   amount: string,
   web3State: Web3State
 ) {
   const bnAmount = convertToBN(amount);
-  const collateralToken = await getCollateralToken(loansInterface, web3State);
+  console.log({bnAmount, collateralWith});
+  if (collateralWith != 'ETH') {
+    const collateralToken = await getCollateralToken(loansInterface, web3State);
   // Check allowance of loansInterface
-  const approvedAmount = await collateralToken.methods.allowance(borrowerAddress, loansInterface._address).call();
-  if (bnAmount > approvedAmount) {
-    return
-  } else {
-    return new Promise((resolve, reject) => loansInterface.methods
-      .depositCollateral(
-        borrowerAddress,
-        loanId,
-        bnAmount
-      )
-      .send({ from: borrowerAddress })
-      .on('transactionHash', Notify.hash)
-      .on('receipt', resolve)
-      .on('error', reject)
-    );
-  }
+    const approvedAmount = await collateralToken.methods.allowance(loansInterface._address, borrowerAddress).call();
+    if (bnAmount > approvedAmount) {
+      return
+    }
+  } 
+  return new Promise((resolve, reject) => loansInterface.methods
+    .depositCollateral(
+      borrowerAddress,
+      loanId,
+      bnAmount
+    )
+    .send({ from: borrowerAddress, value: bnAmount })
+    .on('transactionHash', Notify.hash)
+    .on('receipt', resolve)
+    .on('error', reject)
+  );
 }
 
 /**

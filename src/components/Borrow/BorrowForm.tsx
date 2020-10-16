@@ -93,6 +93,46 @@ const BorrowForm = () => {
 
   const loggedIn = state.web3State?.address || "";
 
+  const onAcceptTerms = async (borrowNonce: any) => {
+    const { web3State } = state;
+    const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+      TellerTokens.tDAI
+    ];
+
+    try {      
+      const collateralNeeded = await getCollateralAmount(lendingApp.requestedLoanSize, loanTerms[0].collateralRatio, lendingApp.collateralAsset);
+      
+      await submitSignaturesToChainForBorrowing(
+        lendingApp as PBorrow,
+        loanTerms as unknown as RArrowheadCRA[],
+        lendingApp.requestedLoanSize,
+        // collateralNeeded.toString(),
+        String(0.1 * 1e18),
+        loansInstance
+      );
+
+      setSubmitting(true);
+      //Accept loan terms
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSubmitting(false);
+      setStage(stage + 1);
+      return true;
+    } catch (err) {
+      console.log(err);
+      updateAppState((st: AppContextState) => {
+        const errorModal = {
+          show: true,
+          message:
+            "An error occurred during the loan creation process. Please try again.",
+          title: "Error",
+        };
+        return { ...st, errorModal };
+      });
+      setSubmitting(false);
+      return false;
+    }
+  };
+
   const onRequestLoan = async () => {
     setRequesting(true);
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
@@ -100,7 +140,7 @@ const BorrowForm = () => {
     ];
     try {
       const borrower = state.web3State.address;
-      const borrowerLoans = await loansInstance.getBorrowerLoans(borrower);
+      const borrowerLoans = await loansInstance.methods.getBorrowerLoans(borrower).call();
       if (borrowerLoans.length == 0) {
         setRequesting(false);
         return false;
@@ -148,45 +188,6 @@ const BorrowForm = () => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setSubmitting(false);
     setStage(stage + 1);
-  };
-  const onAcceptTerms = async (borrowNonce: any) => {
-    const { web3State } = state;
-    const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-      TellerTokens.tDAI
-    ];
-
-    try {      
-      const collateralNeeded = await getCollateralAmount(lendingApp.requestedLoanSize, loanTerms[0].collateralRatio, lendingApp.collateralAsset);
-      
-      await submitSignaturesToChainForBorrowing(
-        lendingApp as PBorrow,
-        loanTerms as unknown as RArrowheadCRA[],
-        lendingApp.requestedLoanSize,
-        // collateralNeeded.toString(),
-        String(0.1 * 1e18),
-        loansInstance
-      );
-
-      setSubmitting(true);
-      //Accept loan terms
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setSubmitting(false);
-      setStage(stage + 1);
-      return true;
-    } catch (err) {
-      console.log(err);
-      updateAppState((st: AppContextState) => {
-        const errorModal = {
-          show: true,
-          message:
-            "An error occurred during the loan creation process. Please try again.",
-          title: "Error",
-        };
-        return { ...st, errorModal };
-      });
-      setSubmitting(false);
-      return false;
-    }
   };
 
   const isSecured = Boolean(borrowRequest.loanType === "Secured");

@@ -23,7 +23,7 @@ const ThirdStageTable = () => {
     <div>
       <div className="table border-thin my-5">
         <TableRow title="Interest rate">
-          <div className="font-medium"> {interestRate} % </div>
+          <div className="font-medium"> {Number(interestRate)/100} % </div>
         </TableRow>
         <BR />
         {Number(collateralRatio) > 0 && (
@@ -157,17 +157,21 @@ const CollateralTransferButton = () => {
         ];
         try {
           const borrower = state.web3State.address;
-          const borrowerLoans = await loansInstance.getBorrowerLoans(borrower);
+          
+          const borrowerLoans = await loansInstance.methods.getBorrowerLoans(borrower).call();
+          
           if (borrowerLoans.length == 0) {
             setTransferLoading(false);
             return false;
           } else {
             const loanId = borrowerLoans[borrowerLoans.length - 1];
             const amountToDeposit = borrowRequest.collateralAmount.toString();
+            console.log({borrowerLoans, loanId, amountToDeposit});
             const response = await depositCollateral(
               loansInstance,
               borrower,
               loanId,
+              borrowRequest.collateralWith,
               amountToDeposit,
               web3State
             );

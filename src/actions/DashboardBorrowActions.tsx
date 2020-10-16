@@ -33,6 +33,7 @@ export const repayLoan = async (
 export const loanDeposit = async (
   loansInstance: any,
   id: string,
+  collateralWith: BaseTokens,
   amountToDeposit: number,
   web3State: Web3State
 ) => {
@@ -41,6 +42,7 @@ export const loanDeposit = async (
     loansInstance,
     borrower,
     Number(id),
+    collateralWith,
     amountToDeposit.toString(),
     web3State
   );
