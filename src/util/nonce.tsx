@@ -1,4 +1,3 @@
-// import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 import { gql, ApolloClient, InMemoryCache } from 'apollo-boost';
 import { createHttpLink } from 'apollo-link-http';
 
@@ -56,7 +55,12 @@ export async function _nonce(
       query,
     });
     console.log(JSON.stringify({ result }, null, 2));
-    let nonce = result.data.borrowerNoncesChanges[0].nonce;
+    let nonce;
+    if (result.data.borrowerNoncesChanges[0] == undefined) {
+      nonce = 0;
+    } else {
+      nonce = result.data.borrowerNoncesChanges[0].nonce;
+    }
     if (!nonce) throw new Error("Nonce is undefined, returning '0'");
     nonce = Number(nonce);
     return (nonce + 1).toString();

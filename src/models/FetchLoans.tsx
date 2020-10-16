@@ -2,6 +2,8 @@ const { request } = require("graphql-request");
 import { LoanInterface } from "../context/types";
 import { loansTestData } from "../context/testdata";
 import { FetchTokenData } from "./FetchTokenData";
+import { gql, ApolloClient, InMemoryCache } from 'apollo-boost';
+import { createHttpLink } from 'apollo-link-http';
 
 const getUrl = (network: string) => {
   if (network === "3") {
@@ -12,7 +14,7 @@ const getUrl = (network: string) => {
     return "https://api.thegraph.com/subgraphs/name/salazarguille/teller-protocol-subgraph-mainnet";
 };
 
-const loansQuery = (address: string) => `
+const loansQuery = (address: string) => gql`
   {
     borrower(id:"${address}"){
     id
@@ -78,14 +80,31 @@ const tokenData = async () => {
 //   USDC: 0.99,
 // };
 
+const makeClient = (url: string) => new ApolloClient({
+  cache: new InMemoryCache(),
+  link: createHttpLink({ uri: url }),
+  defaultOptions: {
+    query: {
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
+    },
+  },
+});
+
 const FetchLoans = async (network: string, address: string) => {
   const currentTime = Date.now();
   try {
-    const url = ""; //getUrl(network);
+    const url = getUrl(network);
     const query = loansQuery(address);
 
     //fetch loans
-    const res = loansTestData;
+    const client = makeClient(url);
+    const result = await client.query({
+      query,
+    });
+    console.log("borrow loans<>", result.data.borrower.loans);
+    const res = result.data.borrower.loans;
+    // const res = loansTestData;
     const loans: Array<LoanInterface> = res.map((loan: LoanInterface) => {
       loan.collateralAmount =
         loan.totalCollateralDepositsAmount -

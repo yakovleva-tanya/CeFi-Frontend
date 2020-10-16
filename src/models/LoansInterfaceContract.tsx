@@ -169,11 +169,10 @@ export async function takeOutLoan(
   amountToBorrow: string,
   borrowerAddress: string
 ) {
-  const bnAmount = convertToBN(amountToBorrow);
   return new Promise((resolve, reject) => loansInterface.methods
     .takeOutLoan(
       loanId,
-      bnAmount
+      amountToBorrow
     )
     .send({ from: borrowerAddress })
     .on('transactionHash', Notify.hash)
