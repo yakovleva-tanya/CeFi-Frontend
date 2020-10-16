@@ -34,7 +34,7 @@ const UniswapMainSection = () => {
   return (
     <Card
       dashboard={true}
-      className="main-card text-center"
+      className="main-card text-center w-80"
       title={title}
       logo={logo}
       goBack={goBack}

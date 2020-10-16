@@ -23,7 +23,7 @@ const DepositPage = () => {
   return (
     <div>
       <Card
-        className="main-card text-center"
+        className="main-card text-center w-80"
         title={selectedLoan ? `ID ${selectedLoan.id}` : "Deposit collateral"}
         goBack={selectedLoan ? goBack : null}
         dashboard={true}

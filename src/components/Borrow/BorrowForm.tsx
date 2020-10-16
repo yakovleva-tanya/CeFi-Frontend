@@ -47,22 +47,22 @@ const BorrowForm = () => {
   const requestLoan = async () => {
     const { dataProviderResponse } = state;
     //TODO: this should update based on the selected ATM type.
-    const { lendingPool } = state.teller.contracts[BaseTokens.ETH][
-      TellerTokens.tDAI
-    ];
+    const { lendingPool } = state.teller
+      ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+      : null;
     try {
       const tokenDecimals = await getLendingPoolDecimals(
         lendingPool,
         web3State
       );
-      
+
       const lendingApplication = LendingApplicationMap(
         borrowRequest,
         dataProviderResponse.bankInfo,
         tokenDecimals,
         web3State
       );
- 
+
       setLendingApp(lendingApplication);
 
       setBorrowRequest({
@@ -71,9 +71,9 @@ const BorrowForm = () => {
       })
 
       const nodeResponses = await getNodeSignaturesForBorrowing(
-        lendingApplication as PBorrow 
+        lendingApplication as PBorrow
       );
-        
+
       setLoanTerms(nodeResponses);
       return true;
     } catch (err) {
@@ -99,9 +99,9 @@ const BorrowForm = () => {
       TellerTokens.tDAI
     ];
 
-    try {      
+    try {
       const collateralNeeded = await getCollateralAmount(lendingApp.requestedLoanSize, loanTerms[0].collateralRatio, lendingApp.collateralAsset);
-      
+
       await submitSignaturesToChainForBorrowing(
         lendingApp as PBorrow,
         loanTerms as unknown as RArrowheadCRA[],
@@ -135,9 +135,9 @@ const BorrowForm = () => {
 
   const onRequestLoan = async () => {
     setRequesting(true);
-    const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-      TellerTokens.tDAI
-    ];
+    const { loansInstance } = state.teller
+      ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+      : null;
     try {
       const borrower = state.web3State.address;
       const borrowerLoans = await loansInstance.methods.getBorrowerLoans(borrower).call();
@@ -253,7 +253,7 @@ const BorrowForm = () => {
           {stage === 2 && (
             <div>
               <SecondStageTable />
-              <PrimaryButton 
+              <PrimaryButton
                 text="Accept terms"
                 onClick={
                   process.env.INTEGRATIONS_DISABLED === "true"

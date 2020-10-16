@@ -42,9 +42,9 @@ const DepositMainSection = () => {
   } = useContext(BorrowDepositContext);
   const { borrowRequest } = useContext(BorrowPageContext);
   const { web3State } = state;
-  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-    TellerTokens.tDAI
-  ];
+  const { loansInstance } = state.teller
+    ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+    : null;
 
   const currentLoans = loans
     ? loans.filter((loan: any) => {

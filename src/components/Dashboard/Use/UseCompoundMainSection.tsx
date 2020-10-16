@@ -172,7 +172,7 @@ const UseCompoundMainSection = () => {
             {maxWithdrawWarning && (
               <FormValidationWarning message={maxWithdrawWarning} />
             )}
-            <div className="d-flex flex-row justify-content-between">
+            <div className="d-flex flex-row flex-wrap justify-content-between">
               <div>
                 <PrimaryButton
                   text="Withdraw"

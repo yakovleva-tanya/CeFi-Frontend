@@ -36,13 +36,13 @@ const BorrowMetrics = () => {
       : "-";
 
   return (
-    <div className="d-flex flex-column">
-      <Card className="metrics-card" title="Summary">
+    <div className="d-flex flex-column flex-wrap ">
+      <Card className="metrics-card mx-2 w-80 " title="Summary">
         <Metric title="Asset price" value={assetPrice} />
         <Metric title="Wallet balance" value={walletBalance} />
         <Metric title="Collateral available" value={collateralAvailable} />
       </Card>
-      <Card className="metrics-card my-1" title="Pro tip">
+      <Card className="metrics-card mx-2 my-1 w-80" title="Pro tip">
         <ProTip />
       </Card>
     </div>

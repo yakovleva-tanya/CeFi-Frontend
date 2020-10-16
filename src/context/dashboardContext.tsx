@@ -36,7 +36,7 @@ export const DashboardContext = createContext<DashboardContextInterface>(
 );
 
 const DashboardContextProvider = ({ children }: ContextProps) => {
-  const [onPage, setOnPage] = useState<PageTypes>(PageTypes["deposit-redeem"]);
+  const [onPage, setOnPage] = useState(PageTypes["deposit-redeem"]);
   const [loans, setLoans] = useState<Array<LoanInterface>>(null);
 
   return (
