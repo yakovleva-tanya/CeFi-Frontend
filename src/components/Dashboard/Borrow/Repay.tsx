@@ -9,6 +9,7 @@ import SuccessScreen from "../../SuccessScreen/SuccessScreen";
 import ProcessingScreen from "../../ProcessingScreen/ProcessingScreen";
 import RepayForm from "./RepayForm";
 import RepaySelectedLoan from "./RepaySelectedLoan";
+import copy from "../../../copy.json";
 
 const RepayPage = () => {
   const {
@@ -21,6 +22,8 @@ const RepayPage = () => {
   const goBack = () => {
     setSelectedLoan(null);
   };
+  const pageCopy = copy.pages.dashboard["borrow-repay"];
+
   return (
     <div>
       <Card
@@ -31,7 +34,7 @@ const RepayPage = () => {
       >
         {repaySuccess && (
           <SuccessScreen
-            title="Payment complete"
+            title={pageCopy.successScreenMessage}
             message={
               <div>
                 View transaction status{" "}
@@ -55,7 +58,7 @@ const RepayPage = () => {
         {isRepaying && (
           <ProcessingScreen
             link={""}
-            title="Repaying loan"
+            title={pageCopy.processingScreenMessage}
             fullScreen={false}
           />
         )}
