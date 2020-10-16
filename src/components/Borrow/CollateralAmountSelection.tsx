@@ -8,6 +8,7 @@ import WarningModal from "../UI/WarningModal";
 import eth from "../../../dist/assets/eth-logo.svg";
 import link from "../../../dist/assets/link-logo.png";
 import { AppContext } from "../../context/app";
+import copy from "../../copy.json";
 
 export const CollateralAmountSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu, loanTerms } = useContext(
@@ -36,9 +37,6 @@ export const CollateralAmountSubmenu = () => {
       ) / 100
     : 0;
 
-  const ModalText =
-    "Changes to terms will require an approval transaction and accrue additional gas fees. Would you like to proceed?";
-
   const submitNewValue = () => {
     let newValue = value;
     if (value < minCollateralAmount) {
@@ -52,10 +50,12 @@ export const CollateralAmountSubmenu = () => {
     });
     setSubmenu(null);
   };
+  const collateralSelectionScreen =
+    copy.pages.borrow.main.form.step4.collateralSelectionScreen;
 
   return (
     <SubmenuCard
-      title="Collateral amount"
+      title={collateralSelectionScreen.title}
       onCloseAction={() => {
         setSubmenu(null);
       }}
@@ -67,16 +67,16 @@ export const CollateralAmountSubmenu = () => {
           cancel={() => {
             setSubmenu(null);
           }}
-          text={ModalText}
+          text={collateralSelectionScreen.collateralChangeWarningMessage}
         />
-        <div className="mb-4">Input the collateral for your loan </div>
+        <div className="mb-4">{collateralSelectionScreen.description}</div>
         {collateralWith === "ETH" && <img src={eth} height="20" />}
         {collateralWith === "LINK" && <img src={link} height="20" />}
         <CustomInput
           onChangeFunction={(e: any) => {
             if (e.target.value < minCollateralAmount) {
               setWarning(
-                `Please input a collateral amount greater than ${minCollateralAmount} ${collateralWith}`
+                `${collateralSelectionScreen.minimumAmountWarning} ${minCollateralAmount} ${collateralWith}`
               );
             } else setWarning("");
             setValue(parseFloat(e.target.value) || 0);
@@ -107,11 +107,7 @@ const CollateralAmountSelection = () => {
   const { borrowRequest, setSubmenu, loanTerms } = useContext(
     BorrowPageContext
   );
-  const {
-    collateralAmount,
-    collateralWith,
-    lendWith,
-  } = borrowRequest;
+  const { collateralAmount, collateralWith, lendWith } = borrowRequest;
   const loanSize = loanTerms.maxLoanAmount;
   const { state } = useContext(AppContext);
   const { tokenData } = state;

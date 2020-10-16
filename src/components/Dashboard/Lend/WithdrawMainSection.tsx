@@ -107,7 +107,7 @@ const WithdrawMainSection = () => {
     }
   }, [selectedCurrency, selectedAmount]);
 
-  const { description, form } = copy.pages.dashboard["deposit-withdraw"];
+  const { description, form, CTA } = copy.pages.dashboard["deposit-withdraw"];
   return (
     <div className="my-2">
       <div className="text-gray mb-2">{description}</div>
@@ -155,7 +155,7 @@ const WithdrawMainSection = () => {
         </TableRow>
       </div>
       <PrimaryButton
-        text="Withdraw"
+        text={CTA}
         onClick={() => {
           process.env.INTEGRATIONS_DISABLED === "true"
             ? onSubmitMock()

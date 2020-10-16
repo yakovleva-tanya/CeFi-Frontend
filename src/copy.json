@@ -11,8 +11,13 @@
         "form": {
           "depositTitle": "Deposit",
           "approveTitle": "Approve",
-          "CTA": "Deposit"
-        }
+          "CTA": "Deposit",
+          "amountExceededMessage": "You have exceeded your max wallet balance.",
+          "assetChangeWarningMessage": "Youe about to change your supply asset, doing so will submit another transaction approval and cost additional gas fees. Are you sure you want to proceed?"
+        },
+        "loadingMessage": { "title": "Almost there" },
+        "successMessage": { "title": "Deposit accepted" },
+        "transactionErrorMessage": "An error occurred during the lending process. Please try again."
       },
       "metrics": {
         "header": "Summary",
@@ -36,9 +41,86 @@
               "description": "Apply for a secured loan, no bank account needed."
             }
           },
-          "step2": {},
-          "step3": {},
-          "step4": {}
+          "step2": {
+            "borrow": { "title": "Borrow", "submenu": {} },
+            "loanSize": {
+              "title": "Loan Size",
+              "submenu": {
+                "title": "Loan size",
+                "description": "Enter the loan amount you would like to request",
+                "CTA": "Enter"
+              }
+            },
+            "loanPeriod": {
+              "title": "Loan Period",
+              "submenu": {
+                "title": "Loan term",
+                "description": "Enter in the duration of your loan term",
+                "CTA": "Enter"
+              }
+            },
+            "collateralAsset": { "title": "Collateral Asset", "submenu": {} },
+            "bank": { "title": "Bank", "CTA": "Connect", "submenu": {} },
+            "collateralPercent": {
+              "title": "Collateral percent",
+              "submenu": {
+                "title": "Collateral percent",
+                "description": "Enter your desired collateral ratio",
+                "inputRangeWarning": "Please enter a number between 0-150"
+              }
+            },
+            "CTA": "Request Terms"
+          },
+          "step3": {
+            "description": "Your loan terms have been calculated",
+            "interestRate": "Interest Rate",
+            "collateralRatio": "Collateral ratio",
+            "loanSize": "Loan size",
+            "loanTerm": "Loan term",
+            "loanType": "Loan type",
+            "CTA": "Accept terms",
+            "submittingTermsLoadingScreen": { "title": "Submitting terms" }
+          },
+          "step4": {
+            "interestRate": "Interest rate",
+            "collateralRatio": "Collateral ratio",
+            "loanSize": "Loan Size",
+            "loanTerm": "Loan Term",
+            "loanType": "Loan type",
+            "collateralAmount": "Collateral Amount",
+            "approveCollateral": {
+              "title": "Approve collateral",
+              "CTA": "Submit",
+              "errorMessage": "An error occurred during the loan creation process. Please try again."
+            },
+            "depositCollateral": {
+              "title": "Deposit collateral",
+              "CTA": "Submit",
+              "errorMessage": "An error occurred during the loan creation process. Please try again."
+            },
+            "CTA": "Request loan",
+            "requestingLoanLoadingScreen": { "title": "Requesting loan" },
+            "takeOutLoanErrorMessage": "An error occurred while taking out the loan. Please try again.",
+            "collateralSelectionScreen": {
+              "title": "Collateral amount",
+              "description": "Input the collateral for your loan",
+              "collateralChangeWarningMessage": "Changes to terms will require an approval transaction and accrue additional gas fees. Would you like to proceed?",
+              "minimumAmountWarning": "Please input a collateral amount greater than"
+            }
+          },
+          "successScreen": { "title": "Loan accepted" },
+          "goBackWarning": "Changes to terms will require an approval transaction and accrue additional gas fees. Would you like to proceed?",
+          "proTips": {
+            "1": "Connect to your bank account to reduce collateral ratios.",
+            "2": "Set your duration of loan term in accordance to your planned use of the loan.",
+            "3": "Higher collateral ratios can reduce your interest rate.",
+            "4": "Interest rates are calculated as a result of your credit history.",
+            "5": "Your collateral ratio is set to the minimum amount of collateral needed.",
+            "6": "Accept terms to approve a transaction spend.",
+            "7": "Once a loan is requested you will need to resubmit terms to make changes.",
+            "8": "You can increase your collateral amount to reduce liquidation risk.",
+            "9": "Increase your collateral amount to reduce liquidation risk."
+          }
         }
       },
       "metrics": {
@@ -60,10 +142,28 @@
       "deposit-withdraw": {
         "header": "Withdraw",
         "description": "Select an asset to withdraw your deposit to date.",
-        "form": { "withdrawWithTitle": "Withdraw with" }
+        "form": { "withdrawWithTitle": "Withdraw with" },
+        "CTA": "Withdraw"
       },
       "borrow-repay": {
-        "header": "Repay"
+        "header": "Repay",
+        "overdueLoansTitle": "Overdue loans",
+        "closedLoansTitle": "Closed loans",
+        "selectedLoan": {
+          "apr": "APR",
+          "loanSize": "Loan size",
+          "loanTerm": "Loan term",
+          "loanType": "Loan type",
+          "liquidationPercent": "Liquidation %",
+          "collateralPercent": "Collateral %",
+          "collateralAmount": "Collateral amount",
+          "status": "Status",
+          "timeRemaining": "Time remaining",
+          "amountOwed": "Amount owed",
+          "CTA": "Repay Loan"
+        },
+        "processingScreenMessage": "",
+        "successScreenMessage": ""
       },
       "borrow-deposit": {
         "header": "Deposit Collateral",

@@ -46,18 +46,23 @@ const Lend = () => {
   const initialSupplyValues = { amount: "0.00" };
 
   const balance = state.teller?.userWalletBalance;
-
+  const pageCopy = copy.pages.deposit.main;
+  const {
+    depositTitle,
+    approveTitle,
+    CTA,
+    amountExceededMessage,
+  } = pageCopy.form;
+  const { header, successMessage, loadingMessage } = pageCopy;
   useEffect(() => {
     if (!balance) return;
     if (selectedAmount > balance[selectedCurrency]) {
-      setAmountExceeded("You have exceeded your max wallet balance.");
+      setAmountExceeded(amountExceededMessage);
     } else {
       setAmountExceeded("");
     }
   }, [selectedAmount, balance]);
 
-  const { depositTitle, approveTitle, CTA } = copy.pages.deposit.main.form;
-  const { header } = copy.pages.deposit.main;
   return (
     <Container>
       {!processing && !transactionHash && (
@@ -121,7 +126,7 @@ const Lend = () => {
       {processing && (
         <ProcessingScreen
           link={getEtherscanLink(processing, network)}
-          title="Almost there"
+          title={loadingMessage.title}
         />
       )}
       {transactionHash && (
@@ -129,7 +134,7 @@ const Lend = () => {
           onButtonClick={() => {
             setTransactionHash("");
           }}
-          title="Deposit accepted"
+          title={successMessage.title}
           message={
             <div>
               Go to dashboard or{" "}

@@ -88,6 +88,13 @@ export const allContractAddresses = {
       USDC: "0x0D9C8723B343A8368BebE0B5E89273fF8D712e3C",
       // LINK Faucet: https://ropsten.chain.link/
       LINK: "0x20fE562d797A42Dcb3399062AE9546cd06f63280",
+      // See https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f
+      SNX: "0x013ae307648f529aa72c5767a334ddd37aab43c3",
+      MKR: "0x4a47be893ddef62696800ffcddb8476c92ab4221",
+      YFI: "0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e",
+      LEND: "0x217b896620AfF6518B9862160606695607A63442",
+      wBTC: "0x65058d7081fcdc3cd8727dbb7f8f9d52cefdd291",
+      USDT: "0x6ee856ae55b6e1a249f04cd3b947141bc146273c",
     },
   },
   mainnet: {
@@ -160,7 +167,7 @@ export const allContractAddresses = {
       USDC: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
       // See https://etherscan.io/token/0x514910771af9ca656af840dff83e8264ecf986ca
       LINK: "0x514910771af9ca656af840dff83e8264ecf986ca",
-      SNX: "0x41Cb82934a671f52379A96AF034674945Ff03d3b",
+      SNX: "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
       MKR: "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
       YFI: "0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e",
       LEND: "0x80fB784B7eD66730e8b1DBd9820aFD29931aab03",

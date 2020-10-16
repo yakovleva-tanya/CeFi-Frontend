@@ -3,6 +3,7 @@ import WarningModal from "../UI/WarningModal";
 import { CustomDropdown } from "../UI/CustomDropdown";
 import { LendPageContext } from "../../context/lendContext";
 import { AvailableLendingTokens } from "../../context/app";
+import copy from "../../copy.json";
 
 const CurrencyDropdown = () => {
   const {
@@ -37,6 +38,8 @@ const CurrencyDropdown = () => {
     setSelectedCurrency(newCurrency);
     setTokensApproved(false);
   };
+  const assetChangeWarningMessage =
+    copy.pages.deposit.main.form.assetChangeWarningMessage;
 
   return (
     <div>
@@ -44,9 +47,7 @@ const CurrencyDropdown = () => {
         show={showWarningModal}
         proceed={proceedWithChange}
         cancel={cancelChange}
-        text="You're about to change your supply asset, doing so will submit another
-          transaction approval and cost additional gas fees. Are you sure you
-          want to proceed?"
+        text={assetChangeWarningMessage}
       />
       <CustomDropdown
         selected={selectedCurrency}

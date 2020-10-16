@@ -4,6 +4,7 @@ import SubmenuCard from "../UI/SubmenuCard";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
 import FormValidationWarning from "../UI/FormValidationWarning";
 import CustomSlider from "../UI/CustomSlider";
+import copy from "../../copy.json";
 
 export const CollateralPercentSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
@@ -11,7 +12,11 @@ export const CollateralPercentSubmenu = () => {
   );
   const [value, setValue] = useState(`${borrowRequest.collateralPercent}%`);
   const [warning, setWarning] = useState("");
-
+  const {
+    inputRangeWarning,
+    title,
+    description,
+  } = copy.pages.borrow.main.form.step2.collateralPercent.submenu;
   const onBlur = () => {
     setValue(`${value || 0}%`);
   };
@@ -29,7 +34,7 @@ export const CollateralPercentSubmenu = () => {
       value = "0.00";
     }
     if (value > 150 || value < 0) {
-      setWarning("Please enter a number between 0-150");
+      setWarning(inputRangeWarning);
     } else {
       setWarning("");
     }
@@ -49,7 +54,7 @@ export const CollateralPercentSubmenu = () => {
   const onSliderChange = (e: any) => {
     const sliderValue = e.target.value;
     if (sliderValue > 150 || sliderValue < 0) {
-      setWarning("Please enter a number between 0-150");
+      setWarning(inputRangeWarning);
     } else {
       setWarning("");
     }
@@ -58,13 +63,13 @@ export const CollateralPercentSubmenu = () => {
 
   return (
     <SubmenuCard
-      title="Collateral percent"
+      title={title}
       onCloseAction={() => {
         setSubmenu(null);
       }}
     >
       <div className="-my-2 d-flex flex-column px-4">
-        <div className="mb-4">Enter your desired collateral ratio</div>
+        <div className="mb-4">{description}</div>
         <input
           autoComplete="off"
           autoCorrect="off"

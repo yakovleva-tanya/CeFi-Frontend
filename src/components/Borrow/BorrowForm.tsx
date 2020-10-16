@@ -42,6 +42,14 @@ const BorrowForm = () => {
     loanTerms,
     setLoanTerms,
   } = useContext(BorrowPageContext);
+
+  const {
+    unsecuredLoanCard,
+    securedLoanCard,
+    description,
+  } = copy.pages.borrow.main.form.step1;
+  const takeOutLoanErrorMessage = copy.pages.borrow.main.form.step4;
+
   const { state, updateAppState } = useContext(AppContext);
   const { setRequesting, setSuccess, setSubmitting } = borrowProcessState;
   const { web3State } = state;
@@ -114,8 +122,7 @@ const BorrowForm = () => {
       updateAppState((st: AppContextState) => {
         const errorModal = {
           show: true,
-          message:
-            "An error occurred while taking out the loan. Please try again.",
+          message: { takeOutLoanErrorMessage },
           title: "Error",
         };
         return { ...st, errorModal };
@@ -172,12 +179,6 @@ const BorrowForm = () => {
 
   const isSecured = Boolean(borrowRequest.loanType === "Secured");
   const plaidConnected = state?.plaid?.loggedIn;
-
-  const {
-    unsecuredLoanCard,
-    securedLoanCard,
-    description,
-  } = copy.pages.borrow.main.form.step1;
 
   return (
     <div>
