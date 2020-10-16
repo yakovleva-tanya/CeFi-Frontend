@@ -24,6 +24,7 @@ import { calculateCollateralPercent } from "../../../actions/HelperFunctions";
 import eth from "../../../../dist/assets/eth-logo.svg";
 import link from "../../../../dist/assets/link-logo.png";
 import copy from "../../../copy.json";
+import { BorrowPageContext } from "../../../context/borrowContext";
 
 const DepositMainSection = () => {
   const { state } = useContext(AppContext);
@@ -40,6 +41,7 @@ const DepositMainSection = () => {
     setNewCollateralPercent,
     newCollateralPercent,
   } = useContext(BorrowDepositContext);
+  const { borrowRequest } = useContext(BorrowPageContext);
   const { web3State } = state;
   const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
     TellerTokens.tDAI
@@ -56,7 +58,13 @@ const DepositMainSection = () => {
   const deposit = async (id: string, amountToDeposit: number) => {
     setDepositing(true);
     if (process.env.INTEGRATIONS_DISABLED === "false") {
-      await loanDeposit(loansInstance, id, amountToDeposit, web3State);
+      await loanDeposit(
+        loansInstance,
+        id,
+        borrowRequest.collateralWith,
+        amountToDeposit,
+        web3State
+      );
     } else {
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }

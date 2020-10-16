@@ -2,12 +2,15 @@ import Notify from "./Web3Notify";
 import ERC20 = require('./../abi/contracts/ERC20Detailed.json');
 import { Web3State } from './../context/app';
 import { globalDecimals } from './../util/constants';
-
+import { FetchTokenData } from './FetchTokenData';
+import {
+  BaseTokens,
+} from "../context/app";
 /**
  * Converts a given amount into a BN instance
  * @param {string} amount The amount to be converted
  */
-function convertToBN(
+export function convertToBN(
   amount: string
 ) {
   const result = (parseFloat(amount) * globalDecimals).toLocaleString('fullwide', { useGrouping: false });
@@ -65,31 +68,54 @@ export async function approveToken(
  * @param {*} loanRequest The Teller protocol loan request
  * @param {*} loanResponses The list of the Teller protocol loan responses
  * @param {*} loansInterface Teller protocol's loansInterface contract
- * @param {string} collateralAmount The amount of collateral required for the loan
  * @param {string} borrowerAddress The wallet address of the borrower
  */
 export async function createLoanWithTerms(
   loanRequest: any,
   loanResponses: any,
   loansInterface: any,
-  collateralAmount: string,
   borrowerAddress: string
 ) {
-  const bnAmount = convertToBN(collateralAmount);
+  // Get token prices
+  const tokenData = await FetchTokenData();
+  const token = tokenData[loanRequest.collateralWith];
+  console.log('PRICE<>', token.price);
+
+  // Caculate collatreal required based on collateral token price
+  const collateral = loanRequest.loanSize / Number(token.price);
+  const bnAmount = convertToBN(collateral.toString());
+  
+  // Format request
+  const loanDurationInSeconds = parseInt(loanRequest.loanTerm) * 24 * 60 * 60;
+  //console.log(`loanRequest.loanTerm ${loanRequest.loanTerm} => loanDurationInSeconds ${loanDurationInSeconds}`);
+  //console.log(`loanRequest.requestTime ${loanRequest.requestTime}`);
+  const request = {
+    borrower: borrowerAddress,
+    recipient: '0x0000000000000000000000000000000000000000',
+    //consensusAddress: "0x3282B6468ABc25033e2ecF38C1E7c8eA2C8B4Fae",
+    amount: convertToBN(loanRequest.loanSize.toString()),
+    duration: Number(loanDurationInSeconds),
+    requestTime: loanRequest.requestTime.toString(),
+    requestNonce: Number(loanRequest.requestNonce.toString())+1,
+  }
+  
+  console.log("REQUEST<>", request);
+  console.log("RESPONSES<>", loanResponses);
+  console.log("LOANS_ADDRESS<>", loansInterface._address);
+  console.log("BN<>", bnAmount);
+  // Create loan terms
   return new Promise((resolve, reject) => loansInterface.methods
     .createLoanWithTerms(
-      loanRequest,
+      request,
       loanResponses,
       bnAmount
     )
-    .send( { from: borrowerAddress })
+    .send({ from: borrowerAddress, value: bnAmount })
     .on('transactionHash', Notify.hash)
     .on('receipt', resolve)
     .on('error', reject)
-  );  
+  );
 }
-
-// erc20.approve(loansInterface)
 
 /**
  * Deposits collateral into a created loan
@@ -103,28 +129,31 @@ export async function depositCollateral(
   loansInterface: any,
   borrowerAddress: string,
   loanId: number,
+  collateralWith: BaseTokens,
   amount: string,
   web3State: Web3State
 ) {
   const bnAmount = convertToBN(amount);
-  const collateralToken = await getCollateralToken(loansInterface, web3State);
+  console.log({bnAmount, collateralWith});
+  if (collateralWith != 'ETH') {
+    const collateralToken = await getCollateralToken(loansInterface, web3State);
   // Check allowance of loansInterface
-  const approvedAmount = await collateralToken.methods.allowance(borrowerAddress, loansInterface._address).call();
-  if (bnAmount > approvedAmount) {
-    return
-  } else {
-    return new Promise((resolve, reject) => loansInterface.methods
-      .depositCollateral(
-        borrowerAddress,
-        loanId,
-        bnAmount
-      )
-      .send({ from: borrowerAddress })
-      .on('transactionHash', Notify.hash)
-      .on('receipt', resolve)
-      .on('error', reject)
-    );
-  }
+    const approvedAmount = await collateralToken.methods.allowance(loansInterface._address, borrowerAddress).call();
+    if (bnAmount > approvedAmount) {
+      return
+    }
+  } 
+  return new Promise((resolve, reject) => loansInterface.methods
+    .depositCollateral(
+      borrowerAddress,
+      loanId,
+      bnAmount
+    )
+    .send({ from: borrowerAddress, value: bnAmount })
+    .on('transactionHash', Notify.hash)
+    .on('receipt', resolve)
+    .on('error', reject)
+  );
 }
 
 /**
@@ -140,11 +169,10 @@ export async function takeOutLoan(
   amountToBorrow: string,
   borrowerAddress: string
 ) {
-  const bnAmount = convertToBN(amountToBorrow);
   return new Promise((resolve, reject) => loansInterface.methods
     .takeOutLoan(
       loanId,
-      bnAmount
+      amountToBorrow
     )
     .send({ from: borrowerAddress })
     .on('transactionHash', Notify.hash)
@@ -170,7 +198,7 @@ export async function withdrawCollateral(
   // Get total collateral of loan
   const loanCollateral = await loansInterface.methods.getCollateralInfo(loanId);
   // Check if withdrawl amount is not greater than total collateral
-  if (bnAmount > loanCollateral[0]) {
+  if (bnAmount >= loanCollateral[0]) {
     return
   } else {
     return new Promise((resolve, reject) => loansInterface.methods

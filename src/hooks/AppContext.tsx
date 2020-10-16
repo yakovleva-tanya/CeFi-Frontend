@@ -10,7 +10,7 @@ import * as React from "react";
 import { AppContextDefault, AppContextState } from "./../context/app";
 
 import signInContracts from "./../actions/signInContracts";
-import FetchTokenData from "../models/FetchTokenData";
+import { FetchTokenData } from "../models/FetchTokenData";
 
 const setAddress = async (state: AppContextState, updateAppState: Function) => {
   const { web3State } = state;
@@ -56,7 +56,7 @@ const mergeSignInContracts = async (
   console.log("merging");
   const networkId = await state.web3State.web3.eth.getChainId();
 
-  if (Number(networkId) !== 1 && Number(networkId) !== 3) {
+  if (networkId !== 1 && networkId !== 4) {
     const teller = AppContextDefault.state.teller;
     updateAppState((st: AppContextState) => ({
       ...st,

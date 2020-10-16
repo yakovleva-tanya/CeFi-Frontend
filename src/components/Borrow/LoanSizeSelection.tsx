@@ -9,8 +9,8 @@ export const LoanSizeSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
     BorrowPageContext
   );
-  const [value, setValue] = useState(borrowRequest.loanSize.toFixed(2));
   const pageCopy = copy.pages.borrow.main.form.step2.loanSize.submenu;
+  const [value, setValue] = useState(Number(borrowRequest.loanSize).toFixed(2));
 
   return (
     <SubmenuCard

@@ -22,13 +22,15 @@ import {
   LendingApplicationMap,
 } from "../../context/borrowContext";
 
-import { sendLendingApplication } from "../../models/ArrowheadCRA";
 import { getLendingPoolDecimals } from "../../models/Contracts";
-import { getNonce } from "../../models/DataProviders";
+import { takeOutLoan } from "../../models/LoansInterfaceContract";
 import {
-  createLoanWithTerms,
-  takeOutLoan,
-} from "../../models/LoansInterfaceContract";
+  getNodeSignaturesForBorrowing,
+  PBorrow,
+  RArrowheadCRA,
+  submitSignaturesToChainForBorrowing,
+} from "../../services/borrow";
+import { getCollateralAmount } from "../../models/FetchTokenData";
 import copy from "../../copy.json";
 
 const BorrowForm = () => {
@@ -41,6 +43,8 @@ const BorrowForm = () => {
     borrowProcessState,
     loanTerms,
     setLoanTerms,
+    lendingApp,
+    setLendingApp,
   } = useContext(BorrowPageContext);
 
   const {
@@ -65,17 +69,27 @@ const BorrowForm = () => {
         lendingPool,
         web3State
       );
-      const nonceDataResponse = await getNonce();
+
       const lendingApplication = LendingApplicationMap(
         borrowRequest,
         dataProviderResponse.bankInfo,
-        nonceDataResponse,
         tokenDecimals,
         web3State
       );
-      const response: any = await sendLendingApplication(lendingApplication);
-      console.log({ response });
-      return loanTerms;
+
+      setLendingApp(lendingApplication);
+
+      setBorrowRequest({
+        ...borrowRequest,
+        requestTime: lendingApplication.requestTime,
+      });
+
+      const nodeResponses = await getNodeSignaturesForBorrowing(
+        lendingApplication as PBorrow
+      );
+
+      setLoanTerms(nodeResponses);
+      return true;
     } catch (err) {
       console.log({ err });
       // updateAppState((st: AppContextState) => {
@@ -92,6 +106,51 @@ const BorrowForm = () => {
   };
 
   const loggedIn = state.web3State?.address || "";
+
+  const onAcceptTerms = async (borrowNonce: any) => {
+    const { web3State } = state;
+    const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
+      TellerTokens.tDAI
+    ];
+
+    try {
+      const collateralNeeded = await getCollateralAmount(
+        lendingApp.requestedLoanSize,
+        loanTerms[0].collateralRatio,
+        lendingApp.collateralAsset
+      );
+
+      await submitSignaturesToChainForBorrowing(
+        lendingApp as PBorrow,
+        (loanTerms as unknown) as RArrowheadCRA[],
+        lendingApp.requestedLoanSize,
+        // collateralNeeded.toString(),
+        String(0.1 * 1e18),
+        loansInstance
+      );
+
+      setSubmitting(true);
+      //Accept loan terms
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSubmitting(false);
+      setStage(stage + 1);
+      return true;
+    } catch (err) {
+      console.log(err);
+      updateAppState((st: AppContextState) => {
+        const errorModal = {
+          show: true,
+          message:
+            "An error occurred during the loan creation process. Please try again.",
+          title: "Error",
+        };
+        return { ...st, errorModal };
+      });
+      setSubmitting(false);
+      return false;
+    }
+  };
+
   const onRequestLoan = async () => {
     setRequesting(true);
     const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
@@ -99,13 +158,18 @@ const BorrowForm = () => {
     ];
     try {
       const borrower = state.web3State.address;
-      const borrowerLoans = await loansInstance.getBorrowerLoans(borrower);
+      const borrowerLoans = await loansInstance.methods
+        .getBorrowerLoans(borrower)
+        .call();
       if (borrowerLoans.length == 0) {
         setRequesting(false);
         return false;
       } else {
         const loanId = borrowerLoans[borrowerLoans.length - 1];
-        const amountToBorrow = loanTerms.maxLoanAmount.toString();
+        const amountToBorrow = loanTerms[0].maxLoanAmount.toString();
+
+        console.log({ borrower, borrowerLoans, loanId, amountToBorrow });
+
         const response = await takeOutLoan(
           loansInstance,
           loanId,
@@ -131,6 +195,7 @@ const BorrowForm = () => {
       return false;
     }
   };
+
   const onRequestLoanMock = async () => {
     setRequesting(true);
     await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -142,39 +207,6 @@ const BorrowForm = () => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setSubmitting(false);
     setStage(stage + 1);
-  };
-  const onAcceptTerms = async () => {
-    const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-      TellerTokens.tDAI
-    ];
-    try {
-      setSubmitting(true);
-      const collateral = borrowRequest.collateralAmount.toString();
-      const response = await createLoanWithTerms(
-        borrowRequest,
-        loanTerms,
-        loansInstance,
-        collateral,
-        state.web3State.address
-      );
-      console.log(response);
-      setSubmitting(false);
-      setStage(stage + 1);
-      return true;
-    } catch (err) {
-      console.log(err);
-      updateAppState((st: AppContextState) => {
-        const errorModal = {
-          show: true,
-          message:
-            "An error occurred during the loan creation process. Please try again.",
-          title: "Error",
-        };
-        return { ...st, errorModal };
-      });
-      setSubmitting(false);
-      return false;
-    }
   };
 
   const isSecured = Boolean(borrowRequest.loanType === "Secured");
@@ -226,22 +258,10 @@ const BorrowForm = () => {
                 <PrimaryButton
                   text="Request terms"
                   disabled={isSecured ? false : Boolean(!plaidConnected)}
-                  onClick={() => {
-                    const newLoanTerms = {
-                      maxLoanAmount: borrowRequest.loanSize,
-                      interestRate:
-                        borrowRequest.loanType === "Secured" ? 200 : 17,
-                      collateralRatio: borrowRequest.collateralPercent,
-                    };
-                    requestLoan();
-                    // if (res) {
-                    //   newLoanTerms = {
-                    //     maxLoanAmount: res.maxLoanAmount,
-                    //     interestRate: res.interestRate,
-                    //     collateralRatio: res.collateralRatio,
-                    //   };
-                    // }
-                    setLoanTerms(newLoanTerms);
+                  onClick={async () => {
+                    //Get LoanTerms
+                    await requestLoan();
+                    // await onTestLoan();
                     setStage(stage + 1);
                   }}
                 />
@@ -258,7 +278,9 @@ const BorrowForm = () => {
                 onClick={
                   process.env.INTEGRATIONS_DISABLED === "true"
                     ? onAcceptTermsMock
-                    : onAcceptTerms
+                    : async () => {
+                        await onAcceptTerms(borrowRequest.requestNonce);
+                      }
                 }
               />
             </div>

@@ -64,6 +64,7 @@ const WithdrawMainSection = () => {
       } as WithdrawRequest);
       setSuccess(true);
     } catch (error) {
+      console.log(error);
       updateAppState((st: AppContextState) => {
         const errorModal = {
           show: true,

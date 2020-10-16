@@ -12,6 +12,14 @@ import copy from "../../../copy.json";
 const RepayForm = () => {
   const { loans } = useContext(DashboardContext);
 
+  if (!loans) {
+    return (
+      <div>
+        <p>No Loans!</p>
+      </div>
+    )
+  }
+
   const currentTime = Date.now();
 
   const overdueLoans = loans
