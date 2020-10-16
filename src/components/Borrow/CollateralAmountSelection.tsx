@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { BorrowPageContext } from "../../context/borrowContext";
 import CustomInput from "../UI/CustomInput";
 import SubmenuCard from "../UI/SubmenuCard";
@@ -8,6 +8,7 @@ import WarningModal from "../UI/WarningModal";
 import eth from "../../../dist/assets/eth-logo.svg";
 import link from "../../../dist/assets/link-logo.png";
 import { AppContext } from "../../context/app";
+import { getCollateralAmount } from "../../models/FetchTokenData";
 
 export const CollateralAmountSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu, loanTerms } = useContext(
@@ -103,27 +104,23 @@ export const CollateralAmountSubmenu = () => {
   );
 };
 
-const CollateralAmountSelection = () => {
-  const { borrowRequest, setSubmenu, loanTerms } = useContext(
+export function CollateralAmountSelection(): JSX.Element {
+  const { borrowRequest, setSubmenu, loanTerms, setBorrowRequest } = useContext(
     BorrowPageContext
   );
   const {
     collateralAmount,
     collateralWith,
-    lendWith,
   } = borrowRequest;
   const loanSize = loanTerms[0].maxLoanAmount;
-  const { state } = useContext(AppContext);
-  const { tokenData } = state;
 
-  const minCollateralAmount = tokenData
-    ? Math.round(
-        (Number(loanSize) * Number(loanTerms[0].collateralRatio) * tokenData[lendWith].price) /
-          tokenData[collateralWith].price
-      ) / 100
-    : 0;
+  useEffect(() => {
+    getCollateralAmount(loanSize, loanTerms[0].collateralRatio, collateralWith).then(response => {
+      setBorrowRequest({...borrowRequest, collateralAmount:(response/1e18).toFixed(2)});
+    })
+  }, []);
   const title = `${
-    collateralAmount ? collateralAmount.toFixed(2) : minCollateralAmount
+    Number(collateralAmount) != 0 ? collateralAmount : borrowRequest.collateralAmount
   } ${collateralWith}`;
 
   return (

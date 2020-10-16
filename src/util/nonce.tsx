@@ -10,7 +10,7 @@ const tellerSubgraphUrl = "https://api.thegraph.com/subgraphs/name/salazarguille
 //     link: createHttpLink({ uri: tellerSubgraphUrl }),
 // });
 
-const tellerSubgraphClient = new ApolloClient({
+const makeClient = () => new ApolloClient({
   cache: new InMemoryCache(),
   link: createHttpLink({ uri: tellerSubgraphUrl }),
   defaultOptions: {
@@ -30,38 +30,38 @@ const tellerSubgraphClient = new ApolloClient({
  * @returns {number} - The user's current on-chain nonce
  */
 export async function _nonce(
-    borrower: string,
-    borrowedAsset: string,
-    collateralAsset: string,
-  ): Promise<number> {
-    const query = gql`
-      query {
-        borrowerNoncesChanges(
-          first: 1
-          orderBy: timestamp
-          orderDirection: desc
-          where: {
-            borrower: "${borrower}"
-            token: "${borrowedAsset}"
-            collateralToken: "${collateralAsset}"
-          }
-        ) {
-          nonce
+  borrower: string,
+  borrowedAsset: string,
+  collateralAsset: string,
+): Promise<string> {
+  const query = gql`
+    {
+      borrowerNoncesChanges(
+        first: 1
+        orderBy: timestamp
+        orderDirection: desc
+        where: {
+          borrower: "${borrower}"
+          token: "${borrowedAsset}"
+          collateralToken: "${collateralAsset}"
         }
+      ) {
+        nonce
       }
-    `;
-    try {
-      const result = await tellerSubgraphClient.query({
-        query,
-        variables: {
-          borrower,
-          borrowedAsset,
-          collateralAsset,
-        },
-      });
-      return result.data.borrowerNoncesChanges[0].nonce ? result.data.borrowerNoncesChanges[0].nonce : 0;
-    } catch (e) {
-      console.log(e);
-      return 0;
     }
+  `;
+  try {
+    const client = makeClient();
+    const result = await client.query({
+      query,
+    });
+    console.log(JSON.stringify({ result }, null, 2));
+    let nonce = result.data.borrowerNoncesChanges[0].nonce;
+    if (!nonce) throw new Error("Nonce is undefined, returning '0'");
+    nonce = Number(nonce);
+    return (nonce + 1).toString();
+  } catch (e) {
+    console.log(e);
+    return "0";
   }
+}

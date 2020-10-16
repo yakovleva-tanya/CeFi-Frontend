@@ -1,7 +1,7 @@
 const { request } = require("graphql-request");
 import { LoanInterface } from "../context/types";
 import { loansTestData } from "../context/testdata";
-import FetchTokenData from "./FetchTokenData";
+import { FetchTokenData } from "./FetchTokenData";
 
 const getUrl = (network: string) => {
   if (network === "3") {

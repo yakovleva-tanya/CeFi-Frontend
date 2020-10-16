@@ -10,7 +10,7 @@ import * as React from "react";
 import { AppContextDefault, AppContextState } from "./../context/app";
 
 import signInContracts from "./../actions/signInContracts";
-import FetchTokenData from "../models/FetchTokenData";
+import { FetchTokenData } from "../models/FetchTokenData";
 
 const setAddress = async (state: AppContextState, updateAppState: Function) => {
   const { web3State } = state;

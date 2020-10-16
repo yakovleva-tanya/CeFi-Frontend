@@ -19,13 +19,13 @@ const SecondStageTable = () => {
         {Number(collateralRatio) > 0 && (
           <div>
             <TableRow title="Collateral ratio">
-              <div className="font-medium">{collateralRatio} % </div>
+              <div className="font-medium">{Number(collateralRatio)/10000} </div>
             </TableRow>
             <BR />
           </div>
         )}
         <TableRow title="Loan size">
-          <div className="font-medium">{`${maxLoanAmount} ${lendWith}`}</div>
+          <div className="font-medium">{`${Number(maxLoanAmount)/1e18} ${lendWith}`}</div>
         </TableRow>
         <BR />
         <TableRow title="Loan term">

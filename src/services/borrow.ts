@@ -4,6 +4,7 @@ import { fromRpcSig } from "ethereumjs-util";
 import { useContext } from "react";
 import { AppContext } from "../context/app";
 import { NULL_ADDRESS } from "../util/constants";
+import { _nonce } from '../util/nonce';
 
 export type PBorrow = {
   requestedLoanSize: string; // wei
@@ -79,14 +80,15 @@ export function getNodeSignaturesForBorrowing(params: PBorrow, id = 1): Promise<
   }))
 }
 
-export function submitSignaturesToChainForBorrowing(
+export async function submitSignaturesToChainForBorrowing(
   borrowParams: PBorrow,
   responses: RArrowheadCRA[],
-  requestNonce: string,
   amount: string,
   collateralAmount: string,
   loansInstance: any
 ): Promise<void> {
+
+  const requestNonce = await _nonce(borrowParams.ethereumWallet, borrowParams.borrowedAsset, borrowParams.collateralAsset);
 
   return new Promise((resolve, reject)=> {
     loansInstance.methods.createLoanWithTerms(
@@ -94,12 +96,12 @@ export function submitSignaturesToChainForBorrowing(
         borrower: borrowParams.ethereumWallet,
         recipient: NULL_ADDRESS,
         consensusAddress: responses[0].consensusAddress,
-        requestNonce,
         duration: borrowParams.loanTermLength,
         borrowedAsset: borrowParams.borrowedAsset,
         collateralAsset: borrowParams.collateralAsset,
         requestTime: borrowParams.requestTime,
         amount,
+        requestNonce,
       },
       responses.map(response => { // validator responses
         const { r, s, v } = fromRpcSig(response.signature);

@@ -23,11 +23,9 @@ import {
 } from "../../context/borrowContext";
 
 import { getLendingPoolDecimals } from "../../models/Contracts";
-import { takeOutLoan } from "../../models/LoansInterfaceContract";
-import { _nonce } from '../../util/nonce';
+import { convertToBN, takeOutLoan } from "../../models/LoansInterfaceContract";
 import { getNodeSignaturesForBorrowing, PBorrow, RArrowheadCRA, submitSignaturesToChainForBorrowing } from "../../services/borrow";
-const Big = 'big.js'
-import { getNonce } from "../../models/DataProviders";
+import { getCollateralAmount } from "../../models/FetchTokenData";
 
 const BorrowForm = () => {
   const {
@@ -57,7 +55,7 @@ const BorrowForm = () => {
         lendingPool,
         web3State
       );
-
+      
       const lendingApplication = LendingApplicationMap(
         borrowRequest,
         dataProviderResponse.bankInfo,
@@ -75,7 +73,7 @@ const BorrowForm = () => {
       const nodeResponses = await getNodeSignaturesForBorrowing(
         lendingApplication as PBorrow 
       );
-
+        
       setLoanTerms(nodeResponses);
       return true;
     } catch (err) {
@@ -109,6 +107,9 @@ const BorrowForm = () => {
       } else {
         const loanId = borrowerLoans[borrowerLoans.length - 1];
         const amountToBorrow = loanTerms[0].maxLoanAmount.toString();
+
+        console.log({borrower, borrowerLoans, loanId, amountToBorrow});
+
         const response = await takeOutLoan(
           loansInstance,
           loanId,
@@ -155,16 +156,14 @@ const BorrowForm = () => {
     ];
 
     try {      
-      console.log('lendingApp', lendingApp);
-
-      const reqNonce = Number(await _nonce(web3State.address, borrowRequest.lendWith, borrowRequest.collateralWith));
-
-      const receipt = await submitSignaturesToChainForBorrowing(
+      const collateralNeeded = await getCollateralAmount(lendingApp.requestedLoanSize, loanTerms[0].collateralRatio, lendingApp.collateralAsset);
+      
+      await submitSignaturesToChainForBorrowing(
         lendingApp as PBorrow,
         loanTerms as unknown as RArrowheadCRA[],
-        String(reqNonce + 1),
         lendingApp.requestedLoanSize,
-        String(0.01 * 1e18),
+        // collateralNeeded.toString(),
+        String(0.1 * 1e18),
         loansInstance
       );
 

@@ -2,7 +2,7 @@ import Notify from "./Web3Notify";
 import ERC20 = require('./../abi/contracts/ERC20Detailed.json');
 import { Web3State } from './../context/app';
 import { globalDecimals } from './../util/constants';
-import FetchTokenData from './FetchTokenData';
+import { FetchTokenData } from './FetchTokenData';
 
 /**
  * Converts a given amount into a BN instance
