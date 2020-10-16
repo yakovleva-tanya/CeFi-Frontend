@@ -103,8 +103,8 @@ const FetchLoans = async (network: string, address: string) => {
       query,
     });
     console.log("borrow loans<>", result.data.borrower.loans);
-    const res = result.data.borrower.loans;
-    // const res = loansTestData;
+    // const res = result.data.borrower.loans;
+    const res = loansTestData;
     const loans: Array<LoanInterface> = res.map((loan: LoanInterface) => {
       loan.collateralAmount =
         loan.totalCollateralDepositsAmount -
