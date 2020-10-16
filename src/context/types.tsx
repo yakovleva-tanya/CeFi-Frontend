@@ -1,3 +1,5 @@
+import { LendingApplication } from "../models/ArrowheadCRA";
+import { PBorrow } from "../services/borrow";
 import { AvailableLendingTokens, BaseTokens } from "./app";
 
 export interface LoanInterface {
@@ -78,13 +80,33 @@ export interface BorrowRequest {
   collateralAmount: null | number;
   approved: boolean;
   transferred: boolean;
+  requestTime: number;
+  requestNonce: number;
+  requestHash: any;
+  borrowerAddress: string;
+}
+
+export interface Signature {
+  signerNonce: number;
+  r: Buffer;
+  s: Buffer;
+  v: number;
 }
 
 export interface LoanTerms {
-  interestRate: number;
-  collateralRatio: number;
-  maxLoanAmount: number;
+  collateralRatio: string;
+  consensusAddress: string;
+  responseTime: string;
+  interestRate: string;
+  requestHash: string;
+  minCollateralNeeded: string;
+  maxLoanAmount: string;
+  signature: string;
+  signer: string;
+  signerNonce: string;
+  chainId: string;
 }
+
 
 export interface BorrowProcessInterface {
   success: boolean;
@@ -104,10 +126,13 @@ export interface BorrowPageContextInterface {
   setSubmenu: Function;
   borrowRequest: BorrowRequest;
   setBorrowRequest: Function;
-  loanTerms: LoanTerms;
+  loanTerms: LoanTerms[];
   setLoanTerms: Function;
+  lendingApp: PBorrow;
+  setLendingApp: Function;
   borrowProcessState: null | BorrowProcessInterface;
 }
+
 export interface LendClaimStateInterface {
   success: null | boolean;
   setSuccess: Function;

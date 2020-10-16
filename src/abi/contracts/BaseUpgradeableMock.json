@@ -1,0 +1,1002 @@
+{
+  "contractName": "BaseUpgradeableMock",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "settings",
+      "outputs": [
+        {
+          "internalType": "contract SettingsInterface",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "externalOnlyPauser",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "settingsAddress",
+          "type": "address"
+        }
+      ],
+      "name": "externalSetSettings",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "aLogicName",
+          "type": "bytes32"
+        }
+      ],
+      "name": "externalSetLogicName",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "externalLogicName",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "name",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"externalLogicName\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"name\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"externalOnlyPauser\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"aLogicName\",\"type\":\"bytes32\"}],\"name\":\"externalSetLogicName\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"externalSetSettings\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"settings\",\"outputs\":[{\"internalType\":\"contract SettingsInterface\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"settings()\":{\"details\":\"This address should NOT change over the time. See details in the _setSettings(...) function.\"}}},\"userdoc\":{\"methods\":{\"settings()\":{\"notice\":\"The gets the settings contract address from the SETTINGS_SLOT.\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/mock/base/BaseUpgradeableMock.sol\":\"BaseUpgradeableMock\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/base/BaseUpgradeable.sol\":{\"keccak256\":\"0x0f0baf7e7aa38b47e749a28ab674cc94a97ca92244a9b2e919c372c1b06546cf\",\"urls\":[\"bzz-raw://4b05a358a1273734f3143d46309239b36c9dd933a7011b8bc408fb040c6c8486\",\"dweb:/ipfs/QmPrUGETWEMAafXcU528oW6A9rBDCy5qqS24xEYLntevYU\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/EscrowFactoryInterface.sol\":{\"keccak256\":\"0x2f54118d65cd07ffb7a476768412b60cfacb12c6dc161b43e1c443d1d01563a2\",\"urls\":[\"bzz-raw://e56918727ce72a8526fbb96671fa4693d0b66bca321d3c93921ced6daecc69c5\",\"dweb:/ipfs/QmUeJuNbhZic68Fsv6fw9zJ5RAJXnvjsno4HfnPajZkrLp\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/InterestValidatorInterface.sol\":{\"keccak256\":\"0x91250ee3c1d73b5d1720f7b41f18072eb347d73e4d3de464537ece49e1fa1d93\",\"urls\":[\"bzz-raw://f11ce1d70152f6d19f9c23788b4458631df3fd748a52849b899183ce2dabc52b\",\"dweb:/ipfs/QmaNQybwKYW5BfT3h6z6P1SSUwYEyXQviisYjUr7cHLzQR\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/LogicVersionsRegistryInterface.sol\":{\"keccak256\":\"0x871da1c39455ad829fdff0eb86a3d069e041f03b9dfab82136719c2c2923b926\",\"urls\":[\"bzz-raw://aca54977104d1152ecfecf39465a34148236b1d973a339c442963dabf68dd05b\",\"dweb:/ipfs/QmeKnxn9hB3aLqgWPLFhCEuxySTUF1LA1tbCo8tGyhppxV\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/MarketsStateInterface.sol\":{\"keccak256\":\"0xf51bd2d361d9cf448f2c2a5bb37c2699b0d9605a8f1b6a8719f90d8f536f2a05\",\"urls\":[\"bzz-raw://415a4444e8f9aca25132f492b226b8d500081a4ba5be8e45b401a68e73e1895b\",\"dweb:/ipfs/QmUPGgnqUjidxeEpkgu4yYzhfuykgtNKehEwbps97nAAzZ\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/PairAggregatorInterface.sol\":{\"keccak256\":\"0xb3cf240d5e8c5c9f51e9e06cdb544bec5ff93e76e02ea76314d2980e6a984839\",\"urls\":[\"bzz-raw://083b3be86e38ad3ed877b1208c53349006095399e023a55ed28f81134c38cb08\",\"dweb:/ipfs/Qmd5Tfykos7QPqUgs4bqFGMwgrNawLoZneuFMzMsBYCkMr\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/SettingsInterface.sol\":{\"keccak256\":\"0xfc30266ba226c3cc0cb67780a236efd26864d7a48e13f95b14f030435329febd\",\"urls\":[\"bzz-raw://dcc8e7ad13a8cf3565ffed6c0c72a9c998671bef804b26c6f11e64dc17b60fc0\",\"dweb:/ipfs/QmdDxucgMTcPm42WA6LMvS2C42EEaGw1gsH37dCCen1KLm\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/mock/base/BaseUpgradeableMock.sol\":{\"keccak256\":\"0x9177d550e3e479953c3907b17506a97397a58346c7ebe14fbd69b0c8150942ff\",\"urls\":[\"bzz-raw://fd66fe6dc53c8c35f81e77020e2065af43d2d0506390568629fa901a0f5114ce\",\"dweb:/ipfs/QmQBR3RyGzM1YjzWZVboormMqWRadqc5SSYZbXpRDsm7wB\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol\":{\"keccak256\":\"0xed52aaafc7e15756431c0c847e5f7e1d52578b0f3b7f8b02674ec5d5d5a44c29\",\"urls\":[\"bzz-raw://76821662fa9a0918b355bc969deadef055737d90067658791dbc13e843958b64\",\"dweb:/ipfs/QmQzKEJiQjxRyNED8aABw62KQys3StiGwEnMXiF8P8ZQcV\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/settings/IATMSettings.sol\":{\"keccak256\":\"0xc5453e6f1a43327a37db250dedb65561c4deb0f3eb3cad490a64fc56e0b6f7b7\",\"urls\":[\"bzz-raw://f6edcab27eebecb576c9a884a173a1a5fcf0c129c76b992ec77ca24518d92f91\",\"dweb:/ipfs/QmW3q6w39dg9RnxsQdfrFVudmiZh5asRnkWQVkrap9hnJf\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/AddressLib.sol\":{\"keccak256\":\"0x083fed047aac1bdf656da0bbfa6a9c655659ee953d808ebb0ef68c3dbf7bb806\",\"urls\":[\"bzz-raw://0a7c7f60dc65ae2aa25c6d9dfd728ea1c1ef3cdde3d102104fbb8406304d13a6\",\"dweb:/ipfs/QmRKAxNd7THDSujiYX3AqQh8jckewKt64To41fERUe8upB\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/AssetSettingsLib.sol\":{\"keccak256\":\"0x9c67a3de3bb62fdfbd5c116016e0693300bb9d71fe055bb6aa12da305aba3bf4\",\"urls\":[\"bzz-raw://a3c9ffdd1496a6192abb62b72625e5778db231656f2c8fffd09a83d089996aa6\",\"dweb:/ipfs/QmevJ5ojFaqG363CrnJZ9x3YvGMWKfUaFoUVbCsaSzqPfe\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/LogicVersionLib.sol\":{\"keccak256\":\"0xf4caad9e4d96afe2721124eaf7203bb4e3a97beb3664c63297c4e68523f5bd65\",\"urls\":[\"bzz-raw://dcd6f564423c2cf83f3a56120f43eb6fd9f6e852cbb615be657f89e5114debf4\",\"dweb:/ipfs/QmRZStVoa5KbYRCHpzC7h998NnRhbFHfUZ71TRTiLzMTcX\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/LogicVersionsConsts.sol\":{\"keccak256\":\"0xe49711d0c8193559f76dc5f399344c8f5f5e6a8b99bf78c6bcfd9aa1c456c306\",\"urls\":[\"bzz-raw://c6432c082145470691dfde04bf5c4220ccc32a5dccf6520c3122e47e470e6c22\",\"dweb:/ipfs/Qmd97DA5SB3d8Cuwf5M6vLtfDLHYXrMj5d3cXkYPP7iPpU\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/MarketStateLib.sol\":{\"keccak256\":\"0x760fff7588382659571b8fd078b5e332e010d7e97278895fc226e8ed551cb0c6\",\"urls\":[\"bzz-raw://ff9cf8b14a780c989b2f641bf8faaf8066e586245ede58196274f8f03789c0d4\",\"dweb:/ipfs/QmVnRsrQFuRXM1c4NFVz1iUaAywq73uHVsUzemn1x5fVgF\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/PlatformSettingsLib.sol\":{\"keccak256\":\"0x0c6a7e0de89e1017166ef4f593b33c8d0bfc6bcf3cd3db0bb5c1610ce260b659\",\"urls\":[\"bzz-raw://926108ace9152ed12d86a74ccb98d8c0aa698bd48fd3b4bfedacf976a8dd59d3\",\"dweb:/ipfs/QmVYjChMWZJdpPoBNheHMfyoTVsAarfLJ6SxPHhEsd6kUB\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/SettingsConsts.sol\":{\"keccak256\":\"0xa1d17d7507cae083530ce51d4c503ca657ddecf3d3fc23cec9c566d7253e59e6\",\"urls\":[\"bzz-raw://6f14f64aa1d37bef1d4e7051f1733cbe52a1d5af9165faaf4b0336a68c6eb239\",\"dweb:/ipfs/QmcJE8USECc54etjpCBUGTCF5VvMLqLjo9DbkQ64Xf2R4T\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0x61d5a58019963b5b4394aa040d8661167da0aef0912cc7133dbc917a38a74698\",\"urls\":[\"bzz-raw://f2a48c517cbebc7ca530aced250a5389cba74ca1d16137b3b38116b1afd428b9\",\"dweb:/ipfs/QmcReNoiEiR3wvVVwwY6u6fQMTZivYtBn7uhMm3ud219Di\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"@openzeppelin/contracts-ethereum-package/contracts/utils/Address.sol\":{\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\",\"urls\":[\"bzz-raw://03335b7b07c7c8c8d613cfdd8ec39a0b5ec133ee510bf2fe6cc5a496767bef4b\",\"dweb:/ipfs/Qmebp4nzPja645c9yXSdJkGq96oU3am3LUnG2K3R7XxyKf\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506104ca806100206000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806368c220071461005c57806392dd999414610084578063937bbe50146100a1578063ac606a86146100a9578063e06174e4146100c3575b600080fd5b6100826004803603602081101561007257600080fd5b50356001600160a01b03166100e7565b005b6100826004803603602081101561009a57600080fd5b50356100f3565b6100826100fc565b6100b1610173565b60408051918252519081900360200190f35b6100cb610182565b604080516001600160a01b039092168252519081900360200190f35b6100f0816101b3565b50565b6100f08161026c565b610104610182565b6001600160a01b031663c095ea27336040518263ffffffff1660e01b815260040180826001600160a01b03166001600160a01b0316815260200191505060006040518083038186803b15801561015957600080fd5b505afa15801561016d573d6000803e3d6000fd5b50505050565b600061017d610419565b905090565b6040805177426173655570677261646561626c652e73657474696e677360401b815290519081900360180190205490565b6101cc6101be610182565b6001600160a01b031661044b565b156101d6576100f0565b6101e8816001600160a01b0316610459565b610239576040805162461bcd60e51b815260206004820152601b60248201527f53455454494e47535f4d5553545f42455f415f434f4e54524143540000000000604482015290519081900360640190fd5b6040805177426173655570677261646561626c652e73657474696e677360401b8152905190819003601801902081905550565b610274610419565b156102bf576040805162461bcd60e51b81526020600482015260166024820152751313d1d250d7d390535157d053149150511657d4d15560521b604482015290519081900360640190fd5b6102c7610182565b6001600160a01b031663ea23cb7c6040518163ffffffff1660e01b815260040160206040518083038186803b1580156102ff57600080fd5b505afa158015610313573d6000803e3d6000fd5b505050506040513d602081101561032957600080fd5b50516040805163b28f5abb60e01b81526004810184905290516001600160a01b039092169163b28f5abb91602480820192602092909190829003018186803b15801561037457600080fd5b505afa158015610388573d6000803e3d6000fd5b505050506040513d602081101561039e57600080fd5b50516103e8576040805162461bcd60e51b81526020600482015260146024820152731313d1d250d7d390535157d393d517d1561254d560621b604482015290519081900360640190fd5b6040805178426173655570677261646561626c652e6c6f6769634e616d6560381b8152905190819003601901902055565b6040805178426173655570677261646561626c652e6c6f6769634e616d6560381b815290519081900360190190205490565b6001600160a01b0316151590565b6000813f7fc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a47081811480159061048d57508115155b94935050505056fea265627a7a72315820953656c243b4ee9d01fa35087c34083d6d7913917857ac3bfc8669ec92e89f5664736f6c63430005110032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c806368c220071461005c57806392dd999414610084578063937bbe50146100a1578063ac606a86146100a9578063e06174e4146100c3575b600080fd5b6100826004803603602081101561007257600080fd5b50356001600160a01b03166100e7565b005b6100826004803603602081101561009a57600080fd5b50356100f3565b6100826100fc565b6100b1610173565b60408051918252519081900360200190f35b6100cb610182565b604080516001600160a01b039092168252519081900360200190f35b6100f0816101b3565b50565b6100f08161026c565b610104610182565b6001600160a01b031663c095ea27336040518263ffffffff1660e01b815260040180826001600160a01b03166001600160a01b0316815260200191505060006040518083038186803b15801561015957600080fd5b505afa15801561016d573d6000803e3d6000fd5b50505050565b600061017d610419565b905090565b6040805177426173655570677261646561626c652e73657474696e677360401b815290519081900360180190205490565b6101cc6101be610182565b6001600160a01b031661044b565b156101d6576100f0565b6101e8816001600160a01b0316610459565b610239576040805162461bcd60e51b815260206004820152601b60248201527f53455454494e47535f4d5553545f42455f415f434f4e54524143540000000000604482015290519081900360640190fd5b6040805177426173655570677261646561626c652e73657474696e677360401b8152905190819003601801902081905550565b610274610419565b156102bf576040805162461bcd60e51b81526020600482015260166024820152751313d1d250d7d390535157d053149150511657d4d15560521b604482015290519081900360640190fd5b6102c7610182565b6001600160a01b031663ea23cb7c6040518163ffffffff1660e01b815260040160206040518083038186803b1580156102ff57600080fd5b505afa158015610313573d6000803e3d6000fd5b505050506040513d602081101561032957600080fd5b50516040805163b28f5abb60e01b81526004810184905290516001600160a01b039092169163b28f5abb91602480820192602092909190829003018186803b15801561037457600080fd5b505afa158015610388573d6000803e3d6000fd5b505050506040513d602081101561039e57600080fd5b50516103e8576040805162461bcd60e51b81526020600482015260146024820152731313d1d250d7d390535157d393d517d1561254d560621b604482015290519081900360640190fd5b6040805178426173655570677261646561626c652e6c6f6769634e616d6560381b8152905190819003601901902055565b6040805178426173655570677261646561626c652e6c6f6769634e616d6560381b815290519081900360190190205490565b6001600160a01b0316151590565b6000813f7fc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a47081811480159061048d57508115155b94935050505056fea265627a7a72315820953656c243b4ee9d01fa35087c34083d6d7913917857ac3bfc8669ec92e89f5664736f6c63430005110032",
+  "sourceMap": "67:439:58:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;67:439:58;;;;;;;",
+  "deployedSourceMap": "67:439:58:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;67:439:58;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;181:109;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;181:109:58;-1:-1:-1;;;;;181:109:58;;:::i;:::-;;296:101;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;296:101:58;;:::i;121:54::-;;;:::i;403:101::-;;;:::i;:::-;;;;;;;;;;;;;;;;1259:263:11;;;:::i;:::-;;;;-1:-1:-1;;;;;1259:263:11;;;;;;;;;;;;;;181:109:58;254:29;267:15;254:12;:29::i;:::-;181:109;:::o;296:101::-;365:25;379:10;365:13;:25::i;121:54::-;964:10:11;:8;:10::i;:::-;-1:-1:-1;;;;;964:28:11;;993:10;964:40;;;;;;;;;;;;;-1:-1:-1;;;;;964:40:11;-1:-1:-1;;;;;964:40:11;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;964:40:11;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;964:40:11;;;;121:54:58:o;403:101::-;455:12;486:11;:9;:11::i;:::-;479:18;;403:101;:::o;1259:263:11:-;555:37;;;-1:-1:-1;;;555:37:11;;;;;;;;;;;;1443:11;1259:263;:::o;2374:410::-;2525:32;2533:10;:8;:10::i;:::-;-1:-1:-1;;;;;2525:30:11;;:32::i;:::-;2521:69;;;2573:7;;2521:69;2607:28;:15;-1:-1:-1;;;;;2607:26:11;;:28::i;:::-;2599:68;;;;;-1:-1:-1;;;2599:68:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;555:37;;;-1:-1:-1;;;555:37:11;;;;;;;;;;;;2739:29;;;2725:53;:::o;3151:439::-;3298:11;:9;:11::i;:::-;:17;3290:52;;;;;-1:-1:-1;;;3290:52:11;;;;;;;;;;;;-1:-1:-1;;;3290:52:11;;;;;;;;;;;;;;;3373:10;:8;:10::i;:::-;-1:-1:-1;;;;;3373:27:11;;:29;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3373:29:11;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;3373:29:11;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;3373:29:11;:57;;;-1:-1:-1;;;3373:57:11;;;;;;;;;;-1:-1:-1;;;;;3373:45:11;;;;;;:57;;;;;:29;;:57;;;;;;;;:45;:57;;;5:2:-1;;;;30:1;27;20:12;5:2;3373:57:11;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;3373:57:11;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;3373:57:11;3352:124;;;;;-1:-1:-1;;;3352:124:11;;;;;;;;;;;;-1:-1:-1;;;3352:124:11;;;;;;;;;;;;;;;731:38;;;-1:-1:-1;;;731:38:11;;;;;;;;;;;;3550:24;3536:48::o;1865:166::-;731:38;;;-1:-1:-1;;;731:38:11;;;;;;;;;;;;2004:11;;1982:43::o;1288:108:105:-;-1:-1:-1;;;;;1368:21:105;;;;1288:108::o;686:610:133:-;746:4;1207:20;;1052:66;1246:23;;;;;;:42;;-1:-1:-1;1273:15:133;;;1246:42;1238:51;686:610;-1:-1:-1;;;;686:610:133:o",
+  "source": "pragma solidity 0.5.17;\n\nimport \"../../base/BaseUpgradeable.sol\";\n\ncontract BaseUpgradeableMock is BaseUpgradeable {\n    function externalOnlyPauser() external onlyPauser() {}\n\n    function externalSetSettings(address settingsAddress) external {\n        _setSettings(settingsAddress);\n    }\n\n    function externalSetLogicName(bytes32 aLogicName) external {\n        _setLogicName(aLogicName);\n    }\n\n    function externalLogicName() external view returns (bytes32 name) {\n        return logicName();\n    }\n}\n",
+  "sourcePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/mock/base/BaseUpgradeableMock.sol",
+  "ast": {
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/mock/base/BaseUpgradeableMock.sol",
+    "exportedSymbols": {
+      "BaseUpgradeableMock": [
+        11727
+      ]
+    },
+    "id": 11728,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11688,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:58"
+      },
+      {
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/base/BaseUpgradeable.sol",
+        "file": "../../base/BaseUpgradeable.sol",
+        "id": 11689,
+        "nodeType": "ImportDirective",
+        "scope": 11728,
+        "sourceUnit": 2628,
+        "src": "25:40:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 11690,
+              "name": "BaseUpgradeable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2627,
+              "src": "99:15:58",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_BaseUpgradeable_$2627",
+                "typeString": "contract BaseUpgradeable"
+              }
+            },
+            "id": 11691,
+            "nodeType": "InheritanceSpecifier",
+            "src": "99:15:58"
+          }
+        ],
+        "contractDependencies": [
+          2627
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 11727,
+        "linearizedBaseContracts": [
+          11727,
+          2627
+        ],
+        "name": "BaseUpgradeableMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 11696,
+              "nodeType": "Block",
+              "src": "173:2:58",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 11697,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": [],
+                "id": 11694,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 11693,
+                  "name": "onlyPauser",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 2540,
+                  "src": "160:10:58",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "160:12:58"
+              }
+            ],
+            "name": "externalOnlyPauser",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11692,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "148:2:58"
+            },
+            "returnParameters": {
+              "id": 11695,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "173:0:58"
+            },
+            "scope": 11727,
+            "src": "121:54:58",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 11706,
+              "nodeType": "Block",
+              "src": "244:46:58",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 11703,
+                        "name": "settingsAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 11699,
+                        "src": "267:15:58",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 11702,
+                      "name": "_setSettings",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2596,
+                      "src": "254:12:58",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 11704,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "254:29:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 11705,
+                  "nodeType": "ExpressionStatement",
+                  "src": "254:29:58"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 11707,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "externalSetSettings",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11700,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11699,
+                  "name": "settingsAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11707,
+                  "src": "210:23:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11698,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "210:7:58",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "209:25:58"
+            },
+            "returnParameters": {
+              "id": 11701,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "244:0:58"
+            },
+            "scope": 11727,
+            "src": "181:109:58",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 11716,
+              "nodeType": "Block",
+              "src": "355:42:58",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 11713,
+                        "name": "aLogicName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 11709,
+                        "src": "379:10:58",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 11712,
+                      "name": "_setLogicName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2626,
+                      "src": "365:13:58",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32)"
+                      }
+                    },
+                    "id": 11714,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "365:25:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 11715,
+                  "nodeType": "ExpressionStatement",
+                  "src": "365:25:58"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 11717,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "externalSetLogicName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11710,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11709,
+                  "name": "aLogicName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11717,
+                  "src": "326:18:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 11708,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "326:7:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "325:20:58"
+            },
+            "returnParameters": {
+              "id": 11711,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "355:0:58"
+            },
+            "scope": 11727,
+            "src": "296:101:58",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 11725,
+              "nodeType": "Block",
+              "src": "469:35:58",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 11722,
+                      "name": "logicName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2569,
+                      "src": "486:9:58",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_bytes32_$",
+                        "typeString": "function () view returns (bytes32)"
+                      }
+                    },
+                    "id": 11723,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "486:11:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "functionReturnParameters": 11721,
+                  "id": 11724,
+                  "nodeType": "Return",
+                  "src": "479:18:58"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 11726,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "externalLogicName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11718,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "429:2:58"
+            },
+            "returnParameters": {
+              "id": 11721,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11720,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11726,
+                  "src": "455:12:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 11719,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "455:7:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "454:14:58"
+            },
+            "scope": 11727,
+            "src": "403:101:58",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11728,
+        "src": "67:439:58"
+      }
+    ],
+    "src": "0:507:58"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/mock/base/BaseUpgradeableMock.sol",
+    "exportedSymbols": {
+      "BaseUpgradeableMock": [
+        11727
+      ]
+    },
+    "id": 11728,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11688,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:58"
+      },
+      {
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/base/BaseUpgradeable.sol",
+        "file": "../../base/BaseUpgradeable.sol",
+        "id": 11689,
+        "nodeType": "ImportDirective",
+        "scope": 11728,
+        "sourceUnit": 2628,
+        "src": "25:40:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 11690,
+              "name": "BaseUpgradeable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2627,
+              "src": "99:15:58",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_BaseUpgradeable_$2627",
+                "typeString": "contract BaseUpgradeable"
+              }
+            },
+            "id": 11691,
+            "nodeType": "InheritanceSpecifier",
+            "src": "99:15:58"
+          }
+        ],
+        "contractDependencies": [
+          2627
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 11727,
+        "linearizedBaseContracts": [
+          11727,
+          2627
+        ],
+        "name": "BaseUpgradeableMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 11696,
+              "nodeType": "Block",
+              "src": "173:2:58",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 11697,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": [],
+                "id": 11694,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 11693,
+                  "name": "onlyPauser",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 2540,
+                  "src": "160:10:58",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "160:12:58"
+              }
+            ],
+            "name": "externalOnlyPauser",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11692,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "148:2:58"
+            },
+            "returnParameters": {
+              "id": 11695,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "173:0:58"
+            },
+            "scope": 11727,
+            "src": "121:54:58",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 11706,
+              "nodeType": "Block",
+              "src": "244:46:58",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 11703,
+                        "name": "settingsAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 11699,
+                        "src": "267:15:58",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 11702,
+                      "name": "_setSettings",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2596,
+                      "src": "254:12:58",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 11704,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "254:29:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 11705,
+                  "nodeType": "ExpressionStatement",
+                  "src": "254:29:58"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 11707,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "externalSetSettings",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11700,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11699,
+                  "name": "settingsAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11707,
+                  "src": "210:23:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11698,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "210:7:58",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "209:25:58"
+            },
+            "returnParameters": {
+              "id": 11701,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "244:0:58"
+            },
+            "scope": 11727,
+            "src": "181:109:58",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 11716,
+              "nodeType": "Block",
+              "src": "355:42:58",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 11713,
+                        "name": "aLogicName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 11709,
+                        "src": "379:10:58",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 11712,
+                      "name": "_setLogicName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2626,
+                      "src": "365:13:58",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32)"
+                      }
+                    },
+                    "id": 11714,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "365:25:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 11715,
+                  "nodeType": "ExpressionStatement",
+                  "src": "365:25:58"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 11717,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "externalSetLogicName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11710,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11709,
+                  "name": "aLogicName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11717,
+                  "src": "326:18:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 11708,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "326:7:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "325:20:58"
+            },
+            "returnParameters": {
+              "id": 11711,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "355:0:58"
+            },
+            "scope": 11727,
+            "src": "296:101:58",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 11725,
+              "nodeType": "Block",
+              "src": "469:35:58",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 11722,
+                      "name": "logicName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2569,
+                      "src": "486:9:58",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_bytes32_$",
+                        "typeString": "function () view returns (bytes32)"
+                      }
+                    },
+                    "id": 11723,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "486:11:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "functionReturnParameters": 11721,
+                  "id": 11724,
+                  "nodeType": "Return",
+                  "src": "479:18:58"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 11726,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "externalLogicName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11718,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "429:2:58"
+            },
+            "returnParameters": {
+              "id": 11721,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11720,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11726,
+                  "src": "455:12:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 11719,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "455:7:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "454:14:58"
+            },
+            "scope": 11727,
+            "src": "403:101:58",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11728,
+        "src": "67:439:58"
+      }
+    ],
+    "src": "0:507:58"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2020-10-12T14:23:11.513Z",
+  "devdoc": {
+    "methods": {
+      "settings()": {
+        "details": "This address should NOT change over the time. See details in the _setSettings(...) function."
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "settings()": {
+        "notice": "The gets the settings contract address from the SETTINGS_SLOT."
+      }
+    }
+  }
+}

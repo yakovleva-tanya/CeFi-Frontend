@@ -27,6 +27,24 @@
           "internalType": "address",
           "name": "pairAggregator",
           "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "responseDecimals",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "collateralDecimals",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "inverse",
+          "type": "bool"
         }
       ],
       "name": "PairAggregatorRegistered",
@@ -64,6 +82,24 @@
           "internalType": "address",
           "name": "newPairAggregator",
           "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "newResponseDecimals",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "newCollateralDecimals",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "newInverse",
+          "type": "bool"
         }
       ],
       "name": "PairAggregatorUpdated",
@@ -296,61 +332,61 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"pairAggregator\",\"type\":\"address\"}],\"name\":\"PairAggregatorRegistered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldPairAggregator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPairAggregator\",\"type\":\"address\"}],\"name\":\"PairAggregatorUpdated\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"}],\"name\":\"getPairAggregator\",\"outputs\":[{\"internalType\":\"contract PairAggregatorInterface\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"}],\"name\":\"hasPairAggregator\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"chainlinkAggregatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"inverse\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"responseDecimals\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"collateralDecimals\",\"type\":\"uint8\"}],\"internalType\":\"struct TellerCommon.PairAggregatorRegisterRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"registerPairAggregator\",\"outputs\":[{\"internalType\":\"contract PairAggregatorInterface\",\"name\":\"aggregator\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"chainlinkAggregatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"inverse\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"responseDecimals\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"collateralDecimals\",\"type\":\"uint8\"}],\"internalType\":\"struct TellerCommon.PairAggregatorRegisterRequest[]\",\"name\":\"requests\",\"type\":\"tuple[]\"}],\"name\":\"registerPairAggregators\",\"outputs\":[{\"internalType\":\"contract PairAggregatorInterface[]\",\"name\":\"newAggregators\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"chainlinkAggregatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"inverse\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"responseDecimals\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"collateralDecimals\",\"type\":\"uint8\"}],\"internalType\":\"struct TellerCommon.PairAggregatorRegisterRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"updatePairAggregator\",\"outputs\":[{\"internalType\":\"contract PairAggregatorInterface\",\"name\":\"aggregator\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"getPairAggregator(address,address)\":{\"return\":\"the pair aggregator address for the given base and quote addresses.\"},\"hasPairAggregator(address,address)\":{\"return\":\"true if the pair aggregator address for the given base and quote tokens is not 0x0. Otherwise it returns false.\"},\"initialize(address)\":{\"params\":{\"settingsAddress\":\"this settings address.\"}},\"registerPairAggregator((address,address,address,bool,uint8,uint8))\":{\"params\":{\"request\":\"the input data to register the new pair aggregator.\"},\"return\":\"the new pair aggregator created.\"},\"registerPairAggregators((address,address,address,bool,uint8,uint8)[])\":{\"params\":{\"requests\":\"the input data to register the new pair aggregator.\"},\"return\":\"the new pair aggregator addresses.\"},\"updatePairAggregator((address,address,address,bool,uint8,uint8))\":{\"params\":{\"request\":\"the input data to register the new pair aggregator.\"},\"return\":\"the new pair aggregator created.\"}}},\"userdoc\":{\"methods\":{\"getPairAggregator(address,address)\":{\"notice\":\"Gets a pair aggregator for a given base and quote tokens (a market).baseToken the base token address.quoteToken the quote token address.\"},\"hasPairAggregator(address,address)\":{\"notice\":\"Tests whether a pair aggregator exists for a given base and quote tokens (a market) or not.baseToken the base token address.quoteToken the quote token address.\"},\"initialize(address)\":{\"notice\":\"It initializes this registry contract.\"},\"registerPairAggregator((address,address,address,bool,uint8,uint8))\":{\"notice\":\"It registers a new pair aggregator for a given market.\"},\"registerPairAggregators((address,address,address,bool,uint8,uint8)[])\":{\"notice\":\"It registers new pair aggregators for given markets.\"},\"updatePairAggregator((address,address,address,bool,uint8,uint8))\":{\"notice\":\"It updates a current pair aggregator for a given market.\"}},\"notice\":\"It defines the functions to manager the pair aggregator address for specific markets (including the inversed markets).\"}},\"settings\":{\"compilationTarget\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol\":\"IChainlinkPairAggregatorRegistry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol\":{\"keccak256\":\"0x4331fd21591542fda69505ce457c03f9ef66f2b8fea50db669864f517c4f95a1\",\"urls\":[\"bzz-raw://3cd373c888a2b4f6d1a93f540e9a0f4982316f743c0891d310a5e712c0f8eb78\",\"dweb:/ipfs/QmYA6Z3HFYj8MZSJwKP7NjawaD5TehE6Lmtx2VbTfqEHfb\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol\":{\"keccak256\":\"0xa6f747fa1fecfef304721bc5b95ff34f1057ffeebd096d72051c013191879388\",\"urls\":[\"bzz-raw://27a99f0483fd2950126fd56cca827bab0cb3635e4512380acd65f161960906eb\",\"dweb:/ipfs/QmUR6GkPEpzqo4G76eeTNDLgxi3M4P7G338Jr4uoCQqrx9\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0xbe70455cee756e9498c220e13c1550d163a4cbcb09e8afe2f0ee94f717c80315\",\"urls\":[\"bzz-raw://0ad4a0a6394e560e40da2fee213381db0184878c29078b2f570eaacf116bb855\",\"dweb:/ipfs/QmTF87YYagh3WrxNZyi2uxhzcxyGsdtJCLu9nwmXGGaoMz\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"pairAggregator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"responseDecimals\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"collateralDecimals\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"inverse\",\"type\":\"bool\"}],\"name\":\"PairAggregatorRegistered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldPairAggregator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPairAggregator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"newResponseDecimals\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"newCollateralDecimals\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"newInverse\",\"type\":\"bool\"}],\"name\":\"PairAggregatorUpdated\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"}],\"name\":\"getPairAggregator\",\"outputs\":[{\"internalType\":\"contract PairAggregatorInterface\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"}],\"name\":\"hasPairAggregator\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"settingsAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"chainlinkAggregatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"inverse\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"responseDecimals\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"collateralDecimals\",\"type\":\"uint8\"}],\"internalType\":\"struct TellerCommon.PairAggregatorRegisterRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"registerPairAggregator\",\"outputs\":[{\"internalType\":\"contract PairAggregatorInterface\",\"name\":\"aggregator\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"chainlinkAggregatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"inverse\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"responseDecimals\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"collateralDecimals\",\"type\":\"uint8\"}],\"internalType\":\"struct TellerCommon.PairAggregatorRegisterRequest[]\",\"name\":\"requests\",\"type\":\"tuple[]\"}],\"name\":\"registerPairAggregators\",\"outputs\":[{\"internalType\":\"contract PairAggregatorInterface[]\",\"name\":\"newAggregators\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"chainlinkAggregatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"inverse\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"responseDecimals\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"collateralDecimals\",\"type\":\"uint8\"}],\"internalType\":\"struct TellerCommon.PairAggregatorRegisterRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"updatePairAggregator\",\"outputs\":[{\"internalType\":\"contract PairAggregatorInterface\",\"name\":\"aggregator\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"develop@teller.finance\",\"methods\":{\"getPairAggregator(address,address)\":{\"return\":\"the pair aggregator address for the given base and quote addresses.\"},\"hasPairAggregator(address,address)\":{\"return\":\"true if the pair aggregator address for the given base and quote tokens is not 0x0. Otherwise it returns false.\"},\"initialize(address)\":{\"params\":{\"settingsAddress\":\"this settings address.\"}},\"registerPairAggregator((address,address,address,bool,uint8,uint8))\":{\"params\":{\"request\":\"the input data to register the new pair aggregator.\"},\"return\":\"the new pair aggregator created.\"},\"registerPairAggregators((address,address,address,bool,uint8,uint8)[])\":{\"params\":{\"requests\":\"the input data to register the new pair aggregator.\"},\"return\":\"the new pair aggregator addresses.\"},\"updatePairAggregator((address,address,address,bool,uint8,uint8))\":{\"params\":{\"request\":\"the input data to register the new pair aggregator.\"},\"return\":\"the new pair aggregator created.\"}}},\"userdoc\":{\"methods\":{\"getPairAggregator(address,address)\":{\"notice\":\"Gets a pair aggregator for a given base and quote tokens (a market).baseToken the base token address.quoteToken the quote token address.\"},\"hasPairAggregator(address,address)\":{\"notice\":\"Tests whether a pair aggregator exists for a given base and quote tokens (a market) or not.baseToken the base token address.quoteToken the quote token address.\"},\"initialize(address)\":{\"notice\":\"It initializes this registry contract.\"},\"registerPairAggregator((address,address,address,bool,uint8,uint8))\":{\"notice\":\"It registers a new pair aggregator for a given market.\"},\"registerPairAggregators((address,address,address,bool,uint8,uint8)[])\":{\"notice\":\"It registers new pair aggregators for given markets.\"},\"updatePairAggregator((address,address,address,bool,uint8,uint8))\":{\"notice\":\"It updates a current pair aggregator for a given market.\"}},\"notice\":\"It defines the functions to manager the pair aggregator address for specific markets (including the inversed markets).\"}},\"settings\":{\"compilationTarget\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol\":\"IChainlinkPairAggregatorRegistry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/PairAggregatorInterface.sol\":{\"keccak256\":\"0xb3cf240d5e8c5c9f51e9e06cdb544bec5ff93e76e02ea76314d2980e6a984839\",\"urls\":[\"bzz-raw://083b3be86e38ad3ed877b1208c53349006095399e023a55ed28f81134c38cb08\",\"dweb:/ipfs/Qmd5Tfykos7QPqUgs4bqFGMwgrNawLoZneuFMzMsBYCkMr\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol\":{\"keccak256\":\"0xed52aaafc7e15756431c0c847e5f7e1d52578b0f3b7f8b02674ec5d5d5a44c29\",\"urls\":[\"bzz-raw://76821662fa9a0918b355bc969deadef055737d90067658791dbc13e843958b64\",\"dweb:/ipfs/QmQzKEJiQjxRyNED8aABw62KQys3StiGwEnMXiF8P8ZQcV\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/NumbersList.sol\":{\"keccak256\":\"0xa397bcb75a4e7d80fd1043b7dc3c3a69f8c12435d26d843e4be40e875b71e134\",\"urls\":[\"bzz-raw://aabd466bea9e95a2585d597ebf62025f7ab4f38d1d4fe1c9fa5be1d98d131789\",\"dweb:/ipfs/QmcRGMg8X5teSF3Ga8ECPH2HvenViySkdnzvpUWvMDWXJL\"]},\"/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol\":{\"keccak256\":\"0x61d5a58019963b5b4394aa040d8661167da0aef0912cc7133dbc917a38a74698\",\"urls\":[\"bzz-raw://f2a48c517cbebc7ca530aced250a5389cba74ca1d16137b3b38116b1afd428b9\",\"dweb:/ipfs/QmcReNoiEiR3wvVVwwY6u6fQMTZivYtBn7uhMm3ud219Di\"]},\"@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.17;\npragma experimental ABIEncoderV2;\n\n// Contracts\nimport \"../../util/TellerCommon.sol\";\nimport \"../../interfaces/PairAggregatorInterface.sol\";\n\n/**\n    @notice It defines the functions to manager the pair aggregator address for specific markets (including the inversed markets).\n\n    @author develop@teller.finance\n */\ninterface IChainlinkPairAggregatorRegistry {\n    /**\n        @notice This event is emitted when a new pair aggregator is registered.\n        @param sender the sender address.\n        @param baseToken the base token address.\n        @param quoteToken the quote token address.\n        @param pairAggregator the pair aggregator address.\n     */\n    event PairAggregatorRegistered(\n        address indexed sender,\n        address indexed baseToken,\n        address indexed quoteToken,\n        address pairAggregator\n    );\n\n    /**\n        @notice This event is emitted when a current pair aggregator is updated.\n        @param sender the sender address.\n        @param baseToken the base token address.\n        @param quoteToken the quote token address.\n        @param oldPairAggregator the old pair aggregator address.\n        @param newPairAggregator the new pair aggregator address.\n     */\n    event PairAggregatorUpdated(\n        address indexed sender,\n        address indexed baseToken,\n        address indexed quoteToken,\n        address oldPairAggregator,\n        address newPairAggregator\n    );\n\n    /**\n        @notice It registers a new pair aggregator for a given market.\n        @param request the input data to register the new pair aggregator.\n        @return the new pair aggregator created.\n     */\n    function registerPairAggregator(\n        TellerCommon.PairAggregatorRegisterRequest calldata request\n    ) external returns (PairAggregatorInterface aggregator);\n\n    /**\n        @notice It registers new pair aggregators for given markets.\n        @param requests the input data to register the new pair aggregator.\n        @return the new pair aggregator addresses.\n     */\n    function registerPairAggregators(\n        TellerCommon.PairAggregatorRegisterRequest[] calldata requests\n    ) external returns (PairAggregatorInterface[] memory newAggregators);\n\n    /**\n        @notice It updates a current pair aggregator for a given market.\n        @param request the input data to register the new pair aggregator.\n        @return the new pair aggregator created.\n     */\n    function updatePairAggregator(\n        TellerCommon.PairAggregatorRegisterRequest calldata request\n    ) external returns (PairAggregatorInterface aggregator);\n\n    /**\n        @notice It initializes this registry contract.\n        @param settingsAddress this settings address.\n     */\n    function initialize(address settingsAddress) external;\n\n    /**\n        @notice Gets a pair aggregator for a given base and quote tokens (a market).\n        @notice baseToken the base token address.\n        @notice quoteToken the quote token address.\n        @return the pair aggregator address for the given base and quote addresses.\n     */\n    function getPairAggregator(address baseToken, address quoteToken)\n        external\n        view\n        returns (PairAggregatorInterface);\n\n    /**\n        @notice Tests whether a pair aggregator exists for a given base and quote tokens (a market) or not.\n        @notice baseToken the base token address.\n        @notice quoteToken the quote token address.\n        @return true if the pair aggregator address for the given base and quote tokens is not 0x0. Otherwise it returns false.\n     */\n    function hasPairAggregator(address baseToken, address quoteToken)\n        external\n        view\n        returns (bool);\n}\n",
-  "sourcePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol",
+  "source": "pragma solidity 0.5.17;\npragma experimental ABIEncoderV2;\n\n// Contracts\nimport \"../../util/TellerCommon.sol\";\nimport \"../../interfaces/PairAggregatorInterface.sol\";\n\n/**\n    @notice It defines the functions to manager the pair aggregator address for specific markets (including the inversed markets).\n\n    @author develop@teller.finance\n */\ninterface IChainlinkPairAggregatorRegistry {\n    /**\n        @notice This event is emitted when a new pair aggregator is registered.\n        @param sender the sender address.\n        @param baseToken the base token address.\n        @param quoteToken the quote token address.\n        @param pairAggregator the pair aggregator address.\n        @param responseDecimals the response decimals.\n        @param collateralDecimals the collateral decimals.\n        @param inverse true if the pair aggregator is inverse.\n     */\n    event PairAggregatorRegistered(\n        address indexed sender,\n        address indexed baseToken,\n        address indexed quoteToken,\n        address pairAggregator,\n        uint8 responseDecimals,\n        uint8 collateralDecimals,\n        bool inverse\n    );\n\n    /**\n        @notice This event is emitted when a current pair aggregator is updated.\n        @param sender the sender address.\n        @param baseToken the base token address.\n        @param quoteToken the quote token address.\n        @param oldPairAggregator the old pair aggregator address.\n        @param newPairAggregator the new pair aggregator address.\n        @param newResponseDecimals the response decimals.\n        @param newCollateralDecimals the collateral decimals.\n        @param newInverse true if the pair aggregator is inverse.\n     */\n    event PairAggregatorUpdated(\n        address indexed sender,\n        address indexed baseToken,\n        address indexed quoteToken,\n        address oldPairAggregator,\n        address newPairAggregator,\n        uint8 newResponseDecimals,\n        uint8 newCollateralDecimals,\n        bool newInverse\n    );\n\n    /**\n        @notice It registers a new pair aggregator for a given market.\n        @param request the input data to register the new pair aggregator.\n        @return the new pair aggregator created.\n     */\n    function registerPairAggregator(\n        TellerCommon.PairAggregatorRegisterRequest calldata request\n    ) external returns (PairAggregatorInterface aggregator);\n\n    /**\n        @notice It registers new pair aggregators for given markets.\n        @param requests the input data to register the new pair aggregator.\n        @return the new pair aggregator addresses.\n     */\n    function registerPairAggregators(\n        TellerCommon.PairAggregatorRegisterRequest[] calldata requests\n    ) external returns (PairAggregatorInterface[] memory newAggregators);\n\n    /**\n        @notice It updates a current pair aggregator for a given market.\n        @param request the input data to register the new pair aggregator.\n        @return the new pair aggregator created.\n     */\n    function updatePairAggregator(\n        TellerCommon.PairAggregatorRegisterRequest calldata request\n    ) external returns (PairAggregatorInterface aggregator);\n\n    /**\n        @notice It initializes this registry contract.\n        @param settingsAddress this settings address.\n     */\n    function initialize(address settingsAddress) external;\n\n    /**\n        @notice Gets a pair aggregator for a given base and quote tokens (a market).\n        @notice baseToken the base token address.\n        @notice quoteToken the quote token address.\n        @return the pair aggregator address for the given base and quote addresses.\n     */\n    function getPairAggregator(address baseToken, address quoteToken)\n        external\n        view\n        returns (PairAggregatorInterface);\n\n    /**\n        @notice Tests whether a pair aggregator exists for a given base and quote tokens (a market) or not.\n        @notice baseToken the base token address.\n        @notice quoteToken the quote token address.\n        @return true if the pair aggregator address for the given base and quote tokens is not 0x0. Otherwise it returns false.\n     */\n    function hasPairAggregator(address baseToken, address quoteToken)\n        external\n        view\n        returns (bool);\n}\n",
+  "sourcePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol",
   "ast": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol",
     "exportedSymbols": {
       "IChainlinkPairAggregatorRegistry": [
-        15529
+        15880
       ]
     },
-    "id": 15530,
+    "id": 15881,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 15457,
+        "id": 15796,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:97"
+        "src": "0:23:98"
       },
       {
-        "id": 15458,
+        "id": 15797,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "24:33:97"
+        "src": "24:33:98"
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol",
         "file": "../../util/TellerCommon.sol",
-        "id": 15459,
+        "id": 15798,
         "nodeType": "ImportDirective",
-        "scope": 15530,
-        "sourceUnit": 17991,
-        "src": "72:37:97",
+        "scope": 15881,
+        "sourceUnit": 18425,
+        "src": "72:37:98",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/PairAggregatorInterface.sol",
         "file": "../../interfaces/PairAggregatorInterface.sol",
-        "id": 15460,
+        "id": 15799,
         "nodeType": "ImportDirective",
-        "scope": 15530,
-        "sourceUnit": 11160,
-        "src": "110:54:97",
+        "scope": 15881,
+        "sourceUnit": 11219,
+        "src": "110:54:98",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -360,31 +396,31 @@
         "contractKind": "interface",
         "documentation": "@notice It defines the functions to manager the pair aggregator address for specific markets (including the inversed markets).\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 15529,
+        "id": 15880,
         "linearizedBaseContracts": [
-          15529
+          15880
         ],
         "name": "IChainlinkPairAggregatorRegistry",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "anonymous": false,
-            "documentation": "@notice This event is emitted when a new pair aggregator is registered.\n@param sender the sender address.\n@param baseToken the base token address.\n@param quoteToken the quote token address.\n@param pairAggregator the pair aggregator address.",
-            "id": 15470,
+            "documentation": "@notice This event is emitted when a new pair aggregator is registered.\n@param sender the sender address.\n@param baseToken the base token address.\n@param quoteToken the quote token address.\n@param pairAggregator the pair aggregator address.\n@param responseDecimals the response decimals.\n@param collateralDecimals the collateral decimals.\n@param inverse true if the pair aggregator is inverse.",
+            "id": 15815,
             "name": "PairAggregatorRegistered",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 15469,
+              "id": 15814,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15462,
+                  "id": 15801,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15470,
-                  "src": "727:22:97",
+                  "scope": 15815,
+                  "src": "904:22:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -392,10 +428,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 15461,
+                    "id": 15800,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "727:7:97",
+                    "src": "904:7:98",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -407,12 +443,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 15464,
+                  "id": 15803,
                   "indexed": true,
                   "name": "baseToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15470,
-                  "src": "759:25:97",
+                  "scope": 15815,
+                  "src": "936:25:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -420,10 +456,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 15463,
+                    "id": 15802,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "759:7:97",
+                    "src": "936:7:98",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -435,12 +471,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 15466,
+                  "id": 15805,
                   "indexed": true,
                   "name": "quoteToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15470,
-                  "src": "794:26:97",
+                  "scope": 15815,
+                  "src": "971:26:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -448,10 +484,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 15465,
+                    "id": 15804,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "794:7:97",
+                    "src": "971:7:98",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -463,12 +499,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 15468,
+                  "id": 15807,
                   "indexed": false,
                   "name": "pairAggregator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15470,
-                  "src": "830:22:97",
+                  "scope": 15815,
+                  "src": "1007:22:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -476,53 +512,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 15467,
+                    "id": 15806,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "830:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "717:141:97"
-            },
-            "src": "687:172:97"
-          },
-          {
-            "anonymous": false,
-            "documentation": "@notice This event is emitted when a current pair aggregator is updated.\n@param sender the sender address.\n@param baseToken the base token address.\n@param quoteToken the quote token address.\n@param oldPairAggregator the old pair aggregator address.\n@param newPairAggregator the new pair aggregator address.",
-            "id": 15482,
-            "name": "PairAggregatorUpdated",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 15481,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15472,
-                  "indexed": true,
-                  "name": "sender",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15482,
-                  "src": "1273:22:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15471,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1273:7:97",
+                    "src": "1007:7:98",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -534,83 +527,26 @@
                 },
                 {
                   "constant": false,
-                  "id": 15474,
-                  "indexed": true,
-                  "name": "baseToken",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15482,
-                  "src": "1305:25:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15473,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1305:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 15476,
-                  "indexed": true,
-                  "name": "quoteToken",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15482,
-                  "src": "1340:26:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15475,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1340:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 15478,
+                  "id": 15809,
                   "indexed": false,
-                  "name": "oldPairAggregator",
+                  "name": "responseDecimals",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15482,
-                  "src": "1376:25:97",
+                  "scope": 15815,
+                  "src": "1039:22:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 15477,
-                    "name": "address",
+                    "id": 15808,
+                    "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1376:7:97",
-                    "stateMutability": "nonpayable",
+                    "src": "1039:5:98",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
                     }
                   },
                   "value": null,
@@ -618,402 +554,26 @@
                 },
                 {
                   "constant": false,
-                  "id": 15480,
+                  "id": 15811,
                   "indexed": false,
-                  "name": "newPairAggregator",
+                  "name": "collateralDecimals",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15482,
-                  "src": "1411:25:97",
+                  "scope": 15815,
+                  "src": "1071:24:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 15479,
-                    "name": "address",
+                    "id": 15810,
+                    "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1411:7:97",
-                    "stateMutability": "nonpayable",
+                    "src": "1071:5:98",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1263:179:97"
-            },
-            "src": "1236:207:97"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It registers a new pair aggregator for a given market.\n@param request the input data to register the new pair aggregator.\n@return the new pair aggregator created.",
-            "id": 15489,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "registerPairAggregator",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15485,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15484,
-                  "name": "request",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15489,
-                  "src": "1701:59:97",
-                  "stateVariable": false,
-                  "storageLocation": "calldata",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$17984_calldata_ptr",
-                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 15483,
-                    "name": "TellerCommon.PairAggregatorRegisterRequest",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 17984,
-                    "src": "1701:42:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$17984_storage_ptr",
-                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1691:75:97"
-            },
-            "returnParameters": {
-              "id": 15488,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15487,
-                  "name": "aggregator",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15489,
-                  "src": "1785:34:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                    "typeString": "contract PairAggregatorInterface"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 15486,
-                    "name": "PairAggregatorInterface",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 11159,
-                    "src": "1785:23:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                      "typeString": "contract PairAggregatorInterface"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1784:36:97"
-            },
-            "scope": 15529,
-            "src": "1660:161:97",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It registers new pair aggregators for given markets.\n@param requests the input data to register the new pair aggregator.\n@return the new pair aggregator addresses.",
-            "id": 15498,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "registerPairAggregators",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15493,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15492,
-                  "name": "requests",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15498,
-                  "src": "2081:62:97",
-                  "stateVariable": false,
-                  "storageLocation": "calldata",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_PairAggregatorRegisterRequest_$17984_calldata_$dyn_calldata_ptr",
-                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest[]"
-                  },
-                  "typeName": {
-                    "baseType": {
-                      "contractScope": null,
-                      "id": 15490,
-                      "name": "TellerCommon.PairAggregatorRegisterRequest",
-                      "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 17984,
-                      "src": "2081:42:97",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$17984_storage_ptr",
-                        "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
-                      }
-                    },
-                    "id": 15491,
-                    "length": null,
-                    "nodeType": "ArrayTypeName",
-                    "src": "2081:44:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_PairAggregatorRegisterRequest_$17984_storage_$dyn_storage_ptr",
-                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest[]"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2071:78:97"
-            },
-            "returnParameters": {
-              "id": 15497,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15496,
-                  "name": "newAggregators",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15498,
-                  "src": "2168:47:97",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_contract$_PairAggregatorInterface_$11159_$dyn_memory_ptr",
-                    "typeString": "contract PairAggregatorInterface[]"
-                  },
-                  "typeName": {
-                    "baseType": {
-                      "contractScope": null,
-                      "id": 15494,
-                      "name": "PairAggregatorInterface",
-                      "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 11159,
-                      "src": "2168:23:97",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                        "typeString": "contract PairAggregatorInterface"
-                      }
-                    },
-                    "id": 15495,
-                    "length": null,
-                    "nodeType": "ArrayTypeName",
-                    "src": "2168:25:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_contract$_PairAggregatorInterface_$11159_$dyn_storage_ptr",
-                      "typeString": "contract PairAggregatorInterface[]"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2167:49:97"
-            },
-            "scope": 15529,
-            "src": "2039:178:97",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It updates a current pair aggregator for a given market.\n@param request the input data to register the new pair aggregator.\n@return the new pair aggregator created.",
-            "id": 15505,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "updatePairAggregator",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15501,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15500,
-                  "name": "request",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15505,
-                  "src": "2475:59:97",
-                  "stateVariable": false,
-                  "storageLocation": "calldata",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$17984_calldata_ptr",
-                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 15499,
-                    "name": "TellerCommon.PairAggregatorRegisterRequest",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 17984,
-                    "src": "2475:42:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$17984_storage_ptr",
-                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2465:75:97"
-            },
-            "returnParameters": {
-              "id": 15504,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15503,
-                  "name": "aggregator",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15505,
-                  "src": "2559:34:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                    "typeString": "contract PairAggregatorInterface"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 15502,
-                    "name": "PairAggregatorInterface",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 11159,
-                    "src": "2559:23:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                      "typeString": "contract PairAggregatorInterface"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2558:36:97"
-            },
-            "scope": 15529,
-            "src": "2436:159:97",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It initializes this registry contract.\n@param settingsAddress this settings address.",
-            "id": 15510,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "initialize",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15508,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15507,
-                  "name": "settingsAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15510,
-                  "src": "2746:23:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15506,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2746:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2745:25:97"
-            },
-            "returnParameters": {
-              "id": 15509,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2779:0:97"
-            },
-            "scope": 15529,
-            "src": "2726:54:97",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice Gets a pair aggregator for a given base and quote tokens (a market).\n@notice baseToken the base token address.\n@notice quoteToken the quote token address.\n@return the pair aggregator address for the given base and quote addresses.",
-            "id": 15519,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getPairAggregator",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15515,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15512,
-                  "name": "baseToken",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15519,
-                  "src": "3100:17:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15511,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3100:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
                     }
                   },
                   "value": null,
@@ -1021,156 +581,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 15514,
-                  "name": "quoteToken",
+                  "id": 15813,
+                  "indexed": false,
+                  "name": "inverse",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15519,
-                  "src": "3119:18:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15513,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3119:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "3099:39:97"
-            },
-            "returnParameters": {
-              "id": 15518,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15517,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15519,
-                  "src": "3186:23:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                    "typeString": "contract PairAggregatorInterface"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 15516,
-                    "name": "PairAggregatorInterface",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 11159,
-                    "src": "3186:23:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                      "typeString": "contract PairAggregatorInterface"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "3185:25:97"
-            },
-            "scope": 15529,
-            "src": "3073:138:97",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice Tests whether a pair aggregator exists for a given base and quote tokens (a market) or not.\n@notice baseToken the base token address.\n@notice quoteToken the quote token address.\n@return true if the pair aggregator address for the given base and quote tokens is not 0x0. Otherwise it returns false.",
-            "id": 15528,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "hasPairAggregator",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15524,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15521,
-                  "name": "baseToken",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15528,
-                  "src": "3598:17:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15520,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3598:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 15523,
-                  "name": "quoteToken",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15528,
-                  "src": "3617:18:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15522,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3617:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "3597:39:97"
-            },
-            "returnParameters": {
-              "id": 15527,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15526,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15528,
-                  "src": "3684:4:97",
+                  "scope": 15815,
+                  "src": "1105:12:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1178,10 +594,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 15525,
+                    "id": 15812,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3684:4:97",
+                    "src": "1105:4:98",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1191,69 +607,851 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3683:6:97"
+              "src": "894:229:98"
             },
-            "scope": 15529,
-            "src": "3571:119:97",
+            "src": "864:260:98"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when a current pair aggregator is updated.\n@param sender the sender address.\n@param baseToken the base token address.\n@param quoteToken the quote token address.\n@param oldPairAggregator the old pair aggregator address.\n@param newPairAggregator the new pair aggregator address.\n@param newResponseDecimals the response decimals.\n@param newCollateralDecimals the collateral decimals.\n@param newInverse true if the pair aggregator is inverse.",
+            "id": 15833,
+            "name": "PairAggregatorUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15832,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15817,
+                  "indexed": true,
+                  "name": "sender",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1724:22:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15816,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1724:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15819,
+                  "indexed": true,
+                  "name": "baseToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1756:25:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15818,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1756:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15821,
+                  "indexed": true,
+                  "name": "quoteToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1791:26:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15820,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1791:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15823,
+                  "indexed": false,
+                  "name": "oldPairAggregator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1827:25:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15822,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1827:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15825,
+                  "indexed": false,
+                  "name": "newPairAggregator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1862:25:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15824,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1862:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15827,
+                  "indexed": false,
+                  "name": "newResponseDecimals",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1897:25:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 15826,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1897:5:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15829,
+                  "indexed": false,
+                  "name": "newCollateralDecimals",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1932:27:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 15828,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1932:5:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15831,
+                  "indexed": false,
+                  "name": "newInverse",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1969:15:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 15830,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1969:4:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1714:276:98"
+            },
+            "src": "1687:304:98"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It registers a new pair aggregator for a given market.\n@param request the input data to register the new pair aggregator.\n@return the new pair aggregator created.",
+            "id": 15840,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "registerPairAggregator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15836,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15835,
+                  "name": "request",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15840,
+                  "src": "2249:59:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$18413_calldata_ptr",
+                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15834,
+                    "name": "TellerCommon.PairAggregatorRegisterRequest",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18413,
+                    "src": "2249:42:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$18413_storage_ptr",
+                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2239:75:98"
+            },
+            "returnParameters": {
+              "id": 15839,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15838,
+                  "name": "aggregator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15840,
+                  "src": "2333:34:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                    "typeString": "contract PairAggregatorInterface"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15837,
+                    "name": "PairAggregatorInterface",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 11218,
+                    "src": "2333:23:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                      "typeString": "contract PairAggregatorInterface"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2332:36:98"
+            },
+            "scope": 15880,
+            "src": "2208:161:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It registers new pair aggregators for given markets.\n@param requests the input data to register the new pair aggregator.\n@return the new pair aggregator addresses.",
+            "id": 15849,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "registerPairAggregators",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15844,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15843,
+                  "name": "requests",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15849,
+                  "src": "2629:62:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_PairAggregatorRegisterRequest_$18413_calldata_$dyn_calldata_ptr",
+                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 15841,
+                      "name": "TellerCommon.PairAggregatorRegisterRequest",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 18413,
+                      "src": "2629:42:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$18413_storage_ptr",
+                        "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
+                      }
+                    },
+                    "id": 15842,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2629:44:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_PairAggregatorRegisterRequest_$18413_storage_$dyn_storage_ptr",
+                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2619:78:98"
+            },
+            "returnParameters": {
+              "id": 15848,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15847,
+                  "name": "newAggregators",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15849,
+                  "src": "2716:47:98",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_contract$_PairAggregatorInterface_$11218_$dyn_memory_ptr",
+                    "typeString": "contract PairAggregatorInterface[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 15845,
+                      "name": "PairAggregatorInterface",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 11218,
+                      "src": "2716:23:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                        "typeString": "contract PairAggregatorInterface"
+                      }
+                    },
+                    "id": 15846,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2716:25:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_contract$_PairAggregatorInterface_$11218_$dyn_storage_ptr",
+                      "typeString": "contract PairAggregatorInterface[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2715:49:98"
+            },
+            "scope": 15880,
+            "src": "2587:178:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It updates a current pair aggregator for a given market.\n@param request the input data to register the new pair aggregator.\n@return the new pair aggregator created.",
+            "id": 15856,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updatePairAggregator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15852,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15851,
+                  "name": "request",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15856,
+                  "src": "3023:59:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$18413_calldata_ptr",
+                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15850,
+                    "name": "TellerCommon.PairAggregatorRegisterRequest",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18413,
+                    "src": "3023:42:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$18413_storage_ptr",
+                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3013:75:98"
+            },
+            "returnParameters": {
+              "id": 15855,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15854,
+                  "name": "aggregator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15856,
+                  "src": "3107:34:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                    "typeString": "contract PairAggregatorInterface"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15853,
+                    "name": "PairAggregatorInterface",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 11218,
+                    "src": "3107:23:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                      "typeString": "contract PairAggregatorInterface"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3106:36:98"
+            },
+            "scope": 15880,
+            "src": "2984:159:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It initializes this registry contract.\n@param settingsAddress this settings address.",
+            "id": 15861,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15859,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15858,
+                  "name": "settingsAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15861,
+                  "src": "3294:23:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15857,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3294:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3293:25:98"
+            },
+            "returnParameters": {
+              "id": 15860,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3327:0:98"
+            },
+            "scope": 15880,
+            "src": "3274:54:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Gets a pair aggregator for a given base and quote tokens (a market).\n@notice baseToken the base token address.\n@notice quoteToken the quote token address.\n@return the pair aggregator address for the given base and quote addresses.",
+            "id": 15870,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPairAggregator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15866,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15863,
+                  "name": "baseToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15870,
+                  "src": "3648:17:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15862,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3648:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15865,
+                  "name": "quoteToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15870,
+                  "src": "3667:18:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15864,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3667:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3647:39:98"
+            },
+            "returnParameters": {
+              "id": 15869,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15868,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15870,
+                  "src": "3734:23:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                    "typeString": "contract PairAggregatorInterface"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15867,
+                    "name": "PairAggregatorInterface",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 11218,
+                    "src": "3734:23:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                      "typeString": "contract PairAggregatorInterface"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3733:25:98"
+            },
+            "scope": 15880,
+            "src": "3621:138:98",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Tests whether a pair aggregator exists for a given base and quote tokens (a market) or not.\n@notice baseToken the base token address.\n@notice quoteToken the quote token address.\n@return true if the pair aggregator address for the given base and quote tokens is not 0x0. Otherwise it returns false.",
+            "id": 15879,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "hasPairAggregator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15875,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15872,
+                  "name": "baseToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15879,
+                  "src": "4146:17:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15871,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4146:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15874,
+                  "name": "quoteToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15879,
+                  "src": "4165:18:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15873,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4165:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4145:39:98"
+            },
+            "returnParameters": {
+              "id": 15878,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15877,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15879,
+                  "src": "4232:4:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 15876,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4232:4:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4231:6:98"
+            },
+            "scope": 15880,
+            "src": "4119:119:98",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 15530,
-        "src": "341:3351:97"
+        "scope": 15881,
+        "src": "341:3899:98"
       }
     ],
-    "src": "0:3693:97"
+    "src": "0:4241:98"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol",
+    "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/providers/chainlink/IChainlinkPairAggregatorRegistry.sol",
     "exportedSymbols": {
       "IChainlinkPairAggregatorRegistry": [
-        15529
+        15880
       ]
     },
-    "id": 15530,
+    "id": 15881,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 15457,
+        "id": 15796,
         "literals": [
           "solidity",
           "0.5",
           ".17"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:97"
+        "src": "0:23:98"
       },
       {
-        "id": 15458,
+        "id": 15797,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "24:33:97"
+        "src": "24:33:98"
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/util/TellerCommon.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/util/TellerCommon.sol",
         "file": "../../util/TellerCommon.sol",
-        "id": 15459,
+        "id": 15798,
         "nodeType": "ImportDirective",
-        "scope": 15530,
-        "sourceUnit": 17991,
-        "src": "72:37:97",
+        "scope": 15881,
+        "sourceUnit": 18425,
+        "src": "72:37:98",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/sy/Documents/GitHub/teller-protocol-v1/contracts/interfaces/PairAggregatorInterface.sol",
+        "absolutePath": "/Users/guillesalazar/Repos/ZeroCollateral/smart-contracts-v1/contracts/interfaces/PairAggregatorInterface.sol",
         "file": "../../interfaces/PairAggregatorInterface.sol",
-        "id": 15460,
+        "id": 15799,
         "nodeType": "ImportDirective",
-        "scope": 15530,
-        "sourceUnit": 11160,
-        "src": "110:54:97",
+        "scope": 15881,
+        "sourceUnit": 11219,
+        "src": "110:54:98",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -1263,31 +1461,31 @@
         "contractKind": "interface",
         "documentation": "@notice It defines the functions to manager the pair aggregator address for specific markets (including the inversed markets).\n@author develop@teller.finance",
         "fullyImplemented": false,
-        "id": 15529,
+        "id": 15880,
         "linearizedBaseContracts": [
-          15529
+          15880
         ],
         "name": "IChainlinkPairAggregatorRegistry",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "anonymous": false,
-            "documentation": "@notice This event is emitted when a new pair aggregator is registered.\n@param sender the sender address.\n@param baseToken the base token address.\n@param quoteToken the quote token address.\n@param pairAggregator the pair aggregator address.",
-            "id": 15470,
+            "documentation": "@notice This event is emitted when a new pair aggregator is registered.\n@param sender the sender address.\n@param baseToken the base token address.\n@param quoteToken the quote token address.\n@param pairAggregator the pair aggregator address.\n@param responseDecimals the response decimals.\n@param collateralDecimals the collateral decimals.\n@param inverse true if the pair aggregator is inverse.",
+            "id": 15815,
             "name": "PairAggregatorRegistered",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 15469,
+              "id": 15814,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15462,
+                  "id": 15801,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15470,
-                  "src": "727:22:97",
+                  "scope": 15815,
+                  "src": "904:22:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1295,10 +1493,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 15461,
+                    "id": 15800,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "727:7:97",
+                    "src": "904:7:98",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1310,12 +1508,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 15464,
+                  "id": 15803,
                   "indexed": true,
                   "name": "baseToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15470,
-                  "src": "759:25:97",
+                  "scope": 15815,
+                  "src": "936:25:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1323,10 +1521,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 15463,
+                    "id": 15802,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "759:7:97",
+                    "src": "936:7:98",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1338,12 +1536,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 15466,
+                  "id": 15805,
                   "indexed": true,
                   "name": "quoteToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15470,
-                  "src": "794:26:97",
+                  "scope": 15815,
+                  "src": "971:26:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1351,10 +1549,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 15465,
+                    "id": 15804,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "794:7:97",
+                    "src": "971:7:98",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1366,12 +1564,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 15468,
+                  "id": 15807,
                   "indexed": false,
                   "name": "pairAggregator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15470,
-                  "src": "830:22:97",
+                  "scope": 15815,
+                  "src": "1007:22:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1379,53 +1577,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 15467,
+                    "id": 15806,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "830:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "717:141:97"
-            },
-            "src": "687:172:97"
-          },
-          {
-            "anonymous": false,
-            "documentation": "@notice This event is emitted when a current pair aggregator is updated.\n@param sender the sender address.\n@param baseToken the base token address.\n@param quoteToken the quote token address.\n@param oldPairAggregator the old pair aggregator address.\n@param newPairAggregator the new pair aggregator address.",
-            "id": 15482,
-            "name": "PairAggregatorUpdated",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 15481,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15472,
-                  "indexed": true,
-                  "name": "sender",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15482,
-                  "src": "1273:22:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15471,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1273:7:97",
+                    "src": "1007:7:98",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1437,83 +1592,26 @@
                 },
                 {
                   "constant": false,
-                  "id": 15474,
-                  "indexed": true,
-                  "name": "baseToken",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15482,
-                  "src": "1305:25:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15473,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1305:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 15476,
-                  "indexed": true,
-                  "name": "quoteToken",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15482,
-                  "src": "1340:26:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15475,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1340:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 15478,
+                  "id": 15809,
                   "indexed": false,
-                  "name": "oldPairAggregator",
+                  "name": "responseDecimals",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15482,
-                  "src": "1376:25:97",
+                  "scope": 15815,
+                  "src": "1039:22:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 15477,
-                    "name": "address",
+                    "id": 15808,
+                    "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1376:7:97",
-                    "stateMutability": "nonpayable",
+                    "src": "1039:5:98",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
                     }
                   },
                   "value": null,
@@ -1521,402 +1619,26 @@
                 },
                 {
                   "constant": false,
-                  "id": 15480,
+                  "id": 15811,
                   "indexed": false,
-                  "name": "newPairAggregator",
+                  "name": "collateralDecimals",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15482,
-                  "src": "1411:25:97",
+                  "scope": 15815,
+                  "src": "1071:24:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 15479,
-                    "name": "address",
+                    "id": 15810,
+                    "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1411:7:97",
-                    "stateMutability": "nonpayable",
+                    "src": "1071:5:98",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1263:179:97"
-            },
-            "src": "1236:207:97"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It registers a new pair aggregator for a given market.\n@param request the input data to register the new pair aggregator.\n@return the new pair aggregator created.",
-            "id": 15489,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "registerPairAggregator",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15485,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15484,
-                  "name": "request",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15489,
-                  "src": "1701:59:97",
-                  "stateVariable": false,
-                  "storageLocation": "calldata",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$17984_calldata_ptr",
-                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 15483,
-                    "name": "TellerCommon.PairAggregatorRegisterRequest",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 17984,
-                    "src": "1701:42:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$17984_storage_ptr",
-                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1691:75:97"
-            },
-            "returnParameters": {
-              "id": 15488,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15487,
-                  "name": "aggregator",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15489,
-                  "src": "1785:34:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                    "typeString": "contract PairAggregatorInterface"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 15486,
-                    "name": "PairAggregatorInterface",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 11159,
-                    "src": "1785:23:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                      "typeString": "contract PairAggregatorInterface"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1784:36:97"
-            },
-            "scope": 15529,
-            "src": "1660:161:97",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It registers new pair aggregators for given markets.\n@param requests the input data to register the new pair aggregator.\n@return the new pair aggregator addresses.",
-            "id": 15498,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "registerPairAggregators",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15493,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15492,
-                  "name": "requests",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15498,
-                  "src": "2081:62:97",
-                  "stateVariable": false,
-                  "storageLocation": "calldata",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_PairAggregatorRegisterRequest_$17984_calldata_$dyn_calldata_ptr",
-                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest[]"
-                  },
-                  "typeName": {
-                    "baseType": {
-                      "contractScope": null,
-                      "id": 15490,
-                      "name": "TellerCommon.PairAggregatorRegisterRequest",
-                      "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 17984,
-                      "src": "2081:42:97",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$17984_storage_ptr",
-                        "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
-                      }
-                    },
-                    "id": 15491,
-                    "length": null,
-                    "nodeType": "ArrayTypeName",
-                    "src": "2081:44:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_PairAggregatorRegisterRequest_$17984_storage_$dyn_storage_ptr",
-                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest[]"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2071:78:97"
-            },
-            "returnParameters": {
-              "id": 15497,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15496,
-                  "name": "newAggregators",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15498,
-                  "src": "2168:47:97",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_contract$_PairAggregatorInterface_$11159_$dyn_memory_ptr",
-                    "typeString": "contract PairAggregatorInterface[]"
-                  },
-                  "typeName": {
-                    "baseType": {
-                      "contractScope": null,
-                      "id": 15494,
-                      "name": "PairAggregatorInterface",
-                      "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 11159,
-                      "src": "2168:23:97",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                        "typeString": "contract PairAggregatorInterface"
-                      }
-                    },
-                    "id": 15495,
-                    "length": null,
-                    "nodeType": "ArrayTypeName",
-                    "src": "2168:25:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_contract$_PairAggregatorInterface_$11159_$dyn_storage_ptr",
-                      "typeString": "contract PairAggregatorInterface[]"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2167:49:97"
-            },
-            "scope": 15529,
-            "src": "2039:178:97",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It updates a current pair aggregator for a given market.\n@param request the input data to register the new pair aggregator.\n@return the new pair aggregator created.",
-            "id": 15505,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "updatePairAggregator",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15501,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15500,
-                  "name": "request",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15505,
-                  "src": "2475:59:97",
-                  "stateVariable": false,
-                  "storageLocation": "calldata",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$17984_calldata_ptr",
-                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 15499,
-                    "name": "TellerCommon.PairAggregatorRegisterRequest",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 17984,
-                    "src": "2475:42:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$17984_storage_ptr",
-                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2465:75:97"
-            },
-            "returnParameters": {
-              "id": 15504,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15503,
-                  "name": "aggregator",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15505,
-                  "src": "2559:34:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                    "typeString": "contract PairAggregatorInterface"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 15502,
-                    "name": "PairAggregatorInterface",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 11159,
-                    "src": "2559:23:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                      "typeString": "contract PairAggregatorInterface"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2558:36:97"
-            },
-            "scope": 15529,
-            "src": "2436:159:97",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice It initializes this registry contract.\n@param settingsAddress this settings address.",
-            "id": 15510,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "initialize",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15508,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15507,
-                  "name": "settingsAddress",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15510,
-                  "src": "2746:23:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15506,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2746:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2745:25:97"
-            },
-            "returnParameters": {
-              "id": 15509,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2779:0:97"
-            },
-            "scope": 15529,
-            "src": "2726:54:97",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice Gets a pair aggregator for a given base and quote tokens (a market).\n@notice baseToken the base token address.\n@notice quoteToken the quote token address.\n@return the pair aggregator address for the given base and quote addresses.",
-            "id": 15519,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getPairAggregator",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15515,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15512,
-                  "name": "baseToken",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15519,
-                  "src": "3100:17:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15511,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3100:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
                     }
                   },
                   "value": null,
@@ -1924,156 +1646,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 15514,
-                  "name": "quoteToken",
+                  "id": 15813,
+                  "indexed": false,
+                  "name": "inverse",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15519,
-                  "src": "3119:18:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15513,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3119:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "3099:39:97"
-            },
-            "returnParameters": {
-              "id": 15518,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15517,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15519,
-                  "src": "3186:23:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                    "typeString": "contract PairAggregatorInterface"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 15516,
-                    "name": "PairAggregatorInterface",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 11159,
-                    "src": "3186:23:97",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11159",
-                      "typeString": "contract PairAggregatorInterface"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "3185:25:97"
-            },
-            "scope": 15529,
-            "src": "3073:138:97",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "@notice Tests whether a pair aggregator exists for a given base and quote tokens (a market) or not.\n@notice baseToken the base token address.\n@notice quoteToken the quote token address.\n@return true if the pair aggregator address for the given base and quote tokens is not 0x0. Otherwise it returns false.",
-            "id": 15528,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "hasPairAggregator",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 15524,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15521,
-                  "name": "baseToken",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15528,
-                  "src": "3598:17:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15520,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3598:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 15523,
-                  "name": "quoteToken",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15528,
-                  "src": "3617:18:97",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 15522,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "3617:7:97",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "3597:39:97"
-            },
-            "returnParameters": {
-              "id": 15527,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 15526,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 15528,
-                  "src": "3684:4:97",
+                  "scope": 15815,
+                  "src": "1105:12:98",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2081,10 +1659,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 15525,
+                    "id": 15812,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3684:4:97",
+                    "src": "1105:4:98",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2094,28 +1672,810 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3683:6:97"
+              "src": "894:229:98"
             },
-            "scope": 15529,
-            "src": "3571:119:97",
+            "src": "864:260:98"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice This event is emitted when a current pair aggregator is updated.\n@param sender the sender address.\n@param baseToken the base token address.\n@param quoteToken the quote token address.\n@param oldPairAggregator the old pair aggregator address.\n@param newPairAggregator the new pair aggregator address.\n@param newResponseDecimals the response decimals.\n@param newCollateralDecimals the collateral decimals.\n@param newInverse true if the pair aggregator is inverse.",
+            "id": 15833,
+            "name": "PairAggregatorUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15832,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15817,
+                  "indexed": true,
+                  "name": "sender",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1724:22:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15816,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1724:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15819,
+                  "indexed": true,
+                  "name": "baseToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1756:25:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15818,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1756:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15821,
+                  "indexed": true,
+                  "name": "quoteToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1791:26:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15820,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1791:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15823,
+                  "indexed": false,
+                  "name": "oldPairAggregator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1827:25:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15822,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1827:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15825,
+                  "indexed": false,
+                  "name": "newPairAggregator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1862:25:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15824,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1862:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15827,
+                  "indexed": false,
+                  "name": "newResponseDecimals",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1897:25:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 15826,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1897:5:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15829,
+                  "indexed": false,
+                  "name": "newCollateralDecimals",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1932:27:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 15828,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1932:5:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15831,
+                  "indexed": false,
+                  "name": "newInverse",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "1969:15:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 15830,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1969:4:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1714:276:98"
+            },
+            "src": "1687:304:98"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It registers a new pair aggregator for a given market.\n@param request the input data to register the new pair aggregator.\n@return the new pair aggregator created.",
+            "id": 15840,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "registerPairAggregator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15836,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15835,
+                  "name": "request",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15840,
+                  "src": "2249:59:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$18413_calldata_ptr",
+                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15834,
+                    "name": "TellerCommon.PairAggregatorRegisterRequest",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18413,
+                    "src": "2249:42:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$18413_storage_ptr",
+                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2239:75:98"
+            },
+            "returnParameters": {
+              "id": 15839,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15838,
+                  "name": "aggregator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15840,
+                  "src": "2333:34:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                    "typeString": "contract PairAggregatorInterface"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15837,
+                    "name": "PairAggregatorInterface",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 11218,
+                    "src": "2333:23:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                      "typeString": "contract PairAggregatorInterface"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2332:36:98"
+            },
+            "scope": 15880,
+            "src": "2208:161:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It registers new pair aggregators for given markets.\n@param requests the input data to register the new pair aggregator.\n@return the new pair aggregator addresses.",
+            "id": 15849,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "registerPairAggregators",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15844,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15843,
+                  "name": "requests",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15849,
+                  "src": "2629:62:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_PairAggregatorRegisterRequest_$18413_calldata_$dyn_calldata_ptr",
+                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 15841,
+                      "name": "TellerCommon.PairAggregatorRegisterRequest",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 18413,
+                      "src": "2629:42:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$18413_storage_ptr",
+                        "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
+                      }
+                    },
+                    "id": 15842,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2629:44:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_PairAggregatorRegisterRequest_$18413_storage_$dyn_storage_ptr",
+                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2619:78:98"
+            },
+            "returnParameters": {
+              "id": 15848,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15847,
+                  "name": "newAggregators",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15849,
+                  "src": "2716:47:98",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_contract$_PairAggregatorInterface_$11218_$dyn_memory_ptr",
+                    "typeString": "contract PairAggregatorInterface[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 15845,
+                      "name": "PairAggregatorInterface",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 11218,
+                      "src": "2716:23:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                        "typeString": "contract PairAggregatorInterface"
+                      }
+                    },
+                    "id": 15846,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2716:25:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_contract$_PairAggregatorInterface_$11218_$dyn_storage_ptr",
+                      "typeString": "contract PairAggregatorInterface[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2715:49:98"
+            },
+            "scope": 15880,
+            "src": "2587:178:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It updates a current pair aggregator for a given market.\n@param request the input data to register the new pair aggregator.\n@return the new pair aggregator created.",
+            "id": 15856,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updatePairAggregator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15852,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15851,
+                  "name": "request",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15856,
+                  "src": "3023:59:98",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$18413_calldata_ptr",
+                    "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15850,
+                    "name": "TellerCommon.PairAggregatorRegisterRequest",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18413,
+                    "src": "3023:42:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PairAggregatorRegisterRequest_$18413_storage_ptr",
+                      "typeString": "struct TellerCommon.PairAggregatorRegisterRequest"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3013:75:98"
+            },
+            "returnParameters": {
+              "id": 15855,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15854,
+                  "name": "aggregator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15856,
+                  "src": "3107:34:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                    "typeString": "contract PairAggregatorInterface"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15853,
+                    "name": "PairAggregatorInterface",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 11218,
+                    "src": "3107:23:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                      "typeString": "contract PairAggregatorInterface"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3106:36:98"
+            },
+            "scope": 15880,
+            "src": "2984:159:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice It initializes this registry contract.\n@param settingsAddress this settings address.",
+            "id": 15861,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15859,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15858,
+                  "name": "settingsAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15861,
+                  "src": "3294:23:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15857,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3294:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3293:25:98"
+            },
+            "returnParameters": {
+              "id": 15860,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3327:0:98"
+            },
+            "scope": 15880,
+            "src": "3274:54:98",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Gets a pair aggregator for a given base and quote tokens (a market).\n@notice baseToken the base token address.\n@notice quoteToken the quote token address.\n@return the pair aggregator address for the given base and quote addresses.",
+            "id": 15870,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPairAggregator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15866,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15863,
+                  "name": "baseToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15870,
+                  "src": "3648:17:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15862,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3648:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15865,
+                  "name": "quoteToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15870,
+                  "src": "3667:18:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15864,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3667:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3647:39:98"
+            },
+            "returnParameters": {
+              "id": 15869,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15868,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15870,
+                  "src": "3734:23:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                    "typeString": "contract PairAggregatorInterface"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15867,
+                    "name": "PairAggregatorInterface",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 11218,
+                    "src": "3734:23:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_PairAggregatorInterface_$11218",
+                      "typeString": "contract PairAggregatorInterface"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3733:25:98"
+            },
+            "scope": 15880,
+            "src": "3621:138:98",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Tests whether a pair aggregator exists for a given base and quote tokens (a market) or not.\n@notice baseToken the base token address.\n@notice quoteToken the quote token address.\n@return true if the pair aggregator address for the given base and quote tokens is not 0x0. Otherwise it returns false.",
+            "id": 15879,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "hasPairAggregator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15875,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15872,
+                  "name": "baseToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15879,
+                  "src": "4146:17:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15871,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4146:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15874,
+                  "name": "quoteToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15879,
+                  "src": "4165:18:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15873,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4165:7:98",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4145:39:98"
+            },
+            "returnParameters": {
+              "id": 15878,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15877,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15879,
+                  "src": "4232:4:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 15876,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4232:4:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4231:6:98"
+            },
+            "scope": 15880,
+            "src": "4119:119:98",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 15530,
-        "src": "341:3351:97"
+        "scope": 15881,
+        "src": "341:3899:98"
       }
     ],
-    "src": "0:3693:97"
+    "src": "0:4241:98"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.17+commit.d19bba13.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-06T02:15:12.612Z",
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2020-10-12T14:23:11.572Z",
   "devdoc": {
     "author": "develop@teller.finance",
     "methods": {

@@ -13,7 +13,17 @@ const marketsQuery = `
 }
 `;
 
-const FetchTokenData = async () => {
+export const getCollateralAmount = async (
+  loanSize: string,
+  collateralRatio: string,
+  collateralAsset: string
+) => {
+  const tokenData = await FetchTokenData();
+  const collateralAssetData = tokenData[collateralAsset];
+  return Number(loanSize)/Number(collateralAssetData.price)
+}
+
+export const FetchTokenData = async () => {
   try {
     const { markets } = await request(compound_url, marketsQuery);
     const tokens: TokenDataInterface = {};
@@ -53,4 +63,3 @@ const FetchTokenData = async () => {
     console.log(err);
   }
 };
-export default FetchTokenData;
