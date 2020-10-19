@@ -11,6 +11,7 @@ import LoanTermSelection from "./LoanTermSelection";
 import CollateralPercentSelection from "./CollateralPercentSelection";
 import LoanSizeSelection from "./LoanSizeSelection";
 import WarningModal from "../UI/WarningModal";
+import Bloom from "../Bloom/Bloom";
 
 const FirstStageTable = () => {
   const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
@@ -131,5 +132,9 @@ const ConnectBloomButton = () => {
 };
 
 const BloomQR = () => {
-  return <div className="p-4 border-thin m-4">BloomQR</div>;
+  return (
+    <div className="mb-4">
+      <Bloom />
+    </div>
+  );
 };
