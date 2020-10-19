@@ -11,7 +11,7 @@ import LoanTermSelection from "./LoanTermSelection";
 import CollateralPercentSelection from "./CollateralPercentSelection";
 import LoanSizeSelection from "./LoanSizeSelection";
 import WarningModal from "../UI/WarningModal";
-import Bloom from "../Bloom/Bloom";
+import Coda from "../Coda/Coda";
 
 const FirstStageTable = () => {
   const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
@@ -57,8 +57,8 @@ const FirstStageTable = () => {
           <ConnectPlaidButton />
         </TableRow>
         <BR />
-        <TableRow title={`Bloom`}>
-          <ConnectBloomButton />
+        <TableRow title={`Coda`}>
+          <ConnectCodaButton />
         </TableRow>
         <BR />
         <TableRow title="Collateral percent">
@@ -93,48 +93,52 @@ const ConnectPlaidButton = () => {
   );
 };
 
-const ConnectBloomButton = () => {
+const ConnectCodaButton = () => {
   const { state } = useContext(AppContext);
-  const [bloomConnected, setBloomConnected] = useState(false);
-  const [bloomModal, setBloomModal] = useState(false);
+  const [codaConnected, setCodaConnected] = useState(false);
+  const [codaModal, setCodaModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const address = state?.web3State?.address;
   const onClickAction = async () => {
     setLoading(true);
-    setBloomModal(true);
+    setCodaModal(true);
     setLoading(false);
   };
 
   return (
     <>
-      {bloomModal && (
+      {codaModal && (
         <WarningModal
-          show={bloomModal}
-          proceed={null as null}
+          show={codaModal}
+          proceed={() => {}}
           cancel={() => {
-            setBloomModal(false);
+            setCodaModal(false);
           }}
-          text="Scan the QR code below with the Bloom app to get 10% off your interest rate. By connecting, you are submitting your email and ID document to Teller."
-          header="Connect your BloomID"
-          content={<BloomQR />}
+          text="Upload your credit score + signature json file provided from the Coda app to get your interest rate reduced."
+          header="Upload Coda file"
+          content={<CodaForm />}
         />
       )}
       <CustomSubmitButton
         disabled={!address}
         loading={loading}
         onClickAction={onClickAction}
-        approved={!!bloomConnected}
+        approved={!!codaConnected}
         text="Connect"
       />
     </>
   );
 };
 
-const BloomQR = () => {
+const CodaForm = () => {
   return (
-    <div className="mb-4">
-      <Bloom />
+    <div className="m-4">
+      <div className="px-2 py-2 font-medium border-thin">Upload Coda JSON</div>
+      <div>
+        Don’t have the Coda json file?{" "}
+        <span className="underlined pointer">Download the Coda app.</span>
+      </div>
     </div>
   );
 };
