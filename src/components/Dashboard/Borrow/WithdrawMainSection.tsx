@@ -189,7 +189,7 @@ const WithdrawMainSection = () => {
                 <div className="table border-thin mb-4 mt-3">
                   <TableRow title="Liquidation %">
                     <div className="font-medium">
-                      {selectedLoan.terms.collateralRatio}%
+                      {selectedLoan.terms.collateralRatio/100}%
                     </div>
                   </TableRow>
                   <BR />
@@ -201,7 +201,7 @@ const WithdrawMainSection = () => {
                   <BR />
                   <TableRow title="Collateral amount">
                     <div className="font-medium">
-                      {selectedLoan.collateralAmount}{" "}
+                      {(selectedLoan.collateralAmount/1e18).toFixed(2)}{" "}
                       {selectedLoan.collateralToken}
                     </div>
                   </TableRow>
@@ -259,7 +259,7 @@ const WithdrawMainSection = () => {
                         title={loan.status === "Closed" ? "Repaid" : "Open"}
                       >
                         <CustomSubmenuLink
-                          title={`${loan.collateralAmount} ${loan.collateralToken}`}
+                          title={`${(loan.collateralAmount/1e18).toFixed(2)} ${loan.collateralToken}`}
                           onClickAction={() => {
                             setSelectedLoan(loan);
                           }}

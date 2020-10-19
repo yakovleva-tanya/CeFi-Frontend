@@ -14,7 +14,7 @@ import {
 } from "./types";
 import { _nonce } from '../util/nonce';
 
-const DAYS = 86400; // Seconds per day
+export const DAYS = 86400; // Seconds per day
 
 export const LendingApplicationMap = (
   borrowRequest: BorrowRequest,

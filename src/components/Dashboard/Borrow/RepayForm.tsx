@@ -56,7 +56,7 @@ const RepayForm = () => {
                     } remaining`}
                   >
                     <CustomSubmenuLink
-                      title={`${loan.amountBorrowed} ${loan.token}`}
+                      title={`${loan.amountBorrowed/1e18} ${loan.token}`}
                       onClickAction={() => {
                         setSelectedLoan(loan);
                       }}
