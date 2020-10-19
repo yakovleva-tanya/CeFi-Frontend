@@ -8,25 +8,28 @@ import {
   AppContext,
   AppContextState,
   TellerTokens,
-  BaseTokens
+  BaseTokens,
 } from "../../context/app";
-import { approveToken, depositCollateral } from "../../models/LoansInterfaceContract";
+import {
+  approveToken,
+  depositCollateral,
+} from "../../models/LoansInterfaceContract";
 
 const ThirdStageTable = () => {
   const { borrowRequest, loanTerms } = useContext(BorrowPageContext);
-  const { loanTerm, loanType, lendWith } = borrowRequest;
-  const { interestRate, collateralRatio, maxLoanAmount } = loanTerms;
+  const { loanTerm, loanType, lendWith, collateralWith } = borrowRequest;
+  const { interestRate, collateralRatio, maxLoanAmount } = loanTerms[0];
   return (
     <div>
       <div className="table border-thin my-5">
         <TableRow title="Interest rate">
-          <div className="font-medium"> {interestRate} % </div>
+          <div className="font-medium"> {Number(interestRate)/100} % </div>
         </TableRow>
         <BR />
-        {collateralRatio > 0 && (
+        {Number(collateralRatio) > 0 && (
           <div>
             <TableRow title="Collateral ratio">
-              <div className="font-medium"> {collateralRatio} % </div>
+              <div className="font-medium"> {Number(collateralRatio)/10000} % </div>
             </TableRow>
             <BR />
           </div>
@@ -34,7 +37,7 @@ const ThirdStageTable = () => {
         <TableRow title="Loan size">
           <div className="font-medium">
             {" "}
-            {maxLoanAmount} {lendWith}{" "}
+            {Number(maxLoanAmount)/1e18} {lendWith}{" "}
           </div>
         </TableRow>
         <BR />
@@ -50,7 +53,7 @@ const ThirdStageTable = () => {
         </TableRow>
       </div>
       <div className="table border-thin my-4">
-        {collateralRatio > 0 && (
+        {Number(collateralRatio) > 0 && (
           <>
             <TableRow title="Collateral amount">
               <CollateralAmountSelection />
@@ -58,10 +61,14 @@ const ThirdStageTable = () => {
             <BR />
           </>
         )}
-        <TableRow title="Approve collateral">
-          <CollateralApproveButton />
-        </TableRow>
-        <BR />
+        {collateralWith !== "ETH" && (
+          <>
+            <TableRow title="Approve collateral">
+              <CollateralApproveButton />
+            </TableRow>
+            <BR />
+          </>
+        )}
         <TableRow title="Deposit collateral">
           <CollateralTransferButton />
         </TableRow>
@@ -82,13 +89,13 @@ const CollateralApproveButton = () => {
     <CustomSubmitButton
       onClickAction={async () => {
         const { web3State } = state;
-        const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-          TellerTokens.tDAI
-        ];
+        const { loansInstance } = state.teller
+          ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+          : null;
         try {
           setApproveLoading(true);
           const borrower = state.web3State.address;
-          const amountToBorrow = loanTerms.maxLoanAmount;
+          const amountToBorrow = Number(loanTerms[0].maxLoanAmount);
           if (process.env.INTEGRATIONS_DISABLED === "false") {
             const response = await approveToken(
               loansInstance,
@@ -145,22 +152,26 @@ const CollateralTransferButton = () => {
         }
 
         const { web3State } = state;
-        const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-          TellerTokens.tDAI
-        ];
+        const { loansInstance } = state.teller
+          ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+          : null;
         try {
           const borrower = state.web3State.address;
-          const borrowerLoans = await loansInstance.getBorrowerLoans(borrower);
+          
+          const borrowerLoans = await loansInstance.methods.getBorrowerLoans(borrower).call();
+          
           if (borrowerLoans.length == 0) {
             setTransferLoading(false);
             return false;
           } else {
             const loanId = borrowerLoans[borrowerLoans.length - 1];
             const amountToDeposit = borrowRequest.collateralAmount.toString();
+            console.log({borrowerLoans, loanId, amountToDeposit});
             const response = await depositCollateral(
               loansInstance,
               borrower,
               loanId,
+              borrowRequest.collateralWith,
               amountToDeposit,
               web3State
             );
@@ -187,7 +198,9 @@ const CollateralTransferButton = () => {
           return false;
         }
       }}
-      disabled={!borrowRequest.approved}
+      disabled={
+        borrowRequest.collateralWith === "ETH" ? false : !borrowRequest.approved
+      }
       loading={transferLoading}
       approved={borrowRequest.transferred}
       text="Submit"

@@ -9,10 +9,17 @@ interface CardProps {
   className: string;
   goBack?: null | Function;
   logo?: React.ReactNode;
-  dashboard?:boolean
+  dashboard?: boolean;
 }
 
-const Card = ({ title, children, className, goBack, logo, dashboard=false }: CardProps) => {
+const Card = ({
+  title,
+  children,
+  className,
+  goBack,
+  logo,
+  dashboard = false,
+}: CardProps) => {
   return (
     <div className={`border-thin d-flex flex-column mx-2 my-2 ${className}`}>
       {goBack ? (
@@ -34,7 +41,9 @@ const Card = ({ title, children, className, goBack, logo, dashboard=false }: Car
       <div className="px-2 py-4 d-flex justify-content-center">
         <div
           style={
-            dashboard ? { width: "80%" } : { maxWidth: "344px", width: "100%" }
+            dashboard
+              ? { width: "80%", maxWidth: "344px" }
+              : { maxWidth: "344px", width: "100%" }
           }
           className="m-4"
         >

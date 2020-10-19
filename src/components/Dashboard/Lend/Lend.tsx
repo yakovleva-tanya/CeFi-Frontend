@@ -8,10 +8,14 @@ const Lend = () => {
   const { onPage } = useContext(DashboardContext);
   const subSection = onPage.split("-")[1];
   return (
-    <Card className="main-card text-center" title={subSection} dashboard={true}>
+    <Card
+      className="main-card text-center w-80"
+      title={subSection.charAt(0).toUpperCase() + subSection.slice(1)}
+      dashboard={true}
+    >
       <div className="my-4">
-        {subSection == "Redeem" && <Claim />}
-        {subSection == "Withdraw" && <Withdraw />}
+        {subSection == "redeem" && <Claim />}
+        {subSection == "withdraw" && <Withdraw />}
       </div>
     </Card>
   );

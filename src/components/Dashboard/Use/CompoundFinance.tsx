@@ -28,7 +28,7 @@ const CompoundFinancePage = () => {
   return (
     <Card
       dashboard={true}
-      className="main-card text-center"
+      className="main-card text-center w-80"
       title={selectedLoan ? `ID ${selectedLoan.id}` : "Compound"}
       logo={selectedLoan ? null : <CompoundLogo />}
       goBack={

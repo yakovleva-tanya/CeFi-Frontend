@@ -44,7 +44,7 @@ const Lend = () => {
   const network = state.web3State?.network || "";
   const initialSupplyValues = { amount: "0.00" };
 
-  const balance = state.teller?.userWalletBalance;
+  const balance = state.teller ? state.teller.userWalletBalance : null;
 
   useEffect(() => {
     if (!balance) return;
@@ -60,7 +60,7 @@ const Lend = () => {
       {!processing && !transactionHash && (
         <div className="cards-container">
           <Card
-            className="main-card text-center align-items-center"
+            className="main-card text-center align-items-center w-80"
             title="Supply"
           >
             <div className="my-3">
@@ -97,7 +97,7 @@ const Lend = () => {
                         <SubmitApproveButton />
                       </TableRow>
                     </div>
-                    <FormValidationWarning message={amountExceeded}/>
+                    <FormValidationWarning message={amountExceeded} />
                     {loggedIn ? (
                       <PrimaryButton
                         text="Deposit"

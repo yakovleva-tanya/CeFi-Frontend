@@ -10,12 +10,12 @@ import * as React from "react";
 import { AppContextDefault, AppContextState } from "./../context/app";
 
 import signInContracts from "./../actions/signInContracts";
-import FetchTokenData from "../models/FetchTokenData";
+import { FetchTokenData } from "../models/FetchTokenData";
 
 const setAddress = async (state: AppContextState, updateAppState: Function) => {
   const { web3State } = state;
-  // const accounts = await web3State.web3.eth.getAccounts();
-  // web3State.address = accounts[0];
+  const accounts = await web3State.web3.eth.getAccounts();
+  web3State.address = accounts[0];
   updateAppState((st: AppContextState) => {
     return { ...st, web3State };
   });
@@ -27,20 +27,35 @@ const setBlockNumber = async (
 ) => {
   const { web3State } = state;
   if (web3State.network === "unknown") return;
-  const blockNumber = await web3State.web3.blockNumber;
+  const blockNumber = await web3State.web3.eth.getBlockNumber();
   web3State.blockNumber = blockNumber;
   updateAppState((st: AppContextState) => {
     return { ...st, web3State };
   });
+  const subscription = web3State.web3.eth
+    .subscribe("newBlockHeaders", function (error: any, result: any) {
+      if (!error) {
+        return;
+      }
+      console.error(error);
+    })
+    .on("connected", function (subscriptionId: any) {})
+    .on("data", function (blockHeader: any) {
+      web3State.blockNumber = blockHeader.number;
+      updateAppState((st: AppContextState) => {
+        return { ...st, web3State };
+      });
+    })
+    .on("error", console.error);
 };
 
 const mergeSignInContracts = async (
   state: AppContextState,
   updateAppState: Function
 ) => {
-  const networkId = await state.web3State.web3.network;
+  const networkId = await state.web3State.web3.eth.getChainId();
 
-  if (Number(networkId) !== 1 && Number(networkId) !== 3) {
+  if (networkId !== 1 && networkId !== 4) {
     const teller = AppContextDefault.state.teller;
     updateAppState((st: AppContextState) => ({
       ...st,
@@ -81,34 +96,38 @@ const getTokenData = async (
     console.log(err);
   }
 };
+
 const setUpdates = async (state: AppContextState, updateAppState: Function) => {
   await setAddress(state, updateAppState);
   await mergeSignInContracts(state, updateAppState);
   await setBlockNumber(state, updateAppState);
 };
 
-const getCircularReplacer = () => {
-  const seen = new WeakSet();
-  return (key: any, value: any) => {
-    if (typeof value === "object" && value !== null) {
-      if (seen.has(value)) {
-        return;
-      }
-      seen.add(value);
-    }
-    return value;
-  };
-};
+// const getCircularReplacer = () => {
+//   const seen = new WeakSet();
+//   return (key: any, value: any) => {
+//     if (typeof value === "object" && value !== null) {
+//       if (seen.has(value)) {
+//         return;
+//       }
+//       seen.add(value);
+//     }
+//     return value;
+//   };
+// };
 
 /**
  * Implements the app context hook.
  * @function useAppContext
  * @memberof AppContextHook
  */
-export default function useAppContext() {
-  const stored = JSON.parse(localStorage.getItem('storedState'));
-  const [state, updateAppState] = React.useState(stored || AppContextDefault.state);
 
+export default function useAppContext() {
+  // const stored = JSON.parse(localStorage.getItem("storedState"));
+  // const [state, updateAppState] = React.useState(
+  //   stored || AppContextDefault.state
+  // );
+  const [state, updateAppState] = React.useState(AppContextDefault.state);
   React.useEffect(() => {
     if (!state.web3State.network) return;
     if (!state.web3State.web3) return;
@@ -119,7 +138,10 @@ export default function useAppContext() {
     getTokenData(state, updateAppState);
   }, []);
 
-  localStorage.setItem("storedState", JSON.stringify(state, getCircularReplacer()));
+  // localStorage.setItem(
+  //   "storedState",
+  //   JSON.stringify(state, getCircularReplacer())
+  // );
 
   return [state, updateAppState];
 }

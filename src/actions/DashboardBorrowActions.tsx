@@ -8,10 +8,7 @@ import {
   BaseTokens,
   Web3State
 } from "../context/app";
-import {
-  DashboardContext,
-  BorrowRepayContext,
-} from "../context/dashboardContext";
+
 import { loanRepayment, depositCollateral, withdrawCollateral } from "../models/LoansInterfaceContract";
 
 /** Methods */
@@ -36,6 +33,7 @@ export const repayLoan = async (
 export const loanDeposit = async (
   loansInstance: any,
   id: string,
+  collateralWith: BaseTokens,
   amountToDeposit: number,
   web3State: Web3State
 ) => {
@@ -44,6 +42,7 @@ export const loanDeposit = async (
     loansInstance,
     borrower,
     Number(id),
+    collateralWith,
     amountToDeposit.toString(),
     web3State
   );

@@ -1,3 +1,5 @@
+import { LendingApplication } from "../models/ArrowheadCRA";
+import { PBorrow } from "../services/borrow";
 import { AvailableLendingTokens, BaseTokens } from "./app";
 
 export interface LoanInterface {
@@ -22,7 +24,7 @@ export interface LoanInterface {
   currentCollateralPercent?: number;
   collateralAmount?: number;
   loanType?: string;
-  compound?: any
+  compound?: any;
 }
 
 export interface CollateralWithdrawInterface {
@@ -78,13 +80,33 @@ export interface BorrowRequest {
   collateralAmount: null | number;
   approved: boolean;
   transferred: boolean;
+  requestTime: number;
+  requestNonce: number;
+  requestHash: any;
+  borrowerAddress: string;
+}
+
+export interface Signature {
+  signerNonce: number;
+  r: Buffer;
+  s: Buffer;
+  v: number;
 }
 
 export interface LoanTerms {
-  interestRate: number;
-  collateralRatio: number;
-  maxLoanAmount: number;
+  collateralRatio: string;
+  consensusAddress: string;
+  responseTime: string;
+  interestRate: string;
+  requestHash: string;
+  minCollateralNeeded: string;
+  maxLoanAmount: string;
+  signature: string;
+  signer: string;
+  signerNonce: string;
+  chainId: string;
 }
+
 
 export interface BorrowProcessInterface {
   success: boolean;
@@ -104,10 +126,13 @@ export interface BorrowPageContextInterface {
   setSubmenu: Function;
   borrowRequest: BorrowRequest;
   setBorrowRequest: Function;
-  loanTerms: LoanTerms;
+  loanTerms: LoanTerms[];
   setLoanTerms: Function;
+  lendingApp: PBorrow;
+  setLendingApp: Function;
   borrowProcessState: null | BorrowProcessInterface;
 }
+
 export interface LendClaimStateInterface {
   success: null | boolean;
   setSuccess: Function;
@@ -183,7 +208,28 @@ export interface UseCompoundStateInterface {
   successMessage: string;
   setSuccessMessage: Function;
 }
-export interface UniswapStateInterface {}
+
+interface UniswapValue {
+  amount: string;
+  currency: string;
+}
+export interface UniswapStateInterface {
+  selectedLoan: null | LoanInterface;
+  setSelectedLoan: Function;
+  success: Boolean | null;
+  setSuccess: Function;
+  trade: any;
+  setTrade: Function;
+  options: Array<string>;
+  tokenSelectionDropdown: any;
+  setTokenSelectionDropdown: Function;
+  isExactIn: Boolean;
+  setIsExactIn: Function;
+  swapValues: any;
+  setSwapValues: Function;
+  values: any;
+  setValues: Function;
+}
 
 export interface TokenInterface {
   supplyAPY: string;
@@ -193,13 +239,13 @@ export interface TokenDataInterface {
   [key: string]: TokenInterface;
 }
 export enum PageTypes {
-  "Lend-Redeem" = "Lend-Redeem",
-  "Lend-Withdraw" = "Lend-Withdraw",
-  "Borrow-Repay" = "Borrow-Repay",
-  "Borrow-Deposit" = "Borrow-Deposit",
-  "Borrow-Withdraw" = "Borrow-Withdraw",
-  "Spend-Compound" = "Spend-Compound",
-  "Spend-Uniswap" = "Spend-Uniswap",
+  "deposit-redeem" = "deposit-redeem",
+  "deposit-withdraw" = "deposit-withdraw",
+  "borrow-repay" = "borrow-repay",
+  "borrow-deposit" = "borrow-deposit",
+  "borrow-withdraw" = "borrow-withdraw",
+  "spend-compound" = "spend-Compound",
+  "spend-uniswap" = "spend-uniswap",
 }
 
 export enum StatusTypes {

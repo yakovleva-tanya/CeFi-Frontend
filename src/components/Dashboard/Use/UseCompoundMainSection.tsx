@@ -55,9 +55,11 @@ const UseCompoundMainSection = () => {
     setSupplying(false);
     setSuccess(res);
   };
-  const activeLoans = loans.filter((loan: LoanInterface) => {
-    return loan.status !== "Closed";
-  });
+  const activeLoans = loans
+    ? loans.filter((loan: LoanInterface) => {
+        return loan.status !== "Closed";
+      })
+    : null;
 
   useEffect(() => {
     if (!selectedLoan) return;
@@ -170,7 +172,7 @@ const UseCompoundMainSection = () => {
             {maxWithdrawWarning && (
               <FormValidationWarning message={maxWithdrawWarning} />
             )}
-            <div className="d-flex flex-row justify-content-between">
+            <div className="d-flex flex-row flex-wrap justify-content-between">
               <div>
                 <PrimaryButton
                   text="Withdraw"
@@ -209,21 +211,22 @@ const UseCompoundMainSection = () => {
             Select the loan you want to withdraw into
           </div>
           <div className="table border-thin mb-4 mt-3">
-            {activeLoans.map((loan: LoanInterface, i: number) => {
-              return (
-                <div key={loan.id}>
-                  <TableRow title={`ID ${loan.id}`}>
-                    <CustomSubmenuLink
-                      title={`${loan.compound.supplied} ${loan.token}`}
-                      onClickAction={() => {
-                        setSelectedLoan(loan);
-                      }}
-                    />
-                  </TableRow>
-                  {activeLoans.length - 1 !== i && <BR />}
-                </div>
-              );
-            })}
+            {activeLoans &&
+              activeLoans.map((loan: LoanInterface, i: number) => {
+                return (
+                  <div key={loan.id}>
+                    <TableRow title={`ID ${loan.id}`}>
+                      <CustomSubmenuLink
+                        title={`${loan.compound.supplied} ${loan.token}`}
+                        onClickAction={() => {
+                          setSelectedLoan(loan);
+                        }}
+                      />
+                    </TableRow>
+                    {activeLoans.length - 1 !== i && <BR />}
+                  </div>
+                );
+              })}
           </div>
         </div>
       )}

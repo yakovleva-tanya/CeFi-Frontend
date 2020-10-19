@@ -24,7 +24,7 @@ const WithdrawPage = () => {
   return (
     <div>
       <Card
-        className="text-center main-card"
+        className="text-center main-card w-80"
         title={selectedLoan ? `ID ${selectedLoan.id}` : "Withdraw Collateral"}
         goBack={selectedLoan ? goBack : null}
         dashboard={true}

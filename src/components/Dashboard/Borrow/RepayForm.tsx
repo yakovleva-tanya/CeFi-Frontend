@@ -11,22 +11,36 @@ import { LoanInterface } from "../../../context/types";
 const RepayForm = () => {
   const { loans } = useContext(DashboardContext);
 
+  if (!loans) {
+    return (
+      <div>
+        <p>No Loans!</p>
+      </div>
+    )
+  }
+
   const currentTime = Date.now();
 
-  const overdueLoans = loans.filter((loan: LoanInterface) => {
-    return loan.statusName === "Overdue";
-  });
-  const outstandingLoans = loans.filter((loan: LoanInterface) => {
-    return loan.statusName === "Outstanding";
-  });
-  const repaidLoans = loans.filter((loan: LoanInterface) => {
-    return loan.statusName === "Repaid";
-  });
+  const overdueLoans = loans
+    ? loans.filter((loan: LoanInterface) => {
+        return loan.statusName === "Overdue";
+      })
+    : null;
+  const outstandingLoans = loans
+    ? loans.filter((loan: LoanInterface) => {
+        return loan.statusName === "Outstanding";
+      })
+    : null;
+  const repaidLoans = loans
+    ? loans.filter((loan: LoanInterface) => {
+        return loan.statusName === "Repaid";
+      })
+    : null;
   const { setSelectedLoan } = useContext(BorrowRepayContext);
 
   return (
     <div>
-      {outstandingLoans.length > 0 && (
+      {outstandingLoans && outstandingLoans.length > 0 && (
         <div className="mb-4">
           <div className="text-left">Outstanding loans</div>
           <div className="table border-thin mb-4 mt-3">
@@ -55,7 +69,7 @@ const RepayForm = () => {
           </div>
         </div>
       )}
-      {overdueLoans.length > 0 && (
+      {overdueLoans && overdueLoans.length > 0 && (
         <div className="mb-4">
           <div className="text-left">Overdue loans</div>
           <div className="table border-thin mb-4 mt-3">
@@ -84,7 +98,7 @@ const RepayForm = () => {
           </div>
         </div>
       )}
-      {repaidLoans.length > 0 && (
+      {repaidLoans && repaidLoans.length > 0 && (
         <div className="mb-4">
           <div className="text-left">Closed loans</div>
           <div className="table border-thin mb-4 mt-3">
