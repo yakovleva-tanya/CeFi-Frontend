@@ -61,9 +61,9 @@ const BorrowForm = () => {
   const requestLoan = async () => {
     const { dataProviderResponse } = state;
     //TODO: this should update based on the selected ATM type.
-    const { lendingPool } = state.teller.contracts[BaseTokens.ETH][
-      TellerTokens.tDAI
-    ];
+    const { lendingPool } = state.teller
+      ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+      : null;
     try {
       const tokenDecimals = await getLendingPoolDecimals(
         lendingPool,
@@ -114,11 +114,7 @@ const BorrowForm = () => {
     ];
 
     try {
-      const collateralNeeded = await getCollateralAmount(
-        lendingApp.requestedLoanSize,
-        loanTerms[0].collateralRatio,
-        lendingApp.collateralAsset
-      );
+      const collateralNeeded = await getCollateralAmount(lendingApp.requestedLoanSize, loanTerms[0].collateralRatio, lendingApp.collateralAsset);
 
       await submitSignaturesToChainForBorrowing(
         lendingApp as PBorrow,
@@ -153,9 +149,9 @@ const BorrowForm = () => {
 
   const onRequestLoan = async () => {
     setRequesting(true);
-    const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-      TellerTokens.tDAI
-    ];
+    const { loansInstance } = state.teller
+      ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+      : null;
     try {
       const borrower = state.web3State.address;
       const borrowerLoans = await loansInstance.methods

@@ -83,20 +83,20 @@ export const NavLoginButton = () => {
   const loggedIn = state.web3State?.address || "";
   const { loginButtonTitle } = copy.CTAs;
   return (
-    <span className="font-medium">
+    <div className="font-medium login-button menu-button">
       {!loggedIn ? (
-        <a
-          className="menu-button login-button text-lg py-3 px-4 mr-0"
+        <div
+          className="text-lg my-3 my-md-3 mx-4 mx-md-4"
           onClick={() => web3FromProvider(updateAppState)}
         >
           {loginButtonTitle}
-        </a>
+        </div>
       ) : (
-        <div className="menu-button login-button text-lg py-3 px-4 mr-0">
+        <div className="text-lg my-2 my-md-3 mx-3 mx-md-4">
           {truncate.apply(loggedIn, [6])}
         </div>
       )}
-    </span>
+    </div>
   );
 };
 

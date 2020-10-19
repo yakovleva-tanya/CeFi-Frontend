@@ -153,7 +153,6 @@ async function getWalletBalance(
   );
   const snxBalanceStr = await snx.methods.balanceOf(primaryAccount).call();
   const SNX = parseFloat(snxBalanceStr) / globalDecimals;
-  //console.log({ SNX });
 
   //Get MKR balance
   const mkr = new web3State.web3.eth.Contract(
@@ -163,7 +162,6 @@ async function getWalletBalance(
   );
   const mkrBalanceStr = await mkr.methods.balanceOf(primaryAccount).call();
   const MKR = parseFloat(mkrBalanceStr) / globalDecimals;
-  //console.log({ MKR });
 
   //Get YFI balance
   const yfi = new web3State.web3.eth.Contract(

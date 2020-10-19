@@ -43,13 +43,13 @@ const BorrowMetrics = () => {
   } = copy.pages.borrow.metrics;
 
   return (
-    <div className="d-flex flex-column">
-      <Card className="metrics-card" title={header}>
+    <div className="d-flex flex-column flex-wrap ">
+      <Card className="metrics-card mx-2 w-80 " title={header}>
         <Metric title={assetPriceTitle} value={assetPrice} />
         <Metric title={walletBalanceTitle} value={walletBalance} />
         <Metric title={collateralAvailableTitle} value={collateralAvailable} />
       </Card>
-      <Card className="metrics-card my-1" title="Pro tip">
+      <Card className="metrics-card mx-2 my-1 w-80" title="Pro tip">
         <ProTip />
       </Card>
     </div>

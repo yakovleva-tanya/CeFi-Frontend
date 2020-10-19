@@ -33,9 +33,9 @@ const RepaySelectedLoan = () => {
   } = selectedLoan;
   const { state } = useContext(AppContext);
   const { web3State } = state;
-  const { loansInstance } = state.teller.contracts[BaseTokens.ETH][
-    TellerTokens.tDAI
-  ];
+  const { loansInstance } = state.teller
+    ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+    : null;
 
   const onRepayLoan = async (id: string, totalOwedAmount: number) => {
     setRepaying(true);

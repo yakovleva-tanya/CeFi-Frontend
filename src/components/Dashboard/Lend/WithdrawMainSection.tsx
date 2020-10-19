@@ -32,7 +32,7 @@ const WithdrawMainSection = () => {
   const { state, updateAppState } = useContext(AppContext);
   const tokenData = state.tokenData;
   const primaryAddress = state.web3State?.address;
-  const contracts = state.teller?.contracts || null;
+  const contracts = state.teller ? state.teller.contracts : null;
   const [selectedAmount, setSelectedAmount] = useState("0.00");
 
   const convertFromUSD = (value: number) => {

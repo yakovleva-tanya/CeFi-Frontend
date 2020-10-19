@@ -28,10 +28,9 @@ const SubmitApproveButton = () => {
   const approve = async () => {
     const tellerTokens = mapLendingTokensToTellerTokens(selectedCurrency);
     const primaryAddress = state.web3State.address;
-    console.log("teller:", state.teller);
-    const { lendingPool } = state.teller.contracts[BaseTokens.ETH][
-      tellerTokens
-    ];
+    const { lendingPool } = state.teller
+      ? state.teller.contracts[BaseTokens.ETH][tellerTokens]
+      : null;
     // TODO: this should update based on the selected ATM type.
     try {
       await approveDai(

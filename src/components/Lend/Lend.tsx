@@ -45,7 +45,6 @@ const Lend = () => {
   const network = state.web3State?.network || "";
   const initialSupplyValues = { amount: "0.00" };
 
-  const balance = state.teller?.userWalletBalance;
   const pageCopy = copy.pages.deposit.main;
   const {
     depositTitle,
@@ -54,6 +53,8 @@ const Lend = () => {
     amountExceededMessage,
   } = pageCopy.form;
   const { header, successMessage, loadingMessage } = pageCopy;
+  const balance = state.teller ? state.teller.userWalletBalance : null;
+
   useEffect(() => {
     if (!balance) return;
     if (selectedAmount > balance[selectedCurrency]) {
@@ -68,7 +69,7 @@ const Lend = () => {
       {!processing && !transactionHash && (
         <div className="cards-container">
           <Card
-            className="main-card text-center align-items-center"
+            className="main-card text-center align-items-center w-80"
             title={header}
           >
             <div className="my-3">

@@ -51,7 +51,7 @@ const LendMetrics = () => {
   } = copy.pages.deposit.metrics;
 
   return (
-    <Card className="metrics-card" title="Summary">
+    <Card className="metrics-card w-80" title="Summary">
       <Metric title={depositAPYTitle} value={supplyAPY} />
       <Metric title={assetPriceTitle} value={price} />
       <Metric title={walletBalanceTitle} value={walletBalance} />
