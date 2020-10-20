@@ -1,46 +1,34 @@
 import React, { useContext } from "react";
 import { BorrowPageContext } from "../../context/borrowContext";
+import copy from "../../copy.json";
 
 const ProTip = () => {
   const { submenu, stage, borrowRequest } = useContext(BorrowPageContext);
   const isSecured = Boolean(borrowRequest.loanType === "Secured");
   const zeroCollateral = Boolean(borrowRequest.collateralPercent === 0);
+  const proTips = copy.pages.borrow.main.form.proTips;
 
   return (
     <div className="text-lg">
       {stage <= 1 && (
         <div>
-          {(submenu === null || submenu === "LoanSize") &&
-            "Connect to your bank account to reduce collateral ratios."}
-          {submenu === "LoanTerm" &&
-            "Set your duration of loan term in accordance to your planned use of the loan."}
-          {submenu === "CollateralPercent" &&
-            "Higher collateral ratios can reduce your interest rate."}
+          {(submenu === null || submenu === "LoanSize") && proTips[1]}
+          {submenu === "LoanTerm" && proTips[2]}
+          {submenu === "CollateralPercent" && proTips[3]}
         </div>
       )}
       {stage === 2 && (
         <div>
-          {!isSecured &&
-            zeroCollateral &&
-            "Interest rates are calculated as a result of your credit history."}
-          {!isSecured &&
-            !zeroCollateral &&
-            "Your collateral ratio is set to the minimum amount of collateral needed."}
-          {isSecured &&
-            !zeroCollateral &&
-            "Accept terms to approve a transaction spend."}
+          {!isSecured && zeroCollateral && proTips[4]}
+          {!isSecured && !zeroCollateral && proTips[5]}
+          {isSecured && !zeroCollateral && proTips[6]}
         </div>
       )}
       {stage === 3 && (
         <div>
-          {!submenu &&
-            zeroCollateral &&
-            "Once a loan is requested you will need to resubmit terms to make changes. "}
-          {!submenu &&
-            !zeroCollateral &&
-            "You can increase your collateral amount to reduce liquidation risk. "}
-          {submenu === "CollateralAmount" &&
-            "Increase your collateral amount to reduce liquidation risk."}
+          {!submenu && zeroCollateral && proTips[7]}
+          {!submenu && !zeroCollateral && proTips[8]}
+          {submenu === "CollateralAmount" && proTips[9]}
         </div>
       )}
     </div>

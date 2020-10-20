@@ -17,6 +17,7 @@ import {
   withdraw,
   WithdrawRequest,
 } from "../../../actions/DashboardLendActions";
+import copy from "../../../copy.json";
 
 const WithdrawMainSection = () => {
   const {
@@ -107,11 +108,10 @@ const WithdrawMainSection = () => {
     }
   }, [selectedCurrency, selectedAmount]);
 
+  const { description, form, CTA } = copy.pages.dashboard["deposit-withdraw"];
   return (
     <div className="my-2">
-      <div className="text-gray mb-2">
-        Select an asset to withdraw your deposit to date
-      </div>
+      <div className="text-gray mb-2">{description}</div>
       <FormValidationWarning message={warningMessage} />
       <CustomInput
         onChangeFunction={(e: any) => {
@@ -147,7 +147,7 @@ const WithdrawMainSection = () => {
         Max
       </div>
       <div className="table border-thin my-4">
-        <TableRow title="Withdraw with">
+        <TableRow title={form.withdrawWithTitle}>
           <CustomDropdown
             selected={selectedCurrency}
             options={[AvailableLendingTokens.DAI, AvailableLendingTokens.USDC]}
@@ -156,7 +156,7 @@ const WithdrawMainSection = () => {
         </TableRow>
       </div>
       <PrimaryButton
-        text="Withdraw"
+        text={CTA}
         onClick={() => {
           process.env.INTEGRATIONS_DISABLED === "true"
             ? onSubmitMock()

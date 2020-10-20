@@ -19,6 +19,7 @@ import { LoanInterface } from "../../../context/types";
 import ViewContractLink from "../ViewContractLink";
 import { AppContext, AppContextState } from "../../../context/app";
 import FormValidationWarning from "../../UI/FormValidationWarning";
+import copy from "../../../copy.json";
 
 const UseCompoundMainSection = () => {
   const { state, updateAppState } = useContext(AppContext);
@@ -83,6 +84,8 @@ const UseCompoundMainSection = () => {
       setMaxWithdrawWarning("");
     }
   }, [amount]);
+
+  const { description } = copy.pages.dashboard["spend-compound"];
 
   return (
     <div className="my-4">
@@ -207,9 +210,7 @@ const UseCompoundMainSection = () => {
         ))}
       {!selectedLoan && (
         <div className="my-2">
-          <div className="text-gray mb-4">
-            Select the loan you want to withdraw into
-          </div>
+          <div className="text-gray mb-4">{description}</div>
           <div className="table border-thin mb-4 mt-3">
             {activeLoans &&
               activeLoans.map((loan: LoanInterface, i: number) => {

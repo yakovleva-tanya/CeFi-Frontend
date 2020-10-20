@@ -25,6 +25,7 @@ import "./lend.scss";
 import ProcessingScreen from "../ProcessingScreen/ProcessingScreen";
 import { getEtherscanLink } from "../../actions/HelperFunctions";
 import FormValidationWarning from "../UI/FormValidationWarning";
+import copy from "../../copy.json";
 
 const supplyFormValidation = () => {
   const errors = {};
@@ -44,12 +45,20 @@ const Lend = () => {
   const network = state.web3State?.network || "";
   const initialSupplyValues = { amount: "0.00" };
 
+  const pageCopy = copy.pages.deposit.main;
+  const {
+    depositTitle,
+    approveTitle,
+    CTA,
+    amountExceededMessage,
+  } = pageCopy.form;
+  const { header, successMessage, loadingMessage } = pageCopy;
   const balance = state.teller ? state.teller.userWalletBalance : null;
 
   useEffect(() => {
     if (!balance) return;
     if (selectedAmount > balance[selectedCurrency]) {
-      setAmountExceeded("You have exceeded your max wallet balance.");
+      setAmountExceeded(amountExceededMessage);
     } else {
       setAmountExceeded("");
     }
@@ -61,7 +70,7 @@ const Lend = () => {
         <div className="cards-container">
           <Card
             className="main-card text-center align-items-center w-80"
-            title="Supply"
+            title={header}
           >
             <div className="my-3">
               <Formik
@@ -89,18 +98,18 @@ const Lend = () => {
                       handleChange={handleChange}
                     />
                     <div className="table border-thin mt-5 mb-4">
-                      <TableRow title="Deposit">
+                      <TableRow title={depositTitle}>
                         <CurrencyDropdown />
                       </TableRow>
                       <BR />
-                      <TableRow title="Approve">
+                      <TableRow title={approveTitle}>
                         <SubmitApproveButton />
                       </TableRow>
                     </div>
                     <FormValidationWarning message={amountExceeded} />
                     {loggedIn ? (
                       <PrimaryButton
-                        text="Deposit"
+                        text={CTA}
                         type="submit"
                         disabled={isSubmitting || !tokensApproved}
                       />
@@ -118,7 +127,7 @@ const Lend = () => {
       {processing && (
         <ProcessingScreen
           link={getEtherscanLink(processing, network)}
-          title="Almost there"
+          title={loadingMessage.title}
         />
       )}
       {transactionHash && (
@@ -126,7 +135,7 @@ const Lend = () => {
           onButtonClick={() => {
             setTransactionHash("");
           }}
-          title="Deposit accepted"
+          title={successMessage.title}
           message={
             <div>
               Go to dashboard or{" "}

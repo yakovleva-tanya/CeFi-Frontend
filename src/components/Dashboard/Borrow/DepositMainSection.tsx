@@ -23,6 +23,7 @@ import {
 import { calculateCollateralPercent } from "../../../actions/HelperFunctions";
 import eth from "../../../../dist/assets/eth-logo.svg";
 import link from "../../../../dist/assets/link-logo.png";
+import copy from "../../../copy.json";
 import { BorrowPageContext } from "../../../context/borrowContext";
 
 const DepositMainSection = () => {
@@ -72,6 +73,7 @@ const DepositMainSection = () => {
     setDepositing(false);
     setSuccess(true);
   };
+  const { description } = copy.pages.dashboard["borrow-deposit"];
 
   return (
     <div className="my-4">
@@ -184,9 +186,7 @@ const DepositMainSection = () => {
 
       {!selectedLoan && (
         <div className="my-2">
-          <div className="text-gray mb-4">
-            Deposit additional collateral for an outstanding loan
-          </div>
+          <div className="text-gray mb-4">{description}</div>
           <div className="table mb-4">
             {currentLoans &&
               currentLoans
