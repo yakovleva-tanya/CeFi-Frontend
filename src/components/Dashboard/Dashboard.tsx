@@ -12,7 +12,13 @@ import { AppContext } from "../../context/app";
 import LoginButton from "../LoginButton/LoginButton";
 import { LoanInterface } from "../../context/types";
 import { calculateCollateralPercent } from "../../actions/HelperFunctions";
-import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
+import copy from "../../copy.json";
 
 const Dashboard = () => {
   const { state } = useContext(AppContext);
@@ -40,7 +46,7 @@ const Dashboard = () => {
     <Container>
       {web3State.address && tokenData ? (
         <div className="cards-container">
-          <DashboardNav className ="d-none d-md-block"/>
+          <DashboardNav className="d-none d-md-block" />
           <Route path={`/dashboard/:onPage`} component={DashboardContent} />
         </div>
       ) : (
