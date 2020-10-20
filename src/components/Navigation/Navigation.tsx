@@ -3,6 +3,7 @@ import "./navigation.scss";
 import teller_logo from "../../../dist/assets/teller_logo.svg";
 import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import { NavLoginButton } from "./../LoginButton/LoginButton";
+import copy from "../../copy.json";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import DashboardNav from "../Dashboard/DashboardNav";
 
@@ -34,6 +35,8 @@ const NavigationLink = ({
 };
 
 const HiddenNavbar = () => {
+  const { deposit, borrow, dashboard } = copy.navigation;
+
   const [expanded, setExpanded] = useState(false);
   return (
     <>
@@ -57,6 +60,7 @@ const HiddenNavbar = () => {
             setExpanded(!expanded);
           }}
         />
+
         <Navbar.Collapse
           id="responsive-navbar-nav"
           className="justify-content-end navbar-links"
@@ -64,28 +68,28 @@ const HiddenNavbar = () => {
           <Nav className="align-items-md-center align-items-start py-md-0 py-4">
             <NavigationLink
               to="lend"
-              name="Deposit"
+              name={deposit}
               onClickAction={() => {
                 setExpanded(false);
               }}
             />
             <NavigationLink
               to="borrow"
-              name="Borrow"
+              name={borrow}
               onClickAction={() => {
                 setExpanded(false);
               }}
             />
             <NavigationLink
               to="dashboard/deposit-redeem"
-              name="Dashboard"
+              name={dashboard}
               className="d-none d-md-inline"
               onClickAction={() => {
                 setExpanded(false);
               }}
             />
             <NavDropdown
-              title="Dashboard"
+              title={dashboard}
               id="collasible-nav-dropdown"
               className={`d-md-none menu-button text-lg py-0 border-none`}
             >

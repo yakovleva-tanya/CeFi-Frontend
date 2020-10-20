@@ -7,6 +7,7 @@ import {
 import Metric from "../UI/Metric";
 import Card from "../UI/Card";
 import { LendPageContext } from "../../context/lendContext";
+import copy from "../../copy.json";
 
 const LendMetrics = () => {
   const { selectedCurrency } = useContext(LendPageContext);
@@ -43,11 +44,17 @@ const LendMetrics = () => {
   //TODO: Get real values
   const ATM = "74.43";
   const COMP = "45.43";
+  const {
+    depositAPYTitle,
+    assetPriceTitle,
+    walletBalanceTitle,
+  } = copy.pages.deposit.metrics;
+
   return (
     <Card className="metrics-card w-80" title="Summary">
-      <Metric title="Deposit APY" value={supplyAPY} />
-      <Metric title="Asset price" value={price} />
-      <Metric title="Wallet balance" value={walletBalance} />
+      <Metric title={depositAPYTitle} value={supplyAPY} />
+      <Metric title={assetPriceTitle} value={price} />
+      <Metric title={walletBalanceTitle} value={walletBalance} />
       {/* <Metric title="Balance supplied" value={suppliedBalance} />
       <Metric title="Earned balance" values={[`${ATM} TLR`, `${COMP} COMP`]} /> */}
     </Card>

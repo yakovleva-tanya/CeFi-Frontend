@@ -9,6 +9,7 @@ import {
 import { approveDai } from "../../models/Contracts";
 import { CustomSubmitButton } from "../UI/CustomSubmitButton";
 import { LendPageContext } from "../../context/lendContext";
+import copy from "../../copy.json";
 
 const SubmitApproveButton = () => {
   const {
@@ -21,6 +22,9 @@ const SubmitApproveButton = () => {
   const { state, updateAppState } = useContext(AppContext);
   const [approving, setApproving] = useState(false);
   const loggedIn = state.web3State?.address || "";
+  const transactionErrorMessage =
+    copy.pages.deposit.main.transactionErrorMessage;
+
   const approve = async () => {
     const tellerTokens = mapLendingTokensToTellerTokens(selectedCurrency);
     const primaryAddress = state.web3State.address;
@@ -42,8 +46,7 @@ const SubmitApproveButton = () => {
       updateAppState((st: AppContextState) => {
         const errorModal = {
           show: true,
-          message:
-            "An error occurred during the lending process. Please try again.",
+          message: { transactionErrorMessage },
           title: "Error",
         };
         return { ...st, errorModal };

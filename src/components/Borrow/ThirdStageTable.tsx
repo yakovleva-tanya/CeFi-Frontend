@@ -14,49 +14,55 @@ import {
   approveToken,
   depositCollateral,
 } from "../../models/LoansInterfaceContract";
+import copy from "../../copy.json";
 
 
 const ThirdStageTable = () => {
   const { borrowRequest, loanTerms } = useContext(BorrowPageContext);
   const { loanTerm, loanType, lendWith, collateralWith } = borrowRequest;
   const { interestRate, collateralRatio, maxLoanAmount } = loanTerms[0];
+  const pageCopy = copy.pages.borrow.main.form.step4;
+
   return (
     <div>
       <div className="table border-thin my-5">
-        <TableRow title="Interest rate">
-          <div className="font-medium"> {Number(interestRate)/100} % </div>
+        <TableRow title={pageCopy.interestRate}>
+          <div className="font-medium"> {Number(interestRate) / 100} % </div>
         </TableRow>
         <BR />
         {Number(collateralRatio) > 0 && (
           <div>
-            <TableRow title="Collateral ratio">
-              <div className="font-medium"> {Number(collateralRatio)/10000} % </div>
+            <TableRow title={pageCopy.collateralRatio}>
+              <div className="font-medium">
+                {" "}
+                {Number(collateralRatio) / 10000} %{" "}
+              </div>
             </TableRow>
             <BR />
           </div>
         )}
-        <TableRow title="Loan size">
+        <TableRow title={pageCopy.loanSize}>
           <div className="font-medium">
             {" "}
-            {Number(maxLoanAmount)/1e18} {lendWith}{" "}
+            {Number(maxLoanAmount) / 1e18} {lendWith}{" "}
           </div>
         </TableRow>
         <BR />
-        <TableRow title="Loan term">
+        <TableRow title={pageCopy.loanTerm}>
           <div className="font-medium">
             {" "}
             {loanTerm} {loanTerm % 10 == 1 ? "day" : "days"}{" "}
           </div>
         </TableRow>
         <BR />
-        <TableRow title="Loan type">
+        <TableRow title={pageCopy.loanType}>
           <div className="font-medium"> {loanType} </div>
         </TableRow>
       </div>
       <div className="table border-thin my-4">
         {Number(collateralRatio) > 0 && (
           <>
-            <TableRow title="Collateral amount">
+            <TableRow title={pageCopy.collateralAmount}>
               <CollateralAmountSelection />
             </TableRow>
             <BR />
@@ -64,13 +70,13 @@ const ThirdStageTable = () => {
         )}
         {collateralWith !== "ETH" && (
           <>
-            <TableRow title="Approve collateral">
+            <TableRow title={pageCopy.approveCollateral.title}>
               <CollateralApproveButton />
             </TableRow>
             <BR />
           </>
         )}
-        <TableRow title="Deposit collateral">
+        <TableRow title={pageCopy.depositCollateral.title}>
           <CollateralTransferButton />
         </TableRow>
       </div>
@@ -86,6 +92,8 @@ const CollateralApproveButton = () => {
     BorrowPageContext
   );
   const { state, updateAppState } = useContext(AppContext);
+  const pageCopy = copy.pages.borrow.main.form.step4;
+
   return (
     <CustomSubmitButton
       onClickAction={async () => {
@@ -118,8 +126,7 @@ const CollateralApproveButton = () => {
           updateAppState((st: AppContextState) => {
             const errorModal = {
               show: true,
-              message:
-                "An error occurred during the loan creation process. Please try again.",
+              message: pageCopy.approveCollateral.errorMessage,
               title: "Error",
             };
             return { ...st, errorModal };
@@ -129,7 +136,7 @@ const CollateralApproveButton = () => {
       disabled={false}
       loading={approveLoading}
       approved={borrowRequest.approved}
-      text="Submit"
+      text={pageCopy.approveCollateral.CTA}
     />
   );
 };
@@ -138,6 +145,8 @@ const CollateralTransferButton = () => {
   const [transferLoading, setTransferLoading] = useState(false);
   const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
   const { state, updateAppState } = useContext(AppContext);
+  const pageCopy = copy.pages.borrow.main.form.step4;
+
   return (
     <CustomSubmitButton
       onClickAction={async () => {
@@ -158,9 +167,11 @@ const CollateralTransferButton = () => {
           : null;
         try {
           const borrower = state.web3State.address;
-          
-          const borrowerLoans = await loansInstance.methods.getBorrowerLoans(borrower).call();
-          
+
+          const borrowerLoans = await loansInstance.methods
+            .getBorrowerLoans(borrower)
+            .call();
+
           if (borrowerLoans.length == 0) {
             setTransferLoading(false);
             return false;
@@ -171,7 +182,7 @@ const CollateralTransferButton = () => {
 
             const amountToDeposit = borrowRequest.collateralAmount.toString();
             console.log({borrowerLoans, loanId, amountToDeposit, collateralToDeposit});
-            
+
             const response = await depositCollateral(
               loansInstance,
               borrower,
@@ -193,8 +204,7 @@ const CollateralTransferButton = () => {
           updateAppState((st: AppContextState) => {
             const errorModal = {
               show: true,
-              message:
-                "An error occurred while taking out the loan. Please try again.",
+              message: pageCopy.depositCollateral.errorMessage,
               title: "Error",
             };
             return { ...st, errorModal };
@@ -208,7 +218,7 @@ const CollateralTransferButton = () => {
       }
       loading={transferLoading}
       approved={borrowRequest.transferred}
-      text="Submit"
+      text={pageCopy.depositCollateral.CTA}
     />
   );
 };
