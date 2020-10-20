@@ -111,7 +111,9 @@ const ConnectCodaButton = () => {
       {codaModal && (
         <WarningModal
           show={codaModal}
-          proceed={() => {}}
+          proceed={() => {
+            setCodaModal(false);
+          }}
           cancel={() => {
             setCodaModal(false);
           }}
@@ -133,11 +135,13 @@ const ConnectCodaButton = () => {
 
 const CodaForm = () => {
   return (
-    <div className="m-4">
-      <div className="px-2 py-2 font-medium border-thin">Upload Coda JSON</div>
-      <div>
+    <div className="m-5">
+      <div className="p-2 font-medium border-thin mb-3 pointer">
+        Upload Coda JSON
+      </div>
+      <div className="text-gray">
         Don’t have the Coda json file?{" "}
-        <span className="underlined pointer">Download the Coda app.</span>
+        <span className="underlined pointer mb-3">Download the Coda app.</span>
       </div>
     </div>
   );
