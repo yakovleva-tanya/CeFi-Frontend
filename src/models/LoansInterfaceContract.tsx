@@ -268,3 +268,22 @@ export async function liquidateLoan(
     .on('error', reject)
   );
 }
+
+/**
+ * Get collateral information of a specific loan
+ * @param {string} loanID of the loan to get info for
+*/
+export async function getCollateralInfo(
+  loansInterface: any,
+  loanID: string
+) {
+  return new Promise((resolve, reject) => loansInterface.methods
+  .getCollateralInfo(
+    Number(loanID)
+  )
+  .call()
+  .on('transactionHash', Notify.hash)
+  .on('receipt', resolve)
+  .on('error', reject)
+  );
+}
