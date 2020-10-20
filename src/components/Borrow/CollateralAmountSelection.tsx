@@ -120,13 +120,22 @@ export function CollateralAmountSelection(): JSX.Element {
   const loanSize = loanTerms[0].maxLoanAmount;
 
   useEffect(() => {
+    if (!state.web3State || !state.web3State.address || !loansInstance) return;
     const borrower = state.web3State.address;
-    const borrowerLoans = loansInstance.methods.getBorrowerLoans(borrower).call();
-    const loanId = borrowerLoans
-    loansInstance.methods.getCollateralInfo(loanId).call().then((response: { neededInCollateralTokens: any; }) => {
-      setBorrowRequest({...borrowRequest, collateralAmount: response.neededInCollateralTokens})
-    })
-  })
+    const borrowerLoans = loansInstance.methods
+      .getBorrowerLoans(borrower)
+      .call();
+    const loanId = borrowerLoans;
+    loansInstance.methods
+      .getCollateralInfo(loanId)
+      .call()
+      .then((response: { neededInCollateralTokens: any }) => {
+        setBorrowRequest({
+          ...borrowRequest,
+          collateralAmount: response.neededInCollateralTokens,
+        });
+      });
+  }, [state.web3State.address, loansInstance]);
 
   useEffect(() => {
     getCollateralAmount(loanSize, loanTerms[0].collateralRatio, collateralWith).then(response => {
@@ -146,5 +155,5 @@ export function CollateralAmountSelection(): JSX.Element {
       }}
     />
   );
-};
+}
 export default CollateralAmountSelection;

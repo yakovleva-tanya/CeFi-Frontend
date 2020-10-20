@@ -34,6 +34,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (!tokenData) return;
     if (!web3State.address) return;
+    if (!web3State.network) return;
     updateLoans();
   }, [web3State.address, web3State.network, tokenData]);
 

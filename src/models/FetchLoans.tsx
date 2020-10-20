@@ -84,7 +84,7 @@ const tokenData = async () => {
 
 
 /**
- * @dev Initiaties a new apollo client 
+ * @dev Initiaties a new apollo client
  * @param {string} url The url of the client
  */
 const makeClient = (url: string) => new ApolloClient({
@@ -114,6 +114,10 @@ const FetchLoans = async (network: string, address: string) => {
     const result = await client.query({
       query,
     });
+    console.log({ result });
+    if (!result || !result.data || !result.data.borrower) {
+      return [];
+    }
     console.log("borrow loans<>", result.data.borrower.loans);
     const res = result.data.borrower.loans;
     // const res = loansTestData;
