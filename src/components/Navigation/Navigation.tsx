@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./navigation.scss";
 import teller_logo from "../../../dist/assets/teller_logo.svg";
-import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import { NavLoginButton } from "./../LoginButton/LoginButton";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import DashboardNav from "../Dashboard/DashboardNav";

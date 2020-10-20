@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { DashboardContext } from "../../context/dashboardContext";
 import BR from "../UI/BR";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   NavLink,

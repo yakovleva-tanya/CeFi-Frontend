@@ -12,7 +12,7 @@ import { AppContext } from "../../context/app";
 import LoginButton from "../LoginButton/LoginButton";
 import { LoanInterface } from "../../context/types";
 import { calculateCollateralPercent } from "../../actions/HelperFunctions";
-import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 
 const Dashboard = () => {
   const { state } = useContext(AppContext);
