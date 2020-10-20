@@ -120,8 +120,8 @@ const BorrowForm = () => {
         lendingApp as PBorrow,
         (loanTerms as unknown) as RArrowheadCRA[],
         lendingApp.requestedLoanSize,
-        // collateralNeeded.toString(),
-        String(0.1 * 1e18),
+        collateralNeeded.toString(),
+        // String(0.1 * 1e18),
         loansInstance
       );
 

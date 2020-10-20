@@ -16,6 +16,7 @@ import {
 } from "../../models/LoansInterfaceContract";
 import copy from "../../copy.json";
 
+
 const ThirdStageTable = () => {
   const { borrowRequest, loanTerms } = useContext(BorrowPageContext);
   const { loanTerm, loanType, lendWith, collateralWith } = borrowRequest;
@@ -176,14 +177,18 @@ const CollateralTransferButton = () => {
             return false;
           } else {
             const loanId = borrowerLoans[borrowerLoans.length - 1];
+
+            const collateralToDeposit = await loansInstance.methods.getCollateralInfo(Number(loanId));
+
             const amountToDeposit = borrowRequest.collateralAmount.toString();
-            console.log({ borrowerLoans, loanId, amountToDeposit });
+            console.log({borrowerLoans, loanId, amountToDeposit, collateralToDeposit});
+
             const response = await depositCollateral(
               loansInstance,
               borrower,
               loanId,
               borrowRequest.collateralWith,
-              amountToDeposit,
+              collateralToDeposit,
               web3State
             );
             console.log(response);

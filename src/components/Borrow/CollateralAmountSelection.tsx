@@ -7,9 +7,10 @@ import FormValidationWarning from "../UI/FormValidationWarning";
 import WarningModal from "../UI/WarningModal";
 import eth from "../../../dist/assets/eth-logo.svg";
 import link from "../../../dist/assets/link-logo.png";
-import { AppContext } from "../../context/app";
 import copy from "../../copy.json";
+import { AppContext, BaseTokens, TellerTokens } from "../../context/app";
 import { getCollateralAmount } from "../../models/FetchTokenData";
+import { getCollateralInfo } from "../../models/LoansInterfaceContract";
 
 export const CollateralAmountSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu, loanTerms } = useContext(
@@ -110,21 +111,40 @@ export function CollateralAmountSelection(): JSX.Element {
   const { borrowRequest, setSubmenu, loanTerms, setBorrowRequest } = useContext(
     BorrowPageContext
   );
-  const { collateralAmount, collateralWith } = borrowRequest;
+  const { state } = useContext(AppContext);
+  const { loansInstance } = state.teller
+      ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+      : null;
+  const {
+    collateralAmount,
+    collateralWith,
+  } = borrowRequest;
   const loanSize = loanTerms[0].maxLoanAmount;
 
   useEffect(() => {
-    getCollateralAmount(
-      loanSize,
-      loanTerms[0].collateralRatio,
-      collateralWith
-    ).then((response) => {
-      setBorrowRequest({
-        ...borrowRequest,
-        collateralAmount: (response / 1e18).toFixed(2),
+    if (!state.web3State || !state.web3State.address || !loansInstance) return;
+    const borrower = state.web3State.address;
+    const borrowerLoans = loansInstance.methods
+      .getBorrowerLoans(borrower)
+      .call();
+    const loanId = borrowerLoans;
+    loansInstance.methods
+      .getCollateralInfo(loanId)
+      .call()
+      .then((response: { neededInCollateralTokens: any }) => {
+        setBorrowRequest({
+          ...borrowRequest,
+          collateralAmount: response.neededInCollateralTokens,
+        });
       });
-    });
+  }, [state.web3State.address, loansInstance]);
+
+  useEffect(() => {
+    getCollateralAmount(loanSize, loanTerms[0].collateralRatio, collateralWith).then(response => {
+      setBorrowRequest({...borrowRequest, collateralAmount:(response/1e18).toFixed(2)});
+    })
   }, []);
+
   const title = `${
     Number(collateralAmount) != 0
       ? collateralAmount

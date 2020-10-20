@@ -8,6 +8,7 @@ import { BorrowRepayContext } from "../../../context/dashboardContext";
 import ViewContractLink from "../ViewContractLink";
 import { AppContext, BaseTokens, TellerTokens } from "../../../context/app";
 import copy from "../../../copy.json";
+import { DAYS } from "../../../context/borrowContext";
 
 const RepaySelectedLoan = () => {
   const {
@@ -51,18 +52,18 @@ const RepaySelectedLoan = () => {
     <div>
       <div className="table border-thin mb-4 mt-3">
         <TableRow title={pageCopy.selectedLoan.apr}>
-          <div className="font-medium">{terms.interestRate}%</div>
+          <div className="font-medium">{terms.interestRate/100}%</div>
         </TableRow>
         <BR />
         <TableRow title={pageCopy.selectedLoan.loanSize}>
           <div className="font-medium">
-            {amountBorrowed} {token}
+            {amountBorrowed/1e18} {token}
           </div>
         </TableRow>
         <BR />
         <TableRow title={pageCopy.selectedLoan.loanTerm}>
           <div className="font-medium">
-            {terms.duration} {terms.duration % 10 === 1 ? "day" : "days"}
+            {terms.duration/(DAYS*1000)} {terms.duration % 10 === 1 ? "day" : "days"}
           </div>
         </TableRow>
         <BR />
@@ -71,7 +72,7 @@ const RepaySelectedLoan = () => {
         </TableRow>
         <BR />
         <TableRow title={pageCopy.selectedLoan.liquidationPercent}>
-          <div className="font-medium">{terms.collateralRatio} %</div>
+          <div className="font-medium">{terms.collateralRatio/100} %</div>
         </TableRow>
         <BR />
         <TableRow title={pageCopy.selectedLoan.collateralPercent}>
@@ -82,7 +83,7 @@ const RepaySelectedLoan = () => {
         <BR />
         <TableRow title={pageCopy.selectedLoan.collateralAmount}>
           <div className="font-medium">
-            {collateralAmount} {collateralToken}
+            {(collateralAmount/1e18).toFixed(2)} {collateralToken}
           </div>
         </TableRow>
       </div>

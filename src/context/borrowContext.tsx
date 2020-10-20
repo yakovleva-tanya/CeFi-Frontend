@@ -14,7 +14,7 @@ import {
 } from "./types";
 import { _nonce } from '../util/nonce';
 
-const DAYS = 86400; // Seconds per day
+export const DAYS = 86400; // Seconds per day
 
 export const LendingApplicationMap = (
   borrowRequest: BorrowRequest,
@@ -100,7 +100,7 @@ const LendingApp = {
   loanUse: null as string,
   ethereumWallet: null as string,
   assetReportStringified: null as string,
-  assetReportSignature: null as string, 
+  assetReportSignature: null as string,
   requestTime: null as string, // seconds at least 100 in the past
   requestNonce: null as string
 }

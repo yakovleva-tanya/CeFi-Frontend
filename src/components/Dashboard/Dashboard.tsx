@@ -22,6 +22,7 @@ const Dashboard = () => {
 
   const updateLoans = async () => {
     const loans = await FetchLoans(web3State.network, web3State.address);
+    console.log({loans, tokenData});
     const updatedLoans = loans.map((loan: LoanInterface) => {
       loan.currentCollateralPercent = calculateCollateralPercent(
         tokenData,
@@ -34,6 +35,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (!tokenData) return;
     if (!web3State.address) return;
+    if (!web3State.network) return;
     updateLoans();
   }, [web3State.address, web3State.network, tokenData]);
   const { loggedOutMessage } = copy.pages.dashboard;

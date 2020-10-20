@@ -9,7 +9,7 @@ export const calculateCollateralPercent = (
     Math.round(
       ((loan.collateralAmount *
         parseFloat(tokenData[loan.collateralToken].price)) /
-        (loan.totalOwedAmount * parseFloat(tokenData[loan.token].price))) *
+        (loan.amountBorrowed * parseFloat(tokenData[loan.token].price))) *
         10000
     ) / 100;
   return newCollateralPercent;

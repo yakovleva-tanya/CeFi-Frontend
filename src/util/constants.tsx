@@ -2,7 +2,7 @@ export const serverURL = process.env.SERVER_URL || "";
 
 export const NULL_ADDRESS = "0x0000000000000000000000000000000000000000";
 
-const networkId = process.env.NODE_ENV === "development" ? 3 : 1;
+const networkId = process.env.NODE_ENV === "development" ? 4 : 1;
 export const BlockNativeOptions = {
   dappId: process.env.BLOCKNATIVE_API_KEY,
   networkId,
