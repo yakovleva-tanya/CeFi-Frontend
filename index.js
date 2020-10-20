@@ -3,6 +3,7 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
+const path = require("path");
 
 const sslRedirect = () => {
   return (req, res, next) => {
@@ -11,6 +12,13 @@ const sslRedirect = () => {
       : next();
   };
 };
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "dist/index.html"), function (err) {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
 
 app.use(sslRedirect());
 app.use(express.static("dist"));
