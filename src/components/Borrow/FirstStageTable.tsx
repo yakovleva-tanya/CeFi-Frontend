@@ -10,14 +10,17 @@ import { BorrowPageContext } from "../../context/borrowContext";
 import LoanTermSelection from "./LoanTermSelection";
 import CollateralPercentSelection from "./CollateralPercentSelection";
 import LoanSizeSelection from "./LoanSizeSelection";
+import copy from "../../copy.json";
 
 const FirstStageTable = () => {
   const { borrowRequest, setBorrowRequest } = useContext(BorrowPageContext);
   const isSecured = Boolean(borrowRequest.loanType === "Secured");
+  const pageCopy = copy.pages.borrow.main.form.step2;
+
   return (
     <div>
       <div className="table border-thin my-5">
-        <TableRow title="Borrow">
+        <TableRow title={pageCopy.borrow.title}>
           <CustomDropdown
             options={["DAI", "USDC"]}
             selected={borrowRequest.lendWith}
@@ -30,15 +33,15 @@ const FirstStageTable = () => {
           />
         </TableRow>
         <BR />
-        <TableRow title="Loan size">
+        <TableRow title={pageCopy.loanSize.title}>
           <LoanSizeSelection />
         </TableRow>
         <BR />
-        <TableRow title="Loan period">
+        <TableRow title={pageCopy.loanPeriod.title}>
           <LoanTermSelection />
         </TableRow>
         <BR />
-        <TableRow title="Collateral asset">
+        <TableRow title={pageCopy.collateralAsset.title}>
           <CustomDropdown
             options={["ETH", "LINK"]}
             selected={borrowRequest.collateralWith}
@@ -51,11 +54,13 @@ const FirstStageTable = () => {
           />
         </TableRow>
         <BR />
-        <TableRow title={`Bank ${isSecured ? "(optional)" : ""}`}>
+        <TableRow
+          title={`${pageCopy.bank.title} ${isSecured ? "(optional)" : ""}`}
+        >
           <ConnectPlaidButton />
         </TableRow>
         <BR />
-        <TableRow title="Collateral percent">
+        <TableRow title={pageCopy.collateralPercent.title}>
           <CollateralPercentSelection />
         </TableRow>
       </div>
@@ -75,6 +80,7 @@ const ConnectPlaidButton = () => {
     setLoading(true);
     await ConnectPlaid(updateAppState, address, setLoading)();
   };
+  const pageCopy = copy.pages.borrow.main.form.step2;
 
   return (
     <CustomSubmitButton
@@ -82,7 +88,7 @@ const ConnectPlaidButton = () => {
       loading={loading}
       onClickAction={onClickAction}
       approved={!!plaidConnected}
-      text="Connect"
+      text={pageCopy.bank.CTA}
     />
   );
 };

@@ -7,6 +7,8 @@ import FormValidationWarning from "../../UI/FormValidationWarning";
 import { BorrowRepayContext } from "../../../context/dashboardContext";
 import ViewContractLink from "../ViewContractLink";
 import { AppContext, BaseTokens, TellerTokens } from "../../../context/app";
+import copy from "../../../copy.json";
+import { DAYS } from "../../../context/borrowContext";
 
 const RepaySelectedLoan = () => {
   const {
@@ -44,47 +46,49 @@ const RepaySelectedLoan = () => {
     setRepaySuccess(res);
   };
 
+  const pageCopy = copy.pages.dashboard["borrow-repay"];
+
   return (
     <div>
       <div className="table border-thin mb-4 mt-3">
-        <TableRow title="APR">
-          <div className="font-medium">{terms.interestRate}%</div>
+        <TableRow title={pageCopy.selectedLoan.apr}>
+          <div className="font-medium">{terms.interestRate/100}%</div>
         </TableRow>
         <BR />
-        <TableRow title="Loan size">
+        <TableRow title={pageCopy.selectedLoan.loanSize}>
           <div className="font-medium">
-            {amountBorrowed} {token}
+            {amountBorrowed/1e18} {token}
           </div>
         </TableRow>
         <BR />
-        <TableRow title="Loan term">
+        <TableRow title={pageCopy.selectedLoan.loanTerm}>
           <div className="font-medium">
-            {terms.duration} {terms.duration % 10 === 1 ? "day" : "days"}
+            {terms.duration/(DAYS*1000)} {terms.duration % 10 === 1 ? "day" : "days"}
           </div>
         </TableRow>
         <BR />
-        <TableRow title="Loan type">
+        <TableRow title={pageCopy.selectedLoan.loanType}>
           <div className="font-medium">{loanType}</div>
         </TableRow>
         <BR />
-        <TableRow title="Liquidation %">
-          <div className="font-medium">{terms.collateralRatio} %</div>
+        <TableRow title={pageCopy.selectedLoan.liquidationPercent}>
+          <div className="font-medium">{terms.collateralRatio/100} %</div>
         </TableRow>
         <BR />
-        <TableRow title="Collateral %">
+        <TableRow title={pageCopy.selectedLoan.collateralPercent}>
           <div className="font-medium">
             {currentCollateralPercent.toFixed(2)} %
           </div>
         </TableRow>
         <BR />
-        <TableRow title="Collateral amount">
+        <TableRow title={pageCopy.selectedLoan.collateralAmount}>
           <div className="font-medium">
-            {collateralAmount} {collateralToken}
+            {(collateralAmount/1e18).toFixed(2)} {collateralToken}
           </div>
         </TableRow>
       </div>
       <div className="table border-thin mb-4 mt-3">
-        <TableRow title="Status">
+        <TableRow title={pageCopy.selectedLoan.status}>
           <div className="font-medium">{statusName}</div>
         </TableRow>
         <BR />
@@ -107,7 +111,7 @@ const RepaySelectedLoan = () => {
           </div>
         )}
         <BR />
-        <TableRow title="Amount owed">
+        <TableRow title={pageCopy.selectedLoan.amountOwed}>
           <div className="font-medium">
             {totalOwedAmount} {token}
           </div>
@@ -118,7 +122,7 @@ const RepaySelectedLoan = () => {
         <div>
           {/* <FormValidationWarning message="Withdraw assets from Compound and/or sell on Uniswap." /> */}
           <PrimaryButton
-            text="Repay Loan"
+            text={pageCopy.selectedLoan.CTA}
             onClick={() => onRepayLoan(id, totalOwedAmount)}
           />
         </div>

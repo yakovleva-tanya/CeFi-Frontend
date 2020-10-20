@@ -53,6 +53,7 @@ const mergeSignInContracts = async (
   state: AppContextState,
   updateAppState: Function
 ) => {
+  console.log("merging");
   const networkId = await state.web3State.web3.eth.getChainId();
 
   if (networkId !== 1 && networkId !== 4) {
@@ -80,6 +81,7 @@ const mergeSignInContracts = async (
       });
     }
   }
+  console.log("merged");
 };
 
 const getTokenData = async (
@@ -131,7 +133,9 @@ export default function useAppContext() {
   React.useEffect(() => {
     if (!state.web3State.network) return;
     if (!state.web3State.web3) return;
+    console.log(state.teller);
     setUpdates(state, updateAppState);
+    console.log(state.teller);
   }, [state.web3State?.network, state.web3State.address]);
 
   React.useEffect(() => {

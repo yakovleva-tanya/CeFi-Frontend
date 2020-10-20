@@ -2,7 +2,7 @@ export const serverURL = process.env.SERVER_URL || "";
 
 export const NULL_ADDRESS = "0x0000000000000000000000000000000000000000";
 
-const networkId = process.env.NODE_ENV === "development" ? 3 : 1;
+const networkId = process.env.NODE_ENV === "development" ? 4 : 1;
 export const BlockNativeOptions = {
   dappId: process.env.BLOCKNATIVE_API_KEY,
   networkId,
@@ -234,7 +234,7 @@ export const allContractAddresses = {
       USDC: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
       // See https://etherscan.io/token/0x514910771af9ca656af840dff83e8264ecf986ca
       LINK: "0x514910771af9ca656af840dff83e8264ecf986ca",
-      SNX: "0x41Cb82934a671f52379A96AF034674945Ff03d3b",
+      SNX: "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
       MKR: "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
       YFI: "0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e",
       LEND: "0x80fB784B7eD66730e8b1DBd9820aFD29931aab03",

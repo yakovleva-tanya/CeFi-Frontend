@@ -3,24 +3,24 @@ import { BorrowPageContext } from "../../context/borrowContext";
 import CustomInput from "../UI/CustomInput";
 import SubmenuCard from "../UI/SubmenuCard";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
+import copy from "../../copy.json";
 
 export const LoanSizeSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
     BorrowPageContext
   );
+  const pageCopy = copy.pages.borrow.main.form.step2.loanSize.submenu;
   const [value, setValue] = useState(Number(borrowRequest.loanSize).toFixed(2));
 
   return (
     <SubmenuCard
-      title="Loan size"
+      title={pageCopy.title}
       onCloseAction={() => {
         setSubmenu(null);
       }}
     >
       <div className="d-flex flex-column">
-        <div className="mb-4">
-          Enter in the loan amount you would like to request
-        </div>
+        <div className="mb-4">{pageCopy.description} </div>
         <CustomInput
           onChangeFunction={(e: any) => {
             let value = e.target.value.replace(/[^0-9.]/g, "");
@@ -56,7 +56,7 @@ export const LoanSizeSubmenu = () => {
             setSubmenu(null);
           }}
         >
-          Enter
+          {pageCopy.CTA}
         </div>
       </div>
     </SubmenuCard>

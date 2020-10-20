@@ -7,8 +7,10 @@ import FormValidationWarning from "../UI/FormValidationWarning";
 import WarningModal from "../UI/WarningModal";
 import eth from "../../../dist/assets/eth-logo.svg";
 import link from "../../../dist/assets/link-logo.png";
-import { AppContext } from "../../context/app";
+import copy from "../../copy.json";
+import { AppContext, BaseTokens, TellerTokens } from "../../context/app";
 import { getCollateralAmount } from "../../models/FetchTokenData";
+import { getCollateralInfo } from "../../models/LoansInterfaceContract";
 
 export const CollateralAmountSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu, loanTerms } = useContext(
@@ -21,7 +23,9 @@ export const CollateralAmountSubmenu = () => {
 
   const minCollateralAmount = tokenData
     ? Math.round(
-        (Number(loanSize) * Number(loanTerms[0].collateralRatio) * tokenData[lendWith].price) /
+        (Number(loanSize) *
+          Number(loanTerms[0].collateralRatio) *
+          tokenData[lendWith].price) /
           tokenData[collateralWith].price
       ) / 100
     : 0;
@@ -37,9 +41,6 @@ export const CollateralAmountSubmenu = () => {
       ) / 100
     : 0;
 
-  const ModalText =
-    "Changes to terms will require an approval transaction and accrue additional gas fees. Would you like to proceed?";
-
   const submitNewValue = () => {
     let newValue = value;
     if (value < minCollateralAmount) {
@@ -53,10 +54,12 @@ export const CollateralAmountSubmenu = () => {
     });
     setSubmenu(null);
   };
+  const collateralSelectionScreen =
+    copy.pages.borrow.main.form.step4.collateralSelectionScreen;
 
   return (
     <SubmenuCard
-      title="Collateral amount"
+      title={collateralSelectionScreen.title}
       onCloseAction={() => {
         setSubmenu(null);
       }}
@@ -68,16 +71,16 @@ export const CollateralAmountSubmenu = () => {
           cancel={() => {
             setSubmenu(null);
           }}
-          text={ModalText}
+          text={collateralSelectionScreen.collateralChangeWarningMessage}
         />
-        <div className="mb-4">Input the collateral for your loan </div>
+        <div className="mb-4">{collateralSelectionScreen.description}</div>
         {collateralWith === "ETH" && <img src={eth} height="20" />}
         {collateralWith === "LINK" && <img src={link} height="20" />}
         <CustomInput
           onChangeFunction={(e: any) => {
             if (e.target.value < minCollateralAmount) {
               setWarning(
-                `Please input a collateral amount greater than ${minCollateralAmount} ${collateralWith}`
+                `${collateralSelectionScreen.minimumAmountWarning} ${minCollateralAmount} ${collateralWith}`
               );
             } else setWarning("");
             setValue(parseFloat(e.target.value) || 0);
@@ -108,6 +111,10 @@ export function CollateralAmountSelection(): JSX.Element {
   const { borrowRequest, setSubmenu, loanTerms, setBorrowRequest } = useContext(
     BorrowPageContext
   );
+  const { state } = useContext(AppContext);
+  const { loansInstance } = state.teller
+      ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+      : null;
   const {
     collateralAmount,
     collateralWith,
@@ -115,12 +122,33 @@ export function CollateralAmountSelection(): JSX.Element {
   const loanSize = loanTerms[0].maxLoanAmount;
 
   useEffect(() => {
+    if (!state.web3State || !state.web3State.address || !loansInstance) return;
+    const borrower = state.web3State.address;
+    const borrowerLoans = loansInstance.methods
+      .getBorrowerLoans(borrower)
+      .call();
+    const loanId = borrowerLoans;
+    loansInstance.methods
+      .getCollateralInfo(loanId)
+      .call()
+      .then((response: { neededInCollateralTokens: any }) => {
+        setBorrowRequest({
+          ...borrowRequest,
+          collateralAmount: response.neededInCollateralTokens,
+        });
+      });
+  }, [state.web3State.address, loansInstance]);
+
+  useEffect(() => {
     getCollateralAmount(loanSize, loanTerms[0].collateralRatio, collateralWith).then(response => {
       setBorrowRequest({...borrowRequest, collateralAmount:(response/1e18).toFixed(2)});
     })
   }, []);
+
   const title = `${
-    Number(collateralAmount) != 0 ? collateralAmount : borrowRequest.collateralAmount
+    Number(collateralAmount) != 0
+      ? collateralAmount
+      : borrowRequest.collateralAmount
   } ${collateralWith}`;
 
   return (
@@ -131,5 +159,5 @@ export function CollateralAmountSelection(): JSX.Element {
       }}
     />
   );
-};
+}
 export default CollateralAmountSelection;

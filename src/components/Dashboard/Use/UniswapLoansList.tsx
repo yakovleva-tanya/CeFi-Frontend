@@ -7,6 +7,7 @@ import BR from "../../UI/BR";
 import { LoanInterface } from "../../../context/types";
 import { DashboardContext } from "../../../context/dashboardContext";
 import { UniswapContext } from "../../../context/uniswapContext";
+import copy from "../../../copy.json";
 
 const UniswapLoansList = () => {
   const { loans } = useContext(DashboardContext);
@@ -16,10 +17,11 @@ const UniswapLoansList = () => {
         return loan.loanType === "Secured" && loan.status !== "Closed";
       })
     : null;
+  const { description } = copy.pages.dashboard["spend-uniswap"];
 
   return (
     <div>
-      <div>Swap your assets with Uniswap</div>
+      <div>{description}</div>
       <div className="table border-thin mb-4 mt-3">
         {securedLoans &&
           securedLoans.map((loan: LoanInterface, i: any) => {

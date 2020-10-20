@@ -10,9 +10,10 @@ import BorrowMainSection from "./BorrowMainSection";
 import BorrowPageContextProvider, {
   BorrowPageContext,
 } from "../../context/borrowContext";
+import copy from "../../copy.json";
 
 const Borrow = () => {
-  const { stage, setStage, borrowProcessState } = useContext(BorrowPageContext);
+  const { setStage, borrowProcessState } = useContext(BorrowPageContext);
   const {
     isSubmitting,
     isRequesting,
@@ -21,13 +22,20 @@ const Borrow = () => {
     setStageChangeWarning,
     setSuccess,
   } = borrowProcessState;
+  const pageCopy = copy.pages.borrow.main.form;
+  const goBackWarning = pageCopy.goBackWarning;
+  const submittingTermsLoadingScreen =
+    pageCopy.step3.submittingTermsLoadingScreen;
+  const requestingLoanLoadingScreen =
+    pageCopy.step4.requestingLoanLoadingScreen;
+  const successScreen = pageCopy.successScreen;
 
   return (
     <Container>
-      {true && (
+      {
         <WarningModal
           show={stageChangeWarning !== null}
-          text="Changes to terms will require an approval transaction and accrue additional gas fees. Would you like to proceed?"
+          text={goBackWarning}
           proceed={() => {
             setStage(stageChangeWarning);
             setStageChangeWarning(null);
@@ -36,12 +44,16 @@ const Borrow = () => {
             setStageChangeWarning(null);
           }}
         />
+      }
+      {isSubmitting && (
+        <ProcessingScreen link="" title={submittingTermsLoadingScreen.title} />
       )}
-      {isSubmitting && <ProcessingScreen link="" title="Submitting terms" />}
-      {isRequesting && <ProcessingScreen link="" title="Requesting loan" />}
+      {isRequesting && (
+        <ProcessingScreen link="" title={requestingLoanLoadingScreen.title} />
+      )}
       {success && (
         <SuccessScreen
-          title="Loan accepted"
+          title={successScreen.title}
           message={
             <div>
               <div>

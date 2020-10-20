@@ -23,9 +23,15 @@ import {
 } from "../../context/borrowContext";
 
 import { getLendingPoolDecimals } from "../../models/Contracts";
-import { convertToBN, takeOutLoan } from "../../models/LoansInterfaceContract";
-import { getNodeSignaturesForBorrowing, PBorrow, RArrowheadCRA, submitSignaturesToChainForBorrowing } from "../../services/borrow";
+import { takeOutLoan } from "../../models/LoansInterfaceContract";
+import {
+  getNodeSignaturesForBorrowing,
+  PBorrow,
+  RArrowheadCRA,
+  submitSignaturesToChainForBorrowing,
+} from "../../services/borrow";
 import { getCollateralAmount } from "../../models/FetchTokenData";
+import copy from "../../copy.json";
 
 const BorrowForm = () => {
   const {
@@ -38,8 +44,16 @@ const BorrowForm = () => {
     loanTerms,
     setLoanTerms,
     lendingApp,
-    setLendingApp
+    setLendingApp,
   } = useContext(BorrowPageContext);
+
+  const {
+    unsecuredLoanCard,
+    securedLoanCard,
+    description,
+  } = copy.pages.borrow.main.form.step1;
+  const takeOutLoanErrorMessage = copy.pages.borrow.main.form.step4;
+
   const { state, updateAppState } = useContext(AppContext);
   const { setRequesting, setSuccess, setSubmitting } = borrowProcessState;
   const { web3State } = state;
@@ -67,8 +81,8 @@ const BorrowForm = () => {
 
       setBorrowRequest({
         ...borrowRequest,
-        requestTime: lendingApplication.requestTime
-      })
+        requestTime: lendingApplication.requestTime,
+      });
 
       const nodeResponses = await getNodeSignaturesForBorrowing(
         lendingApplication as PBorrow
@@ -104,10 +118,10 @@ const BorrowForm = () => {
 
       await submitSignaturesToChainForBorrowing(
         lendingApp as PBorrow,
-        loanTerms as unknown as RArrowheadCRA[],
+        (loanTerms as unknown) as RArrowheadCRA[],
         lendingApp.requestedLoanSize,
-        // collateralNeeded.toString(),
-        String(0.1 * 1e18),
+        collateralNeeded.toString(),
+        // String(0.1 * 1e18),
         loansInstance
       );
 
@@ -140,7 +154,9 @@ const BorrowForm = () => {
       : null;
     try {
       const borrower = state.web3State.address;
-      const borrowerLoans = await loansInstance.methods.getBorrowerLoans(borrower).call();
+      const borrowerLoans = await loansInstance.methods
+        .getBorrowerLoans(borrower)
+        .call();
       if (borrowerLoans.length == 0) {
         setRequesting(false);
         return false;
@@ -148,7 +164,7 @@ const BorrowForm = () => {
         const loanId = borrowerLoans[borrowerLoans.length - 1];
         const amountToBorrow = loanTerms[0].maxLoanAmount.toString();
 
-        console.log({borrower, borrowerLoans, loanId, amountToBorrow});
+        console.log({ borrower, borrowerLoans, loanId, amountToBorrow });
 
         const response = await takeOutLoan(
           loansInstance,
@@ -166,8 +182,7 @@ const BorrowForm = () => {
       updateAppState((st: AppContextState) => {
         const errorModal = {
           show: true,
-          message:
-            "An error occurred while taking out the loan. Please try again.",
+          message: { takeOutLoanErrorMessage },
           title: "Error",
         };
         return { ...st, errorModal };
@@ -192,6 +207,7 @@ const BorrowForm = () => {
 
   const isSecured = Boolean(borrowRequest.loanType === "Secured");
   const plaidConnected = state?.plaid?.loggedIn;
+
   return (
     <div>
       {submenu ? (
@@ -200,7 +216,7 @@ const BorrowForm = () => {
         <div>
           {stage === 0 && (
             <div className="py-3">
-              <div className="mt-5">Select your loan type</div>
+              <div className="mt-5">{description}</div>
               <LoanSelectCard
                 className="mt-4"
                 onClick={() => {
@@ -211,8 +227,8 @@ const BorrowForm = () => {
                     loanType: "Unsecured",
                   });
                 }}
-                title="Unsecured loan"
-                subTitle="Apply for an unsecured loan by connecting your bank account."
+                title={securedLoanCard.title}
+                subTitle={unsecuredLoanCard.description}
                 logos={["compound"]}
               />
               <LoanSelectCard
@@ -225,8 +241,8 @@ const BorrowForm = () => {
                     loanType: "Secured",
                   });
                 }}
-                title="Secured loan"
-                subTitle="Apply for a secured loan, no bank account needed."
+                title={securedLoanCard.title}
+                subTitle={securedLoanCard.description}
                 logos={["compound", "uniswap"]}
               />
             </div>
@@ -258,7 +274,11 @@ const BorrowForm = () => {
                 onClick={
                   process.env.INTEGRATIONS_DISABLED === "true"
                     ? onAcceptTermsMock
-                    : async() => { await onAcceptTerms(borrowRequest.requestNonce) }} />
+                    : async () => {
+                        await onAcceptTerms(borrowRequest.requestNonce);
+                      }
+                }
+              />
             </div>
           )}
           {stage === 3 && (

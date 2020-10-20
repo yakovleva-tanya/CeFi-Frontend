@@ -4,6 +4,7 @@ import SubmenuCard from "../UI/SubmenuCard";
 import CustomSubmenuLink from "../UI/CustomSubmenuLink";
 import FormValidationWarning from "../UI/FormValidationWarning";
 import CustomSlider from "../UI/CustomSlider";
+import copy from "../../copy.json";
 
 export const LoanTermSubmenu = () => {
   const { borrowRequest, setBorrowRequest, setSubmenu } = useContext(
@@ -53,16 +54,17 @@ export const LoanTermSubmenu = () => {
     }
     setValue(value);
   };
+  const pageCopy = copy.pages.borrow.main.form.step2.loanPeriod.submenu;
 
   return (
     <SubmenuCard
-      title="Loan term"
+      title={pageCopy.title}
       onCloseAction={() => {
         setSubmenu(null);
       }}
     >
       <div className="-my-2 d-flex flex-column px-4">
-        <div className="mb-4">Enter in the duration of your loan term </div>
+        <div className="mb-4">{pageCopy.description}</div>
         <input
           autoComplete="off"
           autoCorrect="off"
@@ -91,7 +93,7 @@ export const LoanTermSubmenu = () => {
           className="py-1 px-3 my-4 mx-auto border-thin pointer text-black"
           onClick={onSubmit}
         >
-          Enter
+          {pageCopy.CTA}
         </div>
         <FormValidationWarning message={warning} />
       </div>

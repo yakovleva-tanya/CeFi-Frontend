@@ -12,12 +12,8 @@ import { AppContext } from "../../context/app";
 import LoginButton from "../LoginButton/LoginButton";
 import { LoanInterface } from "../../context/types";
 import { calculateCollateralPercent } from "../../actions/HelperFunctions";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-} from "react-router-dom";
+
+import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import copy from "../../copy.json";
 
 const Dashboard = () => {
@@ -27,6 +23,7 @@ const Dashboard = () => {
 
   const updateLoans = async () => {
     const loans = await FetchLoans(web3State.network, web3State.address);
+    console.log({loans, tokenData});
     const updatedLoans = loans.map((loan: LoanInterface) => {
       loan.currentCollateralPercent = calculateCollateralPercent(
         tokenData,
@@ -39,8 +36,10 @@ const Dashboard = () => {
   useEffect(() => {
     if (!tokenData) return;
     if (!web3State.address) return;
+    if (!web3State.network) return;
     updateLoans();
   }, [web3State.address, web3State.network, tokenData]);
+  const { loggedOutMessage } = copy.pages.dashboard;
 
   return (
     <Container>
@@ -51,7 +50,7 @@ const Dashboard = () => {
         </div>
       ) : (
         <div className="d-flex justify-content-center align-items-center flex-column text-center ">
-          <div>Please connect your wallet to view the dashboard</div>
+          <div>{loggedOutMessage}</div>
           <LoginButton />
         </div>
       )}

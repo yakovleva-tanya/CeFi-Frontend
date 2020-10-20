@@ -23,6 +23,7 @@ import {
 import { calculateCollateralPercent } from "../../../actions/HelperFunctions";
 import eth from "../../../../dist/assets/eth-logo.svg";
 import link from "../../../../dist/assets/link-logo.png";
+import copy from "../../../copy.json";
 import { BorrowPageContext } from "../../../context/borrowContext";
 
 const DepositMainSection = () => {
@@ -72,6 +73,7 @@ const DepositMainSection = () => {
     setDepositing(false);
     setSuccess(true);
   };
+  const { description } = copy.pages.dashboard["borrow-deposit"];
 
   return (
     <div className="my-4">
@@ -106,7 +108,7 @@ const DepositMainSection = () => {
                     {
                       ...selectedLoan,
                       collateralAmount:
-                        selectedLoan.collateralAmount + parseFloat(value),
+                        (selectedLoan.collateralAmount + parseFloat(value)),
                     }
                   );
                   setNewCollateralPercent(newCollateralPercent);
@@ -139,7 +141,7 @@ const DepositMainSection = () => {
             <div className="table border-thin mb-4 mt-3">
               <TableRow title="Liquidation %">
                 <div className="font-medium">
-                  {selectedLoan.terms.collateralRatio}%
+                  {selectedLoan.terms.collateralRatio/100}%
                 </div>
               </TableRow>
               <BR />
@@ -151,7 +153,7 @@ const DepositMainSection = () => {
               <BR />
               <TableRow title="Collateral amount">
                 <div className="font-medium">
-                  {selectedLoan.collateralAmount} {selectedLoan.collateralToken}
+                  {(selectedLoan.collateralAmount/1e18).toFixed(2)} {selectedLoan.collateralToken}
                 </div>
               </TableRow>
             </div>
@@ -184,22 +186,20 @@ const DepositMainSection = () => {
 
       {!selectedLoan && (
         <div className="my-2">
-          <div className="text-gray mb-4">
-            Deposit additional collateral for an outstanding loan
-          </div>
+          <div className="text-gray mb-4">{description}</div>
           <div className="table mb-4">
             {currentLoans &&
               currentLoans
                 .map((loan: any) => {
                   loan.percentFromLiquidation =
-                    loan.currentCollateralPercent - loan.terms.collateralRatio;
+                    loan.currentCollateralPercent - loan.terms.collateralRatio/100;
                   return loan;
                 })
                 .sort((a: any, b: any) => {
                   return a.percentFromLiquidation - b.percentFromLiquidation;
                 })
                 .map((loan: any, i: number) => {
-                  const percentFromLiquidaton = loan.percentFromLiquidation;
+                  const percentFromLiquidaton = loan.percentFromLiquidation.toFixed(2);
                   const borderRadius =
                     i === 0
                       ? "4px 4px 0px 0px"
@@ -230,7 +230,7 @@ const DepositMainSection = () => {
                         )}% from liquidation`}
                       >
                         <CustomSubmenuLink
-                          title={`${loan.collateralAmount.toFixed(2)} ${
+                          title={`${(loan.collateralAmount/1e18).toFixed(2)} ${
                             loan.collateralToken
                           }`}
                           onClickAction={() => {
