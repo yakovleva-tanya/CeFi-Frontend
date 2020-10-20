@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Lend from "./../components/Lend/Lend";
 import Borrow from "./../components/Borrow/Borrow";
