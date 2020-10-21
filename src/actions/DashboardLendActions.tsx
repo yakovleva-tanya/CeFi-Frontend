@@ -67,6 +67,7 @@ export const withdraw = async ({
   const balanceSt = await tToken.methods.balanceOf(primaryAddress).call();
   const decimals = await tToken.methods.decimals().call();
   const balance = parseFloat(balanceSt) / parseFloat(decimals);
+  console.log('suppliedBalance updated')
   updateAppState((st: AppContextState) => {
     const teller = st.teller;
     teller.contracts[baseTokens][tellerTokens].suppliedBalance = balance;

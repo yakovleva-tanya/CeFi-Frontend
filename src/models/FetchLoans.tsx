@@ -145,6 +145,7 @@ const FetchLoans = async (network: string, address: string) => {
     return loans;
   } catch (err) {
     console.log(err);
+    return []
   }
 };
 export default FetchLoans;

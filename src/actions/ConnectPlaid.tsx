@@ -36,6 +36,7 @@ export default (
           if (bankInfoResponse.data?.error)
             throw new Error("Bank Info response failed.");
           const bankInfoData = bankInfoResponse.data as BankInfoResponseInterface;
+          console.log('plaid data updated')
           updateAppState((st: AppContextState) => {
             const plaid = st.plaid;
             const dataProviderResponse = st.dataProviderResponse;
@@ -45,6 +46,7 @@ export default (
           });
           setLoading(false);
         } catch (err) {
+          console.log(err);
           setLoading(false);
           updateAppState((st: AppContextState) => {
             const errorModal = {

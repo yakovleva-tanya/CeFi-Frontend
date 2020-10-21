@@ -1,7 +1,7 @@
 /**
  * Call ArrowheadCRA with the given loan details.
  *
- * @namespace RegisterLoan 
+ * @namespace RegisterLoan
  * @category ReactActions
  */
 
@@ -12,6 +12,7 @@ export default async function registerLoan(lendingApplication: LendingApplicatio
   try {
     return;
   } catch (err) {
+    console.log(err);
     return updateAppState((st: AppContextState) => {
       const errorModal = {
         show: true,

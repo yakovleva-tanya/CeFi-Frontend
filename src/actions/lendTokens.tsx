@@ -68,6 +68,7 @@ const completeSupply = (
     );
     setProcessing("");
     setTransactionHash(transactionHash);
+    console.log("suppliedBalance updated");
     updateAppState((st: AppContextState) => {
       const teller = st.teller;
       teller.contracts[baseTokens][tellerTokens].suppliedBalance = balance;

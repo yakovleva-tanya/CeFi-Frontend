@@ -133,6 +133,7 @@ const BorrowForm = () => {
       return true;
     } catch (err) {
       console.log(err);
+      console.log("borrowForm - 1");
       updateAppState((st: AppContextState) => {
         const errorModal = {
           show: true,
@@ -179,6 +180,7 @@ const BorrowForm = () => {
       }
     } catch (err) {
       console.log(err);
+      console.log("borrowForm - 2");
       updateAppState((st: AppContextState) => {
         const errorModal = {
           show: true,

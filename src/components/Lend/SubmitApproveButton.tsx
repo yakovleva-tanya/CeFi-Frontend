@@ -43,6 +43,7 @@ const SubmitApproveButton = () => {
       setTokensApproved(true);
     } catch (error) {
       setApproving(false);
+      console.log(error)
       updateAppState((st: AppContextState) => {
         const errorModal = {
           show: true,

@@ -48,6 +48,7 @@ export async function web3FromProvider(updateAppState: Function) {
           typeof network === "number" && !Number.isNaN(network)
             ? network.toString()
             : "unknown";
+        console.log("network updated, new network ID: ", network);
         updateAppState((st: AppContextState) => {
           const web3State = st.web3State;
           web3State.network = network;
@@ -61,11 +62,13 @@ export async function web3FromProvider(updateAppState: Function) {
           web3,
           onboard,
         } as Web3State;
+        console.log("web3state updated");
         updateAppState((st: AppContextState) => {
           return { ...st, web3State };
         });
       },
       address: async (address: any) => {
+        console.log("address updated: ", address);
         updateAppState((st: AppContextState) => {
           const web3State = st.web3State;
           web3State.address = address;

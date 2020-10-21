@@ -14,8 +14,14 @@ import { FetchTokenData } from "../models/FetchTokenData";
 
 const setAddress = async (state: AppContextState, updateAppState: Function) => {
   const { web3State } = state;
+  const oldAddress = web3State.address;
   const accounts = await web3State.web3.eth.getAccounts();
-  web3State.address = accounts[0];
+  const newAddress = accounts[0];
+  if (oldAddress.toLowerCase() === newAddress.toLowerCase()) {
+    return;
+  }
+  web3State.address = newAddress;
+  console.log("address updated: ", newAddress);
   updateAppState((st: AppContextState) => {
     return { ...st, web3State };
   });
@@ -28,10 +34,13 @@ const setBlockNumber = async (
   const { web3State } = state;
   if (web3State.network === "unknown") return;
   const blockNumber = await web3State.web3.eth.getBlockNumber();
-  web3State.blockNumber = blockNumber;
-  updateAppState((st: AppContextState) => {
-    return { ...st, web3State };
-  });
+  if (web3State.blockNumber !== blockNumber) {
+    web3State.blockNumber = blockNumber;
+    console.log("block number set: ", blockNumber);
+    updateAppState((st: AppContextState) => {
+      return { ...st, web3State };
+    });
+  }
   const subscription = web3State.web3.eth
     .subscribe("newBlockHeaders", function (error: any, result: any) {
       if (!error) {
@@ -41,7 +50,9 @@ const setBlockNumber = async (
     })
     .on("connected", function (subscriptionId: any) {})
     .on("data", function (blockHeader: any) {
+      if (web3State.blockNumber >= blockHeader.number) return;
       web3State.blockNumber = blockHeader.number;
+      console.log("block number updated:", blockHeader.number);
       updateAppState((st: AppContextState) => {
         return { ...st, web3State };
       });
@@ -53,11 +64,11 @@ const mergeSignInContracts = async (
   state: AppContextState,
   updateAppState: Function
 ) => {
-  console.log("merging");
   const networkId = await state.web3State.web3.eth.getChainId();
 
   if (networkId !== 1 && networkId !== 4) {
     const teller = AppContextDefault.state.teller;
+    console.log("Detected unsupported network. Netowrk ID: ", networkId);
     updateAppState((st: AppContextState) => ({
       ...st,
       teller,
@@ -65,11 +76,13 @@ const mergeSignInContracts = async (
   } else {
     try {
       const teller = await signInContracts(state.web3State, state.teller);
+      console.log("teller contracts set");
       updateAppState((st: AppContextState) => ({
         ...st,
         teller,
       }));
     } catch (e) {
+      console.log(e);
       updateAppState((st: AppContextState) => {
         const errorModal = {
           show: true,
@@ -81,7 +94,6 @@ const mergeSignInContracts = async (
       });
     }
   }
-  console.log("merged");
 };
 
 const getTokenData = async (
@@ -91,6 +103,7 @@ const getTokenData = async (
   try {
     if (state.tokenData !== null) return;
     const tokenData = await FetchTokenData();
+    console.log("token data updated");
     updateAppState((st: AppContextState) => {
       return { ...st, tokenData };
     });
@@ -133,9 +146,7 @@ export default function useAppContext() {
   React.useEffect(() => {
     if (!state.web3State.network) return;
     if (!state.web3State.web3) return;
-    console.log(state.teller);
     setUpdates(state, updateAppState);
-    console.log(state.teller);
   }, [state.web3State?.network, state.web3State.address]);
 
   React.useEffect(() => {
