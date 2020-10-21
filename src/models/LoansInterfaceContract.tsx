@@ -133,13 +133,12 @@ export async function depositCollateral(
   amount: string,
   web3State: Web3State
 ) {
-  const bnAmount = convertToBN(amount);
-  console.log({bnAmount, collateralWith});
+  
   if (collateralWith != 'ETH') {
     const collateralToken = await getCollateralToken(loansInterface, web3State);
   // Check allowance of loansInterface
     const approvedAmount = await collateralToken.methods.allowance(loansInterface._address, borrowerAddress).call();
-    if (bnAmount > approvedAmount) {
+    if (amount > approvedAmount) {
       return
     }
   } 
@@ -147,9 +146,9 @@ export async function depositCollateral(
     .depositCollateral(
       borrowerAddress,
       loanId,
-      bnAmount
+      amount
     )
-    .send({ from: borrowerAddress, value: bnAmount })
+    .send({ from: borrowerAddress, value: amount })
     .on('transactionHash', Notify.hash)
     .on('receipt', resolve)
     .on('error', reject)

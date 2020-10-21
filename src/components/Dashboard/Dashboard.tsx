@@ -8,18 +8,22 @@ import Lend from "./Lend";
 import Borrow from "./Borrow";
 import Use from "./Use";
 import FetchLoans from "../../models/FetchLoans";
-import { AppContext } from "../../context/app";
+import { AppContext, BaseTokens, TellerTokens } from "../../context/app";
 import LoginButton from "../LoginButton/LoginButton";
 import { LoanInterface } from "../../context/types";
 import { calculateCollateralPercent } from "../../actions/HelperFunctions";
 
 import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import copy from "../../copy.json";
+import LoanTermSelection from "../Borrow/LoanTermSelection";
 
 const Dashboard = () => {
   const { state } = useContext(AppContext);
   const { web3State, tokenData } = state;
   const { setLoans } = useContext(DashboardContext);
+  const { loansInstance } = state.teller
+          ? state.teller.contracts[BaseTokens.ETH][TellerTokens.tDAI]
+          : null;
 
   const updateLoans = async () => {
     const loans = await FetchLoans(web3State.network, web3State.address);
@@ -29,9 +33,10 @@ const Dashboard = () => {
         tokenData,
         loan
       );
+      console.log('ID', loan.id.substr(loan.id.indexOf('-/g')));
       return loan;
     });
-    setLoans(updatedLoans);
+    await setLoans(updatedLoans);
   };
   useEffect(() => {
     if (!tokenData) return;

@@ -56,6 +56,7 @@ const UseCompoundMainSection = () => {
     setSupplying(false);
     setSuccess(res);
   };
+  console.log({loans});
   const activeLoans = loans
     ? loans.filter((loan: LoanInterface) => {
         return loan.status !== "Closed";

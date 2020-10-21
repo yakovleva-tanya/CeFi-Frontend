@@ -178,9 +178,9 @@ const CollateralTransferButton = () => {
           } else {
             const loanId = borrowerLoans[borrowerLoans.length - 1];
 
-            const collateralToDeposit = await loansInstance.methods.getCollateralInfo(Number(loanId));
-
-            const amountToDeposit = borrowRequest.collateralAmount.toString();
+            const collateralToDeposit = await loansInstance.methods.getCollateralInfo(Number(loanId)).call();
+            console.log({collateralToDeposit});
+            const amountToDeposit = collateralToDeposit.neededInCollateralTokens;
             console.log({borrowerLoans, loanId, amountToDeposit, collateralToDeposit});
 
             const response = await depositCollateral(
@@ -188,7 +188,7 @@ const CollateralTransferButton = () => {
               borrower,
               loanId,
               borrowRequest.collateralWith,
-              collateralToDeposit,
+              amountToDeposit,
               web3State
             );
             console.log(response);

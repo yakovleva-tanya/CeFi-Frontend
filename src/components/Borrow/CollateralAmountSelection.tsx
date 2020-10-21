@@ -78,9 +78,9 @@ export const CollateralAmountSubmenu = () => {
         {collateralWith === "LINK" && <img src={link} height="20" />}
         <CustomInput
           onChangeFunction={(e: any) => {
-            if (e.target.value < minCollateralAmount) {
+            if (e.target.value < collateralAmount) {
               setWarning(
-                `${collateralSelectionScreen.minimumAmountWarning} ${minCollateralAmount} ${collateralWith}`
+                `${collateralSelectionScreen.minimumAmountWarning} ${collateralAmount} ${collateralWith}`
               );
             } else setWarning("");
             setValue(parseFloat(e.target.value) || 0);
@@ -120,30 +120,26 @@ export function CollateralAmountSelection(): JSX.Element {
     collateralWith,
   } = borrowRequest;
   const loanSize = loanTerms[0].maxLoanAmount;
+  console.log({state, loansInstance});
 
-  useEffect(() => {
+  useEffect(() => async() => {
     if (!state.web3State || !state.web3State.address || !loansInstance) return;
     const borrower = state.web3State.address;
-    const borrowerLoans = loansInstance.methods
+    const borrowerLoans = await loansInstance.methods
       .getBorrowerLoans(borrower)
       .call();
-    const loanId = borrowerLoans;
+    console.log({borrower, borrowerLoans});
+    const loanId = borrowerLoans[borrowerLoans.length -1];
     loansInstance.methods
       .getCollateralInfo(loanId)
       .call()
       .then((response: { neededInCollateralTokens: any }) => {
         setBorrowRequest({
           ...borrowRequest,
-          collateralAmount: response.neededInCollateralTokens,
+          collateralAmount: (response.neededInCollateralTokens / 1e18).toFixed(2),
         });
       });
   }, [state.web3State.address, loansInstance]);
-
-  useEffect(() => {
-    getCollateralAmount(loanSize, loanTerms[0].collateralRatio, collateralWith).then(response => {
-      setBorrowRequest({...borrowRequest, collateralAmount:(response/1e18).toFixed(2)});
-    })
-  }, []);
 
   const title = `${
     Number(collateralAmount) != 0

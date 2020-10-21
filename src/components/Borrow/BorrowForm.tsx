@@ -115,13 +115,13 @@ const BorrowForm = () => {
 
     try {
       const collateralNeeded = await getCollateralAmount(lendingApp.requestedLoanSize, loanTerms[0].collateralRatio, lendingApp.collateralAsset);
-
+      console.log({lendingApp, collateralNeeded, loanTerms});
       await submitSignaturesToChainForBorrowing(
         lendingApp as PBorrow,
         (loanTerms as unknown) as RArrowheadCRA[],
         lendingApp.requestedLoanSize,
-        collateralNeeded.toString(),
-        // String(0.1 * 1e18),
+        // Math.round(collateralNeeded).toString(),
+        String(0 * 1e18),
         loansInstance
       );
 
